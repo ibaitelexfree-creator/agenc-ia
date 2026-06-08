@@ -313,6 +313,13 @@
       "academia": "Académie en Ligne",
       "communication": "Communication",
       "staff_mgmt": "Gestion d'Équipe"
+    },
+    "financials": {
+      "status_all": "Tous les statuts",
+      "status_paid": "Payé",
+      "status_pending": "En attente",
+      "status_cancelled": "Annulé",
+      "status_refunded": "Remboursé"
     }
   },
   "academy": {

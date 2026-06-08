@@ -634,7 +634,12 @@
       "sort_date_desc": "Most recent",
       "sort_date_asc": "Oldest",
       "sort_amount_desc": "Amount (High to low)",
-      "sort_amount_asc": "Amount (Low to high)"
+      "sort_amount_asc": "Amount (Low to high)",
+      "status_all": "All Statuses",
+      "status_paid": "Paid",
+      "status_pending": "Pending",
+      "status_cancelled": "Cancelled",
+      "status_refunded": "Refunded"
     },
     "academia": {
       "title": "Online Academy",

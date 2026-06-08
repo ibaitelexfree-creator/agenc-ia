@@ -634,7 +634,12 @@
       "sort_date_desc": "Más recientes",
       "sort_date_asc": "Más antiguos",
       "sort_amount_desc": "Monto (Mayor a menor)",
-      "sort_amount_asc": "Monto (Menor a mayor)"
+      "sort_amount_asc": "Monto (Menor a mayor)",
+      "status_all": "Todos los estados",
+      "status_paid": "Pagado",
+      "status_pending": "Pendiente",
+      "status_cancelled": "Cancelado",
+      "status_refunded": "Reembolsado"
     },
     "academia": {
       "title": "Academia Online",

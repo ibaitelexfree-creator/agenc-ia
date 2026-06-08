@@ -659,7 +659,12 @@
       "refunded_info": "Zenbatekoa itzuli da.",
       "cancel": "Utzi",
       "saving": "Gordetzen...",
-      "confirm_change": "Aldaketa berretsi"
+      "confirm_change": "Aldaketa berretsi",
+      "status_all": "Egoera guztiak",
+      "status_paid": "Ordainduta",
+      "status_pending": "Zain",
+      "status_cancelled": "Bertan behera utzia",
+      "status_refunded": "Itzulita"
     },
     "academia": {
       "title": "Online Akademia",
