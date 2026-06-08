@@ -1,0 +1,656 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "courses": "Cours",
+    "academy": "Académie",
+    "rental": "Location",
+    "teams": "Équipes",
+    "about": "L'École",
+    "contact": "Contact",
+    "experiences": "Expériences",
+    "login": "Connexion",
+    "dashboard": "Mon Espace",
+    "admin_panel": "Panneau Admin",
+    "logout": "Déconnexion",
+    "language_selector": "Changer de langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "kids": "Enfants",
+    "adults": "Adultes",
+    "windsurf": "Windsurf",
+    "sailboats": "Voiliers",
+    "kayak_paddle": "Kayak & Paddle",
+    "mooring": "Mouillage",
+    "membership": "Adhésion",
+    "events": "Événements",
+    "summer_camp": "Camp d'été",
+    "adult_initiation": "Initiation Adultes",
+    "adult_advanced": "Perfectionnement",
+    "windsurf_courses": "Cours Windsurf",
+    "sailboat_rental": "Location Voiliers",
+    "small_craft_rental": "Kayak / Paddle / Pirogue",
+    "birthdays": "Anniversaires",
+    "bonos": "Forfaits",
+    "space_rental": "Location Espace",
+    "all_courses": "Tous les cours",
+    "all_rentals": "Toutes les locations"
+  },
+  "glossary": {
+    "title": "Glossaire Nautique",
+    "subtitle": "Dictionnaire complet des termes de la voile",
+    "description": "Dictionnaire complet des termes de la voile",
+    "search_placeholder": "Rechercher terme, définition...",
+    "filter_all": "Tous",
+    "filter_maniobras": "Manœuvres",
+    "filter_partes": "Pièces du Bateau",
+    "filter_meteo": "Météorologie",
+    "filter_reglamento": "Règlements",
+    "filter_otros": "Autres",
+    "learn_more": "Apprenez-en plus dans le cours",
+    "no_results": "Aucun terme trouvé pour votre recherche",
+    "back_to_top": "Retour en haut"
+  },
+  "notifications": {
+    "payment_success": "Paiement réussi",
+    "payment_success_desc": "Merci de votre confiance. Vous avez maintenant accès à votre réservation dans Mon Espace.",
+    "payment_canceled": "Paiement annulé",
+    "payment_canceled_desc": "Le processus de paiement a été interrompu et aucun débit n'a été effectué.",
+    "payment_error": "Erreur de paiement",
+    "payment_error_desc": "Un problème est survenu lors du traitement de votre paiement. Veuillez réessayer.",
+    "enable_notifications_title": "Activer les Notifications",
+    "enable_notifications_desc": "Restez informé de l'état de vos réservations, des changements de cours et des alertes météo importantes.",
+    "enable_btn": "ACTIVER LES ALERTE",
+    "later_btn": "PLUS TARD"
+  },
+  "hero": {
+    "title": "Élégance en Mer",
+    "subtitle": "Formation nautique premium à Getxo"
+  },
+  "courses": {
+    "title": "Cours de Voile",
+    "duration": "Durée",
+    "view_more": "Voir les détails",
+    "levels": {
+      "iniciacion": "Débutant",
+      "intermedio": "Intermédiaire",
+      "avanzado": "Avancé",
+      "profesional": "Professionnel"
+    },
+    "back_to_catalog": "Retour au catalogue"
+  },
+  "rental_page": {
+    "header_eyebrow": "À VOTRE RYTHME",
+    "title_prefix": "Location de",
+    "title_highlight": "Matériel",
+    "description": "Découvrez la mer de près et à votre rythme sur des bateaux agiles et ludiques. Parfait pour profiter de la navigation en toute liberté. Voile légère, croisière, planche à voile ou Big SUP.",
+    "crew_label": "Équipage",
+    "footer_note": "*La location de voilier nécessite une qualification minimale. Pour le Paddle Surf avec turbine, une formation de base en gestion est incluse.",
+    "categories": {
+      "all": "Tous",
+      "alquileres": "Locations",
+      "veleros": "Voiliers",
+      "windsurf": "Planche à voile",
+      "paddlesurf": "Surf à pagaie",
+      "kayak": "Kayak",
+      "piragua": "Canoë",
+      "membresias": "Adhésions",
+      "bonos": "Bonus",
+      "eventos": "Événements"
+    },
+    "booking": {
+      "from": "depuis",
+      "date_label": "Date de réservation",
+      "time_label": "Heure",
+      "extra_option": "Option supplémentaire :",
+      "cancel": "Annuler",
+      "confirm": "Confirmer la réservation",
+      "book_now": "Réservez maintenant",
+      "image_placeholder": "Image de",
+      "invalid_date": "Veuillez remplir correctement la date (JJ/MM/AAAA)",
+      "no_times_available": "Il n'y a pas d'horaires disponibles pour aujourd'hui",
+      "no_times_selected_date": "Il n'y a pas d'horaires disponibles pour la date sélectionnée",
+      "booking_error": "Erreur lors du traitement de la réservation. Veuillez réessayer."
+    }
+  },
+  "experiences_page": {
+    "header_eyebrow": "Vivez la Mer",
+    "title_prefix": "Nos",
+    "title_highlight": "Expériences",
+    "description": "Anniversaires, forfaits de navigation, mouillages et activités spéciales. Vivez le Cantabrique d'une manière unique.",
+    "from": "à partir de",
+    "per_person": "/personne",
+    "per_month": "/mois",
+    "per_session": "/session",
+    "book_now": "Réserver",
+    "more_info": "Plus d'info",
+    "footer_note": "Toutes nos expériences sont soumises à des conditions météorologiques et à la disponibilité. Réservez à l'avance pour garantir votre place.",
+    "all": "Tout",
+    "evento": "Événements",
+    "taller": "Ateliers",
+    "cumpleanos": "Anniversaires",
+    "atraque": "Mouillages",
+    "bono": "Forfaits",
+    "visita": "Visites",
+    "premium_experience": "Expérience Premium"
+  },
+  "home": {
+    "hero": {
+      "slide1_title": "Qu'est-ce que Getxo",
+      "slide1_subtitle": "Bela Eskola? Nous ne sommes pas une école conventionnelle, mais une communauté proche construite autour de la mer et des valeurs qui l'accompagnent.",
+      "slide1_action": "Notre philosophie",
+      "slide2_title": "La voile s'adapte à vous",
+      "slide2_subtitle": "Navigation à la carte, selon la façon dont vous souhaitez vivre la mer. La voile n'est pas un sport rigide. C'est une façon de vivre la mer qui s'adapte à vous.",
+      "slide2_action": "Voir les options",
+      "slide3_title": "Découvrez votre chemin",
+      "slide3_subtitle": "Du niveau basique à intermédiaire, pour jeunes et adultes. Nous avons un plan pour vous.",
+      "slide3_action": "Nos cours",
+      "slide4_title": "Pourquoi naviguer avec nous ?",
+      "slide4_subtitle": "Économique, Communautaire, Sur Mesure. Chaque personne est différente, et ici nous en tenons compte.",
+      "slide4_action": "Devenez membre",
+      "scroll": "Déplacer"
+    },
+    "stats": {
+      "pasion": "Des années de passion",
+      "alumnos": "Étudiants formés",
+      "flota": "Navires dans la flotte",
+      "clases": "Cours hebdomadaires"
+    },
+    "programs": {
+      "badge": "DÉCOUVREZ VOTRE CHEMIN",
+      "title": "Apprendre à naviguer",
+      "learn_more": "Apprendre encore plus",
+      "licencia_title": "Jeunes (Basique/Moyen)",
+      "licencia_price": "A consulter",
+      "licencia_desc": "Txikigune (journées uniques), Udalekuak (5 jours) et formation continue 3 jours par mois.",
+      "j80_title": "Adultes (Initiation)",
+      "j80_price": "A consulter",
+      "j80_desc": "Croisière d'initiation. Premier contact avec la voile lors d'une croisière adaptée à chacun.",
+      "rental_title": "Adultes (niveau moyen)",
+      "rental_desc": "Initiation/perfectionnement en dériveur, perfectionnement en croisière, croisière avec gennaker et formation technique.",
+      "price_rental": "A consulter"
+    },
+    "fleet_cta": {
+      "title": "Notre flotte",
+      "highlight": "Exclusif",
+      "action": "Explorez J80"
+    },
+    "experience": {
+      "filosofia": "QU'EST-CE QUE GETXO BELA ESKOLA ?",
+      "lifestyle_title": "nous ne sommes pas un",
+      "lifestyle_subtitle": "école conventionnelle",
+      "desc1": "Nous sommes une communauté proche construite autour de la mer et des valeurs qui l'accompagnent. Un lieu où apprendre à naviguer va de pair avec partage, plaisir et croissance en groupe.",
+      "desc2": "Nous croyons en un apprentissage naturel, accessible et sans pression, où chacun trouve son propre rythme. Au-delà de l'eau, nous sommes un point de rencontre où se génèrent des liens, de la confiance et une manière de comprendre la mer qui vous invite à revenir.",
+      "about_link": "Découvrez notre école",
+      "live": "Vies",
+      "the": "le",
+      "passion": "Passion"
+    },
+    "features": {
+      "title": "Pourquoi nous choisir",
+      "cert_title": "Certification officielle",
+      "cert_desc": "Des qualifications reconnues pour naviguer dans toutes les mers.",
+      "staff_title": "Instructeurs experts",
+      "staff_desc": "Apprenez des marins avec des milliers de milles d'expérience.",
+      "comm_title": "Communauté active",
+      "comm_desc": "Rejoignez un club d'amoureux de la voile et de la mer Cantabrique."
+    }
+  },
+  "courses_page": {
+    "header_badge": "NOTRE OFFRE",
+    "header_title": "Cours",
+    "header_highlight": "Navigation",
+    "header_desc": "Chez Getxo Bela Eskola, nous proposons des cours pour tous les âges et tous les niveaux, toujours selon une approche proche, progressive et adaptée à chaque personne. Notre objectif est que chacun trouve sa place dans la mer et apprenne à naviguer en toute sécurité, sereinement et en toute confiance.",
+    "duration": "h",
+    "price_from": "Depuis"
+  },
+  "about_page": {
+    "header_badge": "FAITES NOUS CONNAÎTRE",
+    "header_title": "Histoire de",
+    "header_highlight": "Club",
+    "header_suffix": "École Getxo Bela",
+    "since": "Fondée à Getxo",
+    "desc1": "Il y a plus de 15 ans, nous sommes nés à Getxo avec un objectif clair : rapprocher la mer de tous à partir d'une approche humaine, éducative et accessible. Nous sommes une association à but non lucratif et un projet social qui considère la voile comme un outil d'apprentissage, de coexistence et de transformation personnelle.",
+    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté.",
+    "values": {
+      "v1_title": "Nos installations",
+      "v1_desc": "Situé dans une zone privilégiée de la Marina de Getxo, à quelques mètres de la plage d'Ereaga et avec accès direct à l'Abra. Nous disposons d'une salle de classe audiovisuelle, de vestiaires bien entretenus, d'un grand espace extérieur, d'un atelier et d'un espace détente avec un petit sauna.",
+      "v2_title": "Propre quai",
+      "v2_desc": "Le ponton est notre lien direct avec la mer. La flotte est variée : dériveur, croisières, planche à voile, big SUP, paddle surf, canoës et bateaux d'accompagnement.",
+      "v3_title": "Notre philosophie",
+      "v3_desc": "Ici, technique et soin vont de pair, car nous comprenons qu'apprendre à naviguer, c'est aussi apprendre à faire confiance."
+    },
+    "team_section_title": "L'équipe",
+    "team": {
+      "member1_name": "Angharad et Urko",
+      "member1_role": "Coordination",
+      "member1_desc": "Notre équipe est composée de techniciens à sensibilité sociale, passionnés par l'enseignement et la mer. Angharad et Urko coordonnent l'école et les opérations quotidiennes et servent également de techniciens sportifs.",
+      "member2_name": "Moniteurs et techniciens",
+      "member2_role": "Spécialistes",
+      "member2_desc": "À leurs côtés, nous disposons d'entraîneurs de maintenance, de planche à voile, d'Optimist, de Laser/420 et de J80. Ils partagent tous une manière de travailler proche, sereine et basée sur l’accompagnement.",
+      "member3_name": "Communauté",
+      "member3_role": "Partenaires",
+      "member3_desc": "L'école fonctionne avec une relation simple et humaine : les moniteurs écoutent, observent les rythmes, accompagnent les peurs et favorisent l'autonomie ; L'équipe partage les décisions et la voix des membres fait partie de la vie du projet."
+    },
+    "commitment_title": "Engagé à",
+    "commitment_highlight": "Culture marine",
+    "define_badge": "Notre essence",
+    "define_title": "Ce qui nous définit",
+    "cta_title": "Prêt à mettre les voiles ?",
+    "cta_desc": "Rejoignez notre école et découvrez pourquoi nous sommes la référence en matière de navigation dans la mer Cantabrique.",
+    "cta_button": "Voir les cours disponibles"
+  },
+  "contact_form": {
+    "name": "Prénom",
+    "name_placeholder": "Votre nom complet",
+    "apellidos": "Noms",
+    "email": "Email",
+    "email_placeholder": "exemple@email.com",
+    "phone": "Téléphone (Optionnel)",
+    "phone_placeholder": "+33 0 00 00 00 00",
+    "subject": "Sujet",
+    "subject_placeholder": "Comment pouvons-nous vous aider ?",
+    "message": "Message",
+    "message_placeholder": "Écrivez votre demande ici...",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours...",
+    "success_title": "Message Envoyé !",
+    "success_desc": "Merci d'avoir contacté Getxo Bela Eskola. Nous vous répondrons dès que possible.",
+    "send_another": "Envoyer un autre message",
+    "error": "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer."
+  },
+  "contact_page": {
+    "header_badge": "Contact",
+    "header_title": "Parlons de",
+    "header_highlight": "Navigation",
+    "location_label": "Emplacement",
+    "location_val": "Quai Arriluzea, s/n\n48990 Getxo, Biscaye",
+    "contact_label": "Email & Téléphone",
+    "hours_label": "Horaires",
+    "hours_val": "Lundi au Dimanche\n09:00 — 20:00"
+  },
+  "newsletter": {
+    "title": "Abonnez-vous à la Newsletter",
+    "subtitle": "Recevez des nouvelles, des offres exclusives et des conseils de navigation dans votre boîte de réception.",
+    "email_placeholder": "votre@email.com",
+    "button": "S'abonner",
+    "success": "Vous vous êtes abonné avec succès !",
+    "error": "Erreur lors de l'abonnement. Veuillez réessayer."
+  },
+  "auth": {
+    "login_title": "Bienvenue",
+    "login_desc": "Accédez à votre espace étudiant pour gérer vos cours.",
+    "hero_text": "La mer vous attend.",
+    "no_account": "Vous n'avez pas de compte ?",
+    "create_one": "Créez-en un ici",
+    "register_title": "Rejoignez l'École",
+    "register_desc": "Créez votre compte pour commencer votre formation nautique.",
+    "has_account": "Vous avez déjà un compte ?",
+    "login_here": "Connectez-vous ici",
+    "forgot_password_title": "Récupérer l'accès",
+    "forgot_password_desc": "Entrez votre email pour recevoir un lien de récupération.",
+    "reset_password_title": "Nouveau mot de passe",
+    "reset_password_desc": "Créez un mot de passe sécurisé pour votre compte."
+  },
+  "booking": {
+    "select_date": "Sélectionnez une date",
+    "from_date": "Du",
+    "to_date": "Au",
+    "full": "Complet",
+    "seats": "Places",
+    "no_dates_available": "Aucune date n'est actuellement prévue.",
+    "processing": "Traitement...",
+    "book_for": "Réserver pour",
+    "online_course_instant": "Cours en ligne - Accès immédiat",
+    "no_dates_needed": "Aucune date n'est nécessaire. Commencez maintenant.",
+    "error_generic": "Quelque chose s'est mal passé",
+    "payment_gateway_error": "Erreur lors de la connexion à la passerelle de paiement"
+  },
+  "staff_panel": {
+    "tabs": {
+      "overview": "Aperçu",
+      "rentals": "Départs",
+      "courses": "Gestion Cours",
+      "academia": "Académie en Ligne",
+      "communication": "Communication",
+      "staff_mgmt": "Gestion d'Équipe"
+    }
+  },
+  "academy": {
+    "title": "Académie Numérique",
+    "subtitle": "Votre voyage de formation nautique",
+    "loading": "Chargement de l'Académie...",
+    "map": {
+      "eyebrow": "École Nautique Numérique",
+      "title_prefix": "Votre Voyage de",
+      "title_highlight": "Formation",
+      "description": "Naviguez à travers les 7 niveaux de formation nautique. Chaque niveau vous prépare au suivant, du marin débutant au capitaine expérimenté.",
+      "theory_hours": "h théorie",
+      "practice_hours": "h pratique",
+      "view_courses": "Voir les cours →",
+      "transversal": "Transversal"
+    },
+    "motivational_quotes": [
+      "La mer ne s'arrête jamais, ton apprentissage non plus.",
+      "Un bon marin se forge dans les tempêtes.",
+      "La discipline est le meilleur gouvernail.",
+      "L'océan est un livre dont chaque vague est une page.",
+      "Le vent souffle en ta faveur si tu sais comment régler tes voiles."
+    ],
+    "connection_error": {
+      "title": "Erreur de Connexion",
+      "message": "Nous n'avons pas pu établir de communication avec le journal de bord académique. Veuillez vérifier votre connexion et réessayer.",
+      "retry": "Recharger le Journal de Bord ⚓"
+    }
+  },
+  "auth_form": {
+    "name": "Prénom",
+    "apellidos": "Noms",
+    "email": "Email",
+    "password": "Mot de passe",
+    "login_btn": "Se connecter",
+    "logging_in": "Connexion en cours...",
+    "invalid_creds": "Identifiants incorrects",
+    "try_reset": "Voulez-vous réinitialiser votre mot de passe ?",
+    "register_btn": "S'inscrire",
+    "registering": "Création du compte...",
+    "confirm_password": "Confirmer le mot de passe",
+    "password_mismatch": "Les mots de passe ne correspondent pas",
+    "newsletter_checkbox": "Rester informé des événements et des nouvelles de l'école",
+    "forgot_password": "Mot de passe oublié ?",
+    "send_recovery": "Envoyer les instructions",
+    "sending_recovery": "Envoi en cours...",
+    "recovery_sent": "Email envoyé. Vérifiez votre boîte de réception.",
+    "update_password": "Mettre à jour le mot de passe",
+    "updating_password": "Mise à jour...",
+    "password_updated": "Mot de passe mis à jour avec succès",
+    "show_password": "Afficher le mot de passe",
+    "email_not_confirmed": "Email non confirmé. Veuillez vérifier votre boîte de réception.",
+    "resend_email": "Renvoyer",
+    "resend_success": "Email renvoyé avec succès.",
+    "google_btn": "Continuer avec Google",
+    "rate_limit": "Vous avez dépassé la limite de tentatives. Veuillez attendre quelques minutes avant de réessayer."
+  },
+  "legal": {
+    "rental_contract": "CONTRAT DE LOCATION DE MATÉRIEL NAUTIQUE - GETXO BELA ESKOLA\n\n1. EXIGENCES DU LOCATAIRE : Le client déclare posséder les connaissances techniques nécessaires à la manipulation en toute sécurité du matériel loué. Dans le cas des voiliers de plaisance, la qualification minimale correspondante est requise.\n\n2. ÉTAT ET RETOUR : Le matériel est livré en parfait état de fonctionnement. Le client s'engage à le restituer dans le même état. Tout dommage causé par négligence sera de la responsabilité exclusive du client.\n\n3. ZONES DE NAVIGATION : La navigation sera limitée aux zones autorisées et aux horaires convenus. Le client s'engage à respecter les règles de la Marina de Getxo et les règlements de la Capitainerie Maritime.\n\n4. SÉCURITÉ : L'utilisation d'un gilet de sauvetage est obligatoire et personnelle à tout moment dans l'eau.\n\n5. SAUVETAGE ET ASSISTANCE : Si le client nécessite une assistance ou un sauvetage en raison d'une imprudence ou d'une sortie des zones autorisées, les frais en résultant seront à sa charge.\n\n6. SIGNATURE NUMÉRIQUE : En cochant la case d'acceptation, le client ratifie qu'il a compris tous les points précédents et assume sa responsabilité légale.",
+    "consent_acceptance": "J'ai lu et j'accepte expressément les conditions légales détaillées ci-dessus. Je comprends que cette acceptation équivaut à une signature numérique contraignante.",
+    "error_log_consent": "Impossible d'enregistrer la signature légale. Veuillez réessayer.",
+    "privacy_title": "Politique de Confidentialité",
+    "cookies_title": "Politique de Cookies"
+  },
+  "legal_modal": {
+    "viewing_doc": "Visualisation du Document",
+    "terms_title": "Conditions d'Inscription",
+    "rental_title": "Conditions de Location",
+    "back": "Retour",
+    "mandatory_docs": "Documents Légaux Obligatoires",
+    "click_to_read": "* Cliquez sur chaque document pour le lire en ligne ici même.",
+    "full_name": "Nom Complet",
+    "identity_doc": "Document d'Identité",
+    "email_label": "Email d'Inscription",
+    "confirmation_checkbox": "Je confirme avoir lu et accepté expressément les documents PDF indiqués ci-dessus, ainsi que les conditions détaillées dans ce formulaire. Je comprends que cette acceptation équivaut à une signature numérique contraignante.",
+    "sign_and_continue": "Signer et passer au paiement",
+    "cancel": "Annuler",
+    "processing": "Traitement..."
+  },
+  "validation": {
+    "name_short": "Nom trop court",
+    "last_name_short": "Noms trop courts",
+    "email_invalid": "Email invalide",
+    "password_short": "Minimum 6 caractères",
+    "subject_short": "Sujet trop court",
+    "message_short": "Le message est trop court"
+  },
+  "footer": {
+    "courses": "Cours",
+    "rental": "Location",
+    "school": "L'École",
+    "contact": "Contact",
+    "copyright": "© 2026 Getxo Bela Eskola · Expérience Nautique Premium",
+    "slogan": "Getxo Bela Eskola · L'expérience nautique par excellence dans la Marina de Getxo.",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "cookies": "Cookies"
+  },
+  "nautical_radar": {
+    "title": "Radar de Navigation \"Pont de Commandement\"",
+    "location": "Arriluze Kaia — Getxo",
+    "loading": "Chargement des Instruments...",
+    "live_status": "DIRECT",
+    "connecting_status": "CONNEXION...",
+    "wind": "Vent Réel",
+    "knots": "Noeuds",
+    "aws": "Vitesse du Vent",
+    "syncing": "Synchronisation...",
+    "action_close": "Fermer l'historique",
+    "gust": "Rafale",
+    "twa": "Angle du Vent",
+    "tide": "Marée Getxo",
+    "depth": "Profondeur",
+    "rising": "Montante",
+    "falling": "Descendante",
+    "stable": "Stable",
+    "next_tide": "Prochaine: {time} ({type})",
+    "tide_high": "PM",
+    "tide_low": "BM",
+    "temp": "Temp. Air",
+    "pressure": "Pression",
+    "visibility": "Visibilité",
+    "advisory": "Analyse des Conditions",
+    "action_history": "Voir l'Historique →",
+    "history_title": "Historique Météo — Getxo",
+    "wind_chart_title": "Évolution du Vent (Noeuds)",
+    "wind_chart_wind_label": "Vent Réel",
+    "wind_chart_gust_label": "Rafales",
+    "tide_chart_title": "Cycle des Marées (Mètres)",
+    "tide_chart_tide_label": "Niveau Marée",
+    "history_footer": "Données enregistrées chaque heure — Arriluze Kaia",
+    "history_time": "Heure",
+    "history_wind": "Vent (kn)",
+    "history_gusts": "Rafales",
+    "history_direction": "Direction",
+    "history_temp": "Temp (ºC)",
+    "history_tide": "Marée (m)"
+  },
+  "errors": {
+    "403": {
+      "title": "Accès Restreint",
+      "description": "Vous ne disposez pas des autorisations nécessaires pour naviguer dans ces eaux. Veuillez retourner au port."
+    },
+    "404": {
+      "code": "ERREUR 404",
+      "title": "Cap Perdu",
+      "subtitle": "Nous n'avons pas trouvé la page.",
+      "description": "Il semble que vous ayez navigué vers des eaux inconnues. Revenez au port sécurisé pour recalibrer.",
+      "back_button": "RETOUR AU PORT ⚓"
+    },
+    "500": {
+      "code": "ERREUR 500",
+      "title": "Tempête Imprévue",
+      "subtitle": "Problème technique dans la salle des machines.",
+      "description": "Notre équipe d'ingénieurs travaille déjà à rétablir le service. Veuillez réessayer dans quelques instants.",
+      "retry_button": "RÉESSAYER ⟳",
+      "home_button": "RETOUR À L'ACCUEIL ⚓"
+    }
+  },
+  "student_dashboard": {
+    "eyebrow": "Espace Étudiant",
+    "welcome": "Bonjour, {name}",
+    "subtitle": "Gérez vos cours et certifications.",
+    "academy_widget": {
+      "title": "Campus Virtuel",
+      "go_to_panel": "Aller au Panneau Académique +",
+      "card_title": "Académie Numérique",
+      "card_desc_active": "Continuez votre formation en ligne, complétez des unités et obtenez des certifications officielles.",
+      "card_desc_inactive": "Accédez aux cours théoriques en ligne, examens officiels et simulations de navigation.",
+      "stats_levels": "Niveaux",
+      "stats_certs": "Certificats",
+      "leaderboard": "Voir le Classement",
+      "btn_continue": "Continuer l'apprentissage",
+      "btn_start": "Commencer maintenant"
+    },
+    "micro_lessons": {
+      "title": "Micro-Leçons"
+    },
+    "courses_section": {
+      "title": "Vos prochains cours en personne",
+      "empty_title": "Vous n'avez pas encore de cours,",
+      "empty_subtitle": "commencez votre aventure ici !",
+      "btn_explore": "Explorer le catalogue"
+    },
+    "rentals_section": {
+      "title": "Prochaines Locations",
+      "new_rental": "Nouvelle Location +",
+      "empty_title": "Vous n'avez pas de prochaines locations,",
+      "empty_subtitle": "la baie vous attend.",
+      "btn_reserve": "Réserver du matériel"
+    },
+    "history_section": {
+      "title": "Historique Récent",
+      "completed": "Terminé"
+    }
+  },
+  "wind_lab": {
+    "title": "Labo de Vent",
+    "subtitle": "Dynamique des Fluides",
+    "audio_on": "🔊 Audio On",
+    "audio_off": "🔇 Audio Off",
+    "ghost_on": "Fantôme On",
+    "ghost_off": "Fantôme Off",
+    "forces_on": "Forces On",
+    "forces_off": "Forces Off",
+    "controls": {
+      "mainsheet": "Écoute de Grand-Voile",
+      "rudder": "Gouvernail",
+      "wind_direction": "Direction du Vent",
+      "wind_speed": "Vitesse du Vent",
+      "port": "Bâbord",
+      "stbd": "Tribord",
+      "knots": "NOEUDS"
+    },
+    "telemetry": {
+      "true_wind": "Vent Réel",
+      "apparent_wind": "Vent Apparent",
+      "boat_speed": "Vitesse du Bateau",
+      "heel_angle": "Gîte",
+      "efficiency": "Efficacité",
+      "aoa": "Angle d'Attaque"
+    },
+    "forces": {
+      "lift": "PORTANCE",
+      "drag": "TRAÎNÉE",
+      "aw": "VA"
+    },
+    "feedback": {
+      "perfect": "PARFAIT",
+      "good": "BON",
+      "poor": "MAUVAIS RÉGLAGE",
+      "stall": "DÉCROCHAGE",
+      "label": "Qualité du réglage",
+      "accuracy": "Précision",
+      "optimal_trim": "Réglage Optimal"
+    },
+    "game_over": {
+      "title": "RÉGATE TERMINÉE",
+      "buoys_collected": "Vous avez collecté toutes les bouées !",
+      "final_score": "Score Final",
+      "name_placeholder": "Entrez votre nom",
+      "save_btn": "ENREGISTRER",
+      "ranking_title": "CLASSEMENT - TOP 10",
+      "restart_btn": "REJOUER"
+    },
+    "interactive_rose": {
+      "title": "Rose Interactive",
+      "drag_instruction": "Faites glisser l'indicateur de vent (flèche bleue) pour voir comment la navigation change.",
+      "close_hauled": "Près",
+      "optimal_angle": "Angle Optimal",
+      "vmg": "VMG",
+      "boat_heading": "Cap du Bateau",
+      "twa": "Angle du Vent Réel",
+      "speed": "Vitesse"
+    }
+  },
+  "profile_modal": {
+    "title": "Modifier le Profil",
+    "subtitle": "Mettez à jour vos informations personnelles",
+    "name": "Prénom",
+    "last_name": "Noms",
+    "phone": "Téléphone",
+    "cancel": "Annuler",
+    "save": "Enregistrer les modifications",
+    "saving": "Enregistrement...",
+    "error_updating": "Erreur lors de la mise à jour du profil",
+    "connection_error": "Erreur de connexion"
+  },
+  "profile_sidebar": {
+    "verified_member": "Membre vérifié",
+    "official_partner": "Partenaire Officiel",
+    "account_info": "Informations du compte",
+    "role": "Rôle",
+    "student": "Étudiant",
+    "edit_profile": "Modifier le Profil",
+    "managing_subscription": "Gérer l'abonnement",
+    "membership_card": "Ma Carte de Membre",
+    "loading": "Chargement...",
+    "portal_error": "Erreur lors de l'ouverture du portail de paiement"
+  },
+  "sea_state_widget": {
+    "title": "État de la Mer",
+    "subtitle": "Bouée Bilbao-Vizcaya (Getxo)",
+    "wave_height": "Hauteur Vague",
+    "period": "Période",
+    "water_temp": "Temp. Eau",
+    "wind_speed": "Vent",
+    "simulated": "Simulé",
+    "simulated_desc": "Données estimées par modèle",
+    "real_time": "Temps Réel",
+    "meters": "m",
+    "seconds": "s",
+    "celsius": "°C",
+    "knots": "kn",
+    "loading": "Chargement..."
+  },
+  "leaderboard": {
+    "title": "Classement Mondial",
+    "subtitle": "Découvrez qui mène la flotte de l'académie",
+    "my_position": "Ma Position",
+    "xp": "XP",
+    "streak": "Série (Jours)",
+    "modules": "Modules",
+    "privacy_title": "Confidentialité du Classement",
+    "privacy_desc": "Choisissez comment vous souhaitez que les autres vous voient.",
+    "public": "Public",
+    "private": "Privé",
+    "anonymous": "Anonyme",
+    "anonymous_user": "Marin Anonyme",
+    "empty_state": "Personne n'a encore mis les voiles. Soyez le premier à gagner des XP!",
+    "rank": "Rang",
+    "sailor": "Marin",
+    "level": "Niveau"
+  },
+  "club_socias": {
+    "title": "Club des membres",
+    "subtitle": "Un espace pour naviguer en communauté, à votre rythme et sans vous presser.",
+    "description1": "Faire partie de Getxo Bela Eskola, c'est appartenir à une communauté qui partage la mer à travers la proximité, le calme et la camaraderie. Les gens sont le cœur d'Eskola, et ici la navigation se vit sans hâte et sans distances.",
+    "description2": "Nous rendons la voile accessible à tous les publics et à tous les budgets, à un prix imbattable, dans un environnement proche, soigné et humain. Être membre permet de naviguer et de s'entraîner, prouvant que la voile n'a jamais été aussi accessible.",
+    "basic": {
+      "title": "Membre de base",
+      "price": "630 €/an (ou 350 € semestriel)",
+      "includes": [
+        "Jusqu'à 30 départs par an de 4 à 5 heures chacun",
+        "Accès à un groupe WhatsApp pour former des équipages",
+        "Surfez avec d'autres personnes ou sortez seul",
+        "Idéal pour rencontrer du monde et apprendre des autres marins"
+      ]
+    },
+    "premium": {
+      "title": "Pack Complet : Technologie + Partenaire",
+      "price": "1200 €/an",
+      "includes": [
+        "Formation de l'équipe technique (3 jours par mois, 4 heures)",
+        "Sorties illimitées en tant que membre",
+        "L'option la plus complète : s'entraîner de manière structurée et naviguer librement"
+      ]
+    },
+    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an)."
+  }
+}
