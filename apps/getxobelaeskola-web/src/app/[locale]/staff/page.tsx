@@ -31,15 +31,12 @@ export default async function StaffPage({ params: { locale } }: { params: { loca
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) redirect(`/${locale}/auth/login`);
 
-    // 2. Role-based access (Using Admin Client to bypass RLS during check)
-    const { createAdminClient } = await import('@/lib/supabase/admin');
-    const supabaseAdmin = createAdminClient();
-
-    const { data: profile, error: profileError } = await supabaseAdmin
+    // 2. Role-based access
+    const { data: profile, error: profileError } = await supabase
         .from('profiles')
         .select('id, rol, nombre, apellidos, email')
         .eq('id', user.id)
-        .single() as { data: any, error: any };
+        .single();
 
     if (profileError || (profile?.rol !== 'admin' && profile?.rol !== 'instructor')) {
         redirect(`/${locale}/student/dashboard`);
@@ -62,19 +59,19 @@ export default async function StaffPage({ params: { locale } }: { params: { loca
 
     try {
         const results = await Promise.allSettled([
-            supabaseAdmin.from('reservas_alquiler')
+            supabase.from('reservas_alquiler')
                 .select('*, servicios_alquiler(*)')
                 .order('created_at', { ascending: false })
                 .limit(50), // Limited to 50 for the dashboard
-            supabaseAdmin.from('reservas_alquiler')
+            supabase.from('reservas_alquiler')
                 .select('fecha_pago, monto_total')
                 // DEBUG: SHOW ALL - Fetching all history for dynamic scaling
                 .order('fecha_pago', { ascending: true }),
-            supabaseAdmin.from('profiles').select('*', { count: 'exact', head: true }).eq('rol', 'socio'),
-            supabaseAdmin.from('reservas_alquiler').select('monto_total').gte('fecha_pago', new Date().toISOString().split('T')[0] + 'T00:00:00Z'),
-            supabaseAdmin.from('reservas_alquiler').select('monto_total').gte('fecha_pago', firstOfMonth + 'T00:00:00Z'),
-            supabaseAdmin.from('reservas_alquiler').select('monto_total').gte('fecha_pago', firstOfYear + 'T00:00:00Z'),
-            supabaseAdmin.from('profiles').select('*', { count: 'exact', head: true }).eq('rol', 'alumno')
+            supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('rol', 'socio'),
+            supabase.from('reservas_alquiler').select('monto_total').gte('fecha_pago', new Date().toISOString().split('T')[0] + 'T00:00:00Z'),
+            supabase.from('reservas_alquiler').select('monto_total').gte('fecha_pago', firstOfMonth + 'T00:00:00Z'),
+            supabase.from('reservas_alquiler').select('monto_total').gte('fecha_pago', firstOfYear + 'T00:00:00Z'),
+            supabase.from('profiles').select('*', { count: 'exact', head: true }).eq('rol', 'alumno')
         ]);
 
         if (results[0].status === 'fulfilled') rawRentalsData = results[0].value.data || [];
@@ -92,7 +89,7 @@ export default async function StaffPage({ params: { locale } }: { params: { loca
     const profileIds = Array.from(new Set(rawRentalsData.map(r => r.perfil_id).filter(Boolean)));
     let enrichData: any[] = [];
     if (profileIds.length > 0) {
-        const { data: pData } = await supabaseAdmin
+        const { data: pData } = await supabase
             .from('profiles')
             .select('id, nombre, apellidos, email, rol')
             .in('id', profileIds);

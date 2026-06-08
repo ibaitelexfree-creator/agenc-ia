@@ -9,13 +9,17 @@ export default function RealtimeNotifications() {
     const supabase = createClient();
 
     useEffect(() => {
+        let logrosSub: any = null;
+        let skillsSub: any = null;
+        let notificationsSub: any = null;
+
         // 1. Obtener usuario actual para filtrar notificaciones
         async function setupRealtime() {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
 
             // Escuchar Logros
-            const logrosSub = supabase
+            logrosSub = supabase
                 .channel('realtime_logros')
                 .on(
                     'postgres_changes',
@@ -51,20 +55,20 @@ export default function RealtimeNotifications() {
                 .subscribe();
 
             // Escuchar Skills (Habilidades)
-            const skillsSub = supabase
+            skillsSub = supabase
                 .channel('realtime_skills')
                 .on(
                     'postgres_changes',
                     {
                         event: 'INSERT',
                         schema: 'public',
-                        table: 'student_skills', // Note: Check table name, schema said 'habilidades_alumno' but file had 'student_skills'. Sticking to original file content unless I see error.
+                        table: 'student_skills',
                         filter: `student_id=eq.${user.id}`
                     },
                     async (payload: { new: { skill_id: string } }) => {
                         // Obtener detalles de la skill
                         const { data: skill } = await supabase
-                            .from('skills') // Check table name. Original file had 'skills'. Schema has 'habilidades'.
+                            .from('skills')
                             .select('*')
                             .eq('id', payload.new.skill_id)
                             .single();
@@ -86,7 +90,7 @@ export default function RealtimeNotifications() {
                 .subscribe();
 
             // Escuchar Notificaciones Generales (Feedback, Info)
-            const notificationsSub = supabase
+            notificationsSub = supabase
                 .channel('realtime_notifications')
                 .on(
                     'postgres_changes',
@@ -109,15 +113,15 @@ export default function RealtimeNotifications() {
                     }
                 )
                 .subscribe();
-
-            return () => {
-                supabase.removeChannel(logrosSub);
-                supabase.removeChannel(skillsSub);
-                supabase.removeChannel(notificationsSub);
-            };
         }
 
         setupRealtime();
+
+        return () => {
+            if (logrosSub) supabase.removeChannel(logrosSub);
+            if (skillsSub) supabase.removeChannel(skillsSub);
+            if (notificationsSub) supabase.removeChannel(notificationsSub);
+        };
     }, [supabase, addNotification]);
 
     return null;
