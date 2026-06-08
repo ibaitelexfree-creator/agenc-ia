@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
+import { m } from 'framer-motion';
 
 interface HeroSlide {
     id: number;
@@ -94,7 +95,12 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
     }, [slides.length]);
 
     return (
-        <section className="relative h-screen w-full overflow-hidden bg-nautical-black z-0">
+        <m.section 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, ease: 'easeOut' }}
+            className="relative h-screen w-full overflow-hidden bg-nautical-black z-0"
+        >
             {/* Ambient Background Noise Texture - High Performance CSS Pattern */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none"
                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
@@ -122,7 +128,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-nautical-black/10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-nautical-black/80 via-transparent to-transparent" />
 
-                    <div className="absolute inset-0 flex items-center pt-32 md:pt-0">
+                    <div className="absolute inset-0 flex items-center pt-36 md:pt-28">
                         <div className="container mx-auto px-6 md:px-12">
                             <div className={`max-w-4xl transition-all duration-700 delay-200 transform ${index === current ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                 }`}>
@@ -202,6 +208,6 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                     <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-dash" />
                 </div>
             </div>
-        </section>
+        </m.section>
     );
 }

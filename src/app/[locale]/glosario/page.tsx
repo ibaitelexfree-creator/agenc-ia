@@ -137,8 +137,14 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                                     initial={{ opacity: 0, scale: 0.9 }}
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="bg-white/5 backdrop-blur-md border border-white/5 rounded-xl p-6 hover:border-accent/30 transition-colors group flex flex-col h-full"
+                                    whileHover={{ scale: 1.02, y: -4 }}
+                                    transition={{ 
+                                        layout: { duration: 0.2 },
+                                        type: 'spring', 
+                                        stiffness: 300, 
+                                        damping: 20 
+                                    }}
+                                    className="bg-white/5 backdrop-blur-md border border-white/5 rounded-xl p-6 hover:border-accent/30 cursor-pointer transition-colors group flex flex-col h-full"
                                 >
                                     <div className="flex items-start justify-between mb-3">
                                         <h3 className="text-xl font-display text-white group-hover:text-accent transition-colors">

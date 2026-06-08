@@ -9,6 +9,7 @@ import { createClient } from '@/lib/supabase/client';
 import RentalCard from './RentalCard';
 import { apiUrl } from '@/lib/api';
 import { getSpainTimeInfo, getInitialBookingDate } from '@/lib/utils/date';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface RentalService {
     id: string;
@@ -321,17 +322,30 @@ export default function RentalClient({
                 </div>
             </div>
 
-            {/* Grid - FIXED to use RentalCard */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-                {filteredServices.map(service => (
-                    <RentalCard
-                        key={service.id}
-                        service={service}
-                        locale={locale}
-                        onBook={(id) => setBookingService(id)}
-                    />
-                ))}
-            </div>
+            {/* Grid - FIXED to use RentalCard with AnimatePresence */}
+            <motion.div 
+                layout
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
+            >
+                <AnimatePresence mode="popLayout">
+                    {filteredServices.map(service => (
+                        <motion.div
+                            key={service.id}
+                            layout
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ duration: 0.25 }}
+                        >
+                            <RentalCard
+                                service={service}
+                                locale={locale}
+                                onBook={(id) => setBookingService(id)}
+                            />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </motion.div>
 
             {/* Booking Sheet - Now it's a separate UI state but for now RentalCard triggers it */}
             {bookingService && (

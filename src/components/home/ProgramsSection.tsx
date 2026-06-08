@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 
 interface ProgramsSectionProps {
     locale: string;
@@ -34,12 +35,12 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                     <div className="w-32 h-px bg-gradient-to-r from-transparent via-brass-gold to-transparent mx-auto" />
                 </header>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {programs.map((prog, i) => (
                         <Link
                             key={i}
                             href={`/${locale}${prog.link}`}
-                            className="group relative h-[600px] overflow-hidden border border-white/5 hover:border-accent/40 transition-all duration-700"
+                            className="group block w-full relative h-[600px] overflow-hidden border border-white/5 hover:border-accent/40 transition-all duration-700"
                         >
                             <Image
                                 src={prog.image}
@@ -69,7 +70,7 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                             </div>
                         </Link>
                     ))}
-                </div>
+                </StaggeredEntrance>
             </div>
         </section>
     );

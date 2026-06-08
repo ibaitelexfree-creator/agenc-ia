@@ -2,14 +2,19 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
 import { useParams, useRouter, usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { X, ChevronDown, Anchor, Wind, Sailboat, Users, GraduationCap, Phone, School, Compass, Sparkles } from 'lucide-react';
+import { 
+    X, ChevronDown, Anchor, Wind, Sailboat, Users, 
+    GraduationCap, Phone, School, Compass, Sparkles,
+    ShoppingBag, BookOpen, Heart, Briefcase, Clock, MapPin
+} from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { apiUrl } from '@/lib/api';
 import dynamic from 'next/dynamic';
 import { User } from '@supabase/supabase-js';
+import { motion, AnimatePresence } from 'framer-motion';
+import { springPopup } from '@/lib/animations/variants';
 
 const ThemeToggle = dynamic(() => import('@/components/shared/ThemeToggle'), { ssr: false });
 
@@ -32,18 +37,54 @@ interface AuthUser extends User {
     [key: string]: unknown;
 }
 
+// Localized labels to ensure reliability across locales
+const localizedLabels: Record<string, Record<string, string>> = {
+    home: { es: 'Inicio', eu: 'Hasiera', en: 'Home', fr: 'Accueil' },
+    club: { es: 'Club', eu: 'Kluba', en: 'Club', fr: 'Club' },
+    conocenos: { es: 'Conócenos', eu: 'Ezagutu gaitzazu', en: 'About us', fr: 'Qui sommes-nous' },
+    club_de_socias: { es: 'Club de socias', eu: 'Bazkideen kluba', en: 'Members club', fr: 'Club des membres' },
+    regatas: { es: 'Regatas', eu: 'Estropadak', en: 'Regattas', fr: 'Régates' },
+    que_es_la_vela: { es: 'Qué es la vela', eu: 'Zer da bela', en: 'What is sailing', fr: 'Qu\'est-ce que la voile' },
+    servicios: { es: 'Servicios', eu: 'Zerbitzuak', en: 'Services', fr: 'Services' },
+    cursos: { es: 'Cursos', eu: 'Ikastaroak', en: 'Courses', fr: 'Cours' },
+    equipos_de_entrenamiento: { es: 'Equipos de entrenamiento', eu: 'Entrenamendu taldeak', en: 'Training teams', fr: 'Équipes d\'entraînement' },
+    udalekuak: { es: 'Udalekuak', eu: 'Udalekuak', en: 'Summer camps', fr: 'Camps d\'été' },
+    centros_escolares_y_asociaciones: { es: 'Centros escolares y asociaciones', eu: 'Ikastetxeak eta elkarteak', en: 'Schools & associations', fr: 'Écoles & associations' },
+    alquileres: { es: 'Alquileres', eu: 'Alokairuak', en: 'Rentals', fr: 'Locations' },
+    team_building: { es: 'Team building', eu: 'Team building', en: 'Team building', fr: 'Team building' },
+    celebra_aqui_tu_dia: { es: 'Celebra aquí tu día', eu: 'Ospatu hemen zure eguna', en: 'Celebrate your day here', fr: 'Célébrez votre journée ici' },
+    guarda_tu_material_deportivo: { es: 'Guarda tu material deportivo', eu: 'Gorde zure kirol materiala', en: 'Store your sports gear', fr: 'Stockez votre matériel sportif' },
+    tienda: { es: 'Tienda', eu: 'Denda', en: 'Shop', fr: 'Boutique' },
+    blog: { es: 'Blog', eu: 'Bloga', en: 'Blog', fr: 'Blog' },
+    noticias_y_eventos: { es: 'Noticias y eventos', eu: 'Albisteak eta gertaerak', en: 'News & events', fr: 'Actualités & événements' },
+    aprendizaje: { es: 'Aprendizaje', eu: 'Ikaskuntza', en: 'Learning', fr: 'Apprentissage' },
+    contacto: { es: 'Contacto', eu: 'Kontaktua', en: 'Contact', fr: 'Contact' },
+    hazte_voluntaria: { es: 'Hazte voluntaria', eu: 'Egin zaitez boluntario', en: 'Become a volunteer', fr: 'Devenir bénévole' },
+    trabaja_con_nosotras: { es: 'Trabaja con nosotras', eu: 'Lan egin gurekin', en: 'Work with us', fr: 'Travaillez avec nous' },
+    horario_contacto_localizacion: { es: 'Horario, Contacto y Localización', eu: 'Ordutegia, Kontaktua eta Kokapena', en: 'Hours, Contact & Location', fr: 'Horaires, Contact & Localisation' },
+    logout: { es: 'Cerrar Sesión', eu: 'Saioa itxi', en: 'Logout', fr: 'Déconnexion' },
+    login: { es: 'Acceso', eu: 'Saioa hasi', en: 'Login', fr: 'Connexion' },
+    admin_panel: { es: 'Panel de Control', eu: 'Kudeaketa panela', en: 'Admin Panel', fr: 'Panneau de gestion' },
+    dashboard: { es: 'Mi Área', eu: 'Nire Eremua', en: 'My Area', fr: 'Mon Espace' },
+    language_selector: { es: 'Cambiar Idioma', eu: 'Hizkuntza aldatu', en: 'Change Language', fr: 'Changer de langue' }
+};
+
 export default function Navbar({ locale: propLocale }: { locale?: string }) {
-    const t = useTranslations('nav');
     const params = useParams();
     const router = useRouter();
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+    const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
     const locale = propLocale || (params.locale as string) || 'es';
 
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
+
+    const getLabel = (key: string) => {
+        return localizedLabels[key]?.[locale] || key;
+    };
 
     useEffect(() => {
         const supabase = createClient();
@@ -89,49 +130,64 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
         document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
     }, [isMenuOpen]);
 
-    // Navigation structure
+    // Restructured navigation tree according to requirements
     const navItems: NavItem[] = [
         {
-            href: 'courses',
-            label: 'courses',
-            icon: <GraduationCap className="w-3.5 h-3.5" />,
-            dropdown: [
-                { href: 'courses?cat=infantiles', label: 'kids', icon: <School className="w-4 h-4" /> },
-                { href: 'courses?cat=adultos', label: 'adults', icon: <Users className="w-4 h-4" /> },
-                { href: 'courses?cat=windsurf', label: 'windsurf_courses', icon: <Wind className="w-4 h-4" /> },
-                { href: 'courses', label: 'all_courses', icon: <GraduationCap className="w-4 h-4" /> },
-            ],
-        },
-        {
-            href: 'rental',
-            label: 'rental',
-            icon: <Sailboat className="w-3.5 h-3.5" />,
-            dropdown: [
-                { href: 'rental?category=veleros', label: 'sailboats', icon: <Sailboat className="w-4 h-4" /> },
-                { href: 'rental?category=windsurf', label: 'windsurf', icon: <Wind className="w-4 h-4" /> },
-                { href: 'rental?category=kayak', label: 'kayak_paddle', icon: <Anchor className="w-4 h-4" /> },
-                { href: 'rental', label: 'all_rentals', icon: <Sailboat className="w-4 h-4" /> },
-            ],
-        },
-        {
-            href: 'experiences',
-            label: 'experiences',
+            href: '',
+            label: 'home',
             icon: <Compass className="w-3.5 h-3.5" />,
         },
         {
-            href: 'academy',
-            label: 'academy',
-            icon: <GraduationCap className="w-3.5 h-3.5" />,
-        },
-        {
-            href: 'about',
-            label: 'about',
+            href: 'club/conocenos',
+            label: 'club',
             icon: <Anchor className="w-3.5 h-3.5" />,
+            dropdown: [
+                { href: 'club/conocenos', label: 'conocenos', icon: <Users className="w-4 h-4" /> },
+                { href: 'club/socias', label: 'club_de_socias', icon: <Sparkles className="w-4 h-4" /> },
+                { href: 'club/regatas', label: 'regatas', icon: <Sailboat className="w-4 h-4" /> },
+                { href: 'club/que-es-la-vela', label: 'que_es_la_vela', icon: <Wind className="w-4 h-4" /> },
+            ],
         },
         {
-            href: 'contact',
-            label: 'contact',
+            href: 'servicios/cursos',
+            label: 'servicios',
+            icon: <GraduationCap className="w-3.5 h-3.5" />,
+            dropdown: [
+                { href: 'servicios/cursos', label: 'cursos', icon: <GraduationCap className="w-4 h-4" /> },
+                { href: 'servicios/socias', label: 'club_de_socias', icon: <Sparkles className="w-4 h-4" /> },
+                { href: 'servicios/equipos', label: 'equipos_de_entrenamiento', icon: <Users className="w-4 h-4" /> },
+                { href: 'servicios/udalekuak', label: 'udalekuak', icon: <School className="w-4 h-4" /> },
+                { href: 'servicios/centros-escolares', label: 'centros_escolares_y_asociaciones', icon: <Anchor className="w-4 h-4" /> },
+                { href: 'servicios/alquileres', label: 'alquileres', icon: <Sailboat className="w-4 h-4" /> },
+                { href: 'servicios/team-building', label: 'team_building', icon: <Compass className="w-4 h-4" /> },
+                { href: 'servicios/cumpleanos', label: 'celebra_aqui_tu_dia', icon: <Sparkles className="w-4 h-4" /> },
+                { href: 'servicios/material', label: 'guarda_tu_material_deportivo', icon: <Anchor className="w-4 h-4" /> },
+                { href: 'servicios/tienda', label: 'tienda', icon: <ShoppingBag className="w-4 h-4" /> },
+            ],
+        },
+        {
+            href: 'blog/noticias',
+            label: 'blog',
+            icon: <BookOpen className="w-3.5 h-3.5" />,
+            dropdown: [
+                { href: 'blog/noticias', label: 'noticias_y_eventos', icon: <BookOpen className="w-4 h-4" /> },
+                { href: 'blog/aprendizaje', label: 'aprendizaje', icon: <GraduationCap className="w-4 h-4" /> },
+            ],
+        },
+        {
+            href: 'contacto/localizacion',
+            label: 'contacto',
             icon: <Phone className="w-3.5 h-3.5" />,
+            dropdown: [
+                { href: 'contacto/voluntaria', label: 'hazte_voluntaria', icon: <Heart className="w-4 h-4" /> },
+                { href: 'contacto/trabaja-con-nosotras', label: 'trabaja_con_nosotras', icon: <Briefcase className="w-4 h-4" /> },
+                { href: 'contacto/localizacion', label: 'horario_contacto_localizacion', icon: <Clock className="w-4 h-4" /> },
+            ],
+        },
+        {
+            href: 'tienda',
+            label: 'tienda',
+            icon: <ShoppingBag className="w-3.5 h-3.5" />,
         },
     ];
 
@@ -162,44 +218,57 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     </div>
                 </Link>
 
-                {/* Desktop Menu - UI FIXED: CSS-only Hover for Reliability */}
+                {/* Desktop Menu - Custom Framer Motion dropdowns */}
                 <div className="hidden xl:flex gap-8 items-center text-[10px] uppercase tracking-[0.4em] font-black h-full">
                     {navItems.map((item) => (
-                        <div key={item.label} className="relative group/main h-full flex items-center">
+                        <div 
+                            key={item.label} 
+                            className="relative h-full flex items-center"
+                            onMouseEnter={() => item.dropdown && setActiveDropdown(item.label)}
+                            onMouseLeave={() => setActiveDropdown(null)}
+                        >
                             <Link
                                 href={`/${locale}/${item.href}`}
                                 prefetch={false}
                                 className="relative py-4 text-white/40 hover:text-white transition-premium group/nav flex items-center gap-1.5"
                             >
                                 {item.icon}
-                                {t(item.label)}
+                                {getLabel(item.label)}
                                 {item.dropdown && (
-                                    <ChevronDown className="w-3 h-3 transition-transform duration-300 group-hover/main:rotate-180 group-hover/main:text-accent" />
+                                    <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180 text-accent' : ''}`} />
                                 )}
                                 <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
                             </Link>
 
-                            {/* Dropdown Panel - Always in DOM for reliability, visible on hover */}
-                            {item.dropdown && (
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 pointer-events-none translate-y-2 group-hover/main:opacity-100 group-hover/main:pointer-events-auto group-hover/main:translate-y-0 transition-all duration-300 z-[10000]">
-                                    <div className="w-56 py-3 bg-nautical-deep/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden">
-                                        {/* Simple Arrow */}
-                                        <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-nautical-deep/95 border-l border-t border-white/10 rotate-45" />
+                            {/* Dropdown Panel with AnimatePresence */}
+                            <AnimatePresence>
+                                {item.dropdown && activeDropdown === item.label && (
+                                    <motion.div 
+                                        variants={springPopup}
+                                        initial="initial"
+                                        animate="animate"
+                                        exit="exit"
+                                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-[10000]"
+                                    >
+                                        <div className="w-64 py-3 bg-nautical-deep/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden">
+                                            {/* Simple Arrow */}
+                                            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-nautical-deep/95 border-l border-t border-white/10 rotate-45" />
 
-                                        {item.dropdown.map((sub) => (
-                                            <Link
-                                                key={sub.href}
-                                                href={`/${locale}/${sub.href}`}
-                                                prefetch={false}
-                                                className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all duration-200 group/sub"
-                                            >
-                                                <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
-                                                {t(sub.label)}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
+                                            {item.dropdown.map((sub) => (
+                                                <Link
+                                                    key={sub.href}
+                                                    href={`/${locale}/${sub.href}`}
+                                                    prefetch={false}
+                                                    className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all duration-200 group/sub"
+                                                >
+                                                    <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
+                                                    {getLabel(sub.label)}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
                     ))}
                 </div>
@@ -238,18 +307,18 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 prefetch={false}
                                 className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-nautical-black shadow-lg shadow-accent/5 transition-premium"
                             >
-                                {user.rol === 'admin' || user.rol === 'instructor' ? t('admin_panel') : t('dashboard')}
+                                {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                             </Link>
                             <button
                                 onClick={handleLogout}
                                 className="text-[9px] uppercase tracking-[0.4em] font-black text-white/30 hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
                             >
-                                {t('logout')}
+                                {getLabel('logout')}
                             </button>
                         </div>
                     ) : (
                         <Link href={`/${locale}/auth/login`} prefetch={false} className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-white/20 px-8 py-3 rounded-full bg-white/5 hover:bg-white hover:text-nautical-black transition-premium">
-                            {t('login')}
+                            {getLabel('login')}
                         </Link>
                     )}
 
@@ -292,7 +361,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                     >
                                         <span className="text-accent/60">{item.icon}</span>
                                         <span className={`text-3xl font-display italic transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-                                            {t(item.label)}
+                                            {getLabel(item.label)}
                                         </span>
                                     </Link>
 
@@ -306,22 +375,30 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                     )}
                                 </div>
 
-                                {item.dropdown && mobileExpanded === item.label && (
-                                    <div className="ml-10 mt-2 mb-4 flex flex-col gap-1 border-l-2 border-accent/20 pl-6 animate-in slide-in-from-top-2 duration-300">
-                                        {item.dropdown.map((sub) => (
-                                            <Link
-                                                key={sub.href}
-                                                href={`/${locale}/${sub.href}`}
-                                                prefetch={false}
-                                                className="flex items-center gap-3 py-3 text-lg text-white/50 hover:text-white transition-colors"
-                                                onClick={() => setIsMenuOpen(false)}
-                                            >
-                                                <span className="text-accent/50">{sub.icon}</span>
-                                                {t(sub.label)}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
+                                <AnimatePresence>
+                                    {item.dropdown && mobileExpanded === item.label && (
+                                        <motion.div 
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: 'auto', opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.35, ease: 'easeInOut' }}
+                                            className="ml-10 mt-2 mb-4 flex flex-col gap-1 border-l-2 border-accent/20 pl-6 overflow-hidden"
+                                        >
+                                            {item.dropdown.map((sub) => (
+                                                <Link
+                                                    key={sub.href}
+                                                    href={`/${locale}/${sub.href}`}
+                                                    prefetch={false}
+                                                    className="flex items-center gap-3 py-3 text-lg text-white/50 hover:text-white transition-colors"
+                                                    onClick={() => setIsMenuOpen(false)}
+                                                >
+                                                    <span className="text-accent/50">{sub.icon}</span>
+                                                    {getLabel(sub.label)}
+                                                </Link>
+                                            ))}
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         ))}
                     </div>
@@ -336,13 +413,13 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                     className="w-full text-center py-6 bg-accent text-nautical-black font-display italic text-2xl"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    {user.rol === 'admin' || user.rol === 'instructor' ? t('admin_panel') : t('dashboard')}
+                                    {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                                 </Link>
                                 <button
                                     onClick={handleLogout}
                                     className="w-full text-center py-4 text-white/40 uppercase text-[10px] tracking-[0.4em] font-black"
                                 >
-                                    {t('logout')}
+                                    {getLabel('logout')}
                                 </button>
                             </div>
                         ) : (
@@ -352,7 +429,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 className="w-full block text-center py-6 border border-white/20 text-white font-display italic text-2xl bg-white/5"
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                {t('login')}
+                                {getLabel('login')}
                             </Link>
                         )}
 
@@ -361,7 +438,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30">Theme</span>
                                 <ThemeToggle />
                             </div>
-                            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30 ml-4">{t('language_selector')}</span>
+                            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30 ml-4">{getLabel('language_selector')}</span>
                             <div className="grid grid-cols-4 gap-3 bg-white/5 border border-white/10 rounded-2xl p-2">
                                 {['es', 'eu', 'en', 'fr'].map((lang) => (
                                     <button

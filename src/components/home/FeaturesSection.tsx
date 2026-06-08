@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 
 interface Feature {
     icon: string;
@@ -16,7 +17,7 @@ export default function FeaturesSection({ features }: FeaturesSectionProps) {
     return (
         <section className="py-32 bg-nautical-black relative">
             <div className="container mx-auto px-6">
-                <div className="grid md:grid-cols-3 gap-16">
+                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid md:grid-cols-3 gap-16">
                     {features.map((feature, i) => (
                         <div key={i} className="flex flex-col items-center text-center group">
                             <div className="relative w-48 h-48 mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-2">
@@ -28,7 +29,7 @@ export default function FeaturesSection({ features }: FeaturesSectionProps) {
                                     className="object-contain"
                                 />
                                 <div className="absolute inset-0 bg-accent/20 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                            </div>
+                             </div>
                             <h3 className="text-2xl font-display italic text-white mb-4 group-hover:text-accent transition-colors">
                                 {feature.title}
                             </h3>
@@ -37,7 +38,7 @@ export default function FeaturesSection({ features }: FeaturesSectionProps) {
                             </p>
                         </div>
                     ))}
-                </div>
+                </StaggeredEntrance>
             </div>
         </section>
     );

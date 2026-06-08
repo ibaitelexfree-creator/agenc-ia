@@ -79,23 +79,37 @@
     "back_to_catalog": "Retour au catalogue"
   },
   "rental_page": {
-    "header_eyebrow": "Équipement & Flotte",
-    "title_prefix": "Louer",
+    "header_eyebrow": "À VOTRE RYTHME",
+    "title_prefix": "Location de",
     "title_highlight": "Matériel",
-    "description": "Optimist, Laser, J80, Paddle Surf avec turbine, Windsurf et plus encore. Tout le matériel dont vous avez besoin pour votre aventure en mer.",
+    "description": "Découvrez la mer de près et à votre rythme sur des bateaux agiles et ludiques. Parfait pour profiter de la navigation en toute liberté. Voile légère, croisière, planche à voile ou Big SUP.",
     "crew_label": "Équipage",
-    "footer_note": "* La location de voiliers nécessite une qualification minimale. Une formation de base au maniement est incluse pour le Paddle Surf avec turbine.",
+    "footer_note": "*La location de voilier nécessite une qualification minimale. Pour le Paddle Surf avec turbine, une formation de base en gestion est incluse.",
     "categories": {
       "all": "Tous",
+      "alquileres": "Locations",
       "veleros": "Voiliers",
-      "windsurf": "Windsurf",
-      "paddlesurf": "Paddle Surf",
+      "windsurf": "Planche à voile",
+      "paddlesurf": "Surf à pagaie",
       "kayak": "Kayak",
-      "piragua": "Canoë"
+      "piragua": "Canoë",
+      "membresias": "Adhésions",
+      "bonos": "Bonus",
+      "eventos": "Événements"
     },
     "booking": {
-      "from": "À partir de",
-      "book_now": "Réserver maintenant"
+      "from": "depuis",
+      "date_label": "Date de réservation",
+      "time_label": "Heure",
+      "extra_option": "Option supplémentaire :",
+      "cancel": "Annuler",
+      "confirm": "Confirmer la réservation",
+      "book_now": "Réservez maintenant",
+      "image_placeholder": "Image de",
+      "invalid_date": "Veuillez remplir correctement la date (JJ/MM/AAAA)",
+      "no_times_available": "Il n'y a pas d'horaires disponibles pour aujourd'hui",
+      "no_times_selected_date": "Il n'y a pas d'horaires disponibles pour la date sélectionnée",
+      "booking_error": "Erreur lors du traitement de la réservation. Veuillez réessayer."
     }
   },
   "experiences_page": {
@@ -121,108 +135,108 @@
   },
   "home": {
     "hero": {
-      "slide1_title": "Élégance en Mer",
-      "slide1_subtitle": "Formation nautique d'élite dans la baie de Getxo avec notre flotte J80.",
-      "slide1_action": "Explorer les cours",
-      "slide2_title": "Liberté sur les Vagues",
-      "slide2_subtitle": "Améliorez votre technique et vos tactiques de navigation avec des instructeurs professionnels.",
-      "slide2_action": "Voir la flotte",
-      "slide3_title": "Votre Propre Cours",
-      "slide3_subtitle": "Obtenez votre permis de navigation en une seule journée et commencez à naviguer.",
-      "slide3_action": "En savoir plus",
-      "slide4_title": "Futurs Marins",
-      "slide4_subtitle": "Cours de voile légère pour tous les âges. Le début d'une passion.",
-      "slide4_action": "Voir la voile légère",
-      "scroll": "Défiler"
+      "slide1_title": "Qu'est-ce que\nGetxo\nBela Eskola?",
+      "slide1_subtitle": "Nous ne sommes pas une école conventionnelle, mais une communauté proche construite autour de la mer et des valeurs qui l'accompagnent.",
+      "slide1_action": "Notre philosophie",
+      "slide2_title": "La voile\ns'adapte à vous",
+      "slide2_subtitle": "Navigation à la carte, selon la façon dont vous souhaitez vivre la mer. La voile n'est pas un sport rigide. C'est une façon de vivre la mer qui s'adapte à vous.",
+      "slide2_action": "Voir les options",
+      "slide3_title": "Découvrez\nvotre chemin",
+      "slide3_subtitle": "Du niveau basique à intermédiaire, pour jeunes et adultes. Nous avons un plan pour vous.",
+      "slide3_action": "Nos cours",
+      "slide4_title": "Pourquoi naviguer\navec nous ?",
+      "slide4_subtitle": "Économique, Communautaire, Sur Mesure. Chaque personne est différente, et ici nous en tenons compte.",
+      "slide4_action": "Devenez membre",
+      "scroll": "Déplacer"
     },
     "stats": {
-      "pasion": "Années de Passion",
-      "alumnos": "Élèves Formés",
-      "flota": "Bateaux en Flotte",
-      "clases": "Cours Hebdomadaires"
+      "pasion": "Des années de passion",
+      "alumnos": "Étudiants formés",
+      "flota": "Navires dans la flotte",
+      "clases": "Cours hebdomadaires"
     },
     "programs": {
-      "badge": "Formation d'Élite",
-      "title": "Nos Programmes",
-      "learn_more": "En savoir plus",
-      "licencia_title": "Permis de Navigation",
-      "licencia_price": "120€",
-      "licencia_desc": "La porte d'entrée vers la mer. Sans examen et en un seul jour.",
-      "j80_title": "Initiation J80",
-      "j80_price": "150€",
-      "j80_desc": "Maîtrisez les bases sur le voilier le plus amusant du Cantabrique.",
-      "rental_title": "Location de Flotte",
-      "rental_desc": "Liberté totale pour les navigateurs qualifiés avec notre flotte J80.",
-      "price_rental": "À partir de 80€"
+      "badge": "DÉCOUVREZ VOTRE CHEMIN",
+      "title": "Apprendre à naviguer",
+      "learn_more": "Apprendre encore plus",
+      "licencia_title": "Jeunes (Basique/Moyen)",
+      "licencia_price": "A consulter",
+      "licencia_desc": "Txikigune (journées uniques), Udalekuak (5 jours) et formation continue 3 jours par mois.",
+      "j80_title": "Adultes (Initiation)",
+      "j80_price": "A consulter",
+      "j80_desc": "Croisière d'initiation. Premier contact avec la voile lors d'une croisière adaptée à chacun.",
+      "rental_title": "Adultes (niveau moyen)",
+      "rental_desc": "Initiation/perfectionnement en dériveur, perfectionnement en croisière, croisière avec gennaker et formation technique.",
+      "price_rental": "A consulter"
     },
     "fleet_cta": {
-      "title": "Notre Flotte",
-      "highlight": "Exclusive",
-      "action": "Explorer J80"
+      "title": "Notre flotte",
+      "highlight": "Exclusif",
+      "action": "Explorez J80"
     },
     "experience": {
-      "filosofia": "Notre Philosophie",
-      "lifestyle_title": "Plus qu'une École,",
-      "lifestyle_subtitle": "Un Style de Vie",
-      "desc1": "À Getxo Bela Eskola, nous n'enseignons pas seulement à naviguer. Nous offrons la clé pour se connecter au Cantabrique sous un angle d'excellence, de respect et de tradition.",
-      "desc2": "Notre flotte de J80, située dans la prestigieuse Marina de Getxo, est la scène où nous formons des navigateurs passionnés selon les normes les plus élevées de sécurité et de confort.",
-      "about_link": "Découvrez notre École",
-      "live": "Vivez",
-      "the": "la",
+      "filosofia": "QU'EST-CE QUE GETXO BELA ESKOLA ?",
+      "lifestyle_title": "nous ne sommes pas un",
+      "lifestyle_subtitle": "école conventionnelle",
+      "desc1": "Nous sommes une communauté proche construite autour de la mer et des valeurs qui l'accompagnent. Un lieu où apprendre à naviguer va de pair avec partage, plaisir et croissance en groupe.",
+      "desc2": "Nous croyons en un apprentissage naturel, accessible et sans pression, où chacun trouve son propre rythme. Au-delà de l'eau, nous sommes un point de rencontre où se génèrent des liens, de la confiance et une manière de comprendre la mer qui vous invite à revenir.",
+      "about_link": "Découvrez notre école",
+      "live": "Vies",
+      "the": "le",
       "passion": "Passion"
     },
     "features": {
       "title": "Pourquoi nous choisir",
-      "cert_title": "Certification Officielle",
-      "cert_desc": "Qualifications reconnues pour naviguer sur n'importe quelle mer.",
-      "staff_title": "Instructeurs Experts",
-      "staff_desc": "Apprenez auprès de navigateurs ayant des milliers de milles d'expérience.",
-      "comm_title": "Communauté Active",
-      "comm_desc": "Rejoignez un club de passionnés de voile et du Cantabrique."
+      "cert_title": "Certification officielle",
+      "cert_desc": "Des qualifications reconnues pour naviguer dans toutes les mers.",
+      "staff_title": "Instructeurs experts",
+      "staff_desc": "Apprenez des marins avec des milliers de milles d'expérience.",
+      "comm_title": "Communauté active",
+      "comm_desc": "Rejoignez un club d'amoureux de la voile et de la mer Cantabrique."
     }
   },
   "courses_page": {
-    "header_badge": "Notre Offre",
-    "header_title": "Cours de",
+    "header_badge": "NOTRE OFFRE",
+    "header_title": "Cours",
     "header_highlight": "Navigation",
-    "header_desc": "Des premiers pas en voile légère aux qualifications de plaisance les plus avancées. Dans notre école à Getxo, chaque cours est une expérience conçue pour l'excellence.",
+    "header_desc": "Chez Getxo Bela Eskola, nous proposons des cours pour tous les âges et tous les niveaux, toujours selon une approche proche, progressive et adaptée à chaque personne. Notre objectif est que chacun trouve sa place dans la mer et apprenne à naviguer en toute sécurité, sereinement et en toute confiance.",
     "duration": "h",
-    "price_from": "À partir de"
+    "price_from": "Depuis"
   },
   "about_page": {
-    "header_badge": "Getxo Bela Eskola",
-    "header_title": "Notre Passion est la",
-    "header_highlight": "Mer",
-    "header_suffix": "Excellence Nautique à Arriluze",
+    "header_badge": "FAITES NOUS CONNAÎTRE",
+    "header_title": "Histoire de",
+    "header_highlight": "Club",
+    "header_suffix": "École Getxo Bela",
     "since": "Fondée à Getxo",
-    "desc1": "Getxo Bela Eskola est née avec le but de rapprocher le monde de la voile de toutes les personnes désireuses de profiter du Cantabrique d'une manière différente. Situés au Quai Arriluzea, nous disposons d'installations privilégiées pour que votre expérience soit complète.",
-    "desc2": "De la navigation de plaisance à la compétition et à la vie à bord, notre méthodologie est basée sur une pratique constante et le respect de l'environnement marin. Nous formons des équipages, pas seulement des marins.",
+    "desc1": "Il y a plus de 15 ans, nous sommes nés à Getxo avec un objectif clair : rapprocher la mer de tous à partir d'une approche humaine, éducative et accessible. Nous sommes une association à but non lucratif et un projet social qui considère la voile comme un outil d'apprentissage, de coexistence et de transformation personnelle.",
+    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté.",
     "values": {
-      "v1_title": "Nos Installations",
-      "v1_desc": "Visitez-nous au Quai Arriluzea. Nous disposons de salles pour les cours théoriques, d'une salle audiovisuelle, d'un entrepôt, d'un atelier et de vestiaires avec accès privé au port.",
-      "v2_title": "Équipe Humaine",
-      "v2_desc": "Un groupe passionné comprenant des éducateurs sociaux, des biologistes marins et des techniciens experts en maintenance navale.",
-      "v3_title": "Philosophie et Vie",
-      "v3_desc": "Nous comprenons la navigation comme un voyage de croissance personnelle, basé sur la préparation technique maximale et le respect de la mer."
+      "v1_title": "Nos installations",
+      "v1_desc": "Situé dans une zone privilégiée de la Marina de Getxo, à quelques mètres de la plage d'Ereaga et avec accès direct à l'Abra. Nous disposons d'une salle de classe audiovisuelle, de vestiaires bien entretenus, d'un grand espace extérieur, d'un atelier et d'un espace détente avec un petit sauna.",
+      "v2_title": "Propre quai",
+      "v2_desc": "Le ponton est notre lien direct avec la mer. La flotte est variée : dériveur, croisières, planche à voile, big SUP, paddle surf, canoës et bateaux d'accompagnement.",
+      "v3_title": "Notre philosophie",
+      "v3_desc": "Ici, technique et soin vont de pair, car nous comprenons qu'apprendre à naviguer, c'est aussi apprendre à faire confiance."
     },
-    "team_section_title": "L'Équipage",
+    "team_section_title": "L'équipe",
     "team": {
-      "member1_name": "Angharad Arambalza",
-      "member1_role": "Coordinatrice de Terre",
-      "member1_desc": "Éducatrice sociale et amoureuse de la mer. Son empathie et son énergie sont le cœur de notre logistique terrestre.",
-      "member2_name": "Urko Santillán",
-      "member2_role": "Chef Technique",
-      "member2_desc": "Notre expert en maintenance. Il s'assure que chaque navire de la flotte est dans un état impeccable.",
-      "member3_name": "Ana de Lara",
-      "member3_role": "Biologiste Marine",
-      "member3_desc": "Scientifique et plongeuse. Elle nous conseille sur la biodiversité du Cantabrique et la géographie de notre côte."
+      "member1_name": "Angharad et Urko",
+      "member1_role": "Coordination",
+      "member1_desc": "Notre équipe est composée de techniciens à sensibilité sociale, passionnés par l'enseignement et la mer. Angharad et Urko coordonnent l'école et les opérations quotidiennes et servent également de techniciens sportifs.",
+      "member2_name": "Moniteurs et techniciens",
+      "member2_role": "Spécialistes",
+      "member2_desc": "À leurs côtés, nous disposons d'entraîneurs de maintenance, de planche à voile, d'Optimist, de Laser/420 et de J80. Ils partagent tous une manière de travailler proche, sereine et basée sur l’accompagnement.",
+      "member3_name": "Communauté",
+      "member3_role": "Partenaires",
+      "member3_desc": "L'école fonctionne avec une relation simple et humaine : les moniteurs écoutent, observent les rythmes, accompagnent les peurs et favorisent l'autonomie ; L'équipe partage les décisions et la voix des membres fait partie de la vie du projet."
     },
-    "commitment_title": "Engagé dans la",
-    "commitment_highlight": "Culture de la Mer",
-    "define_badge": "Notre Essence",
+    "commitment_title": "Engagé à",
+    "commitment_highlight": "Culture marine",
+    "define_badge": "Notre essence",
     "define_title": "Ce qui nous définit",
     "cta_title": "Prêt à mettre les voiles ?",
-    "cta_desc": "Rejoignez notre école et découvrez pourquoi nous sommes la référence de la navigation dans le Cantabrique.",
+    "cta_desc": "Rejoignez notre école et découvrez pourquoi nous sommes la référence en matière de navigation dans la mer Cantabrique.",
     "cta_button": "Voir les cours disponibles"
   },
   "contact_form": {
@@ -438,6 +452,10 @@
     "history_tide": "Marée (m)"
   },
   "errors": {
+    "403": {
+      "title": "Accès Restreint",
+      "description": "Vous ne disposez pas des autorisations nécessaires pour naviguer dans ces eaux. Veuillez retourner au port."
+    },
     "404": {
       "code": "ERREUR 404",
       "title": "Cap Perdu",
@@ -452,10 +470,6 @@
       "description": "Notre équipe d'ingénieurs travaille déjà à rétablir le service. Veuillez réessayer dans quelques instants.",
       "retry_button": "RÉESSAYER ⟳",
       "home_button": "RETOUR À L'ACCUEIL ⚓"
-    },
-    "403": {
-      "title": "Accès Restreint",
-      "description": "Vous ne disposez pas des autorisations nécessaires pour naviguer dans ces eaux. Veuillez retourner au port."
     }
   },
   "student_dashboard": {
@@ -612,5 +626,31 @@
     "rank": "Rang",
     "sailor": "Marin",
     "level": "Niveau"
+  },
+  "club_socias": {
+    "title": "Club des membres",
+    "subtitle": "Un espace pour naviguer en communauté, à votre rythme et sans vous presser.",
+    "description1": "Faire partie de Getxo Bela Eskola, c'est appartenir à une communauté qui partage la mer à travers la proximité, le calme et la camaraderie. Les gens sont le cœur d'Eskola, et ici la navigation se vit sans hâte et sans distances.",
+    "description2": "Nous rendons la voile accessible à tous les publics et à tous les budgets, à un prix imbattable, dans un environnement proche, soigné et humain. Être membre permet de naviguer et de s'entraîner, prouvant que la voile n'a jamais été aussi accessible.",
+    "basic": {
+      "title": "Membre de base",
+      "price": "630 €/an (ou 350 € semestriel)",
+      "includes": [
+        "Jusqu'à 30 départs par an de 4 à 5 heures chacun",
+        "Accès à un groupe WhatsApp pour former des équipages",
+        "Surfez avec d'autres personnes ou sortez seul",
+        "Idéal pour rencontrer du monde et apprendre des autres marins"
+      ]
+    },
+    "premium": {
+      "title": "Pack Complet : Technologie + Partenaire",
+      "price": "1200 €/an",
+      "includes": [
+        "Formation de l'équipe technique (3 jours par mois, 4 heures)",
+        "Sorties illimitées en tant que membre",
+        "L'option la plus complète : s'entraîner de manière structurée et naviguer librement"
+      ]
+    },
+    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an)."
   }
 }

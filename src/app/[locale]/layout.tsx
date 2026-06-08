@@ -13,6 +13,7 @@ const OfflineSyncProvider = dynamic(() => import('@/components/offline/OfflineSy
 import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
+import { FramerProvider } from '@/components/providers/FramerProvider';
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -46,21 +47,23 @@ export default async function LocaleLayout({
         </a>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <AcademyFeedbackProvider>
-            <PushNotificationInitializer />
-            <OfflineSyncProvider />
-            <div className="min-h-screen flex flex-col relative w-full overflow-x-hidden">
-              <ConditionalLayout
-                navbar={<Navbar locale={locale} />}
-                footer={<Footer locale={locale} />}
-              >
-                {children}
-              </ConditionalLayout>
-            </div>
-            <ScrollUpButton />
+            <FramerProvider>
+              <PushNotificationInitializer />
+              <OfflineSyncProvider />
+              <div className="min-h-screen flex flex-col relative w-full overflow-x-hidden">
+                <ConditionalLayout
+                  navbar={<Navbar locale={locale} />}
+                  footer={<Footer locale={locale} />}
+                >
+                  {children}
+                </ConditionalLayout>
+              </div>
+              <ScrollUpButton />
 
-            <Suspense fallback={null}>
-              <StatusToast />
-            </Suspense>
+              <Suspense fallback={null}>
+                <StatusToast />
+              </Suspense>
+            </FramerProvider>
           </AcademyFeedbackProvider>
         </NextIntlClientProvider>
       </body>

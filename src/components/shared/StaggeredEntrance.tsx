@@ -9,6 +9,7 @@ interface StaggeredEntranceProps {
     staggerDelay?: number;
     className?: string;
     type?: 'fade' | 'slide' | 'recombine';
+    inView?: boolean;
 }
 
 export default function StaggeredEntrance({
@@ -16,7 +17,8 @@ export default function StaggeredEntrance({
     delay = 0,
     staggerDelay = 0.1,
     className = '',
-    type = 'recombine'
+    type = 'recombine',
+    inView = true
 }: StaggeredEntranceProps) {
     const container = {
         hidden: { opacity: 0 },
@@ -71,7 +73,9 @@ export default function StaggeredEntrance({
         <motion.div
             variants={container}
             initial="hidden"
-            animate="show"
+            animate={inView ? undefined : "show"}
+            whileInView={inView ? "show" : undefined}
+            viewport={inView ? { once: true, amount: 0.15 } : undefined}
             className={className}
         >
             {animatedChildren}

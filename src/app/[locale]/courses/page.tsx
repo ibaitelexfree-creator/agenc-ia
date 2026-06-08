@@ -9,7 +9,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     const title = isEu ? 'Ikastaroak' : 'Cursos';
     const description = isEu
         ? 'Ezagutu gure bela, kayak eta nabigazio lizentzia ikastaroak Getxon. Formazio praktikoa eta teorikoa.'
-        : 'Explora nuestro catálogo de cursos de vela, kayak y licencias de navegación en Getxo. Formación náutica para todos los niveles.';
+        : 'En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona.';
 
     return {
         title,

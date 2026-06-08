@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { apiUrl } from '@/lib/api';
 import { useDebouncedCallback } from '@/hooks/useDebouncedCallback';
-
+import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
+import { motion } from 'framer-motion';
 
 export default function ContactForm() {
     const t = useTranslations('contact_form');
@@ -84,72 +85,77 @@ export default function ContactForm() {
 
     return (
         <form onSubmit={handleSubmit(debouncedSubmit)} className="space-y-8 animate-fade-in">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                    <label htmlFor="nombre" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('name')}</label>
-                    <input
-                        id="nombre"
-                        {...register('nombre')}
-                        className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
-                        placeholder={t('name_placeholder')}
-                    />
-                    {errors.nombre && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.nombre.message}</p>}
+            <StaggeredEntrance type="slide" staggerDelay={0.08} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                        <label htmlFor="nombre" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('name')}</label>
+                        <input
+                            id="nombre"
+                            {...register('nombre')}
+                            className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            placeholder={t('name_placeholder')}
+                        />
+                        {errors.nombre && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.nombre.message}</p>}
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="email" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('email')}</label>
+                        <input
+                            id="email"
+                            {...register('email')}
+                            className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            placeholder={t('email_placeholder')}
+                        />
+                        {errors.email && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.email.message}</p>}
+                    </div>
                 </div>
-                <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('email')}</label>
-                    <input
-                        id="email"
-                        {...register('email')}
-                        className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
-                        placeholder={t('email_placeholder')}
-                    />
-                    {errors.email && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.email.message}</p>}
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                        <label htmlFor="telefono" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('phone')}</label>
+                        <input
+                            id="telefono"
+                            {...register('telefono')}
+                            className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors"
+                            placeholder={t('phone_placeholder')}
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label htmlFor="asunto" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('subject')}</label>
+                        <input
+                            id="asunto"
+                            {...register('asunto')}
+                            className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            placeholder={t('subject_placeholder')}
+                        />
+                        {errors.asunto && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.asunto.message}</p>}
+                    </div>
                 </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2">
-                    <label htmlFor="telefono" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('phone')}</label>
-                    <input
-                        id="telefono"
-                        {...register('telefono')}
-                        className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors"
-                        placeholder={t('phone_placeholder')}
+                    <label htmlFor="mensaje" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('message')}</label>
+                    <textarea
+                        id="mensaje"
+                        {...register('mensaje')}
+                        rows={5}
+                        className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors resize-none`}
+                        placeholder={t('message_placeholder')}
                     />
+                    {errors.mensaje && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.mensaje.message}</p>}
                 </div>
-                <div className="space-y-2">
-                    <label htmlFor="asunto" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('subject')}</label>
-                    <input
-                        id="asunto"
-                        {...register('asunto')}
-                        className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
-                        placeholder={t('subject_placeholder')}
-                    />
-                    {errors.asunto && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.asunto.message}</p>}
-                </div>
-            </div>
 
-            <div className="space-y-2">
-                <label htmlFor="mensaje" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('message')}</label>
-                <textarea
-                    id="mensaje"
-                    {...register('mensaje')}
-                    rows={5}
-                    className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors resize-none`}
-                    placeholder={t('message_placeholder')}
-                />
-                {errors.mensaje && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.mensaje.message}</p>}
-            </div>
+                {error && <p className="text-2xs text-red-500">{error}</p>}
 
-            {error && <p className="text-2xs text-red-500">{error}</p>}
-
-            <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full btn flex justify-center items-center gap-4 disabled:opacity-50"
-            >
-                {isSubmitting ? t('sending') : t('send')}
-            </button>
+                <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: 1.01, y: -3 }}
+                    whileTap={{ scale: 0.99 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                    className="w-full btn flex justify-center items-center gap-4 disabled:opacity-50 shadow-md hover:shadow-lg transition-shadow duration-300"
+                >
+                    {isSubmitting ? t('sending') : t('send')}
+                </motion.button>
+            </StaggeredEntrance>
         </form>
     );
 }

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import NauticalImage from '@/components/ui/NauticalImage';
 import { useTranslations } from 'next-intl';
+import { motion } from 'framer-motion';
 
 interface CourseCardProps {
     course: {
@@ -25,7 +26,12 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
     const description = (locale === 'es' ? course.descripcion_es : course.descripcion_eu) || course.descripcion_es || '';
 
     return (
-        <div className="group relative glass-card overflow-hidden">
+        <motion.div 
+            whileHover={{ y: -8 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="group relative glass-card overflow-hidden cursor-pointer"
+        >
             {/* Top Border Reveal Accent */}
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
@@ -94,6 +100,6 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
 
             {/* Background Texture Decor */}
             <div className="absolute inset-0 bg-mesh opacity-0 group-hover:opacity-10 transition-opacity duration-1000 pointer-events-none" />
-        </div>
+        </motion.div>
     );
 }

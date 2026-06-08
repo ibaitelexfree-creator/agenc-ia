@@ -3,6 +3,8 @@ import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
+import HoverImage from '@/components/shared/HoverImage';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
@@ -73,7 +75,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             {/* 2. Heritage & Story Section */}
             <section className="py-24 md:py-48 relative overflow-hidden">
                 <div className="container mx-auto px-6">
-                    <div className="grid lg:grid-cols-12 gap-12 items-center">
+                    <StaggeredEntrance type="slide" className="grid lg:grid-cols-12 gap-12 items-center">
                         {/* Decorative Quote Mark */}
                         <div className="lg:col-span-1 hidden lg:block self-start pt-12">
                             <span className="font-display text-9xl text-accent/10 italic leading-none">&quot;</span>
@@ -104,16 +106,14 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         <div className="lg:col-span-6 lg:pl-12 mt-24 lg:mt-0">
                             <div className="relative aspect-[3/4] group">
                                 <div className="absolute -top-6 -right-6 w-full h-full border border-white/5 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
-                                <div className="relative h-full overflow-hidden shadow-2xl">
-                                    <Image
-                                        src="/images/course-raquero-students.webp"
-                                        alt="Sea Experience"
-                                        fill
-                                        sizes="(max-width: 1024px) 100vw, 50vw"
-                                        className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s]"
-                                    />
-                                    <div className="absolute inset-0 bg-nautical-black/20 group-hover:bg-transparent transition-colors duration-1000" />
-                                </div>
+                                <HoverImage
+                                    src="/images/course-raquero-students.webp"
+                                    alt="Sea Experience"
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    containerClassName="h-full shadow-2xl"
+                                    imageClassName="object-cover scale-110 group-hover:scale-105"
+                                />
                                 {/* Image Badge */}
                                 <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-white/5 shadow-2xl rotate-[-90deg]">
                                     <span className="text-sm uppercase tracking-[0.5em] text-accent font-bold">
@@ -122,7 +122,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </StaggeredEntrance>
                 </div>
             </section>
 

@@ -1,7 +1,7 @@
 {
   "name": "Getxo Bela Eskola",
-  "short_name": "Getxo Bela Eskola",
-  "description": "Plataforma de Navegación Getxo Bela Eskola",
+  "short_name": "Getxo Bela",
+  "description": "Escuela de Vela y Navegación en Getxo",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a1628",

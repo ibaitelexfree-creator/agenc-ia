@@ -11,6 +11,7 @@ const NativeAppRedirect = dynamic(() => import('@/components/shared/NativeAppRed
 const ExperienceSection = dynamic(() => import('@/components/home/ExperienceSection'));
 const FeaturesSection = dynamic(() => import('@/components/home/FeaturesSection'));
 const ProgramsSection = dynamic(() => import('@/components/home/ProgramsSection'));
+const LatestBlogPosts = dynamic(() => import('@/components/home/LatestBlogPosts'));
 
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -196,6 +197,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
         programs={programs}
       />
       <FeaturesSection features={features} />
+      <LatestBlogPosts locale={locale} />
 
       {/* SEO Hidden H1 */}
       <h1 className="sr-only">

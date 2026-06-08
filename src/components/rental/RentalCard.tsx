@@ -4,6 +4,7 @@ import Link from 'next/link';
 import NauticalImage from '@/components/ui/NauticalImage';
 import { useTranslations } from 'next-intl';
 import { Anchor, Users, Clock, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface RentalCardProps {
     service: {
@@ -52,7 +53,12 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
     };
 
     return (
-        <div className="group relative glass-card overflow-hidden h-full flex flex-col">
+        <motion.div 
+            whileHover={{ y: -8 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
+        >
             {/* Design Decor - Nautical Numbers */}
             <div className="absolute top-4 right-6 text-[120px] font-black text-white/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
                 {service.categoria.substring(0, 2).toUpperCase()}
@@ -134,6 +140,6 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
 
             {/* Subtle Texture Overlay */}
             <div className="absolute inset-0 bg-mesh opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none" />
-        </div>
+        </motion.div>
     );
 }

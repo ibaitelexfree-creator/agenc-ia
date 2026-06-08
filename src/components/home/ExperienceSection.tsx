@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 
 interface ExperienceSectionProps {
     locale: string;
@@ -34,7 +35,7 @@ export default function ExperienceSection({
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
             <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-24 items-center">
+                <StaggeredEntrance type="slide" className="grid lg:grid-cols-2 gap-24 items-center">
                     <div className="relative">
                         <div className="relative aspect-[4/5] overflow-hidden group">
                             <Image
@@ -84,7 +85,7 @@ export default function ExperienceSection({
                             </Link>
                         </div>
                     </div>
-                </div>
+                </StaggeredEntrance>
             </div>
         </section>
     );

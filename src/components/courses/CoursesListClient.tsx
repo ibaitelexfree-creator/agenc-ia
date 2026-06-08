@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import CourseCard from './CourseCard';
 import CourseFilters from './CourseFilters';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Category {
     id: string;
@@ -46,11 +47,25 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                         </div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                        {displayCourses.map((course) => (
-                            <CourseCard key={course.id} course={course} locale={locale} />
-                        ))}
-                    </div>
+                    <motion.div 
+                        layout
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
+                    >
+                        <AnimatePresence mode="popLayout">
+                            {displayCourses.map((course) => (
+                                <motion.div
+                                    key={course.id}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ duration: 0.25 }}
+                                >
+                                    <CourseCard course={course} locale={locale} />
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </motion.div>
                 )}
             </div>
         </section>
