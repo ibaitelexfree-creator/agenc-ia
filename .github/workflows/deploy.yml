@@ -11,6 +11,7 @@ on:
       - "orchestration/**"
       - "infra/**"
       - "mission-control/**"
+      - "apps/**"
       - "docker-compose.yml"
       - "Dockerfile"
       - "package.json"
