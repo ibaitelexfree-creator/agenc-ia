@@ -15,11 +15,11 @@ export default function GoogleAuthButton() {
         try {
             const locale = window.location.pathname.split('/')[1] || 'es';
 
-            // Detect if we are on localhost to use the correct redirect URL
-            const isLocal = window.location.hostname === 'localhost';
-            const appUrl = isLocal
-                ? window.location.origin
-                : (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || window.location.origin);
+            // Detect if we are in a Capacitor environment
+            const isCapacitor = window.location.protocol === 'capacitor:' || window.location.protocol === 'file:';
+            const appUrl = isCapacitor
+                ? (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://getxobelaeskola.cloud')
+                : window.location.origin;
 
             await supabase.auth.signInWithOAuth({
                 provider: 'google',

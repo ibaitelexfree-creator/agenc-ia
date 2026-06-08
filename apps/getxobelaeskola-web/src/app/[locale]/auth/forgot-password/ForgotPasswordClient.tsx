@@ -30,7 +30,11 @@ export default function ForgotPasswordClient({ locale }: { locale: string }) {
         setLoading(true);
         setError(null);
 
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || window.location.origin;
+        // Detect if we are in a Capacitor environment
+        const isCapacitor = window.location.protocol === 'capacitor:' || window.location.protocol === 'file:';
+        const appUrl = isCapacitor
+            ? (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://getxobelaeskola.cloud')
+            : window.location.origin;
         const { error: resetError } = await supabase.auth.resetPasswordForEmail(data.email, {
             redirectTo: `${appUrl}/api/auth/callback?next=/${locale}/auth/reset-password`,
         });

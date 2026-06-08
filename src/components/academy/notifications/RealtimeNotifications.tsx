@@ -9,13 +9,14 @@ export default function RealtimeNotifications() {
     const supabase = createClient();
 
     useEffect(() => {
+        let active = true;
         let logrosSub: any;
         let skillsSub: any;
         let notificationsSub: any;
 
         async function setupRealtime() {
             const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            if (!user || !active) return;
 
             // Escuchar Logros
             logrosSub = supabase
@@ -36,7 +37,7 @@ export default function RealtimeNotifications() {
                             .eq('id', payload.new.logro_id)
                             .single();
 
-                        if (logro) {
+                        if (logro && active) {
                             addNotification({
                                 type: 'achievement',
                                 title: logro.nombre_es,
@@ -72,7 +73,7 @@ export default function RealtimeNotifications() {
                             .eq('id', payload.new.skill_id)
                             .single();
 
-                        if (skill) {
+                        if (skill && active) {
                             addNotification({
                                 type: 'skill',
                                 title: skill.name,
@@ -100,6 +101,7 @@ export default function RealtimeNotifications() {
                         filter: `user_id=eq.${user.id}`
                     },
                     (payload: { new: any }) => {
+                        if (!active) return;
                         const notif = payload.new;
                         addNotification({
                             type: notif.type || 'info',
@@ -117,6 +119,7 @@ export default function RealtimeNotifications() {
         setupRealtime();
 
         return () => {
+            active = false;
             if (logrosSub) supabase.removeChannel(logrosSub);
             if (skillsSub) supabase.removeChannel(skillsSub);
             if (notificationsSub) supabase.removeChannel(notificationsSub);
