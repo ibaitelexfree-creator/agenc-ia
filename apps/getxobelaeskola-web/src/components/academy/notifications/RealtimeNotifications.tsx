@@ -9,11 +9,10 @@ export default function RealtimeNotifications() {
     const supabase = createClient();
 
     useEffect(() => {
-        let logrosSub: any = null;
-        let skillsSub: any = null;
-        let notificationsSub: any = null;
+        let logrosSub: any;
+        let skillsSub: any;
+        let notificationsSub: any;
 
-        // 1. Obtener usuario actual para filtrar notificaciones
         async function setupRealtime() {
             const { data: { user } } = await supabase.auth.getUser();
             if (!user) return;
@@ -79,7 +78,7 @@ export default function RealtimeNotifications() {
                                 title: skill.name,
                                 message: skill.description,
                                 icon: skill.icon || '⚡',
-                                duration: 0, // Manual close for skills
+                                duration: 0,
                                 data: {
                                     category: skill.category
                                 }

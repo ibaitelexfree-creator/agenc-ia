@@ -19,17 +19,7 @@ const GetxoKirolakLogo = () => (
     </div>
 );
 
-const KitDigitalLogo = () => (
-    <div className="flex items-center gap-2 text-white/30 hover:text-accent/60 transition-all duration-300">
-        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M3 3h5v5H3zm7 0h5v5h-5zm7 0h5v5h-5zM3 10h5v5H3zm7 0h5v5h-5zm7 0h5v5h-5zM3 17h5v5H3zm7 0h5v5h-5zm7 0h5v5h-5z" />
-        </svg>
-        <div className="flex flex-col text-left">
-            <span className="text-[9px] font-black uppercase tracking-[0.15em] leading-none">KIT</span>
-            <span className="text-[7px] font-bold uppercase tracking-[0.1em] text-white/20">DIGITAL</span>
-        </div>
-    </div>
-);
+// KitDigital logos are loaded as SVGs from the public folder
 
 export default async function Footer({ locale }: { locale: string }) {
     const t = await getTranslations({ locale, namespace: 'footer' });
@@ -151,9 +141,30 @@ export default async function Footer({ locale }: { locale: string }) {
                 <div className="w-24 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex justify-center items-center gap-12 mb-12 border-t border-white/5 pt-8 w-full max-w-md">
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-white/5 pt-8 w-full max-w-2xl px-6">
                     <GetxoKirolakLogo />
-                    <KitDigitalLogo />
+                    
+                    {/* NextGenerationEU Logo */}
+                    <div className="h-8 w-auto relative opacity-30 hover:opacity-60 transition-all duration-300">
+                        <Image
+                            src="/images/logo-nextgen.svg"
+                            alt="Financiado por la Unión Europea - NextGenerationEU"
+                            width={160}
+                            height={28}
+                            className="object-contain"
+                        />
+                    </div>
+                    
+                    {/* Plan de Recuperación Logo */}
+                    <div className="h-8 w-auto relative opacity-30 hover:opacity-60 transition-all duration-300">
+                        <Image
+                            src="/images/logo-plan-recuperacion.svg"
+                            alt="Plan de Recuperación, Transformación y Resiliencia"
+                            width={160}
+                            height={28}
+                            className="object-contain"
+                        />
+                    </div>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-white/20 mb-12">

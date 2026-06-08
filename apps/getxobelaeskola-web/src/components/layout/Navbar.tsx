@@ -193,7 +193,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-nautical-deep/70 backdrop-blur-2xl border-b border-white/5 transition-all duration-500 hover:bg-nautical-deep/90 min-h-[70px]">
+            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#010409]/90 backdrop-blur-2xl border-b border-white/5 transition-all duration-500 hover:bg-[#010409]/95 min-h-[70px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
@@ -250,16 +250,16 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         exit="exit"
                                         className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-[10000]"
                                     >
-                                        <div className="w-64 py-3 bg-nautical-deep/95 backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden">
+                                        <div className="w-64 py-3 bg-[#010409] border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden">
                                             {/* Simple Arrow */}
-                                            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-nautical-deep/95 border-l border-t border-white/10 rotate-45" />
+                                            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#010409] border-l border-t border-white/10 rotate-45" />
 
                                             {item.dropdown.map((sub) => (
                                                 <Link
                                                     key={sub.href}
                                                     href={`/${locale}/${sub.href}`}
                                                     prefetch={false}
-                                                    className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-white/50 hover:text-white hover:bg-white/5 transition-all duration-200 group/sub"
+                                                    className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-white/75 hover:text-white hover:bg-white/5 transition-all duration-200 group/sub"
                                                 >
                                                     <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
                                                     {getLabel(sub.label)}
