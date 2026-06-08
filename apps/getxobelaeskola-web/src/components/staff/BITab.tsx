@@ -4,7 +4,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
     BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-    Cell, PieChart, Pie, AreaChart, Area, Legend
+    Cell, PieChart, Pie, AreaChart, Area, Legend, ReferenceLine
 } from 'recharts';
 import {
     TrendingUp, Ship, GraduationCap, DollarSign, Target, Activity, Zap, Info,
@@ -442,15 +442,13 @@ export default function BITab() {
                                 />
                                 <Legend wrapperStyle={{ fontSize: 10, paddingTop: 20 }} />
                                 <Area type="monotone" dataKey="cumulativeActual" name="Progreso Real" stroke="#00E5FF" strokeWidth={3} fillOpacity={1} fill="url(#colorActual)" />
-                                {/* Target Line: Linear distribution to target */}
-                                <Line
-                                    type="monotone"
-                                    dataKey={() => monthlyTarget}
-                                    name="Objetivo Táctico"
+                                {/* Target Line: Reference line at target value */}
+                                <ReferenceLine
+                                    y={monthlyTarget}
                                     stroke="#FFD700"
                                     strokeDasharray="5 5"
                                     strokeOpacity={0.4}
-                                    dot={false}
+                                    label={{ value: 'Objetivo Táctico', fill: '#FFD700', fontSize: 10, position: 'top' }}
                                 />
                             </AreaChart>
                         </ResponsiveContainer>
