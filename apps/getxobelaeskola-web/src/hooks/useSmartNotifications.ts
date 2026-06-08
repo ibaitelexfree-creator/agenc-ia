@@ -128,8 +128,9 @@ export const useSmartNotifications = () => {
 
     // --- Module Completion Listener ---
     const listenToModuleCompletion = useCallback((userId: string) => {
+        const uniqueChannelName = `smart_module_completion_${userId}_${Math.random().toString(36).substring(2, 9)}`;
         const channel = supabase
-            .channel('smart_module_completion')
+            .channel(uniqueChannelName)
             .on(
                 'postgres_changes',
                 {
