@@ -128,7 +128,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-nautical-black/10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-nautical-black/80 via-transparent to-transparent" />
 
-                    <div className="absolute inset-0 flex items-center pt-36 md:pt-28">
+                    <div className="absolute inset-0 flex items-center pt-24 md:pt-20">
                         <div className="container mx-auto px-6 md:px-12">
                             <div className={`max-w-4xl transition-all duration-700 delay-200 transform ${index === current ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                 }`}>
@@ -140,10 +140,10 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                     </span>
                                 </div>
 
-                                <h2 className="text-5xl sm:text-7xl md:text-[8rem] lg:text-[10rem] font-display text-white mb-10 leading-[0.85] tracking-tighter">
-                                    {slide.title.split(/\s+/).map((word, i) => (
+                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] font-display text-white mb-10 leading-[1.1] tracking-tighter">
+                                    {slide.title.split('\n').map((line, i) => (
                                         <span key={i} className={`block ${i % 2 !== 0 ? 'italic font-light text-accent/90 ml-12 sm:ml-24' : ''}`}>
-                                            {word}
+                                            {line}
                                         </span>
                                     ))}
                                 </h2>
@@ -201,7 +201,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                 ))}
             </div>
 
-            {/* Cinematic Scroll Indicator */}
+            {/* Cinematic Scroll Indicator - Trigger deployment */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 z-30 opacity-40 hover:opacity-100 transition-premium group shadow-2xl">
                 <span className="text-[9px] uppercase tracking-[0.5em] font-black text-white vertical-text">{t('scroll')}</span>
                 <div className="w-[1px] h-20 bg-gradient-to-b from-accent via-accent/20 to-transparent relative overflow-hidden">

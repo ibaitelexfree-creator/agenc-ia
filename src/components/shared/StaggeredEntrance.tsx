@@ -62,8 +62,61 @@ export default function StaggeredEntrance({
     const animatedChildren = React.Children.map(children, (child, index) => {
         if (!React.isValidElement(child)) return child;
 
+        // If it's a native HTML element, convert it dynamically to a motion component
+        // so that layout classes (e.g. col-span, grid position) remain on the main layout element.
+        if (typeof child.type === 'string') {
+            const MotionComponent = (motion as any)[child.type] || motion(child.type as any);
+            return (
+                <MotionComponent
+                    {...child.props}
+                    key={child.key ?? index}
+                    variants={item}
+                    custom={index}
+                />
+            );
+        }
+
+        // For custom React components, we wrap them in a motion.div
+        // but we extract layout/positioning/sizing classes to prevent layout breaks.
+        const childClass = (child.props as any)?.className || '';
+        const classes = childClass.split(/\s+/);
+        const layoutClasses = classes.filter((cls: string) => {
+            const isResponsive = /^(sm:|md:|lg:|xl:|2xl:)/.test(cls);
+            const baseClass = isResponsive ? cls.split(':')[1] : cls;
+            return (
+                /^col-/.test(baseClass) ||
+                /^row-/.test(baseClass) ||
+                /^self-/.test(baseClass) ||
+                /^flex-/.test(baseClass) ||
+                baseClass === 'flex' ||
+                baseClass === 'grid' ||
+                baseClass === 'hidden' ||
+                baseClass === 'block' ||
+                baseClass === 'inline' ||
+                baseClass === 'shrink' ||
+                baseClass === 'grow' ||
+                baseClass === 'shrink-0' ||
+                baseClass === 'grow-0' ||
+                baseClass === 'relative' ||
+                baseClass === 'absolute' ||
+                baseClass === 'fixed' ||
+                baseClass === 'sticky' ||
+                /^w-/.test(baseClass) ||
+                /^h-/.test(baseClass) ||
+                /^min-w-/.test(baseClass) ||
+                /^max-w-/.test(baseClass) ||
+                /^min-h-/.test(baseClass) ||
+                /^max-h-/.test(baseClass)
+            );
+        }).join(' ');
+
         return (
-            <motion.div variants={item} custom={index}>
+            <motion.div
+                key={child.key ?? index}
+                variants={item}
+                custom={index}
+                className={layoutClasses || undefined}
+            >
                 {child}
             </motion.div>
         );
