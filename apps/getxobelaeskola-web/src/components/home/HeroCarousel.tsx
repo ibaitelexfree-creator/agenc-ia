@@ -128,7 +128,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-nautical-black/10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-nautical-black/80 via-transparent to-transparent" />
 
-                    <div className="absolute inset-0 flex items-center pt-32 md:pt-0">
+                    <div className="absolute inset-0 flex items-center pt-36 md:pt-28">
                         <div className="container mx-auto px-6 md:px-12">
                             <div className={`max-w-4xl transition-all duration-700 delay-200 transform ${index === current ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                                 }`}>
