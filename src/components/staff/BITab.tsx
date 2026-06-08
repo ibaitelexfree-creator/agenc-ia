@@ -40,10 +40,10 @@ export default function BITab() {
 
     // Chronos State
     const [dateRange, setDateRange] = useState({
-        start: format(startOfMonth(new Date()), 'yyyy-MM-dd'),
-        end: format(endOfMonth(new Date()), 'yyyy-MM-dd')
+        start: format(startOfYear(new Date()), 'yyyy-MM-dd'),
+        end: format(endOfYear(new Date()), 'yyyy-MM-dd')
     });
-    const [activePreset, setActivePreset] = useState<'month' | 'quarter' | 'year' | 'custom'>('month');
+    const [activePreset, setActivePreset] = useState<'month' | 'quarter' | 'year' | 'custom'>('year');
     const [compareYoY, setCompareYoY] = useState(true);
 
     // Target Strategy State
