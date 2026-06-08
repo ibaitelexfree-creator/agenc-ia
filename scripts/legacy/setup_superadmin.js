@@ -6,7 +6,7 @@ async function run() {
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhibGVkaGlmb21ibGlyeHVydHl2Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3MDYyMjE5NywiZXhwIjoyMDg2MTk4MTk3fQ.tynAhTsdBLSv_FI4CbGhWfHLjmfmsl8SJaeiTRDsd_A'
     );
 
-    const email = 'Getxobelaeskola@gmail.com';
+    const email = 'getxobelaeskola@gmail.com';
     const password = 'Jereministro1271!*';
 
     console.log('--- Setting up Admin User ---');

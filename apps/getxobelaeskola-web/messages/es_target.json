@@ -1,0 +1,168 @@
+{
+  "home": {
+    "hero": {
+      "slide1_title": "¿Qué es Getxo",
+      "slide1_subtitle": "Bela Eskola? No somos una escuela convencional, sino una comunidad cercana construida alrededor de la mar y los valores que la acompañan.",
+      "slide1_action": "Nuestra Filosofía",
+      "slide2_title": "La Vela se Adapta a Ti",
+      "slide2_subtitle": "Navegación a la carta, según cómo quieras vivir el mar. La vela no es un deporte rígido. Es una forma de vivir el mar que se adapta a ti.",
+      "slide2_action": "Ver Opciones",
+      "slide3_title": "Descubre Tu Camino",
+      "slide3_subtitle": "Desde un nivel básico hasta medio, para jóvenes y adultos. Tenemos un plan para ti.",
+      "slide3_action": "Nuestros Cursos",
+      "slide4_title": "¿Por qué navegar con nosotros?",
+      "slide4_subtitle": "Económico, Comunidad, A tu medida. Cada persona es diferente, y aquí lo tenemos muy en cuenta.",
+      "slide4_action": "Hazte Socia",
+      "scroll": "Desplazar"
+    },
+    "stats": {
+      "pasion": "Años de Pasión",
+      "alumnos": "Alumnos Formados",
+      "flota": "Barcos en Flota",
+      "clases": "Clases Semanales"
+    },
+    "programs": {
+      "badge": "DESCUBRE TU CAMINO",
+      "title": "Aprende a Navegar",
+      "learn_more": "Saber más",
+      "licencia_title": "Jóvenes (Básico / Medio)",
+      "licencia_price": "A consultar",
+      "licencia_desc": "Txikigune (Días sueltos), Udalekuak (5 días) y entrenamientos continuos 3 días al mes.",
+      "j80_title": "Adultos (Iniciación)",
+      "j80_price": "A consultar",
+      "j80_desc": "Crucero iniciación. Primer contacto con la navegación en crucero adaptado a cada persona.",
+      "rental_title": "Adultos (Nivel Medio)",
+      "rental_desc": "Vela ligera iniciación/avanzado, Crucero perfeccionamiento, Crucero con gennaker y tecnificación.",
+      "price_rental": "A consultar"
+    },
+    "fleet_cta": {
+      "title": "Nuestra Flota",
+      "highlight": "Exclusiva",
+      "action": "Explorar J80"
+    },
+    "experience": {
+      "filosofia": "¿QUÉ ES GETXO BELA ESKOLA?",
+      "lifestyle_title": "No somos una",
+      "lifestyle_subtitle": "escuela convencional",
+      "desc1": "Somos una comunidad cercana construida alrededor de la mar y los valores que la acompañan. Un lugar donde aprender a navegar va de la mano de compartir, disfrutar y crecer en grupo.",
+      "desc2": "Creemos en un aprendizaje natural, accesible y sin presión, donde cada persona encuentra su ritmo. Más allá del agua, somos un punto de encuentro donde se generan vínculos, confianza y una forma de entender la mar que invita a volver.",
+      "about_link": "Descubre nuestra Escuela",
+      "live": "Vive",
+      "the": "la",
+      "passion": "Pasión"
+    },
+    "features": {
+      "title": "Por qué elegirnos",
+      "cert_title": "Certificación Oficial",
+      "cert_desc": "Titulaciones reconocidas para navegar en cualquier mar.",
+      "staff_title": "Instructores Expertos",
+      "staff_desc": "Aprende de navegantes con miles de millas de experiencia.",
+      "comm_title": "Comunidad Activa",
+      "comm_desc": "Únete a un club de apasionados por la vela y el Cantábrico."
+    }
+  },
+  "about_page": {
+    "header_badge": "CONÓCENOS",
+    "header_title": "Historia del",
+    "header_highlight": "Club",
+    "header_suffix": "Getxo Bela Eskola",
+    "since": "Fundada en Getxo",
+    "desc1": "Hace más de 15 años nacimos en Getxo con un objetivo claro: acercar la mar a todas las personas desde un enfoque humano, educativo y accesible. Somos una asociación sin ánimo de lucro y un proyecto social que entiende la vela como una herramienta de aprendizaje, de convivencia y de transformación personal.",
+    "desc2": "Con los años hemos ido creciendo, profesionalizándonos y ampliando actividades, siempre con la misma base: poner a las personas en el centro. La Eskola sigue siendo un lugar cercano, sencillo y construido desde la comunidad.",
+    "values": {
+      "v1_title": "Nuestras Instalaciones",
+      "v1_desc": "Ubicadas en una zona privilegiada del Puerto Deportivo de Getxo, a pocos metros de la playa de Ereaga y con salida directa al Abra. Contamos con aula audiovisual, vestuarios cuidados, amplio espacio exterior, taller y zona chill-out con pequeña sauna.",
+      "v2_title": "Pantalán Propio",
+      "v2_desc": "El pantalán es nuestro enlace directo con la mar. La flota es variada: vela ligera, cruceros, windsurf, big SUP, paddle surf, piraguas y lanchas de apoyo.",
+      "v3_title": "Nuestra Filosofía",
+      "v3_desc": "Aquí la técnica y el cuidado van juntas, porque entendemos que aprender a navegar es también aprender a confiar."
+    },
+    "team_section_title": "El Equipo",
+    "team": {
+      "member1_name": "Angharad y Urko",
+      "member1_role": "Coordinación",
+      "member1_desc": "Nuestro equipo está formado por personas técnicas y con sensibilidad social, apasionadas por la enseñanza y por la mar. Angharad y Urko coordinan la eskola y la operativa diaria, y además ejercen como técnicas deportivas.",
+      "member2_name": "Monitoras y técnicos",
+      "member2_role": "Especialistas",
+      "member2_desc": "Junto a ellas y ellos, contamos con responsables de mantenimiento, windsurf, entrenadores de Optimist, Laser/420 y J80. Todas comparten una forma de trabajar cercana, tranquila y basada en el acompañamiento.",
+      "member3_name": "Comunidad",
+      "member3_role": "Socias",
+      "member3_desc": "La eskola funciona con una relación sencilla y humana: las monitoras escuchan, observan ritmos, acompañan miedos y fomentan autonomía; el equipo comparte decisiones y la voz de las socias forma parte de la vida del proyecto."
+    },
+    "commitment_title": "Comprometidos con la",
+    "commitment_highlight": "Cultura del Mar",
+    "define_badge": "Nuestra Esencia",
+    "define_title": "Lo que nos define",
+    "cta_title": "¿Listo para zarpar?",
+    "cta_desc": "Únete a nuestra escuela y descubre por qué somos el referente de navegación en el Cantábrico.",
+    "cta_button": "Ver Cursos Disponibles"
+  },
+  "club_socias": {
+    "title": "Club de Socias",
+    "subtitle": "Un espacio para navegar en comunidad, a tu ritmo y sin prisas.",
+    "description1": "Ser parte de Getxo Bela Eskola es pertenecer a una comunidad que comparte la mar desde la cercanía, la calma y el compañerismo. Las personas son el corazón de la Eskola, y aquí la navegación se vive sin prisas y sin distancias.",
+    "description2": "Hacemos la vela accesible a todos los públicos y bolsillos, a un precio inmejorable, en un entorno cercano, cuidado y humano. Ser socia permite navegar y entrenar demostrando que navegar nunca había sido tan accesible.",
+    "basic": {
+      "title": "Socia Básica",
+      "price": "630€/año (o 350€ medio año)",
+      "includes": [
+        "Hasta 30 salidas al año de 4-5 horas cada una",
+        "Acceso a un grupo de WhatsApp para formar tripulaciones",
+        "Navegar con otras personas o salir por tu cuenta",
+        "Ideal para conocer gente y aprender de otras navegantes"
+      ]
+    },
+    "premium": {
+      "title": "Pack Completo: Tecnificación + Socia",
+      "price": "1200€/año",
+      "includes": [
+        "Entrenamientos del equipo de tecnificación (3 días al mes, 4 horas)",
+        "Salidas ilimitadas como socia",
+        "La opción más completa: entrenar de forma estructurada y navegar libremente"
+      ]
+    },
+    "federation": "Federación y seguro: Licencia de la Federación Vasca de Vela (aprox. 64€ anuales)."
+  },
+  "courses_page": {
+    "header_badge": "NUESTRA OFERTA",
+    "header_title": "Cursos de",
+    "header_highlight": "Navegación",
+    "header_desc": "En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona. Nuestro objetivo es que cada una encuentre su lugar en la mar y aprenda a navegar con seguridad, calma y confianza.",
+    "duration": "h",
+    "price_from": "Desde"
+  },
+  "rental_page": {
+    "header_eyebrow": "A TU RITMO",
+    "title_prefix": "Alquiler de",
+    "title_highlight": "Material",
+    "description": "Descubre la mar de cerca y a tu ritmo en embarcaciones ágiles y divertidas. Perfecto para disfrutar navegando en libertad. Vela Ligera, Crucero, Windsurf o Big SUP.",
+    "crew_label": "Tripulación",
+    "footer_note": "* El alquiler de veleros requiere titulación mínima. Para Paddle Surf con turbina se incluye formación básica de manejo.",
+    "categories": {
+      "all": "Todos",
+      "alquileres": "Alquileres",
+      "veleros": "Veleros",
+      "windsurf": "Windsurf",
+      "paddlesurf": "Paddle Surf",
+      "kayak": "Kayak",
+      "piragua": "Piragua",
+      "membresias": "Membresías",
+      "bonos": "Bonos",
+      "eventos": "Eventos"
+    },
+    "booking": {
+      "from": "desde",
+      "date_label": "Fecha de Reserva",
+      "time_label": "Hora",
+      "extra_option": "Opción Extra:",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar Reserva",
+      "book_now": "Reservar Ahora",
+      "image_placeholder": "Imagen de",
+      "invalid_date": "Por favor, completa la fecha correctamente (DD/MM/AAAA)",
+      "no_times_available": "No hay horarios disponibles para hoy",
+      "no_times_selected_date": "No hay horarios disponibles para la fecha seleccionada",
+      "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo."
+    }
+  }
+}

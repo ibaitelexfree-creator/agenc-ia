@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Sparkles, Anchor, Shield, Star, Award, ChevronRight, Users, Gift } from 'lucide-react';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverImage from '@/components/shared/HoverImage';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { hoverLift } from '@/lib/animations/variants';
 import { useTranslations } from 'next-intl';
 
@@ -111,7 +111,7 @@ export default function ClubSociasPage() {
 
                     <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {benefits.map((benefit, i) => (
-                            <motion.div
+                            <m.div
                                 key={i}
                                 {...hoverLift}
                                 className="bg-white/[0.01] border border-white/5 p-10 rounded-2xl flex flex-col gap-6 backdrop-blur-sm shadow-md cursor-pointer hover:border-accent/30 transition-colors"
@@ -125,7 +125,7 @@ export default function ClubSociasPage() {
                                 <p className="text-white/40 text-sm font-light leading-relaxed">
                                     {benefit.desc}
                                 </p>
-                            </motion.div>
+                            </m.div>
                         ))}
                     </StaggeredEntrance>
                 </div>

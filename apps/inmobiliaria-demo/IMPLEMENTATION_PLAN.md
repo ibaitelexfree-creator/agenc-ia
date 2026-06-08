@@ -73,7 +73,7 @@ apps/inmobiliaria-demo/
 │   │   ├── neighborhoods/
 │   │   │   └── page.tsx         # Guía de barrios Dubai
 │   │   ├── about/
-│   │   │   └── page.tsx         # Sobre la agencia
+│   │   │   └── page.tsx         # Sobre la getxobelaeskola
 │   │   ├── contact/
 │   │   │   └── page.tsx         # Formulario de contacto
 │   │   └── api/
@@ -92,7 +92,7 @@ apps/inmobiliaria-demo/
 │   │   │   ├── HeroSection.tsx  # Hero full-screen Dubai skyline
 │   │   │   ├── FeaturedProperties.tsx  # 6 propiedades destacadas
 │   │   │   ├── NeighborhoodGrid.tsx    # Grid de barrios
-│   │   │   ├── StatsBar.tsx     # Cifras de la agencia
+│   │   │   ├── StatsBar.tsx     # Cifras de la getxobelaeskola
 │   │   │   ├── TestimonialsCarousel.tsx # Testimonios
 │   │   │   └── CTASection.tsx   # Call to action
 │   │   ├── properties/
@@ -645,7 +645,7 @@ export async function POST(request: Request) {
 ### Tarea 5.2: `/about/page.tsx`
 
 - Hero: equipo ficticio
-- Historia de la agencia (ficticia, foundada 2009 en Dubai)
+- Historia de la getxobelaeskola (ficticia, foundada 2009 en Dubai)
 - Meet the Team (4-5 agentes ficticios con fotos generadas)
 - Awards & Recognition (ficticios)
 - Partner logos (ficticios, sutiles)

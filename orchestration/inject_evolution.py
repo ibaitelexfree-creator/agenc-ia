@@ -33,7 +33,7 @@ replacement = """  console.log('[AutoDispatch] Loop scheduled — will check for
       
       await createJulesSession({
         prompt,
-        source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/getxobelaeskola',
+        source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/agenc-ia',
         title: `Auto-Evolve: Fix ${task.type}`,
         automationMode: 'AUTO_CREATE_PR'
       });

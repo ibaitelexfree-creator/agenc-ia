@@ -17,7 +17,7 @@ async function triggerSelfHealing(errorMsg, stack) {
   try {
     await createJulesSession({
       prompt: `CRITICAL ERROR DETECTED IN PRODUCTION:\\nError: ${errorMsg}\\nStack: ${stack}\\n\\nTask: Find the root cause, fix it, and create a PR. Check logs and recent changes.`,
-      source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/getxobelaeskola',
+      source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/agenc-ia',
       title: '🆘 Self-Healing: Repairing Crash',
       automationMode: 'AUTO_CREATE_PR'
     });

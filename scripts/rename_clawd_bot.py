@@ -1,7 +1,7 @@
 import os
 
 def rename_clawd_bot():
-    root_dir = r"c:\Users\User\Desktop\getxobelaeskola"
+    root_dir = r"c:\Users\User\Desktop\agenc-ia"
     excludes = ["node_modules", ".git", ".next", "package-lock.json", "backups", ".jar", ".pdf", ".mp3", ".png", ".jpg", ".log"]
 
     transformations = {

@@ -17,18 +17,18 @@ def replace_in_file(file_path, replacements):
         pass # Skip binaries or errors
 
 replacements = {
-    "Getxo Bela Eskola": "Getxo Bela Eskola",
+    "Agenc-IA": "Agenc-IA",
     "Clases de vela": "Clases de vela",
     "Experiencia de Vela": "Experiencia de Vela",
-    "getxobelaeskola": "getxobelaeskola",
-    "getxo-bela-eskola": "getxo-bela-eskola"
+    "agenc-ia": "agenc-ia",
+    "agenc-ia": "agenc-ia"
 }
 
 target_dirs = ['src', 'scripts', 'orchestration', 'infra', 'supabase/migrations']
 exclude_dirs = ['node_modules', '.git', '.next', 'backups']
 
 for target_dir in target_dirs:
-    target_path = os.path.join(r'C:\Users\User\Desktop\getxobelaeskola', target_dir)
+    target_path = os.path.join(r'C:\Users\User\Desktop\agenc-ia', target_dir)
     if not os.path.exists(target_path): continue
 
     for root, dirs, files in os.walk(target_path):

@@ -23,7 +23,7 @@ func_insert = """    const exportToPDF = () => {
 
         // Title
         doc.setFontSize(18);
-        doc.text('Cuaderno de Bitácora - Getxo Bela Eskola', 14, 22);
+        doc.text('Cuaderno de Bitácora - Agenc-IA', 14, 22);
 
         // Subtitle with user name
         doc.setFontSize(12);

@@ -31,7 +31,7 @@ replacement = """  console.log('[Chain 4] Nightly-Watch (Getxo 3 AM) & Self-Heal
         7. Record a video of the interaction if possible.
         8. If any step FAILS, identify the reason and create a PR with the fix.
         9. Generate a nightly-qa-report branch with all media and a summary.md.`,
-        source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/getxobelaeskola',
+        source: process.env.JULES_DEFAULT_SOURCE || 'sources/github/ibaitelexfree-creator/agenc-ia',
         title: '⛵ Sailing Ghost: Nightly QA Audit',
         automationMode: 'AUTO_CREATE_PR'
       });

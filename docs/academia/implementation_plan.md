@@ -49,7 +49,7 @@ Este documento detalla los pasos seguidos y los pendientes para la implementaci�
 ### 4. Panel de Administración (Staff & Admin)
 - [x] Crear una vista para que el personal de la escuela vea el calendario de alquileres del día y pueda gestionar la entrega del material.
 - [x] Sistema de asignación manual de cursos a alumnos con buscador dinámico.
-- [x] Creación de Super-Admin maestro (`Getxobelaeskola@gmail.com`).
+- [x] Creación de Super-Admin maestro (`getxobelaeskola@gmail.com`).
 - [x] Gestión de plantilla: El Admin puede dar de alta nuevos instructores desde el panel.
 - [x] Implementación de **Diseño Premium**: Overhaul visual completo basado en el concepto "Bitácora del Capitán" con Glassmorphism y estética náutica de lujo.
 
