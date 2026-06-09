@@ -43,12 +43,9 @@ jobs:
         run: |
           echo "Tests failed. Initiating self-healing sequence..."
 
-          # Read the output file
-          OUTPUT=$(cat test_output.txt)
-
-          # Construct JSON payload safely using jq
+          # Construct JSON payload safely using jq by reading the file directly to avoid "Argument list too long" errors
           jq -n \
-            --arg output "$OUTPUT" \
+            --rawfile output test_output.txt \
             --arg repo "${{ github.repository }}" \
             --arg ref "${{ github.ref }}" \
             '{raw_output: $output, repository: $repo, branch: $ref, action: "request_patch"}' > payload.json
