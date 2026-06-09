@@ -31,6 +31,9 @@ interface BIData {
         retentionRate: number;
         totalCouponRevenue: number;
     };
+    historicalYears?: { year: string; rentalsRevenue: number; inscriptionsRevenue: number; totalRevenue: number }[];
+    seasonalComparison?: { year: string; winterRecovery: number; summer: number; autumnDrop: number }[];
+    monthlyPattern?: { monthIndex: number; monthName: string; revenue: number }[];
 }
 
 export default function BITab() {
@@ -490,6 +493,111 @@ export default function BITab() {
                                     />
                                 ))}
                             </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+            </div>
+
+            {/* 2.5 Historical & Seasonal Perspective Section */}
+            <div className="space-y-8 pt-6">
+                <span className="text-cyan-400 uppercase tracking-[0.6em] text-[10px] font-black block flex items-center gap-2">
+                    <Zap className="w-3 h-3" /> PERSPECTIVA ESTRATÉGICA DE 5 AÑOS
+                </span>
+                <h3 className="text-3xl font-display text-white italic">
+                    Análisis de <span className="text-cyan-400">Evolución y Estacionalidad</span>
+                </h3>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Multi-Year Growth (AreaChart) */}
+                    <div className="glass-panel p-10 space-y-8 min-h-[450px] flex flex-col relative overflow-hidden">
+                        <header className="flex justify-between items-center">
+                            <div className="space-y-1">
+                                <h4 className="text-2xl font-display text-white italic">Evolución Anual (2021 - 2026)</h4>
+                                <p className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-black">Ingresos totales acumulados por año</p>
+                            </div>
+                            <TrendingUp className="w-4 h-4 text-cyan-400" />
+                        </header>
+                        <div className="flex-1 w-full pt-4">
+                            <ResponsiveContainer width="100%" height={280}>
+                                <AreaChart data={data?.historicalYears}>
+                                    <defs>
+                                        <linearGradient id="colorHistTotal" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#00E5FF" stopOpacity={0.3} />
+                                            <stop offset="95%" stopColor="#00E5FF" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" />
+                                    <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10, fontWeight: 'bold' }} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10 }} tickFormatter={(value) => `${value.toLocaleString()}€`} />
+                                    <Tooltip
+                                        contentStyle={{ backgroundColor: '#0A0A0B', border: '1px solid #ffffff10', borderRadius: '4px' }}
+                                        itemStyle={{ fontSize: '10px' }}
+                                        formatter={(value) => [`${value.toLocaleString()}€`, 'Ingresos Totales']}
+                                    />
+                                    <Area type="monotone" dataKey="totalRevenue" name="Ingresos Totales" stroke="#00E5FF" strokeWidth={3} fillOpacity={1} fill="url(#colorHistTotal)" />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+
+                    {/* Seasonal Pattern Comparison (BarChart) */}
+                    <div className="glass-panel p-10 space-y-8 min-h-[450px] flex flex-col relative overflow-hidden">
+                        <header className="flex justify-between items-center">
+                            <div className="space-y-1">
+                                <h4 className="text-2xl font-display text-white italic">Comparativa de Fases Estacionales</h4>
+                                <p className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-black">Invierno/Primavera (Recuperación) vs Verano (Pico) vs Otoño</p>
+                            </div>
+                            <Activity className="w-4 h-4 text-yellow-400" />
+                        </header>
+                        <div className="flex-1 w-full pt-4">
+                            <ResponsiveContainer width="100%" height={280}>
+                                <BarChart data={data?.seasonalComparison}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" />
+                                    <XAxis dataKey="year" axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10, fontWeight: 'bold' }} />
+                                    <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10 }} tickFormatter={(value) => `${value.toLocaleString()}€`} />
+                                    <Tooltip
+                                        contentStyle={{ backgroundColor: '#0A0A0B', border: '1px solid #ffffff10', borderRadius: '4px' }}
+                                        itemStyle={{ fontSize: '10px' }}
+                                        formatter={(value) => [`${value.toLocaleString()}€`]}
+                                    />
+                                    <Legend wrapperStyle={{ fontSize: '10px', paddingTop: '10px' }} />
+                                    <Bar dataKey="winterRecovery" name="Ene-May (Recuperación)" fill="#00FFAA" fillOpacity={0.6} radius={[4, 4, 0, 0]} />
+                                    <Bar dataKey="summer" name="Jun-Sep (Pico Verano)" fill="#FF0055" fillOpacity={0.6} radius={[4, 4, 0, 0]} />
+                                    <Bar dataKey="autumnDrop" name="Oct-Dic (Caída Otoño)" fill="#FFCC00" fillOpacity={0.6} radius={[4, 4, 0, 0]} />
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Seasonal Curve (AreaChart) */}
+                <div className="glass-panel p-10 space-y-8 min-h-[350px] flex flex-col relative overflow-hidden">
+                    <header className="flex justify-between items-center">
+                        <div className="space-y-1">
+                            <h4 className="text-2xl font-display text-white italic">Curva Estacional Promedio Mensual</h4>
+                            <p className="text-[10px] text-white/20 uppercase tracking-[0.2em] font-black">Patrón de comportamiento típico de ingresos a lo largo del año</p>
+                        </div>
+                        <Calendar className="w-4 h-4 text-cyan-400" />
+                    </header>
+                    <div className="flex-1 w-full pt-4">
+                        <ResponsiveContainer width="100%" height={200}>
+                            <AreaChart data={data?.monthlyPattern}>
+                                <defs>
+                                    <linearGradient id="colorMonthlyCurve" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#00FFAA" stopOpacity={0.3} />
+                                        <stop offset="95%" stopColor="#00FFAA" stopOpacity={0} />
+                                    </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#ffffff05" />
+                                <XAxis dataKey="monthName" axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10 }} />
+                                <YAxis axisLine={false} tickLine={false} tick={{ fill: '#ffffff40', fontSize: 10 }} tickFormatter={(value) => `${value.toLocaleString()}€`} />
+                                <Tooltip
+                                    contentStyle={{ backgroundColor: '#0A0A0B', border: '1px solid #ffffff10', borderRadius: '4px' }}
+                                    itemStyle={{ fontSize: '10px' }}
+                                    formatter={(value) => [`${value.toLocaleString()}€`, 'Media de Ingresos']}
+                                />
+                                <Area type="monotone" dataKey="revenue" name="Ingresos Típicos" stroke="#00FFAA" strokeWidth={3} fillOpacity={1} fill="url(#colorMonthlyCurve)" />
+                            </AreaChart>
                         </ResponsiveContainer>
                     </div>
                 </div>

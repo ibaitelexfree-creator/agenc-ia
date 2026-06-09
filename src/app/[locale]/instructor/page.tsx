@@ -36,7 +36,7 @@ export default async function InstructorPage({
 
     // Initial data for the instructor
     // 1. Their sessions
-    const { data: sessions } = await supabaseAdmin
+    const { data: sessions, error: sessionsErr } = await supabaseAdmin
         .from('sesiones')
         .select(`
             *,
@@ -48,7 +48,7 @@ export default async function InstructorPage({
         .limit(10);
 
     // 2. Active courses (to show what's ongoing)
-    const { data: activeInscriptions } = await supabaseAdmin
+    const { data: activeInscriptions, error: activeInsErr } = await supabaseAdmin
         .from('inscripciones')
         .select(`
             *,
@@ -60,6 +60,16 @@ export default async function InstructorPage({
         `)
         .eq('estado_pago', 'pagado')
         .limit(20);
+
+    console.log('[RootInstructorPage] Debug Info:', {
+        userId: user.id,
+        userEmail: user.email,
+        profileRole: profile?.rol,
+        sessionsCount: sessions?.length || 0,
+        sessionsErr,
+        activeInscriptionsCount: activeInscriptions?.length || 0,
+        activeInsErr
+    });
 
     return (
         <InstructorClient

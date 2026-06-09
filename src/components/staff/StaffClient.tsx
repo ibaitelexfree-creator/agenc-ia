@@ -16,7 +16,6 @@ const SessionsTab = dynamic(() => import('./SessionsTab'), { ssr: false });
 const AcademyStaffTab = dynamic(() => import('./AcademyStaffTab'), { ssr: false });
 const FinancialReportsClient = dynamic(() => import('./FinancialReportsClient'), { ssr: false });
 const BITab = dynamic(() => import('./BITab'), { ssr: false });
-const DriveExplorerTab = dynamic(() => import('./DriveExplorerTab'), { ssr: false });
 const DataExplorerTab = dynamic(() => import('./DataExplorerTab'), { ssr: false });
 
 import AccessibleModal from '../shared/AccessibleModal';
@@ -119,7 +118,7 @@ export default function StaffClient({
 }: StaffClientProps) {
     const t = useTranslations('staff_panel');
     const searchParams = useSearchParams();
-    const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'drive' | 'explorer'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'explorer'>('overview');
     const [financialsViewMode, setFinancialsViewMode] = useState<'today' | 'month' | 'year' | undefined>('year');
 
     // Sync tab from URL
@@ -816,7 +815,7 @@ export default function StaffClient({
                 <header className="animate-premium-in">
 
                     {/* TABS NAVIGATION */}
-                    <nav className="flex gap-6 overflow-x-auto pb-1 custom-scrollbar">
+                    <nav className="flex flex-wrap gap-x-6 gap-y-3 pb-2">
                         {[
                             { id: 'overview', label: t('tabs.overview') },
                             { id: 'rentals', label: t('tabs.rentals') },
@@ -829,7 +828,6 @@ export default function StaffClient({
                             { id: 'sessions', label: 'SESIONES' },
                             { id: 'communication', label: t('tabs.communication') },
                             { id: 'staff_mgmt', label: t('tabs.staff_mgmt') },
-                            { id: 'drive', label: 'DRIVE' },
                             ...(isAdmin ? [
                                 { id: 'bi', label: 'BUSINESS INTEL' },
                                 { id: 'explorer', label: 'DATA X-RAY' }
@@ -1057,9 +1055,7 @@ export default function StaffClient({
                     <BITab />
                 )}
 
-                {activeTab === 'drive' && (
-                    <DriveExplorerTab />
-                )}
+
 
                 {/* TAB CONTENT: RENTALS */}
                 {activeTab === 'rentals' && (

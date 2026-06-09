@@ -189,6 +189,96 @@ export async function GET(request: Request) {
             { step: 'Club (Fieles)', value: loyalCustomerCount, fill: '#a4de6c' }
         ];
 
+        // --- 5-YEAR HISTORICAL & SEASONAL ANALYSIS ---
+        const years = [2021, 2022, 2023, 2024, 2025, 2026];
+        const historicalQueries = years.map(async (year) => {
+            const { data: rentalsYear } = await supabaseAdmin
+                .from('reservas_alquiler')
+                .select('fecha_pago, monto_total')
+                .eq('estado_pago', 'pagado')
+                .gte('fecha_pago', `${year}-01-01`)
+                .lte('fecha_pago', `${year}-12-31`);
+
+            const { data: inscriptionsYear } = await supabaseAdmin
+                .from('inscripciones')
+                .select('created_at, monto_total')
+                .eq('estado_pago', 'pagado')
+                .gte('created_at', `${year}-01-01`)
+                .lte('created_at', `${year}-12-31`);
+
+            return {
+                year,
+                rentals: rentalsYear || [],
+                inscriptions: inscriptionsYear || []
+            };
+        });
+
+        const historicalData = await Promise.all(historicalQueries);
+
+        const annualTrend = historicalData.map(({ year, rentals, inscriptions }) => {
+            const rentalsRevenue = rentals.reduce((sum, r) => sum + (Number(r.monto_total) || 0), 0);
+            const inscriptionsRevenue = inscriptions.reduce((sum, i) => sum + (Number(i.monto_total) || 0), 0);
+            return {
+                year: year.toString(),
+                rentalsRevenue: Math.round(rentalsRevenue),
+                inscriptionsRevenue: Math.round(inscriptionsRevenue),
+                totalRevenue: Math.round(rentalsRevenue + inscriptionsRevenue)
+            };
+        });
+
+        const seasonalComparison = historicalData.map(({ year, rentals, inscriptions }) => {
+            let winterRecovery = 0; // Jan - May
+            let summer = 0;         // Jun - Sep
+            let autumnDrop = 0;     // Oct - Dec
+
+            rentals.forEach(r => {
+                const date = new Date(r.fecha_pago);
+                const month = date.getMonth();
+                const amount = Number(r.monto_total) || 0;
+                if (month >= 5 && month <= 8) summer += amount;
+                else if (month >= 0 && month <= 4) winterRecovery += amount;
+                else autumnDrop += amount;
+            });
+
+            inscriptions.forEach(ins => {
+                const date = new Date(ins.created_at);
+                const month = date.getMonth();
+                const amount = Number(ins.monto_total) || 0;
+                if (month >= 5 && month <= 8) summer += amount;
+                else if (month >= 0 && month <= 4) winterRecovery += amount;
+                else autumnDrop += amount;
+            });
+
+            return {
+                year: year.toString(),
+                winterRecovery: Math.round(winterRecovery),
+                summer: Math.round(summer),
+                autumnDrop: Math.round(autumnDrop)
+            };
+        });
+
+        const monthlyPattern = Array.from({ length: 12 }, (_, i) => ({
+            monthIndex: i,
+            monthName: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'][i],
+            revenue: 0
+        }));
+
+        historicalData.forEach(({ rentals, inscriptions }) => {
+            rentals.forEach(r => {
+                const month = new Date(r.fecha_pago).getMonth();
+                monthlyPattern[month].revenue += (Number(r.monto_total) || 0);
+            });
+            inscriptions.forEach(ins => {
+                const month = new Date(ins.created_at).getMonth();
+                monthlyPattern[month].revenue += (Number(ins.monto_total) || 0);
+            });
+        });
+
+        // Get average monthly revenue across these active years
+        monthlyPattern.forEach(m => {
+            m.revenue = Math.round(m.revenue / 5.5);
+        });
+
         return NextResponse.json({
             success: true,
             boatProfitability: Object.entries(boatStats).map(([name, stats]) => ({
@@ -212,7 +302,10 @@ export async function GET(request: Request) {
                 activeBoats: boats?.filter((b: any) => b.estado === 'disponible').length || 0,
                 prevPeriodRevenue,
                 retentionRate: totalStudents > 0 ? (recurringStudents / totalStudents * 100).toFixed(1) : 0
-            }
+            },
+            historicalYears: annualTrend,
+            seasonalComparison,
+            monthlyPattern
         });
 
     } catch (error: any) {

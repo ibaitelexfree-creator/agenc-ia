@@ -9,6 +9,7 @@ import { apiUrl } from '@/lib/api';
 import SessionDetailModal from '@/components/staff/SessionDetailModal';
 import IncidentReportModal from '@/components/instructor/IncidentReportModal';
 import StudentDetailModal from '@/components/instructor/StudentDetailModal';
+import BoatsTab from '@/components/staff/BoatsTab';
 
 interface Profile {
     id: string;
@@ -255,10 +256,9 @@ export default function InstructorClient({ profile, initialSessions, initialInsc
                     )}
 
                     {activeTab === 'fleet' && (
-                        <section className="bg-card border border-card-border p-8 rounded-sm">
-                            <h2 className="text-2xs uppercase tracking-widest text-accent mb-8 font-black">Estado de la Flota</h2>
-                            <p className="text-white/40 italic">Consulta la disponibilidad y mantenimiento de las embarcaciones...</p>
-                        </section>
+                        <div className="animate-premium-in">
+                            <BoatsTab userRole={profile.rol} />
+                        </div>
                     )}
                 </div>
             </div>
