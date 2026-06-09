@@ -17,7 +17,7 @@ export const SCROLL_MAP: ScrollStep[] = [
     canvasX: '0vw',
     canvasY: '0vh',
     scrollStart: 0,
-    scrollEnd: 0.2,
+    scrollEnd: 0.12,
     prowRotation: 0,
     prowLabel: 'right',
     compassAngle: 0,
@@ -27,8 +27,8 @@ export const SCROLL_MAP: ScrollStep[] = [
     sectionIndex: 1,
     canvasX: '-100vw',
     canvasY: '0vh',
-    scrollStart: 0.2,
-    scrollEnd: 0.54,
+    scrollStart: 0.12,
+    scrollEnd: 0.40,
     prowRotation: -20,
     prowLabel: 'down',
     compassAngle: 90,
@@ -38,8 +38,8 @@ export const SCROLL_MAP: ScrollStep[] = [
     sectionIndex: 2,
     canvasX: '-100vw',
     canvasY: '-100vh',
-    scrollStart: 0.54,
-    scrollEnd: 0.66,
+    scrollStart: 0.40,
+    scrollEnd: 0.78,
     prowRotation: 0,
     prowLabel: 'left',
     compassAngle: 180,
@@ -49,8 +49,8 @@ export const SCROLL_MAP: ScrollStep[] = [
     sectionIndex: 3,
     canvasX: '0vw',
     canvasY: '-100vh',
-    scrollStart: 0.66,
-    scrollEnd: 0.8,
+    scrollStart: 0.78,
+    scrollEnd: 0.92,
     prowRotation: 20,
     prowLabel: 'down3',
     compassAngle: 270,
@@ -60,7 +60,7 @@ export const SCROLL_MAP: ScrollStep[] = [
     sectionIndex: 4,
     canvasX: '0vw',
     canvasY: '-200vh',
-    scrollStart: 0.8,
+    scrollStart: 0.92,
     scrollEnd: 1.0,
     prowRotation: 0,
     prowLabel: 'down3',
@@ -69,7 +69,7 @@ export const SCROLL_MAP: ScrollStep[] = [
 ]
 
 // Altura total del scroll ficticio en vh
-export const TOTAL_SCROLL_HEIGHT_VH = 500
+export const TOTAL_SCROLL_HEIGHT_VH = 650
 
 // Breakpoint para lógica condicional
 export const MOBILE_BREAKPOINT_PX = 768

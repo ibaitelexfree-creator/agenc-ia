@@ -11,7 +11,7 @@ const ROUTE_PATH =
 export function RoutePath() {
   const { scrollYProgress } = useScrollContext()
 
-  const pathLength = useTransform(scrollYProgress, [0.54, 0.70], [0, 1])
+  const pathLength = useTransform(scrollYProgress, [0.28, 0.78], [0, 1])
 
   return (
     <svg
