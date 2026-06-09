@@ -20,6 +20,7 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
     const pathname = usePathname();
     const isAcademy = pathname.includes('/academy');
     const isAuth = pathname.includes('/auth/');
+    const isHome = pathname === '/' || /^\/(es|eu|en|fr)\/?$/.test(pathname);
 
     // Default to false (SSR/Web)
     const [isNativeApp, setIsNativeApp] = useState(false);
@@ -57,17 +58,17 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
 
     return (
         <>
-            {/* Navbar: Visible on Web (Responsive), Hidden on Native App */}
-            {!isAuth && !isNativeApp && (
+            {/* Navbar: Visible on Web (Responsive), Hidden on Native App & Home Page */}
+            {!isAuth && !isNativeApp && !isHome && (
                 <div className="block">{navbar}</div>
             )}
 
-            <main id="main-content" className={`flex-grow min-h-screen bg-nautical-black ${!isAuth ? 'pb-24 md:pb-0' : ''}`}>
+            <main id="main-content" className={`flex-grow min-h-screen bg-nautical-black ${!isAuth && !isHome ? 'pb-24 md:pb-0' : ''}`}>
                 {children}
             </main>
 
-            {/* Footer: Visible on Web (Responsive), Hidden on Native App */}
-            {!isAuth && !isNativeApp && (
+            {/* Footer: Visible on Web (Responsive), Hidden on Native App & Home Page */}
+            {!isAuth && !isNativeApp && !isHome && (
                 <div className="block">{footer}</div>
             )}
 

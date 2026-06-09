@@ -1100,5 +1100,96 @@
       "b6_title": "Federation and Insurance",
       "b6_desc": "In both options it is necessary to federate in the Basque Sailing Federation, providing insurance and access to regattas (approx 64€)."
     }
+  },
+  "meta": {
+    "title": "Getxo Bela Eskola — Your sailing school at the Abra",
+    "description": "Learn to sail with Getxo's sailing community. Courses for youth and adults. From €52.5/month."
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "title": "We're not a school. We're your sea.",
+    "subtitle": "A meeting point where sailing is the excuse to share, grow and feel the sea without pressure.",
+    "cta": "Discover →",
+    "scroll_hint": "Keep sailing"
+  },
+  "s2": {
+    "eyebrow": "The experience",
+    "title": "Sailing adapts to you",
+    "subtitle": "No two days are the same at sea. You choose how to live it.",
+    "card1": {
+      "label": "Type of experience",
+      "option_a": "☁️ Calm",
+      "option_a_desc": "Disconnect without rush, calm waters, no pressure.",
+      "option_b": "💨 Action",
+      "option_b_desc": "Strong wind, intense sensations, real adrenaline."
+    },
+    "card2": {
+      "label": "The setting",
+      "option_a": "🌊 Inner Abra",
+      "option_a_desc": "Protected waters, ideal for beginners or a relaxed sail.",
+      "option_b": "🌊🌊 Outer Abra",
+      "option_b_desc": "Open sea, waves, for those seeking real adventure."
+    },
+    "card3": {
+      "label": "Who to sail with",
+      "option_a": "⛵ Small sailboat",
+      "option_a_desc": "2–6 people, very hands-on, learn by doing.",
+      "option_b": "🚢 Large cruiser",
+      "option_b_desc": "Up to 8 people, more space, a more social experience."
+    },
+    "card4": {
+      "label": "Modern sailing",
+      "badge": "Modern sailing ✦",
+      "body": "Today's weather forecasts let you predict exact conditions. You sail when you want, with the experience you're looking for. Sailing is now mindful, accessible and tailored to you."
+    }
+  },
+  "s3": {
+    "eyebrow": "Training",
+    "title": "Find your path",
+    "subtitle": "What's your level and how much time do you have?",
+    "level_basic": "Basic level",
+    "level_mid": "Intermediate level",
+    "youth": "Youth",
+    "adult": "Adults",
+    "course": {
+      "txikigune": "Single days (Txikigune)",
+      "udalekuak": "5-day camp (Udalekuak)",
+      "continuous_kids": "3 days/month all year",
+      "cruiser_init": "Introductory cruising",
+      "vl_init": "Dinghy sailing intro (3 days)",
+      "vl_advanced": "Dinghy sailing advanced (2 days)",
+      "cruiser_perf": "Cruising development (2 days)",
+      "gennaker": "Gennaker cruising (2 days)",
+      "tech_team": "Cruising training team (3 days/month)"
+    },
+    "cta_course": "See programme →"
+  },
+  "s4": {
+    "eyebrow": "Our promise",
+    "title": "Why sail with us?",
+    "pillar1": {
+      "icon": "💶",
+      "title": "Accessible for everyone",
+      "body": "A municipal school democratising sailing. Become a member and sail from €52.5/month.",
+      "badge": "From €52.5/month"
+    },
+    "pillar2": {
+      "icon": "🤝",
+      "title": "A real community",
+      "body": "You'll meet people with the same love of the sea. Bonds that last beyond the boat.",
+      "badge": ""
+    },
+    "pillar3": {
+      "icon": "🧭",
+      "title": "On your terms",
+      "body": "We adapt every outing to your pace, your goals and your mood that day.",
+      "badge": ""
+    }
+  },
+  "cta": {
+    "title": "Set sail with us",
+    "subtitle": "Your first trip could be this weekend.",
+    "button": "Book now",
+    "href": "https://getxobelaeskola.cloud/en/"
   }
 }

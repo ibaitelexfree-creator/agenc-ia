@@ -1108,5 +1108,96 @@
       "b6_title": "Federazioa eta Asegurua",
       "b6_desc": "Bi aukeretan beharrezkoa da Euskadiko Bela Federazioan federatzea, asegurua eta estropadetarako sarbidea emanez (64€ inguru)."
     }
+  },
+  "meta": {
+    "title": "Getxo Bela Eskola — Zure bela-eskola Abraren ondoan",
+    "description": "Ikasi nabigatzen Getxoko bela-komunitatearekin. Ikastaroak gazteentzat eta helduentzat. Hilabetean 52,5€-tik."
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "title": "Ez gara eskola bat. Zu zaren itsasoa gara.",
+    "subtitle": "Topagune bat non bela aitzakia den partekatzeko, hazteko eta itsasoa sentitzeko presiorik gabe.",
+    "cta": "Aurkitu →",
+    "scroll_hint": "Jarraitu nabigatzera"
+  },
+  "s2": {
+    "eyebrow": "Esperientzia",
+    "title": "Bela zuri egokitzen zaizu",
+    "subtitle": "Bi egun ez dira berdinak itsasoan. Zuk aukeratzen duzu nola bizi.",
+    "card1": {
+      "label": "Esperientzia mota",
+      "option_a": "☁️ Lasaitasuna",
+      "option_a_desc": "Deskonektatu presiorik gabe, ur lasaietan.",
+      "option_b": "💨 Ekintza",
+      "option_b_desc": "Haize bizia, sentsazio biziak, adrenalina erreala."
+    },
+    "card2": {
+      "label": "Eszenatokia",
+      "option_a": "🌊 Barne Abra",
+      "option_a_desc": "Ur babestetuak, hasteko edo lasai gozatzeko egokia.",
+      "option_b": "🌊🌊 Kanpo Abra",
+      "option_b_desc": "Itsaso irekia, olatuak, benetako abenturarako."
+    },
+    "card3": {
+      "label": "Norekin nabigatu",
+      "option_a": "⛵ Bela-ontzi txikia",
+      "option_a_desc": "2–6 pertsona, oso parte-hartzailea, eginez ikasten.",
+      "option_b": "🚢 Kruzero handia",
+      "option_b_desc": "8 pertsonaraino, espazio gehiago, nabigazio sozialagoa."
+    },
+    "card4": {
+      "label": "Modu modernoa",
+      "badge": "Bela modernoa ✦",
+      "body": "Gaur egungo eguraldiaren iragarpenek baldintza zehatzak aurreikusten uzten dute. Nahi duzunean irteten zara, bilatzen duzunarekin. Bela orain kontzienteagoa, eskuragarriagoa eta zure neurrira dago."
+    }
+  },
+  "s3": {
+    "eyebrow": "Prestakuntza",
+    "title": "Aurkitu zure bidea",
+    "subtitle": "Zein da zure maila eta zenbat denbora duzu?",
+    "level_basic": "Oinarrizko maila",
+    "level_mid": "Maila ertaina",
+    "youth": "Gazteak",
+    "adult": "Helduak",
+    "course": {
+      "txikigune": "Egun solteak (Txikigune)",
+      "udalekuak": "5 egun jarraian (Udalekuak)",
+      "continuous_kids": "3 egun/hilabete urte osoan",
+      "cruiser_init": "Kruzeroko hasiera",
+      "vl_init": "Bela arina hasiera (3 egun)",
+      "vl_advanced": "Bela arina aurreratua (2 egun)",
+      "cruiser_perf": "Kruzeroko hobekuntza (2 egun)",
+      "gennaker": "Gennakerreko kruzeroa (2 egun)",
+      "tech_team": "Teknifikazio taldea kruzeroan (3 egun/hilabete)"
+    },
+    "cta_course": "Programa ikusi →"
+  },
+  "s4": {
+    "eyebrow": "Gure promesa",
+    "title": "Zergatik nabigatu gurekin?",
+    "pillar1": {
+      "icon": "💶",
+      "title": "Guztientzat eskuragarria",
+      "body": "Udal-eskola bela demokratizatzen duena. Bazkide egin eta nabigatu 52,5 €/hilabetetik.",
+      "badge": "52,5 €/hilabetetik"
+    },
+    "pillar2": {
+      "icon": "🤝",
+      "title": "Komunitate erreala",
+      "body": "Itsasoaren irrika berarekin jende berria ezagutuko duzu. Belatik harago irauten duten loturak.",
+      "badge": ""
+    },
+    "pillar3": {
+      "icon": "🧭",
+      "title": "Zure neurrira",
+      "body": "Irteera bakoitza zure erritmoari, helburuei eta eguneko gogoari egokitzen diogu.",
+      "badge": ""
+    }
+  },
+  "cta": {
+    "title": "Atera itsasora gurekin",
+    "subtitle": "Zure lehen irteera aste honetan bertan izan daiteke.",
+    "button": "Erreserbatu orain",
+    "href": "https://getxobelaeskola.cloud/eu/"
   }
 }
