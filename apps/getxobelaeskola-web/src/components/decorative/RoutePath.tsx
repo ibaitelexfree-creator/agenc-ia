@@ -59,7 +59,7 @@ export function RoutePath() {
           fill="var(--ocean-light)"
           initial={{ scale: 0, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ delay: i * 0.3, duration: 0.4 }}
         />
       ))}

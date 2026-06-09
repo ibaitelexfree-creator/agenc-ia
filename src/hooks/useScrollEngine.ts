@@ -30,12 +30,14 @@ export function useScrollEngine(): ScrollEngineReturn {
   const compassValues = [0, 90, 180, 270, 360, 360]
 
   // ── Canvas X ──────────────────────────────────────────────────────────────
-  const rawCanvasX = useTransform(scrollYProgress, scrollPoints, xValues)
-  const canvasX = useSpring(rawCanvasX, { stiffness: 120, damping: 20, mass: 1 })
+  const rawCanvasX = useTransform(scrollYProgress, scrollPoints, [0, -100, -100, 0, 0, 0])
+  const springX = useSpring(rawCanvasX, { stiffness: 120, damping: 20, mass: 1 })
+  const canvasX = useTransform(springX, (v) => `${v}vw`)
 
   // ── Canvas Y ──────────────────────────────────────────────────────────────
-  const rawCanvasY = useTransform(scrollYProgress, scrollPoints, yValues)
-  const canvasY = useSpring(rawCanvasY, { stiffness: 120, damping: 20, mass: 1 })
+  const rawCanvasY = useTransform(scrollYProgress, scrollPoints, [0, 0, -100, -100, -200, -200])
+  const springY = useSpring(rawCanvasY, { stiffness: 120, damping: 20, mass: 1 })
+  const canvasY = useTransform(springY, (v) => `${v}vh`)
 
   // ── Rotación de proa ────────────────────────────────────────────────────────
   const rawProw = useTransform(scrollYProgress, scrollPoints, prowValues)

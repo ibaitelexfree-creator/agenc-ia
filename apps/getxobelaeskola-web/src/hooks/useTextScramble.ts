@@ -8,7 +8,7 @@ const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#
 
 export function useTextScramble(finalText: string, triggerOnView = true) {
   const ref = useRef<HTMLElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
+  const isInView = useInView(ref, { once: false, margin: '-60px' })
   const [displayText, setDisplayText] = useState(finalText)
   const [isScrambling, setIsScrambling] = useState(false)
   const frameRef = useRef<number>()

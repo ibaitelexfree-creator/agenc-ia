@@ -54,7 +54,7 @@ export function Section4Why() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7 }}
           style={{
             position: 'absolute',
@@ -92,7 +92,7 @@ export function Section4Why() {
             key={pillar}
             initial={{ opacity: 0, y: 60, filter: 'blur(8px)', scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-            viewport={{ once: true, margin: '-30px' }}
+            viewport={{ once: false, margin: '-30px' }}
             transition={{
               delay: i * 0.15,
               duration: 0.7,

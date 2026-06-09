@@ -66,7 +66,7 @@ export function AnimatedText({
             variants={charVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             style={{ display: 'inline-block', transformOrigin: 'bottom' }}
           >
             {char === ' ' ? '\u00A0' : char}
@@ -81,7 +81,7 @@ export function AnimatedText({
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: false, margin: '-50px' }}
       transition={{ duration: 0.7, delay, ease: [0.25, 0.1, 0.25, 1] as const }}
     >
       <Tag style={style} className={className}>{text}</Tag>

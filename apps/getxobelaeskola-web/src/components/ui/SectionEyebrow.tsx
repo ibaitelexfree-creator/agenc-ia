@@ -12,7 +12,7 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)' }: SectionE
     <motion.div
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+      viewport={{ once: false }}
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -24,7 +24,7 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)' }: SectionE
       <motion.div
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           width: '32px',

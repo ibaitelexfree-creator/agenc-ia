@@ -24,7 +24,7 @@ export function CounterNumber({
   style,
 }: CounterNumberProps) {
   const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
+  const isInView = useInView(ref, { once: false, margin: '-50px' })
 
   const motionValue = useMotionValue(from)
   const springValue = useSpring(motionValue, {
@@ -35,8 +35,10 @@ export function CounterNumber({
   useEffect(() => {
     if (isInView) {
       motionValue.set(to)
+    } else {
+      motionValue.set(from)
     }
-  }, [isInView, motionValue, to])
+  }, [isInView, motionValue, to, from])
 
   useEffect(() => {
     const unsubscribe = springValue.on('change', (latest) => {

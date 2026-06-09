@@ -86,7 +86,7 @@ export function Section2Adapts() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
+          viewport={{ once: false, margin: '-50px' }}
           transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const }}
           style={{ marginBottom: '1.5rem' }}
         >
@@ -112,7 +112,7 @@ export function Section2Adapts() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: '-30px' }}
+          viewport={{ once: false, margin: '-30px' }}
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
