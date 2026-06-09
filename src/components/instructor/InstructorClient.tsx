@@ -76,7 +76,7 @@ export default function InstructorClient({ profile, initialSessions, initialInsc
                 {/* Header */}
                 <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12">
                     <div>
-                        <span className="text-accent uppercase tracking-[0.3em] text-3xs font-black mb-4 block animate-in slide-in-from-left duration-700">
+                        <span className="text-accent uppercase tracking-[0.3em] text-3xs font-black mb-4 block animate-fade-in">
                             Panel de Instructor
                         </span>
                         <h1 className="text-5xl md:text-7xl font-display leading-tight">
@@ -91,7 +91,7 @@ export default function InstructorClient({ profile, initialSessions, initialInsc
                         <LogoutButton locale={locale} />
                     </div>
                 </header>
-
+ 
                 {/* Navigation */}
                 <nav className="flex flex-wrap gap-2 mb-12 border-b border-white/5">
                     {tabs.map((tab) => (
@@ -108,9 +108,9 @@ export default function InstructorClient({ profile, initialSessions, initialInsc
                         </button>
                     ))}
                 </nav>
-
+ 
                 {/* Content */}
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="animate-fade-in">
                     {activeTab === 'dashboard' && (
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                             <div className="lg:col-span-2 space-y-8">

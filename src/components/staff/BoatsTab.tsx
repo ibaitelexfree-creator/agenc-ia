@@ -348,7 +348,7 @@ export default function BoatsTab({ userRole }: BoatsTabProps) {
                                         <div className="space-y-2">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-[11px] text-white/60">Alerta:</span>
-                                                <span className={`text-[11px] font-bold ${intel.alerta.includes('🚨') ? 'text-red-500 animate-pulse' : 'text-green-500'}`}>
+                                                <span className={`text-[11px] font-bold ${(intel.alerta && typeof intel.alerta === 'string' && intel.alerta.includes('🚨')) ? 'text-red-500 animate-pulse' : 'text-green-500'}`}>
                                                     {intel.alerta}
                                                 </span>
                                             </div>
