@@ -470,7 +470,7 @@ export function LandingSidebar() {
                 {/* Auth Session Info */}
                 <div style={{ marginTop: '0.5rem' }}>
                   {loading ? (
-                    <div style={{ height: '40px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '20px', animate: 'pulse' }} />
+                    <div className="animate-pulse" style={{ height: '40px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '20px' }} />
                   ) : user ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                       {user.status_socio === 'activo' && (
