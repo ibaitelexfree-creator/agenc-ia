@@ -194,3 +194,5 @@ function render(time: number) {
 
     requestAnimationFrame(render);
 }
+
+export {};
