@@ -117,7 +117,8 @@ export function Section1Hero() {
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: false, margin: '-30px' }}
         style={{
           position: 'relative',
           zIndex: 10,
