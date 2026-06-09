@@ -70,7 +70,7 @@ export default function FinancialReportsTable({
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 placeholder={t('search_placeholder')}
-                                className="bg-nautical-black/50 border border-white/10 px-4 py-2 rounded-sm text-2xs text-white outline-none focus:border-accent w-64 transition-all"
+                                className="bg-nautical-black border border-white/10 px-4 py-2 rounded-sm text-2xs text-white outline-none focus:border-accent w-64 transition-all"
                             />
                         </div>
 
@@ -145,7 +145,7 @@ export default function FinancialReportsTable({
                                                     <div className="absolute left-0 bottom-full mb-2 hidden group-hover/hist:block z-50 w-64 p-3 bg-nautical-deep border border-white/10 rounded-lg shadow-2xl glass-panel">
                                                         <p className="text-3xs uppercase tracking-tighter text-white/40 mb-2 border-b border-white/5 pb-1">Historial de fecha</p>
                                                         <div className="space-y-2 max-h-40 overflow-y-auto custom-scrollbar">
-                                                            {getHistoryForField(item, 'fecha_pago').map((h: HistoryEntry) => (
+                                                                {getHistoryForField(item, 'fecha_pago').map((h: HistoryEntry) => (
                                                                 <div key={h.id} className="text-3xs border-l border-accent/20 pl-2">
                                                                     <div className="flex justify-between text-white/30">
                                                                         <span>
@@ -227,7 +227,11 @@ export default function FinancialReportsTable({
                                                         item.estado_pago === 'pendiente' ? 'bg-orange-500' :
                                                             'bg-red-500'
                                                     }`}></span>
-                                                {item.estado_pago}
+                                                {item.estado_pago === 'pagado' ? t('status_paid') :
+                                                 item.estado_pago === 'pendiente' ? t('status_pending') :
+                                                 item.estado_pago === 'cancelado' ? t('status_cancelled') :
+                                                 item.estado_pago === 'reembolsado' ? t('status_refunded') :
+                                                 item.estado_pago}
                                             </span>
 
                                             {hasHistory(item, 'estado_pago') && (
