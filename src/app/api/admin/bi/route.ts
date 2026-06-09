@@ -1,4 +1,3 @@
-
 import { requireAdmin } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
 

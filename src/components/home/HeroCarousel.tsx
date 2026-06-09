@@ -156,7 +156,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                     </span>
                                 </m.div>
 
-                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] font-display text-white mb-10 leading-[1.1] tracking-tighter">
+                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.5rem] font-display text-white mb-6 leading-[1.1] tracking-tighter">
                                     {activeSlide.title.split('\n').map((line, i) => (
                                         <span key={i} className={`block ${i % 2 !== 0 ? 'italic font-light text-accent/90 ml-12 sm:ml-24' : ''}`}>
                                             <TextReveal text={line} type="words" delay={0.3 + i * 0.15} staggerDelay={0.06} key={current + '-' + i} />
@@ -168,7 +168,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                     initial={{ opacity: 0, y: 15 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.7 }}
-                                    className="text-lg md:text-2xl text-foreground/70 font-light mb-16 max-w-xl leading-relaxed tracking-wide italic"
+                                    className="text-lg md:text-xl text-foreground/70 font-light mb-8 max-w-xl leading-relaxed tracking-wide italic"
                                 >
                                     {activeSlide.subtitle}
                                 </m.p>
@@ -182,7 +182,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                     <Magnetic range={50} strength={0.4}>
                                         <Link
                                             href={`/${locale}${activeSlide.link}`}
-                                            className="relative overflow-hidden group/btn px-14 py-6 bg-accent text-nautical-black text-[11px] uppercase tracking-[0.4em] font-black transition-premium rounded-full shadow-[0_20px_40px_rgba(255,77,0,0.15)] hover:scale-105 active:scale-95 inline-block"
+                                            className="relative overflow-hidden group/btn px-12 py-5 bg-accent text-nautical-black text-[11px] uppercase tracking-[0.4em] font-black transition-premium rounded-full shadow-[0_20px_40px_rgba(255,77,0,0.15)] hover:scale-105 active:scale-95 inline-block"
                                             aria-label={`${activeSlide.action}: ${activeSlide.title}`}
                                         >
                                             <span className="relative z-10">{activeSlide.action}</span>

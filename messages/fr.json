@@ -313,13 +313,6 @@
       "academia": "Académie en Ligne",
       "communication": "Communication",
       "staff_mgmt": "Gestion d'Équipe"
-    },
-    "financials": {
-      "status_all": "Tous les statuts",
-      "status_paid": "Payé",
-      "status_pending": "En attente",
-      "status_cancelled": "Annulé",
-      "status_refunded": "Remboursé"
     }
   },
   "academy": {
@@ -659,5 +652,96 @@
       ]
     },
     "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an)."
+  },
+  "meta": {
+    "title": "Getxo Bela Eskola — Ton école de voile sur l'Abra",
+    "description": "Apprends à naviguer avec la communauté de voile de Getxo. Cours pour jeunes et adultes. Dès 52,5 €/mois."
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "title": "On n'est pas une école. On est ta mer.",
+    "subtitle": "Un lieu de rencontre où la voile est le prétexte pour partager, grandir et ressentir la mer sans pression.",
+    "cta": "Découvrir →",
+    "scroll_hint": "Continue à naviguer"
+  },
+  "s2": {
+    "eyebrow": "L'expérience",
+    "title": "La voile s'adapte à toi",
+    "subtitle": "Il n'y a pas deux jours pareils en mer. Tu choisis comment le vivre.",
+    "card1": {
+      "label": "Type d'expérience",
+      "option_a": "☁️ Calme",
+      "option_a_desc": "Déconnecter sans pression, eaux tranquilles.",
+      "option_b": "💨 Action",
+      "option_b_desc": "Vent fort, sensations intenses, adrénaline réelle."
+    },
+    "card2": {
+      "label": "Le décor",
+      "option_a": "🌊 Abra intérieur",
+      "option_a_desc": "Eaux protégées, idéal pour débuter ou naviguer sereinement.",
+      "option_b": "🌊🌊 Abra extérieur",
+      "option_b_desc": "Mer ouverte, vagues, pour ceux qui cherchent la vraie aventure."
+    },
+    "card3": {
+      "label": "Avec qui naviguer",
+      "option_a": "⛵ Petit voilier",
+      "option_a_desc": "2–6 personnes, très participatif, on apprend en faisant.",
+      "option_b": "🚢 Grand croiseur",
+      "option_b_desc": "Jusqu'à 8 personnes, plus d'espace, navigation sociale."
+    },
+    "card4": {
+      "label": "Navigation moderne",
+      "badge": "Voile moderne ✦",
+      "body": "Les prévisions météo actuelles permettent d'anticiper les conditions exactes. Tu pars quand tu veux, avec ce que tu cherches. La voile est maintenant consciente, accessible et à ta mesure."
+    }
+  },
+  "s3": {
+    "eyebrow": "Formation",
+    "title": "Découvre ton chemin",
+    "subtitle": "Quel est ton niveau et de combien de temps disposes-tu ?",
+    "level_basic": "Niveau débutant",
+    "level_mid": "Niveau intermédiaire",
+    "youth": "Jeunes",
+    "adult": "Adultes",
+    "course": {
+      "txikigune": "Journées à la carte (Txikigune)",
+      "udalekuak": "5 jours consécutifs (Udalekuak)",
+      "continuous_kids": "3 jours/mois toute l'année",
+      "cruiser_init": "Croisière initiation",
+      "vl_init": "Dériveur initiation (3 jours)",
+      "vl_advanced": "Dériveur avancé (2 jours)",
+      "cruiser_perf": "Croisière perfectionnement (2 jours)",
+      "gennaker": "Croisière avec gennaker (2 jours)",
+      "tech_team": "Équipe de technification croisière (3 jours/mois)"
+    },
+    "cta_course": "Voir le programme →"
+  },
+  "s4": {
+    "eyebrow": "Notre promesse",
+    "title": "Pourquoi naviguer avec nous ?",
+    "pillar1": {
+      "icon": "💶",
+      "title": "Accessible à tous",
+      "body": "École municipale qui démocratise la voile. Deviens membre et navigue dès 52,5 €/mois.",
+      "badge": "Dès 52,5 €/mois"
+    },
+    "pillar2": {
+      "icon": "🤝",
+      "title": "Une vraie communauté",
+      "body": "Tu rencontreras des gens avec le même amour de la mer. Des liens qui durent au-delà du bateau.",
+      "badge": ""
+    },
+    "pillar3": {
+      "icon": "🧭",
+      "title": "À ta mesure",
+      "body": "On adapte chaque sortie à ton rythme, tes objectifs et tes envies du jour.",
+      "badge": ""
+    }
+  },
+  "cta": {
+    "title": "Prends le large avec nous",
+    "subtitle": "Ta première sortie peut être ce week-end.",
+    "button": "Réserver maintenant",
+    "href": "https://getxobelaeskola.cloud/fr/"
   }
 }

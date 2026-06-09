@@ -56,7 +56,7 @@ export default function Magnetic({
       onMouseLeave={handleMouseLeave}
       animate={{ x, y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
-      className="inline-block"
+      className="inline-block p-4 -m-4"
     >
       {children}
     </motion.div>

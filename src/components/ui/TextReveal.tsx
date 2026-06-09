@@ -53,7 +53,7 @@ export default function TextReveal({
     if (type === 'words') {
       const words = text.split(' ');
       return words.map((word, index) => (
-        <span key={index} className="inline-block overflow-hidden mr-[0.25em]">
+        <span key={index} className="inline-block overflow-hidden mr-[0.25em] pb-[0.2em] mb-[-0.2em]">
           <motion.span variants={itemVariants} className="inline-block">
             {word}
           </motion.span>
@@ -65,7 +65,7 @@ export default function TextReveal({
       return words.map((word, wordIndex) => (
         <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
           {word.split('').map((char, charIndex) => (
-            <span key={charIndex} className="inline-block overflow-hidden">
+            <span key={charIndex} className="inline-block overflow-hidden pb-[0.2em] mb-[-0.2em]">
               <motion.span variants={itemVariants} className="inline-block">
                 {char}
               </motion.span>

@@ -61,7 +61,7 @@ export default async function InstructorPage({
         .eq('estado_pago', 'pagado')
         .limit(20);
 
-    console.log('[RootInstructorPage] Debug Info:', {
+    console.log('[InstructorPage] Debug Info:', {
         userId: user.id,
         userEmail: user.email,
         profileRole: profile?.rol,

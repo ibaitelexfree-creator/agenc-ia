@@ -71,7 +71,7 @@ export default function ExperienceSection({
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             className="absolute -bottom-12 -right-12 bg-accent p-12 hidden lg:block shadow-2xl z-10"
                         >
                             <p className="text-nautical-black font-display text-4xl leading-tight">

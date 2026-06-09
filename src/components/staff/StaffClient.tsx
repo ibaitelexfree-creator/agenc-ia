@@ -16,7 +16,7 @@ const SessionsTab = dynamic(() => import('./SessionsTab'), { ssr: false });
 const AcademyStaffTab = dynamic(() => import('./AcademyStaffTab'), { ssr: false });
 const FinancialReportsClient = dynamic(() => import('./FinancialReportsClient'), { ssr: false });
 const BITab = dynamic(() => import('./BITab'), { ssr: false });
-const DataExplorerTab = dynamic(() => import('./DataExplorerTab'), { ssr: false });
+import DataExplorerTab from './DataExplorerTab';
 
 import AccessibleModal from '../shared/AccessibleModal';
 import { apiUrl } from '@/lib/api';

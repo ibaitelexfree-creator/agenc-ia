@@ -1,6 +1,8 @@
 
+'use client';
+
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { apiUrl } from '@/lib/api';
 
 interface SearchResult {
     id: string;
@@ -24,7 +26,7 @@ export default function DataExplorerTab() {
         setIsLoading(true);
         setResults([]);
         try {
-            const res = await fetch(`/api/admin/explorer?q=${encodeURIComponent(query)}&table=${selectedTable}`);
+            const res = await fetch(apiUrl(`/api/admin/explorer/?q=${encodeURIComponent(query)}&table=${selectedTable}`));
             const data = await res.json();
             setResults(data.results || []);
         } catch (err) {
@@ -45,7 +47,7 @@ export default function DataExplorerTab() {
     ];
 
     return (
-        <div className="space-y-8 animate-in fade-in duration-700 min-h-[600px]">
+        <div className="space-y-8 animate-premium-in min-h-[600px]">
             {/* Header Area */}
             <div className="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-white/5 pb-8">
                 <div className="space-y-2">

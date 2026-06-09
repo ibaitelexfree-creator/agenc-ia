@@ -24,11 +24,13 @@ function AnimatedCounter({ value }: { value: string }) {
     const motionValue = useMotionValue(0);
     const springValue = useSpring(motionValue, { stiffness: 50, damping: 25, mass: 1 });
     const rounded = useTransform(springValue, (latest) => Math.round(latest));
-    const inView = useInView(ref, { once: true, amount: 0.2 });
+    const inView = useInView(ref, { once: false, amount: 0.2 });
 
     useEffect(() => {
         if (inView) {
             motionValue.set(num);
+        } else {
+            motionValue.set(0);
         }
     }, [inView, num, motionValue]);
 

@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
@@ -420,7 +419,7 @@ export default function BITab() {
                                     onClick={() => setIsAdjustingTarget(true)}
                                     className="p-2 bg-white/5 hover:bg-accent/10 rounded-sm border border-white/5 hover:border-accent/20 transition-all group"
                                     title="Ajustar Objetivo"
-                                >
+                               >
                                     <Target className="w-4 h-4 text-white/40 group-hover:text-accent group-hover:animate-pulse" />
                                 </button>
                             )}

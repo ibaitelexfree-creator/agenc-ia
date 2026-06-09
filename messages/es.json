@@ -634,12 +634,7 @@
       "sort_date_desc": "Más recientes",
       "sort_date_asc": "Más antiguos",
       "sort_amount_desc": "Monto (Mayor a menor)",
-      "sort_amount_asc": "Monto (Menor a mayor)",
-      "status_all": "Todos los estados",
-      "status_paid": "Pagado",
-      "status_pending": "Pendiente",
-      "status_cancelled": "Cancelado",
-      "status_refunded": "Reembolsado"
+      "sort_amount_asc": "Monto (Menor a mayor)"
     },
     "academia": {
       "title": "Academia Online",
@@ -1165,5 +1160,96 @@
       "b6_title": "Federación y Seguro",
       "b6_desc": "En ambas opciones es necesario federarse en la Federación Vasca de Vela, aportando seguro y acceso a regatas (aprox 64€)."
     }
+  },
+  "meta": {
+    "title": "Getxo Bela Eskola — Tu escuela de vela en el Abra",
+    "description": "Aprende a navegar con la comunidad de vela de Getxo. Cursos para jóvenes y adultos, vela ligera y cruceros. Desde 52,5€/mes."
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "title": "No somos una escuela. Somos tu mar.",
+    "subtitle": "Un punto de encuentro donde la vela es el pretexto para compartir, crecer y sentir el mar sin presión.",
+    "cta": "Descubrir →",
+    "scroll_hint": "Sigue navegando"
+  },
+  "s2": {
+    "eyebrow": "La experiencia",
+    "title": "La vela se adapta a ti",
+    "subtitle": "No hay dos días iguales en el mar. Tú eliges cómo vivirlo.",
+    "card1": {
+      "label": "Tipo de experiencia",
+      "option_a": "☁️ Calma",
+      "option_a_desc": "Desconectar sin prisa, aguas tranquilas, sin presión.",
+      "option_b": "💨 Acción",
+      "option_b_desc": "Viento fuerte, sensaciones intensas, adrenalina real."
+    },
+    "card2": {
+      "label": "El escenario",
+      "option_a": "🌊 Abra interior",
+      "option_a_desc": "Aguas protegidas, ideal para iniciarse o disfrutar con calma.",
+      "option_b": "🌊🌊 Abra exterior",
+      "option_b_desc": "Mar abierto, olas, para quienes buscan la aventura de verdad."
+    },
+    "card3": {
+      "label": "Con quién navegar",
+      "option_a": "⛵ Velero pequeño",
+      "option_a_desc": "2–6 personas, muy participativo, aprendes haciendo.",
+      "option_b": "🚢 Crucero grande",
+      "option_b_desc": "Hasta 8 personas, más espacio, navegación más social."
+    },
+    "card4": {
+      "label": "Forma moderna",
+      "badge": "Vela moderna ✦",
+      "body": "Los partes meteorológicos actuales permiten prever exactamente las condiciones. Sales cuando quieres, con lo que buscas. La vela ahora es consciente, accesible y a tu medida."
+    }
+  },
+  "s3": {
+    "eyebrow": "Formación",
+    "title": "Descubre tu camino",
+    "subtitle": "¿Cuál es tu nivel y cuánto tiempo tienes?",
+    "level_basic": "Nivel básico",
+    "level_mid": "Nivel medio",
+    "youth": "Jóvenes",
+    "adult": "Adultos / Adultas",
+    "course": {
+      "txikigune": "Días sueltos (Txikigune)",
+      "udalekuak": "5 días seguidos (Udalekuak)",
+      "continuous_kids": "3 días/mes todo el año",
+      "cruiser_init": "Crucero iniciación",
+      "vl_init": "Vela ligera iniciación (3 días)",
+      "vl_advanced": "Vela ligera avanzado (2 días)",
+      "cruiser_perf": "Crucero perfeccionamiento (2 días)",
+      "gennaker": "Crucero con gennaker (2 días)",
+      "tech_team": "Equipo tecnificación crucero (3 días/mes)"
+    },
+    "cta_course": "Ver programa →"
+  },
+  "s4": {
+    "eyebrow": "Nuestra promesa",
+    "title": "¿Por qué navegar con nosotros?",
+    "pillar1": {
+      "icon": "💶",
+      "title": "Accesible para todos",
+      "body": "Escuela municipal que democratiza la vela. Hazte socio y navega desde 52,5 €/mes.",
+      "badge": "Desde 52,5 €/mes"
+    },
+    "pillar2": {
+      "icon": "🤝",
+      "title": "Una comunidad real",
+      "body": "Conocerás gente con las mismas ganas de mar. Vínculos que duran más allá del velero.",
+      "badge": ""
+    },
+    "pillar3": {
+      "icon": "🧭",
+      "title": "A tu medida",
+      "body": "Adaptamos cada salida a tu ritmo, tus objetivos y tus ganas del día. Sin moldes.",
+      "badge": ""
+    }
+  },
+  "cta": {
+    "title": "Zarpa con nosotros",
+    "subtitle": "Tu primera salida puede ser este fin de semana.",
+    "button": "Reservar ahora",
+    "href": "https://getxobelaeskola.cloud/es/"
   }
 }

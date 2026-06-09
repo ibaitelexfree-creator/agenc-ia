@@ -1,0 +1,61 @@
+/* src/styles/animations.css */
+
+/* ─── Olas del fondo ─── */
+@keyframes waveScroll {
+  0%   { transform: translateX(0) scaleY(1); }
+  50%  { transform: translateX(-25%) scaleY(1.05); }
+  100% { transform: translateX(-50%) scaleY(1); }
+}
+
+/* ─── Balanceo suave del horizonte ─── */
+@keyframes horizonRock {
+  0%, 100% { transform: rotate(-0.5deg); }
+  50%       { transform: rotate(0.5deg); }
+}
+
+/* ─── Flotación de criaturas ─── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+/* ─── Deriva de partículas (izquierda a derecha) ─── */
+@keyframes driftRight {
+  0%   { transform: translateX(-5vw) translateY(0); opacity: 0; }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.7; }
+  100% { transform: translateX(105vw) translateY(-20px); opacity: 0; }
+}
+
+/* ─── Deriva inversa (derecha a izquierda) ─── */
+@keyframes driftLeft {
+  0%   { transform: translateX(105vw) translateY(0); opacity: 0; }
+  10%  { opacity: 0.5; }
+  90%  { opacity: 0.5; }
+  100% { transform: translateX(-5vw) translateY(10px); opacity: 0; }
+}
+
+/* ─── Pulso lento para badges y CTAs ─── */
+@keyframes pulseSlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10, 126, 200, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(10, 126, 200, 0); }
+}
+
+/* ─── Aparición desde el fondo (scale) ─── */
+@keyframes emergeFromSea {
+  0%   { transform: translateY(40px) scale(0.9); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ─── Movimiento de aleta de pez ─── */
+@keyframes fishTail {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
+}
+
+/* ─── Parpadeo suave de medusa ─── */
+@keyframes jellyfishPulse {
+  0%, 100% { transform: scaleY(1) scaleX(1); }
+  40%       { transform: scaleY(0.85) scaleX(1.1); }
+  70%       { transform: scaleY(1.05) scaleX(0.97); }
+}
