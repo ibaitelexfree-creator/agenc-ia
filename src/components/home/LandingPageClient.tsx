@@ -15,6 +15,7 @@ import { SectionTransitionOverlay } from '@/components/layout/SectionTransitionO
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 import { ReducedMotionCanvas } from '@/components/layout/ReducedMotionCanvas'
 import { CTASection } from '@/components/sections/CTASection'
+import { LandingSidebar } from '@/components/layout/LandingSidebar'
 
 function OceanGradientActivator() {
   useOceanGradient()
@@ -27,6 +28,7 @@ export function LandingPageClient() {
   if (prefersReducedMotion) {
     return (
       <div>
+        <LandingSidebar />
         <Prow />
         <LanguageSwitcher />
         <ReducedMotionCanvas>
@@ -44,6 +46,7 @@ export function LandingPageClient() {
     <ScrollEngine>
       <OceanGradientActivator />
       {/* Elementos fijos en pantalla (no se mueven con el canvas) */}
+      <LandingSidebar />
       <Prow />
       <CompassNav />
       <WindParticles />
