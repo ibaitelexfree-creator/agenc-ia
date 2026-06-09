@@ -81,10 +81,19 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const getLabel = (key: string) => {
         return localizedLabels[key]?.[locale] || key;
     };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         const supabase = createClient();
@@ -193,7 +202,11 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#010409]/90 backdrop-blur-2xl border-b border-white/5 transition-all duration-500 hover:bg-[#010409]/95 min-h-[70px]">
+            <nav className={`fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 flex justify-between items-center border-b transition-all duration-500 min-h-[70px] ${
+                isScrolled 
+                ? 'py-3 md:py-4 bg-[#010409]/95 backdrop-blur-3xl border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)]' 
+                : 'py-5 md:py-8 bg-transparent border-transparent'
+            }`}>
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
