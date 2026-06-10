@@ -1,25 +1,20 @@
 // src/components/decorative/RoutePath.tsx
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useTransform } from 'framer-motion'
+import { useScrollContext } from '@/components/layout/ScrollEngine'
 
 // El path dibuja una ruta curva tipo náutica de S1 → S2 → S3 → S4
 const ROUTE_PATH =
   'M 50 450 C 100 400 200 350 300 300 C 400 250 450 200 500 150 C 550 100 600 80 650 60'
 
 export function RoutePath() {
-  const ref = useRef<any>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start'],
-  })
+  const { scrollYProgress } = useScrollContext()
 
-  const pathLength = useTransform(scrollYProgress, [0, 0.8], [0, 1])
+  const pathLength = useTransform(scrollYProgress, [0.28, 0.78], [0, 1])
 
   return (
     <svg
-      ref={ref}
       viewBox="0 0 700 500"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

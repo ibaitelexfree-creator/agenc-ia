@@ -3,7 +3,6 @@
 import { ScrollEngine } from '@/components/layout/ScrollEngine'
 import { Canvas } from '@/components/layout/Canvas'
 import { Prow } from '@/components/layout/Prow'
-import { CompassNav } from '@/components/layout/CompassNav'
 import { Section1Hero } from '@/components/sections/Section1Hero'
 import { Section2Adapts } from '@/components/sections/Section2Adapts'
 import { Section3Path } from '@/components/sections/Section3Path'
@@ -48,7 +47,6 @@ export function LandingPageClient() {
       {/* Elementos fijos en pantalla (no se mueven con el canvas) */}
       <LandingSidebar />
       <Prow />
-      <CompassNav />
       <WindParticles />
       <SectionTransitionOverlay />
       <LanguageSwitcher />

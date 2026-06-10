@@ -27,10 +27,10 @@ function NotificationItem({ notification, onDismiss }: { notification: Notificat
     return (
         <div
             className={`pointer-events-auto relative overflow-hidden rounded-2xl border backdrop-blur-xl shadow-2xl animate-in slide-in-from-right-8 duration-500 p-5 ${isSpecial
-                ? 'bg-accent/10 border-accent/40 text-white'
+                ? 'bg-[#091524] border-accent/50 text-white'
                 : isInfo
-                    ? 'bg-accent/10 border-accent/30 text-white shadow-[0_0_30px_rgba(var(--accent-rgb),0.1)]'
-                    : 'bg-white/5 border-white/10 text-white'
+                    ? 'bg-[#091524] border-accent/40 text-white shadow-[0_0_30px_rgba(var(--accent-rgb),0.15)]'
+                    : 'bg-[#091524] border-white/20 text-white'
                 }`}
         >
             {/* Background decoration for special ones */}

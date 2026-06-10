@@ -1,20 +1,12 @@
 'use client'
 
-import { motion, useMotionValueEvent, useVelocity } from 'framer-motion'
-import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import React from 'react'
 import { useScrollContext } from './ScrollEngine'
 import { CTASection } from '@/components/sections/CTASection'
 
 export function Canvas({ children }: { children: React.ReactNode }) {
   const { canvasX, canvasY, scrollYProgress } = useScrollContext()
-  const scrollVelocity = useVelocity(scrollYProgress)
-  const [blurAmount, setBlurAmount] = useState(0)
-
-  useMotionValueEvent(scrollVelocity, 'change', (velocity) => {
-    const blur = Math.min(Math.abs(velocity) * 8, 6)
-    setBlurAmount(blur)
-  })
-
   return (
     <motion.div
       style={{
@@ -27,8 +19,9 @@ export function Canvas({ children }: { children: React.ReactNode }) {
         // Animamos con las MotionValues del ScrollEngine
         translateX: canvasX,
         translateY: canvasY,
-        filter: `blur(${blurAmount}px)`,
-        transition: 'filter 0.1s ease',
+        WebkitBackfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
+        transformStyle: 'preserve-3d',
         // Cuadrícula CSS:
         // Col 1: S1 Hero (x=0)    Col 2: S2 La vela (x=100vw)
         // Row 1: y=0     Row 2: y=100vh    Row 3 (solo col 1): y=200vh = CTA
