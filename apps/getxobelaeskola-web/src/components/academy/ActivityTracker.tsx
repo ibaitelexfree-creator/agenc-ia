@@ -26,24 +26,30 @@ export default function ActivityTracker() {
 
                     // Verificar racha actual para mensaje motivacional
                     try {
-                        const { data: profile, error: profileError } = await supabase
-                            .from('profiles')
-                            .select('current_streak')
-                            .eq('id', user.id)
-                            .single();
+                        const today = new Date().toISOString().split('T')[0];
+                        const lastStreakShownDate = localStorage.getItem(`last_streak_shown_date_${user.id}`);
 
-                        if (profileError) {
-                            console.warn('Error fetching profile streak:', profileError);
-                        } else if (profile?.current_streak) {
-                            const streakMessage = getStreakMessage(profile.current_streak);
-                            if (streakMessage) {
-                                addNotification({
-                                    type: 'info',
-                                    title: '¡Racha en llamas! 🔥',
-                                    message: streakMessage,
-                                    icon: '🔥',
-                                    duration: 5000
-                                });
+                        if (lastStreakShownDate !== today) {
+                            const { data: profile, error: profileError } = await supabase
+                                .from('profiles')
+                                .select('current_streak')
+                                .eq('id', user.id)
+                                .single();
+
+                            if (profileError) {
+                                console.warn('Error fetching profile streak:', profileError);
+                            } else if (profile?.current_streak) {
+                                const streakMessage = getStreakMessage(profile.current_streak);
+                                if (streakMessage) {
+                                    addNotification({
+                                        type: 'info',
+                                        title: '¡Racha en llamas! 🔥',
+                                        message: streakMessage,
+                                        icon: '🔥',
+                                        duration: 5000
+                                    });
+                                    localStorage.setItem(`last_streak_shown_date_${user.id}`, today);
+                                }
                             }
                         }
                     } catch (err) {

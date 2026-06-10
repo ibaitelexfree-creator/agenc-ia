@@ -4,9 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { m, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import TextReveal from '@/components/ui/TextReveal';
-import Magnetic from '@/components/shared/Magnetic';
+import { m } from 'framer-motion';
 
 interface HeroSlide {
     id: number;
@@ -26,10 +24,6 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
     const { locale } = useParams();
     const [current, setCurrent] = useState(0);
     const [mounted, setMounted] = useState(false);
-
-    // useScroll global para efecto de parallax en la imagen de fondo
-    const { scrollY } = useScroll();
-    const yBg = useTransform(scrollY, [0, 1000], [0, 150]);
 
     useEffect(() => {
         setMounted(true);
@@ -100,8 +94,6 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
         };
     }, [slides.length]);
 
-    const activeSlide = slides[current];
-
     return (
         <m.section 
             initial={{ opacity: 0 }}
@@ -113,95 +105,74 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none"
                 style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")` }} />
 
-            <AnimatePresence mode="wait">
-                <m.div
-                    key={current}
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0"
+            {slides.map((slide, index) => (
+                <div
+                    key={slide.id}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-[cubic-bezier(0.165,0.84,0.44,1)] ${index === current ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+                        }`}
                 >
-                    {/* Contenedor de la imagen con efecto parallax de scroll */}
-                    <m.div className="absolute inset-0 w-full h-[120%] pointer-events-none origin-center" style={{ y: yBg }}>
-                        {(current === 0 || mounted) && (
-                            <Image
-                                src={activeSlide.image}
-                                alt={`${activeSlide.title}: ${activeSlide.subtitle}`}
-                                fill
-                                priority={current === 0}
-                                fetchPriority={current === 0 ? "high" : "auto"}
-                                quality={90}
-                                sizes="100vw"
-                                className="object-cover transition-transform duration-[8000ms] ease-linear will-change-transform scale-110 translate-y-2 active-slide-zoom"
-                            />
-                        )}
-                    </m.div>
-
+                    {/* Only render first slide immediately, delay others until hydration */}
+                    {(index === 0 || mounted) && (
+                        <Image
+                            src={slide.image}
+                            alt={`${slide.title}: ${slide.subtitle}`}
+                            fill
+                            priority={index === 0}
+                            fetchPriority={index === 0 ? "high" : "auto"}
+                            quality={90}
+                            sizes="100vw"
+                            className={`object-cover transition-transform duration-[8000ms] ease-linear will-change-transform ${index === current ? 'scale-110 translate-y-2' : 'scale-100 translate-y-0'
+                                }`}
+                        />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-nautical-black/10" />
                     <div className="absolute inset-0 bg-gradient-to-r from-nautical-black/80 via-transparent to-transparent" />
 
                     <div className="absolute inset-0 flex items-center pt-24 md:pt-20">
                         <div className="container mx-auto px-6 md:px-12">
-                            <div className="max-w-4xl">
-                                <m.div 
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2 }}
-                                    className="flex items-center gap-4 mb-8"
-                                >
+                            <div className={`max-w-4xl transition-all duration-700 delay-200 transform ${index === current ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                                }`}>
+
+                                <div className="flex items-center gap-4 mb-8">
                                     <div className="w-12 h-[1px] bg-accent/40" />
                                     <span className="text-accent uppercase tracking-[0.6em] text-[10px] font-black">
                                         Explora <span className="italic font-light opacity-60">el cantábrico</span>
                                     </span>
-                                </m.div>
+                                </div>
 
-                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5rem] xl:text-[6.5rem] font-display text-white mb-6 leading-[1.1] tracking-tighter">
-                                    {activeSlide.title.split('\n').map((line, i) => (
+                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] font-display text-white mb-10 leading-[1.1] tracking-tighter">
+                                    {slide.title.split('\n').map((line, i) => (
                                         <span key={i} className={`block ${i % 2 !== 0 ? 'italic font-light text-accent/90 ml-12 sm:ml-24' : ''}`}>
-                                            <TextReveal text={line} type="words" delay={0.3 + i * 0.15} staggerDelay={0.06} key={current + '-' + i} />
+                                            {line}
                                         </span>
                                     ))}
                                 </h2>
 
-                                <m.p 
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.7 }}
-                                    className="text-lg md:text-xl text-foreground/70 font-light mb-8 max-w-xl leading-relaxed tracking-wide italic"
-                                >
-                                    {activeSlide.subtitle}
-                                </m.p>
 
-                                <m.div 
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.9 }}
-                                    className="flex flex-wrap gap-8 items-center"
-                                >
-                                    <Magnetic range={50} strength={0.4}>
-                                        <Link
-                                            href={`/${locale}${activeSlide.link}`}
-                                            className="relative overflow-hidden group/btn px-12 py-5 bg-accent text-nautical-black text-[11px] uppercase tracking-[0.4em] font-black transition-premium rounded-full shadow-[0_20px_40px_rgba(255,77,0,0.15)] hover:scale-105 active:scale-95 inline-block"
-                                            aria-label={`${activeSlide.action}: ${activeSlide.title}`}
-                                        >
-                                            <span className="relative z-10">{activeSlide.action}</span>
-                                            <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-premium" />
-                                        </Link>
-                                    </Magnetic>
+                                <p className="text-lg md:text-2xl text-foreground/70 font-light mb-16 max-w-xl leading-relaxed tracking-wide italic">
+                                    {slide.subtitle}
+                                </p>
 
-                                    <Magnetic range={40} strength={0.35}>
-                                        <button className="flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-black text-white/40 hover:text-white transition-premium group/sc py-4 px-2">
-                                            <span className="w-8 h-[1px] bg-white/20 group-hover/sc:w-12 transition-premium group-hover/sc:bg-accent" />
-                                            Ver Detalles
-                                        </button>
-                                    </Magnetic>
-                                </m.div>
+                                <div className="flex flex-wrap gap-8 items-center">
+                                    <Link
+                                        href={`/${locale}${slide.link}`}
+                                        className="relative overflow-hidden group/btn px-14 py-6 bg-accent text-nautical-black text-[11px] uppercase tracking-[0.4em] font-black transition-premium rounded-full shadow-[0_20px_40px_rgba(255,77,0,0.15)] hover:scale-105 active:scale-95"
+                                        aria-label={`${slide.action}: ${slide.title}`}
+                                    >
+                                        <span className="relative z-10">{slide.action}</span>
+                                        <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-premium" />
+                                    </Link>
+
+                                    <button className="flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-black text-white/40 hover:text-white transition-premium group/sc">
+                                        <span className="w-8 h-[1px] bg-white/20 group-hover/sc:w-12 transition-premium group-hover/sc:bg-accent" />
+                                        Ver Detalles
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </m.div>
-            </AnimatePresence>
+                </div>
+            ))}
 
             {/* Premium Pagination - Side Bar Style */}
             <div
@@ -216,7 +187,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                         role="tab"
                         aria-selected={index === current}
                         aria-label={`Ver diapositiva ${index + 1}: ${slide.title}`}
-                        className="group relative flex items-center gap-4 transition-premium"
+                        className={`group relative flex items-center gap-4 transition-premium`}
                     >
                         <span className={`text-[10px] font-black tracking-widest transition-premium ${index === current ? 'text-accent opacity-100' : 'text-white/20 opacity-0 group-hover:opacity-100'}`}>
                             0{index + 1}
@@ -240,4 +211,3 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
         </m.section>
     );
 }
-

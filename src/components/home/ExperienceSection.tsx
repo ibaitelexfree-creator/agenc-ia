@@ -1,11 +1,7 @@
-'use client';
-
-import React, { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
-import Magnetic from '@/components/shared/Magnetic';
 
 interface ExperienceSectionProps {
     locale: string;
@@ -32,19 +28,9 @@ export default function ExperienceSection({
     the,
     passion
 }: ExperienceSectionProps) {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ['start end', 'end start']
-    });
-
-    // Desplazamiento de paralaje para la imagen
-    const yImage = useTransform(scrollYProgress, [0, 1], [-60, 60]);
-    // Movimiento opuesto sutil para el cuadro flotante
-    const yFloatBox = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
     return (
-        <section ref={containerRef} className="relative py-48 bg-nautical-deep overflow-hidden">
+        <section className="relative py-48 bg-nautical-deep overflow-hidden">
             {/* Ambient decoration */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
@@ -52,32 +38,21 @@ export default function ExperienceSection({
                 <StaggeredEntrance type="slide" className="grid lg:grid-cols-2 gap-24 items-center">
                     <div className="relative">
                         <div className="relative aspect-[4/5] overflow-hidden group">
-                            {/* Imagen animada con paralaje */}
-                            <motion.div style={{ y: yImage }} className="absolute -inset-y-20 inset-x-0 w-full h-[calc(100%+160px)]">
-                                <Image
-                                    src="/images/course-detail-header-sailing.webp"
-                                    alt="Experiencia de Vela"
-                                    fill
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
-                                    className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
-                                />
-                            </motion.div>
+                            <Image
+                                src="/images/course-detail-header-sailing.webp"
+                                alt="Experiencia de Vela"
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
+                            />
                             <div className="absolute inset-0 border-[20px] border-nautical-black/40 pointer-events-none" />
                         </div>
-                        
-                        {/* Decorative floating box con paralaje inverso */}
-                        <motion.div 
-                            style={{ y: yFloatBox }} 
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-                            viewport={{ once: false }}
-                            className="absolute -bottom-12 -right-12 bg-accent p-12 hidden lg:block shadow-2xl z-10"
-                        >
+                        {/* Decorative floating box */}
+                        <div className="absolute -bottom-12 -right-12 bg-accent p-12 hidden lg:block">
                             <p className="text-nautical-black font-display text-4xl leading-tight">
                                 {live} <br /> {the} <br /> <span className="italic pl-8">{passion}</span>
                             </p>
-                        </motion.div>
+                        </div>
                     </div>
 
                     <div className="space-y-12">
@@ -101,15 +76,13 @@ export default function ExperienceSection({
                         </div>
 
                         <div className="pt-8 flex flex-col sm:flex-row gap-8">
-                            <Magnetic range={40} strength={0.3}>
-                                <Link
-                                    href={`/${locale}/about`}
-                                    className="group relative inline-flex items-center gap-4 text-3xs uppercase tracking-[0.3em] font-bold text-white py-4 px-2"
-                                >
-                                    <span className="w-12 h-px bg-accent group-hover:scale-x-150 transition-transform duration-500 origin-left" />
-                                    {about_link}
-                                </Link>
-                            </Magnetic>
+                            <Link
+                                href={`/${locale}/about`}
+                                className="group relative inline-flex items-center gap-4 text-3xs uppercase tracking-[0.3em] font-bold text-white"
+                            >
+                                <span className="w-12 h-px bg-accent group-hover:scale-x-150 transition-transform duration-500 origin-left" />
+                                {about_link}
+                            </Link>
                         </div>
                     </div>
                 </StaggeredEntrance>
@@ -117,4 +90,3 @@ export default function ExperienceSection({
         </section>
     );
 }
-
