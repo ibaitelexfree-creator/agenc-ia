@@ -60,7 +60,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
             className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
         >
             {/* Design Decor - Nautical Numbers */}
-            <div className="absolute top-4 right-6 text-[120px] font-black text-white/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
+            <div className="absolute top-4 right-6 text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
                 {service.categoria.substring(0, 2).toUpperCase()}
             </div>
 
@@ -79,7 +79,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
                 {/* Float Category Label */}
                 <div className="absolute bottom-6 left-8 z-20 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-[0.4em] font-black text-white/50 group-hover:text-white transition-colors">
+                    <span className="text-[9px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
                         {service.categoria}
                     </span>
                 </div>
@@ -89,33 +89,33 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
             <div className="p-8 md:p-10 flex flex-col flex-1 relative z-20">
                 <div className="mb-8">
                     <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-3xl font-display text-white italic leading-tight group-hover:text-accent transition-colors duration-500">
+                        <h3 className="text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
                             {name}
                         </h3>
                     </div>
 
                     {/* Specs Row */}
-                    <div className="flex gap-6 py-4 border-y border-white/5 mb-6">
+                    <div className="flex gap-6 py-4 border-y border-sea-foam/10 mb-6">
                         <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-white/30">{t('crew_label')}</span>
-                            <div className="flex items-center gap-1.5 text-white/60">
+                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">{t('crew_label')}</span>
+                            <div className="flex items-center gap-1.5 text-sea-foam/70">
                                 <Users className="w-3.5 h-3.5" />
                                 <span className="text-xs font-bold font-mono">{getCapacity()}</span>
                             </div>
                         </div>
-                        <div className="w-px h-8 bg-white/5" />
+                        <div className="w-px h-8 bg-sea-foam/10" />
                         <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-white/30">Service</span>
-                            <div className="flex items-center gap-1.5 text-white/60">
+                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Service</span>
+                            <div className="flex items-center gap-1.5 text-sea-foam/70">
                                 <Anchor className="w-3.5 h-3.5" />
                                 <span className="text-xs font-bold font-mono">PRO</span>
                             </div>
                         </div>
-                        <div className="w-px h-8 bg-white/5" />
+                        <div className="w-px h-8 bg-sea-foam/10" />
                         <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-white/30">Price/h</span>
-                            <div className="flex items-center gap-1.5 text-white/60 text-lg">
-                                <span className="font-display italic text-white">{service.precio_base}€</span>
+                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Price/h</span>
+                            <div className="flex items-center gap-1.5 text-sea-foam/70 text-lg">
+                                <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
                             </div>
                         </div>
                     </div>
@@ -125,12 +125,12 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
                 <div className="mt-auto pt-4">
                     <button
                         onClick={() => onBook(service.id)}
-                        className="group/btn relative w-full overflow-hidden bg-white/5 border border-white/10 p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
+                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
                     >
-                        <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/50 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
+                        <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
                             {t('booking.book_now')}
                         </span>
-                        <ArrowRight className="w-4 h-4 text-white/20 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
+                        <ArrowRight className="w-4 h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
 
                         {/* Glow effect on hover */}
                         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />

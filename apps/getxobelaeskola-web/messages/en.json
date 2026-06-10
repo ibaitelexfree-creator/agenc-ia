@@ -1191,5 +1191,49 @@
     "subtitle": "Your first trip could be this weekend.",
     "button": "Book now",
     "href": "https://getxobelaeskola.cloud/en/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "SERVICE",
+      "title_line1": "Store your",
+      "title_line2": "sports",
+      "title_line3": "equipment",
+      "subtitle": "No transport. No waiting.\nJust arrive and sail."
+    },
+    "value_props": {
+      "eyebrow": "WHAT'S INCLUDED?",
+      "storage_title": "Store your vessel",
+      "storage_desc": "Dinghy sailing, windsurf or kayak. Always in its place, always ready.",
+      "access_title": "Free access · 24/7",
+      "access_desc": "Any day, at any time. Without asking for permission each time.",
+      "facilities_title": "All-inclusive",
+      "facilities_desc": "Ramp, changing rooms and classrooms. The price hides no surprises."
+    },
+    "carousel": {
+      "eyebrow": "ACCEPTED EQUIPMENT",
+      "title": "Your boat,\nin good hands.",
+      "vela_title": "Dinghy Sailing",
+      "vela_desc": "Optimist, Laser, Pico... Your boat rests here until the next trip.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Boards and masts stored with care. Arrive and rig up in minutes.",
+      "piragua_title": "Kayak / Canoe",
+      "piragua_desc": "From touring kayaks to surf-skis. The Abra awaits you, no excuses."
+    },
+    "pricing": {
+      "eyebrow": "PRICING",
+      "amount": "50",
+      "period": "month",
+      "currency": "€",
+      "item1": "Space for your equipment",
+      "item2": "Free 24/7 access",
+      "item3": "Use of the ramp",
+      "item4": "Changing rooms and classrooms",
+      "cta": "Check availability",
+      "note": "No minimum contract · Ask us without obligation"
+    },
+    "closing": {
+      "phrase": "Arrive. Prepare. Sail.",
+      "btn": "Write to us →"
+    }
   }
 }

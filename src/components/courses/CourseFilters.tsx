@@ -41,7 +41,7 @@ export default function CourseFilters({ categories, locale }: CourseFiltersProps
                     onClick={() => handleCategoryChange(null)}
                     className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${!activeCategory
                         ? 'bg-accent text-nautical-black border-accent shadow-[0_0_25px_rgba(255,77,0,0.25)]'
-                        : 'bg-white/5 text-white/40 border-white/5 hover:border-white/20 hover:text-white'
+                        : 'bg-sea-foam/[0.02] text-sea-foam/50 border-sea-foam/10 hover:border-sea-foam/20 hover:text-sea-foam'
                         }`}
                 >
                     {locale === 'eu' ? 'Guztiak' : (locale === 'en' ? 'All' : 'Todos')}
@@ -52,7 +52,7 @@ export default function CourseFilters({ categories, locale }: CourseFiltersProps
                         onClick={() => handleCategoryChange(cat.id)}
                         className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${activeCategory === cat.id
                             ? 'bg-accent text-nautical-black border-accent shadow-[0_0_25px_rgba(255,77,0,0.25)]'
-                            : 'bg-white/5 text-white/40 border-white/5 hover:border-white/20 hover:text-white'
+                            : 'bg-sea-foam/[0.02] text-sea-foam/50 border-sea-foam/10 hover:border-sea-foam/20 hover:text-sea-foam'
                             }`}
                     >
                         {locale === 'eu' ? cat.nombre_eu : cat.nombre_es}
@@ -62,8 +62,8 @@ export default function CourseFilters({ categories, locale }: CourseFiltersProps
 
             {/* Hint for mobile scrolling */}
             <div className="mt-4 flex items-center gap-3 opacity-20">
-                <div className="h-px w-8 bg-white" />
-                <span className="text-[9px] uppercase tracking-[0.4em] text-white">Slide to filter</span>
+                <div className="h-px w-8 bg-sea-foam" />
+                <span className="text-[9px] uppercase tracking-[0.4em] text-sea-foam">Slide to filter</span>
             </div>
         </div>
     );

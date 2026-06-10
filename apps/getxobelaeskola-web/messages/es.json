@@ -1251,5 +1251,49 @@
     "subtitle": "Tu primera salida puede ser este fin de semana.",
     "button": "Reservar ahora",
     "href": "https://getxobelaeskola.cloud/es/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "SERVICIO",
+      "title_line1": "Guarda tu",
+      "title_line2": "material",
+      "title_line3": "deportivo",
+      "subtitle": "Sin transportes. Sin esperas.\nSolo llegar y navegar."
+    },
+    "value_props": {
+      "eyebrow": "¿QUÉ INCLUYE?",
+      "storage_title": "Guarda tu embarcación",
+      "storage_desc": "Vela ligera, windsurf o piragua. Siempre en su sitio, siempre lista.",
+      "access_title": "Acceso libre · 24/7",
+      "access_desc": "Cualquier día, a cualquier hora. Sin pedir permiso cada vez.",
+      "facilities_title": "Todo incluido",
+      "facilities_desc": "Rampa, vestuarios y aulas. El precio no esconde sorpresas."
+    },
+    "carousel": {
+      "eyebrow": "MATERIAL ACEPTADO",
+      "title": "Tu embarcación,\nen buenas manos.",
+      "vela_title": "Vela Ligera",
+      "vela_desc": "Optimist, Laser, Pico... Tu barco guarda aquí su sueño hasta la próxima salida.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Tablas y mástiles almacenados con cuidado. Llega y monta en minutos.",
+      "piragua_title": "Piragua / Kayak",
+      "piragua_desc": "Desde el kayak de travesía al surf-ski. El Abra te espera, sin excusas."
+    },
+    "pricing": {
+      "eyebrow": "TARIFA",
+      "amount": "50",
+      "period": "mes",
+      "currency": "€",
+      "item1": "Espacio para tu material",
+      "item2": "Acceso libre 24/7",
+      "item3": "Uso de la rampa",
+      "item4": "Vestuarios y aulas",
+      "cta": "Consultar disponibilidad",
+      "note": "Sin permanencia mínima · Consúltanos sin compromiso"
+    },
+    "closing": {
+      "phrase": "Llega. Prepara. Navega.",
+      "btn": "Escríbenos →"
+    }
   }
 }

@@ -60,7 +60,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
 
                 {/* Vertical Text Accent */}
                 <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
-                    <span className="text-[10px] uppercase tracking-[0.5em] text-white/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
+                    <span className="text-[10px] uppercase tracking-[0.5em] text-sea-foam/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
                         {course.duracion_h} HOURS TRAINING
                     </span>
                 </div>
@@ -69,29 +69,29 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             {/* Content Area */}
             <div className="p-8 md:p-10 relative z-10 space-y-6">
                 <div className="space-y-4">
-                    <div className="flex justify-between items-baseline border-b border-white/10 pb-4 gap-2">
+                    <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
                         <span className="text-technical">
                             Premium Academy
                         </span>
-                        <span className="text-2xl font-display text-white italic flex-shrink-0">
+                        <span className="text-2xl font-display text-sea-foam italic flex-shrink-0">
                             {course.precio}<span className="text-brass-gold text-lg ml-1">€</span>
                         </span>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl font-display text-white italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
+                    <h3 className="text-3xl sm:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
                         {name}
                     </h3>
                 </div>
 
-                <p className="text-white/40 font-light text-sm leading-relaxed min-h-[4rem] group-hover:text-white/70 transition-colors duration-500 line-clamp-3">
+                <p className="text-sea-foam/60 font-light text-sm leading-relaxed min-h-[4rem] group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3">
                     {description}
                 </p>
 
                 <Link
                     href={`/${locale}/courses/${course.slug}`}
-                    className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-white/10 hover:border-accent transition-all duration-700"
+                    className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                 >
-                    <span className="text-[10px] uppercase tracking-[0.5em] font-black text-white group-hover/link:text-accent transition-colors">
+                    <span className="text-[10px] uppercase tracking-[0.5em] font-black text-sea-foam group-hover/link:text-accent transition-colors">
                         {t('view_more')}
                     </span>
                     <span className="text-xl translate-x-0 group-hover/link:translate-x-4 transition-transform duration-700 opacity-0 group-hover/link:opacity-100 italic font-light text-accent">→</span>

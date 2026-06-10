@@ -743,5 +743,49 @@
     "subtitle": "Ta première sortie peut être ce week-end.",
     "button": "Réserver maintenant",
     "href": "https://getxobelaeskola.cloud/fr/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "SERVICE",
+      "title_line1": "Stockez votre",
+      "title_line2": "matériel",
+      "title_line3": "de sport",
+      "subtitle": "Pas de transport. Pas d'attente.\nArrivez et naviguez, tout simplement."
+    },
+    "value_props": {
+      "eyebrow": "QU'EST-CE QUI EST INCLUS ?",
+      "storage_title": "Stockez votre embarcation",
+      "storage_desc": "Dériveur, planche à voile ou kayak. Toujours à sa place, toujours prêt.",
+      "access_title": "Accès libre · 24/7",
+      "access_desc": "N'importe quel jour, à n'importe quelle heure. Sans demander la permission.",
+      "facilities_title": "Tout inclus",
+      "facilities_desc": "Rampe, vestiaires et salles. Le prix ne cache aucune surprise."
+    },
+    "carousel": {
+      "eyebrow": "MATÉRIEL ACCEPTÉ",
+      "title": "Votre embarcation,\nentre de bonnes mains.",
+      "vela_title": "Voile Légère",
+      "vela_desc": "Optimist, Laser, Pico... Votre bateau se repose ici en attendant la prochaine sortie.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Planches et mâts stockés avec soin. Arrivez et gréez en quelques minutes.",
+      "piragua_title": "Kayak / Pirogue",
+      "piragua_desc": "Du kayak de randonnée au surf-ski. L'Abra vous attend, pas d'excuse."
+    },
+    "pricing": {
+      "eyebrow": "TARIF",
+      "amount": "50",
+      "period": "mois",
+      "currency": "€",
+      "item1": "Espace pour votre matériel",
+      "item2": "Accès libre 24/7",
+      "item3": "Utilisation de la rampe",
+      "item4": "Vestiaires et salles",
+      "cta": "Vérifier la disponibilité",
+      "note": "Sans engagement de durée · Consultez-nous sans engagement"
+    },
+    "closing": {
+      "phrase": "Arrivez. Préparez. Naviguez.",
+      "btn": "Écrivez-nous →"
+    }
   }
 }

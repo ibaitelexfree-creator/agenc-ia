@@ -34,12 +34,12 @@ export default function CoursesListClient({ initialCourses, categories, locale }
 
                 {displayCourses.length === 0 ? (
                     <div className="text-center py-20 animate-fade-in">
-                        <div className="inline-block p-8 border border-white/10 rounded-2xl bg-white/5">
+                        <div className="inline-block p-8 border border-sea-foam/10 rounded-2xl bg-sea-foam/[0.02]">
                             <span className="text-4xl mb-4 block">🔍</span>
-                            <h3 className="text-xl font-display text-white mb-2">
+                            <h3 className="text-xl font-display text-sea-foam mb-2">
                                 {locale === 'eu' ? 'Ez da ikastarorik aurkitu' : 'No se encontraron cursos'}
                             </h3>
-                            <p className="text-white/50 max-w-md mx-auto">
+                            <p className="text-sea-foam/60 max-w-md mx-auto">
                                 {locale === 'eu'
                                     ? 'Saiatu beste kategoria batekin edo garbitu iragazkiak.'
                                     : 'Intenta con otra categoría o limpia los filtros.'}

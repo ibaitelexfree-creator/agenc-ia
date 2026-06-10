@@ -1199,5 +1199,49 @@
     "subtitle": "Zure lehen irteera aste honetan bertan izan daiteke.",
     "button": "Erreserbatu orain",
     "href": "https://getxobelaeskola.cloud/eu/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "ZERBITZUA",
+      "title_line1": "Gorde zure",
+      "title_line2": "kirol",
+      "title_line3": "materiala",
+      "subtitle": "Garraiorik gabe. Itxaronaldirik gabe.\nHeldu eta nabigatu bakarrik."
+    },
+    "value_props": {
+      "eyebrow": "ZER SARTZEN DA?",
+      "storage_title": "Gorde zure ontzia",
+      "storage_desc": "Bela arina, windsurfa edo piragua. Beti bere lekuan, beti prest.",
+      "access_title": "Sarrera librea · 24/7",
+      "access_desc": "Edozein egunetan, edozein ordutan. Baimenik eskatu beharrik gabe.",
+      "facilities_title": "Dena barne",
+      "facilities_desc": "Ranpa, aldagelak eta gelak. Prezioak ez du sorpresarik ezkutatzen."
+    },
+    "carousel": {
+      "eyebrow": "ONARTUTAKO MATERIALA",
+      "title": "Zure ontzia,\nesku onetan.",
+      "vela_title": "Bela Arina",
+      "vela_desc": "Optimist, Laser, Pico... Zure ontziak hemen gordetzen du bere ametsa hurrengo irteerara arte.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Taulak eta mastak kontu handiz biltegiratuta. Iritsi eta muntatu minutu gutxian.",
+      "piragua_title": "Piragua / Kayak",
+      "piragua_desc": "Zeharkako kayak-etik surf-ski-ra. Abra zure zain dago, aitzakiarik gabe."
+    },
+    "pricing": {
+      "eyebrow": "TARIFA",
+      "amount": "50",
+      "period": "hil",
+      "currency": "€",
+      "item1": "Zure materialarentzako lekua",
+      "item2": "Sarrera librea 24/7",
+      "item3": "Ranpako erabilera",
+      "item4": "Aldagelak eta gelak",
+      "cta": "Eskuragarritasuna egiaztatu",
+      "note": "Gutxieneko iraupenik gabe · Galdetu konpromisorik gabe"
+    },
+    "closing": {
+      "phrase": "Heldu. Prestatu. Nabigatu.",
+      "btn": "Idatzi iezaguzu →"
+    }
   }
 }

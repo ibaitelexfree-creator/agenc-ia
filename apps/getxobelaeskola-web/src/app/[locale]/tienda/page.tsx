@@ -77,7 +77,7 @@ export default function TiendaPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-nautical-black text-white selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Header */}
             <section className="relative pt-48 pb-24 overflow-hidden bg-nautical-deep">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
@@ -89,12 +89,12 @@ export default function TiendaPage() {
                             <ShoppingBag className="w-3.5 h-3.5" />
                             Tienda Oficial
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display text-white leading-none uppercase">
+                        <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
                             Equipamiento y <br />
                             <span className="italic font-light text-brass-gold/90">regalos náuticos</span>
                         </h1>
                         <p className="max-w-xl mx-auto text-foreground/50 font-light text-lg leading-relaxed mt-8">
-                            Viste los colores de la escuela o regala navegación con nuestra selección de merchandising y bonos multisesión listos para canjear.
+                            Viste los colores de la escuela o regala navegación con nuestra selection de merchandising y bonos multisesión listos para canjear.
                         </p>
                     </header>
                 </div>
@@ -108,7 +108,7 @@ export default function TiendaPage() {
                             <motion.div
                                 key={product.id}
                                 {...hoverLift}
-                                className="group relative bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden backdrop-blur-sm flex flex-col h-full shadow-lg"
+                                className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm flex flex-col h-full shadow-lg"
                             >
                                 {/* Image Box with CTA Overlay */}
                                 <div className="relative aspect-[4/3] overflow-hidden bg-nautical-deep">
@@ -120,18 +120,18 @@ export default function TiendaPage() {
                                         className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                                     />
                                     {/* Dark overlay */}
-                                    <div className="absolute inset-0 bg-nautical-black/20 group-hover:bg-nautical-black/50 transition-colors duration-500" />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors duration-500" />
 
                                     {/* Action CTA Overlay - Hidden initially, fades in on hover (Mana Fish Style) */}
                                     <motion.div 
                                         initial={{ opacity: 0 }}
                                         whileHover={{ opacity: 1 }}
                                         transition={{ duration: 0.3 }}
-                                        className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none group-hover:pointer-events-auto bg-nautical-black/40 backdrop-blur-sm"
+                                        className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none group-hover:pointer-events-auto bg-black/40 backdrop-blur-sm"
                                     >
                                         <button 
                                             onClick={() => alert(`Enlace de compra para ${product.name} en desarrollo.`)}
-                                            className="px-8 py-4 bg-accent text-nautical-black text-[10px] uppercase tracking-[0.3em] font-black rounded-full hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 transition-all pointer-events-auto flex items-center gap-2"
+                                            className="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-[0.3em] font-black rounded-full hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 transition-all pointer-events-auto flex items-center gap-2"
                                         >
                                             Comprar Ahora
                                             <ChevronRight className="w-3.5 h-3.5" />
@@ -139,11 +139,11 @@ export default function TiendaPage() {
                                     </motion.div>
 
                                     {/* Top Accents */}
-                                    <div className="absolute top-4 left-4 bg-nautical-black/80 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-widest text-accent font-black">
+                                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-widest text-accent font-black">
                                         {product.category}
                                     </div>
                                     <div className="absolute top-4 right-4 flex gap-2">
-                                        <button className="w-8 h-8 rounded-full bg-nautical-black/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/40 hover:text-red-500 transition-colors">
+                                        <button className="w-8 h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/40 hover:text-red-500 transition-colors">
                                             <Heart className="w-3.5 h-3.5" />
                                         </button>
                                     </div>
@@ -152,27 +152,27 @@ export default function TiendaPage() {
                                 {/* Content Details */}
                                 <div className="p-8 flex flex-col flex-grow justify-between gap-6">
                                     <div className="space-y-4">
-                                        <div className="flex justify-between items-baseline border-b border-white/10 pb-4 gap-2">
-                                            <span className="text-[9px] uppercase tracking-widest text-white/30 font-black">Getxo Bela</span>
+                                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
+                                            <span className="text-[9px] uppercase tracking-widest text-sea-foam/40 font-black">Getxo Bela</span>
                                             <span className="text-xl font-display text-accent italic">
-                                                {product.price}<span className="text-white text-xs ml-0.5">€</span>
+                                                {product.price}<span className="text-sea-foam text-xs ml-0.5">€</span>
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-display text-white group-hover:text-accent transition-colors duration-500">
+                                        <h3 className="text-2xl font-display text-sea-foam group-hover:text-accent transition-colors duration-500">
                                             {product.name}
                                         </h3>
-                                        <p className="text-white/40 text-sm font-light leading-relaxed line-clamp-3">
+                                        <p className="text-sea-foam/60 text-sm font-light leading-relaxed line-clamp-3">
                                             {product.description}
                                         </p>
                                     </div>
 
                                     {/* Stars & Details */}
-                                    <div className="flex items-center justify-between pt-4 border-t border-white/5 text-white/30 text-[9px] uppercase tracking-wider font-bold">
+                                    <div className="flex items-center justify-between pt-4 border-t border-sea-foam/10 text-sea-foam/40 text-[9px] uppercase tracking-wider font-bold">
                                         <div className="flex items-center gap-1">
                                             {[...Array(5)].map((_, i) => (
                                                 <Star 
                                                     key={i} 
-                                                    className={`w-3 h-3 ${i < product.rating ? 'text-brass-gold fill-brass-gold' : 'text-white/10'}`} 
+                                                    className={`w-3 h-3 ${i < product.rating ? 'text-brass-gold fill-brass-gold' : 'text-sea-foam/10'}`} 
                                                 />
                                             ))}
                                         </div>

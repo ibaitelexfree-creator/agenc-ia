@@ -305,7 +305,7 @@ export default function RentalClient({
             {/* Filter Section */}
             <div className="relative animate-fade-in">
                 <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-nautical-deep to-transparent z-10 pointer-events-none" />
-                <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar scroll-smooth border-b border-white/5">
+                <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10">
                     {categories.map(cat => (
                         <button
                             key={cat.id}
@@ -313,7 +313,7 @@ export default function RentalClient({
                             onClick={() => setSelectedCategory(cat.id)}
                             className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${selectedCategory === cat.id
                                 ? 'bg-accent text-nautical-black border-accent shadow-[0_0_25px_rgba(255,77,0,0.25)]'
-                                : 'bg-white/5 text-white/40 border-white/5 hover:border-white/20 hover:text-white'
+                                : 'bg-sea-foam/[0.02] text-sea-foam/50 border-sea-foam/10 hover:border-sea-foam/20 hover:text-sea-foam'
                                 }`}
                         >
                             {cat.name}
@@ -351,38 +351,38 @@ export default function RentalClient({
             {bookingService && (
                 <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 overflow-y-auto bg-nautical-black/20">
                     <div className="absolute inset-0 bg-nautical-black/90 backdrop-blur-md transition-opacity duration-500" onClick={() => setBookingService(null)} />
-                    <div className="relative bg-nautical-black border border-white/10 max-w-lg w-full p-8 md:p-12 animate-fade-in shadow-2xl rounded-sm">
-                        <button onClick={() => setBookingService(null)} className="absolute top-4 right-4 text-white/40 hover:text-white p-2 z-50">
+                    <div className="relative bg-nautical-black border border-sea-foam/10 max-w-lg w-full p-8 md:p-12 animate-fade-in shadow-2xl rounded-sm">
+                        <button onClick={() => setBookingService(null)} className="absolute top-4 right-4 text-sea-foam/40 hover:text-sea-foam p-2 z-50">
                             <X className="w-6 h-6" />
                         </button>
-                        <h3 className="text-3xl font-display italic text-white mb-8 pr-8">{t('booking.booking_details')}</h3>
+                        <h3 className="text-3xl font-display italic text-sea-foam mb-8 pr-8">{t('booking.booking_details')}</h3>
 
                         <div className="space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-4">
                                     <label className="text-[10px] uppercase tracking-[0.3em] text-accent font-black">{t('booking.date_label')}</label>
-                                    <div className="flex items-center gap-4 bg-nautical-black/50 border border-white/10 p-4 rounded-sm">
-                                        <input ref={dayRef} type="text" placeholder="DD" value={day} onChange={handleDayChange} onWheel={(e) => handleWheel(e, 'day')} className="w-8 bg-transparent text-white text-center outline-none font-display italic" />
-                                        <span className="text-white/10">/</span>
-                                        <input type="text" placeholder="MM" value={month} onChange={handleMonthChange} onWheel={(e) => handleWheel(e, 'month')} className="w-8 bg-transparent text-white text-center outline-none font-display italic" />
-                                        <span className="text-white/10">/</span>
-                                        <select value={year} onChange={(e) => setYear(e.target.value)} onWheel={(e) => handleWheel(e, 'year')} className="bg-transparent text-white outline-none cursor-pointer font-display italic">
-                                            <option value={currentYear}>{currentYear}</option>
-                                            <option value={currentYear + 1}>{currentYear + 1}</option>
+                                    <div className="flex items-center gap-4 bg-sea-foam/[0.02] border border-sea-foam/10 p-4 rounded-sm">
+                                        <input ref={dayRef} type="text" placeholder="DD" value={day} onChange={handleDayChange} onWheel={(e) => handleWheel(e, 'day')} className="w-8 bg-transparent text-sea-foam text-center outline-none font-display italic" />
+                                        <span className="text-sea-foam/20">/</span>
+                                        <input type="text" placeholder="MM" value={month} onChange={handleMonthChange} onWheel={(e) => handleWheel(e, 'month')} className="w-8 bg-transparent text-sea-foam text-center outline-none font-display italic" />
+                                        <span className="text-sea-foam/20">/</span>
+                                        <select value={year} onChange={(e) => setYear(e.target.value)} onWheel={(e) => handleWheel(e, 'year')} className="bg-transparent text-sea-foam outline-none cursor-pointer font-display italic">
+                                            <option value={currentYear} className="text-sea-foam bg-nautical-black">{currentYear}</option>
+                                            <option value={currentYear + 1} className="text-sea-foam bg-nautical-black">{currentYear + 1}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
                                     <label className="text-[10px] uppercase tracking-[0.3em] text-accent font-black">{t('booking.time_label')}</label>
-                                    <select value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} onWheel={handleTimeWheel} className="w-full bg-nautical-black/50 border border-white/10 text-white p-4 rounded-sm outline-none font-display italic appearance-none">
-                                        {availableTimes.map(t => <option key={t} value={t} className="bg-nautical-black">{t}</option>)}
+                                    <select value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} onWheel={handleTimeWheel} className="w-full bg-sea-foam/[0.02] border border-sea-foam/10 text-sea-foam p-4 rounded-sm outline-none font-display italic appearance-none">
+                                        {availableTimes.map(t => <option key={t} value={t} className="text-sea-foam bg-nautical-black">{t}</option>)}
                                     </select>
                                 </div>
                             </div>
 
                             <div className="flex gap-4 pt-4">
-                                <button type="button" onClick={() => setBookingService(null)} className="flex-1 py-4 border border-white/10 text-[10px] uppercase tracking-[0.3em] font-black text-white/40 hover:text-white transition-all">
+                                <button type="button" onClick={() => setBookingService(null)} className="flex-1 py-4 border border-sea-foam/10 text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/50 hover:text-sea-foam transition-all">
                                     {t('booking.cancel')}
                                 </button>
                                 <button

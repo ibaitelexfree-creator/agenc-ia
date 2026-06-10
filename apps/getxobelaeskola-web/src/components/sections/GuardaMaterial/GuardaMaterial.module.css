@@ -1,0 +1,519 @@
+/* C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\GuardaMaterial\GuardaMaterial.module.css */
+
+.container {
+  /* ─── TOKENS LOCALES ───────────────────────────── */
+  --color-ocean:      #0A3D5C;   /* azul profundo - titulares */
+  --color-wave:       #1A7EA8;   /* azul medio - acentos */
+  --color-foam:       #E8F4F8;   /* casi blanco - fondo */
+  --color-sand:       #F5EDD6;   /* arena cálida - tarjetas */
+  --color-salt:       #FFFFFF;   /* blanco puro - contraste */
+  --color-kelp:       #2C4A3E;   /* verde oscuro - CTA hover */
+  --color-rust:       #C85A2A;   /* acento naranja - precio */
+
+  --font-display:     var(--font-display, 'Playfair Display', Georgia, serif);
+  --font-body:        var(--font-sans, 'Inter', system-ui, sans-serif);
+  --font-data:        var(--font-mono, 'DM Mono', 'Courier New', monospace);
+
+  --text-hero:        clamp(3rem, 8vw, 7rem);
+  --text-display:     clamp(1.8rem, 4vw, 3.5rem);
+  --text-body:        clamp(1rem, 1.5vw, 1.125rem);
+  --text-label:       0.75rem;
+
+  --space-xs:         0.5rem;
+  --space-sm:         1rem;
+  --space-md:         2rem;
+  --space-lg:         4rem;
+  --space-xl:         8rem;
+  --space-2xl:        12rem;
+
+  background-color: var(--color-foam);
+  color: var(--color-ocean);
+  font-family: var(--font-body);
+}
+
+/* ── HERO SECTION ─────────────────────────────────── */
+.heroSection {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-xl) var(--space-lg);
+  overflow: hidden;
+  width: 100%;
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  z-index: 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 61, 92, 0.92) 0%,
+    rgba(10, 61, 92, 0.4) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  text-align: left;
+}
+
+.heroEyebrow {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: var(--text-label);
+  letter-spacing: 0.25em;
+  color: var(--color-wave);
+  text-transform: uppercase;
+  margin-bottom: var(--space-sm);
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 900;
+  line-height: 0.92;
+  color: var(--color-foam);
+  margin: 0 0 var(--space-md) 0;
+}
+
+.heroTitleLine {
+  display: block;
+}
+
+.heroTitleLine:nth-child(2) {
+  padding-left: 0.08em;
+}
+
+.heroDivider {
+  width: 100%;
+  max-width: 320px;
+  height: 2px;
+  background: rgba(232, 244, 248, 0.15);
+  margin-bottom: var(--space-md);
+  overflow: hidden;
+}
+
+.heroDividerLine {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--color-wave);
+  transform-origin: left;
+}
+
+.heroSubtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 400;
+  color: rgba(232, 244, 248, 0.82);
+  line-height: 1.65;
+  max-width: 400px;
+  white-space: pre-line;
+}
+
+/* ── VALUE PROPS ──────────────────────────────────────────── */
+.valueProps {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-foam);
+  text-align: center;
+  width: 100%;
+}
+
+.sectionEyebrow {
+  font-family: var(--font-data);
+  font-size: var(--text-label);
+  letter-spacing: 0.25em;
+  color: var(--color-wave);
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.valuePropsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.valueCard {
+  position: relative;
+  background: var(--color-salt);
+  border-radius: 16px;
+  padding: var(--space-lg) var(--space-md);
+  cursor: default;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(10, 61, 92, 0.06);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 40px rgba(10, 61, 92, 0.12);
+  transform: translateY(-2px);
+}
+
+.valueCardIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+  display: inline-block;
+}
+
+.valueCardHeadline {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-ocean);
+  margin-bottom: var(--space-xs);
+}
+
+.valueCardBody {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: rgba(10, 61, 92, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.valueCardAccent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-wave);
+  transform-origin: left center;
+}
+
+/* ── CAROUSEL ─────────────────────────────────────────────── */
+.materialCarousel {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-salt);
+  text-align: center;
+  width: 100%;
+}
+
+.carouselTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 700;
+  color: var(--color-ocean);
+  line-height: 1.1;
+  margin-bottom: var(--space-lg);
+  white-space: pre-line;
+}
+
+.carouselTabs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-md);
+}
+
+.carouselTab {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(10, 61, 92, 0.55);
+  background: transparent;
+  border: 1.5px solid rgba(10, 61, 92, 0.15);
+  border-radius: 100px;
+  padding: 0.6rem 1.4rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+}
+
+.carouselTab:hover {
+  border-color: var(--color-wave);
+  color: var(--color-ocean);
+}
+
+.carouselTab.isActive {
+  color: var(--color-ocean);
+  border-color: var(--color-wave);
+}
+
+.carouselTabIndicator {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 126, 168, 0.1);
+  border-radius: 100px;
+  z-index: -1;
+}
+
+.carouselPanelWrapper {
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.carouselPanel {
+  border-radius: 24px;
+  padding: var(--space-lg);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  box-shadow: 0 4px 24px rgba(10, 61, 92, 0.04);
+}
+
+.carouselEmoji {
+  font-size: 5rem;
+  line-height: 1;
+}
+
+.carouselPanelTitle {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.carouselPanelBody {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: rgba(10, 61, 92, 0.7);
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0;
+}
+
+/* ── PRICING CARD ─────────────────────────────────────────── */
+.pricingSection {
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-sand);
+  text-align: center;
+  width: 100%;
+}
+
+.pricingCard {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-salt);
+  border-radius: 28px;
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow:
+    0 10px 30px rgba(10, 61, 92, 0.08),
+    0 1px 4px  rgba(10, 61, 92, 0.04);
+  width: 100%;
+  max-width: 440px;
+}
+
+.pricingCardPrice {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+.pricingCardAmount {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 14vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--color-rust);
+}
+
+.pricingCardUnit {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.8rem;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.pricingCardCurrency {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-rust);
+}
+
+.pricingCardPeriod {
+  font-family: var(--font-data);
+  font-size: 0.85rem;
+  color: rgba(10, 61, 92, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.pricingCardDivider {
+  width: 100%;
+  border: none;
+  border-top: 1.5px solid rgba(10, 61, 92, 0.1);
+  margin: 0 0 var(--space-md);
+  transform-origin: left center;
+}
+
+.pricingCardList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-lg);
+  text-align: left;
+  width: 100%;
+}
+
+.pricingCardItem {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: rgba(10, 61, 92, 0.78);
+  padding: 0.55rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px dashed rgba(10, 61, 92, 0.05);
+}
+
+.pricingCardItem:last-child {
+  border-bottom: none;
+}
+
+.pricingCardItemIcon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.pricingCardCta {
+  display: inline-block;
+  background: var(--color-ocean);
+  color: var(--color-foam);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-bottom: var(--space-sm);
+  transition: background 0.2s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.pricingCardCta:hover {
+  background: var(--color-kelp);
+}
+
+.pricingCardNote {
+  font-family: var(--font-data);
+  font-size: 0.75rem;
+  color: rgba(10, 61, 92, 0.42);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ── CLOSING CTA ──────────────────────────────────────────── */
+.closingCta {
+  position: relative;
+  padding: var(--space-xl) var(--space-lg);
+  background: var(--color-ocean);
+  text-align: center;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  width: 100%;
+}
+
+.closingWave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  color: var(--color-sand);
+  opacity: 0.08;
+  width: 100%;
+}
+
+.closingCtaTextWrapper {
+  max-width: 800px;
+}
+
+.closingCtaPhrase {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--color-foam);
+  line-height: 1.1;
+  min-height: 1.2em;
+  margin: 0;
+}
+
+.closingCtaCursor {
+  display: inline-block;
+  color: var(--color-wave);
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+.closingCtaBtn {
+  display: inline-block;
+  background: transparent;
+  color: var(--color-foam);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1rem 2.2rem;
+  border: 2px solid rgba(232, 244, 248, 0.5);
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.closingCtaBtn:hover {
+  border-color: var(--color-foam);
+  background: rgba(232, 244, 248, 0.08);
+}
+
+/* ── RESPONSIVE MEDIA QUERIES ─────────────────────────────── */
+@media (max-width: 768px) {
+  .heroSection,
+  .valueProps,
+  .materialCarousel,
+  .pricingSection,
+  .closingCta {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .pricingCard {
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .carouselPanel {
+    padding: var(--space-md) var(--space-sm);
+    min-height: 320px;
+  }
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .valueCard,
+  .carouselTab,
+  .pricingCardCta,
+  .closingCtaBtn {
+    transition: none !important;
+    transform: none !important;
+  }
+}

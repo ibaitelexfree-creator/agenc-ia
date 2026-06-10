@@ -18,7 +18,7 @@ export default function ComingSoonPlaceholder({
     backLabel = "Volver a Inicio" 
 }: ComingSoonPlaceholderProps) {
     return (
-        <main className="min-h-screen bg-nautical-black text-white flex flex-col justify-center items-center px-6 relative selection:bg-accent selection:text-nautical-black overflow-hidden py-32">
+        <main className="min-h-screen bg-nautical-black text-sea-foam flex flex-col justify-center items-center px-6 relative selection:bg-accent selection:text-nautical-black overflow-hidden py-32">
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
@@ -28,17 +28,17 @@ export default function ComingSoonPlaceholder({
                     <Sailboat className="w-10 h-10" />
                 </div>
                 <span className="text-accent uppercase tracking-[0.6em] text-xs font-black block">Getxo Bela Eskola</span>
-                <h1 className="text-4xl md:text-6xl font-display uppercase tracking-tight text-white leading-none">
+                <h1 className="text-4xl md:text-6xl font-display uppercase tracking-tight text-sea-foam leading-none">
                     {title} <br />
                     <span className="italic font-light text-brass-gold/90 font-sans lowercase">en desarrollo</span>
                 </h1>
-                <p className="text-white/50 text-lg font-light leading-relaxed max-w-lg mx-auto">
+                <p className="text-sea-foam/50 text-lg font-light leading-relaxed max-w-lg mx-auto">
                     {description}
                 </p>
                 <div className="pt-8">
                     <Link
                         href={backHref}
-                        className="inline-flex items-center gap-3 border border-white/20 bg-white/5 px-8 py-4 rounded-full text-xs uppercase tracking-[0.3em] font-black text-white hover:bg-white hover:text-nautical-black transition-premium shadow-lg shadow-black/30 group"
+                        className="inline-flex items-center gap-3 border border-sea-foam/20 bg-sea-foam/5 px-8 py-4 rounded-full text-xs uppercase tracking-[0.3em] font-black text-sea-foam hover:bg-sea-foam hover:text-nautical-black transition-premium shadow-lg shadow-sea-foam/5 group"
                     >
                         {backLabel}
                         <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
