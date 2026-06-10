@@ -126,21 +126,18 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
   const programs = [
     {
       title: tProg('licencia_title'),
-      price: tProg('licencia_price'),
       desc: tProg('licencia_desc'),
       image: '/images/courses/LicenciadeNavegacion.webp',
       link: '/courses/licencia-navegacion'
     },
     {
       title: tProg('j80_title'),
-      price: tProg('j80_price'),
       desc: tProg('j80_desc'),
       image: '/images/courses/IniciacionJ80.webp',
       link: '/courses/iniciacion-j80'
     },
     {
       title: tProg('rental_title'),
-      price: tProg('price_rental'),
       desc: tProg('rental_desc'),
       image: '/images/courses/PerfeccionamientoVela.webp',
       link: '/rental'

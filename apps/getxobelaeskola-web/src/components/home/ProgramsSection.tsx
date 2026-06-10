@@ -10,7 +10,7 @@ interface ProgramsSectionProps {
     learn_more: string;
     programs: {
         title: string;
-        price: string;
+        price?: string;
         desc: string;
         image: string;
         link: string;
@@ -52,9 +52,11 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                             <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-transparent" />
 
                             <div className="absolute inset-0 p-12 flex flex-col justify-end text-left">
-                                <span className="text-brass-gold font-display text-2xl mb-4 block leading-none">
-                                    {prog.price}
-                                </span>
+                                {prog.price && (
+                                    <span className="text-brass-gold font-display text-2xl mb-4 block leading-none">
+                                        {prog.price}
+                                    </span>
+                                )}
                                 <h3 className="text-4xl font-display text-sea-foam mb-6 italic leading-tight group-hover:text-accent transition-colors text-balance">
                                     {prog.title}
                                 </h3>
