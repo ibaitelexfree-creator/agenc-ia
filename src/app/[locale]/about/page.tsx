@@ -28,7 +28,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
     const t = await getTranslations({ locale, namespace: 'about_page' });
 
     return (
-        <main className="min-h-screen bg-nautical-black text-white selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* 1. Cinematic Hero Section */}
             <section className="relative h-screen flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0 z-0">
@@ -37,11 +37,11 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         alt="Maritime Heritage"
                         fill
                         priority
-                        className="object-cover opacity-30 scale-100 animate-slow-zoom"
+                        className="object-cover opacity-20 scale-100 animate-slow-zoom"
                         sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-nautical-black via-transparent to-nautical-black" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_100%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.4)_100%)]" />
                 </div>
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
@@ -49,24 +49,24 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         <span className="inline-block text-accent uppercase tracking-[1em] text-sm font-bold mb-12 opacity-80 animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-4xl md:text-7xl lg:text-[10rem] font-display text-white leading-[0.9] mb-12 drop-shadow-2xl animate-reveal relative">
+                        <h1 className="text-4xl md:text-7xl lg:text-[10rem] font-display text-sea-foam leading-[0.9] mb-12 drop-shadow-sm animate-reveal relative">
                             {t('header_title')} <br />
                             <span className="italic font-light text-brass-gold/90">
                                 {t('header_highlight')}
                             </span>
                         </h1>
-                        <div className="flex items-center gap-8 w-full max-w-4xl opacity-40 animate-fade-in" style={{ animationDelay: '1s' }}>
-                            <div className="h-px flex-grow bg-gradient-to-l from-white to-transparent" />
-                            <p className="text-sm uppercase tracking-[0.4em] font-light whitespace-nowrap">
+                        <div className="flex items-center gap-8 w-full max-w-4xl opacity-60 animate-fade-in" style={{ animationDelay: '1s' }}>
+                            <div className="h-px flex-grow bg-gradient-to-l from-sea-foam/30 to-transparent" />
+                            <p className="text-sm uppercase tracking-[0.4em] font-light whitespace-nowrap text-sea-foam">
                                 {t('header_suffix')}
                             </p>
-                            <div className="h-px flex-grow bg-gradient-to-r from-white to-transparent" />
+                            <div className="h-px flex-grow bg-gradient-to-r from-sea-foam/30 to-transparent" />
                         </div>
                     </div>
                 </div>
 
                 {/* Aesthetic Coordinates Decor */}
-                <div className="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2 text-[8px] tracking-[0.4em] text-white/20 uppercase font-light">
+                <div className="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2 text-[8px] tracking-[0.4em] text-sea-foam/35 uppercase font-light">
                     <span>43° 20&apos; 40&quot; N</span>
                     <span>2° 59&apos; 14&quot; W</span>
                 </div>
@@ -83,20 +83,20 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
 
                         <div className="lg:col-span-5 space-y-12 relative">
                             <div className="space-y-6">
-                                <h2 className="text-3xl md:text-5xl lg:text-7xl font-display leading-tight tracking-tight">
+                                <h2 className="text-3xl md:text-5xl lg:text-7xl font-display leading-tight tracking-tight text-sea-foam">
                                     {t('commitment_title')} <br />
-                                    <span className="italic font-light text-accent/80 underline decoration-white/5 underline-offset-[16px]">
+                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[16px]">
                                         {t('commitment_highlight')}
                                     </span>
                                 </h2>
                             </div>
 
                             <div className="space-y-10">
-                                <p className="text-foreground/60 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
+                                <p className="text-foreground/80 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
                                     {t('desc1')}
                                 </p>
-                                <div className="p-8 border-l-2 border-brass-gold/20 bg-white/[0.02] backdrop-blur-sm">
-                                    <p className="text-foreground/60 font-light text-lg leading-relaxed italic">
+                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm">
+                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
                                         {t('desc2')}
                                     </p>
                                 </div>
@@ -105,7 +105,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
 
                         <div className="lg:col-span-6 lg:pl-12 mt-24 lg:mt-0">
                             <div className="relative aspect-[3/4] group">
-                                <div className="absolute -top-6 -right-6 w-full h-full border border-white/5 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
+                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
                                 <HoverImage
                                     src="/images/course-raquero-students.webp"
                                     alt="Sea Experience"
@@ -115,7 +115,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                     imageClassName="object-cover scale-110 group-hover:scale-105"
                                 />
                                 {/* Image Badge */}
-                                <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-white/5 shadow-2xl rotate-[-90deg]">
+                                <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-sea-foam/10 shadow-2xl rotate-[-90deg]">
                                     <span className="text-sm uppercase tracking-[0.5em] text-accent font-bold">
                                         EST. 1993
                                     </span>
@@ -127,16 +127,16 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             </section>
 
             {/* 3. The Pillars (Values) Section */}
-            <section className="py-32 md:py-64 relative bg-black/20">
+            <section className="py-32 md:py-64 relative bg-sea-foam/[0.01]">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none" />
                 <div className="container mx-auto px-6 relative">
                     <header className="mb-32 text-center max-w-4xl mx-auto space-y-8">
                         <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold">Nuestra Esencia</span>
-                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-display">{t('define_title')}</h2>
+                        <h2 className="text-4xl md:text-6xl lg:text-8xl font-display text-sea-foam">{t('define_title')}</h2>
                         <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
                     </header>
 
-                    <div className="grid md:grid-cols-3 gap-0 border border-white/5">
+                    <div className="grid md:grid-cols-3 gap-0 border border-sea-foam/10">
                         {[
                             {
                                 title: t('values.v1_title'),
@@ -157,7 +157,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 bg: "/images/home-cta-join.webp"
                             }
                         ].map((item, i) => (
-                            <div key={i} className="group relative h-[600px] p-20 flex flex-col justify-end overflow-hidden border-r last:border-r-0 border-white/5">
+                            <div key={i} className="group relative h-[600px] p-20 flex flex-col justify-end overflow-hidden border-r last:border-r-0 border-sea-foam/10">
                                 {/* Hover background image */}
                                 <div className="absolute inset-0 z-0 scale-110 group-hover:scale-100 opacity-0 group-hover:opacity-40 transition-all duration-[1.5s]">
                                     <Image
@@ -174,10 +174,10 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                     <span className="text-5xl mb-12 block opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 origin-left grayscale group-hover:grayscale-0">
                                         {item.icon}
                                     </span>
-                                    <h3 className="text-3xl font-display text-white mb-8 group-hover:text-accent transition-colors">
+                                    <h3 className="text-3xl font-display text-sea-foam mb-8 group-hover:text-accent transition-colors">
                                         {item.title}
                                     </h3>
-                                    <p className="text-foreground/40 font-light text-sm leading-relaxed max-w-xs group-hover:text-foreground/80 transition-colors">
+                                    <p className="text-foreground/60 font-light text-sm leading-relaxed max-w-xs group-hover:text-foreground/90 transition-colors">
                                         {item.desc}
                                     </p>
                                 </div>
@@ -195,25 +195,25 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         alt="Join us"
                         fill
                         sizes="100vw"
-                        className="object-cover opacity-20"
+                        className="object-cover opacity-10"
                     />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,0.8)_100%)]" />
                 </div>
 
                 <div className="container mx-auto px-6 text-center relative z-10">
-                    <h2 className="text-4xl md:text-8xl lg:text-[12rem] font-display mb-16 italic lowercase leading-none opacity-20 hover:opacity-100 transition-opacity duration-1000 cursor-default select-none">
+                    <h2 className="text-4xl md:text-8xl lg:text-[12rem] font-display mb-16 italic lowercase leading-none opacity-20 hover:opacity-100 transition-opacity duration-1000 cursor-default select-none text-sea-foam">
                         {t('cta_title')}
                     </h2>
                     <div className="space-y-16">
-                        <p className="text-foreground/60 font-light max-w-xl mx-auto text-2xl leading-relaxed tracking-wide">
+                        <p className="text-foreground/75 font-light max-w-xl mx-auto text-2xl leading-relaxed tracking-wide text-sea-foam">
                             {t('cta_desc')}
                         </p>
                         <Link
                             href={`/${locale}/courses`}
-                            className="group relative inline-flex items-center gap-8 px-16 py-8 border border-white/20 hover:border-accent transition-all duration-700 overflow-hidden"
+                            className="group relative inline-flex items-center gap-8 px-16 py-8 border border-sea-foam/20 hover:border-accent transition-all duration-700 overflow-hidden"
                         >
                             <div className="absolute inset-0 w-0 bg-accent group-hover:w-full transition-all duration-700 ease-out z-0" />
-                            <span className="relative z-10 text-white group-hover:text-nautical-black text-[10px] uppercase tracking-[0.5em] font-black transition-colors duration-700">
+                            <span className="relative z-10 text-sea-foam group-hover:text-white text-[10px] uppercase tracking-[0.5em] font-black transition-colors duration-700">
                                 {t('cta_button')}
                             </span>
                         </Link>
