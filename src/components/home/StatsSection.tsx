@@ -27,7 +27,7 @@ export default function StatsSection({ pasionLabel, alumnosLabel, flotaLabel, cl
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
                     {stats.map((stat, index) => (
                         <div key={index} className="text-center group">
-                            <h3 className="text-5xl lg:text-7xl font-display text-white mb-4 group-hover:text-accent transition-colors duration-500">
+                            <h3 className="text-5xl lg:text-7xl font-display text-sea-foam mb-4 group-hover:text-accent transition-colors duration-500">
                                 {stat.value}
                             </h3>
                             <div className="w-12 h-px bg-brass-gold mx-auto mb-4 group-hover:scale-x-150 transition-transform duration-500 origin-center" />

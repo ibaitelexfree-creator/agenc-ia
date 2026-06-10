@@ -30,7 +30,7 @@ export default function FeaturesSection({ features }: FeaturesSectionProps) {
                                 />
                                 <div className="absolute inset-0 bg-accent/20 blur-[60px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                              </div>
-                            <h3 className="text-2xl font-display italic text-white mb-4 group-hover:text-accent transition-colors">
+                             <h3 className="text-2xl font-display italic text-sea-foam mb-4 group-hover:text-accent transition-colors">
                                 {feature.title}
                             </h3>
                             <p className="text-foreground/40 font-light leading-relaxed max-w-xs group-hover:text-foreground/70 transition-colors">

@@ -60,7 +60,7 @@ export default function ExperienceSection({
                             <span className="text-brass-gold uppercase tracking-[0.4em] text-2xs font-bold mb-6 block">
                                 {filosofia}
                             </span>
-                            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-display text-white mb-8 leading-[1.1]">
+                            <h2 className="text-3xl sm:text-5xl lg:text-7xl font-display text-sea-foam mb-8 leading-[1.1]">
                                 {lifestyle_title} <br />
                                 <span className="italic font-light">{lifestyle_subtitle}</span>
                             </h2>
@@ -78,7 +78,7 @@ export default function ExperienceSection({
                         <div className="pt-8 flex flex-col sm:flex-row gap-8">
                             <Link
                                 href={`/${locale}/about`}
-                                className="group relative inline-flex items-center gap-4 text-3xs uppercase tracking-[0.3em] font-bold text-white"
+                                className="group relative inline-flex items-center gap-4 text-3xs uppercase tracking-[0.3em] font-bold text-sea-foam"
                             >
                                 <span className="w-12 h-px bg-accent group-hover:scale-x-150 transition-transform duration-500 origin-left" />
                                 {about_link}

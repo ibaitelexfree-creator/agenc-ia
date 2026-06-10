@@ -29,7 +29,7 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                     <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block">
                         {badge}
                     </span>
-                    <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-9xl font-display text-white mb-12 italic leading-none">
+                    <h2 className="text-3xl sm:text-4xl md:text-7xl lg:text-9xl font-display text-sea-foam mb-12 italic leading-none">
                         {title}
                     </h2>
                     <div className="w-32 h-px bg-gradient-to-r from-transparent via-brass-gold to-transparent mx-auto" />
@@ -40,7 +40,7 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                         <Link
                             key={i}
                             href={`/${locale}${prog.link}`}
-                            className="group block w-full relative h-[600px] overflow-hidden border border-white/5 hover:border-accent/40 transition-all duration-700"
+                            className="group block w-full relative h-[600px] overflow-hidden border border-sea-foam/10 hover:border-accent/40 transition-all duration-700"
                         >
                             <Image
                                 src={prog.image}
@@ -55,10 +55,10 @@ export default function ProgramsSection({ locale, badge, title, learn_more, prog
                                 <span className="text-brass-gold font-display text-2xl mb-4 block leading-none">
                                     {prog.price}
                                 </span>
-                                <h3 className="text-4xl font-display text-white mb-6 italic leading-tight group-hover:text-accent transition-colors text-balance">
+                                <h3 className="text-4xl font-display text-sea-foam mb-6 italic leading-tight group-hover:text-accent transition-colors text-balance">
                                     {prog.title}
                                 </h3>
-                                <p className="text-white/80 font-light text-base leading-relaxed mb-8 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
+                                <p className="text-sea-foam/85 font-light text-base leading-relaxed mb-8 opacity-0 group-hover:opacity-100 transition-all duration-700 transform translate-y-4 group-hover:translate-y-0">
                                     {prog.desc}
                                 </p>
                                 <div className="flex items-center gap-4 text-xs uppercase tracking-[0.3em] font-black text-accent mt-4">

@@ -65,7 +65,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
     const viewAllLabel = isEu ? 'Ikusi artikulu guztiak' : isEn ? 'View all posts' : isFr ? 'Voir tous les articles' : 'Ver todos los artículos';
 
     return (
-        <section className="py-32 relative bg-nautical-black overflow-hidden border-t border-white/5">
+        <section className="py-32 relative bg-nautical-black overflow-hidden border-t border-sea-foam/10">
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
@@ -75,7 +75,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                         <span className="text-accent uppercase tracking-[0.6em] text-xs font-black mb-4 block">
                             {sectionTitle}
                         </span>
-                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-display text-white tracking-tight leading-none">
+                        <h2 className="text-3xl md:text-5xl lg:text-6xl font-display text-sea-foam tracking-tight leading-none">
                             {sectionSubtitle.split(' & ').map((part, index) => (
                                 <React.Fragment key={index}>
                                     {index > 0 && <span className="italic font-light text-brass-gold/90"> & </span>}
@@ -86,7 +86,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                     </div>
                     <Link
                         href={`/${locale}/blog/noticias`}
-                        className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-black text-white/40 hover:text-accent hover:scale-105 transition-premium group flex-shrink-0"
+                        className="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/40 hover:text-accent hover:scale-105 transition-premium group flex-shrink-0"
                     >
                         <span>{viewAllLabel}</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -99,7 +99,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                         <motion.article
                             key={post.id}
                             {...hoverLift}
-                            className="flex flex-col bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden backdrop-blur-sm group/card cursor-pointer shadow-lg hover:shadow-black/40"
+                            className="flex flex-col bg-sea-foam/[0.01] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm group/card cursor-pointer shadow-lg hover:shadow-black/10"
                         >
                             <Link href={`/${locale}/blog/noticias`} className="flex flex-col h-full">
                                 <div className="relative aspect-[16/10] overflow-hidden bg-nautical-deep">
@@ -111,7 +111,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                                         className="object-cover transition-transform duration-700 group-hover/card:scale-110"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
-                                    <div className="absolute top-4 left-4 bg-nautical-black/80 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[9px] uppercase tracking-widest text-accent font-bold">
+                                    <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-md border border-sea-foam/10 px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[9px] uppercase tracking-widest text-accent font-bold">
                                         <BookOpen className="w-3 h-3" />
                                         <span>Bitácora</span>
                                     </div>
@@ -120,7 +120,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                                 <div className="p-8 flex flex-col flex-grow justify-between gap-6">
                                     <div className="space-y-4">
                                         {/* Meta */}
-                                        <div className="flex items-center gap-6 text-[9px] uppercase tracking-widest text-white/30 font-bold">
+                                        <div className="flex items-center gap-6 text-[9px] uppercase tracking-widest text-sea-foam/30 font-bold">
                                             <span className="flex items-center gap-1.5">
                                                 <Calendar className="w-3.5 h-3.5" />
                                                 {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
@@ -131,17 +131,17 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                                             </span>
                                         </div>
                                         {/* Title */}
-                                        <h3 className="text-xl md:text-2xl font-display text-white group-hover/card:text-accent transition-colors leading-snug">
+                                        <h3 className="text-xl md:text-2xl font-display text-sea-foam group-hover/card:text-accent transition-colors leading-snug">
                                             {post.title}
                                         </h3>
                                         {/* Excerpt */}
-                                        <p className="text-white/40 text-sm font-light leading-relaxed line-clamp-3">
+                                        <p className="text-sea-foam/50 text-sm font-light leading-relaxed line-clamp-3">
                                             {post.excerpt}
                                         </p>
                                     </div>
 
                                     {/* Action */}
-                                    <div className="inline-flex items-center gap-2 text-[9px] uppercase tracking-widest text-accent font-black group-hover/card:text-white transition-colors pt-4 border-t border-white/5">
+                                    <div className="inline-flex items-center gap-2 text-[9px] uppercase tracking-widest text-accent font-black group-hover/card:text-sea-foam transition-colors pt-4 border-t border-sea-foam/10">
                                         <span>Leer publicación</span>
                                         <ArrowRight className="w-3 h-3 transition-transform group-hover/card:translate-x-1" />
                                     </div>
