@@ -140,7 +140,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                     </span>
                                 </div>
 
-                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] font-display text-white mb-10 leading-[1.1] tracking-tighter">
+                                <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] xl:text-[8rem] font-display text-sea-foam mb-10 leading-[1.1] tracking-tighter">
                                     {slide.title.split('\n').map((line, i) => (
                                         <span key={i} className={`block ${i % 2 !== 0 ? 'italic font-light text-accent/90 ml-12 sm:ml-24' : ''}`}>
                                             {line}
@@ -163,8 +163,8 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                                         <div className="absolute inset-0 bg-white translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500 ease-premium" />
                                     </Link>
 
-                                    <button className="flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-black text-white/40 hover:text-white transition-premium group/sc">
-                                        <span className="w-8 h-[1px] bg-white/20 group-hover/sc:w-12 transition-premium group-hover/sc:bg-accent" />
+                                    <button className="flex items-center gap-4 text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/40 hover:text-sea-foam transition-premium group/sc">
+                                        <span className="w-8 h-[1px] bg-sea-foam/20 group-hover/sc:w-12 transition-premium group-hover/sc:bg-accent" />
                                         Ver Detalles
                                     </button>
                                 </div>
@@ -189,10 +189,10 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
                         aria-label={`Ver diapositiva ${index + 1}: ${slide.title}`}
                         className={`group relative flex items-center gap-4 transition-premium`}
                     >
-                        <span className={`text-[10px] font-black tracking-widest transition-premium ${index === current ? 'text-accent opacity-100' : 'text-white/20 opacity-0 group-hover:opacity-100'}`}>
+                        <span className={`text-[10px] font-black tracking-widest transition-premium ${index === current ? 'text-accent opacity-100' : 'text-sea-foam/20 opacity-0 group-hover:opacity-100'}`}>
                             0{index + 1}
                         </span>
-                        <div className={`relative w-8 h-[2px] transition-premium overflow-hidden ${index === current ? 'w-16 bg-accent/40' : 'bg-white/10 group-hover:bg-white/30'}`}>
+                        <div className={`relative w-8 h-[2px] transition-premium overflow-hidden ${index === current ? 'w-16 bg-accent/40' : 'bg-sea-foam/10 group-hover:bg-sea-foam/30'}`}>
                             {index === current && (
                                 <div className="absolute top-0 left-0 h-full w-full bg-accent animate-progress-line origin-left" />
                             )}
@@ -203,9 +203,9 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
 
             {/* Cinematic Scroll Indicator - Trigger deployment */}
             <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 z-30 opacity-40 hover:opacity-100 transition-premium group shadow-2xl">
-                <span className="text-[9px] uppercase tracking-[0.5em] font-black text-white vertical-text">{t('scroll')}</span>
+                <span className="text-[9px] uppercase tracking-[0.5em] font-black text-sea-foam vertical-text">{t('scroll')}</span>
                 <div className="w-[1px] h-20 bg-gradient-to-b from-accent via-accent/20 to-transparent relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1/2 bg-white animate-scroll-dash" />
+                    <div className="absolute top-0 left-0 w-full h-1/2 bg-sea-foam animate-scroll-dash" />
                 </div>
             </div>
         </m.section>
