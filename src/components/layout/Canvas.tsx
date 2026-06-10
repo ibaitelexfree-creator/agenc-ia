@@ -1,4 +1,5 @@
 'use client'
+// Trigger comment for GitHub Actions redeployment build
 
 import { motion } from 'framer-motion'
 import React from 'react'
