@@ -455,3 +455,5 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                 </div>
             </div>
         </>
+    );
+}
