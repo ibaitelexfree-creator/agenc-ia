@@ -1,24 +1,8 @@
-@import '../styles/animations.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --current-ocean-gradient: linear-gradient(180deg, #0D2137 0%, #1a3a5c 40%, #2d5a8a 100%);
-
-  /* Scroll Engine & Landing Page Specific Custom Colors */
-  --ocean-deep:     #0D2137;
-  --ocean-mid:      #005B9A;
-  --ocean-bright:   #0A7EC8;
-  --ocean-light:    #4AAFE8;
-  --foam:           #E8F4FD;
-  --white:          #FFFFFF;
-  --gold:           #F5A623;
-  --coral:          #E8593C;
-  --text-primary:   #0D2137;
-  --text-secondary: #3D6080;
-  --text-muted:     #7A9AB5;
-
   /* Corporate Palette Getxo Bela Eskola */
   --nautical-black: #000000;
   --nautical-deep: #010409;
@@ -62,11 +46,6 @@
 *:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 4px;
-}
-
-html {
-  background: var(--current-ocean-gradient) !important;
-  transition: background 1.2s ease;
 }
 
 html,
@@ -576,15 +555,4 @@ a:hover {
 
 .animate-scroll-dash {
   animation: scroll-dash 2.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-@media (pointer: fine) {
-  *, *:hover {
-    cursor: none !important;
-  }
-}
-
-@keyframes rippleExpand {
-  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
-  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
 }
