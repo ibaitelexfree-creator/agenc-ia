@@ -193,7 +193,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-[#010409]/90 backdrop-blur-2xl border-b border-white/5 transition-all duration-500 hover:bg-[#010409]/95 min-h-[70px]">
+            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-white/90 backdrop-blur-2xl border-b border-sea-foam/10 transition-all duration-500 hover:bg-white/95 min-h-[70px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
@@ -211,10 +211,10 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                         />
                     </div>
                     <div className="flex flex-col">
-                        <span className="font-display text-lg md:text-2xl tracking-tight text-white leading-none uppercase">
+                        <span className="font-display text-lg md:text-2xl tracking-tight text-sea-foam leading-none uppercase">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-white/40 font-bold mt-1.5 transition-premium group-hover:text-white/70">Escuela Náutica</span>
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-sea-foam/40 font-bold mt-1.5 transition-premium group-hover:text-sea-foam/70">Escuela Náutica</span>
                     </div>
                 </Link>
 
@@ -230,7 +230,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={`/${locale}/${item.href}`}
                                 prefetch={false}
-                                className="relative py-4 text-white/40 hover:text-white transition-premium group/nav flex items-center gap-1.5"
+                                className="relative py-4 text-sea-foam/50 hover:text-sea-foam transition-premium group/nav flex items-center gap-1.5"
                             >
                                 {item.icon}
                                 {getLabel(item.label)}
@@ -250,16 +250,16 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         exit="exit"
                                         className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-[10000]"
                                     >
-                                        <div className="w-64 py-3 bg-[#010409] border border-white/10 rounded-xl shadow-2xl shadow-black/40 overflow-hidden">
+                                        <div className="w-64 py-3 bg-white border border-sea-foam/10 rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
                                             {/* Simple Arrow */}
-                                            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#010409] border-l border-t border-white/10 rotate-45" />
+                                            <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-l border-t border-sea-foam/10 rotate-45" />
 
                                             {item.dropdown.map((sub) => (
                                                 <Link
                                                     key={sub.href}
                                                     href={`/${locale}/${sub.href}`}
                                                     prefetch={false}
-                                                    className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-white/75 hover:text-white hover:bg-white/5 transition-all duration-200 group/sub"
+                                                    className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-sea-foam/75 hover:text-sea-foam hover:bg-sea-foam/5 transition-all duration-200 group/sub"
                                                 >
                                                     <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
                                                     {getLabel(sub.label)}
@@ -278,12 +278,12 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     <div className="hidden xl:block">
                         <ThemeToggle />
                     </div>
-                    <div className="hidden xl:flex bg-white/5 backdrop-blur-md border border-white/10 rounded-full p-1.5 transition-premium hover:border-white/20">
+                    <div className="hidden xl:flex bg-sea-foam/5 backdrop-blur-md border border-sea-foam/10 rounded-full p-1.5 transition-premium hover:border-sea-foam/20">
                         {['es', 'eu', 'en', 'fr'].map((lang) => (
                             <button
                                 key={lang}
                                 onClick={() => handleLanguageSwitch(lang)}
-                                className={`px-4 py-2 rounded-full text-[9px] uppercase tracking-widest font-black transition-premium ${locale === lang ? 'bg-accent text-nautical-black shadow-xl shadow-accent/20 scale-105' : 'text-white/40 hover:text-white'}`}
+                                className={`px-4 py-2 rounded-full text-[9px] uppercase tracking-widest font-black transition-premium ${locale === lang ? 'bg-accent text-white shadow-xl shadow-accent/20 scale-105' : 'text-sea-foam/40 hover:text-sea-foam'}`}
                             >
                                 {lang.toUpperCase()}
                             </button>
@@ -291,11 +291,11 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     </div>
 
                     {loading ? (
-                        <div className="hidden xl:block w-32 h-10 bg-white/5 animate-pulse rounded-full" />
+                        <div className="hidden xl:block w-32 h-10 bg-sea-foam/5 animate-pulse rounded-full" />
                     ) : user ? (
                         <div className="hidden xl:flex gap-8 items-center">
                             {user.status_socio === 'activo' && (
-                                <div className="flex items-center gap-2.5 px-5 py-2 rounded-full bg-white/5 border border-brass-gold/30 shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-premium hover:border-brass-gold/60 group/member">
+                                <div className="flex items-center gap-2.5 px-5 py-2 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-premium hover:border-brass-gold/60 group/member">
                                     <Sparkles className="w-3.5 h-3.5 text-brass-gold transition-premium group-hover:rotate-45" />
                                     <span className="text-brass-gold text-[9px] font-black uppercase tracking-[0.3em]">
                                         MEMBER
@@ -305,19 +305,19 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`}
                                 prefetch={false}
-                                className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-nautical-black shadow-lg shadow-accent/5 transition-premium"
+                                className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium"
                             >
                                 {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className="text-[9px] uppercase tracking-[0.4em] font-black text-white/30 hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
+                                className="text-[9px] uppercase tracking-[0.4em] font-black text-sea-foam/30 hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
                             >
                                 {getLabel('logout')}
                             </button>
                         </div>
                     ) : (
-                        <Link href={`/${locale}/auth/login`} prefetch={false} className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-white/20 px-8 py-3 rounded-full bg-white/5 hover:bg-white hover:text-nautical-black transition-premium">
+                        <Link href={`/${locale}/auth/login`} prefetch={false} className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium">
                             {getLabel('login')}
                         </Link>
                     )}
@@ -329,13 +329,13 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             setIsMenuOpen(!isMenuOpen);
                             setMobileExpanded(null);
                         }}
-                        className="xl:hidden flex-shrink-0 w-14 h-14 flex items-center justify-center bg-accent text-nautical-black rounded-full shadow-2xl relative z-[10000] transition-premium hover:scale-110 active:scale-95 shadow-accent/30"
+                        className="xl:hidden flex-shrink-0 w-14 h-14 flex items-center justify-center bg-accent text-white rounded-full shadow-2xl relative z-[10000] transition-premium hover:scale-110 active:scale-95 shadow-accent/30"
                     >
                         {isMenuOpen ? <X size={24} strokeWidth={3} /> : (
                             <div className="flex flex-col gap-1 w-6">
-                                <span className="block w-full h-0.5 bg-nautical-black rounded-full" />
-                                <span className="block w-3/4 h-0.5 bg-nautical-black rounded-full ml-auto" />
-                                <span className="block w-full h-0.5 bg-nautical-black rounded-full" />
+                                <span className="block w-full h-0.5 bg-white rounded-full" />
+                                <span className="block w-3/4 h-0.5 bg-white rounded-full ml-auto" />
+                                <span className="block w-full h-0.5 bg-white rounded-full" />
                             </div>
                         )}
                     </button>
@@ -360,7 +360,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         onClick={() => { if (!item.dropdown) setIsMenuOpen(false); }}
                                     >
                                         <span className="text-accent/60">{item.icon}</span>
-                                        <span className={`text-3xl font-display italic transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+                                        <span className={`text-3xl font-display italic text-sea-foam transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                                             {getLabel(item.label)}
                                         </span>
                                     </Link>
@@ -368,7 +368,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                     {item.dropdown && (
                                         <button
                                             onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
-                                            className="p-3 text-white/40 hover:text-accent transition-colors"
+                                            className="p-3 text-sea-foam/40 hover:text-accent transition-colors"
                                         >
                                             <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${mobileExpanded === item.label ? 'rotate-180 text-accent' : ''}`} />
                                         </button>
@@ -389,7 +389,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                                     key={sub.href}
                                                     href={`/${locale}/${sub.href}`}
                                                     prefetch={false}
-                                                    className="flex items-center gap-3 py-3 text-lg text-white/50 hover:text-white transition-colors"
+                                                    className="flex items-center gap-3 py-3 text-lg text-sea-foam/50 hover:text-sea-foam transition-colors"
                                                     onClick={() => setIsMenuOpen(false)}
                                                 >
                                                     <span className="text-accent/50">{sub.icon}</span>
@@ -410,14 +410,14 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 <Link
                                     href={user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`}
                                     prefetch={false}
-                                    className="w-full text-center py-6 bg-accent text-nautical-black font-display italic text-2xl"
+                                    className="w-full text-center py-6 bg-accent text-white font-display italic text-2xl"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
                                     {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                                 </Link>
                                 <button
                                     onClick={handleLogout}
-                                    className="w-full text-center py-4 text-white/40 uppercase text-[10px] tracking-[0.4em] font-black"
+                                    className="w-full text-center py-4 text-sea-foam/40 uppercase text-[10px] tracking-[0.4em] font-black"
                                 >
                                     {getLabel('logout')}
                                 </button>
@@ -426,7 +426,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={`/${locale}/auth/login`}
                                 prefetch={false}
-                                className="w-full block text-center py-6 border border-white/20 text-white font-display italic text-2xl bg-white/5"
+                                className="w-full block text-center py-6 border border-sea-foam/20 text-sea-foam font-display italic text-2xl bg-sea-foam/5"
                                 onClick={() => setIsMenuOpen(false)}
                             >
                                 {getLabel('login')}
@@ -435,16 +435,16 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
                         <div className="flex flex-col gap-4 pb-12">
                             <div className="flex items-center justify-between ml-4 mr-4 mb-4">
-                                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30">Theme</span>
+                                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30">Theme</span>
                                 <ThemeToggle />
                             </div>
-                            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30 ml-4">{getLabel('language_selector')}</span>
-                            <div className="grid grid-cols-4 gap-3 bg-white/5 border border-white/10 rounded-2xl p-2">
+                            <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30 ml-4">{getLabel('language_selector')}</span>
+                            <div className="grid grid-cols-4 gap-3 bg-sea-foam/5 border border-sea-foam/10 rounded-2xl p-2">
                                 {['es', 'eu', 'en', 'fr'].map((lang) => (
                                     <button
                                         key={lang}
                                         onClick={() => handleLanguageSwitch(lang)}
-                                        className={`py-4 rounded-xl text-[10px] uppercase tracking-widest font-black transition-all ${locale === lang ? 'bg-white text-nautical-black shadow-xl' : 'text-white/40'}`}
+                                        className={`py-4 rounded-xl text-[10px] uppercase tracking-widest font-black transition-all ${locale === lang ? 'bg-sea-foam text-nautical-black shadow-xl' : 'text-sea-foam/40'}`}
                                     >
                                         {lang.toUpperCase()}
                                     </button>
@@ -455,5 +455,3 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                 </div>
             </div>
         </>
-    );
-}

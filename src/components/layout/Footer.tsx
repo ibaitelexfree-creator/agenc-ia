@@ -42,7 +42,7 @@ export default async function Footer({ locale }: { locale: string }) {
     }
 
     return (
-        <footer className="bg-nautical-deep border-t border-white/5 selection:bg-accent selection:text-nautical-black relative">
+        <footer className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative">
             <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
             {!isSubscribed && <Newsletter locale={locale} />}
 
@@ -59,15 +59,15 @@ export default async function Footer({ locale }: { locale: string }) {
                         />
                     </div>
                     <div className="flex flex-col items-center">
-                        <span className="font-display text-3xl md:text-5xl text-white uppercase tracking-tight leading-none">
+                        <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-white/30 font-black mt-3">Escuela Náutica Oficial</span>
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">Escuela Náutica Oficial</span>
                     </div>
                 </div>
 
                 {/* Footer Navigation Links */}
-                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-black text-white/50 mb-12">
+                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-black text-sea-foam/50 mb-12">
                     {[
                         { href: '', label: 'Inicio' },
                         { href: 'club/conocenos', label: 'Club' },
@@ -88,14 +88,14 @@ export default async function Footer({ locale }: { locale: string }) {
                 </div>
 
                 {/* Horario, Contacto y Ubicación Column */}
-                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-white/40 border-y border-white/5 py-8 w-full max-w-3xl">
+                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
                     <div className="flex flex-col items-center md:items-start gap-2 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black">
                             <Clock className="w-3.5 h-3.5" />
                             <span>Horario</span>
                         </div>
-                        <span className="text-white/60 font-medium">Lunes a Domingo</span>
-                        <span className="text-white/60 font-medium">09:00 — 20:00</span>
+                        <span className="text-sea-foam/60 font-medium">Lunes a Domingo</span>
+                        <span className="text-sea-foam/60 font-medium">09:00 — 20:00</span>
                     </div>
 
                     <div className="flex flex-col items-center md:items-start gap-2 flex-1">
@@ -103,8 +103,8 @@ export default async function Footer({ locale }: { locale: string }) {
                             <MapPin className="w-3.5 h-3.5" />
                             <span>Ubicación</span>
                         </div>
-                        <span className="text-white/60 font-medium">Muelle Arriluzea, s/n</span>
-                        <span className="text-white/60 font-medium">48990 Getxo, Vizcaya</span>
+                        <span className="text-sea-foam/60 font-medium">Muelle Arriluzea, s/n</span>
+                        <span className="text-sea-foam/60 font-medium">48990 Getxo, Vizcaya</span>
                     </div>
 
                     <div className="flex flex-col items-center md:items-start gap-2 flex-1">
@@ -112,8 +112,8 @@ export default async function Footer({ locale }: { locale: string }) {
                             <Phone className="w-3.5 h-3.5" />
                             <span>Contacto</span>
                         </div>
-                        <span className="text-white/60 font-medium">+34 944 000 000</span>
-                        <span className="text-white/60 font-medium">info@getxobelaeskola.com</span>
+                        <span className="text-sea-foam/60 font-medium">+34 944 000 000</span>
+                        <span className="text-sea-foam/60 font-medium">info@getxobelaeskola.com</span>
                     </div>
                 </div>
 
@@ -128,7 +128,7 @@ export default async function Footer({ locale }: { locale: string }) {
                             href={social.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-12 h-12 rounded-full border border-white/5 bg-white/[0.02] flex items-center justify-center text-white/30 hover:text-accent hover:border-accent/40 hover:bg-accent/5 hover:scale-110 active:scale-95 transition-premium group"
+                            className="w-12 h-12 rounded-full border border-sea-foam/10 bg-sea-foam/[0.02] flex items-center justify-center text-sea-foam/30 hover:text-accent hover:border-accent/40 hover:bg-accent/5 hover:scale-110 active:scale-95 transition-premium group"
                             aria-label={social.name}
                         >
                             <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -138,10 +138,10 @@ export default async function Footer({ locale }: { locale: string }) {
                     ))}
                 </div>
 
-                <div className="w-24 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
+                <div className="w-24 h-px bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent mb-12" />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-white/5 pt-8 w-full max-w-2xl px-6">
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-2xl px-6">
                     <GetxoKirolakLogo />
                     
                     {/* NextGenerationEU Logo */}
@@ -167,15 +167,15 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-white/20 mb-12">
-                    <Link href={`/${locale}/privacy`} className="hover:text-white transition-premium">{t('privacy')}</Link>
-                    <Link href={`/${locale}/cookies`} className="hover:text-white transition-premium">{t('cookies')}</Link>
+                <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/20 mb-12">
+                    <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium">{t('privacy')}</Link>
+                    <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium">{t('cookies')}</Link>
                 </div>
 
-                <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-white/40 font-medium text-center max-w-xl leading-loose">
+                <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">
                     {t('copyright')}
                     <br />
-                    <span className="mt-6 block text-white/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
+                    <span className="mt-6 block text-sea-foam/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
                         {t('slogan')}
                     </span>
                 </div>

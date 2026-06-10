@@ -42,7 +42,7 @@ export default function Newsletter({ locale }: { locale: string }) {
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-5xl mx-auto glass-card p-12 md:p-24 text-center border-white/5 bg-white/[0.01] rounded-[2rem] overflow-hidden relative">
+                <div className="max-w-5xl mx-auto glass-card p-12 md:p-24 text-center border-sea-foam/10 bg-sea-foam/[0.01] rounded-[2rem] overflow-hidden relative">
                     <header className="mb-16 relative z-10">
                         <div className="flex items-center justify-center gap-4 mb-8">
                             <div className="w-8 h-[1px] bg-accent/30" />
@@ -52,16 +52,16 @@ export default function Newsletter({ locale }: { locale: string }) {
                             <div className="w-8 h-[1px] bg-accent/30" />
                         </div>
 
-                        <h2 className="text-4xl md:text-7xl font-display text-white mb-8 tracking-tight">
+                        <h2 className="text-4xl md:text-7xl font-display text-sea-foam mb-8 tracking-tight">
                             {t('title')}
                         </h2>
-                        <p className="text-white/60 font-light text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed italic">
+                        <p className="text-sea-foam/60 font-light text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed italic">
                             {t('subtitle')}
                         </p>
                     </header>
 
                     <form onSubmit={handleSubmit} className="max-w-xl mx-auto relative z-10">
-                        <div className="flex flex-col sm:flex-row gap-4 p-2 bg-white/5 border border-white/10 rounded-2xl focus-within:border-accent/40 transition-premium backdrop-blur-md">
+                        <div className="flex flex-col sm:flex-row gap-4 p-2 bg-sea-foam/[0.03] border border-sea-foam/10 rounded-2xl focus-within:border-accent/40 transition-premium backdrop-blur-md">
                             <input
                                 type="email"
                                 value={email}
@@ -69,7 +69,7 @@ export default function Newsletter({ locale }: { locale: string }) {
                                 placeholder={t('email_placeholder')}
                                 required
                                 aria-label={t('email_aria_label')}
-                                className="flex-grow bg-transparent px-6 py-4 text-white text-lg placeholder:text-gray-200 focus:outline-none font-sans"
+                                className="flex-grow bg-transparent px-6 py-4 text-sea-foam text-lg placeholder:text-sea-foam/40 focus:outline-none font-sans"
                             />
                             <button
                                 type="submit"
