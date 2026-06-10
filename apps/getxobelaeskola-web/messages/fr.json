@@ -787,5 +787,71 @@
       "phrase": "Arrivez. Préparez. Naviguez.",
       "btn": "Écrivez-nous →"
     }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "CÉLÉBRATIONS",
+      "title": "CÉLÉBREZ VOTRE JOURNÉE ICI",
+      "subtitle": "Anniversaires · EVG/EVJF · Rencontres spéciales",
+      "cta": "Découvrez le programme"
+    },
+    "cards": {
+      "title": "À quoi peut ressembler votre fête ?",
+      "chill_title": "Espace Chill Out",
+      "chill_desc": "Un endroit pour se détendre. Musique, canapés, ombre.",
+      "chill_detail": "pelouse artificielle, tables, auvent",
+      "velero_title": "Navigation en Voilier",
+      "velero_desc": "Une heure de voile dans la baie",
+      "velero_badge": "~1 heure · J80 ou Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Coordination, rires, et probablement de l'eau",
+      "combo_title": "Activité Combinée",
+      "combo_desc": "Grand groupe ? Divisez et alternez",
+      "combo_badge": "POUR LES GRANDS GROUPES",
+      "catering_title": "Restauration",
+      "catering_desc": "Vous amenez le monde, nous offrons le repas"
+    },
+    "timeline": {
+      "title": "Votre journée type",
+      "step1_time": "11:00",
+      "step1_title": "Arrivée",
+      "step1_desc": "Vous arrivez, vous vous installez, la musique commence",
+      "step2_time": "12:00",
+      "step2_title": "À l'eau",
+      "step2_desc": "Voilier ou Big SUP — ou les deux",
+      "step3_time": "13:30",
+      "step3_title": "Détente & Soleil",
+      "step3_desc": "Détente, discussion, soleil",
+      "step4_time": "15:00",
+      "step4_title": "Repas & Toast",
+      "step4_desc": "Le meilleur moment : ensemble, manger, se remémorer"
+    },
+    "bigsup": {
+      "title": "Notre Planche de Big SUP",
+      "desc": "Montez sur la planche ! Cliquez sur les sièges vides pour compléter l'équipage.",
+      "full": "Équipage au complet ! C'est ça le plaisir du Big SUP.",
+      "cta": "Réserver cette activité"
+    },
+    "catering": {
+      "title": "Options Traiteur",
+      "subtitle": "Nous adaptons le goûter à vos besoins",
+      "option1_title": "REPAS COMPLET",
+      "option1_desc": "Menu préparé par le traiteur de l'école",
+      "option1_btn": "Consulter",
+      "option2_title": "GOÛTER",
+      "option2_desc": "Snacks, fruits, boissons, sucreries",
+      "option2_btn": "Consulter",
+      "option2_badge": "LE PLUS POPULAIRE",
+      "option3_title": "APPORTEZ LE VÔTRE",
+      "option3_desc": "Réfrigérateurs et tables disponibles",
+      "option3_btn": "Sans frais"
+    },
+    "closing": {
+      "phrase": "Célébrer, partager et vivre autre chose.",
+      "question": "Quand voulez-vous venir ?",
+      "date": "Sélectionnez une date",
+      "group": "Nombre de personnes",
+      "btn": "Dites-en nous plus"
+    }
   }
 }

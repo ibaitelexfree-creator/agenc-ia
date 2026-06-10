@@ -1235,5 +1235,71 @@
       "phrase": "Arrive. Prepare. Sail.",
       "btn": "Write to us →"
     }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "CELEBRATIONS",
+      "title": "CELEBRATE YOUR DAY HERE",
+      "subtitle": "Birthdays · Bachelor Parties · Special Gatherings",
+      "cta": "See how it can be"
+    },
+    "cards": {
+      "title": "What can your celebration look like?",
+      "chill_title": "Chill Out Zone",
+      "chill_desc": "A space to hang out. Music, sofas, shade.",
+      "chill_detail": "artificial grass, tables, awning",
+      "velero_title": "Sailing Boat Navigation",
+      "velero_desc": "One hour sailing the bay",
+      "velero_badge": "~1 hour · J80 or Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Coordination, laughs, and probably water",
+      "combo_title": "Combined Activity",
+      "combo_desc": "Large group? Divide and rotate",
+      "combo_badge": "FOR LARGE GROUPS",
+      "catering_title": "Catering",
+      "catering_desc": "You bring the people, we provide the food"
+    },
+    "timeline": {
+      "title": "This is your day",
+      "step1_time": "11:00",
+      "step1_title": "Arrival",
+      "step1_desc": "You arrive, get settled, music starts",
+      "step2_time": "12:00",
+      "step2_title": "Into the water",
+      "step2_desc": "Sailing or Big SUP — or both",
+      "step3_time": "13:30",
+      "step3_title": "Rest & Sun",
+      "step3_desc": "Rest, chat, sun",
+      "step4_time": "15:00",
+      "step4_title": "Food & toast",
+      "step4_desc": "The best part: together, eating, remembering"
+    },
+    "bigsup": {
+      "title": "Our Big SUP Board",
+      "desc": "Hop on the board! Click on empty seats to fill the crew.",
+      "full": "Crew complete! That's how we roll on the Big SUP.",
+      "cta": "Book this activity"
+    },
+    "catering": {
+      "title": "Catering Options",
+      "subtitle": "We adapt the snacks to your needs",
+      "option1_title": "FULL MEAL",
+      "option1_desc": "Menu prepared by school's catering",
+      "option1_btn": "Inquire",
+      "option2_title": "SNACKS & DRINKS",
+      "option2_desc": "Snacks, fruits, drinks, something sweet",
+      "option2_btn": "Inquire",
+      "option2_badge": "MOST POPULAR",
+      "option3_title": "BRING YOUR OWN",
+      "option3_desc": "Fridges and tables available",
+      "option3_btn": "Free of charge"
+    },
+    "closing": {
+      "phrase": "Celebrate, share, and live something different.",
+      "question": "When do you want to come?",
+      "date": "Select a date",
+      "group": "Number of people",
+      "btn": "Tell us more"
+    }
   }
 }

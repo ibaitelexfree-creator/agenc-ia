@@ -1295,5 +1295,71 @@
       "phrase": "Llega. Prepara. Navega.",
       "btn": "Escríbenos →"
     }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "CELEBRACIONES",
+      "title": "CELEBRA AQUÍ TU DÍA",
+      "subtitle": "Cumpleaños · Despedidas · Encuentros especiales",
+      "cta": "Ver cómo puede ser"
+    },
+    "cards": {
+      "title": "¿Cómo puede ser tu celebración?",
+      "chill_title": "Zona Chill Out",
+      "chill_desc": "Zona para estar. Música, sofás, sombra.",
+      "chill_detail": "césped artificial, mesas, toldo",
+      "velero_title": "Navegación en Velero",
+      "velero_desc": "Una hora navegando la bahía",
+      "velero_badge": "~1 hora · J80 o Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Coordinación, risas, y probablemente agua",
+      "combo_title": "Actividad Combinada",
+      "combo_desc": "¿Grupo grande? Dividís y rotáis",
+      "combo_badge": "PARA GRUPOS GRANDES",
+      "catering_title": "Catering",
+      "catering_desc": "Tú traes la gente, nosotros ponemos la comida"
+    },
+    "timeline": {
+      "title": "Así es vuestro día",
+      "step1_time": "11:00",
+      "step1_title": "Llegada",
+      "step1_desc": "Llegáis, os instaláis, suena la música",
+      "step2_time": "12:00",
+      "step2_title": "Al agua",
+      "step2_desc": "Velero o Big SUP — o los dos",
+      "step3_time": "13:30",
+      "step3_title": "Chill Out",
+      "step3_desc": "Descanso, charla, sol",
+      "step4_time": "15:00",
+      "step4_title": "Comida y brindis",
+      "step4_desc": "La mejor parte: juntas, comiendo, recordando"
+    },
+    "bigsup": {
+      "title": "Nuestra Tabla de Big SUP",
+      "desc": "¡Súbete a la tabla! Haz clic en los asientos vacíos para llenar la tripulación.",
+      "full": "¡Tripulación completa! Así es la diversión en el Big SUP.",
+      "cta": "Reservar esta actividad"
+    },
+    "catering": {
+      "title": "Opciones de Catering",
+      "subtitle": "Adaptamos la merendola a vuestras necesidades",
+      "option1_title": "COMIDA COMPLETA",
+      "option1_desc": "Menú preparado por catering de la escuela",
+      "option1_btn": "Consultar",
+      "option2_title": "MERENDOLA",
+      "option2_desc": "Snacks, frutas, bebidas, algo dulce",
+      "option2_btn": "Consultar",
+      "option2_badge": "MÁS POPULAR",
+      "option3_title": "TRAÉIS VOSOTRAS",
+      "option3_desc": "Aquí tenéis nevera y mesas",
+      "option3_btn": "Sin coste"
+    },
+    "closing": {
+      "phrase": "Celebrar, compartir y vivir algo diferente.",
+      "question": "¿Cuándo queréis venir?",
+      "date": "Selecciona una fecha",
+      "group": "Número de personas",
+      "btn": "Cuéntanos más"
+    }
   }
 }

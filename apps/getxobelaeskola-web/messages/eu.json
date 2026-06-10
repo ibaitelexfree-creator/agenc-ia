@@ -1243,5 +1243,71 @@
       "phrase": "Heldu. Prestatu. Nabigatu.",
       "btn": "Idatzi iezaguzu →"
     }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "OSPAKIZUNAK",
+      "title": "OSPATU HEMEN ZURE EGUNA",
+      "subtitle": "Urtebetetzeak · Agurrak · Topaketa bereziak",
+      "cta": "Ikusi nola izan daitekeen"
+    },
+    "cards": {
+      "title": "Nolakoa izan daiteke zure ospakizuna?",
+      "chill_title": "Chill Out Gunea",
+      "chill_desc": "Egonaldiko gunea. Musika, sofak, itzala.",
+      "chill_detail": "belar artifiziala, mahaiak, toldoa",
+      "velero_title": "Belaontzian Nabigazioa",
+      "velero_desc": "Ordu bat badian nabigatzen",
+      "velero_badge": "~ordu 1 · J80 edo Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Koordinazioa, barreak eta seguruenik ura",
+      "combo_title": "Jarduera Konbinatua",
+      "combo_desc": "Talde handia? Banatu eta txandakatu",
+      "combo_badge": "TALDE HANDIENTZAT",
+      "catering_title": "Cateringa",
+      "catering_desc": "Zuk jendea ekarri, guk janaria jarriko dugu"
+    },
+    "timeline": {
+      "title": "Honela da zuen eguna",
+      "step1_time": "11:00",
+      "step1_title": "Iritsiera",
+      "step1_desc": "Iritsi, egokitu eta musika hasiko da",
+      "step2_time": "12:00",
+      "step2_title": "Urara",
+      "step2_desc": "Belaontzia edo Big SUP — edo biak",
+      "step3_time": "13:30",
+      "step3_title": "Chill Out",
+      "step3_desc": "Atsedena, berriketaldia, eguzkia",
+      "step4_time": "15:00",
+      "step4_title": "Bazkaria eta topa",
+      "step4_desc": "Parterik onena: elkarrekin, jaten, gogoratzen"
+    },
+    "bigsup": {
+      "title": "Gure Big SUP Taula",
+      "desc": "Igo taulara! Egin klik eserleku hutsetan eskifaia osatzeko.",
+      "full": "Eskifaia osoa! Honelakoa da dibertsioa Big SUP taulan.",
+      "cta": "Jarduera hau erreserbatu"
+    },
+    "catering": {
+      "title": "Catering Aukerak",
+      "subtitle": "Askaria zuen beharretara moldatzen dugu",
+      "option1_title": "BAZKARIA OSORIK",
+      "option1_desc": "Eskolako cateringak prestatutako menua",
+      "option1_btn": "Galdetu",
+      "option2_title": "ASKARIA",
+      "option2_desc": "Snack-ak, frutak, edariak, zerbait gozoa",
+      "option2_btn": "Galdetu",
+      "option2_badge": "POPULARRENA",
+      "option3_title": "ZUEK EKARTZEN DUZUE",
+      "option3_desc": "Hemen dituzue hozkailua eta mahaiak",
+      "option3_btn": "Kosturik gabe"
+    },
+    "closing": {
+      "phrase": "Ospatu, partekatu eta zerbait desberdina bizi.",
+      "question": "Noiz etorri nahi duzue?",
+      "date": "Aukeratu data",
+      "group": "Pertsona kopurua",
+      "btn": "Esaiguzu gehiago"
+    }
   }
 }
