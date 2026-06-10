@@ -46,7 +46,7 @@ export default function ClubSociasPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-nautical-black text-white selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Hero */}
             <section className="relative pt-48 pb-32 overflow-hidden bg-nautical-deep">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
@@ -58,11 +58,11 @@ export default function ClubSociasPage() {
                             <Sparkles className="w-3.5 h-3.5" />
                             {t('title')}
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display text-white leading-none uppercase">
+                        <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
                             Forma parte de <br />
                             <span className="italic font-light text-accent/90">nuestra tripulación</span>
                         </h1>
-                        <p className="max-w-2xl mx-auto text-foreground/50 font-light text-xl leading-relaxed border-l-2 border-white/5 pl-8 md:pl-12 mt-12 text-left md:text-center">
+                        <p className="max-w-2xl mx-auto text-foreground/70 font-light text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-8 md:pl-12 mt-12 text-left md:text-center">
                             {t('subtitle')} {t('description2')}
                         </p>
                     </header>
@@ -75,7 +75,7 @@ export default function ClubSociasPage() {
                     <StaggeredEntrance type="slide" className="grid lg:grid-cols-12 gap-16 items-center">
                         <div className="lg:col-span-6">
                             <div className="relative aspect-[4/3] group">
-                                <div className="absolute -top-6 -right-6 w-full h-full border border-white/5 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
+                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
                                 <HoverImage
                                     src="/images/home-hero-sailing-action.webp"
                                     alt="Sailing action"
@@ -92,7 +92,7 @@ export default function ClubSociasPage() {
                                 Mucho más que navegar, <br />
                                 <span className="italic font-light text-accent">un estilo de vida compartido</span>
                             </h2>
-                            <p className="text-foreground/60 font-light text-lg leading-relaxed">
+                            <p className="text-foreground/80 font-light text-lg leading-relaxed">
                                 {t('description1')}
                             </p>
                         </div>
@@ -101,7 +101,7 @@ export default function ClubSociasPage() {
             </section>
 
             {/* Benefits Grid */}
-            <section className="py-32 relative bg-black/10 border-t border-white/5">
+            <section className="py-32 relative bg-sea-foam/[0.02] border-t border-sea-foam/10">
                 <div className="container mx-auto px-6">
                     <header className="mb-24 text-center">
                         <span className="text-accent uppercase tracking-[0.5em] text-xs font-black mb-4 block">Beneficios Exclusivos</span>
@@ -114,15 +114,15 @@ export default function ClubSociasPage() {
                             <m.div
                                 key={i}
                                 {...hoverLift}
-                                className="bg-white/[0.01] border border-white/5 p-10 rounded-2xl flex flex-col gap-6 backdrop-blur-sm shadow-md cursor-pointer hover:border-accent/30 transition-colors"
+                                className="bg-sea-foam/[0.02] border border-sea-foam/10 p-10 rounded-2xl flex flex-col gap-6 backdrop-blur-sm shadow-md cursor-pointer hover:border-accent/30 transition-colors"
                             >
-                                <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-lg shadow-black/20">
+                                <div className="w-16 h-16 rounded-2xl bg-sea-foam/[0.05] border border-sea-foam/10 flex items-center justify-center shadow-lg shadow-black/5">
                                     {benefit.icon}
                                 </div>
-                                <h3 className="text-xl font-display text-white group-hover:text-accent">
+                                <h3 className="text-xl font-display text-sea-foam group-hover:text-accent">
                                     {benefit.title}
                                 </h3>
-                                <p className="text-white/40 text-sm font-light leading-relaxed">
+                                <p className="text-sea-foam/60 text-sm font-light leading-relaxed">
                                     {benefit.desc}
                                 </p>
                             </m.div>
@@ -132,13 +132,13 @@ export default function ClubSociasPage() {
             </section>
 
             {/* Call To Action */}
-            <section className="py-24 md:py-32 relative bg-nautical-deep overflow-hidden border-t border-white/5 text-center">
+            <section className="py-24 md:py-32 relative bg-nautical-deep overflow-hidden border-t border-sea-foam/10 text-center">
                 <div className="absolute inset-0 bg-maps opacity-5 pointer-events-none" />
                 <div className="container mx-auto px-6 relative z-10 space-y-12">
                     <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tight">
                         ¿Listo para unirte a la tripulación?
                     </h2>
-                    <p className="text-white/50 text-lg font-light max-w-xl mx-auto leading-relaxed">
+                    <p className="text-sea-foam/60 text-lg font-light max-w-xl mx-auto leading-relaxed">
                         Ponte en contacto con nuestro equipo administrativo para solicitar tu alta de socia o realizar una prueba de navegación con nuestros instructores.
                     </p>
                     <div className="pt-6">

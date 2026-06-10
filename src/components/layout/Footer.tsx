@@ -8,13 +8,13 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
 
 const GetxoKirolakLogo = () => (
-    <div className="flex items-center gap-2 text-white/30 hover:text-accent/60 transition-all duration-300">
+    <div className="flex items-center gap-2 text-sea-foam/40 hover:text-accent transition-all duration-300 cursor-pointer group/kirolak">
         <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-2h2v2zm0-4.5h-2V7h2v6z" />
         </svg>
         <div className="flex flex-col text-left">
             <span className="text-[9px] font-black uppercase tracking-[0.15em] leading-none">GETXO</span>
-            <span className="text-[7px] font-bold uppercase tracking-[0.1em] text-white/20">KIROLAK</span>
+            <span className="text-[7px] font-bold uppercase tracking-[0.1em] text-sea-foam/20 group-hover/kirolak:text-accent/60 transition-all duration-300">KIROLAK</span>
         </div>
     </div>
 );
@@ -145,7 +145,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     <GetxoKirolakLogo />
                     
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 w-auto relative opacity-30 hover:opacity-60 transition-all duration-300">
+                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
@@ -156,7 +156,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-8 w-auto relative opacity-30 hover:opacity-60 transition-all duration-300">
+                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"

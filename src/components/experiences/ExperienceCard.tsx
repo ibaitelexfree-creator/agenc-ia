@@ -40,24 +40,24 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
     };
 
     return (
-        <div className="group relative bg-nautical-black/20 border border-white/5 overflow-hidden transition-all duration-700 hover:border-brass-gold/30 flex flex-col h-full rounded-2xl">
+        <div className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 overflow-hidden transition-all duration-700 hover:border-accent/30 hover:bg-sea-foam/[0.04] flex flex-col h-full rounded-2xl">
             {/* Top Badge Decor */}
             <div className="absolute top-6 left-6 z-30">
-                <div className="flex items-center gap-2 px-4 py-2 bg-nautical-deep/80 backdrop-blur-md rounded-full border border-white/10">
+                <div className="flex items-center gap-2 px-4 py-2 bg-nautical-deep/80 backdrop-blur-md rounded-full border border-sea-foam/10">
                     <Star className="w-3 h-3 text-brass-gold fill-brass-gold" />
-                    <span className="text-[8px] uppercase tracking-[0.3em] font-black text-white/80">{t('premium_experience')}</span>
+                    <span className="text-[8px] uppercase tracking-[0.3em] font-black text-sea-foam/80">{t('premium_experience')}</span>
                 </div>
             </div>
 
             {/* Image Section - More cinematic Ratio */}
             <div className="relative aspect-[16/10] overflow-hidden">
                 <NauticalImage
-                    src={experience.imagen_url || '/images/home-hero-sailing-action.webp'}
+                     src={experience.imagen_url || '/images/home-hero-sailing-action.webp'}
                     alt={getName()}
                     fill
                     className="object-cover transition-transform duration-[3s] group-hover:scale-110 saturate-[0.8] group-hover:saturate-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* Price Tag */}
                 <div className="absolute bottom-6 right-8 text-right z-20">
@@ -69,32 +69,32 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
             </div>
 
             {/* Content Section */}
-            <div className="p-8 md:p-10 flex flex-col flex-1 relative bg-gradient-to-br from-white/[0.02] to-transparent">
+            <div className="p-8 md:p-10 flex flex-col flex-1 relative bg-gradient-to-br from-sea-foam/[0.01] to-transparent">
                 <div className="flex flex-col h-full">
                     {/* Category */}
                     <span className="text-[10px] uppercase tracking-[0.5em] text-brass-gold font-black mb-4 inline-block">
                         {t(experience.categoria)}
                     </span>
 
-                    <h3 className="text-3xl font-display text-white mb-6 leading-tight group-hover:text-brass-gold transition-colors duration-500 italic">
+                    <h3 className="text-3xl font-display text-sea-foam mb-6 leading-tight group-hover:text-accent transition-colors duration-500 italic">
                         {getName()}
                     </h3>
 
-                    <p className="text-white/40 text-sm leading-relaxed font-light line-clamp-3 mb-8 group-hover:text-white/60 transition-colors">
+                    <p className="text-sea-foam/60 text-sm leading-relaxed font-light line-clamp-3 mb-8 group-hover:text-sea-foam/80 transition-colors">
                         {getDescription()}
                     </p>
 
                     {/* Info Row */}
-                    <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">
+                    <div className="mt-auto pt-8 border-t border-sea-foam/10 flex items-center justify-between">
                         <div className="flex gap-6">
                             {experience.duracion && (
-                                <div className="flex items-center gap-2 text-white/30">
+                                <div className="flex items-center gap-2 text-sea-foam/50">
                                     <Clock className="w-4 h-4 text-accent" />
                                     <span className="text-[10px] uppercase tracking-widest font-bold">{experience.duracion}</span>
                                 </div>
                             )}
                             {experience.min_participantes && (
-                                <div className="flex items-center gap-2 text-white/30">
+                                <div className="flex items-center gap-2 text-sea-foam/50">
                                     <Users className="w-4 h-4 text-accent" />
                                     <span className="text-[10px] uppercase tracking-widest font-bold">{experience.min_participantes}+ PAX</span>
                                 </div>
@@ -103,7 +103,7 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
 
                         <Link
                             href={`/${locale}/contact`}
-                            className="bg-white/5 hover:bg-white text-white hover:text-nautical-black p-4 rounded-full transition-all duration-500 group/btn"
+                            className="bg-sea-foam/5 hover:bg-sea-foam text-sea-foam hover:text-nautical-black p-4 rounded-full transition-all duration-500 group/btn"
                         >
                             <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                         </Link>

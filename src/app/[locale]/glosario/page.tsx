@@ -79,18 +79,18 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                     <span className="inline-block py-1 px-3 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold tracking-widest uppercase">
                         {t('subtitle')}
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-display text-white">
+                    <h1 className="text-4xl md:text-6xl font-display text-sea-foam">
                         {t('title')}
                     </h1>
 
                     {/* Search Bar */}
                     <div className="max-w-2xl mx-auto relative group">
                         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                            <Search className="h-5 w-5 text-white/40 group-focus-within:text-accent transition-colors" />
+                            <Search className="h-5 w-5 text-sea-foam/40 group-focus-within:text-accent transition-colors" />
                         </div>
                         <input
                             type="text"
-                            className="block w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all backdrop-blur-sm"
+                            className="block w-full pl-12 pr-4 py-4 bg-sea-foam/[0.02] border border-sea-foam/10 rounded-xl text-sea-foam placeholder-sea-foam/30 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all backdrop-blur-sm"
                             placeholder={t('search_placeholder')}
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
@@ -110,7 +110,7 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
                                     isSelected
                                         ? 'bg-accent text-nautical-black border-accent shadow-lg shadow-accent/20 scale-105'
-                                        : 'bg-white/5 text-white/60 border-white/10 hover:bg-white/10 hover:text-white'
+                                        : 'bg-sea-foam/[0.02] text-sea-foam/60 border-sea-foam/10 hover:bg-sea-foam/[0.05] hover:text-sea-foam'
                                 }`}
                             >
                                 <Icon className="w-4 h-4" />
@@ -121,7 +121,7 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                 </div>
 
                 {/* Results Count */}
-                <div className="text-white/40 text-sm mb-6 font-mono">
+                <div className="text-sea-foam/50 text-sm mb-6 font-mono">
                     {filteredTerms.length} {t('no_results').replace('No se encontraron', '').replace('para tu búsqueda', '').trim()}
                     {filteredTerms.length === 1 ? 'término' : 'términos'}
                 </div>
@@ -144,22 +144,22 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                                         stiffness: 300, 
                                         damping: 20 
                                     }}
-                                    className="bg-white/5 backdrop-blur-md border border-white/5 rounded-xl p-6 hover:border-accent/30 cursor-pointer transition-colors group flex flex-col h-full"
+                                    className="bg-sea-foam/[0.02] backdrop-blur-md border border-sea-foam/10 rounded-xl p-6 hover:border-accent/30 cursor-pointer transition-colors group flex flex-col h-full"
                                 >
                                     <div className="flex items-start justify-between mb-3">
-                                        <h3 className="text-xl font-display text-white group-hover:text-accent transition-colors">
+                                        <h3 className="text-xl font-display text-sea-foam group-hover:text-accent transition-colors">
                                             {term.term}
                                         </h3>
-                                        <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded bg-white/5 text-white/40 border border-white/5`}>
+                                        <span className={`text-[10px] uppercase tracking-wider px-2 py-1 rounded bg-sea-foam/[0.05] text-sea-foam/50 border border-sea-foam/10`}>
                                             {term.category}
                                         </span>
                                     </div>
-                                    <p className="text-white/70 font-light leading-relaxed flex-grow">
+                                    <p className="text-sea-foam/70 font-light leading-relaxed flex-grow">
                                         {term.definition}
                                     </p>
 
                                     {term.relatedCourseSlug && (
-                                        <div className="mt-6 pt-4 border-t border-white/5">
+                                        <div className="mt-6 pt-4 border-t border-sea-foam/10">
                                             <Link
                                                 href={`/${locale}/courses/${term.relatedCourseSlug}`}
                                                 className="inline-flex items-center gap-2 text-xs font-bold text-accent hover:underline uppercase tracking-widest"
@@ -175,13 +175,13 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
                     </div>
                 ) : (
                     <div className="text-center py-24">
-                        <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <Search className="w-10 h-10 text-white/20" />
+                        <div className="w-20 h-20 bg-sea-foam/[0.05] rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Search className="w-10 h-10 text-sea-foam/30" />
                         </div>
-                        <h3 className="text-xl text-white font-display mb-2">
+                        <h3 className="text-xl text-sea-foam font-display mb-2">
                             {t('no_results')}
                         </h3>
-                        <p className="text-white/40">
+                        <p className="text-sea-foam/60">
                             Intenta con otra búsqueda o cambia los filtros.
                         </p>
                     </div>
