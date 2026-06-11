@@ -15,7 +15,7 @@ export default function JornadaTimeline() {
     setIsMounted(true);
   }, []);
 
-  const { ref, x, scrollYProgress } = useStickyScroll(JORNADA.length);
+  const { ref, scrollYProgress } = useStickyScroll(JORNADA.length);
 
   if (!isMounted) return null;
 
@@ -88,8 +88,16 @@ export default function JornadaTimeline() {
 
             {/* Slider cards wrapper */}
             <motion.div
-              style={{ x }}
-              className="flex h-full items-center pl-[10vw]"
+              style={{
+                display: 'flex',
+                width: 'max-content',
+                height: '100%',
+                alignItems: 'center',
+                paddingLeft: '10vw',
+                // Pass the motion value to a CSS variable
+                ['--scroll-progress' as any]: scrollYProgress,
+                transform: 'translateX(calc(-1 * (100% - 100vw + 10vw) * var(--scroll-progress)))'
+              }}
             >
               {JORNADA.map((step, idx) => {
                 const isSea = step.faseKey === 'sea';
