@@ -47,7 +47,10 @@ export default function Beneficios({ locale }: BeneficiosProps) {
                 hover: shouldReduceMotion ? {} : {
                   scale: 1.18,
                   rotate: [0, -8, 6, 0],
-                  transition: { duration: 0.4, type: "spring", stiffness: 300 }
+                  transition: {
+                    scale: { type: "spring", stiffness: 300, damping: 15 },
+                    rotate: { duration: 0.4, ease: "easeInOut" }
+                  }
                 }
               }}
             >
