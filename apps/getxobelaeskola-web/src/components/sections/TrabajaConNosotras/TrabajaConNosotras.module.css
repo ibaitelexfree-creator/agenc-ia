@@ -1,0 +1,744 @@
+/* TrabajaConNosotras.module.css */
+
+.tcn-root {
+  background: #FFFFFF;
+  color: #1D1D1F;
+  font-family: var(--font-sans), 'Plus Jakarta Sans', -apple-system, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── HERO TRABAJA ────────────────────────────────────────── */
+.hero-trabaja {
+  padding: 100px 24px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+}
+
+.tw-eyebrow {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: #AEAEB2;
+  text-transform: uppercase;
+}
+
+.tw-title-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  line-height: 0.95;
+}
+
+.tw-title {
+  font-size: clamp(40px, 8vw, 90px);
+  font-weight: 800;
+  display: block;
+  letter-spacing: -0.035em;
+}
+
+.tw-title--main {
+  color: #1D1D1F;
+}
+
+.tw-title--accent {
+  color: #0A3D5C;
+}
+
+.tw-title-accent-wrapper {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* La ola ocupa el ancho del texto */
+.sine-underline {
+  width: 100%;
+  height: 16px;
+  margin-top: -2px;
+  max-width: 440px; /* ajusta al tamaño del texto */
+}
+
+.tw-roles-wrapper {
+  font-size: clamp(20px, 3.5vw, 28px);
+  color: #6E6E73;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  height: 2.2rem; /* altura fija para no hacer saltos */
+  overflow: hidden;
+}
+
+.tw-roles-prefix {
+  color: #AEAEB2;
+  font-weight: 400;
+}
+
+.tw-role {
+  font-weight: 700;
+  color: #0A3D5C;
+  display: inline-block;
+}
+
+.tw-intro {
+  font-size: 18px;
+  color: #6E6E73;
+  max-width: 500px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.tw-cta-btn {
+  display: inline-block;
+  background: #0A3D5C;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 16px rgba(10, 61, 92, 0.15);
+}
+
+/* ── MANTRA STRIPE ───────────────────────────────────────── */
+.mantra-stripe {
+  padding: 100px 24px;
+  background: #F5F5F7;
+  text-align: center;
+}
+
+.mantra-quote {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 500;
+  line-height: 1.45;
+  color: #1D1D1F;
+  letter-spacing: -0.025em;
+  border: none;
+  padding: 0;
+}
+
+.mantra-word {
+  display: inline;
+}
+
+/* ── BENEFICIOS ──────────────────────────────────────────── */
+.beneficios-section {
+  padding: 100px 24px;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.tw-section-eyebrow {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: #AEAEB2;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px; /* gap casi cero — Apple style */
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.08); /* el gap en color sep parece línea */
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.bene-card {
+  position: relative;
+  background: #FFFFFF;
+  padding: 60px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  overflow: hidden;
+  transition: background 0.2s ease;
+}
+
+.bene-card:hover {
+  background: #FAFAFA;
+}
+
+.bene-card__icon {
+  font-size: 3rem;
+  line-height: 1;
+  display: inline-block;
+}
+
+.bene-card__headline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1D1D1F;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.bene-card__body {
+  font-size: 14px;
+  color: #6E6E73;
+  line-height: 1.65;
+  margin: 0;
+  max-width: 260px;
+}
+
+/* Barra de acento inferior */
+.bene-card__indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #0A3D5C;
+}
+
+/* ── PERFILES ─────────────────────────────────────────────── */
+.perfiles-section {
+  padding: 100px 24px;
+  background: #F5F5F7;
+  text-align: center;
+}
+
+.perfiles__title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: #1D1D1F;
+  letter-spacing: -0.025em;
+  margin: 0 0 50px;
+  line-height: 1.05;
+}
+
+.perfiles-list {
+  max-width: 760px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.perfil-row {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.perfil-row:last-child {
+  border-bottom: none;
+}
+
+.perfil-row__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.perfil-row__header:hover {
+  background: #FAFAFA;
+}
+
+.perfil-row__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.perfil-row__emoji {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.perfil-row__title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1D1D1F;
+  letter-spacing: -0.015em;
+}
+
+.perfil-row__toggle {
+  font-size: 1.6rem;
+  color: #0A3D5C;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-weight: 500;
+}
+
+.perfil-row__body-inner {
+  padding: 0 32px 32px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfil-row__desc {
+  font-size: 15px;
+  color: #6E6E73;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.perfil-row__reqs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.perfil-row__req {
+  font-size: 14px;
+  color: #1D1D1F;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perfil-row__req-check {
+  color: #0A3D5C;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.perfil-row__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.perfil-chip {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: #0A3D5C;
+  background: #E8F4FC;
+  border-radius: 999px;
+  padding: 4px 12px;
+  letter-spacing: 0.03em;
+}
+
+/* ── FORM SECTION ─────────────────────────────────────────── */
+.form-section {
+  padding: 100px 24px;
+  background: #FFFFFF;
+  text-align: center;
+}
+
+.form-section__title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  color: #1D1D1F;
+  letter-spacing: -0.02em;
+  margin: 0 0 50px;
+}
+
+/* ── CV FORM ──────────────────────────────────────────────── */
+.cv-form {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  text-align: left;
+}
+
+.cv-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+/* ── FLOAT FIELD ──────────────────────────────────────────── */
+.float-field {
+  position: relative;
+  padding-top: 1.5rem; /* espacio para el label flotante */
+}
+
+.float-field__label {
+  position: absolute;
+  top: 1.75rem;
+  left: 0;
+  font-size: 16px;
+  color: #AEAEB2;
+  pointer-events: none;
+  transform-origin: left center;
+  display: block;
+}
+
+.float-field__input {
+  width: 100%;
+  font-size: 16px;
+  color: #1D1D1F;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.08);
+  padding: 0.4rem 0 0.5rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  display: block;
+  box-sizing: border-box;
+}
+
+.float-field__input:focus {
+  border-color: #0A3D5C;
+}
+
+/* Barra de foco animada (sobre la línea base) */
+.float-field__bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #0A3D5C;
+}
+
+.float-field--textarea .float-field__input {
+  resize: vertical;
+  min-height: 100px;
+  border: 1.5px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.float-field--textarea .float-field__bar {
+  height: 2px;
+  border-radius: 0 0 8px 8px;
+}
+
+.float-field--textarea .float-field__label {
+  top: 2.2rem;
+  left: 0.75rem;
+}
+
+/* ── DROP ZONE ────────────────────────────────────────────── */
+.cv-form__drop-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.cv-form__drop-label-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1D1D1F;
+}
+
+.cv-form__drop-required {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #0A3D5C;
+}
+
+.dropzone-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.dropzone {
+  width: 100%;
+  min-height: 160px;
+  border: 1.5px dashed #AEAEB2;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #FAFAFA;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: background 0.2s ease;
+}
+
+.dropzone:hover, .dropzone--dragover {
+  background: #E8F4FC;
+}
+
+.dropzone--success {
+  border-style: solid;
+  border-color: #34C759;
+  background: rgba(52, 199, 89, 0.04);
+}
+
+.dropzone--error {
+  border-color: #FF3B30;
+  background: rgba(255, 59, 48, 0.04);
+}
+
+/* Input de archivo — OCULTO */
+.dropzone__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* ── Contenido interno de la zona ─────────────────────── */
+.boat-anim-container {
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boat-anim__idle,
+.boat-anim__dragover,
+.boat-anim__sailing,
+.boat-anim__success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.boat-anim__idle-text {
+  font-size: 14px;
+  color: #6E6E73;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.boat-anim__idle-sub {
+  font-size: 0.75rem;
+  color: #AEAEB2;
+}
+
+.boat-anim__boat-wrapper {
+  display: inline-block;
+}
+
+.boat-anim__success-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #34C759;
+  margin: 0;
+}
+
+.boat-anim__success-filename {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: #6E6E73;
+  margin: 0;
+}
+
+/* ── Botón browse ─────────────────────────────────────── */
+.dropzone__browse-btn {
+  background: none;
+  border: none;
+  font-size: 0.8rem;
+  color: #1A6FA8;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+}
+
+.dropzone__hint {
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #AEAEB2;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+.dropzone__error {
+  font-size: 0.82rem;
+  color: #FF3B30;
+  margin: 0;
+}
+
+/* ── Submit ────────────────────────────────────────────── */
+.cv-form__submit {
+  align-self: center;
+  background: #0A3D5C;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 40px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  min-width: 220px;
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 16px rgba(10, 61, 92, 0.15);
+}
+
+.cv-form__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cv-form__spinner {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+}
+
+.cv-form__privacy {
+  text-align: center;
+  font-family: var(--font-mono), 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: #AEAEB2;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* ── Estado enviado ────────────────────────────────────── */
+.cv-form__sent {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.cv-form__sent-icon {
+  font-size: 3.5rem;
+}
+
+.cv-form__sent-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1D1D1F;
+  margin: 0;
+}
+
+.cv-form__sent-body {
+  font-size: 16px;
+  color: #6E6E73;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── CTA CIERRE ───────────────────────────────────────────── */
+.cta-cierre {
+  position: relative;
+  padding: 120px 24px;
+  background: #0A3D5C;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.cta-cierre__line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.cta-cierre__phrase-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
+
+.cta-cierre__phrase {
+  font-size: clamp(20px, 4vw, 36px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.cta-cierre__phrase--bold {
+  font-weight: 800;
+  color: #FFFFFF;
+  font-size: clamp(24px, 5vw, 44px);
+}
+
+.cta-cierre__btn {
+  display: inline-block;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 40px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero-trabaja,
+  .mantra-stripe,
+  .beneficios-section,
+  .perfiles-section,
+  .form-section,
+  .cta-cierre {
+    padding: 60px 24px;
+  }
+  .beneficios-grid {
+    grid-template-columns: 1fr;
+    gap: 1px;
+  }
+  .cv-form__row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .tw-title {
+    letter-spacing: -0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
