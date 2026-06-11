@@ -1361,5 +1361,71 @@
       "group": "Número de personas",
       "btn": "Cuéntanos más"
     }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Verano",
+      "title": "Udalekuak",
+      "subtitle": "Semanas que dejan huella en la mar",
+      "cta": "Reservar plaza 2025 →",
+      "scroll": "descubrir"
+    },
+    "intro": {
+      "title": "No son solo campamentos de navegación.",
+      "subtitle1": "Son experiencias completas donde el",
+      "subtitle2": "aprendizaje",
+      "subtitle3": "convivencia",
+      "subtitle4": "juego",
+      "subtitle5": "van de la mano.",
+      "note": "Válido para quienes se inician y para quienes ya navegan ✦"
+    },
+    "features": {
+      "eyebrow": "qué ofrece el campamento",
+      "title": "Una semana en la mar",
+      "nav_title": "Navegación diaria",
+      "nav_desc": "La base del campamento. Se aprende a manejar distintas embarcaciones, entender el viento y moverse con confianza en la mar, adaptado a cada edad y nivel.",
+      "water_title": "Actividades acuáticas",
+      "water_desc": "Paddle surf, Big SUP y piragua se combinan con la navegación para una experiencia completa en el agua.",
+      "team_title": "Convivencia y equipo",
+      "team_desc": "Dinámicas de grupo que fortalecen el trabajo en equipo y las amistades. Cuando el tiempo no permite navegar, juegos cooperativos, talleres y teoría práctica.",
+      "friday_title": "La merendola del viernes",
+      "friday_desc": "Cada viernes cerramos la semana con un momento especial para celebrar lo vivido, reír juntas y despedir el campamento como se merece."
+    },
+    "timeline": {
+      "eyebrow": "disponibilidad",
+      "title": "¿Cuándo puedes venir?",
+      "ss_label": "Semana\nSanta",
+      "ss_sub": "Fechas variables",
+      "jun_label": "Junio",
+      "jun_sub": "A partir de la\n3ª semana",
+      "jul_label": "Julio",
+      "jul_sub": "Mes completo",
+      "ago_label": "Agosto",
+      "ago_sub": "Mes completo",
+      "sep_label": "Septiembre",
+      "sep_sub": "1ª semana",
+      "note": "Lunes a viernes · Grupos reducidos · A partir de 3 años ✦"
+    },
+    "details": {
+      "eyebrow": "información práctica",
+      "title": "Lo que necesitas saber",
+      "card1_val": "3 años",
+      "card1_lbl": "Edad mínima",
+      "card2_val": "5 niños",
+      "card2_lbl": "Mínimo por grupo",
+      "card3_val": "Lu – Vi",
+      "card3_lbl": "Horario semanal",
+      "card4_val": "Getxo",
+      "card4_lbl": "Puerto de Algorta",
+      "body1": "Nuestros Udalekus son semanas de verano pensadas para que niñas y niños vivan la mar de forma intensa, divertida y segura. La base del campamento es la navegación diaria, adaptada a cada edad y nivel, combinada con actividades acuáticas como paddle surf, Big SUP o piragua, y dinámicas de grupo que fortalecen el trabajo en equipo y las amistades.",
+      "body2": "Cuando la meteorología no permite salir a navegar, se organizan alternativas como juegos cooperativos, talleres o teoría práctica. Cada viernes cerramos la semana con una merendola compartida — un momento especial para celebrar lo vivido."
+    },
+    "cta": {
+      "eyebrow": "verano 2025",
+      "title": "¿Lista para zarpar?",
+      "subtitle": "Las plazas son limitadas. No dejes escapar el verano.",
+      "btn_enroll": "Inscribirse ahora →",
+      "btn_info": "Más información"
+    }
   }
 }

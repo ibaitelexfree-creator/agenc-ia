@@ -1309,5 +1309,71 @@
       "group": "Pertsona kopurua",
       "btn": "Esaiguzu gehiago"
     }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Uda",
+      "title": "Udalekuak",
+      "subtitle": "Itsasoan aztarna uzten duten asteak",
+      "cta": "Erreserbatu lekua 2025 →",
+      "scroll": "aurkitu"
+    },
+    "intro": {
+      "title": "Ez dira nabigazioko kanpamentuak soilik.",
+      "subtitle1": "Esperientzia osoak dira, non",
+      "subtitle2": "ikaskuntza",
+      "subtitle3": "bizikidetza",
+      "subtitle4": "jolasa",
+      "subtitle5": "eskutik doazen.",
+      "note": "Hasi berrientzat eta nabigatzen dakitenentzat balio du ✦"
+    },
+    "features": {
+      "eyebrow": "zer eskaintzen duen kanpamentuak",
+      "title": "Aste bat itsasoan",
+      "nav_title": "Eguneroko nabigazioa",
+      "nav_desc": "Kanpamentuaren oinarria. Hainbat ontzi gidatzen, haizea ulertzen eta itsasoan konfiantzaz mugitzen ikasten da, adin eta maila bakoitzera egokituta.",
+      "water_title": "Ur-jarduerak",
+      "water_desc": "Paddle surfa, Big SUPa eta piraguismoa nabigazioarekin konbinatzen dira uretan esperientzia osoa izateko.",
+      "team_title": "Bizikidetza eta taldea",
+      "team_desc": "Taldeko lanak eta adiskidetasuna sendotzen dituzten dinamikak. Eguraldiak nabigatzen uzten ez duenean, jolas kooperatiboak, tailerrak eta teoria praktikoa.",
+      "friday_title": "Ostiraleko askaria",
+      "friday_desc": "Ostiralero astea ixten dugu une berezi batekin bizi izandakoa ospatzeko, elkarrekin barre egiteko eta campamentuari merezi duen agurra emateko."
+    },
+    "timeline": {
+      "eyebrow": "erabilgarritasuna",
+      "title": "Noiz etor zaitezke?",
+      "ss_label": "Semana\nSanta",
+      "ss_sub": "Data aldakorrak",
+      "jun_label": "Ekaina",
+      "jun_sub": "3. astetik\naurrera",
+      "jul_label": "Uztaila",
+      "jul_sub": "Hilabete osoa",
+      "ago_label": "Abuztua",
+      "ago_sub": "Hilabete osoa",
+      "sep_label": "Iraila",
+      "sep_sub": "1. astea",
+      "note": "Astelehenetik ostiralera · Talde txikiak · 3 urtetik aurrera ✦"
+    },
+    "details": {
+      "eyebrow": "informazio praktikoa",
+      "title": "Jakin behar duzuna",
+      "card1_val": "3 urte",
+      "card1_lbl": "Gutxieneko adina",
+      "card2_val": "5 haur",
+      "card2_lbl": "Gutxienekoa taldeko",
+      "card3_val": "Al – Os",
+      "card3_lbl": "Asteko ordutegia",
+      "card4_val": "Getxo",
+      "card4_lbl": "Algortako portua",
+      "body1": "Gure Udalekuak itsasoa modu sakon, dibertigarri eta seguruan bizitzeko uda-asteak dira. Eguneroko nabigazioa da oinarria, adin eta maila bakoitzera egokitua, paddle surfa, Big SUPa edota piragua bezalako ur-jarduerekin eta talde-lana nahiz adiskidetasuna sendotzen duten dinamikekin konbinatuta.",
+      "body2": "Eguraldiak nabigatzen uzten ez duenean, jolas kooperatiboak, tailerrak edo teoria praktikoa bezalako alternatibak antolatzen dira. Ostiralero askaria egiten dugu astea amaitzeko — bizi izandakoa ospatzeko une berezia."
+    },
+    "cta": {
+      "eyebrow": "2025eko uda",
+      "title": "Itsasoratzeko prest?",
+      "subtitle": "Leku mugatuak dira. Ez utzi uda ihes egiten.",
+      "btn_enroll": "Eman izena orain →",
+      "btn_info": "Informazio gehiago"
+    }
   }
 }

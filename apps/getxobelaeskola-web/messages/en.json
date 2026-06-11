@@ -1301,5 +1301,71 @@
       "group": "Number of people",
       "btn": "Tell us more"
     }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Summer",
+      "title": "Udalekuak",
+      "subtitle": "Weeks that leave a mark on the sea",
+      "cta": "Book your place 2025 →",
+      "scroll": "discover"
+    },
+    "intro": {
+      "title": "They are not just sailing camps.",
+      "subtitle1": "They are complete experiences where",
+      "subtitle2": "learning",
+      "subtitle3": "coexistence",
+      "subtitle4": "play",
+      "subtitle5": "go hand in hand.",
+      "note": "Valid for beginners and experienced sailors alike ✦"
+    },
+    "features": {
+      "eyebrow": "what the camp offers",
+      "title": "A week at sea",
+      "nav_title": "Daily sailing",
+      "nav_desc": "The foundation of the camp. Learn to handle different boats, understand the wind, and navigate with confidence at sea, adapted to each age and level.",
+      "water_title": "Water activities",
+      "water_desc": "Paddle surfing, Big SUP, and kayaking combine with sailing for a complete water experience.",
+      "team_title": "Coexistence and team",
+      "team_desc": "Group dynamics that strengthen teamwork and friendships. When weather stops sailing, cooperative games, workshops, and practical theory.",
+      "friday_title": "Friday snacks",
+      "friday_desc": "Every Friday we close the week with a special moment to celebrate what we lived, laugh together, and say goodbye to the camp as it deserves."
+    },
+    "timeline": {
+      "eyebrow": "availability",
+      "title": "When can you come?",
+      "ss_label": "Easter\nWeek",
+      "ss_sub": "Variable dates",
+      "jun_label": "June",
+      "jun_sub": "From the\n3rd week",
+      "jul_label": "July",
+      "jul_sub": "Full month",
+      "ago_label": "August",
+      "ago_sub": "Full month",
+      "sep_label": "September",
+      "sep_sub": "1st week",
+      "note": "Monday to Friday · Small groups · From 3 years old ✦"
+    },
+    "details": {
+      "eyebrow": "practical information",
+      "title": "What you need to know",
+      "card1_val": "3 years",
+      "card1_lbl": "Minimum age",
+      "card2_val": "5 kids",
+      "card2_lbl": "Minimum per group",
+      "card3_val": "Mon – Fri",
+      "card3_lbl": "Weekly schedule",
+      "card4_val": "Getxo",
+      "card4_lbl": "Port of Algorta",
+      "body1": "Our Udalekus are summer weeks designed for children to live the sea in an intense, fun, and safe way. The core of the camp is daily sailing, adapted to each age and level, combined with water activities like paddle surfing, Big SUP or kayaking, and group dynamics that strengthen teamwork and friendships.",
+      "body2": "When the weather doesn't allow sailing, we organize alternatives like cooperative games, workshops, or practical theory. Every Friday we close the week with a shared snack time — a special moment to celebrate what we have lived."
+    },
+    "cta": {
+      "eyebrow": "summer 2025",
+      "title": "Ready to sail?",
+      "subtitle": "Places are limited. Don't let summer slip away.",
+      "btn_enroll": "Enroll now →",
+      "btn_info": "More info"
+    }
   }
 }
