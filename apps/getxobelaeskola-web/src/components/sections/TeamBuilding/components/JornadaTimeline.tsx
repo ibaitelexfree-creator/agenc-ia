@@ -1,9 +1,8 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useReducedMotion, useTransform } from 'framer-motion';
+import { motion, useReducedMotion, useTransform, useScroll } from 'framer-motion';
 import { useTranslations } from 'next-intl';
-import { useStickyScroll } from '../../../../hooks/useStickyScroll';
 import { JORNADA } from '../data/teamBuildingData';
 
 export default function JornadaTimeline() {
@@ -11,7 +10,12 @@ export default function JornadaTimeline() {
   const shouldReduce = useReducedMotion();
 
 
-  const { ref, scrollYProgress } = useStickyScroll(JORNADA.length);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+    layoutEffect: false
+  } as any);
   const slideProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
   const x = useTransform(slideProgress, (progress) => `calc(-1 * (100% - 100vw + 10vw) * ${progress})`);
 
@@ -63,7 +67,7 @@ export default function JornadaTimeline() {
       {/* Desktop Sticky horizontal slider (400vh scroll height) */}
       <div className="hidden md:block">
         <section
-          ref={ref}
+          ref={containerRef}
           className="relative h-[400vh]"
         >
           <div className="sticky top-0 h-screen w-full overflow-hidden bg-white select-none">
