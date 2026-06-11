@@ -1,7 +1,7 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\Udalekuak\index.tsx
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './Udalekuak.module.css';
 import UdalekuakHero from './components/UdalekuakHero';
 import UdalekuakIntro from './components/UdalekuakIntro';
@@ -12,6 +12,13 @@ import UdalekuakCTA from './components/UdalekuakCTA';
 
 export default function Udalekuak() {
   const ctaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   const scrollToRegistration = () => {
     const section = document.getElementById('inscripcion');

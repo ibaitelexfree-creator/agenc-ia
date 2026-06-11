@@ -1,0 +1,838 @@
+/* CentrosEscolares.module.css */
+
+/* Design Tokens Local to this section, mapping to global corporate theme */
+.hero-section,
+.como-funciona-section,
+.actividades-section,
+.precios-section,
+.cta-section {
+  --color-white: var(--nautical-black, #FFFFFF);
+  --color-offwhite: var(--nautical-deep, #F7FAFC);
+  --color-ocean: var(--nautical-blue, #0f4080);
+  --color-accent: var(--buoy-orange, #E63900);
+  --color-sky: #90E0EF;
+  --color-sand: #F5F0E8;
+  --color-text: var(--sea-foam, #1A1A1A);
+  --color-muted: #555555;
+  
+  font-family: var(--font-sans), sans-serif;
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+/* Common Section Layouts */
+.section-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-eyebrow {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-display), serif;
+  font-size: 2.25rem;
+  line-height: 1.2;
+  color: var(--color-ocean);
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 3rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 700px;
+  margin-bottom: 3rem;
+}
+
+/* Buttons Styling */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(230, 57, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff4d14;
+  box-shadow: 0 6px 20px rgba(230, 57, 0, 0.35);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-ocean);
+  padding: 0.9rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  border: 2px solid var(--color-ocean);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(15, 64, 128, 0.05);
+}
+
+/* ==========================================================================
+   FASE 1: HERO SECTION
+   ========================================================================== */
+.hero-section {
+  background-color: var(--color-white);
+  padding: 7rem 1.5rem 5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  display: inline-block;
+}
+
+.hero-title-container {
+  margin-bottom: 2rem;
+}
+
+.hero-title-line {
+  font-family: var(--font-display), serif;
+  font-size: 3rem;
+  line-height: 1.1;
+  color: var(--color-ocean);
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .hero-title-line {
+    font-size: 4.5rem;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 680px;
+  margin-bottom: 3rem;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.hero-pills {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.stat-pill {
+  background-color: var(--color-offwhite);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 100px;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s ease;
+}
+
+.stat-pill:hover {
+  background-color: #FFFFFF;
+  border-color: rgba(230, 57, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(230, 57, 0, 0.08);
+}
+
+.pill-num {
+  font-family: var(--font-display), serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-ocean);
+  margin-bottom: 0.15rem;
+}
+
+.pill-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   FASE 2: ¿CÓMO FUNCIONA?
+   ========================================================================== */
+.como-funciona-section {
+  background-color: var(--color-offwhite);
+  position: relative;
+  z-index: 10;
+}
+
+.rotation-diagram-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto 4rem auto;
+  min-height: 250px;
+}
+
+.rotation-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (max-width: 639px) {
+  .rotation-svg {
+    display: none; /* Hide SVG arrows on mobile */
+  }
+}
+
+.rotation-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 250px;
+  gap: 1rem;
+}
+
+@media (max-width: 639px) {
+  .rotation-overlay {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.rotation-group,
+.rotation-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 200px;
+}
+
+@media (max-width: 639px) {
+  .rotation-group,
+  .rotation-activities {
+    width: 100%;
+  }
+}
+
+.group-node {
+  background-color: var(--color-white);
+  border: 1px solid rgba(15, 64, 128, 0.15);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-ocean);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.activity-node {
+  background-color: var(--color-white);
+  border: 1px solid rgba(230, 57, 0, 0.15);
+  border-radius: 8px;
+  padding: 0.85rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.rotation-rotation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotate-badge {
+  background-color: var(--color-accent);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(230, 57, 0, 0.2);
+}
+
+/* Timeline */
+.timeline-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 5rem auto;
+}
+
+.timeline-track {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-ocean) 0%, var(--color-accent) 100%);
+  border-radius: 3px;
+}
+
+.timeline-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timeline-label-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-label-item:first-child {
+  align-items: flex-start;
+}
+
+.timeline-label-item:last-child {
+  align-items: flex-end;
+}
+
+.timeline-label-item .time {
+  font-family: var(--font-display), serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-ocean);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-label-item .event {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* Logistics Cards Grid */
+.logistics-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .logistics-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.logistics-card {
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 2.25rem 1.5rem;
+  text-align: left;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logistics-card:hover {
+  border-color: rgba(230, 57, 0, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.card-heading {
+  font-family: var(--font-display), serif;
+  font-size: 1.25rem;
+  color: var(--color-ocean);
+  margin-bottom: 0.75rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* ==========================================================================
+   FASE 3: LAS 3 ACTIVIDADES
+   ========================================================================== */
+.actividades-section {
+  background-color: var(--color-white);
+  position: relative;
+  z-index: 10;
+}
+
+.swipe-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+@media (min-width: 1024px) {
+  .swipe-hint {
+    display: none;
+  }
+}
+
+.activities-grid-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0.5rem 2.5rem 0.5rem;
+}
+
+.activities-grid-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.activities-grid-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.activities-grid {
+  display: flex;
+  gap: 2rem;
+  min-width: max-content;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .activities-grid {
+    justify-content: flex-start;
+  }
+}
+
+/* Activity Card Component */
+.activity-card {
+  width: 320px;
+  background-color: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.activity-id {
+  font-family: var(--font-display), serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-bg {
+  position: absolute;
+  font-size: 2.25rem;
+  opacity: 0.15;
+  filter: blur(1px);
+}
+
+.icon-main {
+  font-size: 2.25rem;
+  z-index: 2;
+}
+
+.card-main-content {
+  flex-grow: 1;
+}
+
+.activity-subtitle {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.activity-title {
+  font-family: var(--font-display), serif;
+  font-size: 1.5rem;
+  color: var(--color-ocean);
+  margin-bottom: 1rem;
+}
+
+.activity-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin-bottom: 2rem;
+}
+
+.card-footer-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.activity-tag {
+  background-color: var(--color-offwhite);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.card-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+/* ==========================================================================
+   FASE 4: PRECIOS & DISPONIBILIDAD
+   ========================================================================== */
+.precios-section {
+  background-color: var(--color-offwhite);
+  position: relative;
+  z-index: 10;
+}
+
+.price-display-wrapper {
+  margin: 1.5rem 0 3rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.price-circle {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  border: 2px dashed rgba(230, 57, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+}
+
+.price-num {
+  font-family: var(--font-display), serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1;
+}
+
+.price-unit {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ocean);
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+.precios-checklist {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 4rem auto;
+  text-align: left;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.check-icon {
+  width: 22px;
+  height: 22px;
+  background-color: rgba(230, 57, 0, 0.1);
+  color: var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.checklist-text {
+  font-weight: 500;
+}
+
+.precios-info-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .precios-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.info-box {
+  background-color: var(--color-white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  text-align: left;
+}
+
+.info-icon {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.info-heading {
+  font-family: var(--font-display), serif;
+  font-size: 1.2rem;
+  color: var(--color-ocean);
+  margin-bottom: 0.5rem;
+}
+
+.info-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+/* Weather Warning Box */
+.weather-alert {
+  background-color: var(--color-sand);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 12px 12px 0;
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  text-align: left;
+}
+
+@media (max-width: 639px) {
+  .weather-alert {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.weather-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.weather-heading {
+  font-family: var(--font-display), serif;
+  font-size: 1.15rem;
+  color: var(--color-ocean);
+  margin-bottom: 0.5rem;
+}
+
+.weather-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* ==========================================================================
+   FASE 5: CTA PRINCIPAL + DESCARGA PDF
+   ========================================================================== */
+.cta-section {
+  background-color: var(--color-white);
+  padding: 6rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.cta-container {
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.cta-title {
+  font-family: var(--font-display), serif;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  color: var(--color-ocean);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .cta-title {
+    font-size: 3.5rem;
+  }
+}
+
+.cta-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+  max-width: 650px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.cta-note {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   WAVE DIVIDER
+   ========================================================================== */
+.wave-container {
+  width: 100%;
+  height: 60px;
+  overflow: hidden;
+  line-height: 0;
+  margin: 0;
+  background: transparent;
+  pointer-events: none;
+  position: relative;
+  z-index: 20;
+}
+
+.wave-container--inverse {
+  transform: rotate(180deg);
+}
+
+.wave-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

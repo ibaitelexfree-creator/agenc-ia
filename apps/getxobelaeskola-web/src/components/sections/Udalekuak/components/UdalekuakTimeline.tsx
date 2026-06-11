@@ -48,7 +48,7 @@ export default function UdalekuakTimeline() {
       <motion.div
         initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className={`${styles.sectionHeader} ${styles.timelineTitle}`}
       >
@@ -66,7 +66,7 @@ export default function UdalekuakTimeline() {
         <motion.div
           initial={prefersReducedMotion ? { scaleX: 1 } : { scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
           className={styles.timelineLineBg}
         />
@@ -78,7 +78,7 @@ export default function UdalekuakTimeline() {
               key={item.id}
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className={styles.timelineNode}
             >
@@ -107,7 +107,7 @@ export default function UdalekuakTimeline() {
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ delay: 0.8, duration: 0.6 }}
         className={styles.timelineNote}
       >

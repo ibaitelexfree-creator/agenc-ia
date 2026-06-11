@@ -17,7 +17,7 @@ export default function UdalekuakIntro() {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className={styles.decoratorLine}
         />
@@ -25,7 +25,7 @@ export default function UdalekuakIntro() {
         <motion.h2
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
+          viewport={{ once: false, margin: '-100px' }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
           className={styles.introTitle}
         >
@@ -35,7 +35,7 @@ export default function UdalekuakIntro() {
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: false, margin: '-80px' }}
           transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           className={styles.introParagraph}
         >
@@ -52,7 +52,7 @@ export default function UdalekuakIntro() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 1, delay: 0.5 }}
           className={styles.introNote}
         >
@@ -63,7 +63,7 @@ export default function UdalekuakIntro() {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className={styles.decoratorLine}
           style={{ marginTop: '2.5rem' }}

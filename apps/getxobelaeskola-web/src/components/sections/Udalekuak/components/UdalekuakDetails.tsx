@@ -24,7 +24,7 @@ export default function UdalekuakDetails() {
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7 }}
           className={styles.sectionHeader}
         >
@@ -43,7 +43,7 @@ export default function UdalekuakDetails() {
               key={det.label}
               initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={prefersReducedMotion ? {} : { scale: 1.04 }}
               className={styles.detailCard}
@@ -59,7 +59,7 @@ export default function UdalekuakDetails() {
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className={styles.detailsTextBlock}
         >

@@ -68,7 +68,7 @@ export default function UdalekuakFeatureCards() {
       <motion.div
         initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        viewport={{ once: false }}
         transition={{ duration: 0.7 }}
         className={styles.sectionHeader}
       >
@@ -82,7 +82,7 @@ export default function UdalekuakFeatureCards() {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
+        viewport={{ once: false, margin: '-100px' }}
       >
         {features.map((feat) => (
           <motion.div

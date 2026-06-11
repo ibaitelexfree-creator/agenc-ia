@@ -53,7 +53,7 @@ export default function UdalekuakCTA() {
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.6 }}
           className={styles.ctaEyebrow}
         >
@@ -63,7 +63,7 @@ export default function UdalekuakCTA() {
         <motion.h2
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8 }}
           className={styles.ctaTitle}
         >
@@ -73,7 +73,7 @@ export default function UdalekuakCTA() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className={styles.ctaSubtitle}
         >
@@ -84,7 +84,7 @@ export default function UdalekuakCTA() {
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.4 }}
           className={styles.ctaButtons}
         >
