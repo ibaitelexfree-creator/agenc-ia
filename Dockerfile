@@ -45,11 +45,11 @@ ENV STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
 ENV RESEND_API_KEY=${RESEND_API_KEY}
 
 # Cache Next.js build cache
-RUN --mount=type=cache,target=/app/.next/cache \
-    echo "NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co" > .env.local && \
-    echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=placeholder" >> .env.local && \
+RUN --mount=type=cache,target=/app/apps/getxobelaeskola-web/.next/cache \
+    echo "NEXT_PUBLIC_SUPABASE_URL=https://placeholder.supabase.co" > apps/getxobelaeskola-web/.env.local && \
+    echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=placeholder" >> apps/getxobelaeskola-web/.env.local && \
     export NODE_OPTIONS="--max-old-space-size=4096" && \
-    npx next build
+    npm run build --workspace=apps/getxobelaeskola-web
 
 # -----------------------------
 # Stage 3: Runner
@@ -63,17 +63,17 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 # Copy and set ownership in one go
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/messages ./messages
+COPY --from=builder --chown=nextjs:nodejs /app/apps/getxobelaeskola-web/public ./apps/getxobelaeskola-web/public
+COPY --from=builder --chown=nextjs:nodejs /app/apps/getxobelaeskola-web/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/apps/getxobelaeskola-web/.next/static ./apps/getxobelaeskola-web/.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/apps/getxobelaeskola-web/messages ./apps/getxobelaeskola-web/messages
 
 # Ensure public/images exists and is writable
-RUN mkdir -p public/images && chown -R nextjs:nodejs public/images
+RUN mkdir -p apps/getxobelaeskola-web/public/images && chown -R nextjs:nodejs apps/getxobelaeskola-web/public/images
 
 USER nextjs
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-CMD ["node", "server.js"]
+CMD ["node", "apps/getxobelaeskola-web/server.js"]

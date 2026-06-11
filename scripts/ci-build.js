@@ -22,7 +22,7 @@ if (!fs.existsSync('.env.local')) {
 }
 
 // Run next build
-const build = spawn('npx', ['next', 'build'], {
+const build = spawn('npm', ['run', 'build', '--workspace=apps/getxobelaeskola-web'], {
     stdio: 'inherit',
     env: process.env,
     shell: true

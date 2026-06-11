@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/ci-build.js",
+    "build": "next build",
     "build:capacitor": "node scripts/build-capacitor.js",
     "start": "next start",
     "test": "vitest run",
