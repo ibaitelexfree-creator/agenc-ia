@@ -13,7 +13,8 @@ export default function ComoFunciona() {
   // Scroll Progress for the day timeline
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
+    layoutEffect: false
   });
 
   const barWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);

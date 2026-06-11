@@ -17,7 +17,8 @@ export default function CTACierre({ locale }: CTACierreProps) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
+    layoutEffect: false
   });
   // Línea decorativa que crece al scrollear
   const lineWidth = useTransform(scrollYProgress, [0, 0.6], ["0%", "100%"]);
