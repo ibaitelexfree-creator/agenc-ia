@@ -17,20 +17,20 @@ export default function SplitSection() {
   } as any);
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.92], [1, 1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.92], ["50%", "50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.92], ["50%", "50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.88], [1, 1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const scrolledLineOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
+  const scrolledLineOpacity = useTransform(scrollYProgress, [0.77, 0.85, 0.95, 0.98], [0, 1, 1, 0]);
 
   // Determine active contrast index based on scroll progress:
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      if (latest < 0.33) {
+      if (latest < 0.25) {
         setActiveIndex(0);
-      } else if (latest < 0.66) {
+      } else if (latest < 0.5) {
         setActiveIndex(1);
       } else {
         setActiveIndex(2);
@@ -79,7 +79,7 @@ export default function SplitSection() {
         <section
           ref={containerRef}
           className="relative"
-          style={{ height: '250vh' }}
+          style={{ height: '300vh' }}
         >
           <div 
             className="w-full flex overflow-hidden"
