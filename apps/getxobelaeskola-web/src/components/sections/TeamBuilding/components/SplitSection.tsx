@@ -8,7 +8,8 @@ import { CONTRASTS } from '../data/teamBuildingData';
 
 export default function SplitSection() {
   const t = useTranslations('team_building.split');
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [element, setElement] = useState<HTMLElement | null>(null);
+  const targetRef = { current: element };
   const shouldReduce = useReducedMotion();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -17,7 +18,7 @@ export default function SplitSection() {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: isMounted ? containerRef : undefined,
+    target: element ? targetRef : undefined,
     offset: ["start start", "end end"],
   });
 
@@ -84,7 +85,7 @@ export default function SplitSection() {
       {/* Desktop scroll animation (sticky container) */}
       <div className="hidden md:block">
         <section
-          ref={containerRef}
+          ref={setElement}
           className="relative h-[300vh]"
         >
           <div className="sticky top-0 h-screen w-full flex overflow-hidden">
