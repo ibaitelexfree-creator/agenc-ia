@@ -79,7 +79,7 @@ export default function SplitSection() {
         <section
           ref={containerRef}
           className="relative"
-          style={{ height: '200vh' }}
+          style={{ height: '175vh' }}
         >
           <div 
             className="w-full flex overflow-hidden"
