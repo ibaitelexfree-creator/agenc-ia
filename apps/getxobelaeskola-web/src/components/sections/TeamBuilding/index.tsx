@@ -35,9 +35,7 @@ export default function TeamBuilding() {
       <BoatDiagram />
       
       {/* Phase 4: Jornada Timeline Horizontal Slider */}
-      <div ref={timelineSectionRef}>
-        <JornadaTimeline />
-      </div>
+      <JornadaTimeline sectionRef={timelineSectionRef} />
       
       {/* Phase 5: Ocean/Business Transfer Mapping */}
       <AprendizajeMap />

@@ -5,7 +5,11 @@ import { motion, useReducedMotion, useTransform, useScroll } from 'framer-motion
 import { useTranslations } from 'next-intl';
 import { JORNADA } from '../data/teamBuildingData';
 
-export default function JornadaTimeline() {
+interface JornadaTimelineProps {
+  sectionRef?: React.RefObject<HTMLDivElement>;
+}
+
+export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
   const t = useTranslations('team_building.jornada');
   const shouldReduce = useReducedMotion();
 
@@ -63,7 +67,7 @@ export default function JornadaTimeline() {
   }
 
   return (
-    <>
+    <div ref={sectionRef}>
       {/* Desktop Sticky horizontal slider (400vh scroll height) */}
       <div className="hidden md:block">
         <section
@@ -209,6 +213,6 @@ export default function JornadaTimeline() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
