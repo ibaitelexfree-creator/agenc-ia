@@ -2,16 +2,18 @@
 'use client';
 
 import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import styles from './CelebraTuDia.module.css';
 import HeroSection from './components/HeroSection';
-import ScenaPanoramica from './components/ScenaPanoramica';
 import FloatingCards from './components/FloatingCards';
 import SailingBackground from './components/SailingBackground';
-import HorizontalTimeline from './components/HorizontalTimeline';
 import InteractiveBigSUP from './components/InteractiveBigSUP';
-import ChillOutSection from './components/ChillOutSection';
 import CateringCards from './components/CateringCards';
 import ClosingBalloons from './components/ClosingBalloons';
+
+const ScenaPanoramica = dynamic(() => import('./components/ScenaPanoramica'), { ssr: false });
+const HorizontalTimeline = dynamic(() => import('./components/HorizontalTimeline'), { ssr: false });
+const ChillOutSection = dynamic(() => import('./components/ChillOutSection'), { ssr: false });
 
 export default function CelebraTuDia() {
   const footerRef = useRef<HTMLDivElement>(null);

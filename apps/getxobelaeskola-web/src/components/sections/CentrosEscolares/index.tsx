@@ -2,8 +2,9 @@
 
 // index.tsx
 import { useRef } from 'react';
+import dynamic from 'next/dynamic';
 import CentrosHero from './components/CentrosHero';
-import ComoFunciona from './components/ComoFunciona';
+const ComoFunciona = dynamic(() => import('./components/ComoFunciona'), { ssr: false });
 import ActividadesCards from './components/ActividadesCards';
 import PreciosBloque from './components/PreciosBloque';
 import CtaSection from './components/CtaSection';

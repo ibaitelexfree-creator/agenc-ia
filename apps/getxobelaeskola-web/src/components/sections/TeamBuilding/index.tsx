@@ -1,12 +1,15 @@
 'use client';
 
 import React, { useRef } from 'react';
+import dynamic from 'next/dynamic';
+
 import TeamHero from './components/TeamHero';
-import SplitSection from './components/SplitSection';
 import BoatDiagram from './components/BoatDiagram';
-import JornadaTimeline from './components/JornadaTimeline';
 import AprendizajeMap from './components/AprendizajeMap';
 import DetallesCTA from './components/DetallesCTA';
+
+const SplitSection = dynamic(() => import('./components/SplitSection'), { ssr: false });
+const JornadaTimeline = dynamic(() => import('./components/JornadaTimeline'), { ssr: false });
 
 export default function TeamBuilding() {
   const ctaSectionRef = useRef<HTMLDivElement>(null);
