@@ -18,7 +18,8 @@ export default function SplitSection() {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"]
+    offset: ["start start", "end end"],
+    layoutEffect: false
   });
 
   // Scroll animations mapping
