@@ -17,20 +17,20 @@ export default function SplitSection() {
   } as any);
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.92], ["50%", "50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.92], ["50%", "50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.88], [1, 1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.95], ["50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.95], ["50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.85, 0.95], [1, 1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const scrolledLineOpacity = useTransform(scrollYProgress, [0.77, 0.85, 0.95, 0.98], [0, 1, 1, 0]);
+  const scrolledLineOpacity = useTransform(scrollYProgress, [0.8, 0.88, 0.95, 0.98], [0, 1, 1, 0]);
 
   // Determine active contrast index based on scroll progress:
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      if (latest < 0.25) {
+      if (latest < 0.33) {
         setActiveIndex(0);
-      } else if (latest < 0.5) {
+      } else if (latest < 0.66) {
         setActiveIndex(1);
       } else {
         setActiveIndex(2);
@@ -79,7 +79,7 @@ export default function SplitSection() {
         <section
           ref={containerRef}
           className="relative"
-          style={{ height: '300vh' }}
+          style={{ height: '250vh' }}
         >
           <div 
             className="w-full flex overflow-hidden"
@@ -88,26 +88,28 @@ export default function SplitSection() {
             
             {/* LEFT PANEL: Office (Tierra) */}
             <motion.div
-              style={{ width: leftWidth, opacity: leftOpacity }}
-              className="relative h-full bg-[#F7F8FA] flex flex-col justify-center px-12 lg:px-24 select-none border-r border-gray-200"
+              style={{ width: leftWidth, opacity: leftOpacity, overflow: 'hidden' }}
+              className="relative h-full bg-[#F7F8FA] flex flex-col justify-center select-none border-r border-gray-200"
             >
-              <div className="max-w-md">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeIndex}
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.45 }}
-                  >
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 block mb-3">
-                      {t(`contrast${activeIndex + 1}.office_label`)}
-                    </span>
-                    <h3 className="text-2xl lg:text-3xl font-serif text-gray-500 leading-snug">
-                      "{t(`contrast${activeIndex + 1}.office_phrase`)}"
-                    </h3>
-                  </motion.div>
-                </AnimatePresence>
+              <div style={{ width: '50vw' }} className="px-12 lg:px-24 flex flex-col justify-center">
+                <div className="max-w-md">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeIndex}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ duration: 0.45 }}
+                    >
+                      <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 block mb-3">
+                        {t(`contrast${activeIndex + 1}.office_label`)}
+                      </span>
+                      <h3 className="text-2xl lg:text-3xl font-serif text-gray-500 leading-snug">
+                        "{t(`contrast${activeIndex + 1}.office_phrase`)}"
+                      </h3>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </motion.div>
 
