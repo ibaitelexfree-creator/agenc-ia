@@ -50,7 +50,7 @@ export default async function LocaleLayout({
             <FramerProvider>
               <PushNotificationInitializer />
               <OfflineSyncProvider />
-              <div className="min-h-screen flex flex-col relative w-full overflow-x-hidden">
+              <div className="min-h-screen flex flex-col relative w-full overflow-x-clip">
                 <ConditionalLayout
                   navbar={<Navbar locale={locale} />}
                   footer={<Footer locale={locale} />}
