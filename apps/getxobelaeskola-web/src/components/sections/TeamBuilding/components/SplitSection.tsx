@@ -22,21 +22,21 @@ export default function SplitSection() {
   });
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.7], ["50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.7], ["50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.90], [1, 1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const scrolledLineOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
+  const scrolledLineOpacity = useTransform(scrollYProgress, [0.85, 0.92, 0.98, 1], [0, 1, 1, 0]);
 
   // Determine active contrast index based on scroll progress:
-  // 3 segments: 0-33%, 33-66%, 66-100%
+  // 3 segments: 0-25%, 25-50%, 50-75%
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      if (latest < 0.33) {
+      if (latest < 0.25) {
         setActiveIndex(0);
-      } else if (latest < 0.66) {
+      } else if (latest < 0.50) {
         setActiveIndex(1);
       } else {
         setActiveIndex(2);
