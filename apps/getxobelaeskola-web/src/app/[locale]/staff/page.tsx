@@ -123,7 +123,7 @@ export default async function StaffPage({ params: { locale } }: { params: { loca
 
 
     return (
-        <div className="bg-nautical-black text-white min-h-screen">
+        <div className="bg-nautical-black text-sea-foam min-h-screen admin-theme-override">
             <div className="bg-mesh opacity-10 fixed inset-0 pointer-events-none" />
             <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
                 <header className="mb-8 border-b border-white/5 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">

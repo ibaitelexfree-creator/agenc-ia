@@ -410,11 +410,11 @@ export default function SessionsTab({ locale }: SessionsTabProps) {
                     locale={locale}
                 />
             ) : (
-                <div className="overflow-x-auto border border-white/5 rounded-sm scrollbar-thin scrollbar-thumb-white/10">
+                <div className="overflow-x-auto border border-white/5 rounded-sm scrollbar-thin scrollbar-thumb-white/10 bg-white/5">
                     <table className="w-full text-left border-collapse min-w-[900px]">
                         <thead>
                             <tr className="border-b border-white/10 bg-white/[0.02]">
-                                <th className="sticky left-0 z-20 bg-[#020617] py-4 px-4 text-3xs uppercase tracking-[0.2em] text-accent font-bold shadow-[2px_0_10px_rgba(0,0,0,0.5)]">Fecha / Hora</th>
+                                <th className="sticky left-0 z-20 bg-white/5 py-4 px-4 text-3xs uppercase tracking-[0.2em] text-accent font-bold shadow-[2px_0_10px_rgba(0,0,0,0.03)]">Fecha / Hora</th>
                                 <th className="py-4 px-4 text-3xs uppercase tracking-[0.2em] text-accent font-bold">Curso</th>
                                 <th className="py-4 px-4 text-3xs uppercase tracking-[0.2em] text-accent font-bold">Instructor</th>
                                 <th className="hidden lg:table-cell py-4 px-4 text-3xs uppercase tracking-[0.2em] text-accent font-bold">Barco</th>
@@ -425,7 +425,7 @@ export default function SessionsTab({ locale }: SessionsTabProps) {
                         <tbody className="divide-y divide-white/5">
                             {sessions.map((session: Session) => (
                                 <tr key={session.id} className="group hover:bg-white/5 transition-colors">
-                                    <td className="sticky left-0 z-10 bg-[#020617] group-hover:bg-[#0f172a] transition-colors py-4 px-4 shadow-[2px_0_10px_rgba(0,0,0,0.5)]">
+                                    <td className="sticky left-0 z-10 bg-white/5 group-hover:bg-white/10 transition-colors py-4 px-4 shadow-[2px_0_10px_rgba(0,0,0,0.03)]">
                                         <div className="text-white text-2xs font-bold">
                                             {new Date(session.fecha_inicio).toLocaleDateString(locale, { day: '2-digit', month: '2-digit' })}
                                         </div>

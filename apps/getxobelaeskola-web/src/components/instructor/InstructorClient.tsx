@@ -69,7 +69,7 @@ export default function InstructorClient({ profile, initialSessions, initialInsc
     ];
 
     return (
-        <main className="min-h-screen pt-24 pb-12 px-6 flex flex-col items-center relative overflow-hidden">
+        <main className="min-h-screen pt-24 pb-12 px-6 flex flex-col items-center relative overflow-hidden text-sea-foam admin-theme-override">
             <div className="bg-mesh" />
 
             <div className="container max-w-7xl relative z-10 w-full">

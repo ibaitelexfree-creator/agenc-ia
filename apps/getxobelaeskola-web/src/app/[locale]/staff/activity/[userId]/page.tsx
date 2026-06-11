@@ -11,7 +11,7 @@ export default function StaffActivityPage({
     params: { locale: string; userId: string }
 }) {
     return (
-        <div className="bg-nautical-black text-white min-h-screen pt-32 pb-24 px-6 relative">
+        <div className="bg-nautical-black text-sea-foam min-h-screen pt-32 pb-24 px-6 relative admin-theme-override">
             <div className="bg-mesh opacity-10 fixed inset-0 pointer-events-none" />
             <StaffActivityContainer userId={userId} locale={locale} />
         </div>

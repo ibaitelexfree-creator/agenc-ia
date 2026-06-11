@@ -57,7 +57,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
 
     if (loading) {
         return (
-            <div className="bg-[#050c18] border border-white/5 rounded-sm p-4 animate-pulse h-64 flex items-center justify-center">
+            <div className="bg-transparent border border-white/5 rounded-sm p-4 animate-pulse h-64 flex items-center justify-center">
                 <div className="text-accent/40 text-xs uppercase tracking-widest font-black animate-bounce flex items-center gap-3">
                     <RefreshCw className="animate-spin" size={14} />
                     Sincronizando Estación...
@@ -68,7 +68,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
 
     if (error || !data) {
         return (
-            <div className="bg-[#050c18] border border-red-500/20 rounded-sm p-8 text-center space-y-4">
+            <div className="bg-transparent border border-red-500/20 rounded-sm p-8 text-center space-y-4">
                 <Info className="text-red-500 mx-auto" size={32} />
                 <p className="text-white/60 text-xs uppercase tracking-widest">Error de Sincronización Meteorológica</p>
                 <button onClick={fetchData} className="px-4 py-2 bg-white/5 text-[10px] uppercase font-black tracking-widest hover:bg-white/10 transition-all rounded-full">Reintentar</button>
@@ -79,7 +79,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
     const { weather, fleet, alerts } = data;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 weather-widget-dark">
             {/* ALERTAS OFICIALES EUSKALMET */}
             <AnimatePresence>
                 {alerts && alerts.length > 0 && (

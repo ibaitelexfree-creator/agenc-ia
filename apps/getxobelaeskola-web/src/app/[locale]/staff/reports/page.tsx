@@ -55,7 +55,7 @@ export default async function FinancialReportsPage({
     }));
 
     return (
-        <div className="bg-nautical-black text-white min-h-screen">
+        <div className="bg-nautical-black text-sea-foam min-h-screen admin-theme-override">
             <div className="bg-mesh opacity-10 fixed inset-0 pointer-events-none" />
             <div className="container mx-auto px-6 pt-24 pb-20 relative z-10">
                 <header className="mb-12 border-b border-white/5 pb-8 flex justify-between items-end">
