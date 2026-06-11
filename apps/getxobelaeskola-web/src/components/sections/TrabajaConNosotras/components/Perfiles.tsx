@@ -36,7 +36,7 @@ function PerfilRow({ perfil, isOpen, onToggle }: PerfilRowProps) {
         <motion.div
           className={styles['perfil-row__toggle']}
           animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
           aria-hidden="true"
         >
           +
@@ -53,7 +53,7 @@ function PerfilRow({ perfil, isOpen, onToggle }: PerfilRowProps) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ type: "tween", duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             style={{ overflow: "hidden" }}
           >
             <div className={styles['perfil-row__body-inner']}>
