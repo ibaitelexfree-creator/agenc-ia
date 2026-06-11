@@ -2,7 +2,7 @@
 'use client'
 
 import { useScroll, useTransform, MotionValue } from 'framer-motion'
-import { RefObject } from 'react'
+import { RefObject, useState, useEffect } from 'react'
 
 type ParallaxLayer = {
   speed: number    // 0 = estático, 1 = mueve igual que el scroll, -1 = inverso
@@ -12,8 +12,14 @@ export function useParallaxLayers(
   containerRef: RefObject<HTMLElement>,
   layers: ParallaxLayer[]
 ): MotionValue<string>[] {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: mounted ? containerRef : undefined,
     offset: ['start start', 'end start'],
   })
 

@@ -1,7 +1,7 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\CelebraTuDia\components\ChillOutSection.tsx
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import styles from '../CelebraTuDia.module.css';
@@ -13,10 +13,15 @@ export default function ChillOutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const [showCat, setShowCat] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start']
+    target: mounted ? sectionRef : undefined,
+    offset: ['start end', 'end start'],
   });
 
   // Grass parallax movement

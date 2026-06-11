@@ -1,7 +1,7 @@
 // src/components/sections/Section1Hero.tsx
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
@@ -35,8 +35,14 @@ export function Section1Hero() {
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
+    target: mounted ? heroRef : undefined,
     offset: ['start start', 'end start'],
   })
 

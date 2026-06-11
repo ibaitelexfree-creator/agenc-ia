@@ -1,7 +1,7 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\GuardaMaterial\components\HeroSection.tsx
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, Variants } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import styles from '../GuardaMaterial.module.css';
@@ -50,8 +50,14 @@ export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, margin: '-80px' });
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: mounted ? sectionRef : undefined,
     offset: ['start start', 'end start']
   });
   const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);

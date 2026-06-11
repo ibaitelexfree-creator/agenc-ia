@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { trabajaTranslations } from "../data/trabajaData";
 import styles from "../TrabajaConNosotras.module.css";
@@ -15,10 +15,15 @@ export default function CTACierre({ locale }: CTACierreProps) {
   const t = trabajaTranslations[locale] || trabajaTranslations.es;
   const PHRASE_PARTS = t.ctaCierrePhraseParts;
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: mounted ? ref : undefined,
     offset: ["start end", "end start"],
-    layoutEffect: false
   });
   // Línea decorativa que crece al scrollear
   const lineWidth = useTransform(scrollYProgress, [0, 0.6], ["0%", "100%"]);

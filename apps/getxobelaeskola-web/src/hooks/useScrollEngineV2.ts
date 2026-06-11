@@ -1,7 +1,7 @@
 'use client'
 
 import { useScroll, useTransform, useSpring, MotionValue } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 type ScrollEngineReturn = {
   containerRef: React.RefObject<HTMLDivElement>
@@ -16,8 +16,14 @@ type ScrollEngineReturn = {
 export function useScrollEngineV2(): ScrollEngineReturn {
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const { scrollYProgress } = useScroll({
-    target: containerRef,
+    target: mounted ? containerRef : undefined,
     offset: ['start start', 'end end'],
   })
 
