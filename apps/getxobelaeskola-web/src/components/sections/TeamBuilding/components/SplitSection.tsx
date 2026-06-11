@@ -17,9 +17,9 @@ export default function SplitSection() {
   } as any);
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.2, 0.75], ["50%", "50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.2, 0.75], ["50%", "50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.35, 0.65], [1, 1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.8, 0.95], ["50%", "50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.8, 0.95], ["50%", "50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.8, 0.92], [1, 1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   const scrolledLineOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
 
@@ -28,9 +28,9 @@ export default function SplitSection() {
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      if (latest < 0.22) {
+      if (latest < 0.33) {
         setActiveIndex(0);
-      } else if (latest < 0.45) {
+      } else if (latest < 0.66) {
         setActiveIndex(1);
       } else {
         setActiveIndex(2);
