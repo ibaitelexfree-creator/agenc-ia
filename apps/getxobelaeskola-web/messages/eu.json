@@ -1420,5 +1420,143 @@
     "cta_subtitle": "Itsasoan zure lekua aurkitzeko eta mila modu desberdinetan gozatzeko aukera ematen duelako.",
     "cta_button_start": "Hasi nabigatzen",
     "cta_button_all": "Ikusi ikastaro guztiak"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · ENPRESA ESTROPADA · GETXO",
+      "line1": "Hemen",
+      "line2": "hierarkiak",
+      "line3": "haizean",
+      "line4": "disolbatzen dira.",
+      "description": "Itsasoko esperientziak euren taldea benetan sendotu nahi duten enpresentzat.",
+      "cta": "★ Eskatu neurriko aurrekontua",
+      "cta_sub": "Nola funtzionatzen du",
+      "pill1": "⏱ 3–3,5h-ko jardunaldia",
+      "pill2": "⛵ J80 belaontziak",
+      "pill3": "✓ Esperientziarik gabe",
+      "pill4": "✎ Zure taldeari neurrira"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Bileren gela",
+        "office_phrase": "Komunikazioa planifikatu egiten da.",
+        "sea_label": "J80 ontzian",
+        "sea_phrase": "Ontzi gainean, berez gertatzen da."
+      },
+      "contrast2": {
+        "office_label": "Hierarkia finkoak",
+        "office_phrase": "Bada agintzen duenik eta obeditzen duenik.",
+        "sea_label": "Benetako tripulazioa",
+        "sea_phrase": "Guztiek duzue axola duen zeregin bat."
+      },
+      "contrast3": {
+        "office_label": "Presio ezaguna",
+        "office_phrase": "Ustekabekoak geroratu egiten dira kudeatzeko.",
+        "sea_label": "Haizeak erabakitzen du",
+        "sea_phrase": "Hemen ustekabekoak denbora errealean dira."
+      },
+      "scrolled_line": "Bulegoa ez da existitzen. Taldea bakarrik."
+    },
+    "diagram": {
+      "eyebrow": "BELAONTZIA",
+      "title": "Gure J80 ontziak. Bizkorrak, dibertigarriak eta elkarrekin ikasteko ezin hobeak.",
+      "proa": {
+        "label": "Proa",
+        "description": "Ontziaren aurrealdea. Hemen lan egiten duenak aurreko belak kudeatzen ditu; aurreikuspena eta komunikazio etengabea behar ditu.",
+        "skill": "Aurreikuspena · Komunikazioa"
+      },
+      "timon": {
+        "label": "Lema",
+        "description": "Lema daramanak ontzia gidatzen du, baina taldearen mende dago ondo egiteko. Benetako lidergoa, ez izenezkoa soilik.",
+        "skill": "Lidergoa · Entzumena"
+      },
+      "vela_mayor": {
+        "label": "Bela nagusia",
+        "description": "Bela nagusia. Bere kudeaketa kolektiboak koordinazio zehatza eta haize-aldaketei erreakzio azkarra eskatzen du.",
+        "skill": "Koordinazioa · Erreakzioa"
+      },
+      "winch": {
+        "label": "Wintxeak",
+        "description": "Tentsio-karreteak. Indarra, erritmoa eta lemazainarekiko komunikazioa eskatzen dituen lan fisiko eta mekanikoa.",
+        "skill": "Exekuzioa · Erritmoa"
+      }
+    },
+    "jornada": {
+      "title": "Nolakoa da zuen eguna",
+      "subtitle": "3h – 3h 30min guztira",
+      "land": "Lurra",
+      "sea": "Ura",
+      "step1": {
+        "fase": "Lurra",
+        "title": "Ongietorri briefing-a",
+        "desc": "Ontziratutako rolen, nabigazioaren oinarrien eta koordinazioaren garrantziaren azalpen sinplea. Teknikotasunik gabe.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Ura",
+        "title": "Nabigazioa eta rolak",
+        "desc": "Talde osoa J80 ontzietan. Pertsona bakoitzak benetako rol bat du. Maniobra praktikoak: biraketak, trasluchadak, komunikazioa presiopean.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Ura",
+        "title": "Itsas lasterketa ontzien artean",
+        "desc": "Aukerakoa. Ontzi bat baino gehiago badago, estropada lagunkoi bat non helburua ez den irabaztea, ikasitakoa aplikatzea baizik. Haizeak guztiak berdintzen ditu.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Lurra",
+        "title": "Bateratze saioa",
+        "desc": "Lurrera buelta. Bizi izandakoa integratzea: zer gertatu da ontzian? Zer eraman daiteke lanera? Zirkulua ixteko elkarrizketa.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "ERAMATEN DUZUENA",
+      "title": "Ez da puntualki egiteko jarduera bat. Zuen komunikazio modua aldatzen duen bizipena da.",
+      "quote": "Amaieran, bateratze saio bat egiten dugu bizi izandakoa integratzeko eta lan-eremura eramateko.",
+      "trans1": {
+        "mar": "Biraketa maniobra",
+        "trabajo": "Aldaketetara egokitzea"
+      },
+      "trans2": {
+        "mar": "Komunikazioa presiopean",
+        "trabajo": "Krisi kudeaketa"
+      },
+      "trans3": {
+        "mar": "Benetako rola ontzian",
+        "trabajo": "Banakako erantzukizuna"
+      },
+      "trans4": {
+        "mar": "Haize ezpredictiboa",
+        "trabajo": "Ziurgabetasunarekiko tolerantzia"
+      },
+      "trans5": {
+        "mar": "Estropada kolektiboa",
+        "trabajo": "Taldea egoaren gainetik"
+      }
+    },
+    "details": {
+      "duration_lbl": "Iraupena",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Taldeak",
+      "groups_val": "Zure taldearen tamainara egokituta",
+      "availability_lbl": "Eskuragarritasuna",
+      "availability_val": "Adosteko · Urte osoan",
+      "level_lbl": "Beharrezko maila",
+      "level_val": "Ez da aldez aurreko esperientziarik behar",
+      "form_title": "Zure taldea bileren gelatik ateratzeko prest?",
+      "form_subtitle": "Proposamena zure taldeari eta aurrekontuari egokitzen diogu",
+      "form_company": "Enpresaren izena",
+      "form_people": "Parte-hartzaile kopurua",
+      "form_date": "Nahiago duzuen data",
+      "form_contact": "Harremanetarako izen-abizenak",
+      "form_email": "Harremanetarako posta elektronikoa",
+      "form_message": "Esaiguzu zein diren zure behar espezifikoak",
+      "form_success": "Eskaera ongi bidali da! Zurekin harremanetan jarriko gara ahalik eta lasterren.",
+      "cta_gold": "Eskatu neurriko aurrekontua",
+      "cta_secondary": "Idatzi iezaguzu zuzenean",
+      "glow_tooltip": "Proposamena zure taldeari eta aurrekontuari egokitzen diogu"
+    }
   }
 }

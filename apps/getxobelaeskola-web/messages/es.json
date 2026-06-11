@@ -1472,5 +1472,143 @@
     "cta_subtitle": "Porque permite encontrar tu propio lugar en la mar y disfrutarla de mil formas distintas.",
     "cta_button_start": "Empezar a navegar",
     "cta_button_all": "Ver todos los cursos"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · REGATA CORPORATIVA · GETXO",
+      "line1": "Aquí las",
+      "line2": "jerarquías",
+      "line3": "se disuelven",
+      "line4": "en el viento.",
+      "description": "Experiencias en la mar para empresas que buscan fortalecer su equipo de verdad.",
+      "cta": "★ Solicitar presupuesto a medida",
+      "cta_sub": "Cómo funciona",
+      "pill1": "⏱ 3–3,5h de jornada",
+      "pill2": "⛵ J80 veleros",
+      "pill3": "✓ Sin exp. necesaria",
+      "pill4": "✎ A medida tu grupo"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Sala de reuniones",
+        "office_phrase": "La comunicación se planifica.",
+        "sea_label": "A bordo del J80",
+        "sea_phrase": "A bordo, sucede sola."
+      },
+      "contrast2": {
+        "office_label": "Jerarquías fijas",
+        "office_phrase": "Hay quien manda y quien obedece.",
+        "sea_label": "Tripulación real",
+        "sea_phrase": "Todas tenéis una función que importa."
+      },
+      "contrast3": {
+        "office_label": "Presión conocida",
+        "office_phrase": "Los imprevistos se gestionan en diferido.",
+        "sea_label": "El viento decide",
+        "sea_phrase": "Aquí los imprevistos son en tiempo real."
+      },
+      "scrolled_line": "La oficina ya no existe. Solo el equipo."
+    },
+    "diagram": {
+      "eyebrow": "EL VELERO",
+      "title": "Nuestros J80. Ágiles, divertidos y perfectos para aprender juntos.",
+      "proa": {
+        "label": "Proa",
+        "description": "El frente del barco. Quien trabaja aquí maneja las velas de proa y necesita anticipación y comunicación constante.",
+        "skill": "Anticipación · Comunicación"
+      },
+      "timon": {
+        "label": "Timón",
+        "description": "Quien lleva el timón dirige el barco pero depende del equipo para hacerlo bien. Liderazgo real, no nominal.",
+        "skill": "Liderazgo · Escucha"
+      },
+      "vela_mayor": {
+        "label": "Vela mayor",
+        "description": "La vela principal. Su manejo colectivo requiere coordinación precisa y reacción rápida a los cambios de viento.",
+        "skill": "Coordinación · Reacción"
+      },
+      "winch": {
+        "label": "Winches",
+        "description": "Los carretes de tensión. Trabajo físico y mecánico que requiere fuerza, ritmo y comunicación con el timonel.",
+        "skill": "Ejecución · Ritmo"
+      }
+    },
+    "jornada": {
+      "title": "Así es vuestro día",
+      "subtitle": "3h – 3h 30min total",
+      "land": "Tierra",
+      "sea": "Agua",
+      "step1": {
+        "fase": "Tierra",
+        "title": "Briefing de bienvenida",
+        "desc": "Explicación sencilla de los roles a bordo, las bases de la navegación y la importancia de la coordinación. Sin tecnicismos.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Agua",
+        "title": "Navegación y roles",
+        "desc": "Todo el equipo a bordo de los J80. Cada persona ocupa un rol real. Las maniobras son la práctica: viradas, trasluchadas, comunicación bajo presión.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Agua",
+        "title": "Regata entre barcos",
+        "desc": "Opcional. Si hay varios barcos, una regata amistosa donde el foco no es ganar sino aplicar lo aprendido. El viento iguala a todos.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Tierra",
+        "title": "Puesta en común",
+        "desc": "Vuelta a tierra. Integración de lo vivido: ¿qué pasó en el barco? ¿qué se puede trasladar al trabajo? Una conversación que cierra el círculo.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "LO QUE OS LLEVÁIS",
+      "title": "No es una actividad puntual. Es una vivencia que cambia cómo os comunicáis.",
+      "quote": "Al finalizar, realizamos una puesta en común para integrar lo vivido y trasladarlo al ámbito laboral.",
+      "trans1": {
+        "mar": "Maniobra de virada",
+        "trabajo": "Adaptarse al cambio"
+      },
+      "trans2": {
+        "mar": "Comunicación bajo presión",
+        "trabajo": "Gestión de crisis"
+      },
+      "trans3": {
+        "mar": "Rol real a bordo",
+        "trabajo": "Responsabilidad individual"
+      },
+      "trans4": {
+        "mar": "Viento impredecible",
+        "trabajo": "Tolerancia a la incertidumbre"
+      },
+      "trans5": {
+        "mar": "Regata colectiva",
+        "trabajo": "El equipo por encima del ego"
+      }
+    },
+    "details": {
+      "duration_lbl": "Duración",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Grupos",
+      "groups_val": "Adaptados al tamaño de tu equipo",
+      "availability_lbl": "Disponibilidad",
+      "availability_val": "A convenir · Todo el año",
+      "level_lbl": "Nivel requerido",
+      "level_val": "Sin experiencia previa necesaria",
+      "form_title": "¿Listo para sacar a tu equipo de la sala de reuniones?",
+      "form_subtitle": "Adaptamos la propuesta a tu equipo y presupuesto",
+      "form_company": "Nombre de la empresa",
+      "form_people": "Nº de participantes",
+      "form_date": "Fecha preferida",
+      "form_contact": "Nombre y apellidos de contacto",
+      "form_email": "Email de contacto",
+      "form_message": "Cuéntanos tus necesidades específicas",
+      "form_success": "¡Solicitud enviada con éxito! Nos pondremos en contacto contigo lo antes posible.",
+      "cta_gold": "Solicitar presupuesto a medida",
+      "cta_secondary": "Escribirnos directamente",
+      "glow_tooltip": "Adaptamos la propuesta a tu equipo y presupuesto"
+    }
   }
 }

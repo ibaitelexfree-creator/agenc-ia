@@ -13,21 +13,21 @@ interface HeroTrabajaProps {
 const eyebrowV = {
   hidden:  { opacity: 0, y: -8 },
   visible: { opacity: 1, y: 0,
-    transition: { type: "tween", duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as any }
+    transition: { type: "tween" as const, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as any }
   }
 };
 
 const wordV = (delay: number) => ({
   hidden:  { opacity: 0, y: 40 },
   visible: { opacity: 1, y: 0,
-    transition: { type: "tween", duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] as any }
+    transition: { type: "tween" as const, duration: 0.7, delay, ease: [0.25, 0.46, 0.45, 0.94] as any }
   }
 });
 
 const roleV = {
   initial: { opacity: 0, y: 12, filter: "blur(4px)" },
   animate: { opacity: 1, y: 0,  filter: "blur(0px)",
-    transition: { type: "tween", duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as any }
+    transition: { type: "tween" as const, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as any }
   },
   exit:    { opacity: 0, y: -10, filter: "blur(4px)",
     transition: { duration: 0.25 }

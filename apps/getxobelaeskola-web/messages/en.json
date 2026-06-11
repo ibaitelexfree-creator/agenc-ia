@@ -1412,5 +1412,143 @@
     "cta_subtitle": "Because it allows you to find your own place in the sea and enjoy it in a thousand different ways.",
     "cta_button_start": "Start sailing",
     "cta_button_all": "View all courses"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · CORPORATE REGATTA · GETXO",
+      "line1": "Here,",
+      "line2": "hierarchies",
+      "line3": "dissolve",
+      "line4": "into the wind.",
+      "description": "Experiences on the water for companies seeking to truly strengthen their team.",
+      "cta": "★ Request custom quote",
+      "cta_sub": "How it works",
+      "pill1": "⏱ 3–3.5h session",
+      "pill2": "⛵ J80 sailboats",
+      "pill3": "✓ No exp. required",
+      "pill4": "✎ Tailored to your group"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Meeting room",
+        "office_phrase": "Communication is planned.",
+        "sea_label": "Aboard the J80",
+        "sea_phrase": "Aboard, it happens on its own."
+      },
+      "contrast2": {
+        "office_label": "Fixed hierarchies",
+        "office_phrase": "There are those who rule and those who obey.",
+        "sea_label": "Real crew",
+        "sea_phrase": "Everyone has a role that matters."
+      },
+      "contrast3": {
+        "office_label": "Familiar pressure",
+        "office_phrase": "Unexpected events are managed in delay.",
+        "sea_label": "The wind decides",
+        "sea_phrase": "Here, unexpected events happen in real time."
+      },
+      "scrolled_line": "The office no longer exists. Only the team."
+    },
+    "diagram": {
+      "eyebrow": "THE SAILBOAT",
+      "title": "Our J80s. Agile, fun, and perfect for learning together.",
+      "proa": {
+        "label": "Bow",
+        "description": "The front of the boat. Whoever works here handles the headsails, requiring foresight and constant communication.",
+        "skill": "Foresight · Communication"
+      },
+      "timon": {
+        "label": "Helm",
+        "description": "Whoever steers directs the boat but relies on the team to do it well. Real leadership, not just nominal.",
+        "skill": "Leadership · Listening"
+      },
+      "vela_mayor": {
+        "label": "Mainsail",
+        "description": "The primary sail. Its collective handling requires precise coordination and quick reaction to wind changes.",
+        "skill": "Coordination · Reaction"
+      },
+      "winch": {
+        "label": "Winches",
+        "description": "Tension winches. Physical and mechanical work that requires strength, rhythm, and communication with the helmsman.",
+        "skill": "Execution · Rhythm"
+      }
+    },
+    "jornada": {
+      "title": "Your Day",
+      "subtitle": "3h – 3h 30min total",
+      "land": "Land",
+      "sea": "Water",
+      "step1": {
+        "fase": "Land",
+        "title": "Welcome briefing",
+        "desc": "Simple explanation of roles on board, basics of sailing, and the importance of coordination. No technical jargon.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Water",
+        "title": "Sailing and roles",
+        "desc": "The entire team on board the J80s. Every person has a real role. Manoeuvres are the practice: tacks, gybes, communication under pressure.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Water",
+        "title": "Friendly regatta",
+        "desc": "Optional. If there are multiple boats, a friendly regatta where the focus is not on winning, but on applying what was learned. The wind equals everyone.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Land",
+        "title": "Debriefing",
+        "desc": "Back on land. Integrating what was lived: what happened on the boat? What can be taken back to work? A conversation that closes the loop.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "WHAT YOU TAKE AWAY",
+      "title": "It is not a one-off activity. It is an experience that changes how you communicate.",
+      "quote": "At the end, we hold a debriefing to integrate what was lived and apply it to the workplace.",
+      "trans1": {
+        "mar": "Tacking manoeuvre",
+        "trabajo": "Adapting to change"
+      },
+      "trans2": {
+        "mar": "Communication under pressure",
+        "trabajo": "Crisis management"
+      },
+      "trans3": {
+        "mar": "Real role on board",
+        "trabajo": "Individual responsibility"
+      },
+      "trans4": {
+        "mar": "Unpredictable wind",
+        "trabajo": "Tolerance for uncertainty"
+      },
+      "trans5": {
+        "mar": "Collective regatta",
+        "trabajo": "Team above ego"
+      }
+    },
+    "details": {
+      "duration_lbl": "Duration",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Groups",
+      "groups_val": "Adapted to your team size",
+      "availability_lbl": "Availability",
+      "availability_val": "By agreement · Year-round",
+      "level_lbl": "Level required",
+      "level_val": "No prior experience necessary",
+      "form_title": "Ready to get your team out of the meeting room?",
+      "form_subtitle": "We adapt the proposal to your team and budget",
+      "form_company": "Company name",
+      "form_people": "Number of participants",
+      "form_date": "Preferred date",
+      "form_contact": "Contact name and surname",
+      "form_email": "Contact email",
+      "form_message": "Tell us about your specific needs",
+      "form_success": "Request sent successfully! We will get in touch with you as soon as possible.",
+      "cta_gold": "Request custom quote",
+      "cta_secondary": "Write to us directly",
+      "glow_tooltip": "We adapt the proposal to your team and budget"
+    }
   }
 }
