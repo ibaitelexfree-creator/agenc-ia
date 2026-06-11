@@ -17,9 +17,9 @@ export default function SplitSection() {
   } as any);
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.8, 0.95], ["50%", "50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.8, 0.95], ["50%", "50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.8, 0.92], [1, 1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.92], [1, 1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
   const scrolledLineOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
 
@@ -79,7 +79,7 @@ export default function SplitSection() {
         <section
           ref={containerRef}
           className="relative"
-          style={{ height: '300vh' }}
+          style={{ height: '250vh' }}
         >
           <div 
             className="w-full flex overflow-hidden"
