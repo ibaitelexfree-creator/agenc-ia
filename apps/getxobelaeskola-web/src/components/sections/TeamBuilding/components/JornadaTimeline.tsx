@@ -21,7 +21,7 @@ export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
     layoutEffect: false
   } as any);
   const slideProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1]);
-  const x = useTransform(slideProgress, (progress) => `calc(-1 * (100% - 100vw + 10vw) * ${progress})`);
+  const x = useTransform(slideProgress, (progress) => `calc(-1 * (100% - 100vw) * ${progress})`);
 
 
 
@@ -104,7 +104,9 @@ export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
                 height: '100%',
                 alignItems: 'center',
                 paddingLeft: '10vw',
-                x
+                transform: 'translateX(var(--scroll-translate))',
+                // @ts-ignore
+                '--scroll-translate': x
               }}
             >
               {JORNADA.map((step, idx) => {
