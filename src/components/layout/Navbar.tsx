@@ -193,7 +193,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-4 md:py-8 flex justify-between items-center bg-white/90 backdrop-blur-2xl border-b border-sea-foam/10 transition-all duration-500 hover:bg-white/95 min-h-[70px]">
+            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-2 md:py-3 flex justify-between items-center bg-white/90 backdrop-blur-2xl border-b border-sea-foam/10 transition-all duration-500 hover:bg-white/95 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
@@ -201,7 +201,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     className="flex items-center gap-4 group transition-premium relative z-[110]"
                     onClick={() => setIsMenuOpen(false)}
                 >
-                    <div className="relative w-12 h-12 md:w-16 md:h-16 flex-shrink-0 transition-premium group-hover:scale-110">
+                    <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0 transition-premium group-hover:scale-110">
                         <Image
                             src="/images/LogoGetxoBelaEskola.webp"
                             alt="Getxo Bela Eskola"
@@ -230,7 +230,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={`/${locale}/${item.href}`}
                                 prefetch={false}
-                                className="relative py-4 text-sea-foam/50 hover:text-sea-foam transition-premium group/nav flex items-center gap-1.5"
+                                className="relative py-2 text-sea-foam/50 hover:text-sea-foam transition-premium group/nav flex items-center gap-1.5"
                             >
                                 {item.icon}
                                 {getLabel(item.label)}
