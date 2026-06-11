@@ -8,8 +8,7 @@ import { CONTRASTS } from '../data/teamBuildingData';
 
 export default function SplitSection() {
   const t = useTranslations('team_building.split');
-  const [element, setElement] = useState<HTMLElement | null>(null);
-  const targetRef = { current: element };
+  const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduce = useReducedMotion();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -18,26 +17,27 @@ export default function SplitSection() {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: element ? targetRef : undefined,
+    target: containerRef,
     offset: ["start start", "end end"],
-  });
+    layoutEffect: false
+  } as any);
 
   // Scroll animations mapping
-  const leftWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "0%"]);
-  const rightWidth = useTransform(scrollYProgress, [0, 0.75, 0.95], ["50%", "50%", "100%"]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.75, 0.90], [1, 1, 0]);
+  const leftWidth = useTransform(scrollYProgress, [0, 0.7], ["50%", "0%"]);
+  const rightWidth = useTransform(scrollYProgress, [0, 0.7], ["50%", "100%"]);
+  const leftOpacity = useTransform(scrollYProgress, [0, 0.55], [1, 0]);
   const rightScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const scrolledLineOpacity = useTransform(scrollYProgress, [0.85, 0.92, 0.98, 1], [0, 1, 1, 0]);
+  const scrolledLineOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
 
   // Determine active contrast index based on scroll progress:
-  // 3 segments: 0-25%, 25-50%, 50-75%
+  // 3 segments: 0-33%, 33-66%, 66-100%
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     return scrollYProgress.on("change", (latest) => {
-      if (latest < 0.25) {
+      if (latest < 0.33) {
         setActiveIndex(0);
-      } else if (latest < 0.50) {
+      } else if (latest < 0.66) {
         setActiveIndex(1);
       } else {
         setActiveIndex(2);
@@ -85,7 +85,7 @@ export default function SplitSection() {
       {/* Desktop scroll animation (sticky container) */}
       <div className="hidden md:block">
         <section
-          ref={setElement}
+          ref={containerRef}
           className="relative h-[300vh]"
         >
           <div className="sticky top-0 h-screen w-full flex overflow-hidden">

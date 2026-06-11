@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useStickyScroll } from '../../../../hooks/useStickyScroll';
 import { JORNADA } from '../data/teamBuildingData';
@@ -16,6 +16,7 @@ export default function JornadaTimeline() {
   }, []);
 
   const { ref, scrollYProgress } = useStickyScroll(JORNADA.length);
+  const x = useTransform(scrollYProgress, (progress) => `calc(-1 * (100% - 100vw + 10vw) * ${progress})`);
 
   if (!isMounted) return null;
 
@@ -94,9 +95,7 @@ export default function JornadaTimeline() {
                 height: '100%',
                 alignItems: 'center',
                 paddingLeft: '10vw',
-                // Pass the motion value to a CSS variable
-                ['--scroll-progress' as any]: scrollYProgress,
-                transform: 'translateX(calc(-1 * (100% - 100vw + 10vw) * var(--scroll-progress)))'
+                x
               }}
             >
               {JORNADA.map((step, idx) => {

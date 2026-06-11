@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import { useScroll, useTransform } from 'framer-motion';
 
 export const useStickyScroll = (itemCount: number) => {
-  const [element, setElement] = useState<HTMLElement | null>(null);
-  const targetRef = { current: element };
+  const ref = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({ 
-    target: element ? targetRef : undefined,
+    target: ref,
     offset: ["start start", "end end"],
-  });
+    layoutEffect: false
+  } as any);
   const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(itemCount - 1) * 100}%`]);
-  return { setElement, x, scrollYProgress };
+  return { ref, x, scrollYProgress };
 };
