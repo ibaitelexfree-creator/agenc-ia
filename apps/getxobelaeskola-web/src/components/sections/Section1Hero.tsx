@@ -1,7 +1,7 @@
 // src/components/sections/Section1Hero.tsx
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
@@ -35,16 +35,12 @@ export function Section1Hero() {
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const { scrollYProgress: heroScroll } = useScroll({
-    target: mounted ? heroRef : undefined,
+    target: heroRef,
     offset: ['start start', 'end start'],
-  })
+    layoutEffect: false,
+  } as any)
 
   // 3 capas de parallax con velocidades distintas
   const layer1Y = useTransform(heroScroll, [0, 1], ['0%', '15%'])   // imagen fondo — mueve lento

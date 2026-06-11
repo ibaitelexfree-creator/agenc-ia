@@ -1,7 +1,7 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\CelebraTuDia\components\HorizontalTimeline.tsx
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import styles from '../CelebraTuDia.module.css';
@@ -10,16 +10,12 @@ export default function HorizontalTimeline() {
   const t = useTranslations('celebra_dia.timeline') as any;
   const sectionRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const { scrollYProgress } = useScroll({
-    target: mounted ? sectionRef : undefined,
+    target: sectionRef,
     offset: ['start end', 'end start'],
-  });
+    layoutEffect: false
+  } as any);
 
   // Scale timeline progress line from 0 to 1 as user scrolls
   const scaleX = useTransform(scrollYProgress, [0.25, 0.75], [0, 1]);

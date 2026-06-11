@@ -1,5 +1,4 @@
-// ComoFunciona.tsx
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 import { scaleIn, fadeUp, staggerContainer } from '@/lib/motionPresets';
@@ -9,17 +8,13 @@ export default function ComoFunciona() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const { ref: revealRef, isInView } = useScrollReveal(0.15);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Scroll Progress for the day timeline
   const { scrollYProgress } = useScroll({
-    target: mounted ? sectionRef : undefined,
+    target: sectionRef,
     offset: ["start end", "end start"],
-  });
+    layoutEffect: false
+  } as any);
 
   const barWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
 

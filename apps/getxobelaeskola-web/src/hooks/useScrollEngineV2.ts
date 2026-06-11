@@ -16,16 +16,11 @@ type ScrollEngineReturn = {
 export function useScrollEngineV2(): ScrollEngineReturn {
   const containerRef = useRef<HTMLDivElement>(null)
 
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
   const { scrollYProgress } = useScroll({
-    target: mounted ? containerRef : undefined,
+    target: containerRef,
     offset: ['start start', 'end end'],
-  })
+    layoutEffect: false
+  } as any)
 
   const scrollPoints = [0, 0.12, 0.28, 0.40, 0.68, 0.78, 0.92, 1.0]
   const prowValues = [0, 0, 0, 0, 0, 0, 0, 0] // always pointing forward/down

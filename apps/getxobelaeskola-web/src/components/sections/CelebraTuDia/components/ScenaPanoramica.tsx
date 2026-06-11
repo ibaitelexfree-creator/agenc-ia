@@ -10,16 +10,12 @@ export default function ScenaPanoramica() {
   const prefersReducedMotion = useReducedMotion();
   const [girlFell, setGirlFell] = useState(false);
   const [dogBarked, setDogBarked] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const { scrollYProgress } = useScroll({
-    target: mounted ? containerRef : undefined,
+    target: containerRef,
     offset: ['start end', 'end start'],
-  });
+    layoutEffect: false
+  } as any);
 
   // Parallax offsets
   const skyX = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [-30, 30]);

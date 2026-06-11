@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
 
@@ -6,17 +6,13 @@ export default function CTAFinal() {
   const ref      = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
   const [sent, setSent] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Texto del lado izquierdo que escala sutilmente al scrollear
   const { scrollYProgress } = useScroll({
-    target: mounted ? ref : undefined,
+    target: ref,
     offset: ["start end", "end start"],
-  });
+    layoutEffect: false
+  } as any);
   const textScale = useTransform(scrollYProgress, [0, 0.5], [0.9, 1.02]);
 
   return (
