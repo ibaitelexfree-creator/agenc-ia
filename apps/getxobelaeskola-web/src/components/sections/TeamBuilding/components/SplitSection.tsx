@@ -79,9 +79,13 @@ export default function SplitSection() {
       <div className="hidden md:block">
         <section
           ref={containerRef}
-          className="relative h-[300vh]"
+          className="relative"
+          style={{ height: '300vh' }}
         >
-          <div className="sticky top-0 h-screen w-full flex overflow-hidden">
+          <div 
+            className="w-full flex overflow-hidden"
+            style={{ position: 'sticky', top: 0, height: '100vh' }}
+          >
             
             {/* LEFT PANEL: Office (Tierra) */}
             <motion.div

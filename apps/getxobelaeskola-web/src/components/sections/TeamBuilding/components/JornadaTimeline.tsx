@@ -68,9 +68,13 @@ export default function JornadaTimeline() {
       <div className="hidden md:block">
         <section
           ref={containerRef}
-          className="relative h-[400vh]"
+          className="relative"
+          style={{ height: '400vh' }}
         >
-          <div className="sticky top-0 h-screen w-full overflow-hidden bg-white select-none">
+          <div 
+            className="w-full overflow-hidden bg-white select-none"
+            style={{ position: 'sticky', top: 0, height: '100vh' }}
+          >
             
             {/* Header section over horizontal layout */}
             <div className="absolute top-12 left-12 z-20 text-left">
