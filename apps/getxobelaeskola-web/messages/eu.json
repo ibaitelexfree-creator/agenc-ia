@@ -1315,7 +1315,7 @@
       "eyebrow": "GetxoBelaEskola · Uda",
       "title": "Udalekuak",
       "subtitle": "Itsasoan aztarna uzten duten asteak",
-      "cta": "Erreserbatu lekua 2025 →",
+      "cta": "Erreserbatu lekua {year} →",
       "scroll": "aurkitu"
     },
     "intro": {
@@ -1369,7 +1369,7 @@
       "body2": "Eguraldiak nabigatzen uzten ez duenean, jolas kooperatiboak, tailerrak edo teoria praktikoa bezalako alternatibak antolatzen dira. Ostiralero askaria egiten dugu astea amaitzeko — bizi izandakoa ospatzeko une berezia."
     },
     "cta": {
-      "eyebrow": "2025eko uda",
+      "eyebrow": "{year}eko uda",
       "title": "Itsasoratzeko prest?",
       "subtitle": "Leku mugatuak dira. Ez utzi uda ihes egiten.",
       "btn_enroll": "Eman izena orain →",

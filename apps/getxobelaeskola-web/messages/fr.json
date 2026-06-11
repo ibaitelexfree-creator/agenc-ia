@@ -859,7 +859,7 @@
       "eyebrow": "GetxoBelaEskola · Été",
       "title": "Udalekuak",
       "subtitle": "Des semaines qui laissent une empreinte sur la mer",
-      "cta": "Réserver votre place 2025 →",
+      "cta": "Réserver votre place {year} →",
       "scroll": "découvrir"
     },
     "intro": {
@@ -913,7 +913,7 @@
       "body2": "Lorsque la météo ne permet pas de naviguer, des alternatives telles que des jeux coopératifs, des ateliers ou de la théorie pratique sont organisées. Chaque vendredi, nous clôturons la semaine avec un goûter partagé — un moment privilégié pour célébrer ce qui a été vécu."
     },
     "cta": {
-      "eyebrow": "été 2025",
+      "eyebrow": "été {year}",
       "title": "Prêt à embarquer ?",
       "subtitle": "Les places sont limitées. Ne laissez pas passer l'été.",
       "btn_enroll": "S'inscrire maintenant →",

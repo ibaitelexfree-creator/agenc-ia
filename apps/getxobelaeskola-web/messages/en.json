@@ -1307,7 +1307,7 @@
       "eyebrow": "GetxoBelaEskola · Summer",
       "title": "Udalekuak",
       "subtitle": "Weeks that leave a mark on the sea",
-      "cta": "Book your place 2025 →",
+      "cta": "Book your place {year} →",
       "scroll": "discover"
     },
     "intro": {
@@ -1361,7 +1361,7 @@
       "body2": "When the weather doesn't allow sailing, we organize alternatives like cooperative games, workshops, or practical theory. Every Friday we close the week with a shared snack time — a special moment to celebrate what we have lived."
     },
     "cta": {
-      "eyebrow": "summer 2025",
+      "eyebrow": "summer {year}",
       "title": "Ready to sail?",
       "subtitle": "Places are limited. Don't let summer slip away.",
       "btn_enroll": "Enroll now →",

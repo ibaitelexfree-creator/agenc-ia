@@ -13,6 +13,10 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
   const t = useTranslations('udalekuak.hero') as any;
   const prefersReducedMotion = useReducedMotion();
 
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth(); // 0 is January, 9 is October
+  const targetYear = currentMonth >= 9 ? currentYear + 1 : currentYear;
+
   return (
     <section className={styles.heroSection}>
       {/* BACKGROUND: Video/Photo */}
@@ -72,7 +76,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
             onClick={onCtaClick}
             className={styles.heroCta}
           >
-            {t('cta')}
+            {t('cta', { year: targetYear })}
           </button>
         </motion.div>
       </div>

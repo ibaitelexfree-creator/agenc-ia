@@ -13,6 +13,10 @@ export default function UdalekuakCTA() {
   const locale = (params?.locale as string) || 'es';
   const prefersReducedMotion = useReducedMotion();
 
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().getMonth(); // 0 is January, 9 is October
+  const targetYear = currentMonth >= 9 ? currentYear + 1 : currentYear;
+
   return (
     <section id="inscripcion" className={styles.ctaSection}>
       {/* Decorative Wave Top */}
@@ -53,7 +57,7 @@ export default function UdalekuakCTA() {
           transition={{ duration: 0.6 }}
           className={styles.ctaEyebrow}
         >
-          {t('eyebrow')}
+          {t('eyebrow', { year: targetYear })}
         </motion.p>
 
         <motion.h2

@@ -1367,7 +1367,7 @@
       "eyebrow": "GetxoBelaEskola · Verano",
       "title": "Udalekuak",
       "subtitle": "Semanas que dejan huella en la mar",
-      "cta": "Reservar plaza 2025 →",
+      "cta": "Reservar plaza {year} →",
       "scroll": "descubrir"
     },
     "intro": {
@@ -1421,7 +1421,7 @@
       "body2": "Cuando la meteorología no permite salir a navegar, se organizan alternativas como juegos cooperativos, talleres o teoría práctica. Cada viernes cerramos la semana con una merendola compartida — un momento especial para celebrar lo vivido."
     },
     "cta": {
-      "eyebrow": "verano 2025",
+      "eyebrow": "verano {year}",
       "title": "¿Lista para zarpar?",
       "subtitle": "Las plazas son limitadas. No dejes escapar el verano.",
       "btn_enroll": "Inscribirse ahora →",
