@@ -18,8 +18,7 @@ export function HeroStatement({ locale }: HeroStatementProps) {
       <motion.span 
         className={styles['vol-label']}
         initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         {t.heroLabel}
@@ -32,8 +31,7 @@ export function HeroStatement({ locale }: HeroStatementProps) {
             key={i}
             className={styles['word-wrap']}
             initial={{ opacity: 0, y: 40, rotateX: -95 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            viewport={{ once: false }}
+            animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{
               delay: 0.1 + i * 0.08,
               type: "spring",
@@ -50,8 +48,7 @@ export function HeroStatement({ locale }: HeroStatementProps) {
       <motion.div
         className={styles['vol-divider']}
         initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: false }}
+        animate={{ scaleX: 1 }}
         transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
       />
 
@@ -59,8 +56,7 @@ export function HeroStatement({ locale }: HeroStatementProps) {
       <motion.p
         className={styles['vol-subtitle']}
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false }}
+        animate={{ opacity: 1 }}
         transition={{ delay: 1.0, duration: 0.6 }}
       >
         {t.heroSubtitle}
