@@ -79,7 +79,7 @@ export default function DailyNauticalQuote({ locale }: DailyNauticalQuoteProps) 
     const quote = getDailyQuote();
     const text = locale === 'eu' ? quote.quote_eu : quote.quote_es;
     const ref = useRef<HTMLElement>(null);
-    const isInView = useInView(ref, { once: true, margin: '-40px' });
+    const isInView = useInView(ref, { once: false, margin: '-40px' });
     const [isHovered, setIsHovered] = useState(false);
 
     const quoteNumber = String(quote.id).padStart(3, '0');
