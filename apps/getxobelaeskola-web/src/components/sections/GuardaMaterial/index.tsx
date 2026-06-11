@@ -1,7 +1,8 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\GuardaMaterial\index.tsx
 'use client';
 
-import HeroSection from './components/HeroSection';
+import dynamic from 'next/dynamic';
+const HeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false });
 import ValueProps from './components/ValueProps';
 import MaterialCarousel from './components/MaterialCarousel';
 import PricingCard from './components/PricingCard';

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useReducedMotion, useTransform } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { useStickyScroll } from '../../../../hooks/useStickyScroll';
@@ -9,16 +9,12 @@ import { JORNADA } from '../data/teamBuildingData';
 export default function JornadaTimeline() {
   const t = useTranslations('team_building.jornada');
   const shouldReduce = useReducedMotion();
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const { ref, scrollYProgress } = useStickyScroll(JORNADA.length);
   const x = useTransform(scrollYProgress, (progress) => `calc(-1 * (100% - 100vw + 10vw) * ${progress})`);
 
-  if (!isMounted) return null;
+
 
   // Reduced motion or Mobile view: render simple vertical timeline
   if (shouldReduce) {

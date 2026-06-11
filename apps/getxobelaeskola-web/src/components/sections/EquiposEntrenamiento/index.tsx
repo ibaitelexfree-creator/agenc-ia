@@ -1,13 +1,14 @@
 // index.tsx — sección completa
 'use client';
 
+import dynamic from 'next/dynamic';
 import WindCanvas          from "./components/WindCanvas";
 import HeroEquipos         from "./components/HeroEquipos";
 import FilosofiaMarquee    from "./components/FilosofiaMarquee";
 import TeamCards           from "./components/TeamCards";
 import CalendarView        from "./components/CalendarView";
 import LogbookRequirements from "./components/LogbookRequirements";
-import CTAFinal            from "./components/CTAFinal";
+const CTAFinal = dynamic(() => import("./components/CTAFinal"), { ssr: false });
 import styles              from "./EquiposEntrenamiento.module.css";
 
 export default function EquiposEntrenamiento() {

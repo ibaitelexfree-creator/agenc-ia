@@ -10,12 +10,6 @@ export default function SplitSection() {
   const t = useTranslations('team_building.split');
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduce = useReducedMotion();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -45,8 +39,7 @@ export default function SplitSection() {
     });
   }, [scrollYProgress]);
 
-  // Fallback for SSR or Reduced Motion (mobile layouts should stack vertically)
-  if (!isMounted) return null;
+
 
   if (shouldReduce) {
     return (
