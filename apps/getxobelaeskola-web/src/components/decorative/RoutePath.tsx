@@ -1,18 +1,13 @@
 // src/components/decorative/RoutePath.tsx
 'use client'
 
-import { motion, useTransform } from 'framer-motion'
-import { useScrollContext } from '@/components/layout/ScrollEngine'
+import { motion } from 'framer-motion'
 
 // El path dibuja una ruta curva tipo náutica de S1 → S2 → S3 → S4
 const ROUTE_PATH =
   'M 50 450 C 100 400 200 350 300 300 C 400 250 450 200 500 150 C 550 100 600 80 650 60'
 
-export function RoutePath() {
-  const { scrollYProgress } = useScrollContext()
-
-  const pathLength = useTransform(scrollYProgress, [0.28, 0.78], [0, 1])
-
+export function RoutePath({ progress = 0 }: { progress?: number }) {
   return (
     <svg
       viewBox="0 0 700 500"
@@ -36,15 +31,16 @@ export function RoutePath() {
         strokeLinecap="round"
         strokeDasharray="8 6"
         fill="none"
-        style={{ pathLength }}
+        animate={{ pathLength: progress }}
+        transition={{ duration: 1.0, ease: 'easeInOut' }}
       />
 
       {/* Puntos de escala en cada sección */}
       {[
-        { cx: 50, cy: 450, label: 'S1' },
-        { cx: 300, cy: 300, label: 'S2' },
-        { cx: 500, cy: 150, label: 'S3' },
-        { cx: 650, cy: 60, label: 'S4' },
+        { cx: 50, cy: 450, label: 'S1', activeAt: 0 },
+        { cx: 300, cy: 300, label: 'S2', activeAt: 0.5 },
+        { cx: 500, cy: 150, label: 'S3', activeAt: 1.0 },
+        { cx: 650, cy: 60, label: 'S4', activeAt: 1.0 },
       ].map((point, i) => (
         <motion.circle
           key={point.label}
@@ -53,9 +49,12 @@ export function RoutePath() {
           r="5"
           fill="var(--ocean-light)"
           initial={{ scale: 0, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: false }}
-          transition={{ delay: i * 0.3, duration: 0.4 }}
+          animate={{ 
+            scale: progress >= point.activeAt ? 1.3 : 1.0, 
+            opacity: progress >= point.activeAt ? 1.0 : 0.4,
+            fill: progress >= point.activeAt ? 'var(--ocean-bright)' : 'var(--ocean-light)'
+          }}
+          transition={{ duration: 0.5 }}
         />
       ))}
     </svg>

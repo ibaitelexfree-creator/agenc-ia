@@ -197,6 +197,17 @@ export function LandingSidebar() {
     }
   }
 
+  const isRoot = pathname && (
+    pathname === '/' || 
+    pathname === '/es' || pathname === '/es/' ||
+    pathname === '/eu' || pathname === '/eu/' ||
+    pathname === '/en' || pathname === '/en/' ||
+    pathname === '/fr' || pathname === '/fr/'
+  )
+  if (isRoot) {
+    return null
+  }
+
   return (
     <>
       {/* Botón flotante superior izquierdo */}

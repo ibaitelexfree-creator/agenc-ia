@@ -11,6 +11,13 @@
   --buoy-orange: #E63900;
   --brass-gold: #9e7f41;
 
+  /* Ocean Theme Colors */
+  --ocean-deep: #0D2137;
+  --ocean-bright: #0A7EC8;
+  --foam: #F0F4F8;
+  --text-secondary: #2D3748;
+  --text-muted: #4A5568;
+
   /* Glassmorphism Tokens */
   --glass-surface: rgba(0, 0, 0, 0.03);
   --glass-border: rgba(0, 0, 0, 0.08);

@@ -1,14 +1,17 @@
 // src/components/sections/Section1Hero.tsx
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useContext, useState } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Seagull } from '@/components/creatures/Seagull'
 import { Fish } from '@/components/creatures/Fish'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
+import { ScrollContext } from '@/components/layout/ScrollEngine'
+import { BlobCard } from '@/components/blobs/BlobCard'
+import { BLOB_PATHS } from '@/data/blobPaths'
 
 // Variantes de animación de entrada
 const containerVariants = {
@@ -32,20 +35,87 @@ const itemVariants = {
 
 export function Section1Hero() {
   const t = useTranslations('s1')
+  const locale = useLocale()
+  const scrollCtx = useContext(ScrollContext)
+  
+  const [videoLoaded, setVideoLoaded] = useState(false)
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
 
-  const { scrollYProgress: heroScroll } = useScroll({
+  const { scrollYProgress: localHeroScroll } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
     layoutEffect: false,
   } as any)
 
+  const activeScroll = scrollCtx ? scrollCtx.scrollYProgress : localHeroScroll
+
   // 3 capas de parallax con velocidades distintas
-  const layer1Y = useTransform(heroScroll, [0, 1], ['0%', '15%'])   // imagen fondo — mueve lento
-  const layer2Y = useTransform(heroScroll, [0, 1], ['0%', '25%'])   // overlay de color
-  const layer3Y = useTransform(heroScroll, [0, 1], ['0%', '35%'])   // texto — mueve rápido
+  // Si hay ScrollContext (V2), la animación ocurre al transicionar entre sección 1 y 2 (0.0 a 0.20)
+  const layer1Y = useTransform(
+    activeScroll,
+    scrollCtx ? [0, 0.20, 1] : [0, 1],
+    scrollCtx ? ['0%', '15%', '15%'] : ['0%', '15%']
+  )
+  const layer2Y = useTransform(
+    activeScroll,
+    scrollCtx ? [0, 0.20, 1] : [0, 1],
+    scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
+  )
+  const layer3Y = useTransform(
+    activeScroll,
+    scrollCtx ? [0, 0.20, 1] : [0, 1],
+    scrollCtx ? ['0%', '35%', '35%'] : ['0%', '35%']
+  )
+
+  const CARDS = [
+    {
+      title: t('card_cursos_title'),
+      subtitle: t('card_cursos_subtitle'),
+      color: '#2EC4B6',
+      videoSrc: '/videos/cursos_optimized.webm',
+      imageSrc: '/images/cursos.jpg',
+      paths: BLOB_PATHS.cursos,
+      href: `/${locale}/servicios/cursos`,
+    },
+    {
+      title: t('card_club_title'),
+      subtitle: t('card_club_subtitle'),
+      color: '#F4A623',
+      videoSrc: '/videos/club_optimized.webm',
+      imageSrc: '/images/club.jpg',
+      paths: BLOB_PATHS.clubSocias,
+      href: `/${locale}/servicios/socias`,
+    },
+    {
+      title: t('card_equipos_title'),
+      subtitle: t('card_equipos_subtitle'),
+      color: '#1D6FA4',
+      videoSrc: '/videos/equipos_optimized.webm',
+      imageSrc: '/images/equipos.jpg',
+      paths: BLOB_PATHS.equipos,
+      href: `/${locale}/servicios/equipos`,
+    },
+    {
+      title: t('card_udalekuak_title'),
+      subtitle: t('card_udalekuak_subtitle'),
+      color: '#8B5CF6',
+      videoSrc: '/videos/udalekuak_optimized.webm',
+      imageSrc: '/images/udalekuak.jpg',
+      paths: BLOB_PATHS.udalekuak,
+      href: `/${locale}/servicios/udalekuak`,
+    },
+    {
+      title: t('card_entidades_title'),
+      subtitle: t('card_entidades_subtitle'),
+      color: '#0A0A0A',
+      videoSrc: '/videos/entidades_optimized.webm',
+      imageSrc: '/images/entidades.jpg',
+      paths: BLOB_PATHS.entidades,
+      href: `/${locale}/servicios/team-building`,
+    },
+  ]
 
   return (
     <section
@@ -61,7 +131,7 @@ export function Section1Hero() {
         justifyContent: 'center',
       }}
     >
-      {/* Capa 1: Imagen de fondo — fotograma del Abra (con parallax) */}
+      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) */}
       <motion.div
         style={{
           position: 'absolute',
@@ -69,26 +139,143 @@ export function Section1Hero() {
           y: layer1Y,
           width: '100%',
           height: '100%',
+          zIndex: 1,
         }}
       >
-        <Image
-          src="/images/ai/hero-deck-getxo.webp"
-          alt="Vista desde cubierta del velero en el Abra de Getxo"
-          fill
-          priority
-          quality={85}
-          style={{ objectFit: 'cover', objectPosition: 'center' }}
-        />
+        <motion.div
+          style={{ width: '100%', height: '100%', position: 'relative' }}
+          animate={{
+            y: [0, 10, 0, -10, 0],
+            x: [0, -3, 0, 3, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <img
+            src="/images/home/parallax/cielo extendido v2.jpeg?v=3"
+            alt="Cielo Abra de Getxo"
+            style={{
+              position: 'absolute',
+              inset: '-20px',
+              width: 'calc(100% + 40px)',
+              height: 'calc(100% + 40px)',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: 1,
+            }}
+          />
+          <video
+            src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            onLoadedData={() => setVideoLoaded(true)}
+            style={{
+              position: 'absolute',
+              inset: '-20px',
+              width: 'calc(100% + 40px)',
+              height: 'calc(100% + 40px)',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: 2,
+              opacity: videoLoaded ? 1 : 0,
+              transition: 'opacity 1.5s ease-in-out',
+              pointerEvents: 'none',
+            }}
+          />
+        </motion.div>
       </motion.div>
 
-      {/* Capa 2: Overlay gradiente oscuro (con parallax) */}
+      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) */}
       <motion.div
         style={{
           position: 'absolute',
           inset: 0,
           y: layer2Y,
-          background: 'linear-gradient(to bottom, rgba(13,33,55,0.2) 0%, rgba(13,33,55,0.75) 100%)',
+          width: '100%',
+          height: '100%',
           zIndex: 2,
+          scale: 1.015,
+        }}
+      >
+        <motion.div
+          style={{ width: '100%', height: '100%', position: 'relative' }}
+          animate={{
+            y: [0, 18, 0, -18, 0],
+            x: [0, -5, 0, 5, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <img
+            src="/images/home/parallax/tierra.png?v=3"
+            alt="Costa y mar del Abra de Getxo"
+            style={{
+              position: 'absolute',
+              inset: '-10px',
+              width: 'calc(100% + 20px)',
+              height: 'calc(100% + 20px)',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          y: layer3Y,
+          width: '100%',
+          height: '100%',
+          zIndex: 3,
+        }}
+      >
+        <motion.div
+          style={{ width: '100%', height: '100%', position: 'relative' }}
+          animate={{
+            y: [0, -35, 0, 35, 0],
+            x: [0, 6, 0, -6, 0],
+            rotate: [0, 0.8, 0, -0.8, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        >
+          <img
+            src="/images/home/parallax/velero.png?v=3"
+            alt="Velero navegando en Getxo"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </motion.div>
+      </motion.div>
+
+      {/* Overlay gradiente oscuro */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(to bottom, rgba(13,33,55,0.1) 0%, rgba(13,33,55,0.7) 100%)',
+          zIndex: 4,
+          pointerEvents: 'none',
         }}
       />
 
@@ -101,7 +288,7 @@ export function Section1Hero() {
           right: 0,
           height: '120px',
           overflow: 'hidden',
-          zIndex: 3,
+          zIndex: 5,
         }}
       >
         {/* Dos capas de ola SVG que se mueven en bucle */}
@@ -115,7 +302,7 @@ export function Section1Hero() {
         </motion.div>
       </div>
 
-      {/* Capa 3: Contenido principal — centrado en el viewport (con parallax rápido) */}
+      {/* Contenido principal — centrado y elevado para evitar colisión */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -129,6 +316,7 @@ export function Section1Hero() {
           maxWidth: '800px',
           color: 'var(--white)',
           y: layer3Y,
+          marginTop: '-180px',
         }}
       >
         {/* Eyebrow — ubicación */}
@@ -184,6 +372,28 @@ export function Section1Hero() {
           </GlowButton>
         </motion.div>
       </motion.div>
+
+      {/* Los 5 blobs interactivos alineados en fila al pie del Hero */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '50px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          maxWidth: '1200px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 'clamp(12px, 3vw, 40px)',
+          padding: '0 24px',
+          zIndex: 15,
+        }}
+      >
+        {CARDS.map((card) => (
+          <BlobCard key={card.title} {...card} />
+        ))}
+      </div>
 
       {/* Criaturas animadas — pasan detrás del contenido */}
       <Seagull

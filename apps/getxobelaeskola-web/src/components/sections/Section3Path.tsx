@@ -61,6 +61,8 @@ export function Section3Path() {
     ? COURSE_TREE[selectedLevel][selectedProfile]
     : []
 
+  const pathProgress = selectedLevel ? (selectedProfile ? 1.0 : 0.5) : 0
+
   return (
     <section
       style={{
@@ -75,7 +77,7 @@ export function Section3Path() {
         justifyContent: 'center',
       }}
     >
-      <RoutePath />
+      <RoutePath progress={pathProgress} />
       <NauticalCompassRose />
 
       {/* Mapa náutico de fondo — muy sutil */}
@@ -180,7 +182,7 @@ export function Section3Path() {
                       ? '2px solid var(--ocean-mid)'
                       : '2px solid rgba(0, 91, 154, 0.2)',
                     backgroundColor: selectedProfile === profile ? 'var(--ocean-mid)' : 'white',
-                    color: selectedProfile === profile ? 'white' : 'var(--ocean-mid)',
+                    color: selectedProfile === profile ? 'black' : 'var(--ocean-mid)',
                     fontSize: '0.9rem',
                     fontWeight: 600,
                     cursor: 'pointer',

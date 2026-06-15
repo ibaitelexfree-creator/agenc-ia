@@ -158,10 +158,10 @@ export function Section2Adapts() {
             <Card3D
               intensity={8}
               style={{
-                backgroundColor: 'var(--ocean-deep)',
+                backgroundColor: 'var(--foam)',
                 borderRadius: '16px',
                 padding: '1.25rem',
-                color: 'white',
+                color: 'var(--ocean-deep)',
                 position: 'relative',
                 overflow: 'hidden',
                 height: '100%',
@@ -170,8 +170,8 @@ export function Section2Adapts() {
               <span
                 style={{
                   display: 'inline-block',
-                  backgroundColor: 'var(--gold)',
-                  color: 'var(--ocean-deep)',
+                  backgroundColor: 'var(--ocean-bright)',
+                  color: 'white',
                   fontSize: '0.65rem',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
@@ -187,25 +187,11 @@ export function Section2Adapts() {
                 style={{
                   fontSize: '0.9rem',
                   lineHeight: 1.6,
-                  color: 'rgba(255,255,255,0.85)',
+                  color: 'var(--text-secondary)',
                 }}
               >
                 {t('card4.body')}
               </p>
-              {/* Decoración: ola subtle en la esquina */}
-              <svg
-                style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  opacity: 0.1,
-                }}
-                width="80"
-                height="50"
-                viewBox="0 0 80 50"
-              >
-                <path d="M0 30 C20 10 40 40 60 20 C70 10 80 30 80 30 L80 50 L0 50 Z" fill="white" />
-              </svg>
             </Card3D>
           </motion.div>
         </motion.div>

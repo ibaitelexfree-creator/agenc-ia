@@ -1,0 +1,34 @@
+:root {
+  /* ===== Color ===== */
+  --gbe-white:       #FFFFFF;
+  --gbe-white-rgba:  rgba(255, 255, 255, 1);
+  --gbe-mist:        #F6F8FA;   /* fondo alterno "niebla" */
+  --gbe-navy-900:    #001B3A;   /* azul marca (theme-color actual) */
+  --gbe-navy-700:    #0B3D63;
+  --gbe-navy-500:    #2C6E9B;
+  --gbe-gold:        #F2A93B;   /* "magia": brillo de sol / estrellas */
+  --gbe-gold-soft:   rgba(242, 169, 59, 0.18);
+  --gbe-text:        #11171F;
+  --gbe-text-muted:  #5B6675;
+  --gbe-border:      #E7EBEF;
+
+  /* ===== Radios ===== */
+  --gbe-radius-sm:   12px;
+  --gbe-radius-md:   20px;
+  --gbe-radius-lg:   28px;
+  --gbe-radius-pill: 999px;
+
+  /* ===== Sombras (difusas, "Apple") ===== */
+  --gbe-shadow-soft:  0 8px 30px rgba(0, 27, 58, 0.06);
+  --gbe-shadow-hover: 0 24px 60px rgba(0, 27, 58, 0.14);
+  --gbe-shadow-glow:  0 0 40px rgba(242, 169, 59, 0.25);
+
+  /* ===== Espaciado de sección ===== */
+  --gbe-section-padding-desktop: 120px;
+  --gbe-section-padding-mobile:  64px;
+  --gbe-container-max: 1240px;
+
+  /* ===== Tipografía ===== */
+  --gbe-font-display: var(--font-display), "Cormorant Garamond", serif;
+  --gbe-font-body:    var(--font-sans), "Outfit", sans-serif;
+}

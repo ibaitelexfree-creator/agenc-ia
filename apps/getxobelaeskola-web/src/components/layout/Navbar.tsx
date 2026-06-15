@@ -7,7 +7,8 @@ import { useEffect, useState } from 'react';
 import { 
     X, ChevronDown, Anchor, Wind, Sailboat, Users, 
     GraduationCap, Phone, School, Compass, Sparkles,
-    ShoppingBag, BookOpen, Heart, Briefcase, Clock, MapPin
+    ShoppingBag, BookOpen, Heart, Briefcase, Clock, MapPin,
+    Instagram, Facebook, Youtube, User as UserIcon, Search, ShoppingCart
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import { apiUrl } from '@/lib/api';
@@ -76,6 +77,9 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+    const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const locale = propLocale || (params.locale as string) || 'es';
 
@@ -193,33 +197,135 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-[9999] px-4 md:px-12 py-2 md:py-3 flex justify-between items-center bg-white/90 backdrop-blur-2xl border-b border-sea-foam/10 transition-all duration-500 hover:bg-white/95 min-h-[60px]">
+            <div className="fixed top-0 left-0 w-full z-[9999] flex flex-col">
+                {/* Top Utility Bar */}
+                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
+                    {/* Left side: Social Links (in brand colors) */}
+                    <div className="flex items-center gap-4">
+                        <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#E1306C] hover:opacity-80 active:scale-95 transition-all duration-200" title="Instagram">
+                            <Instagram className="w-3.5 h-3.5" />
+                        </a>
+                        <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:opacity-80 active:scale-95 transition-all duration-200" title="Facebook">
+                            <Facebook className="w-3.5 h-3.5" />
+                        </a>
+                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:opacity-80 active:scale-95 transition-all duration-200" title="YouTube">
+                            <Youtube className="w-3.5 h-3.5" />
+                        </a>
+                    </div>
+
+                    {/* Right side: Language, Cart, Profile, Search (Lupa a la derecha del todo) */}
+                    <div className="flex items-center gap-4">
+                        {/* Language Selector Dropdown */}
+                        <div 
+                            className="relative cursor-pointer flex items-center gap-1 hover:text-white transition-colors py-1"
+                            onMouseEnter={() => setIsLangDropdownOpen(true)}
+                            onMouseLeave={() => setIsLangDropdownOpen(false)}
+                            onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                        >
+                            <span>{locale.toUpperCase()}</span>
+                            <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                            
+                            <AnimatePresence>
+                                {isLangDropdownOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 5 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 5 }}
+                                        transition={{ duration: 0.15 }}
+                                        className="absolute top-full right-0 mt-1 bg-neutral-900 border border-white/10 rounded shadow-xl overflow-hidden py-1 w-16 z-[10001]"
+                                    >
+                                        {['es', 'eu', 'en', 'fr'].map((lang) => (
+                                            <button
+                                                key={lang}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleLanguageSwitch(lang);
+                                                    setIsLangDropdownOpen(false);
+                                                }}
+                                                className={`w-full text-left px-3 py-1.5 hover:bg-white/10 transition-colors text-[9px] font-bold ${locale === lang ? 'text-accent' : 'text-neutral-400 hover:text-white'}`}
+                                            >
+                                                {lang.toUpperCase()}
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+
+                        <span className="w-[1px] h-3 bg-white/10" />
+
+                        {/* Shopping Cart */}
+                        <Link href={`/${locale}/tienda`} className="hover:text-white transition-colors duration-200 flex items-center" title="Cart">
+                            <ShoppingCart className="w-3.5 h-3.5" />
+                        </Link>
+
+                        {/* Profile / Login */}
+                        <Link 
+                            href={user ? (user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`) : `/${locale}/auth/login`} 
+                            className="hover:text-white transition-colors duration-200 flex items-center"
+                            title="Profile / Dashboard"
+                        >
+                            <UserIcon className="w-3.5 h-3.5" />
+                        </Link>
+
+                        {/* Search bar slide-out / Search icon (Far Right) */}
+                        <div className="flex items-center relative">
+                            <AnimatePresence>
+                                {isSearchOpen && (
+                                    <motion.div
+                                        initial={{ width: 0, opacity: 0 }}
+                                        animate={{ width: 140, opacity: 1 }}
+                                        exit={{ width: 0, opacity: 0 }}
+                                        className="overflow-hidden flex items-center mr-2"
+                                    >
+                                        <input
+                                            type="text"
+                                            placeholder={locale === 'eu' ? 'Bilatu...' : locale === 'en' ? 'Search...' : locale === 'fr' ? 'Rechercher...' : 'Buscar...'}
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    router.push(`/${locale}/search?q=${encodeURIComponent(searchQuery)}`);
+                                                }
+                                            }}
+                                            className="bg-neutral-950 border border-white/10 rounded px-2 py-0.5 text-[9px] text-white focus:outline-none focus:border-accent w-full normal-case"
+                                            autoFocus
+                                        />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                            <button 
+                                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                                className="hover:text-white transition-colors duration-200 flex items-center"
+                                title="Search"
+                            >
+                                <Search className="w-3.5 h-3.5" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <nav className="w-full px-4 md:px-12 py-2 md:py-3 flex justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
                     prefetch={false}
-                    className="flex items-center gap-4 group transition-premium relative z-[110]"
+                    className="flex items-center group transition-premium relative z-[110]"
                     onClick={() => setIsMenuOpen(false)}
                 >
-                    <div className="relative w-10 h-10 md:w-12 md:h-12 flex-shrink-0 transition-premium group-hover:scale-110">
+                    <div className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105">
                         <Image
-                            src="/images/LogoGetxoBelaEskola.webp"
+                            src="/images/Logo Bela horizontal SIN FONDO.png"
                             alt="Getxo Bela Eskola"
                             fill
-                            className="object-contain"
+                            className="object-contain object-left"
                             priority
                         />
-                    </div>
-                    <div className="flex flex-col">
-                        <span className="font-display text-lg md:text-2xl tracking-tight text-sea-foam leading-none uppercase">
-                            GETXO <span className="italic font-light text-accent">BELA</span>
-                        </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-sea-foam/40 font-bold mt-1.5 transition-premium group-hover:text-sea-foam/70">Escuela Náutica</span>
                     </div>
                 </Link>
 
                 {/* Desktop Menu - Custom Framer Motion dropdowns */}
-                <div className="hidden xl:flex gap-8 items-center text-[10px] uppercase tracking-[0.4em] font-black h-full">
+                <div className="hidden xl:flex gap-8 items-center text-xs uppercase tracking-[0.25em] font-black h-full">
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
@@ -230,7 +336,8 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={`/${locale}/${item.href}`}
                                 prefetch={false}
-                                className="relative py-2 text-sea-foam/50 hover:text-sea-foam transition-premium group/nav flex items-center gap-1.5"
+                                className="relative py-2 text-sea-foam hover:text-accent transition-premium group/nav flex items-center gap-1.5 font-black"
+                                style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {item.icon}
                                 {getLabel(item.label)}
@@ -248,7 +355,8 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         initial="initial"
                                         animate="animate"
                                         exit="exit"
-                                        className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-[10000]"
+                                        style={{ x: '-50%' }}
+                                        className="absolute top-full left-1/2 pt-4 z-[10000]"
                                     >
                                         <div className="w-64 py-3 bg-white border border-sea-foam/10 rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
                                             {/* Simple Arrow */}
@@ -275,20 +383,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
                 {/* Right Side Actions */}
                 <div className="flex gap-4 items-center relative z-[110]">
-                    <div className="hidden xl:block">
-                        <ThemeToggle />
-                    </div>
-                    <div className="hidden xl:flex bg-sea-foam/5 backdrop-blur-md border border-sea-foam/10 rounded-full p-1.5 transition-premium hover:border-sea-foam/20">
-                        {['es', 'eu', 'en', 'fr'].map((lang) => (
-                            <button
-                                key={lang}
-                                onClick={() => handleLanguageSwitch(lang)}
-                                className={`px-4 py-2 rounded-full text-[9px] uppercase tracking-widest font-black transition-premium ${locale === lang ? 'bg-accent text-white shadow-xl shadow-accent/20 scale-105' : 'text-sea-foam/40 hover:text-sea-foam'}`}
-                            >
-                                {lang.toUpperCase()}
-                            </button>
-                        ))}
-                    </div>
+
 
                     {loading ? (
                         <div className="hidden xl:block w-32 h-10 bg-sea-foam/5 animate-pulse rounded-full" />
@@ -306,18 +401,25 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 href={user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`}
                                 prefetch={false}
                                 className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium"
+                                style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className="text-[9px] uppercase tracking-[0.4em] font-black text-sea-foam/30 hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
+                                className="text-xs uppercase tracking-[0.25em] font-black text-sea-foam hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
+                                style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {getLabel('logout')}
                             </button>
                         </div>
                     ) : (
-                        <Link href={`/${locale}/auth/login`} prefetch={false} className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium">
+                        <Link 
+                            href={`/${locale}/auth/login`} 
+                            prefetch={false} 
+                            className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium"
+                            style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
+                        >
                             {getLabel('login')}
                         </Link>
                     )}
@@ -341,6 +443,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     </button>
                 </div>
             </nav>
+        </div>
 
             {/* Mobile Menu Overlay */}
             <div
@@ -434,10 +537,6 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                         )}
 
                         <div className="flex flex-col gap-4 pb-12">
-                            <div className="flex items-center justify-between ml-4 mr-4 mb-4">
-                                <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30">Theme</span>
-                                <ThemeToggle />
-                            </div>
                             <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30 ml-4">{getLabel('language_selector')}</span>
                             <div className="grid grid-cols-4 gap-3 bg-sea-foam/5 border border-sea-foam/10 rounded-2xl p-2">
                                 {['es', 'eu', 'en', 'fr'].map((lang) => (

@@ -1118,7 +1118,22 @@
     "title": "Ez gara eskola bat. Zu zaren itsasoa gara.",
     "subtitle": "Topagune bat non bela aitzakia den partekatzeko, hazteko eta itsasoa sentitzeko presiorik gabe.",
     "cta": "Aurkitu →",
-    "scroll_hint": "Jarraitu nabigatzera"
+    "scroll_hint": "Jarraitu nabigatzera",
+    "word1": "Nabigatu.",
+    "word2": "Ikasi.",
+    "word3": "Partekatu.",
+    "tu_mar_tu_club": "Zure itsasoa. Zure kluba.",
+    "todo_lo_que_ofrecemos": "Eskaintzen dugun guztia",
+    "card_cursos_title": "Ikastaroak",
+    "card_cursos_subtitle": "Ikasi nabigatzen",
+    "card_club_title": "Bazkide Kluba",
+    "card_club_subtitle": "Bat egin komunitatearekin",
+    "card_equipos_title": "Taldeak",
+    "card_equipos_subtitle": "Lehiatu eta hobetu",
+    "card_udalekuak_title": "Udalekuak",
+    "card_udalekuak_subtitle": "Bela udalekuak",
+    "card_entidades_title": "Erakundeak",
+    "card_entidades_subtitle": "Lagundu gurekin"
   },
   "s2": {
     "eyebrow": "Esperientzia",

@@ -30,7 +30,7 @@ export function Section4Why() {
     >
       {/* Seahorse — floating creature on the upper left corner */}
       <Seahorse
-        style={{ position: 'absolute', top: '5%', left: '5%', zIndex: 15 }}
+        style={{ position: 'absolute', top: '18%', left: '4%', zIndex: 15 }}
         enterDelay={0.5}
       />
 
@@ -149,7 +149,7 @@ export function Section4Why() {
 
       {/* Cangrejo — criatura de la esquina */}
       <Crab
-        style={{ position: 'absolute', bottom: '3%', right: '3%', zIndex: 5 }}
+        style={{ position: 'absolute', bottom: '3%', right: '10%', zIndex: 5 }}
         enterDelay={1.0}
       />
     </section>

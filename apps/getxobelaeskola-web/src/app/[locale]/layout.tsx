@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { cormorantGaramond, outfit, jetbrainsMono } from '@/app/fonts';
 import '@/app/globals.css';
+import '@/styles/tokens.css';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
