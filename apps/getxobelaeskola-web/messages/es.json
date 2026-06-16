@@ -1246,19 +1246,28 @@
       "icon": "💶",
       "title": "Accesible para todos",
       "body": "Escuela municipal que democratiza la vela. Hazte socio y navega desde 52,5 €/mes.",
-      "badge": "Desde 52,5 €/mes"
+      "badge": "Desde 52,5 €/mes",
+      "backTitle": "ECONÓMICO",
+      "backSubtitle": "Precio ajustado",
+      "backBody": "Creemos que la diversión no debe de ser costosa. Ofrecemos precios ajustados al grupo para que todos puedan disfrutar de una experiencia emocionante en el agua. Descubre cómo podemos ayudarte a planificar una aventura inolvidable a un precio asequible."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "Una comunidad real",
       "body": "Conocerás gente con las mismas ganas de mar. Vínculos que duran más allá del velero.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "COMUNIDAD",
+      "backSubtitle": "No somos solo una escuela, somos una comunidad muy cercana y con valores.",
+      "backBody": "Un lugar donde conocer gente con las mismas ganas de mar, compartir experiencias y crecer navegando juntos. Aquí vienes a aprender, pero también a formar parte de algo."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "A tu medida",
       "body": "Adaptamos cada salida a tu ritmo, tus objetivos y tus ganas del día. Sin moldes.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "A TU MEDIDA",
+      "backSubtitle": "Personalización",
+      "backBody": "Nos adaptamos a tus necesidades para brindarte una experiencia personalizada y única. Descubre cómo nuestro equipo de expertos en actividades acuáticas puede ayudarte a planificar la excursión perfecta."
     }
   },
   "cta": {

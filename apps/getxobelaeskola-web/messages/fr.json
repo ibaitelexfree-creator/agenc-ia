@@ -723,19 +723,28 @@
       "icon": "💶",
       "title": "Accessible à tous",
       "body": "École municipale qui démocratise la voile. Deviens membre et navigue dès 52,5 €/mois.",
-      "badge": "Dès 52,5 €/mois"
+      "badge": "Dès 52,5 €/mois",
+      "backTitle": "ÉCONOMIQUE",
+      "backSubtitle": "Prix ajusté",
+      "backBody": "Nous pensons que le plaisir ne doit pas être coûteux. Nous proposons des prix adaptés aux groupes pour que chacun puisse profiter d'une expérience passionnante sur l'eau. Découvrez comment nous pouvons vous aider à planifier une aventure inoubliable à un prix abordable."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "Une vraie communauté",
       "body": "Tu rencontreras des gens avec le même amour de la mer. Des liens qui durent au-delà du bateau.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "COMMUNAUTÉ",
+      "backSubtitle": "Nous ne sommes pas seulement une école, nous sommes une communauté très proche avec des valeurs.",
+      "backBody": "Un endroit pour rencontrer des gens partageant le même amour de la mer, partager des expériences et grandir en naviguant ensemble. Ici, vous venez pour apprendre, mais aussi pour faire partie de quelque chose."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "À ta mesure",
       "body": "On adapte chaque sortie à ton rythme, tes objectifs et tes envies du jour.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "À TA MESURE",
+      "backSubtitle": "Personnalisation",
+      "backBody": "Nous nous adaptons à vos besoins pour vous offrir une expérience personnalisée et unique. Découvrez comment notre équipe d'experts en activités nautiques peut vous aider à planifier l'excursion parfaite."
     }
   },
   "cta": {

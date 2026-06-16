@@ -181,18 +181,17 @@ export function Section1Hero() {
             playsInline
             style={{
               position: 'absolute',
-              left: '-100px',
-              right: '-100px',
+              left: '-105px',
+              right: '-105px',
               top: '-20px',
-              bottom: '-20px',
-              width: 'calc(100% + 200px)',
-              height: 'calc(100% + 40px)',
+              width: 'calc(100% + 210px)',
+              height: '50%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'center top',
               zIndex: 2,
               opacity: 1,
               pointerEvents: 'none',
-              transform: 'translateX(105px)',
+              transform: 'translateX(99px)',
             }}
           />
         </motion.div>

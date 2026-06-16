@@ -1186,19 +1186,28 @@
       "icon": "💶",
       "title": "Accessible for everyone",
       "body": "A municipal school democratising sailing. Become a member and sail from €52.5/month.",
-      "badge": "From €52.5/month"
+      "badge": "From €52.5/month",
+      "backTitle": "AFFORDABLE",
+      "backSubtitle": "Adjusted price",
+      "backBody": "We believe that fun should not be expensive. We offer adjusted prices for groups so everyone can enjoy an exciting experience on the water. Discover how we can help you plan an unforgettable adventure at an affordable price."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "A real community",
       "body": "You'll meet people with the same love of the sea. Bonds that last beyond the boat.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "COMMUNITY",
+      "backSubtitle": "We are not just a school, we are a very close community with values.",
+      "backBody": "A place to meet people with the same love of the sea, share experiences and grow sailing together. You come here to learn, but also to be part of something."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "On your terms",
       "body": "We adapt every outing to your pace, your goals and your mood that day.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "ON YOUR TERMS",
+      "backSubtitle": "Customization",
+      "backBody": "We adapt to your needs to provide you with a personalized and unique experience. Discover how our team of water activity experts can help you plan the perfect excursion."
     }
   },
   "cta": {

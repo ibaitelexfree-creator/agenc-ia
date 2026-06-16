@@ -1194,19 +1194,28 @@
       "icon": "💶",
       "title": "Guztientzat eskuragarria",
       "body": "Udal-eskola bela demokratizatzen duena. Bazkide egin eta nabigatu 52,5 €/hilabetetik.",
-      "badge": "52,5 €/hilabetetik"
+      "badge": "52,5 €/hilabetetik",
+      "backTitle": "EKONOMIKOA",
+      "backSubtitle": "Prezio doitua",
+      "backBody": "Dibertitzea ez dela garestia izan behar uste dugu. Taldera doitutako prezioak eskaintzen ditugu, denek uretan esperientzia zirraragarri batez gozatu ahal izan dezaten. Ezagutu nola lagun zaitzakegun abentura ahaztezin bat antolatzen prezio eskuragarrian."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "Komunitate erreala",
       "body": "Itsasoaren irrika berarekin jende berria ezagutuko duzu. Belatik harago irauten duten loturak.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "KOMUNITATEA",
+      "backSubtitle": "Ez gara eskola soil bat, komunitate oso hurbila eta balioduna gara.",
+      "backBody": "Itsasoaren irrika bera duten pertsonak ezagutzeko, esperientziak partekatzeko eta elkarrekin nabigatuz hazteko lekua. Hona ikastera etortzen zara, baina baita zerbaiten parte izatera ere."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "Zure neurrira",
       "body": "Irteera bakoitza zure erritmoari, helburuei eta eguneko gogoari egokitzen diogu.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "ZURE NEURRIRA",
+      "backSubtitle": "Pertsonalizazioa",
+      "backBody": "Zure beharretara egokitzen gara esperientzia pertsonalizatu eta paregabea eskaintzeko. Ezagutu nola lagun zaitzakeen gure uretako jardueretako aditu taldeak irteera perfektua antolatzen."
     }
   },
   "cta": {
