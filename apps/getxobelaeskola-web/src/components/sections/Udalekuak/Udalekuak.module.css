@@ -46,7 +46,6 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 61, 107, 0.6) 0%, rgba(10, 61, 107, 0.3) 50%, rgba(10, 61, 107, 0.7) 100%);
   z-index: 1;
 }
 
@@ -61,8 +60,8 @@
 }
 
 .heroEyebrow {
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 1.25rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.4em;
   color: var(--color-sun);
@@ -81,7 +80,7 @@
 .heroSubtitle {
   font-family: var(--font-accent);
   font-size: clamp(1.8rem, 4vw, 3rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: #000000;
   margin-bottom: 2rem;
 }
 

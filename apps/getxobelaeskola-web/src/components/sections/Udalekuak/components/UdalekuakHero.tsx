@@ -1,6 +1,7 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\Udalekuak\components\UdalekuakHero.tsx
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import styles from '../Udalekuak.module.css';
@@ -12,26 +13,95 @@ interface UdalekuakHeroProps {
 export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
   const t = useTranslations('udalekuak.hero') as any;
   const prefersReducedMotion = useReducedMotion();
+  const [introEnded, setIntroEnded] = useState(false);
+  const [loopDirection, setLoopDirection] = useState<'forward' | 'reverse'>('forward');
+
+  const forwardVideoRef = useRef<HTMLVideoElement>(null);
+  const reverseVideoRef = useRef<HTMLVideoElement>(null);
 
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().getMonth(); // 0 is January, 9 is October
   const targetYear = currentMonth >= 9 ? currentYear + 1 : currentYear;
 
+  // Handle switching and playing videos seamlessly
+  useEffect(() => {
+    if (!introEnded) return;
+
+    if (loopDirection === 'forward') {
+      const vid = forwardVideoRef.current;
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      }
+    } else {
+      const vid = reverseVideoRef.current;
+      if (vid) {
+        vid.currentTime = 0;
+        vid.play().catch(() => {});
+      }
+    }
+  }, [introEnded, loopDirection]);
+
   return (
     <section className={styles.heroSection}>
       {/* BACKGROUND: Video/Photo */}
       <div className={styles.heroBg} aria-hidden="true">
+        {/* Intro Video */}
         <video
           autoPlay
           muted
-          loop
           playsInline
+          onEnded={() => setIntroEnded(true)}
           className={styles.heroVideo}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: introEnded ? 0 : 1,
+            transition: 'opacity 0.8s ease-in-out',
+            zIndex: introEnded ? 0 : 4,
+          }}
           poster="/images/course-piragua-competition-double.jpg"
         >
-          <source src="/udalekuak/hero-video.mp4" type="video/mp4" />
+          <source src="/videos/Smoke_forming_text_Udalekuak_202606161557.mp4" type="video/mp4" />
         </video>
-        <div className={styles.heroOverlay} />
+
+        {/* Slow Forward Loop Video */}
+        <video
+          ref={forwardVideoRef}
+          muted
+          playsInline
+          onEnded={() => setLoopDirection('reverse')}
+          className={styles.heroVideo}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: (introEnded && loopDirection === 'forward') ? 1 : 0,
+            transition: 'opacity 0.8s ease-in-out',
+            zIndex: 2,
+          }}
+        >
+          <source src="/videos/Smoke_swirling_slow_forward.mp4" type="video/mp4" />
+        </video>
+
+        {/* Slow Reverse Loop Video */}
+        <video
+          ref={reverseVideoRef}
+          muted
+          playsInline
+          onEnded={() => setLoopDirection('forward')}
+          className={styles.heroVideo}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            opacity: (introEnded && loopDirection === 'reverse') ? 1 : 0,
+            transition: 'opacity 0.8s ease-in-out',
+            zIndex: 1,
+          }}
+        >
+          <source src="/videos/Smoke_swirling_slow_reverse.mp4" type="video/mp4" />
+        </video>
+
+        <div className={styles.heroOverlay} style={{ zIndex: 5 }} />
       </div>
 
       {/* CENTERED CONTENT */}
@@ -39,29 +109,20 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
         {/* Eyebrow */}
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0, letterSpacing: '0.2em' }}
-          animate={{ opacity: 1, letterSpacing: '0.4em' }}
-          transition={{ duration: 1.2, delay: 0.1 }}
+          animate={introEnded ? { opacity: 1, letterSpacing: '0.4em' } : { opacity: 0, letterSpacing: '0.2em' }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
           className={styles.heroEyebrow}
         >
           {t('eyebrow')}
         </motion.p>
 
-        {/* Main Title */}
-        <motion.h1
-          initial={prefersReducedMotion ? {} : { opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: 'easeOut', delay: 0.2 }}
-          className={styles.heroTitle}
-        >
-          {t('title')}
-        </motion.h1>
-
         {/* Subtitle (handwritten font Caveat) */}
         <motion.p
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          animate={introEnded ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
           className={styles.heroSubtitle}
+          style={{ marginTop: '400px' }}
         >
           {t('subtitle')}
         </motion.p>
@@ -69,8 +130,8 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
         {/* CTA Button */}
         <motion.div
           initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
+          animate={introEnded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1.2, delay: 2.4, ease: 'easeInOut' }}
         >
           <button
             onClick={onCtaClick}
