@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import Newsletter from '@/components/shared/Newsletter';
+import HomeStats from '@/components/shared/HomeStats';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
@@ -121,6 +122,7 @@ export default async function Footer({ locale }: { locale: string }) {
     return (
         <footer className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative">
             <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
+            <HomeStats />
             {!isSubscribed && <Newsletter locale={locale} />}
 
             <div className="py-24 container mx-auto px-6 flex flex-col items-center">
