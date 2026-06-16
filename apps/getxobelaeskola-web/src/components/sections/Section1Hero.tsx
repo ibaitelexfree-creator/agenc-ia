@@ -1,9 +1,10 @@
 // src/components/sections/Section1Hero.tsx
 'use client'
 
-import { useRef, useContext, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef, useContext, useState, useEffect } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { Seagull } from '@/components/creatures/Seagull'
 import { Fish } from '@/components/creatures/Fish'
@@ -160,12 +161,16 @@ export function Section1Hero() {
             fetchPriority="high"
             style={{
               position: 'absolute',
-              inset: '-20px',
-              width: 'calc(100% + 40px)',
+              left: '-100px',
+              right: '-100px',
+              top: '-20px',
+              bottom: '-20px',
+              width: 'calc(100% + 200px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 1,
+              transform: 'translateX(105px)',
             }}
           />
           <video
@@ -174,18 +179,20 @@ export function Section1Hero() {
             loop
             muted
             playsInline
-            onLoadedData={() => setVideoLoaded(true)}
             style={{
               position: 'absolute',
-              inset: '-20px',
-              width: 'calc(100% + 40px)',
+              left: '-100px',
+              right: '-100px',
+              top: '-20px',
+              bottom: '-20px',
+              width: 'calc(100% + 200px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 2,
-              opacity: videoLoaded ? 1 : 0,
-              transition: 'opacity 1.5s ease-in-out',
+              opacity: 1,
               pointerEvents: 'none',
+              transform: 'translateX(105px)',
             }}
           />
         </motion.div>
@@ -261,13 +268,18 @@ export function Section1Hero() {
             fetchPriority="high"
             style={{
               position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
+              left: '-280px',
+              right: '-180px',
+              top: '-60px',
+              bottom: '-60px',
+              width: 'calc(100% + 460px)',
+              height: 'calc(100% + 120px)',
               objectFit: 'cover',
               objectPosition: 'center',
+              transform: 'translateX(292px)',
             }}
           />
+          <SailboatAccesoButton />
         </motion.div>
       </motion.div>
 
@@ -490,5 +502,132 @@ function WaveSVG3D({ opacity }: { opacity: number }) {
         />
       </svg>
     </motion.div>
+  )
+}
+
+// ── Componente interno: botón de Acceso flotando en el velero ─────────────────
+function SailboatAccesoButton() {
+  const locale = useLocale()
+  const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
+  const [showButton, setShowButton] = useState(true)
+
+  // Dictionary matching Navbar labels
+  const labels: Record<string, string> = {
+    es: 'Acceso',
+    eu: 'Saioa hasi',
+    en: 'Login',
+    fr: 'Connexion'
+  }
+  const label = labels[locale] || 'Acceso'
+
+  useEffect(() => {
+    const updateSize = () => {
+      const imgW = 2752
+      const imgH = 1536
+      const imgRatio = imgW / imgH
+      const bleedLeft = 280
+      const bleedRight = 180
+      const bleedTop = 60
+      const bleedBottom = 60
+      const canvasW = window.innerWidth + bleedLeft + bleedRight
+      const canvasH = window.innerHeight + bleedTop + bleedBottom
+      const canvasRatio = canvasW / canvasH
+
+      let actualW = 0
+      let actualH = 0
+      let left = 0
+      let top = 0
+
+      if (canvasRatio > imgRatio) {
+        actualW = canvasW
+        actualH = canvasW / imgRatio
+        top = (canvasH - actualH) / 2
+      } else {
+        actualH = canvasH
+        actualW = canvasH * imgRatio
+        left = (canvasW - actualW) / 2
+      }
+
+      // Subtract bleedLeft and bleedTop because the container starts at -bleedLeft and -bleedTop
+      setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
+    }
+
+    const handleScroll = () => {
+      setShowButton(window.scrollY < 200)
+    }
+
+    updateSize()
+    window.addEventListener('resize', updateSize)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => {
+      window.removeEventListener('resize', updateSize)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  if (aspect.width === 0) return null
+
+  // Exact bounds midpoint on image coordinate space:
+  // X midpoint: (2361 + 2614) / 2 = 2487.5
+  // Y midpoint: (207 + 339) / 2 = 273
+  // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
+  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 183
+  const buttonTop = aspect.top + (273 / 1536) * aspect.height + 125
+
+  return (
+    <>
+      {showButton && (
+        <motion.div
+          layoutId="acceso-button-wrapper"
+          transition={{ type: 'spring', stiffness: 40, damping: 18 }}
+          style={{
+            position: 'absolute',
+            left: `${buttonLeft}px`,
+            top: `${buttonTop}px`,
+            x: '-50%',
+            y: '-50%',
+            rotate: -27.53,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            pointerEvents: 'auto',
+            zIndex: 50,
+          }}
+        >
+          <Link
+            href={`/${locale}/auth/login`}
+            prefetch={false}
+            className="text-[20px] uppercase tracking-[0.55em] text-white hover:text-black transition-premium cursor-pointer text-center select-none"
+            style={{ 
+              fontWeight: 950,
+              whiteSpace: 'nowrap',
+              border: 'none',
+              background: 'rgba(0, 0, 0, 0.001)',
+              padding: '25px 50px',
+              display: 'inline-block'
+            }}
+          >
+            <motion.span
+              animate={{
+                textShadow: [
+                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 8px rgba(255, 0, 0, 0.4)',
+                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 15px #ff0000, 0 0 30px #ff0000',
+                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 8px rgba(255, 0, 0, 0.4)'
+                ]
+              }}
+              transition={{
+                duration: 1.0,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              {label}
+            </motion.span>
+          </Link>
+        </motion.div>
+      )}
+    </>
   )
 }

@@ -134,6 +134,24 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
         document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
     }, [isMenuOpen]);
 
+    const [isAtHero, setIsAtHero] = useState(true);
+
+    useEffect(() => {
+        const isHome = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === '/';
+        if (!isHome) {
+            setIsAtHero(false);
+            return;
+        }
+
+        const handleScroll = () => {
+            setIsAtHero(window.scrollY < 200);
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [pathname, locale]);
+
     // Restructured navigation tree according to requirements
     const navItems: NavItem[] = [
         {
@@ -414,14 +432,23 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             </button>
                         </div>
                     ) : (
-                        <Link 
-                            href={`/${locale}/auth/login`} 
-                            prefetch={false} 
-                            className="hidden xl:block text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium"
-                            style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
-                        >
-                            {getLabel('login')}
-                        </Link>
+                        !isAtHero && (
+                            <motion.div
+                                layoutId="acceso-button-wrapper"
+                                transition={{ type: 'spring', stiffness: 40, damping: 18 }}
+                                className="hidden xl:block"
+                                style={{ rotate: 0 }}
+                            >
+                                <Link 
+                                    href={`/${locale}/auth/login`} 
+                                    prefetch={false} 
+                                    className="text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium"
+                                    style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
+                                >
+                                    {getLabel('login')}
+                                </Link>
+                            </motion.div>
+                        )
                     )}
 
                     {/* Mobile Menu Toggle */}

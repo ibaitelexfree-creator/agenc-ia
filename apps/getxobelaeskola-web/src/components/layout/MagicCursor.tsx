@@ -24,19 +24,39 @@ export function MagicCursor() {
   useEffect(() => {
     if (isMobile) return
 
+    const lastX = { current: -100 }
+    const lastY = { current: -100 }
+
     const handleMove = (e: MouseEvent) => {
+      lastX.current = e.clientX
+      lastY.current = e.clientY
       mouseX.set(e.clientX)
       mouseY.set(e.clientY)
       if (!isVisible) setIsVisible(true)
+    }
 
-      // Detectar si hay un elemento clickeable bajo el cursor
-      const target = e.target as HTMLElement
-      const clickable = target.closest('a, button, [role="button"], input, select')
-      setIsPointer(!!clickable)
+    let frameId: number
+
+    const checkElementUnderCursor = () => {
+      if (lastX.current >= 0 && lastY.current >= 0) {
+        const target = document.elementFromPoint(lastX.current, lastY.current)
+        if (target) {
+          const clickable = target.closest('a, button, [role="button"], input, select, [cursor-pointer]')
+          setIsPointer(!!clickable)
+        } else {
+          setIsPointer(false)
+        }
+      }
+      frameId = requestAnimationFrame(checkElementUnderCursor)
     }
 
     window.addEventListener('mousemove', handleMove)
-    return () => window.removeEventListener('mousemove', handleMove)
+    frameId = requestAnimationFrame(checkElementUnderCursor)
+
+    return () => {
+      window.removeEventListener('mousemove', handleMove)
+      cancelAnimationFrame(frameId)
+    }
   }, [isMobile, isVisible, mouseX, mouseY])
 
   if (isMobile || !isVisible) return null
