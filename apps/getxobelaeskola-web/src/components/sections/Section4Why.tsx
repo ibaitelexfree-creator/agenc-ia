@@ -19,9 +19,6 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
 
   return (
     <motion.div
-      onClick={() => setIsFlipped(!isFlipped)}
-      onMouseEnter={() => setIsFlipped(true)}
-      onMouseLeave={() => setIsFlipped(false)}
       initial={{ opacity: 0, y: 60, filter: 'blur(8px)', scale: 0.95 }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
       viewport={{ once: false, margin: '-30px' }}
@@ -30,20 +27,20 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
         duration: 0.7,
         ease: [0.25, 0.1, 0.25, 1],
       }}
-      className="flip-card-container"
       style={{
         flex: 1,
         position: 'relative',
         width: '100%',
-        cursor: 'pointer',
         minHeight: '110px',
         zIndex: isFlipped ? 10 : 1,
       }}
     >
+      {/* 3D card structure (visuals only, pointerEvents: none prevents flickering) */}
       <div
         className="flip-card-inner"
         style={{
           transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          pointerEvents: 'none',
         }}
       >
         {/* Front Side */}
@@ -149,6 +146,21 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
           </div>
         </div>
       </div>
+
+      {/* 2D Flat Hover Shield (handles all interactions safely) */}
+      <div
+        onClick={() => setIsFlipped(!isFlipped)}
+        onMouseEnter={() => setIsFlipped(true)}
+        onMouseLeave={() => setIsFlipped(false)}
+        className="flip-card-container"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          zIndex: 20,
+          cursor: 'pointer',
+          backgroundColor: 'transparent',
+        }}
+      />
     </motion.div>
   )
 }
