@@ -197,11 +197,84 @@ export function Section2Adapts() {
         </motion.div>
       </div>
 
+      {/* Ola decorativa animada en la parte inferior */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '120px',
+          overflow: 'hidden',
+          zIndex: 5,
+          pointerEvents: 'none',
+        }}
+      >
+        {/* Dos capas de ola SVG que se mueven en bucle */}
+        <motion.div
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+          style={{ display: 'flex', width: '200%', height: '100%' }}
+        >
+          <WaveSVG3D opacity={0.4} />
+          <WaveSVG3D opacity={0.4} />
+        </motion.div>
+      </div>
+
       {/* Criatura — windsurf entrando desde la derecha */}
       <Windsurfer
         style={{ position: 'absolute', top: '20%', right: '-5%', zIndex: 20 }}
         enterDelay={0.5}
       />
     </section>
+  )
+}
+
+// ── WaveSVG3D: Ola con perspectiva y ondulación interactiva ────────────────────
+function WaveSVG3D({ opacity }: { opacity: number }) {
+  return (
+    <motion.div
+      style={{
+        perspective: '200px',
+        width: '50%',
+        height: '100%',
+        flexShrink: 0,
+      }}
+      animate={{ rotateX: [0, 2, 0, -2, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+    >
+      <svg
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ width: '100%', height: '100%' }}
+        preserveAspectRatio="none"
+      >
+        {/* Capa 1 — ola posterior */}
+        <motion.path
+          d="M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z"
+          fill={`rgba(10, 126, 200, ${opacity * 0.5})`}
+          animate={{
+            d: [
+              "M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z",
+              "M0 65 C200 100 400 40 580 80 C760 120 940 50 1120 80 C1280 105 1400 55 1440 75 L1440 120 L0 120 Z",
+            ],
+          }}
+          transition={{ duration: 5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+        />
+        {/* Capa 2 — ola frontal */}
+        <motion.path
+          d="M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z"
+          fill={`rgba(74, 175, 232, ${opacity})`}
+          animate={{
+            d: [
+              "M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z",
+              "M0 75 C220 110 440 30 620 70 C800 110 980 40 1160 70 C1320 95 1410 50 1440 65 L1440 120 L0 120 Z",
+            ],
+          }}
+          transition={{ duration: 7, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut', delay: 0.5 }}
+        />
+      </svg>
+    </motion.div>
   )
 }

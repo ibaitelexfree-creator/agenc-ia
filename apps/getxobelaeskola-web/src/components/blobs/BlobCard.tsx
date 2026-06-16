@@ -175,7 +175,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
       <div className="text-center">
         <motion.p
           className="font-bold tracking-[0.05em] text-[10px] sm:text-xs md:text-sm select-none uppercase"
-          style={{ color }}
+          style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
         >
@@ -183,7 +183,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-xs text-gray-500 mt-1"
+            className="text-xs text-white mt-1"
             animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? -2 : 0 }}
           >
             {subtitle}
@@ -194,7 +194,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
       {/* Indicador Ver más */}
       <motion.span
         className="text-xs font-medium"
-        style={{ color }}
+        style={{ color: '#ffffff' }}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
         transition={{ duration: 0.2 }}
