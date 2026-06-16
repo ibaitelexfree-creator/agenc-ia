@@ -42,10 +42,10 @@ export default function GoogleAuthButton() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full h-12 rounded-xl bg-white border border-white/10 flex items-center justify-center gap-3 text-nautical-black font-bold text-xs uppercase tracking-widest hover:bg-white/90 transition-all active:scale-[0.98] disabled:opacity-50 group"
+            className="w-full h-12 rounded-xl bg-white border border-black/10 flex items-center justify-center gap-3 text-sea-foam font-bold text-xs uppercase tracking-widest hover:bg-black/[0.03] transition-all active:scale-[0.98] disabled:opacity-50 group"
         >
             {loading ? (
-                <div className="w-5 h-5 border-2 border-nautical-black/20 border-t-nautical-black rounded-full animate-spin" />
+                <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
             ) : (
                 <>
                     <svg className="w-5 h-5" viewBox="0 0 24 24">

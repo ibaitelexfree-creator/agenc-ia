@@ -1486,7 +1486,13 @@
     "cta_title": "Por eso la vela sigue siendo tan especial.",
     "cta_subtitle": "Porque permite encontrar tu propio lugar en la mar y disfrutarla de mil formas distintas.",
     "cta_button_start": "Empezar a navegar",
-    "cta_button_all": "Ver todos los cursos"
+    "cta_button_all": "Ver todos los cursos",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Preparando experiencia",
+    "beauty_badge": "↓ Sigue explorando",
+    "skip_3d": "Saltar experiencia 3D",
+    "fallback_message": "Tu navegador no soporta gráficos 3D. Actualiza tu navegador para la experiencia completa.",
+    "aria_3d_region": "Experiencia 3D interactiva: velero Optimist visto desde diferentes ángulos al hacer scroll"
   },
   "team_building": {
     "hero": {

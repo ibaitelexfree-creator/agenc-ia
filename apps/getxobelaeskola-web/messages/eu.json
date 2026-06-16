@@ -1434,7 +1434,13 @@
     "cta_title": "Horregatik jarraitzen du belak hain berezia izaten.",
     "cta_subtitle": "Itsasoan zure lekua aurkitzeko eta mila modu desberdinetan gozatzeko aukera ematen duelako.",
     "cta_button_start": "Hasi nabigatzen",
-    "cta_button_all": "Ikusi ikastaro guztiak"
+    "cta_button_all": "Ikusi ikastaro guztiak",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Esperientzia prestatzen",
+    "beauty_badge": "↓ Jarraitu esploratzen",
+    "skip_3d": "Saltatu 3D esperientzia",
+    "fallback_message": "Zure nabigatzaileak ez ditu 3D grafikoak onartzen. Mesedez eguneratu zure nabigatzailea esperientzia osorako.",
+    "aria_3d_region": "3D esperientzia interaktiboa: Optimist belontzia angelu ezberdinetatik ikusia scroll egiterakoan"
   },
   "team_building": {
     "hero": {

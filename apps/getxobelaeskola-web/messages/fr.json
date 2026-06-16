@@ -963,7 +963,13 @@
     "cta_title": "C'est pourquoi la voile reste si spéciale.",
     "cta_subtitle": "Parce qu'elle permet de trouver sa propre place en mer et d'en profiter de mille façons différentes.",
     "cta_button_start": "Commencer à naviguer",
-    "cta_button_all": "Voir tous les cours"
+    "cta_button_all": "Voir tous les cours",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Préparation de l'expérience",
+    "beauty_badge": "↓ Continuez à explorer",
+    "skip_3d": "Passer l'expérience 3D",
+    "fallback_message": "Votre navigateur ne supporte pas les graphiques 3D. Veuillez mettre à jour votre navigateur pour l'expérience complète.",
+    "aria_3d_region": "Expérience 3D interactive : voilier Optimist sous différents angles en faisant défiler"
   },
   "team_building": {
     "hero": {

@@ -67,7 +67,7 @@ export default function ResetPasswordClient({ locale }: { locale: string }) {
                 <div className="absolute inset-0 bg-gradient-to-r from-nautical-black via-transparent to-transparent" />
 
                 <div className="absolute bottom-20 left-20 z-10">
-                    <h2 className="text-6xl font-display mb-4 italic">{tAuth('hero_text')}</h2>
+                    <h2 className="text-6xl font-display mb-4 italic text-sea-foam">{tAuth('hero_text')}</h2>
                     <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
             </div>
@@ -78,8 +78,8 @@ export default function ResetPasswordClient({ locale }: { locale: string }) {
 
                 <div className="w-full max-w-md">
                     <header className="mb-12">
-                        <h1 className="text-5xl font-display mb-2">{tAuth('reset_password_title')}</h1>
-                        <p className="text-foreground/40 font-light">{tAuth('reset_password_desc')}</p>
+                        <h1 className="text-5xl font-display mb-2 text-sea-foam">{tAuth('reset_password_title')}</h1>
+                        <p className="text-foreground/60 font-light">{tAuth('reset_password_desc')}</p>
                     </header>
 
                     {success ? (
@@ -94,7 +94,7 @@ export default function ResetPasswordClient({ locale }: { locale: string }) {
                                 <input
                                     {...register('password')}
                                     type="password"
-                                    className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                                     placeholder="••••••••"
                                 />
                                 {errors.password && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.password.message}</p>}
@@ -105,7 +105,7 @@ export default function ResetPasswordClient({ locale }: { locale: string }) {
                                 <input
                                     {...register('confirmPassword')}
                                     type="password"
-                                    className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                                     placeholder="••••••••"
                                 />
                                 {errors.confirmPassword && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.confirmPassword.message}</p>}

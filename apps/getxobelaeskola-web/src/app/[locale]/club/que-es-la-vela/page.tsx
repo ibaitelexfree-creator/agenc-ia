@@ -1,8 +1,5 @@
 import { DM_Serif_Display, Inter } from "next/font/google";
-import VelaHero from "@/components/vela/VelaHero";
-import VelaFraseAnimada from "@/components/vela/VelaFraseAnimada";
-import VelaFilosofia from "@/components/vela/VelaFilosofia";
-import VelaTextoNarrativo from "@/components/vela/VelaTextoNarrativo";
+import Vela3DStage from "@/components/vela/Vela3DStage";
 import VelaSelectorExperiencia from "@/components/vela/VelaSelectorExperiencia";
 import VelaCTA from "@/components/vela/VelaCTA";
 import { Metadata } from "next";
@@ -37,7 +34,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     description = "Sailing combines technique, calm, and a deep connection with the sea. Discover how everyone can find their own place on the water.";
   } else if (isFr) {
     title = "Qu'est-ce que la Voile | GetxoBelaEskola";
-    description = "La voile allie technique, calme et connexion profonde avec la mer. Découvrez comment chacun peut trouver sa place sur l'eau.";
+    description = "La voile allie technique, calme et connexion profunda avec la mer. Découvrez comment chacun peut trouver sa place sur l'eau.";
   }
 
   return {
@@ -53,13 +50,16 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default function QueEsLaVelaPage() {
   return (
-    <main className={`${dmSerif.variable} ${inter.variable} bg-white overflow-hidden`} style={{ fontFamily: "var(--font-inter)" }}>
-      <VelaHero />
-      <VelaFraseAnimada />
-      <VelaFilosofia />
-      <VelaTextoNarrativo />
-      <VelaSelectorExperiencia />
-      <VelaCTA />
-    </main>
+    <div className={`${dmSerif.variable} ${inter.variable} bg-white`} style={{ fontFamily: "var(--font-inter)" }}>
+      {/* ═══ EXPERIENCIA 3D SCROLL-DRIVEN ═══ */}
+      <Vela3DStage />
+
+      {/* ═══ SECCIONES POST-3D ═══ */}
+      <div id="post-3d">
+        <VelaSelectorExperiencia />
+        <VelaCTA />
+      </div>
+    </div>
   );
 }
+

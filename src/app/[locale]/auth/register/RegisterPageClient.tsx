@@ -20,14 +20,14 @@ function RegisterPageContent({ locale }: { locale: string }) {
 
                 <div className="w-full max-w-md">
                     <header className="mb-12">
-                        <h1 className="text-5xl font-display mb-2">{t('register_title')}</h1>
-                        <p className="text-foreground/40 font-light">{t('register_desc')}</p>
+                        <h1 className="text-5xl font-display mb-2 text-sea-foam">{t('register_title')}</h1>
+                        <p className="text-foreground/60 font-light">{t('register_desc')}</p>
                     </header>
 
                     <RegisterForm />
 
                     <footer className="mt-12 text-center text-[10px] uppercase tracking-widest">
-                        <p className="text-foreground/40">
+                        <p className="text-foreground/60">
                             {t('has_account')}{' '}
                             <Link href={`/${locale}/auth/login${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ''}`} className="text-accent hover:text-sea-foam transition-colors font-bold">
                                 {t('login_here')}
@@ -49,7 +49,7 @@ function RegisterPageContent({ locale }: { locale: string }) {
                 <div className="absolute inset-0 bg-gradient-to-l from-nautical-black via-transparent to-transparent" />
 
                 <div className="absolute bottom-20 right-20 z-10 text-right">
-                    <h2 className="text-6xl font-display mb-4 italic">{t('hero_text')}</h2>
+                    <h2 className="text-6xl font-display mb-4 italic text-sea-foam">{t('hero_text')}</h2>
                     <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
             </div>

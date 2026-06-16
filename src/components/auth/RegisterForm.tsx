@@ -120,7 +120,7 @@ export default function RegisterForm() {
                     <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('name')}</label>
                     <input
                         {...register('nombre')}
-                        className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                        className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                         placeholder="Ana"
                     />
                     {errors.nombre && <p className="text-3xs text-red-500 uppercase mt-1">{errors.nombre.message}</p>}
@@ -129,7 +129,7 @@ export default function RegisterForm() {
                     <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('apellidos') || 'Apellidos'}</label>
                     <input
                         {...register('apellidos')}
-                        className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                        className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                         placeholder="López"
                     />
                     {errors.apellidos && <p className="text-3xs text-red-500 uppercase mt-1">{errors.apellidos.message}</p>}
@@ -141,7 +141,7 @@ export default function RegisterForm() {
                 <input
                     {...register('email')}
                     type="email"
-                    className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                     placeholder="tu@email.com"
                 />
                 {errors.email && <p className="text-3xs text-red-500 uppercase mt-1">{errors.email.message}</p>}
@@ -152,7 +152,7 @@ export default function RegisterForm() {
                 <input
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
-                    className="w-full bg-transparent border-b border-white/10 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam"
+                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
                     placeholder="••••••••"
                 />
                 {errors.password && <p className="text-3xs text-red-500 uppercase mt-1">{errors.password.message}</p>}
@@ -163,11 +163,11 @@ export default function RegisterForm() {
                         id="show-password"
                         checked={showPassword}
                         onChange={(e) => setShowPassword(e.target.checked)}
-                        className="w-3 h-3 rounded border-white/10 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
+                        className="w-3 h-3 rounded border-black/20 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
                     />
                     <label
                         htmlFor="show-password"
-                        className="text-[9px] uppercase tracking-widest text-foreground/40 cursor-pointer hover:text-accent transition-colors"
+                        className="text-[9px] uppercase tracking-widest text-sea-foam/60 cursor-pointer hover:text-accent transition-colors"
                     >
                         {t('show_password')}
                     </label>
@@ -179,9 +179,9 @@ export default function RegisterForm() {
                     {...register('subscribeNewsletter')}
                     type="checkbox"
                     id="subscribeNewsletter"
-                    className="w-4 h-4 accent-accent border-white/10 rounded-sm cursor-pointer"
+                    className="w-4 h-4 accent-accent border-black/20 rounded-sm cursor-pointer"
                 />
-                <label htmlFor="subscribeNewsletter" className="text-3xs uppercase tracking-widest text-white/40 hover:text-white transition-colors cursor-pointer select-none">
+                <label htmlFor="subscribeNewsletter" className="text-3xs uppercase tracking-widest text-black/50 hover:text-black transition-colors cursor-pointer select-none">
                     {t('newsletter_checkbox')}
                 </label>
             </div>
@@ -218,10 +218,10 @@ export default function RegisterForm() {
 
             <div className="relative my-8">
                 <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-white/10"></div>
+                    <div className="w-full border-t border-black/10"></div>
                 </div>
                 <div className="relative flex justify-center text-[10px] uppercase tracking-widest">
-                    <span className="bg-nautical-black px-4 text-white/40 font-bold italic">O BIEN</span>
+                    <span className="bg-white px-4 text-black/50 font-bold italic">O BIEN</span>
                 </div>
             </div>
 

@@ -66,15 +66,14 @@ function LoginPageContent({ locale }: { locale: string }) {
             {/* Desktop: Two Column Layout */}
             {!isMobile && (
                 <div className="hidden lg:block absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-                    <video
-                        autoPlay loop muted playsInline
+                    <img
+                        src="/images/login-page-captain.jpeg"
+                        alt="Capitán"
                         className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale"
-                    >
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-sailing-boat-on-the-sea-during-sunset-34538-large.mp4" type="video/mp4" />
-                    </video>
+                    />
                     <div className="absolute inset-0 bg-gradient-to-r from-nautical-black via-transparent to-nautical-black" />
                     <div className="absolute bottom-20 left-16 z-10">
-                        <h2 className="text-5xl font-display mb-3 italic text-white">{t('hero_text')}</h2>
+                        <h2 className="text-5xl font-display mb-3 italic text-sea-foam">{t('hero_text')}</h2>
                         <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                     </div>
                 </div>
@@ -88,8 +87,8 @@ function LoginPageContent({ locale }: { locale: string }) {
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 mb-5">
                             <Anchor className="w-8 h-8 text-accent" />
                         </div>
-                        <h1 className="text-3xl lg:text-4xl font-display text-white mb-2">{t('login_title')}</h1>
-                        <p className="text-white/40 text-sm">{t('login_desc')}</p>
+                        <h1 className="text-3xl lg:text-4xl font-display text-sea-foam mb-2">{t('login_title')}</h1>
+                        <p className="text-sea-foam/60 text-sm">{t('login_desc')}</p>
                     </header>
 
                     {/* Login Form */}
@@ -97,7 +96,7 @@ function LoginPageContent({ locale }: { locale: string }) {
 
                     {/* Register Link */}
                     <footer className="mt-8 text-center">
-                        <p className="text-white/40 text-xs">
+                        <p className="text-sea-foam/60 text-xs">
                             {t('no_account')}{' '}
                             <Link
                                 href={`/${locale}/auth/register${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ''}`}

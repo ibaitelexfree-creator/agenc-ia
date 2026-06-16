@@ -1426,7 +1426,13 @@
     "cta_title": "That is why sailing remains so special.",
     "cta_subtitle": "Because it allows you to find your own place in the sea and enjoy it in a thousand different ways.",
     "cta_button_start": "Start sailing",
-    "cta_button_all": "View all courses"
+    "cta_button_all": "View all courses",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Preparing experience",
+    "beauty_badge": "↓ Keep exploring",
+    "skip_3d": "Skip 3D experience",
+    "fallback_message": "Your browser does not support 3D graphics. Please update your browser for the full experience.",
+    "aria_3d_region": "Interactive 3D experience: Optimist sailboat shown from different angles as you scroll"
   },
   "team_building": {
     "hero": {
