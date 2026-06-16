@@ -66,7 +66,7 @@ export function Section3Path() {
   return (
     <section
       style={{
-        gridArea: 's3',
+        gridArea: 's4',
         position: 'relative',
         width: '100vw',
         height: '100vh',

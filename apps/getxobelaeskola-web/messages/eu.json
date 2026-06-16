@@ -212,7 +212,8 @@
     "header_suffix": "Getxo Bela Eskola",
     "since": "Getxon Sortua",
     "desc1": "Duela 15 urte baino gehiago jaio ginen Getxon helburu argi batekin: itsasoa pertsona guztiei hurbiltzea ikuspegi humano, hezitzaile eta eskuragarri batetik. Irabazi-asmorik gabeko elkarte bat gara eta bela ikaskuntzarako, elkarbizitzarako eta eraldaketa pertsonalerako tresna gisa ulertzen duen proiektu soziala.",
-    "desc2": "Urteetan zehar hazi egin gara, profesionalizatu eta jarduerak zabaldu ditugu, beti oinarri berdinarekin: pertsonak erdian jartzea. Eskola leku hurbil eta sinplea izaten jarraitzen du, komunitatetik eraikia.",
+    "desc2": "Urteetan zehar hazi egin gara, profesionalizatu eta jarduerak zabaldu ditugu, beti oinarri berdinarekin: pertsonak erdian jartzea. Eskola leku hurbil eta sinplea izaten jarraitzen du, komunitatetik eraikia, eta gure bideak pertsonei laguntzen jarraitzen du, itsasoa modu sinple, seguru eta autentikoan bizi dezaten.",
+    "desc3": "Ez gara enpresa bat, eta ez dugu hala jokatzen. Irabazi-asmorik gabeko elkarte gisa, sartzen den guztia proiektua hobetzeko bideratzen da: ontziak berritzeko, monitoreak prestatzeko, instalazioak zaintzeko eta jarduerak zabaltzeko.",
     "values": {
       "v1_title": "Gure Instalazioak",
       "v1_desc": "Getxoko Kirol Portuko gune pribilegiatu batean kokatua, Ereagako hondartzatik metro gutxira eta Abrara irteera zuzenarekin. Ikus-entzunezko gela, aldagela zainduak, kanpoko espazio zabala, tailerra eta chill-out gunea sauna txiki batekin ditugu.",
@@ -1587,6 +1588,32 @@
       "cta_gold": "Eskatu neurriko aurrekontua",
       "cta_secondary": "Idatzi iezaguzu zuzenean",
       "glow_tooltip": "Proposamena zure taldeari eta aurrekontuari egokitzen diogu"
+    }
+  },
+  "s2_identity": {
+    "eyebrow": "Nor gara",
+    "title_line1": "Zer da",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "Ez gara ohiko eskola bat, ",
+    "value1_highlight": "balioak dituen komunitate hurbil bat baizik.",
+    "value2": "Nabigatzen ikasteko, partekatzeko eta itsasoaz gozatzeko lekua.",
+    "cta": "Irakurri gehiago"
+  },
+  "s3_adapts": {
+    "eyebrow": "Esperientzia",
+    "title": "Bela zure neurrira",
+    "subtitle_default": "Ez dago itsasoan bi egun berdin. Zuk aukeratzen duzu nola bizi.",
+    "combo_calm_int_small": "Arratsalde lasai bat uretan ikasten, zu eta itsasoa.",
+    "combo_calm_int_big": "Nabigazio soziala ur lasaietan, presarik gabe elkarrekin ikasiz.",
+    "combo_calm_ext_small": "Itsaso zabala baina lasai, haize leuna sentituz, presiorik gabe.",
+    "combo_calm_ext_big": "Ibilaldi lasai bat Abratik, itsasoaren handitasunaz gozatuz.",
+    "combo_action_int_small": "Intentsitatea babestutako uretan, maniobrak lantzeko bikaina.",
+    "combo_action_int_big": "Adrenalina taldean, haize zakarra barneko Abran.",
+    "combo_action_ext_small": "Erronka hutsa: itsaso zabala, velero bizia, benetako sentsazioak.",
+    "combo_action_ext_big": "Esperientzia osoa: itsaso zabala, haize indartsua, zure taldea.",
+    "card4": {
+      "badge": "Bela modernoa ✦",
+      "body": "Gaur egungo eguraldi-iragarpenek baldintzak zehatz-mehatz aurreikustea ahalbidetzen dute. Nahi duzunean ateratzen zara, bilatzen duzunarekin. Bela kontzientea, eskuragarria eta zure neurrikoa da orain."
     }
   }
 }

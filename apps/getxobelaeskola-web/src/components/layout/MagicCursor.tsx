@@ -30,7 +30,7 @@ export function MagicCursor() {
       if (!isVisible) setIsVisible(true)
 
       const target = e.target as HTMLElement
-      if (target) {
+      if (target && typeof target.closest === 'function') {
         const clickable = target.closest('a, button, [role="button"], input, select, [cursor-pointer], .clickable')
         setIsPointer(!!clickable)
       } else {

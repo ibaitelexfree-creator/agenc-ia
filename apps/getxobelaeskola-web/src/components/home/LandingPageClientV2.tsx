@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ScrollEngineV2 } from '@/components/layout/ScrollEngineV2'
 import { CanvasV2 } from '@/components/layout/CanvasV2'
 import { Section1Hero } from '@/components/sections/Section1Hero'
-import { Section2Adapts } from '@/components/sections/Section2Adapts'
+import { Section2Identity } from '@/components/sections/Section2Identity'
+import { Section3Adapts } from '@/components/sections/Section3Adapts'
 import { Section3Path } from '@/components/sections/Section3Path'
 import { Section4Why } from '@/components/sections/Section4Why'
 import { WindParticles } from '@/components/decorative/WindParticles'
@@ -98,7 +99,8 @@ export function LandingPageClientV2() {
         <LandingSidebar />
         <ReducedMotionCanvas>
           <Section1Hero />
-          <Section2Adapts />
+          <Section2Identity />
+          <Section3Adapts />
           <Section3Path />
           <Section4Why />
           <ReviewsSection />
@@ -122,7 +124,8 @@ export function LandingPageClientV2() {
       {/* Canvas que contiene las secciones alineadas verticalmente */}
       <CanvasV2>
         <Section1Hero />
-        <Section2Adapts />
+        <Section2Identity />
+        <Section3Adapts />
         <Section3Path />
         <Section4Why />
         <ReviewsSection />

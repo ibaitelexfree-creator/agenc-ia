@@ -95,9 +95,12 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 <p className="text-foreground/80 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
                                     {t('desc1')}
                                 </p>
-                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm">
+                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-4">
                                     <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
                                         {t('desc2')}
+                                    </p>
+                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
+                                        {t('desc3')}
                                     </p>
                                 </div>
                             </div>

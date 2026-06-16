@@ -281,7 +281,7 @@ export function Section3Adapts() {
           {/* Card 1: Tipo de experiencia */}
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', tracking: '0.08em', color: 'var(--gbe-text-muted)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 Experiencia
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -326,7 +326,7 @@ export function Section3Adapts() {
           {/* Card 2: El escenario */}
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', tracking: '0.08em', color: 'var(--gbe-text-muted)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 El escenario
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -371,7 +371,7 @@ export function Section3Adapts() {
           {/* Card 3: Con quién navegar */}
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', tracking: '0.08em', color: 'var(--gbe-text-muted)' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 Embarcación
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>

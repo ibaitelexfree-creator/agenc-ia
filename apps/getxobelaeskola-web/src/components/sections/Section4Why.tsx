@@ -171,7 +171,7 @@ export function Section4Why() {
   return (
     <section
       style={{
-        gridArea: 's4',
+        gridArea: 's5',
         position: 'relative',
         width: '100vw',
         height: '100vh',

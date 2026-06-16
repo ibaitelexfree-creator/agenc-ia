@@ -27,17 +27,25 @@ const cardVariant = {
 
 export function Section2Adapts() {
   const t = useTranslations('s2')
+  const tAdapts = useTranslations('s3_adapts')
   const [experienceType, setExperienceType] = useState<'a' | 'b'>('a')
+  const [scenarioType, setScenarioType] = useState<'a' | 'b'>('a')
+  const [boatType, setBoatType] = useState<'a' | 'b'>('a')
 
   // La imagen cambia según el tipo de experiencia seleccionado
   const bgImage = experienceType === 'a'
     ? '/images/ai/section2-calm-bay.webp'
     : '/images/ai/section2-action-sea.webp'
 
+  const experienceKey = experienceType === 'a' ? 'calm' : 'action'
+  const scenarioKey = scenarioType === 'a' ? 'int' : 'ext'
+  const boatKey = boatType === 'a' ? 'small' : 'big'
+  const comboKey = `combo_${experienceKey}_${scenarioKey}_${boatKey}` as const
+
   return (
     <section
       style={{
-        gridArea: 's2',
+        gridArea: 's3',
         position: 'relative',
         width: '100vw',
         height: '100vh',
@@ -102,9 +110,27 @@ export function Section2Adapts() {
           >
             {t('title')}
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.6 }}>
             {t('subtitle')}
           </p>
+          <motion.div
+            key={comboKey}
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              marginTop: '0.75rem',
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(10, 126, 200, 0.08)',
+              borderRadius: '8px',
+              borderLeft: '4px solid var(--ocean-bright)',
+              display: 'inline-block',
+            }}
+          >
+            <span style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--ocean-deep)' }}>
+              {tAdapts(comboKey as any)}
+            </span>
+          </motion.div>
         </motion.div>
 
         {/* Grid de 4 tarjetas toggle */}
@@ -120,79 +146,91 @@ export function Section2Adapts() {
           }}
         >
           {/* Tarjeta 1: Tipo de experiencia */}
-          <motion.div variants={cardVariant}>
-            <Card3D intensity={8}>
-              <ExperienceToggle
-                label={t('card1.label')}
-                optionA={{ label: t('card1.option_a'), description: t('card1.option_a_desc') }}
-                optionB={{ label: t('card1.option_b'), description: t('card1.option_b_desc') }}
-                onToggle={setExperienceType}
-              />
-            </Card3D>
+          <motion.div
+            variants={cardVariant}
+            whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(10, 126, 200, 0.12)' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{ borderRadius: '16px' }}
+          >
+            <ExperienceToggle
+              label={t('card1.label')}
+              optionA={{ label: t('card1.option_a'), description: t('card1.option_a_desc') }}
+              optionB={{ label: t('card1.option_b'), description: t('card1.option_b_desc') }}
+              onToggle={setExperienceType}
+            />
           </motion.div>
 
           {/* Tarjeta 2: El escenario */}
-          <motion.div variants={cardVariant}>
-            <Card3D intensity={8}>
-              <ExperienceToggle
-                label={t('card2.label')}
-                optionA={{ label: t('card2.option_a'), description: t('card2.option_a_desc') }}
-                optionB={{ label: t('card2.option_b'), description: t('card2.option_b_desc') }}
-              />
-            </Card3D>
+          <motion.div
+            variants={cardVariant}
+            whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(10, 126, 200, 0.12)' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{ borderRadius: '16px' }}
+          >
+            <ExperienceToggle
+              label={t('card2.label')}
+              optionA={{ label: t('card2.option_a'), description: t('card2.option_a_desc') }}
+              optionB={{ label: t('card2.option_b'), description: t('card2.option_b_desc') }}
+              onToggle={setScenarioType}
+            />
           </motion.div>
 
           {/* Tarjeta 3: Con quién navegar */}
-          <motion.div variants={cardVariant}>
-            <Card3D intensity={8}>
-              <ExperienceToggle
-                label={t('card3.label')}
-                optionA={{ label: t('card3.option_a'), description: t('card3.option_a_desc') }}
-                optionB={{ label: t('card3.option_b'), description: t('card3.option_b_desc') }}
-              />
-            </Card3D>
+          <motion.div
+            variants={cardVariant}
+            whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(10, 126, 200, 0.12)' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{ borderRadius: '16px' }}
+          >
+            <ExperienceToggle
+              label={t('card3.label')}
+              optionA={{ label: t('card3.option_a'), description: t('card3.option_a_desc') }}
+              optionB={{ label: t('card3.option_b'), description: t('card3.option_b_desc') }}
+              onToggle={setBoatType}
+            />
           </motion.div>
 
           {/* Tarjeta 4: Forma moderna (sin toggle — solo informativa) */}
-          <motion.div variants={cardVariant}>
-            <Card3D
-              intensity={8}
+          <motion.div
+            variants={cardVariant}
+            whileHover={{ y: -6, boxShadow: '0 20px 40px rgba(10, 126, 200, 0.12)' }}
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{
+              backgroundColor: 'var(--foam)',
+              borderRadius: '16px',
+              padding: '1.25rem',
+              color: 'var(--ocean-deep)',
+              position: 'relative',
+              overflow: 'hidden',
+              height: '100%',
+              border: '1px solid rgba(10, 126, 200, 0.15)',
+            }}
+          >
+            <span
               style={{
-                backgroundColor: 'var(--foam)',
-                borderRadius: '16px',
-                padding: '1.25rem',
-                color: 'var(--ocean-deep)',
-                position: 'relative',
-                overflow: 'hidden',
-                height: '100%',
+                display: 'inline-block',
+                backgroundColor: 'var(--ocean-bright)',
+                color: 'white',
+                fontSize: '0.65rem',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                padding: '2px 8px',
+                borderRadius: '20px',
+                marginBottom: '0.75rem',
               }}
             >
-              <span
-                style={{
-                  display: 'inline-block',
-                  backgroundColor: 'var(--ocean-bright)',
-                  color: 'white',
-                  fontSize: '0.65rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  padding: '2px 8px',
-                  borderRadius: '20px',
-                  marginBottom: '0.75rem',
-                }}
-              >
-                {t('card4.badge')}
-              </span>
-              <p
-                style={{
-                  fontSize: '0.9rem',
-                  lineHeight: 1.6,
-                  color: 'var(--text-secondary)',
-                }}
-              >
-                {t('card4.body')}
-              </p>
-            </Card3D>
+              {t('card4.badge')}
+            </span>
+            <p
+              style={{
+                fontSize: '0.9rem',
+                lineHeight: 1.6,
+                color: 'var(--text-secondary)',
+              }}
+            >
+              {t('card4.body')}
+            </p>
           </motion.div>
         </motion.div>
       </div>

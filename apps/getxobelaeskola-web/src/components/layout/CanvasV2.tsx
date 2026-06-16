@@ -11,7 +11,7 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
     <motion.div
       style={{
         width: '100vw',
-        height: '700vh',
+        height: '800vh',
         position: 'absolute',
         top: 0,
         left: 0,
@@ -22,12 +22,13 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
         transformStyle: 'preserve-3d',
         display: 'grid',
         gridTemplateColumns: '100vw',
-        gridTemplateRows: '100vh 100vh 100vh 100vh 100vh 100vh 100vh',
+        gridTemplateRows: '100vh 100vh 100vh 100vh 100vh 100vh 100vh 100vh',
         gridTemplateAreas: `
           "s1"
           "s2"
           "s3"
           "s4"
+          "s5"
           "reviews"
           "blog"
           "cta"

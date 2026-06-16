@@ -212,7 +212,8 @@
     "header_suffix": "Getxo Bela Eskola",
     "since": "Founded in Getxo",
     "desc1": "More than 15 years ago we were born in Getxo with a clear goal: to bring the sea closer to everyone from a human, educational and accessible approach. We are a non-profit association and a social project that understands sailing as a tool for learning, coexistence and personal transformation.",
-    "desc2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community.",
+    "desc2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community, and our path remains focused on accompanying people to experience the sea in a simple, safe and authentic way.",
+    "desc3": "We are not a company, and we do not act as such. As a non-profit association, everything that comes in is reinvested in improving the project: renewing boats, training instructors, maintaining the facilities and expanding activities.",
     "values": {
       "v1_title": "Our Facilities",
       "v1_desc": "Located in a privileged area of the Getxo Marina, a few meters from Ereaga beach and with direct access to the Abra. We have an audiovisual classroom, well-kept changing rooms, large outdoor space, workshop and chill-out area with a small sauna.",
@@ -1579,6 +1580,32 @@
       "cta_gold": "Request custom quote",
       "cta_secondary": "Write to us directly",
       "glow_tooltip": "We adapt the proposal to your team and budget"
+    }
+  },
+  "s2_identity": {
+    "eyebrow": "Who we are",
+    "title_line1": "What is",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "We are not a conventional school, but a ",
+    "value1_highlight": "close community with values.",
+    "value2": "A place to learn to sail, share, and enjoy the sea.",
+    "cta": "Read more"
+  },
+  "s3_adapts": {
+    "eyebrow": "The experience",
+    "title": "Sailing adapts to you",
+    "subtitle_default": "No two days are the same at sea. You choose how to live it.",
+    "combo_calm_int_small": "A quiet afternoon learning in protected waters, you and the sea.",
+    "combo_calm_int_big": "Social sailing in calm waters, learning together without rush.",
+    "combo_calm_ext_small": "Open but calm sea, feeling the breeze, no pressure.",
+    "combo_calm_ext_big": "A serene cruise through the Abra, enjoying the immensity.",
+    "combo_action_int_small": "Intensity in protected waters, ideal for practicing maneuvers.",
+    "combo_action_int_big": "Group adrenaline, strong wind in the inner Abra.",
+    "combo_action_ext_small": "Pure challenge: open sea, agile sailboat, real sensations.",
+    "combo_action_ext_big": "The complete experience: open sea, strong wind, your group.",
+    "card4": {
+      "badge": "Modern sailing ✦",
+      "body": "Current weather reports make it possible to predict conditions exactly. You go out when you want, with what you are looking for. Sailing is now conscious, accessible, and tailored to you."
     }
   }
 }

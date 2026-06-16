@@ -210,7 +210,8 @@
     "header_suffix": "École Getxo Bela",
     "since": "Fondée à Getxo",
     "desc1": "Il y a plus de 15 ans, nous sommes nés à Getxo avec un objectif clair : rapprocher la mer de tous à partir d'une approche humaine, éducative et accessible. Nous sommes une association à but non lucratif et un projet social qui considère la voile comme un outil d'apprentissage, de coexistence et de transformation personnelle.",
-    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté.",
+    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté, et notre chemin reste centré sur l'accompagnement des personnes pour qu'elles vivent la mer de manière simple, sûre et authentique.",
+    "desc3": "Nous ne sommes pas une entreprise, et nous n'agissons pas comme telle. En tant qu'association à but non lucratif, tout ce qui rentre est réinvesti dans l'amélioration du projet : renouvellement des bateaux, formation des moniteurs, entretien des installations et développement des activités.",
     "values": {
       "v1_title": "Nos installations",
       "v1_desc": "Situé dans une zone privilégiée de la Marina de Getxo, à quelques mètres de la plage d'Ereaga et avec accès direct à l'Abra. Nous disposons d'une salle de classe audiovisuelle, de vestiaires bien entretenus, d'un grand espace extérieur, d'un atelier et d'un espace détente avec un petit sauna.",
@@ -1139,5 +1140,31 @@
     "card_udalekuak_subtitle": "Camps de voile",
     "card_entidades_title": "Entités",
     "card_entidades_subtitle": "Devenez partenaire"
+  },
+  "s2_identity": {
+    "eyebrow": "Qui sommes-nous",
+    "title_line1": "Qu'est-ce que",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "Nous ne sommes pas une école conventionnelle, mais une ",
+    "value1_highlight": "communauté proche avec des valeurs.",
+    "value2": "Un endroit pour apprendre à naviguer, partager et profiter de la mer.",
+    "cta": "Lire plus"
+  },
+  "s3_adapts": {
+    "eyebrow": "L'expérience",
+    "title": "La voile s'adapte à vous",
+    "subtitle_default": "Il n'y a pas deux jours pareils en mer. Vous choisissez comment le vivre.",
+    "combo_calm_int_small": "Un après-midi tranquille à apprendre dans des eaux protégées, vous et la mer.",
+    "combo_calm_int_big": "Navigation sociale dans des eaux calmes, apprendre ensemble sans se presser.",
+    "combo_calm_ext_small": "Mer ouverte mais calme, ressentir la brise, sans pression.",
+    "combo_calm_ext_big": "Une croisière sereine à travers l'Abra, en profitant de l'immensité.",
+    "combo_action_int_small": "Intensité dans des eaux protégées, idéale pour pratiquer les manœuvres.",
+    "combo_action_int_big": "Adrénaline en groupe, vent fort dans l'Abra intérieur.",
+    "combo_action_ext_small": "Défi pur : mer ouverte, voilier agile, sensations réelles.",
+    "combo_action_ext_big": "L'expérience complète : mer ouverte, vent fort, votre groupe.",
+    "card4": {
+      "badge": "Voile moderne ✦",
+      "body": "Les prévisions météo actuelles permettent de prévoir précisément les conditions. Vous sortez quand vous voulez, avec ce que vous cherchez. La voile est désormais consciente, accessible et sur mesure."
+    }
   }
 }
