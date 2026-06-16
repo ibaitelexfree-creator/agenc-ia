@@ -155,8 +155,9 @@ export function Section1Hero() {
           }}
         >
           <img
-            src="/images/home/parallax/cielo extendido v2.jpeg?v=3"
+            src="/images/home/parallax/cielo extendido v2.webp?v=3"
             alt="Cielo Abra de Getxo"
+            fetchPriority="high"
             style={{
               position: 'absolute',
               inset: '-20px',
@@ -215,8 +216,9 @@ export function Section1Hero() {
           }}
         >
           <img
-            src="/images/home/parallax/tierra.png?v=3"
+            src="/images/home/parallax/tierra.webp?v=3"
             alt="Costa y mar del Abra de Getxo"
+            fetchPriority="high"
             style={{
               position: 'absolute',
               inset: '-10px',
@@ -254,8 +256,9 @@ export function Section1Hero() {
           }}
         >
           <img
-            src="/images/home/parallax/velero.png?v=3"
+            src="/images/home/parallax/velero.webp?v=3"
             alt="Velero navegando en Getxo"
+            fetchPriority="high"
             style={{
               position: 'absolute',
               inset: 0,
