@@ -3,10 +3,10 @@ import { createClient } from '@/lib/supabase/server';
 import RentalClient from '@/components/rental/RentalClient';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { getSeoAlternates, siteUrl } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const t = await getTranslations({ locale, namespace: 'rental_page' });
-    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
 
     const title = `${t('title_prefix')} ${t('title_highlight')} | Getxo Bela Eskola`;
     const description = t('description');
@@ -14,15 +14,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title,
         description,
-        alternates: {
-            canonical: `${siteUrl}/${locale}/rental`,
-            languages: {
-                'es': `${siteUrl}/es/rental`,
-                'eu': `${siteUrl}/eu/rental`,
-                'en': `${siteUrl}/en/rental`,
-                'fr': `${siteUrl}/fr/rental`,
-            }
-        },
+        alternates: getSeoAlternates('rental', locale),
         openGraph: {
             title,
             description,

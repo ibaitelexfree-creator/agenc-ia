@@ -3,6 +3,8 @@ import JsonLd from '@/components/shared/JsonLd';
 import dynamic from 'next/dynamic';
 import { LandingPageClientV2 } from '@/components/home/LandingPageClientV2';
 
+import { getSeoAlternates } from '@/lib/seo';
+
 const NativeAppRedirect = dynamic(() => import('@/components/shared/NativeAppRedirect'), { ssr: false });
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -27,6 +29,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title,
     description,
+    alternates: getSeoAlternates('', locale),
   };
 }
 

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverImage from '@/components/shared/HoverImage';
+import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
@@ -16,6 +17,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title,
         description,
+        alternates: getSeoAlternates('about', locale),
         openGraph: {
             title,
             description,

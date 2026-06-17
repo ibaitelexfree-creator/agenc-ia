@@ -105,15 +105,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     creator: 'Getxo Getxo Bela Eskola',
     publisher: 'Getxo Getxo Bela Eskola',
     metadataBase: new URL(siteUrl),
-    alternates: {
-      canonical: `${siteUrl}/${locale}/`,
-      languages: {
-        'es-ES': `${siteUrl}/es/`,
-        'eu-ES': `${siteUrl}/eu/`,
-        'en-US': `${siteUrl}/en/`,
-        'fr-FR': `${siteUrl}/fr/`,
-      },
-    },
     openGraph: {
       title,
       description,

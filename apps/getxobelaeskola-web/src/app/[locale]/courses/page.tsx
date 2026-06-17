@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
 import CoursesListClient from '@/components/courses/CoursesListClient';
+import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
@@ -14,6 +15,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title,
         description,
+        alternates: getSeoAlternates('courses', locale),
         openGraph: {
             title,
             description,

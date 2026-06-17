@@ -1,6 +1,7 @@
 import ContactForm from '@/components/shared/ContactForm';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
+import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
@@ -26,6 +27,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title: fullTitle,
         description,
+        alternates: getSeoAlternates('contact', locale),
         openGraph: {
             title: fullTitle,
             description,

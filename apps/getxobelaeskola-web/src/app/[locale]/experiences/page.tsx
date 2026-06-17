@@ -3,10 +3,10 @@ import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import ExperiencesClient from '@/components/experiences/ExperiencesClient';
+import { getSeoAlternates, siteUrl } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const t = await getTranslations({ locale, namespace: 'experiences_page' });
-    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
 
     const title = `${t('title_prefix')} ${t('title_highlight')} | Getxo Bela Eskola`;
     const description = t('description');
@@ -14,15 +14,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     return {
         title,
         description,
-        alternates: {
-            canonical: `${siteUrl}/${locale}/experiences`,
-            languages: {
-                'es': `${siteUrl}/es/experiences`,
-                'eu': `${siteUrl}/eu/experiences`,
-                'en': `${siteUrl}/en/experiences`,
-                'fr': `${siteUrl}/fr/experiences`,
-            }
-        },
+        alternates: getSeoAlternates('experiences', locale),
         openGraph: {
             title,
             description,
