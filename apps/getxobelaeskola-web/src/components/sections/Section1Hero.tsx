@@ -350,37 +350,42 @@ export function Section1Hero() {
         {/* Desktop: Los 5 blobs en forma de "C" (arriba 2, medio 1, abajo 2) a la izquierda */}
         {/* Desktop: Los 5 blobs en forma de "C" - CARGA 5º */}
         {!isMobile && videoLoaded && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
+          <div
             style={{
               position: 'absolute',
               left: '-410px',
               top: '55%',
               transform: 'translateY(-50%)',
               marginTop: '50px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '-5.25rem',
-              alignItems: 'flex-start',
             }}
           >
-            {/* Arriba: Club de socias (Card 1) y Aprende a navegar (Card 0) */}
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-              <BlobCard {...CARDS[1]} index={1} />
-              <BlobCard {...CARDS[0]} index={0} />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '-5.25rem',
+                alignItems: 'flex-start',
+              }}
+            >
+              {/* Arriba: Club de socias (Card 1) y Aprende a navegar (Card 0) */}
+              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
+                <BlobCard {...CARDS[1]} index={1} />
+                <BlobCard {...CARDS[0]} index={0} />
+              </div>
 
-            {/* Medio: Compite y supérate (Card 2) */}
-            <BlobCard {...CARDS[2]} index={2} />
+              {/* Medio: Compite y supérate (Card 2) */}
+              <BlobCard {...CARDS[2]} index={2} />
 
-            {/* Abajo: Campamentos (Card 3) y Colabora (Card 4) */}
-            <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-              <BlobCard {...CARDS[3]} index={3} />
-              <BlobCard {...CARDS[4]} index={4} />
-            </div>
-          </motion.div>
+              {/* Abajo: Campamentos (Card 3) y Colabora (Card 4) */}
+              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
+                <BlobCard {...CARDS[3]} index={3} />
+                <BlobCard {...CARDS[4]} index={4} />
+              </div>
+            </motion.div>
+          </div>
         )}
 
         {/* Eyebrow — ubicación */}
@@ -479,10 +484,7 @@ export function Section1Hero() {
       {/* Mobile: Los 5 blobs interactivos alineados en fila al pie del Hero */}
       {/* Mobile: Los 5 blobs interactivos en fila - CARGA 5º */}
       {isMobile && videoLoaded && (
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+        <div
           style={{
             position: 'absolute',
             bottom: '50px',
@@ -490,18 +492,27 @@ export function Section1Hero() {
             transform: 'translateX(-50%)',
             width: '100%',
             maxWidth: '1200px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 'clamp(12px, 3vw, 40px)',
             padding: '0 24px',
             zIndex: 15,
           }}
         >
-          {CARDS.map((card, idx) => (
-            <BlobCard key={card.title} {...card} index={idx} />
-          ))}
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: 'clamp(12px, 3vw, 40px)',
+              width: '100%',
+            }}
+          >
+            {CARDS.map((card, idx) => (
+              <BlobCard key={card.title} {...card} index={idx} />
+            ))}
+          </motion.div>
+        </div>
       )}
 
       {/* Criaturas animadas — pasan detrás del contenido */}
