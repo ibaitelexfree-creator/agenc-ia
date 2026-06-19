@@ -48,6 +48,9 @@ export function Section1Hero() {
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
   
+  const [tierraLoaded, setTierraLoaded] = useState(false)
+  const [nubesLoaded, setNubesLoaded] = useState(false)
+  const [barcoLoaded, setBarcoLoaded] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(true)
 
@@ -151,72 +154,7 @@ export function Section1Hero() {
         justifyContent: 'center',
       }}
     >
-      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          y: layer1Y,
-          width: '100%',
-          height: '100%',
-          zIndex: 1,
-        }}
-      >
-        <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, 10, 0, -10, 0],
-            x: [0, -3, 0, 3, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
-          <img
-            src="/images/home/parallax/cielo extendido v2.webp?v=3"
-            alt="Cielo Abra de Getxo"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              left: '-100px',
-              right: '-100px',
-              top: '-20px',
-              bottom: '-20px',
-              width: 'calc(100% + 200px)',
-              height: 'calc(100% + 40px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              zIndex: 1,
-              transform: 'translateX(105px)',
-            }}
-          />
-          <video
-            src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              position: 'absolute',
-              left: '-105px',
-              right: '-105px',
-              top: '-20px',
-              width: 'calc(100% + 210px)',
-              height: '50%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              zIndex: 2,
-              opacity: 1,
-              pointerEvents: 'none',
-              transform: 'translateX(99px)',
-            }}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) */}
+      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
       <motion.div
         style={{
           position: 'absolute',
@@ -244,6 +182,7 @@ export function Section1Hero() {
             src="/images/home/parallax/tierra.webp?v=3"
             alt="Costa y mar del Abra de Getxo"
             fetchPriority="high"
+            onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
               inset: '-10px',
@@ -256,50 +195,125 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          y: layer3Y,
-          width: '100%',
-          height: '100%',
-          zIndex: 3,
-        }}
-      >
+      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) - CARGA 2º */}
+      {tierraLoaded && (
         <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, -35, 0, 35, 0],
-            x: [0, 6, 0, -6, 0],
-            rotate: [0, 0.8, 0, -0.8, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
+          style={{
+            position: 'absolute',
+            inset: 0,
+            y: layer1Y,
+            width: '100%',
+            height: '100%',
+            zIndex: 1,
           }}
         >
-          <img
-            src="/images/home/parallax/velero.webp?v=3"
-            alt="Velero navegando en Getxo"
-            fetchPriority="high"
-            style={{
-              position: 'absolute',
-              left: '-280px',
-              right: '-180px',
-              top: '-60px',
-              bottom: '-60px',
-              width: 'calc(100% + 460px)',
-              height: 'calc(100% + 120px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              transform: 'translateX(292px)',
+          <motion.div
+            style={{ width: '100%', height: '100%', position: 'relative' }}
+            animate={{
+              y: [0, 10, 0, -10, 0],
+              x: [0, -3, 0, 3, 0],
             }}
-          />
-          <SailboatAccesoButton />
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            <img
+              src="/images/home/parallax/cielo extendido v2.webp?v=3"
+              alt="Cielo Abra de Getxo"
+              fetchPriority="high"
+              onLoad={() => setNubesLoaded(true)}
+              style={{
+                position: 'absolute',
+                left: '-100px',
+                right: '-100px',
+                top: '-20px',
+                bottom: '-20px',
+                width: 'calc(100% + 200px)',
+                height: 'calc(100% + 40px)',
+                objectFit: 'cover',
+                objectPosition: 'center',
+                zIndex: 1,
+                transform: 'translateX(105px)',
+              }}
+            />
+            {/* El video de las nubes se carga después del barco - CARGA 4º */}
+            {barcoLoaded && (
+              <video
+                src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                onLoadedData={() => setVideoLoaded(true)}
+                style={{
+                  position: 'absolute',
+                  left: '-105px',
+                  right: '-105px',
+                  top: '-20px',
+                  width: 'calc(100% + 210px)',
+                  height: '50%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  zIndex: 2,
+                  opacity: 1,
+                  pointerEvents: 'none',
+                  transform: 'translateX(99px)',
+                }}
+              />
+            )}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
+
+      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) - CARGA 3º */}
+      {nubesLoaded && (
+        <motion.div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            y: layer3Y,
+            width: '100%',
+            height: '100%',
+            zIndex: 3,
+          }}
+        >
+          <motion.div
+            style={{ width: '100%', height: '100%', position: 'relative' }}
+            animate={{
+              y: [0, -35, 0, 35, 0],
+              x: [0, 6, 0, -6, 0],
+              rotate: [0, 0.8, 0, -0.8, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            <img
+              src="/images/home/parallax/velero.webp?v=3"
+              alt="Velero navegando en Getxo"
+              fetchPriority="high"
+              onLoad={() => setBarcoLoaded(true)}
+              style={{
+                position: 'absolute',
+                left: '-280px',
+                right: '-180px',
+                top: '-60px',
+                bottom: '-60px',
+                width: 'calc(100% + 460px)',
+                height: 'calc(100% + 120px)',
+                objectFit: 'cover',
+                objectPosition: 'center',
+                transform: 'translateX(292px)',
+              }}
+            />
+            <SailboatAccesoButton />
+          </motion.div>
+        </motion.div>
+      )}
 
       {/* Overlay gradiente oscuro */}
       <div
@@ -334,8 +348,12 @@ export function Section1Hero() {
         }}
       >
         {/* Desktop: Los 5 blobs en forma de "C" (arriba 2, medio 1, abajo 2) a la izquierda */}
-        {!isMobile && (
-          <div
+        {/* Desktop: Los 5 blobs en forma de "C" - CARGA 5º */}
+        {!isMobile && videoLoaded && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
             style={{
               position: 'absolute',
               left: '-410px',
@@ -362,7 +380,7 @@ export function Section1Hero() {
               <BlobCard {...CARDS[3]} index={3} />
               <BlobCard {...CARDS[4]} index={4} />
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* Eyebrow — ubicación */}
@@ -459,8 +477,12 @@ export function Section1Hero() {
       </motion.div>
 
       {/* Mobile: Los 5 blobs interactivos alineados en fila al pie del Hero */}
-      {isMobile && (
-        <div
+      {/* Mobile: Los 5 blobs interactivos en fila - CARGA 5º */}
+      {isMobile && videoLoaded && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{
             position: 'absolute',
             bottom: '50px',
@@ -479,7 +501,7 @@ export function Section1Hero() {
           {CARDS.map((card, idx) => (
             <BlobCard key={card.title} {...card} index={idx} />
           ))}
-        </div>
+        </motion.div>
       )}
 
       {/* Criaturas animadas — pasan detrás del contenido */}
