@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
 interface BlobCardProps {
@@ -20,6 +20,88 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
   const videoRef = useRef<HTMLVideoElement>(null)
   const cardRef = useRef<HTMLAnchorElement>(null)
   const clipId = `clip-${title.replace(/\s/g, '')}`
+
+  const [pageLoaded, setPageLoaded] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(false)
+  const [videoReady, setVideoReady] = useState(false)
+  const [timeToReveal, setTimeToReveal] = useState(false)
+  const [startReveal, setStartReveal] = useState(false)
+  const [revealComplete, setRevealComplete] = useState(false)
+
+  // Detect page load event or readyState to ensure videos load last
+  useEffect(() => {
+    const handleLoad = () => {
+      setPageLoaded(true)
+    }
+
+    if (document.readyState === 'complete') {
+      setPageLoaded(true)
+    } else {
+      window.addEventListener('load', handleLoad)
+      // Fallback timer to make sure cards reveal even if page load event gets blocked/delayed
+      const fallbackTimer = setTimeout(() => {
+        setPageLoaded(true)
+      }, 3500)
+      return () => {
+        window.removeEventListener('load', handleLoad)
+        clearTimeout(fallbackTimer)
+      }
+    }
+  }, [])
+
+  // Once the page is loaded, we immediately trigger video loading for all blobs
+  useEffect(() => {
+    if (pageLoaded) {
+      setLoadVideo(true)
+    }
+  }, [pageLoaded])
+
+  // Check if the video is already cached/loaded when loadVideo triggers
+  useEffect(() => {
+    if (loadVideo && videoRef.current) {
+      if (videoRef.current.readyState >= 2) { // HAVE_CURRENT_DATA or higher
+        setVideoReady(true)
+      }
+    }
+  }, [loadVideo])
+
+  // Staggered reveal timeline per card based on its index with random gaps between 400ms and 800ms
+  useEffect(() => {
+    if (!pageLoaded) return
+
+    // Calculate cumulative delay using a deterministic pseudo-random gap [400, 800] per step
+    let cumulativeDelay = 600; // Base buffer after page load
+    for (let i = 1; i <= index; i++) {
+      // Deterministic hash based on step i to get consistent gaps on client renders
+      const hash = Math.sin(i * 9876.54) * 10000;
+      const randGap = (hash - Math.floor(hash)) * 400 + 400; // Random value in [400, 800]
+      cumulativeDelay += randGap;
+    }
+
+    const timer = setTimeout(() => {
+      setTimeToReveal(true)
+    }, cumulativeDelay)
+
+    return () => clearTimeout(timer)
+  }, [pageLoaded, index])
+
+  // Trigger the reveal only when both the staggered time slot has arrived and the video has loaded
+  useEffect(() => {
+    if (timeToReveal && videoReady) {
+      setStartReveal(true)
+    }
+  }, [timeToReveal, videoReady])
+
+  // Fallback to force reveal if the video takes too long to load (slow connection)
+  useEffect(() => {
+    if (!timeToReveal || videoReady) return
+
+    const forceTimer = setTimeout(() => {
+      setVideoReady(true)
+    }, 2500) // 2.5s fallback delay after its slot arrives
+
+    return () => clearTimeout(forceTimer)
+  }, [timeToReveal, videoReady])
 
   // Atracción magnética muy suave y lenta (como fluido/líquido)
   const { x: magX, y: magY } = useMagneticCursor(cardRef, { 
@@ -41,7 +123,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
       video.pause()
       video.currentTime = 0
     }
-  }, [isHovered, inView])
+  }, [isHovered, inView, loadVideo])
 
   // Intersection Observer para activar en mobile al estar al centro de la pantalla
   useEffect(() => {
@@ -162,6 +244,22 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
       className="relative flex flex-col items-center gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      variants={{
+        hidden: { scale: 0, opacity: 0 },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            type: 'spring',
+            stiffness: 90,
+            damping: 14,
+            mass: 1.1,
+            delay: 0.15 // Emerge right at the peak of the glow portal
+          }
+        }
+      }}
+      initial="hidden"
+      animate={startReveal ? "visible" : "hidden"}
       style={{
         x: magX,
         y: magY,
@@ -258,28 +356,31 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
           {/* Video recortado */}
           <g clipPath={`url(#${clipId})`}>
             <foreignObject x="0" y="0" width="100" height="100">
-              <video
-                ref={videoRef}
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  opacity: isHovered || inView ? 1 : 0,
-                  transition: 'opacity 0.4s',
-                }}
-              >
-                {videoSrc.endsWith('.webm') ? (
-                  <>
-                    <source src={videoSrc} type="video/webm" />
-                    <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-                  </>
-                ) : (
-                  <source src={videoSrc} type="video/mp4" />
-                )}
-              </video>
+              {loadVideo && (
+                <video
+                  ref={videoRef}
+                  loop
+                  muted
+                  playsInline
+                  onLoadedData={() => setVideoReady(true)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    opacity: isHovered || inView ? 1 : 0,
+                    transition: 'opacity 0.4s',
+                  }}
+                >
+                  {videoSrc.endsWith('.webm') ? (
+                    <>
+                      <source src={videoSrc} type="video/webm" />
+                      <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+                    </>
+                  ) : (
+                    <source src={videoSrc} type="video/mp4" />
+                  )}
+                </video>
+              )}
             </foreignObject>
           </g>
 
@@ -296,6 +397,75 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
             transition={{ duration: 0.3 }}
           />
         </svg>
+
+        {/* Portal de Teletransportación Mágica */}
+        <AnimatePresence>
+          {!revealComplete && startReveal && (
+            <>
+              {/* Resplandor de luz central */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: [0, 1.8, 1.4, 0],
+                  opacity: [0, 1, 0.8, 0],
+                }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: 1.3,
+                  times: [0, 0.25, 0.6, 1],
+                  ease: "easeOut",
+                }}
+                onAnimationComplete={() => setRevealComplete(true)}
+                className="absolute inset-[-40%] rounded-full pointer-events-none mix-blend-screen"
+                style={{
+                  background: `radial-gradient(circle, #ffffff 0%, ${color} 45%, transparent 70%)`,
+                  filter: 'blur(16px)',
+                  boxShadow: `0 0 45px 15px ${color}, 0 0 90px 30px #ffffff`,
+                  zIndex: 30,
+                }}
+              />
+              {/* Onda expansiva de luz en anillo */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{
+                  scale: [0, 2.3],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 0.9,
+                  ease: "easeOut",
+                  delay: 0.1,
+                }}
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{
+                  border: `3px double ${color}`,
+                  boxShadow: `0 0 25px ${color}, inset 0 0 25px ${color}`,
+                  filter: 'blur(1px)',
+                  zIndex: 29,
+                }}
+              />
+              {/* Brillo mágico / destello de hadas giratorio */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0, rotate: 0 }}
+                animate={{
+                  scale: [0, 1.5, 0],
+                  opacity: [0, 1, 0],
+                  rotate: [0, 180],
+                }}
+                transition={{
+                  duration: 1.2,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-[-20%] rounded-full pointer-events-none mix-blend-color-dodge"
+                style={{
+                  background: `radial-gradient(circle, #ffffff 10%, ${color} 30%, transparent 60%)`,
+                  filter: 'blur(8px) brightness(1.5)',
+                  zIndex: 31,
+                }}
+              />
+            </>
+          )}
+        </AnimatePresence>
       </motion.div>
 
       {/* Texto de la etiqueta */}

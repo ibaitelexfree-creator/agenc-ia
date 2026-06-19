@@ -182,11 +182,6 @@ export function Section2Identity() {
           alignItems: 'center',
         }}
       >
-        {/* Eyebrow */}
-        <motion.div variants={lineVariants} style={{ marginBottom: '1.25rem' }}>
-          <SectionEyebrow text={t('eyebrow')} color="var(--gbe-gold)" />
-        </motion.div>
-
         {/* Título de la sección con Shimmer en el logo e historia */}
         <h2
           style={{
@@ -287,16 +282,27 @@ export function Section2Identity() {
           <motion.p
             variants={lineVariants}
             style={{
-              fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.45rem)',
               lineHeight: 1.6,
               fontWeight: 300,
-              fontStyle: 'italic',
-              maxWidth: '640px',
-              color: 'rgba(255, 255, 255, 0.75)',
+              maxWidth: '720px',
+              color: 'rgba(255, 255, 255, 0.9)',
               margin: '0 auto',
             }}
           >
-            {t('value2')}
+            {t.rich('value2', {
+              gold: (chunks) => (
+                <span
+                  style={{
+                    color: 'var(--gbe-gold)',
+                    fontWeight: 600,
+                    textShadow: '0 0 15px rgba(242, 169, 59, 0.15)',
+                  }}
+                >
+                  {chunks}
+                </span>
+              )
+            })}
           </motion.p>
         </div>
 

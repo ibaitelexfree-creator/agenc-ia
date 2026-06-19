@@ -1108,9 +1108,9 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "We're not a school. We're your sea.",
-    "subtitle": "A meeting point where sailing is the excuse to share, grow and feel the sea without pressure.",
-    "cta": "Discover →",
+    "title": "Sailing Club | in Getxo",
+    "subtitle": "Sail, learn and share",
+    "cta": "Become a Member",
     "scroll_hint": "Keep sailing",
     "word1": "Sail.",
     "word2": "Learn.",
@@ -1588,7 +1588,7 @@
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "We are not a conventional school, but a ",
     "value1_highlight": "close community with values.",
-    "value2": "A place to learn to sail, share, and enjoy the sea.",
+    "value2": "A place to <gold>learn to sail</gold>, share, and <gold>enjoy</gold> the sea.",
     "cta": "Read more"
   },
   "s3_adapts": {

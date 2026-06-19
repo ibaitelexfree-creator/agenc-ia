@@ -13,6 +13,7 @@ import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
 import { ScrollContext } from '@/components/layout/ScrollEngine'
 import { BlobCard } from '@/components/blobs/BlobCard'
 import { BLOB_PATHS } from '@/data/blobPaths'
+import { AnimatedText } from '@/components/ui/AnimatedText'
 
 // Variantes de animación de entrada
 const containerVariants = {
@@ -328,7 +329,7 @@ export function Section1Hero() {
           maxWidth: '650px',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: '-20px',
+          marginTop: '-40px',
           left: '-70px',
         }}
       >
@@ -365,8 +366,7 @@ export function Section1Hero() {
         )}
 
         {/* Eyebrow — ubicación */}
-        <motion.div
-          variants={itemVariants}
+        <div
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
@@ -374,16 +374,15 @@ export function Section1Hero() {
           }}
         >
           <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
-        </motion.div>
+        </div>
  
         {/* Logo / Nombre de la escuela */}
-        <motion.div variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
+        <div style={{ marginBottom: '1.5rem' }}>
           <LogoGBE />
-        </motion.div>
+        </div>
  
         {/* Título principal */}
-        <motion.h1
-          variants={itemVariants}
+        <h1
           style={{
             fontSize: 'clamp(2.9rem, 6.5vw, 6.0rem)',
             fontWeight: 700,
@@ -393,40 +392,67 @@ export function Section1Hero() {
             textAlign: 'left',
           }}
         >
-          {t('title').split('. ').map((part, index, arr) => (
-            <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
-              {part}{index < arr.length - 1 ? '.' : ''}
-            </span>
-          ))}
-        </motion.h1>
+          {t('title').split('|').map((part, index) => {
+            return (
+              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+                <AnimatedText
+                  text={part.trim()}
+                  effect="falling"
+                  delay={0.6 + index * 0.45}
+                />
+              </span>
+            );
+          })}
+        </h1>
  
         {/* Subtítulo */}
-        <motion.p
-          variants={itemVariants}
+        <div
           style={{
-            fontSize: 'clamp(1.3rem, 2.6vw, 1.6rem)',
-            fontWeight: 400,
-            lineHeight: 1.65,
-            color: 'rgba(255,255,255,0.85)',
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: '16px',
             maxWidth: '710px',
-            margin: '0 0 2rem',
+            margin: '0 0 2.2rem',
             textAlign: 'left',
           }}
         >
-          {!isMobile ? (
-            <>
-              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Un punto de encuentro donde la vela es el</span>
-              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>pretexto para compartir, crecer y</span>
-              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>sentir el mar sin presión.</span>
-            </>
-          ) : (
-            t('subtitle')
-          )}
-        </motion.p>
+          {/* Línea vertical color granate del logotipo */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+            style={{
+              width: '4px',
+              backgroundColor: '#A91D22', // Granate del logo
+              transformOrigin: 'top',
+              flexShrink: 0,
+            }}
+          />
+          <div
+            style={{
+              fontSize: 'clamp(1.3rem, 2.6vw, 1.6rem)',
+              fontWeight: 400,
+              lineHeight: 1.35,
+              color: 'rgba(255,255,255,0.92)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <AnimatedText
+              text={t('subtitle')}
+              effect="falling"
+              delay={1.5}
+            />
+          </div>
+        </div>
  
         {/* CTA con atracción magnética */}
-        <motion.div variants={itemVariants}>
-          <GlowButton href="#" color="coral" size="xxl">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+        >
+          <GlowButton href="#" color="garnet" size="xxl">
             {t('cta')}
           </GlowButton>
         </motion.div>
@@ -482,12 +508,24 @@ function LogoGBE() {
         gap: '12px',
       }}
     >
-      <svg width="40" height="40" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <motion.svg 
+        width="40" 
+        height="40" 
+        viewBox="0 0 36 36" 
+        fill="none" 
+        aria-hidden="true"
+        initial={{ y: -60, opacity: 0, scale: 0.5 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
+      >
         <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
         <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
-      </svg>
-      <span
+      </motion.svg>
+      <AnimatedText
+        text="Getxo Bela Eskola"
+        effect="falling"
+        delay={0.35}
         style={{
           fontSize: '1.45rem',
           fontWeight: 700,
@@ -495,9 +533,7 @@ function LogoGBE() {
           textTransform: 'uppercase',
           color: 'white',
         }}
-      >
-        Getxo Bela Eskola
-      </span>
+      />
     </div>
   )
 }
@@ -572,9 +608,9 @@ function SailboatAccesoButton() {
   // X midpoint: (2361 + 2614) / 2 = 2487.5
   // Y midpoint: (207 + 339) / 2 = 273
   // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
-  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 161
+  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 179
   const buttonTop = aspect.top + (273 / 1536) * aspect.height + 555
-
+ 
   return (
     <>
       {showButton && (
@@ -598,7 +634,7 @@ function SailboatAccesoButton() {
           <Link
             href={`/${locale}/auth/login`}
             prefetch={false}
-            className="text-[20px] uppercase tracking-[0.55em] text-white hover:text-black transition-premium cursor-pointer text-center select-none"
+            className="transition-premium cursor-pointer text-center select-none"
             style={{ 
               fontWeight: 950,
               whiteSpace: 'nowrap',
@@ -608,22 +644,25 @@ function SailboatAccesoButton() {
               display: 'inline-block'
             }}
           >
-            <motion.span
+            <motion.div
+              className="flex flex-col items-center justify-center leading-[0.85] text-[24px] font-black tracking-[0.12em] text-center"
               animate={{
+                color: ['#ffffff', '#ff0000', '#ffffff'],
                 textShadow: [
-                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 8px rgba(255, 0, 0, 0.4)',
-                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 15px #ff0000, 0 0 30px #ff0000',
-                  '0.5px 0 0 currentColor, -0.5px 0 0 currentColor, 0 0 8px rgba(255, 0, 0, 0.4)'
+                  '0 0 4px rgba(255,255,255,0.4)',
+                  '0 0 15px rgba(255,0,0,0.8), 0 0 30px rgba(255,0,0,0.6)',
+                  '0 0 4px rgba(255,255,255,0.4)'
                 ]
               }}
               transition={{
-                duration: 1.0,
+                duration: 1.2,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}
             >
-              {label}
-            </motion.span>
+              <span>ACCESO</span>
+              <span>SOCIAS</span>
+            </motion.div>
           </Link>
         </motion.div>
       )}

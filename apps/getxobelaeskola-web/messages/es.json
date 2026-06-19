@@ -1168,9 +1168,9 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "No somos una escuela. Somos tu mar.",
-    "subtitle": "Un punto de encuentro donde la vela es el pretexto para compartir, crecer y sentir el mar sin presión.",
-    "cta": "Descubrir →",
+    "title": "Club de Navegación | a Vela en Getxo",
+    "subtitle": "Navega, aprende y comparte",
+    "cta": "Hazte Socia",
     "scroll_hint": "Sigue navegando",
     "word1": "Navega.",
     "word2": "Aprende.",
@@ -1648,7 +1648,7 @@
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "No somos una escuela convencional, sino una ",
     "value1_highlight": "comunidad cercana y con valores.",
-    "value2": "Un lugar donde aprender a navegar, compartir y disfrutar de la mar.",
+    "value2": "Un lugar donde <gold>aprender a navegar</gold>, compartir y <gold>disfrutar</gold> de la mar.",
     "cta": "Leer más"
   },
   "s3_adapts": {

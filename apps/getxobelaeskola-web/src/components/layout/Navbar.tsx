@@ -80,6 +80,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isHovered, setIsHovered] = useState(false);
 
     const locale = propLocale || (params.locale as string) || 'es';
 
@@ -219,29 +220,29 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                 {/* Top Utility Bar */}
                 <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
-                    <div className="flex items-center gap-4">
-                        <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#E1306C] hover:opacity-80 active:scale-95 transition-all duration-200" title="Instagram">
-                            <Instagram className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-5">
+                        <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#ff5c97] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,92,151,0.3)]" title="Instagram">
+                            <Instagram className="w-4.5 h-4.5" />
                         </a>
-                        <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:opacity-80 active:scale-95 transition-all duration-200" title="Facebook">
-                            <Facebook className="w-3.5 h-3.5" />
+                        <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-[#4895ff] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(72,149,255,0.3)]" title="Facebook">
+                            <Facebook className="w-4.5 h-4.5" />
                         </a>
-                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-[#FF0000] hover:opacity-80 active:scale-95 transition-all duration-200" title="YouTube">
-                            <Youtube className="w-3.5 h-3.5" />
+                        <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-[#ff3b30] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,59,48,0.3)]" title="YouTube">
+                            <Youtube className="w-4.5 h-4.5" />
                         </a>
                     </div>
-
+ 
                     {/* Right side: Language, Cart, Profile, Search (Lupa a la derecha del todo) */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-5">
                         {/* Language Selector Dropdown */}
                         <div 
-                            className="relative cursor-pointer flex items-center gap-1 hover:text-white transition-colors py-1"
+                            className="relative cursor-pointer flex items-center gap-1.5 hover:text-white transition-colors py-1 text-xs font-bold"
                             onMouseEnter={() => setIsLangDropdownOpen(true)}
                             onMouseLeave={() => setIsLangDropdownOpen(false)}
                             onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                         >
                             <span>{locale.toUpperCase()}</span>
-                            <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
                             
                             <AnimatePresence>
                                 {isLangDropdownOpen && (
@@ -250,7 +251,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: 5 }}
                                         transition={{ duration: 0.15 }}
-                                        className="absolute top-full right-0 mt-1 bg-neutral-900 border border-white/10 rounded shadow-xl overflow-hidden py-1 w-16 z-[10001]"
+                                        className="absolute top-full right-0 mt-1 bg-neutral-900 border border-white/10 rounded shadow-xl overflow-hidden py-1 w-20 z-[10001]"
                                     >
                                         {['es', 'eu', 'en', 'fr'].map((lang) => (
                                             <button
@@ -260,7 +261,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                                     handleLanguageSwitch(lang);
                                                     setIsLangDropdownOpen(false);
                                                 }}
-                                                className={`w-full text-left px-3 py-1.5 hover:bg-white/10 transition-colors text-[9px] font-bold ${locale === lang ? 'text-accent' : 'text-neutral-400 hover:text-white'}`}
+                                                className={`w-full text-left px-4 py-2 hover:bg-white/10 transition-colors text-[11px] font-black ${locale === lang ? 'text-accent' : 'text-neutral-400 hover:text-white'}`}
                                             >
                                                 {lang.toUpperCase()}
                                             </button>
@@ -269,23 +270,23 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 )}
                             </AnimatePresence>
                         </div>
-
+ 
                         <span className="w-[1px] h-3 bg-white/10" />
-
+ 
                         {/* Shopping Cart */}
-                        <Link href={`/${locale}/tienda`} className="hover:text-white transition-colors duration-200 flex items-center" title="Cart">
-                            <ShoppingCart className="w-3.5 h-3.5" />
+                        <Link href={`/${locale}/tienda`} className="text-white hover:text-accent hover:scale-110 active:scale-95 transition-all duration-200 flex items-center drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" title="Cart">
+                            <ShoppingCart className="w-4.5 h-4.5" />
                         </Link>
-
+ 
                         {/* Profile / Login */}
                         <Link 
                             href={user ? (user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`) : `/${locale}/auth/login`} 
-                            className="hover:text-white transition-colors duration-200 flex items-center"
+                            className="hover:text-white hover:scale-110 active:scale-95 transition-all duration-200 flex items-center"
                             title="Profile / Dashboard"
                         >
-                            <UserIcon className="w-3.5 h-3.5" />
+                            <UserIcon className="w-4.5 h-4.5" />
                         </Link>
-
+ 
                         {/* Search bar slide-out / Search icon (Far Right) */}
                         <div className="flex items-center relative">
                             <AnimatePresence>
@@ -314,36 +315,78 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             </AnimatePresence>
                             <button 
                                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                                className="hover:text-white transition-colors duration-200 flex items-center"
+                                className="hover:text-white hover:scale-110 active:scale-95 transition-all duration-200 flex items-center"
                                 title="Search"
                             >
-                                <Search className="w-3.5 h-3.5" />
+                                <Search className="w-4.5 h-4.5" />
                             </button>
                         </div>
                     </div>
                 </div>
-
-                <nav className="w-full px-4 md:px-12 py-2 md:py-3 flex justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
+ 
+                <nav className="w-full px-4 md:px-12 py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
                     prefetch={false}
-                    className="flex items-center group transition-premium relative z-[110]"
+                    className="flex items-center group transition-premium relative z-[110] xl:justify-self-start"
                     onClick={() => setIsMenuOpen(false)}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
                 >
-                    <div className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105">
-                        <Image
-                            src="/images/Logo Bela horizontal SIN FONDO.png"
-                            alt="Getxo Bela Eskola"
-                            fill
-                            className="object-contain object-left"
-                            priority
-                        />
-                    </div>
-                </Link>
+                    <motion.div
+                        animate={{
+                            y: isAtHero ? 23 : 8,
+                            x: isAtHero ? 5 : 0,
+                        }}
+                        transition={{ type: 'spring', stiffness: 50, damping: 15 }}
+                        className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
+                    >
+                        {/* Wrapper that sways both the logo and the cloud together in unison */}
+                        <motion.div
+                            className="absolute inset-0 w-full h-full"
+                            animate={{
+                                x: [0, 8, -12, 5, -15, 10, -5, 15, 0],
+                                y: [0, 6, 2, 8, 4, 10, 3, 9, 0],
+                            }}
+                            transition={{
+                                duration: 22,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        >
+                            {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
+                            <motion.img 
+                                src="/images/home/parallax/cloud_only_mini.png"
+                                alt="Cloud Base"
+                                className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
+                                animate={{ opacity: isAtHero ? (isHovered ? 0 : 0.95) : 0 }}
+                                transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            />
 
+                            {/* Sun Cloud (Fades in on hover or when leaving Hero section) */}
+                            <motion.img 
+                                src="/images/home/parallax/cloud_sun_mini.png"
+                                alt="Cloud Sun"
+                                className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: isAtHero ? (isHovered ? 1 : 0) : 0 }}
+                                transition={{ duration: 0.35, ease: 'easeInOut' }}
+                            />
+
+                            <Image
+                                src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
+                                alt="Getxo Bela Eskola"
+                                fill
+                                className="object-contain object-left relative z-10"
+                                priority
+                            />
+                        </motion.div>
+                    </motion.div>
+                </Link>
+ 
                 {/* Desktop Menu - Custom Framer Motion dropdowns */}
-                <div className="hidden xl:flex gap-8 items-center text-xs uppercase tracking-[0.25em] font-black h-full">
+                <div className="hidden xl:flex gap-8 items-center text-xs uppercase tracking-[0.25em] font-black h-full xl:justify-self-center">
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
@@ -354,7 +397,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             <Link
                                 href={`/${locale}/${item.href}`}
                                 prefetch={false}
-                                className="relative py-2 text-sea-foam hover:text-accent transition-premium group/nav flex items-center gap-1.5 font-black"
+                                className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent`}
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {item.icon}
@@ -364,7 +407,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 )}
                                 <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
                             </Link>
-
+ 
                             {/* Dropdown Panel with AnimatePresence */}
                             <AnimatePresence>
                                 {item.dropdown && activeDropdown === item.label && (
@@ -379,7 +422,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         <div className="w-64 py-3 bg-white border border-sea-foam/10 rounded-xl shadow-2xl shadow-black/10 overflow-hidden">
                                             {/* Simple Arrow */}
                                             <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white border-l border-t border-sea-foam/10 rotate-45" />
-
+ 
                                             {item.dropdown.map((sub) => (
                                                 <Link
                                                     key={sub.href}
@@ -398,9 +441,9 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                         </div>
                     ))}
                 </div>
-
+ 
                 {/* Right Side Actions */}
-                <div className="flex gap-4 items-center relative z-[110]">
+                <div className="flex gap-4 items-center relative z-[110] xl:justify-self-end">
 
 
                     {loading ? (
@@ -425,7 +468,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className="text-xs uppercase tracking-[0.25em] font-black text-sea-foam hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1"
+                                className={`text-xs uppercase tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 ${isAtHero ? 'text-white' : 'text-sea-foam'}`}
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {getLabel('logout')}
@@ -442,10 +485,12 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 <Link 
                                     href={`/${locale}/auth/login`} 
                                     prefetch={false} 
-                                    className="text-[10px] uppercase tracking-[0.4em] font-black border border-sea-foam/20 px-8 py-3 rounded-full bg-sea-foam/5 hover:bg-sea-foam hover:text-white transition-premium"
-                                    style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
+                                    className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
                                 >
-                                    {getLabel('login')}
+                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center">
+                                        <span>ACCESO</span>
+                                        <span>SOCIAS</span>
+                                    </div>
                                 </Link>
                             </motion.div>
                         )

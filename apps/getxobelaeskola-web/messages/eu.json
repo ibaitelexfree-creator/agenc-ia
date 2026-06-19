@@ -1116,9 +1116,9 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Ez gara eskola bat. Zu zaren itsasoa gara.",
-    "subtitle": "Topagune bat non bela aitzakia den partekatzeko, hazteko eta itsasoa sentitzeko presiorik gabe.",
-    "cta": "Aurkitu →",
+    "title": "Bela Nabigazio Kluba | Getxon",
+    "subtitle": "Nabigatu, ikasi eta partekatu",
+    "cta": "Egin zaitez bazkide",
     "scroll_hint": "Jarraitu nabigatzera",
     "word1": "Nabigatu.",
     "word2": "Ikasi.",
@@ -1596,7 +1596,7 @@
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "Ez gara ohiko eskola bat, ",
     "value1_highlight": "balioak dituen komunitate hurbil bat baizik.",
-    "value2": "Nabigatzen ikasteko, partekatzeko eta itsasoaz gozatzeko lekua.",
+    "value2": "<gold>Nabigatzen ikasteko</gold>, partekatzeko eta itsasoaz <gold>gozatzeko</gold> lekua.",
     "cta": "Irakurri gehiago"
   },
   "s3_adapts": {

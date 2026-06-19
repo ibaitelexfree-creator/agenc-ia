@@ -1121,9 +1121,9 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Nous ne sommes pas une école. Nous sommes votre mer.",
-    "subtitle": "Un point de rencontre où la voile est le prétexte pour partager, grandir et ressentir la mer sans pression.",
-    "cta": "Découvrir →",
+    "title": "Club de Voile | à Getxo",
+    "subtitle": "Naviguez, apprenez et partagez",
+    "cta": "Devenir Membre",
     "scroll_hint": "Continuer à naviguer",
     "word1": "Naviguez.",
     "word2": "Apprenez.",
@@ -1147,7 +1147,7 @@
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "Nous ne sommes pas une école conventionnelle, mais une ",
     "value1_highlight": "communauté proche avec des valeurs.",
-    "value2": "Un endroit pour apprendre à naviguer, partager et profiter de la mer.",
+    "value2": "Un endroit pour <gold>apprendre à naviguer</gold>, partager et <gold>profiter</gold> de la mer.",
     "cta": "Lire plus"
   },
   "s3_adapts": {

@@ -10,7 +10,7 @@ type GlowButtonProps = {
   href?: string
   onClick?: () => void
   children: React.ReactNode
-  color?: 'coral' | 'ocean'
+  color?: 'coral' | 'ocean' | 'garnet'
   size?: 'md' | 'lg' | 'xl' | 'xxl'
   external?: boolean
 }
@@ -28,9 +28,18 @@ export function GlowButton({
   const { x: magX, y: magY } = useMagneticCursor(ref, { strength: 0.45, radius: 80 })
   const { createRipple, RippleContainer } = useRipple()
 
-  const bgColor = color === 'coral' ? 'var(--coral)' : 'var(--ocean-bright)'
+  const bgColor =
+    color === 'coral'
+      ? 'var(--coral)'
+      : color === 'garnet'
+      ? '#A91D22'
+      : 'var(--ocean-bright)'
   const glowColor =
-    color === 'coral' ? 'rgba(232, 89, 60, 0.5)' : 'rgba(10, 126, 200, 0.5)'
+    color === 'coral'
+      ? 'rgba(232, 89, 60, 0.5)'
+      : color === 'garnet'
+      ? 'rgba(169, 29, 34, 0.5)'
+      : 'rgba(10, 126, 200, 0.5)'
 
   const padding = size === 'xxl' ? '1.3rem 4rem' : size === 'xl' ? '1.1rem 3.5rem' : size === 'lg' ? '1rem 3rem' : '0.85rem 2.5rem'
   const fontSize = size === 'xxl' ? '1.35rem' : size === 'xl' ? '1.2rem' : size === 'lg' ? '1.1rem' : '1rem'

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { AnimatedText } from './AnimatedText'
 
 type SectionEyebrowProps = {
   text: string
@@ -33,9 +34,13 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize =
           backgroundColor: color,
           transformOrigin: 'left',
           flexShrink: 0,
+          marginTop: '3px'
         }}
       />
-      <p
+      <AnimatedText
+        text={text}
+        effect="falling"
+        delay={0.1}
         style={{
           fontSize,
           fontWeight: 600,
@@ -44,9 +49,7 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize =
           color,
           margin: 0,
         }}
-      >
-        {text}
-      </p>
+      />
     </motion.div>
   )
 }
