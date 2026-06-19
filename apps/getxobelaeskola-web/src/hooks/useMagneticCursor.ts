@@ -7,19 +7,28 @@ import { useEffect, RefObject } from 'react'
 type MagneticOptions = {
   strength?: number
   radius?: number
+  stiffness?: number
+  damping?: number
+  mass?: number
 }
 
 export function useMagneticCursor<T extends HTMLElement>(
   ref: RefObject<T>,
   options: MagneticOptions = {}
 ) {
-  const { strength = 0.4, radius = 80 } = options
+  const {
+    strength = 0.4,
+    radius = 80,
+    stiffness = 400,
+    damping = 30,
+    mass = 0.5
+  } = options
 
   const magnetX = useMotionValue(0)
   const magnetY = useMotionValue(0)
 
-  const springX = useSpring(magnetX, { stiffness: 400, damping: 30, mass: 0.5 })
-  const springY = useSpring(magnetY, { stiffness: 400, damping: 30, mass: 0.5 })
+  const springX = useSpring(magnetX, { stiffness, damping, mass })
+  const springY = useSpring(magnetY, { stiffness, damping, mass })
 
   useEffect(() => {
     const el = ref.current

@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 type SectionEyebrowProps = {
   text: string
   color?: string
+  fontSize?: string
 }
 
-export function SectionEyebrow({ text, color = 'var(--ocean-bright)' }: SectionEyebrowProps) {
+export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize = '0.7rem' }: SectionEyebrowProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -36,7 +37,7 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)' }: SectionE
       />
       <p
         style={{
-          fontSize: '0.7rem',
+          fontSize,
           fontWeight: 600,
           letterSpacing: '0.2em',
           textTransform: 'uppercase',

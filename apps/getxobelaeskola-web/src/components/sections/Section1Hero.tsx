@@ -34,12 +34,30 @@ const itemVariants = {
   },
 }
 
+const BLOB_POSITIONS = [
+  { left: '60%', top: '35%' },
+  { left: '74%', top: '22%' },
+  { left: '78%', top: '58%' },
+  { left: '68%', top: '75%' },
+  { left: '88%', top: '50%' },
+]
+
 export function Section1Hero() {
   const t = useTranslations('s1')
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
   
   const [videoLoaded, setVideoLoaded] = useState(false)
+  const [isMobile, setIsMobile] = useState(true)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
@@ -295,7 +313,7 @@ export function Section1Hero() {
 
 
 
-      {/* Contenido principal — centrado y elevado para evitar colisión */}
+      {/* Contenido principal — alineado a la izquierda (zona de mar) y elevado para evitar colisión */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -304,89 +322,139 @@ export function Section1Hero() {
         style={{
           position: 'relative',
           zIndex: 10,
-          textAlign: 'center',
+          textAlign: 'left',
           padding: '0 clamp(1.5rem, 5vw, 4rem)',
-          maxWidth: '800px',
+          width: '100%',
+          maxWidth: '650px',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: '-180px',
+          marginTop: '-20px',
+          left: '-70px',
         }}
       >
+        {/* Desktop: Los 5 blobs en forma de "C" (arriba 2, medio 1, abajo 2) a la izquierda */}
+        {!isMobile && (
+          <div
+            style={{
+              position: 'absolute',
+              left: '-410px',
+              top: '55%',
+              transform: 'translateY(-50%)',
+              marginTop: '50px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '-5.25rem',
+              alignItems: 'flex-start',
+            }}
+          >
+            {/* Arriba: Club de socias (Card 1) y Aprende a navegar (Card 0) */}
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
+              <BlobCard {...CARDS[1]} index={1} />
+              <BlobCard {...CARDS[0]} index={0} />
+            </div>
+
+            {/* Medio: Compite y supérate (Card 2) */}
+            <BlobCard {...CARDS[2]} index={2} />
+
+            {/* Abajo: Campamentos (Card 3) y Colabora (Card 4) */}
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
+              <BlobCard {...CARDS[3]} index={3} />
+              <BlobCard {...CARDS[4]} index={4} />
+            </div>
+          </div>
+        )}
+
         {/* Eyebrow — ubicación */}
         <motion.div
           variants={itemVariants}
           style={{
             display: 'inline-flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             marginBottom: '1rem',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
         </motion.div>
-
+ 
         {/* Logo / Nombre de la escuela */}
         <motion.div variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
           <LogoGBE />
         </motion.div>
-
+ 
         {/* Título principal */}
         <motion.h1
           variants={itemVariants}
           style={{
-            fontSize: 'clamp(2.2rem, 5vw, 4.5rem)',
+            fontSize: 'clamp(2.9rem, 6.5vw, 6.0rem)',
             fontWeight: 700,
             lineHeight: 1.1,
             color: 'var(--white)',
             marginBottom: '1.25rem',
+            textAlign: 'left',
           }}
         >
-          {t('title')}
+          {t('title').split('. ').map((part, index, arr) => (
+            <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+              {part}{index < arr.length - 1 ? '.' : ''}
+            </span>
+          ))}
         </motion.h1>
-
+ 
         {/* Subtítulo */}
         <motion.p
           variants={itemVariants}
           style={{
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+            fontSize: 'clamp(1.3rem, 2.6vw, 1.6rem)',
             fontWeight: 400,
             lineHeight: 1.65,
             color: 'rgba(255,255,255,0.85)',
-            maxWidth: '560px',
-            margin: '0 auto 2rem',
+            maxWidth: '710px',
+            margin: '0 0 2rem',
+            textAlign: 'left',
           }}
         >
-          {t('subtitle')}
+          {!isMobile ? (
+            <>
+              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>Un punto de encuentro donde la vela es el</span>
+              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>pretexto para compartir, crecer y</span>
+              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>sentir el mar sin presión.</span>
+            </>
+          ) : (
+            t('subtitle')
+          )}
         </motion.p>
-
+ 
         {/* CTA con atracción magnética */}
         <motion.div variants={itemVariants}>
-          <GlowButton href="#" color="coral" size="md">
+          <GlowButton href="#" color="coral" size="xxl">
             {t('cta')}
           </GlowButton>
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs interactivos alineados en fila al pie del Hero */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '50px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '100%',
-          maxWidth: '1200px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          gap: 'clamp(12px, 3vw, 40px)',
-          padding: '0 24px',
-          zIndex: 15,
-        }}
-      >
-        {CARDS.map((card) => (
-          <BlobCard key={card.title} {...card} />
-        ))}
-      </div>
+      {/* Mobile: Los 5 blobs interactivos alineados en fila al pie del Hero */}
+      {isMobile && (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '50px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100%',
+            maxWidth: '1200px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 'clamp(12px, 3vw, 40px)',
+            padding: '0 24px',
+            zIndex: 15,
+          }}
+        >
+          {CARDS.map((card, idx) => (
+            <BlobCard key={card.title} {...card} index={idx} />
+          ))}
+        </div>
+      )}
 
       {/* Criaturas animadas — pasan detrás del contenido */}
       <Seagull
@@ -411,21 +479,21 @@ function LogoGBE() {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '10px',
+        gap: '12px',
       }}
     >
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-        <path d="M18 4 L4 28 L18 26 Z" fill="black" opacity="0.9" />
-        <path d="M18 8 L32 28 L18 26 Z" fill="black" opacity="0.5" />
-        <line x1="4" y1="30" x2="32" y2="30" stroke="black" strokeWidth="2" />
+      <svg width="40" height="40" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+        <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
+        <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
+        <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
       </svg>
       <span
         style={{
-          fontSize: '1.1rem',
+          fontSize: '1.45rem',
           fontWeight: 700,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
-          color: 'black',
+          color: 'white',
         }}
       >
         Getxo Bela Eskola
@@ -504,8 +572,8 @@ function SailboatAccesoButton() {
   // X midpoint: (2361 + 2614) / 2 = 2487.5
   // Y midpoint: (207 + 339) / 2 = 273
   // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
-  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 183
-  const buttonTop = aspect.top + (273 / 1536) * aspect.height + 125
+  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 161
+  const buttonTop = aspect.top + (273 / 1536) * aspect.height + 555
 
   return (
     <>
@@ -519,7 +587,7 @@ function SailboatAccesoButton() {
             top: `${buttonTop}px`,
             x: '-50%',
             y: '-50%',
-            rotate: -27.53,
+            rotate: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

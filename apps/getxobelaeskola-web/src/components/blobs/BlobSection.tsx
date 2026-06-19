@@ -104,9 +104,9 @@ export function BlobSection() {
         whileInView="visible"
         viewport={{ once: true, margin: '-80px' }}
       >
-        {CARDS.map((card) => (
+        {CARDS.map((card, idx) => (
           <motion.div key={card.title} variants={itemVariants}>
-            <BlobCard {...card} />
+            <BlobCard {...card} index={idx} />
           </motion.div>
         ))}
       </motion.div>

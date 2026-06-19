@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
 interface BlobCardProps {
   title: string
@@ -10,13 +11,24 @@ interface BlobCardProps {
   imageSrc: string      // fallback imagen
   paths: string[]       // las 3 rutas de morphing
   href: string
+  index?: number
 }
 
-export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, href }: BlobCardProps) {
+export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, href, index = 0 }: BlobCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [inView, setInView] = useState(false)         // para mobile
   const videoRef = useRef<HTMLVideoElement>(null)
+  const cardRef = useRef<HTMLAnchorElement>(null)
   const clipId = `clip-${title.replace(/\s/g, '')}`
+
+  // Atracción magnética muy suave y lenta (como fluido/líquido)
+  const { x: magX, y: magY } = useMagneticCursor(cardRef, { 
+    strength: 0.35, 
+    radius: 90,
+    stiffness: 60,
+    damping: 15,
+    mass: 1.2
+  })
 
   // Control de reproducción del video (hover en desktop / inView en mobile)
   useEffect(() => {
@@ -46,16 +58,131 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
     return () => observer.disconnect()
   }, [title])
 
+  // Estado para los parámetros de movimiento aleatorio generados en el cliente
+  const [motionParams, setMotionParams] = useState<{
+    yAmpRise1: number
+    yAmpFall1: number
+    yAmpRise2: number
+    yAmpFall2: number
+    xOffsetRise1: number
+    xOffsetFall1: number
+    xOffsetRise2: number
+    xOffsetFall2: number
+    rot1: number
+    rot2: number
+    rot3: number
+    rot4: number
+  } | null>(null)
+
+  useEffect(() => {
+    // Generamos amplitudes verticales independientes para cada una de las subidas/bajadas (2 ciclos completos)
+    // Rango vertical de subida (le restamos 5 para evitar colisiones arriba)
+    const yRise1 = 10 + Math.random() * 15
+    const yFall1 = 10 + Math.random() * 15
+    const yRise2 = 10 + Math.random() * 15
+    const yFall2 = 10 + Math.random() * 15
+
+    // Generamos offsets horizontales totalmente independientes (izquierda/derecha, amplios/estrechos)
+    const xRise1 = (Math.random() * 70) - 35 // -35px a +35px
+    const xFall1 = (Math.random() * 70) - 35
+    const xRise2 = (Math.random() * 70) - 35
+    const xFall2 = (Math.random() * 70) - 35
+
+    // Rotaciones aleatorias para cada golpe
+    const r1 = (Math.random() * 6) - 3 // -3° a +3°
+    const r2 = (Math.random() * 6) - 3
+    const r3 = (Math.random() * 6) - 3
+    const r4 = (Math.random() * 6) - 3
+
+    setMotionParams({
+      yAmpRise1: yRise1,
+      yAmpFall1: yFall1,
+      yAmpRise2: yRise2,
+      yAmpFall2: yFall2,
+      xOffsetRise1: xRise1,
+      xOffsetFall1: xFall1,
+      xOffsetRise2: xRise2,
+      xOffsetFall2: xFall2,
+      rot1: r1,
+      rot2: r2,
+      rot3: r3,
+      rot4: r4,
+    })
+  }, [])
+
+  // floatY y floatX van acompasados en fase con la marea (2 ciclos completos de 12s cada uno = 24s total)
+  // Cada subida y bajada tiene vectores (X, Y) completamente asimétricos e independientes
+  const floatY = motionParams 
+    ? [
+        0, 
+        -(motionParams.yAmpRise1 - 5), 
+        0, 
+        motionParams.yAmpFall1, 
+        0, 
+        -(motionParams.yAmpRise2 - 5), 
+        0, 
+        motionParams.yAmpFall2, 
+        0
+      ]
+    : [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+  const floatX = motionParams
+    ? [
+        0, 
+        motionParams.xOffsetRise1, 
+        0, 
+        motionParams.xOffsetFall1, 
+        0, 
+        motionParams.xOffsetRise2, 
+        0, 
+        motionParams.xOffsetFall2, 
+        0
+      ]
+    : [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+  const floatRotate = motionParams
+    ? [
+        0, 
+        motionParams.rot1, 
+        0, 
+        motionParams.rot2, 
+        0, 
+        motionParams.rot3, 
+        0, 
+        motionParams.rot4, 
+        0
+      ]
+    : [0, 0, 0, 0, 0, 0, 0, 0, 0]
+
   return (
-    <a
+    <motion.a
+      ref={cardRef}
       id={`blob-card-${title.replace(/\s/g, '')}`}
       href={href}
-      className="relative flex flex-col items-center gap-4 group cursor-pointer shrink-0"
+      className="relative flex flex-col items-center gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      style={{
+        x: magX,
+        y: magY,
+      }}
     >
-      {/* El charco SVG */}
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32">
+      {/* El charco SVG (flota en tempo de 24s con el velero, pero con personalidad propia y se agranda al hover) */}
+      <motion.div
+        className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-40 lg:h-40"
+        animate={{
+          y: floatY,
+          x: floatX,
+          rotate: floatRotate,
+          scale: isHovered ? 1.18 : 1.0,
+        }}
+        transition={{
+          y: { duration: 24, repeat: Infinity, ease: "easeInOut" },
+          x: { duration: 24, repeat: Infinity, ease: "easeInOut" },
+          rotate: { duration: 24, repeat: Infinity, ease: "easeInOut" },
+          scale: { type: 'spring', stiffness: 200, damping: 15 }
+        }}
+      >
         {/* SVG Defs para clipPath */}
         <svg
           viewBox="0 0 100 100"
@@ -169,12 +296,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
             transition={{ duration: 0.3 }}
           />
         </svg>
-      </div>
+      </motion.div>
 
       {/* Texto de la etiqueta */}
       <div className="text-center">
         <motion.p
-          className="font-bold tracking-[0.05em] text-[10px] sm:text-xs md:text-sm select-none uppercase"
+          className="font-bold tracking-[0.05em] text-sm sm:text-base md:text-lg select-none uppercase"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -4 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -183,7 +310,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-xs text-white mt-1"
+            className="text-sm sm:text-base text-white mt-[2px]"
             animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? -2 : 0 }}
           >
             {subtitle}
@@ -191,16 +318,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
         )}
       </div>
 
-      {/* Indicador Ver más */}
-      <motion.span
-        className="text-xs font-medium"
-        style={{ color: '#ffffff' }}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 8 }}
-        transition={{ duration: 0.2 }}
-      >
-        Descubrir →
-      </motion.span>
-    </a>
+    </motion.a>
   )
 }
