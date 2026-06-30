@@ -2,6 +2,26 @@ import { createClient } from '@/lib/supabase/server';
 import { stripe } from '@/lib/stripe';
 import { NextResponse } from 'next/server';
 
+function getPublicOrigin(request: Request) {
+    const forwardedHost = request.headers.get('x-forwarded-host');
+    const host = request.headers.get('host');
+    const originHeader = request.headers.get('origin');
+    
+    if (originHeader && !originHeader.includes('localhost') && !originHeader.includes('127.0.0.1')) {
+        return originHeader;
+    }
+    
+    let resolvedHost = forwardedHost || host || 'localhost:3000';
+    const protocol = request.headers.get('x-forwarded-proto') || 
+                     (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1') ? 'http' : 'https');
+                     
+    if (process.env.NODE_ENV === 'production' && (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1'))) {
+        return 'https://getxobelaeskola.cloud';
+    }
+    
+    return `${protocol}://${resolvedHost}`;
+}
+
 export async function POST(req: Request) {
     if (!stripe) {
         return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 503 });
@@ -28,9 +48,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Bono not found' }, { status: 404 });
         }
 
-        const host = req.headers.get('host') || 'localhost:3000';
-        const protocol = req.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
-        const origin = req.headers.get('origin') || `${protocol}://${host}`;
+        const origin = getPublicOrigin(req);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],

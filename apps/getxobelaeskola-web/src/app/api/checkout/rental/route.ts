@@ -2,6 +2,26 @@ import { requireAuth } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 
+function getPublicOrigin(request: Request) {
+    const forwardedHost = request.headers.get('x-forwarded-host');
+    const host = request.headers.get('host');
+    const originHeader = request.headers.get('origin');
+    
+    if (originHeader && !originHeader.includes('localhost') && !originHeader.includes('127.0.0.1')) {
+        return originHeader;
+    }
+    
+    let resolvedHost = forwardedHost || host || 'localhost:3000';
+    const protocol = request.headers.get('x-forwarded-proto') || 
+                     (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1') ? 'http' : 'https');
+                     
+    if (process.env.NODE_ENV === 'production' && (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1'))) {
+        return 'https://getxobelaeskola.cloud';
+    }
+    
+    return `${protocol}://${resolvedHost}`;
+}
+
 export async function POST(request: Request) {
     if (!stripe) {
         return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 503 });
@@ -110,10 +130,7 @@ export async function POST(request: Request) {
             optionLabel = service.opciones[optionIndex].label;
         }
 
-        const origin = request.headers.get('origin') || '';
-        const host = request.headers.get('host') || '';
-        const protocol = request.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || (origin || `${protocol}://${host}`);
+        const appUrl = getPublicOrigin(request);
 
         // 4. Create Stripe Session
         const session = await stripe.checkout.sessions.create({

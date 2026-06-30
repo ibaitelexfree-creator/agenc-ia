@@ -3,6 +3,26 @@ import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { Course, CourseEdition, Inscription } from '@/types/courses';
 
+function getPublicOrigin(request: Request) {
+    const forwardedHost = request.headers.get('x-forwarded-host');
+    const host = request.headers.get('host');
+    const originHeader = request.headers.get('origin');
+    
+    if (originHeader && !originHeader.includes('localhost') && !originHeader.includes('127.0.0.1')) {
+        return originHeader;
+    }
+    
+    let resolvedHost = forwardedHost || host || 'localhost:3000';
+    const protocol = request.headers.get('x-forwarded-proto') || 
+                     (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1') ? 'http' : 'https');
+                     
+    if (process.env.NODE_ENV === 'production' && (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1'))) {
+        return 'https://getxobelaeskola.cloud';
+    }
+    
+    return `${protocol}://${resolvedHost}`;
+}
+
 export async function POST(request: Request) {
     if (!stripe) {
         return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 503 });
@@ -19,9 +39,7 @@ export async function POST(request: Request) {
 
         const { data: profile } = await supabase.from('profiles').select('nombre, apellidos').eq('id', user.id).single();
 
-        const host = request.headers.get('host') || 'localhost:3000';
-        const protocol = request.headers.get('x-forwarded-proto') || (host.includes('localhost') ? 'http' : 'https');
-        const origin = request.headers.get('origin') || `${protocol}://${host}`;
+        const origin = getPublicOrigin(request);
 
         let course: Course | null = null;
         let edition: CourseEdition | null = null;
