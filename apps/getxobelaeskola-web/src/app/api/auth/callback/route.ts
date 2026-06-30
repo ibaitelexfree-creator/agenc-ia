@@ -2,10 +2,15 @@ import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
-    const { searchParams, origin } = new URL(request.url);
+    const { searchParams } = new URL(request.url);
     const code = searchParams.get('code');
     // if "next" is in param, use it as the redirect URL
     const next = searchParams.get('next') ?? '/';
+
+    // Construct the public origin using headers to correctly support reverse proxies (e.g. Nginx, Vercel)
+    const host = request.headers.get('host') || new URL(request.url).host;
+    const protocol = request.headers.get('x-forwarded-proto') || (request.url.startsWith('https') ? 'https' : 'http');
+    const origin = `${protocol}://${host}`;
 
     if (code) {
         const supabase = createClient();
