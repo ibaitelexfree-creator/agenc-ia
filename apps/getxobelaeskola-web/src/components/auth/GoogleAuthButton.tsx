@@ -23,7 +23,11 @@ export default function GoogleAuthButton() {
 
             const searchParams = new URLSearchParams(window.location.search);
             const returnTo = searchParams.get('returnTo');
-            const nextPath = returnTo ? encodeURIComponent(returnTo) : `/${locale}/student/dashboard`;
+            const targetPath = returnTo || `/${locale}/student/dashboard`;
+            const nextPath = encodeURIComponent(targetPath);
+
+            // Store redirect path in a cookie to prevent losing it if URL params are stripped by OAuth providers
+            document.cookie = `sb-redirect-to=${encodeURIComponent(targetPath)}; path=/; max-age=300; SameSite=Lax; Secure`;
 
             await supabase.auth.signInWithOAuth({
                 provider: 'google',
