@@ -1,4 +1,4 @@
-import { NauticalTerm } from '@/types/glossary';
+import { NauticalTerm } from '@/types/glossary'; 
 
 export const nauticalTerms: NauticalTerm[] = [
     {
