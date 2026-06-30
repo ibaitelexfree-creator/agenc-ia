@@ -12,7 +12,11 @@ export const getApiBaseUrl = () => {
 
         // In Capacitor or if NEXT_PUBLIC_APP_URL is explicitly set
         if (process.env.NEXT_PUBLIC_APP_URL) {
-            return process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '');
+            const appUrl = process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '');
+            const isAppUrlLocal = appUrl.includes('localhost') || appUrl.includes('127.0.0.1');
+            if (!isAppUrlLocal || isLocalhost || isCapacitor) {
+                return appUrl;
+            }
         }
 
         // Fallback for production if no env var is found
