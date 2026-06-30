@@ -20,6 +20,9 @@ export const getApiBaseUrl = () => {
         }
 
         // Fallback for production if no env var is found
+        if (!isCapacitor) {
+            return window.location.origin;
+        }
         return 'https://getxobelaeskola.cloud';
     }
 
