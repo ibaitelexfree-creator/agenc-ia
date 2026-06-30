@@ -23,7 +23,11 @@ interface RentalCardProps {
 
 export default function RentalCard({ service, locale, onBook }: RentalCardProps) {
     const t = useTranslations('rental_page');
-    const name = (locale === 'es' ? service.nombre_es : service.nombre_eu) || service.nombre_es;
+    const tData = useTranslations('rentals_data');
+    const hasTranslation = tData.has(service.slug);
+    const name = hasTranslation
+        ? tData(service.slug)
+        : (locale === 'es' ? service.nombre_es : (locale === 'eu' ? service.nombre_eu : service.nombre_es)) || service.nombre_es;
 
     // Determine image source with fallbacks
     const getImgSrc = () => {

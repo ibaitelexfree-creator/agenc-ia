@@ -770,3 +770,13 @@ a:hover {
 .flip-card-back {
   transform: rotateY(180deg);
 }
+
+/* Accessibility & Hover Contrast Fixes for Buttons */
+.text-nautical-black.hover\:bg-white:hover,
+button.text-nautical-black.hover\:bg-white:hover,
+a.text-nautical-black.hover\:bg-white:hover,
+[class*="text-nautical-black"][class*="hover:bg-white"]:hover {
+  color: #000000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+}

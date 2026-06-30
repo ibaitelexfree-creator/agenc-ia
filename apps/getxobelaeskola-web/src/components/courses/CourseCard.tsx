@@ -22,8 +22,16 @@ interface CourseCardProps {
 
 export default function CourseCard({ course, locale }: CourseCardProps) {
     const t = useTranslations('courses');
-    const name = (locale === 'es' ? course.nombre_es : course.nombre_eu) || course.nombre_es || 'Curso sin nombre';
-    const description = (locale === 'es' ? course.descripcion_es : course.descripcion_eu) || course.descripcion_es || '';
+    const tData = useTranslations('courses_data');
+
+    const hasTranslation = tData.has(`${course.slug}.name`);
+    const name = hasTranslation
+        ? tData(`${course.slug}.name`)
+        : (locale === 'es' ? course.nombre_es : (locale === 'eu' ? course.nombre_eu : course.nombre_es)) || course.nombre_es || 'Curso sin nombre';
+
+    const description = hasTranslation
+        ? tData(`${course.slug}.description`)
+        : (locale === 'es' ? course.descripcion_es : (locale === 'eu' ? course.descripcion_eu : course.descripcion_es)) || course.descripcion_es || '';
 
     return (
         <motion.div 

@@ -60,8 +60,16 @@ export async function generateMetadata({
     const displayCourse = (course || fallbacks[slug]) as any;
     if (!displayCourse) return { title: 'Curso no encontrado' };
 
-    const name = locale === 'es' ? displayCourse.nombre_es : displayCourse.nombre_eu;
-    const description = locale === 'es' ? displayCourse.descripcion_es : displayCourse.descripcion_eu;
+    const tData = await getTranslations({ locale, namespace: 'courses_data' });
+    const hasTranslation = tData.has(`${slug}.name`);
+
+    const name = hasTranslation
+        ? tData(`${slug}.name`)
+        : (locale === 'es' ? displayCourse.nombre_es : (locale === 'eu' ? displayCourse.nombre_eu : displayCourse.nombre_es)) || 'Curso';
+
+    const description = hasTranslation
+        ? tData(`${slug}.description`)
+        : (locale === 'es' ? displayCourse.descripcion_es : (locale === 'eu' ? displayCourse.descripcion_eu : displayCourse.descripcion_es)) || '';
 
     return {
         title: name,
@@ -263,18 +271,22 @@ export default async function CourseDetailPage({
 
     const displayEditions = allRealEditions;
 
-    const t = await getTranslations({ locale, namespace: 'courses' });    // Safe data extraction
-    const currentLocale = locale as 'es' | 'eu' | 'en' | 'fr';
+    const t = await getTranslations({ locale, namespace: 'courses' });
+    const tData = await getTranslations({ locale, namespace: 'courses_data' });
 
-    const name = (currentLocale === 'eu' && displayCourse.nombre_eu) ? displayCourse.nombre_eu :
-        (currentLocale === 'en' && displayCourse.nombre_es) ? displayCourse.nombre_es :
-            (currentLocale === 'fr' && displayCourse.nombre_es) ? displayCourse.nombre_es :
-                displayCourse.nombre_es || displayCourse.nombre_es || displayCourse.nombre_eu || 'Course';
+    const hasTranslation = tData.has(`${slug}.name`);
+    const name = hasTranslation
+        ? tData(`${slug}.name`)
+        : (locale === 'eu' && displayCourse.nombre_eu ? displayCourse.nombre_eu : displayCourse.nombre_es) || 'Course';
 
-    const description = (currentLocale === 'eu' && displayCourse.descripcion_eu) ? displayCourse.descripcion_eu :
-        (currentLocale === 'en' && displayCourse.descripcion_es) ? displayCourse.descripcion_es :
-            (currentLocale === 'fr' && displayCourse.descripcion_es) ? displayCourse.descripcion_es :
-                displayCourse.descripcion_es || 'Course description...';
+    const description = hasTranslation
+        ? tData(`${slug}.description`)
+        : (locale === 'eu' && displayCourse.descripcion_eu ? displayCourse.descripcion_eu : displayCourse.descripcion_es) || 'Course description...';
+
+    const detailsRaw = hasTranslation ? tData.raw(`${slug}.details`) : null;
+    const details = Array.isArray(detailsRaw)
+        ? detailsRaw
+        : (locale === 'es' ? displayCourse.detalles?.es : displayCourse.detalles?.eu) || [];
 
     const jsonLd = {
         "@context": "https://schema.org",
@@ -321,12 +333,13 @@ export default async function CourseDetailPage({
                             </div>
 
                             <div className="card-luxury p-10 bg-white/5 backdrop-blur-xl border border-white/10">
-                                <h3 className="font-display text-4xl mb-6 text-sea-foam">Reserva tu plaza</h3>
+                                <h3 className="font-display text-4xl mb-6 text-sea-foam">{t('book_title')}</h3>
                                 <BookingSelector
                                     editions={displayEditions}
                                     coursePrice={displayCourse.precio}
                                     courseId={displayCourse.id}
                                     activityType={slug.includes('campus') || slug.includes('udalekus') ? 'udalekus' : (slug.includes('vela-ligera') ? 'training' : 'course')}
+                                    slug={slug}
                                 />
                             </div>
                         </div>
@@ -344,20 +357,20 @@ export default async function CourseDetailPage({
                                     <p className="text-foreground">{displayCourse.duracion_h}h</p>
                                 </div>
                                 <div>
-                                    <p className="text-accent mb-1">Nivel</p>
+                                    <p className="text-accent mb-1">{t('level_label')}</p>
                                     <p className="text-foreground">{t(`levels.${displayCourse.nivel}`)}</p>
                                 </div>
                                 <div>
-                                    <p className="text-accent mb-1">Inversión</p>
+                                    <p className="text-accent mb-1">{t('investment_label')}</p>
                                     <p className="text-brass-gold text-lg">{displayCourse.precio}€</p>
                                 </div>
                             </div>
 
-                            {displayCourse.detalles && (
+                            {details.length > 0 && (
                                 <div className="space-y-4 pt-12">
-                                    <h4 className="text-xs uppercase tracking-widest font-bold text-accent">Lo que aprenderás</h4>
+                                    <h4 className="text-xs uppercase tracking-widest font-bold text-accent">{t('learn_title')}</h4>
                                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {(locale === 'es' ? displayCourse.detalles.es : displayCourse.detalles.eu).map((detail: string, i: number) => (
+                                        {details.map((detail: string, i: number) => (
                                             <li key={i} className="flex items-center gap-3 text-sm font-light text-foreground/70">
                                                 <div className="w-1 h-1 bg-accent/40 rounded-full" />
                                                 {detail}

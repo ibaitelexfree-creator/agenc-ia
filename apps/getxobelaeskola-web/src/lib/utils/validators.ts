@@ -7,52 +7,168 @@ export type DocumentType = 'DNI' | 'NIE' | 'PASPORT';
 /**
  * Valida un documento de identidad según su tipo.
  */
-export function validateIdentityDocument(document: string, type?: DocumentType): { isValid: boolean; message?: string; type: DocumentType } {
+export function validateIdentityDocument(document: string | undefined | null, type?: DocumentType, countryCode = 'ES'): { isValid: boolean; message?: string; type: DocumentType } {
+    let docType = type || 'DNI';
+    if (!document) {
+        return { isValid: false, message: 'El campo es obligatorio.', type: docType };
+    }
+
     const value = document.replace(/[\s-]/g, '').toUpperCase();
-
-    if (!value) {
-        return { isValid: false, message: 'El campo es obligatorio.', type: type || 'DNI' };
-    }
-
-    // Si se especifica el tipo, validamos solo para ese tipo
-    if (type === 'DNI') {
-        if (/^[0-9]{7,8}[A-Z]$/.test(value)) {
-            return isValidDNI(value)
-                ? { isValid: true, type: 'DNI' }
-                : { isValid: false, message: 'La letra del DNI no es válida.', type: 'DNI' };
-        }
-        return { isValid: false, message: 'Formato de DNI inválido (ej: 12345678Z).', type: 'DNI' };
-    }
-
-    if (type === 'NIE') {
+    
+    if (!type) {
         if (/^[XYZ][0-9]{7}[A-Z]$/.test(value)) {
-            return isValidNIE(value)
-                ? { isValid: true, type: 'NIE' }
-                : { isValid: false, message: 'La letra del NIE no es válida.', type: 'NIE' };
+            docType = 'NIE';
+        } else if (/^[0-9]{7,8}[A-Z]$/.test(value)) {
+            docType = 'DNI';
+        } else {
+            docType = (countryCode === 'ES' && /^[0-9]/.test(value)) ? 'DNI' : 'PASPORT';
         }
-        return { isValid: false, message: 'Formato de NIE inválido (ej: X1234567L).', type: 'NIE' };
     }
 
-    if (type === 'PASPORT') {
-        // Formato genérico de pasaporte: al menos 6 caracteres alfanuméricos
+    // 1. ESPAÑA (ES)
+    if (countryCode === 'ES') {
+        if (docType === 'DNI') {
+            if (/^[0-9]{7,8}[A-Z]$/.test(value)) {
+                return isValidDNI(value)
+                    ? { isValid: true, type: 'DNI' }
+                    : { isValid: false, message: 'La letra del DNI no es válida.', type: 'DNI' };
+            }
+            return { isValid: false, message: 'Formato de DNI inválido (ej: 12345678Z).', type: 'DNI' };
+        }
+
+        if (docType === 'NIE') {
+            if (/^[XYZ][0-9]{7}[A-Z]$/.test(value)) {
+                return isValidNIE(value)
+                    ? { isValid: true, type: 'NIE' }
+                    : { isValid: false, message: 'La letra del NIE no es válida.', type: 'NIE' };
+            }
+            return { isValid: false, message: 'Formato de NIE inválido (ej: X1234567L).', type: 'NIE' };
+        }
+
+        if (docType === 'PASPORT') {
+            if (/^[A-Z0-9]{9}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte español inválido (9 caracteres).', type: 'PASPORT' };
+        }
+    }
+
+    // 2. FRANCIA (FR)
+    if (countryCode === 'FR') {
+        if (docType === 'DNI') {
+            if (/^([0-9]{12}|[A-Z0-9]{9})$/.test(value)) {
+                return { isValid: true, type: 'DNI' };
+            }
+            return { isValid: false, message: 'ID francés inválido (9 o 12 caracteres).', type: 'DNI' };
+        }
+        if (docType === 'PASPORT') {
+            if (/^[0-9]{2}[A-Z]{2}[0-9]{5}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte francés inválido (ej: 12AA34567).', type: 'PASPORT' };
+        }
+    }
+
+    // 3. ALEMANIA (DE)
+    if (countryCode === 'DE') {
+        if (docType === 'DNI') {
+            if (/^[A-Z0-9]{9}$/.test(value)) {
+                return { isValid: true, type: 'DNI' };
+            }
+            return { isValid: false, message: 'ID alemán inválido (9 caracteres).', type: 'DNI' };
+        }
+        if (docType === 'PASPORT') {
+            if (/^[A-Z0-9]{9}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte alemán inválido (9 caracteres).', type: 'PASPORT' };
+        }
+    }
+
+    // 4. REINO UNIDO (GB)
+    if (countryCode === 'GB') {
+        if (docType === 'PASPORT') {
+            if (/^[0-9]{9}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte británico inválido (9 dígitos).', type: 'PASPORT' };
+        }
+    }
+
+    // 5. ITALIA (IT)
+    if (countryCode === 'IT') {
+        if (docType === 'DNI') {
+            if (/^[A-Z]{2}[0-9]{5}[A-Z]{2}$/.test(value)) {
+                return { isValid: true, type: 'DNI' };
+            }
+            return { isValid: false, message: 'ID italiano inválido (ej: CA12345AA).', type: 'DNI' };
+        }
+        if (docType === 'PASPORT') {
+            if (/^[A-Z]{2}[0-9]{7}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte italiano inválido (ej: AA1234567).', type: 'PASPORT' };
+        }
+    }
+
+    // 6. PORTUGAL (PT)
+    if (countryCode === 'PT') {
+        if (docType === 'DNI') {
+            if (/^[0-9]{8,9}[A-Z0-9]{3,4}$/.test(value)) {
+                return { isValid: true, type: 'DNI' };
+            }
+            return { isValid: false, message: 'ID portugués inválido (12 caracteres).', type: 'DNI' };
+        }
+        if (docType === 'PASPORT') {
+            if (/^[A-Z]{2}[0-9]{6}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte portugués inválido (ej: AA123456).', type: 'PASPORT' };
+        }
+    }
+
+    // 7. ANDORRA (AD)
+    if (countryCode === 'AD') {
+        if (docType === 'DNI') {
+            if (/^[0-9]{6}[A-Z]$/.test(value)) {
+                return { isValid: true, type: 'DNI' };
+            }
+            return { isValid: false, message: 'ID andorrano inválido (ej: 123456Z).', type: 'DNI' };
+        }
+        if (docType === 'PASPORT') {
+            if (/^[A-Z]{2}[0-9]{6}$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte andorrano inválido (ej: AD123456).', type: 'PASPORT' };
+        }
+    }
+
+    // 8. ESTADOS UNIDOS (US)
+    if (countryCode === 'US') {
+        if (docType === 'PASPORT') {
+            if (/^([0-9]{9}|[A-Z][0-9]{8})$/.test(value)) {
+                return { isValid: true, type: 'PASPORT' };
+            }
+            return { isValid: false, message: 'Pasaporte de EE.UU. inválido (9 caracteres).', type: 'PASPORT' };
+        }
+    }
+
+    // Formato genérico
+    if (docType === 'DNI' || docType === 'NIE') {
+        if (/^[A-Z0-9-]{5,20}$/.test(value)) {
+            return { isValid: true, type: docType };
+        }
+        return { isValid: false, message: 'Documento de identidad no válido.', type: docType };
+    }
+
+    if (docType === 'PASPORT') {
         if (/^[A-Z0-9]{6,20}$/.test(value)) {
             return { isValid: true, type: 'PASPORT' };
         }
-        return { isValid: false, message: 'Pasaporte inválido (6-20 caracteres alfanuméricos).', type: 'PASPORT' };
+        return { isValid: false, message: 'Pasaporte no válido.', type: 'PASPORT' };
     }
 
-    // Si NO se especifica tipo (auto-detección - mantener compatibilidad)
-    if (/^[0-9]{7,8}[A-Z]$/.test(value)) {
-        return isValidDNI(value) ? { isValid: true, type: 'DNI' } : { isValid: false, message: 'DNI inválido.', type: 'DNI' };
-    }
-    if (/^[XYZ][0-9]{7}[A-Z]$/.test(value)) {
-        return isValidNIE(value) ? { isValid: true, type: 'NIE' } : { isValid: false, message: 'NIE inválido.', type: 'NIE' };
-    }
-    if (/^[A-Z0-9]{6,20}$/.test(value)) {
-        return { isValid: true, type: 'PASPORT' };
-    }
-
-    return { isValid: false, message: 'Documento no reconocido.', type: 'DNI' };
+    return { isValid: false, message: 'Documento no reconocido.', type: docType };
 }
 
 /**

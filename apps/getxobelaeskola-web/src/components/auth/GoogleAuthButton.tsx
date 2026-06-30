@@ -21,10 +21,14 @@ export default function GoogleAuthButton() {
                 ? (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://getxobelaeskola.cloud')
                 : window.location.origin;
 
+            const searchParams = new URLSearchParams(window.location.search);
+            const returnTo = searchParams.get('returnTo');
+            const nextPath = returnTo ? encodeURIComponent(returnTo) : `/${locale}/student/dashboard`;
+
             await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${appUrl}/api/auth/callback?next=/${locale}/student/dashboard`,
+                    redirectTo: `${appUrl}/api/auth/callback?next=${nextPath}`,
                     queryParams: {
                         access_type: 'offline',
                         prompt: 'consent',

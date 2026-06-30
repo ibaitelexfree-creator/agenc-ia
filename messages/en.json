@@ -78,7 +78,11 @@
       "avanzado": "Advanced",
       "profesional": "Professional"
     },
-    "back_to_catalog": "Back to catalog"
+    "back_to_catalog": "Back to catalog",
+    "book_title": "Book your spot",
+    "level_label": "Level",
+    "investment_label": "Price",
+    "learn_title": "What you will learn"
   },
   "rental_page": {
     "header_eyebrow": "AT YOUR OWN PACE",
@@ -97,7 +101,8 @@
       "piragua": "Canoe",
       "membresias": "Memberships",
       "bonos": "Bonds",
-      "eventos": "Events"
+      "eventos": "Events",
+      "atraques": "Moorings"
     },
     "booking": {
       "from": "from",
@@ -111,7 +116,8 @@
       "invalid_date": "Please, fill the date correctly (DD/MM/YYYY)",
       "no_times_available": "No times available for today",
       "no_times_selected_date": "No times available for the selected date",
-      "booking_error": "Error processing the reservation. Please, try again."
+      "booking_error": "Error processing the reservation. Please, try again.",
+      "booking_details": "Booking details"
     }
   },
   "experiences_page": {
@@ -1191,5 +1197,173 @@
     "subtitle": "Your first trip could be this weekend.",
     "button": "Book now",
     "href": "https://getxobelaeskola.cloud/en/"
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "J80 Initiation",
+      "description": "Learn the basics of navigation on our J80 fleet.",
+      "details": [
+        "Sailing fundamentals",
+        "Basic maneuvers",
+        "12 class hours",
+        "J80 fleet"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Windsurf 1 Session",
+      "description": "Individual 2-hour windsurfing session. Perfect to try.",
+      "details": [
+        "2-hour trial",
+        "Equipment included",
+        "Dedicated instructor",
+        "First contact"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Summer Campus (Registered Residents)",
+      "description": "Summer campus for children and youth from 5 to 21 years registered in Getxo.",
+      "details": [
+        "Group sailing",
+        "Safety at sea",
+        "Games and activities",
+        "20 hours per week"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Summer Campus (Non-Residents)",
+      "description": "Summer campus for children and youth from 5 to 21 years not registered in Getxo.",
+      "details": [
+        "Group sailing",
+        "Safety at sea",
+        "Games and activities",
+        "20 hours per week"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Adult Initiation",
+      "description": "Initiation sailing course for adults.",
+      "details": [
+        "Sailing fundamentals",
+        "Basic maneuvers",
+        "12 hours of class",
+        "Adult groups"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Advanced Sailing",
+      "description": "Improve your trimming and maneuvering technique.",
+      "details": [
+        "Sail trimming",
+        "Advanced maneuvers",
+        "Efficient sailing",
+        "Open water practice"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Dinghy Sailing",
+      "description": "Learn the fundamentals of dinghy sailing in Getxo.",
+      "details": [
+        "Optimist, Laser and 420",
+        "October to June",
+        "3 Sundays per month",
+        "Instructor and equipment included"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Adult Technification",
+      "description": "Advanced training and technification course for adults.",
+      "details": [
+        "Race tactics",
+        "Precision maneuvers",
+        "Fine-tuning",
+        "J80 training"
+      ]
+    },
+    "otros": {
+      "name": "Others / Miscellaneous",
+      "description": "Various uncategorized sessions and events.",
+      "details": [
+        "Special events",
+        "Custom sessions",
+        "Consult options"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Sailing License",
+      "description": "Obtain your official sailing license in one morning.",
+      "details": [
+        "Official license without exam",
+        "Navigation of boats up to 6m",
+        "Jet skis up to 55HP",
+        "Daytime navigation (2 miles)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu (Repair)",
+      "description": "Specialized course in boat maintenance and repair.",
+      "details": [
+        "Engine maintenance",
+        "Fiber and resin",
+        "Onboard electricity",
+        "Rigging and deck hardware"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Windsurf Initiation Course",
+      "description": "Learn the fundamentals of windsurfing in 5 sessions of 2 hours.",
+      "details": [
+        "Balance and position",
+        "Steering and turns",
+        "5 sessions of 2h",
+        "Adapted equipment"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Windsurf Campus",
+      "description": "15-hour intensive windsurfing camp.",
+      "details": [
+        "Advanced sail control",
+        "Planing and harness",
+        "15 total hours",
+        "Fun at sea"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Windsurf 3 Sessions",
+      "description": "Pack of 3 windsurfing sessions of 2 hours each. Ideal to practice and improve.",
+      "details": [
+        "3 sessions of 2h",
+        "Technique consolidation",
+        "Improve course",
+        "Complete gear"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Dinghy Sailing Initiation",
+      "description": "First contact with sailing. Learn the basic fundamentals of sailing on light boats.",
+      "details": [
+        "Optimist, Laser and 420",
+        "Basic wind concepts",
+        "Autonomous sailing",
+        "Instructor and gear"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Dinghy Sailing Voucher",
+    "alquiler-420": "420 (Double)",
+    "alquiler-raquero-omega": "Raquero / Omega (Collective)",
+    "atraque-transeunte-8m": "Transient Mooring (< 8m)",
+    "atraque-transeunte-12m": "Transient Mooring (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero without skipper",
+    "atraque-windsurf": "Windsurf Board Mooring",
+    "atraque-piragua": "Canoe Mooring",
+    "alquiler-windsurf": "Windsurf",
+    "alquiler-j80": "J80 Sailboats",
+    "alquiler-paddlesurf": "Paddle Surf",
+    "alquiler-kayak-1": "Kayak (1 Person)",
+    "alquiler-kayak-2": "Kayak (2 People)",
+    "alquiler-piragua-1": "Canoe (1 Person)",
+    "alquiler-piragua-2": "Canoe (2 People)"
   }
 }

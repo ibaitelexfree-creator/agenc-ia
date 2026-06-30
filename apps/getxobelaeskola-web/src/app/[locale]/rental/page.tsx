@@ -63,6 +63,7 @@ interface Service {
 
 export default async function RentalPage({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'rental_page' });
+    const tData = await getTranslations({ locale, namespace: 'rentals_data' });
     const supabase = createClient();
     let services: Service[] = [];
     const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
@@ -113,23 +114,29 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
         'name': `${t('title_prefix')} ${t('title_highlight')}`,
         'description': t('description'),
         'numberOfItems': services.length,
-        'itemListElement': services.map((service, index) => ({
-            '@type': 'ListItem',
-            'position': index + 1,
-            'item': {
-                '@type': 'Product',
-                'name': locale === 'eu' ? (service.nombre_eu || service.nombre) : locale === 'en' ? (service.nombre_en || service.nombre) : service.nombre,
-                'description': locale === 'eu' ? (service.descripcion_eu || service.descripcion) : locale === 'en' ? (service.descripcion_en || service.descripcion) : service.descripcion,
-                'image': `${siteUrl}${service.imagen_url || '/images/home-hero-sailing-action.webp'}`,
-                'offers': {
-                    '@type': 'Offer',
-                    'price': service.precio_base || service.precio_hora,
-                    'priceCurrency': 'EUR',
-                    'availability': 'https://schema.org/InStock',
-                    'url': `${siteUrl}/${locale}/rental`
+        'itemListElement': services.map((service, index) => {
+            const hasTranslation = tData.has(service.slug);
+            const serviceName = hasTranslation
+                ? tData(service.slug)
+                : (locale === 'es' ? service.nombre_es : (locale === 'eu' ? service.nombre_eu : service.nombre_es)) || service.nombre;
+            return {
+                '@type': 'ListItem',
+                'position': index + 1,
+                'item': {
+                    '@type': 'Product',
+                    'name': serviceName,
+                    'description': locale === 'eu' ? (service.descripcion_eu || service.descripcion) : service.descripcion,
+                    'image': `${siteUrl}${service.imagen_url || '/images/home-hero-sailing-action.webp'}`,
+                    'offers': {
+                        '@type': 'Offer',
+                        'price': service.precio_base || service.precio_hora,
+                        'priceCurrency': 'EUR',
+                        'availability': 'https://schema.org/InStock',
+                        'url': `${siteUrl}/${locale}/rental`
+                    }
                 }
-            }
-        }))
+            };
+        })
     };
 
     return (

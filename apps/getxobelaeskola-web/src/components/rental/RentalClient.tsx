@@ -130,7 +130,7 @@ export default function RentalClient({
         { id: 'paddlesurf', name: t('categories.paddlesurf') },
         { id: 'kayak', name: t('categories.kayak') },
         { id: 'piragua', name: t('categories.piragua') },
-        { id: 'atraques', name: locale === 'eu' ? 'Atrakatzeak' : 'Atraques' },
+        { id: 'atraques', name: t('categories.atraques') },
         { id: 'membresias', name: t('categories.membresias') },
         { id: 'bonos', name: t('categories.bonos') },
         { id: 'eventos', name: t('categories.eventos') }

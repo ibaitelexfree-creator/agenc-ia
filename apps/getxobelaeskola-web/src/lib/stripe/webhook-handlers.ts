@@ -135,6 +135,22 @@ export class StripeHandlers {
     private async processCourse(session: Stripe.Checkout.Session, userId: string, locale: string) {
         const { course_id, edition_id, start_date, end_date } = session.metadata!;
 
+        const regDataStr = (session.metadata?.reg_data_1 || '') + (session.metadata?.reg_data_2 || '');
+        let registration = null;
+        try {
+            if (regDataStr && regDataStr !== '{}') {
+                registration = JSON.parse(regDataStr);
+            }
+        } catch (e) {
+            console.error('Failed to parse registration details from metadata:', e);
+        }
+
+        const combinedMetadata = {
+            start_date,
+            end_date,
+            registration
+        };
+
         const discounts = (session as any).total_details?.breakdown?.discounts;
         const usedCoupon = discounts?.[0]?.discount?.promotion_code?.code || discounts?.[0]?.discount?.coupon?.id;
 
@@ -144,7 +160,7 @@ export class StripeHandlers {
             p_edition_id: (edition_id && edition_id !== '' && !edition_id.startsWith('test-') && !edition_id.startsWith('ext_')) ? edition_id : null,
             p_amount: session.amount_total ? session.amount_total / 100 : 0,
             p_session_id: session.id,
-            p_metadata: { start_date, end_date },
+            p_metadata: combinedMetadata,
             p_coupon: usedCoupon || null
         });
 
@@ -157,7 +173,7 @@ export class StripeHandlers {
                 estado_pago: 'pagado',
                 monto_total: session.amount_total ? session.amount_total / 100 : 0,
                 stripe_session_id: session.id,
-                metadata: { start_date, end_date },
+                metadata: combinedMetadata,
                 cupon_usado: usedCoupon || null
             });
             if (insError) throw insError;

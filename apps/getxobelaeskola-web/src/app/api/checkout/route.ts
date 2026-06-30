@@ -8,7 +8,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 503 });
     }
     try {
-        const { editionId, courseId, locale = 'es', startDate, endDate, legalName, legalDni } = await request.json();
+        const { editionId, courseId, locale = 'es', startDate, endDate, legalName, legalDni, registrationDetails } = await request.json();
 
         if (!courseId) {
             return NextResponse.json({ error: 'Falta el ID del curso' }, { status: 400 });
@@ -89,7 +89,8 @@ export async function POST(request: Request) {
                 stripe_session_id: `FREE_${Date.now()}`,
                 metadata: {
                     start_date: startDate || new Date().toISOString(),
-                    end_date: endDate || new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString()
+                    end_date: endDate || new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString(),
+                    registration: registrationDetails || null
                 }
             };
 
@@ -183,7 +184,9 @@ export async function POST(request: Request) {
                 legal_name: (legalName as string) || '',
                 legal_dni: (legalDni as string) || '',
                 locale: (locale as string) || 'es',
-                mode: 'course'
+                mode: 'course',
+                reg_data_1: registrationDetails ? JSON.stringify(registrationDetails).slice(0, 450) : '{}',
+                reg_data_2: registrationDetails ? JSON.stringify(registrationDetails).slice(450, 900) : ''
             },
         });
 

@@ -78,7 +78,11 @@
       "avanzado": "Avanzado",
       "profesional": "Profesional"
     },
-    "back_to_catalog": "Volver al catálogo"
+    "back_to_catalog": "Volver al catálogo",
+    "book_title": "Reserva tu plaza",
+    "level_label": "Nivel",
+    "investment_label": "Inversión",
+    "learn_title": "Lo que aprenderás"
   },
   "rental_page": {
     "header_eyebrow": "A TU RITMO",
@@ -97,7 +101,8 @@
       "piragua": "Piragua",
       "membresias": "Membresías",
       "bonos": "Bonos",
-      "eventos": "Eventos"
+      "eventos": "Eventos",
+      "atraques": "Atraques"
     },
     "booking": {
       "from": "desde",
@@ -111,7 +116,8 @@
       "invalid_date": "Por favor, completa la fecha correctamente (DD/MM/AAAA)",
       "no_times_available": "No hay horarios disponibles para hoy",
       "no_times_selected_date": "No hay horarios disponibles para la fecha seleccionada",
-      "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo."
+      "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo.",
+      "booking_details": "Detalles de la reserva"
     }
   },
   "experiences_page": {
@@ -1251,5 +1257,173 @@
     "subtitle": "Tu primera salida puede ser este fin de semana.",
     "button": "Reservar ahora",
     "href": "https://getxobelaeskola.cloud/es/"
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "Iniciación J80",
+      "description": "Aprende los conceptos básicos de navegación en nuestra flota de J80.",
+      "details": [
+        "Fundamentos de vela",
+        "Maniobras básicas",
+        "12 horas de clase",
+        "Flota J80"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Windsurf 1 Sesión",
+      "description": "Sesión individual de windsurf de 2 horas. Perfecto para probar.",
+      "details": [
+        "Prueba de 2 horas",
+        "Material incluido",
+        "Monitor dedicado",
+        "Primer contacto"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Campus Verano (Empadronados)",
+      "description": "Campus de verano para niños y jóvenes de 5 a 21 años empadronados en Getxo.",
+      "details": [
+        "Navegación en grupo",
+        "Seguridad en el mar",
+        "Juegos y actividades",
+        "20 horas semanales"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Campus Verano (No Empadronados)",
+      "description": "Campus de verano para niños y jóvenes de 5 a 21 años no empadronados en Getxo.",
+      "details": [
+        "Navegación en grupo",
+        "Seguridad en el mar",
+        "Juegos y actividades",
+        "20 horas semanales"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Iniciación Adultos",
+      "description": "Curso de iniciación a la navegación para adultos.",
+      "details": [
+        "Fundamentos de vela",
+        "Maniobras básicas",
+        "12 horas de clase",
+        "Grupos de adultos"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Perfeccionamiento",
+      "description": "Mejora tu técnica de trimado y maniobra.",
+      "details": [
+        "Trimado de velas",
+        "Maniobras avanzadas",
+        "Navegación eficiente",
+        "Práctica en mar abierto"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Vela Ligera",
+      "description": "Aprende los fundamentos de la navegación a vela en Getxo.",
+      "details": [
+        "Optimist, Laser y 420",
+        "Octubre a Junio",
+        "3 domingos al mes",
+        "Incluye monitor y equipo"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Tecnificación Adultos",
+      "description": "Curso de perfeccionamiento y tecnificación para adultos.",
+      "details": [
+        "Tácticas de regata",
+        "Maniobras de precisión",
+        "Puesta a punto",
+        "Entrenamiento en J80"
+      ]
+    },
+    "otros": {
+      "name": "Otros / Varios",
+      "description": "Sesiones y eventos varios no categorizados.",
+      "details": [
+        "Eventos especiales",
+        "Sesiones a medida",
+        "Consultar opciones"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Licencia de Navegación",
+      "description": "Obtén tu titulación oficial en una mañana.",
+      "details": [
+        "Título oficial sin examen",
+        "Gobierno de barcos hasta 6m",
+        "Motos náuticas hasta 55CV",
+        "Navegación diurna (2 millas)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu",
+      "description": "Curso especializado en mantenimiento y reparación naviera.",
+      "details": [
+        "Mantenimiento del motor",
+        "Fibra y resina",
+        "Electricidad a bordo",
+        "Jarcia y acastillaje"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Curso Iniciación Windsurf",
+      "description": "Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.",
+      "details": [
+        "Equilibrio y posición",
+        "Dirección y giros",
+        "5 sesiones de 2h",
+        "Material adaptado"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Campus Windsurf",
+      "description": "Campamento intensivo de windsurf de 15 horas.",
+      "details": [
+        "Uso avanzado de la vela",
+        "Planeo y arnés",
+        "15 horas totales",
+        "Diversión en el mar"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Windsurf 3 Sesiones",
+      "description": "Pack de 3 sesiones de windsurf de 2 horas cada una. Ideal para practicar y mejorar.",
+      "details": [
+        "3 sesiones de 2h",
+        "Consolidación de técnica",
+        "Mejora de rumbo",
+        "Material completo"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Iniciación a la Vela Ligera",
+      "description": "Primer contacto con la navegación a vela. Aprende los fundamentos básicos de la vela en embarcaciones ligeras.",
+      "details": [
+        "Optimist, Laser y 420",
+        "Conceptos básicos de viento",
+        "Navegación autónoma",
+        "Monitor y equipo"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Bono Vela Ligera",
+    "alquiler-420": "420 (Doble)",
+    "alquiler-raquero-omega": "Raquero / Omega (Colectivo)",
+    "atraque-transeunte-8m": "Atraque Transeúnte (< 8m)",
+    "atraque-transeunte-12m": "Atraque Transeúnte (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero sin patrón",
+    "atraque-windsurf": "Atraque Windsurf",
+    "atraque-piragua": "Atraque Piragua",
+    "alquiler-windsurf": "Windsurf",
+    "alquiler-j80": "Veleros J80",
+    "alquiler-paddlesurf": "Paddle Surf",
+    "alquiler-kayak-1": "Kayak (1 Persona)",
+    "alquiler-kayak-2": "Kayak (2 Personas)",
+    "alquiler-piragua-1": "Piragua (1 Persona)",
+    "alquiler-piragua-2": "Piragua (2 Personas)"
   }
 }

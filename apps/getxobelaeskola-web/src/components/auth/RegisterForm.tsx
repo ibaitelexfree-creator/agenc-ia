@@ -66,11 +66,16 @@ export default function RegisterForm() {
         const appUrl = isCapacitor
             ? (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://getxobelaeskola.cloud')
             : window.location.origin;
+
+        const searchParams = new URLSearchParams(window.location.search);
+        const returnTo = searchParams.get('returnTo');
+        const nextPath = returnTo ? encodeURIComponent(returnTo) : `/${locale}/student/dashboard`;
+
         const { error: authError } = await supabase.auth.signUp({
             email: data.email,
             password: data.password,
             options: {
-                emailRedirectTo: `${appUrl}/api/auth/callback?next=/${locale}/student/dashboard`,
+                emailRedirectTo: `${appUrl}/api/auth/callback?next=${nextPath}`,
                 data: {
                     nombre: data.nombre,
                     apellidos: data.apellidos,

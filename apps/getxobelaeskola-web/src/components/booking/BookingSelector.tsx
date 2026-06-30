@@ -22,12 +22,19 @@ interface BookingSelectorProps {
     coursePrice: number;
     courseId: string;
     activityType?: ActivityType;
+    slug?: string;
 }
 
-export default function BookingSelector({ editions, coursePrice, courseId, activityType = 'course' }: BookingSelectorProps) {
+export default function BookingSelector({ editions, coursePrice, courseId, activityType = 'course', slug }: BookingSelectorProps) {
     const t = useTranslations('booking');
+    const tLegal = useTranslations('legal');
     const router = useRouter();
     const [selectedEdition, setSelectedEdition] = useState<string | null>(null);
+    const [customDate, setCustomDate] = useState<string>(() => {
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        return tomorrow.toISOString().split('T')[0];
+    });
     const [loading, setLoading] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
@@ -51,7 +58,6 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
     }, []);
 
     const handleBookingClick = () => {
-        if (coursePrice > 0 && !selectedEdition) return;
         if (!user) {
             const locale = window.location.pathname.split('/')[1] || 'es';
             router.push(`/${locale}/auth/login?returnTo=${encodeURIComponent(window.location.pathname)}`);
@@ -60,7 +66,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
         setIsLegalModalOpen(true);
     };
 
-    const handleLegalConfirm = async (legalData: { fullName: string; email: string; dni: string }) => {
+    const handleLegalConfirm = async (legalData: { fullName: string; email: string; dni: string; registrationDetails?: any }) => {
         setIsLegalModalOpen(false);
         setLoading(true);
 
@@ -85,6 +91,13 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 throw new Error('No se pudo registrar la firma legal. Inténtalo de nuevo.');
             }
 
+            const isBoatCourse = 
+                slug?.includes('j80') || 
+                slug?.includes('licencia') || 
+                slug?.includes('vela-ligera') || 
+                slug?.includes('crucero') || 
+                slug?.includes('raquero');
+
             // Original Checkout Logic
             const response = await fetch(apiUrl('/api/checkout'), {
                 method: 'POST',
@@ -95,12 +108,16 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                     editionId: selectedEdition,
                     courseId: courseId,
                     locale: window.location.pathname.split('/')[1] || 'es',
-                    startDate: selectedEditionData?.fecha_inicio,
-                    endDate: selectedEditionData?.fecha_fin,
+                    startDate: selectedEditionData?.fecha_inicio || (isBoatCourse ? undefined : customDate),
+                    endDate: selectedEditionData?.fecha_fin || (isBoatCourse ? undefined : customDate),
                     // Pass legal data to checkout for metadata
                     legalName: legalData.fullName,
                     legalDni: legalData.dni,
-                    legalEmail: legalData.email // Send email explicitly for guest checkout association
+                    legalEmail: legalData.email, // Send email explicitly for guest checkout association
+                    registrationDetails: {
+                        ...legalData.registrationDetails,
+                        ...(customDate && !isBoatCourse ? { fecha_seleccionada: customDate } : {})
+                    }
                 }),
             });
 
@@ -147,6 +164,13 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
         return null;
     }
 
+    const isBoatCourse = 
+        slug?.includes('j80') || 
+        slug?.includes('licencia') || 
+        slug?.includes('vela-ligera') || 
+        slug?.includes('crucero') || 
+        slug?.includes('raquero');
+
     return (
         <div className="space-y-6">
             <div className="space-y-3">
@@ -165,47 +189,62 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                             {t('select_date')}
                         </label>
 
-                        {editions && editions.length > 0 ? (
-                            <div className="grid gap-3">
-                                {editions.map((edition) => {
-                                    const seatsLeft = edition.plazas_totales - edition.plazas_ocupadas;
-                                    const isSelected = selectedEdition === edition.id;
-                                    const isFull = seatsLeft <= 0;
+                        {isBoatCourse ? (
+                            editions && editions.length > 0 ? (
+                                <div className="grid gap-3">
+                                    {editions.map((edition) => {
+                                        const seatsLeft = edition.plazas_totales - edition.plazas_ocupadas;
+                                        const isSelected = selectedEdition === edition.id;
+                                        const isFull = seatsLeft <= 0;
 
-                                    return (
-                                        <button
-                                            key={edition.id}
-                                            disabled={isFull}
-                                            onClick={() => setSelectedEdition(edition.id)}
-                                            aria-label={`${t('select_date')} ${formatDate(edition.fecha_inicio)} ${t('to_date')} ${formatDate(edition.fecha_fin)}. ${isFull ? t('full') : `${seatsLeft} ${t('seats')}`}`}
-                                            aria-pressed={isSelected}
-                                            aria-disabled={isFull}
-                                            className={`w-full p-4 border text-left transition-all duration-300 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-nautical-black ${isSelected
-                                                ? 'border-accent bg-accent/5'
-                                                : 'border-white/5 hover:border-white/20 bg-white/5'
-                                                } ${isFull ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-                                        >
-                                            <div>
-                                                <p className="text-base font-light text-sea-foam">
-                                                    {t('from_date')} {formatDate(edition.fecha_inicio)}
-                                                </p>
-                                                <p className="text-2xs uppercase tracking-widest text-foreground/40 mt-1">
-                                                    {t('to_date')} {formatDate(edition.fecha_fin)}
-                                                </p>
-                                            </div>
-                                            <div className="text-right">
-                                                <p className={`text-2xs uppercase tracking-widest font-bold ${isSelected ? 'text-accent' : 'text-foreground/40'}`}>
-                                                    {isFull ? t('full') : `${seatsLeft} ${t('seats')}`}
-                                                </p>
-                                            </div>
-                                        </button>
-                                    );
-                                })}
-                            </div>
+                                        return (
+                                            <button
+                                                key={edition.id}
+                                                disabled={isFull}
+                                                onClick={() => setSelectedEdition(edition.id)}
+                                                aria-label={`${t('select_date')} ${formatDate(edition.fecha_inicio)} ${t('to_date')} ${formatDate(edition.fecha_fin)}. ${isFull ? t('full') : `${seatsLeft} ${t('seats')}`}`}
+                                                aria-pressed={isSelected}
+                                                aria-disabled={isFull}
+                                                className={`w-full p-4 border text-left transition-all duration-300 flex justify-between items-center focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-nautical-black ${isSelected
+                                                    ? 'border-accent bg-accent/5'
+                                                    : 'border-white/5 hover:border-white/20 bg-white/5'
+                                                    } ${isFull ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+                                            >
+                                                <div>
+                                                    <p className="text-base font-light text-sea-foam">
+                                                        {t('from_date')} {formatDate(edition.fecha_inicio)}
+                                                    </p>
+                                                    <p className="text-2xs uppercase tracking-widest text-foreground/40 mt-1">
+                                                        {t('to_date')} {formatDate(edition.fecha_fin)}
+                                                    </p>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className={`text-2xs uppercase tracking-widest font-bold ${isSelected ? 'text-accent' : 'text-foreground/40'}`}>
+                                                        {isFull ? t('full') : `${seatsLeft} ${t('seats')}`}
+                                                    </p>
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            ) : (
+                                <p className="text-sm text-foreground/40 font-light italic">
+                                    {t('no_dates_available')}
+                                </p>
+                            )
                         ) : (
-                            <p className="text-sm text-foreground/40 font-light italic">
-                                {t('no_dates_available')}
-                            </p>
+                            <div className="space-y-2">
+                                <input
+                                    type="date"
+                                    value={customDate}
+                                    min={new Date().toISOString().split('T')[0]}
+                                    onChange={(e) => setCustomDate(e.target.value)}
+                                    className="w-full bg-black/[0.02] border border-black/10 p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all focus:ring-2 focus:ring-accent rounded-sm"
+                                />
+                                <p className="text-[10px] text-foreground/40 uppercase tracking-widest pl-1 leading-relaxed">
+                                    {t('flexible_date_notice') || 'Reserva flexible. Elegirás la hora exacta con la escuela.'}
+                                </p>
+                            </div>
                         )}
                     </>
                 )}
@@ -213,11 +252,11 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
 
             <button
                 onClick={handleBookingClick}
-                disabled={coursePrice > 0 && !selectedEdition || loading}
+                disabled={loading}
                 aria-label={loading ? t('processing') : `${t('book_for')} ${coursePrice} euros`}
                 aria-busy={loading}
-                aria-disabled={coursePrice > 0 && !selectedEdition || loading}
-                className="w-full py-5 bg-accent text-nautical-black text-[13px] uppercase tracking-[0.25em] font-black hover:bg-white transition-all duration-500 disabled:opacity-30 disabled:grayscale focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nautical-black shadow-lg hover:shadow-accent/20"
+                aria-disabled={loading}
+                className="w-full py-5 bg-accent text-nautical-black hover:text-black text-[13px] uppercase tracking-[0.25em] font-black hover:bg-white transition-all duration-500 disabled:opacity-30 disabled:grayscale focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nautical-black shadow-lg hover:shadow-accent/20"
             >
                 {loading ? t('processing') : `${t('book_for')} ${coursePrice}€`}
             </button>
@@ -230,21 +269,16 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 initialData={user ? {
                     fullName: profile ? `${profile.nombre} ${profile.apellidos}` : undefined,
                     email: user.email,
-                    dni: profile?.dni // Intentar pasar DNI si existe en el perfil (aunque no lo vi en el modal de edit, puede existir en la base de datos o ser añadido en el futuro)
+                    dni: profile?.dni,
+                    nombre: profile?.nombre,
+                    apellidos: profile?.apellidos,
+                    telefono: profile?.telefono,
+                    domicilio: profile?.domicilio,
+                    localidad: profile?.localidad,
+                    codigo_postal: profile?.codigo_postal,
+                    fecha_nacimiento: profile?.fecha_nacimiento
                 } : undefined}
-                legalText={`CONDICIONES GENERALES DE CONTRATACIÓN - GETXO BELA ESKOLA
-
-1. OBJETO Y ÁMBITO DE APLICACIÓN: El presente documento establece las condiciones legales para la inscripción en los cursos impartidos por Getxo Bela Eskola.
-
-2. APTITUD FÍSICA Y SEGURIDAD: El alumno declara estar en condiciones físicas adecuadas para la práctica de la navegación y no padecer enfermedades que lo impidan. Es obligatorio el uso de chaleco salvavidas y seguir las instrucciones del patrón o instructor en todo momento.
-
-3. RESPONSABILIDAD: Getxo Bela Eskola no se hace responsable de las pertenencias personales de los alumnos. La escuela cuenta con los seguros de responsabilidad civil y accidentes obligatorios por ley.
-
-4. CONDICIONES METEOROLÓGICAS: La escuela se reserva el derecho de cancelar o aplazar las sesiones si las condiciones del mar o el viento representan un riesgo para la seguridad de los alumnos y el material.
-
-5. POLÍTICA DE CANCELACIÓN: Las cancelaciones por parte del alumno deberán comunicarse con al menos 48 horas de antelación para tener derecho a reubicación en otra fecha (sujeto a disponibilidad).
-
-6. ACEPTACIÓN: El click en "Acepto" constituye una firma electrónica vinculante bajo la legislación vigente de servicios de la sociedad de la información.`}
+                legalText={tLegal('course_contract')}
             />
         </div>
     );

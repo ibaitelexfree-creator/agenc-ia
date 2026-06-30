@@ -78,7 +78,11 @@
       "avanzado": "Aurreratua",
       "profesional": "Profesionala"
     },
-    "back_to_catalog": "Katalogora itzuli"
+    "back_to_catalog": "Katalogora itzuli",
+    "book_title": "Erreserbatu zure tokia",
+    "level_label": "Maila",
+    "investment_label": "Inbertsioa",
+    "learn_title": "Ikasiko duzuna"
   },
   "rental_page": {
     "header_eyebrow": "ZURE ERRITMOAN",
@@ -97,7 +101,8 @@
       "piragua": "Piragua",
       "membresias": "Membresiak",
       "bonos": "Bonuak",
-      "eventos": "Ekitaldiak"
+      "eventos": "Ekitaldiak",
+      "atraques": "Atrakatzeak"
     },
     "booking": {
       "from": "prezioa: ",
@@ -111,7 +116,8 @@
       "invalid_date": "Mesedez, bete data behar bezala (UU/HH/UUUU)",
       "no_times_available": "Ez dago ordutegirik erabilgarri gaurko",
       "no_times_selected_date": "Ez dago ordutegirik erabilgarri hautatutako datarako",
-      "booking_error": "Errorea erreserba prozesatzean. Mesedez, saiatu berriro."
+      "booking_error": "Errorea erreserba prozesatzean. Mesedez, saiatu berriro.",
+      "booking_details": "Erreserbaren xehetasunak"
     }
   },
   "experiences_page": {
@@ -334,6 +340,7 @@
     "book_for": "Erreservatu",
     "online_course_instant": "Online Ikastaroa - Berehalako Sarbidea",
     "no_dates_needed": "Ez da beharrezkoa datak hautatzea. Hasi orain.",
+    "flexible_date_notice": "Erreserba malgua. Eskolarekin zehaztuko duzu ordu zehatza.",
     "error_generic": "Zerbait gaizki joan da",
     "payment_gateway_error": "Errorea ordainketa-pasarelararekin konektatzean"
   },
@@ -948,10 +955,30 @@
     "email_invalid": "Email baliogabea",
     "password_short": "Gutxienez 6 karaktere",
     "subject_short": "Gaia laburregia da",
-    "message_short": "Mezua laburregia da"
+    "message_short": "Mezua laburregia da",
+    "name_required": "Izena derrigorrezkoa da",
+    "surnames_required": "Abizenak derrigorrezkoak dira",
+    "age_required": "Adina derrigorrezkoa da",
+    "swim_required": "Hautatu badaki igeri egiten",
+    "tutor_name_required": "Tutorearen izena derrigorrezkoa da",
+    "tutor_surnames_required": "Tutorearen abizenak derrigorrezkoak dira",
+    "tutor_dni_required": "Tutorearen NANa derrigorrezkoa da",
+    "tutor_phone_required": "Tutorearen telefonoa derrigorrezkoa da",
+    "tutor_email_required": "Tutorearen emaila derrigorrezkoa da",
+    "week_required": "Idatzi eskatutako astea",
+    "birth_date_required": "Jaiotza-data derrigorrezkoa da",
+    "dni_required": "Nortasun agiria derrigorrezkoa da",
+    "address_required": "Helbidea derrigorrezkoa da",
+    "locality_required": "Herria derrigorrezkoa da",
+    "postal_code_required": "Posta kodea derrigorrezkoa da",
+    "mode_required": "Hautatu modalitate bat",
+    "iban_required": "IBANa derrigorrezkoa da",
+    "titular_required": "Kontuaren titularra derrigorrezkoa da",
+    "invalid_identity_document": "Nortasun agiria ez da baliozkoa. Egiaztatu berriro."
   },
   "legal": {
     "rental_contract": "MATERIAL NAUTIKOA ALOKATZEKO KONTRATUA - GETXO BELA ESKOLA\n\n1. ERRENTATSAILEAREN BALDINTZAK: Bezeroak adierazten du alokatutako materiala modu seguruan erabiltzeko beharrezko ezagutza teknikoak dituela. Aisialdiko belaontzien kasuan, dagokion gutxieneko titulazioa beharrezkoa da.\n\n2. EGOERA ETA ITZULTZEA: Materiala funtzionamendu-egoera egokian entregatzen da. Bezeroak egoera berean itzultzeko konpromisoa hartzen du. Ardura gabekeriagatik sortutako edozein kalte bezeroaren ardura esklusiboa izango da.\n\n3. NABIGAZIO EREMUAK: Nabigazioa baimendutako eremuetara eta adostutako denborara mugatuko da. Bezeroak Getxoko Kirol Portuko arauak eta Itsas Kapaintzaren araudia errespetatzeko konpromisoa hartzen du.\n\n4. SEGURTASUNA: Salbamendu-txalekoa erabiltzea nahitaezkoa eta pertsonala da uretan geratzen den denbora guztian.\n\n5. RESKATEA ETA LAGUNTZA: Bezeroak zuhurtzia faltagatik edo baimendutako eremuetatik kanpo ateratzeagatik laguntza edo erreskatea behar badu, sor daitezkeen gastuak bere kontu izango dira.\n\n6. SINADURA DIGITALA: Onarpen-laukia markatzean, bezeroak berresten du aurreko puntu guztiak ulertu dituela eta bere legezko erantzukizuna onartzen duela.",
+    "course_contract": "KONTRATAZIO BALDINTZA OROKORRAK - GETXO BELA ESKOLA\n\n1. HELBURUA ETA APLIKAZIO EREMUA: Dokumentu honek Getxo Bela Eskolak ematen dituen ikastaroetan izena emateko legezko baldintzak ezartzen ditu.\n\n2. SORMEN FISIKOA ETA SEGURTASUNA: Ikasleak adierazten du nabigaziorako baldintza fisiko egokietan dagoela eta ez duela hori eragozten duen gaixotasunik. Nahitaezkoa da salbamendu-jaka erabiltzea eta patroiaren edo instruktorearen jarraibideak uneoro jarraitzea.\n\n3. ERANTZUKIZUNA: Getxo Bela Eskola ez da ikasleen ondasun pertsonalen arduradun egiten. Eskolak legeak agindutako erantzukizun zibileko eta istripu-aseguruak ditu.\n\n4. BALDINTZA METEOROLOGIKOAK: Eskolak saioak bertan behera uzteko edo atzeratzeko eskubedgea erreserbatzen du, itsasoaren edo haizearen baldintzek ikasleen eta materialaren segurtasunerako arriskua badute.\n\n5. UTZTE POLITIKA: Ikasleak bertan behera uzteko asmoa gutxienez 48 ordu lehenago jakinarazi beharko du, beste data batean kokatzeko eskubidea izateko (erabilgarritasunaren arabera).\n\n6. ONARPENA: \"Ados\" sakatzeak sinadura elektroniko sidatzailea dakar, informazioaren gizartearen zerbitzuei buruzko indarreko legediaren arabera.",
     "consent_acceptance": "Goian zehaztutako legezko baldintzak irakurri eta berariaz onartzen ditut. Ulertzen dut onarpen honek sinadura digital lotesle baten balioa duela.",
     "error_log_consent": "Ezin izan da legezko sinadura erregistratu. Saiatu berriro.",
     "privacy_title": "Pribatutasun Politika",
@@ -962,15 +989,25 @@
     "terms_title": "Izen-emate Baldintzak",
     "rental_title": "Alokairu Baldintzak",
     "back": "Itzuli",
+    "next": "Hurrengoa",
+    "step_prefix": "Urratsa",
+    "step_of": "/",
+    "step_doc": "Dokumentazioa",
+    "step_form": "Izena Emateko Formularioa",
+    "step_sign": "Sinadura Digitala",
     "mandatory_docs": "Nahitaezko Lege Dokumentuak",
     "click_to_read": "* Egin klik dokumentu bakoitzean hemendik bertatik online irakurtzeko.",
     "full_name": "Izen Osoa",
     "identity_doc": "Nortasun Agiria",
+    "country_label": "Jatorrizko Herrialdea",
     "email_label": "Erregistro Emaila",
     "confirmation_checkbox": "Berresten dut goian adierazitako PDF dokumentuak eta formulario honetan zehaztutako baldintzak irakurri eta berariaz onartzen ditudala. Ulertzen dut onarpen honek sinadura digital lotesle baten balioa duela.",
     "sign_and_continue": "Sinatu eta Ordainketara Jarraitu",
     "cancel": "Utzi",
-    "processing": "Prozesatzen..."
+    "processing": "Prozesatzen...",
+    "summary_title": "Baldintza Orokorren eta Arauen Laburpena",
+    "digital_signature_title": "Dokumentuaren Sinadura Digitala",
+    "digital_signature_desc": "Jarraian zure nortasun-datuak betetzean eta laukia markatzean, zure erantzukizunpean adierazten duzu emandako informazio guztia egiazkoa dela eta prozesu honetan zehaztutako bizikidetza-arauak, LOPD eta irudi-politikak onartzen dituzula."
   },
   "profile_modal": {
     "title": "Profila Editatu",
@@ -1434,11 +1471,21 @@
     "selector_accion": "Ekintza",
     "calma_title": "Nabigatu deskonektatzeko.",
     "calma_desc": "Barneko Abra, ur babestuak. Belaontzi txikia, presarik gabe. Burua berez ordenatzen da, eta ordu batzuez ez dago haizea, norabidea eta uraren soinua besterik.",
-    "calma_tags": ["Ur babestuak", "Presiorik gabe", "Meditatiboa", "Lan ostean"],
+    "calma_tags": [
+      "Ur babestuak",
+      "Presiorik gabe",
+      "Meditatiboa",
+      "Lan ostean"
+    ],
     "calma_cta": "Ikusi ikastaro lasaiak →",
     "accion_title": "Nabigatu sentitzeko.",
     "accion_desc": "Kanpoko Abra, benetako haizea. Abiadura, emozioa, ahalegina eta saria. Itsasoaren intentsitatea iragazkirik gabe bizi nahi dutenentzat.",
-    "accion_tags": ["Itsaso zabala", "Haize indartsua", "Adrenalina", "Erronka"],
+    "accion_tags": [
+      "Itsaso zabala",
+      "Haize indartsua",
+      "Adrenalina",
+      "Erronka"
+    ],
     "accion_cta": "Ikusi ikastaro biziak →",
     "cta_eyebrow": "getxobelaeskola · getxo",
     "cta_title": "Horregatik jarraitzen du belak hain berezia izaten.",
@@ -1615,5 +1662,236 @@
       "badge": "Bela modernoa ✦",
       "body": "Gaur egungo eguraldi-iragarpenek baldintzak zehatz-mehatz aurreikustea ahalbidetzen dute. Nahi duzunean ateratzen zara, bilatzen duzunarekin. Bela kontzientea, eskuragarria eta zure neurrikoa da orain."
     }
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "J80 Hastapena",
+      "description": "Ikasi nabigazioaren oinarrizko kontzeptuak gure J80 flotan.",
+      "details": [
+        "Belaren oinarriak",
+        "Oinarrizko maniobrak",
+        "12 orduko klaseak",
+        "J80 flota"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Windsurf Saio 1",
+      "description": "Windsurf saio bakarra (2 ordu). Probatzeko bikaina.",
+      "details": [
+        "2 orduko proba",
+        "Materiala barne",
+        "Monitore espezializatua",
+        "Lehen kontaktua"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Udako Campusa (Erroldatuak)",
+      "description": "5 eta 21 urte bitarteko haur eta gazteentzako udako campusa, Getxon erroldatuta daudenentzat.",
+      "details": [
+        "Taldeko nabigazioa",
+        "Segurtasuna itsasoan",
+        "Jolasak eta jarduerak",
+        "Astean 20 ordu"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Udako Campusa (Erroldatu gabeak)",
+      "description": "5 eta 21 urte bitarteko haur eta gazteentzako udako campusa, Getxon erroldatu gabe daudenentzat.",
+      "details": [
+        "Taldeko nabigazioa",
+        "Segurtasuna itsasoan",
+        "Jolasak eta jarduerak",
+        "Astean 20 ordu"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Helduentzako Hasiera",
+      "description": "Helduentzako nabigazio ikastaroa (hasiera).",
+      "details": [
+        "Belaren oinarriak",
+        "Oinarrizko maniobrak",
+        "12 orduko klaseak",
+        "Helduen taldeak"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Hobekuntza",
+      "description": "Hobetu zure trimatze eta maniobra teknika.",
+      "details": [
+        "Belak trimatzea",
+        "Maniobra aurreratuak",
+        "Nabigazio eraginkorra",
+        "Praktika itsaso zabalean"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Bela Arina",
+      "description": "Ikasi bela nabigazioaren oinarriak Getxon.",
+      "details": [
+        "Optimist, Laser eta 420",
+        "Urritik Ekainera",
+        "Hilean 3 igande",
+        "Monitorea eta ekipoa barne"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Helduentzako Teknifikazioa",
+      "description": "Helduentzako hobekuntza eta teknifikazio ikastaroa.",
+      "details": [
+        "Estropada taktikak",
+        "Doitasun maniobrak",
+        "Puntuan jartzea",
+        "J80 entrenamendua"
+      ]
+    },
+    "otros": {
+      "name": "Beste batzuk",
+      "description": "Kategorizatu gabeko hainbat saio eta ekitaldi.",
+      "details": [
+        "Ekitaldi bereziak",
+        "Neurrira egindako saioak",
+        "Aukerak kontsultatu"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Nabigazio Lizentzia",
+      "description": "Lortu zure titulu ofiziala goiz batean.",
+      "details": [
+        "Azterketarik gabeko titulu ofiziala",
+        "6 metrorainoko ontzien gobernua",
+        "55CV-rainoko motorrak",
+        "Eguneko nabigazioa (2 milia)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu",
+      "description": "Mantentze eta konponketa nautikoko ikastaro espezializatua.",
+      "details": [
+        "Motorraren mantentzea",
+        "Zuntza eta erretxina",
+        "Elektrizitatea ontzian",
+        "Aparejuak eta lanabesak"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Windsurf Hasiera Ikastaroa",
+      "description": "Ikasi windsurfeko oinarriak 5 saiotan (2 ordu saio bakoitzeko).",
+      "details": [
+        "Oreka eta posizioa",
+        "Norabidea eta birak",
+        "5 saio (bakoitza 2 ordu)",
+        "Material egokitua"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Windsurf Campusa",
+      "description": "15 orduko windsurf campus intentsiboa.",
+      "details": [
+        "Belaren erabilera aurreratua",
+        "Planeoa eta arnesa",
+        "15 ordu guztira",
+        "Dibertsiotik itsasoan"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Windsurf 3 Saio",
+      "description": "3 windsurf saioko paketea (2 ordu saio bakoitzeko). Praktikatzeko eta hobetzeko aproposa.",
+      "details": [
+        "3 saio (bakoitza 2 ordu)",
+        "Teknikaren sendotzea",
+        "Norabidea hobetzea",
+        "Material osoa"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Bela Arinaren Hasiera",
+      "description": "Belarekin nabigatzeko lehen kontaktua. Ikasi belaren oinarrizko printzipioak.",
+      "details": [
+        "Optimist, Laser eta 420",
+        "Haizearen oinarrizko kontzeptuak",
+        "Nabigazio autonomoa",
+        "Monitorea eta ekipoa"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Bela Arina Bonua",
+    "alquiler-420": "420 (Bikoitza)",
+    "alquiler-raquero-omega": "Raquero / Omega (Taldeka)",
+    "atraque-transeunte-8m": "Atraque Transeúnte (< 8m)",
+    "atraque-transeunte-12m": "Atraque Transeúnte (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero patron gabe",
+    "atraque-windsurf": "Windsurf Atrakatzea",
+    "atraque-piragua": "Piragua Atrakatzea",
+    "alquiler-windsurf": "Windsurfa",
+    "alquiler-j80": "J80 Belaontziak",
+    "alquiler-paddlesurf": "Paddle Surfa",
+    "alquiler-kayak-1": "Kayaka (Pertsona 1)",
+    "alquiler-kayak-2": "Kayaka (2 Pertsona)",
+    "alquiler-piragua-1": "Piragua (Pertsona 1)",
+    "alquiler-piragua-2": "Piragua (2 Pertsona)"
+  },
+  "registration_form": {
+    "student_data": "Ikaslearen / Partaidearen Datuak",
+    "student_data_prefix": "Ikaslearen Datuak",
+    "name": "Izena",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "Adib. Ane",
+    "surnames": "Abizenak",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "Adib. García",
+    "birth_date": "Jaiotza Data",
+    "age_birth_date": "Adina / Jaiotza Data",
+    "age_placeholder_prefix": "Adib. 12 urte",
+    "id_doc": "NAN / AIZ / Pasaportea",
+    "country_label": "Jatorrizko Herrialdea",
+    "id_placeholder_prefix": "Adib. 12345678Z",
+    "swim_question": "Badaki igeri egiten?",
+    "yes": "BAI",
+    "no": "EZ",
+    "select_option": "Hautatu...",
+    "allergies": "Alergiak / Tolerantziaezinak",
+    "allergies_placeholder": "Adib. Alergiarik gabe",
+    "special_needs": "Premia bereziak / Behaketa mediko garrantzitsuak",
+    "special_needs_placeholder": "Adib. Asma, laktosarekiko tolerantzia eza, etab.",
+    "special_needs_placeholder_prefix": "Adib. Asma, arreta gabezia...",
+    "address": "Helbidea",
+    "address_placeholder": "Kale Nagusia 12, 3.B",
+    "locality": "Herria",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Posta Kodea",
+    "postal_code_placeholder": "48992",
+    "is_minor": "Ikaslea adingabea da?",
+    "bank_data": "Bankuko Datuak (Helbideratzeko)",
+    "bank_data_required": "Zerbitzua formalizatzeko beharrezkoa da",
+    "iban": "Kontu Zenbakia (IBAN)",
+    "titular": "Kontuaren Titularra",
+    "titular_placeholder": "Adib. Juan García",
+    "payment_method_label": "Ordaintzeko Era",
+    "pay_with_card": "Kreditu Txartela (Stripe)",
+    "pay_with_bank": "Helbideratze Bankarioa",
+    "doc_dni": "NAN",
+    "doc_nie": "AIZ",
+    "doc_passport": "Pasaportea",
+    "tutor_title": "Tutorearen Datuak (Adingabeentzako derrigorrezkoa)",
+    "tutor_title_prefix": "Tutorearen Datuak",
+    "tutor_phone": "Harremanetarako Telefonoa",
+    "tutor_phone_placeholder": "Adib. 600111222",
+    "tutor_email": "Posta Elektronikoa",
+    "tutor_email_placeholder": "Adib. maria@adibidez.com",
+    "tutor_name": "Izena",
+    "tutor_name_placeholder": "Adib. María",
+    "enroll_second": "Izena eman 2. Ikasle bati",
+    "enroll_third": "Izena eman 3. Ikasle bati",
+    "add_tutor_second": "Gehitu 2. Tutorea (Derrigorrezkoa guraso bananduen kasuan)",
+    "add_tutor_second_training": "Gehitu 2. Tutorea (Derrigorrezkoa gatazka edo guraso bananduen kasuan)",
+    "comments_title": "Aste Eskaera eta Iruzkinak",
+    "week_label": "Kanpamenduko Astea / Datak",
+    "week_placeholder": "Adib. Uztailaren 6tik 10erako astea",
+    "comments_label": "Iruzkinak / Aurreikusitako faltak",
+    "comments_placeholder": "Adib. Ostegunean faltako da medikuarenera joateko",
+    "membership_mode": "Bazkide Modalitatea",
+    "training_mode": "Entrenamendu Modalitatea",
+    "camp_notice": "Mesedez, bete udako kanpamentuan izena eman nahi duten ikasleen datuak."
   }
 }

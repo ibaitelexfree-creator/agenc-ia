@@ -76,7 +76,11 @@
       "avanzado": "Avancé",
       "profesional": "Professionnel"
     },
-    "back_to_catalog": "Retour au catalogue"
+    "back_to_catalog": "Retour au catalogue",
+    "book_title": "Réservez votre place",
+    "level_label": "Niveau",
+    "investment_label": "Investissement",
+    "learn_title": "Ce que vous apprendrez"
   },
   "rental_page": {
     "header_eyebrow": "À VOTRE RYTHME",
@@ -95,7 +99,8 @@
       "piragua": "Canoë",
       "membresias": "Adhésions",
       "bonos": "Bonus",
-      "eventos": "Événements"
+      "eventos": "Événements",
+      "atraques": "Amarrages"
     },
     "booking": {
       "from": "depuis",
@@ -109,7 +114,8 @@
       "invalid_date": "Veuillez remplir correctement la date (JJ/MM/AAAA)",
       "no_times_available": "Il n'y a pas d'horaires disponibles pour aujourd'hui",
       "no_times_selected_date": "Il n'y a pas d'horaires disponibles pour la date sélectionnée",
-      "booking_error": "Erreur lors du traitement de la réservation. Veuillez réessayer."
+      "booking_error": "Erreur lors du traitement de la réservation. Veuillez réessayer.",
+      "booking_details": "Détails de la réservation"
     }
   },
   "experiences_page": {
@@ -743,5 +749,173 @@
     "subtitle": "Ta première sortie peut être ce week-end.",
     "button": "Réserver maintenant",
     "href": "https://getxobelaeskola.cloud/fr/"
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "Initiation J80",
+      "description": "Apprenez les bases de la navigation sur notre flotte de J80.",
+      "details": [
+        "Bases de la voile",
+        "Manœuvres de base",
+        "12 heures de cours",
+        "Flotte J80"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Session Individuelle Planche à Voile",
+      "description": "Session individuelle de planche à voile de 2 heures. Idéal pour essayer.",
+      "details": [
+        "Essai de 2 heures",
+        "Matériel inclus",
+        "Moniteur dédié",
+        "Premier contact"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Campus d'Été (Résidents)",
+      "description": "Campus d'été pour enfants et jeunes de 5 à 21 ans résidents à Getxo.",
+      "details": [
+        "Navigation en groupe",
+        "Sécurité en mer",
+        "Jeux et activités",
+        "20 heures par semaine"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Campus d'Été (Non-Résidents)",
+      "description": "Campus d'été pour enfants et jeunes de 5 à 21 ans non-résidents à Getxo.",
+      "details": [
+        "Navigation en groupe",
+        "Sécurité en mer",
+        "Jeux et activités",
+        "20 heures par semaine"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Initiation Adultes",
+      "description": "Cours d'initiation à la voile pour adultes.",
+      "details": [
+        "Bases de la voile",
+        "Manœuvres de base",
+        "12 heures de cours",
+        "Groupes d'adultes"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Perfectionnement",
+      "description": "Améliorez votre technique de réglage et de manœuvre.",
+      "details": [
+        "Réglage des voiles",
+        "Manœuvres avancées",
+        "Navigation efficace",
+        "Pratique en haute mer"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Dériveur",
+      "description": "Apprenez les bases de la navigation en dériveur à Getxo.",
+      "details": [
+        "Optimist, Laser et 420",
+        "D'octobre à juin",
+        "3 dimanches par mois",
+        "Moniteur et équipement inclus"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Technification Adultes",
+      "description": "Cours de perfectionnement et de technification pour adultes.",
+      "details": [
+        "Tactique de course",
+        "Manœuvres de précision",
+        "Mise au point",
+        "Entraînement J80"
+      ]
+    },
+    "otros": {
+      "name": "Autres / Divers",
+      "description": "Diverses sessions et événements non catégorisés.",
+      "details": [
+        "Événements spéciaux",
+        "Sessions sur mesure",
+        "Consulter options"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Permis Plaisance",
+      "description": "Obtenez votre permis de navigation officiel en une matinée.",
+      "details": [
+        "Permis officiel sans examen",
+        "Navigation de bateaux jusqu'à 6m",
+        "Jetskis jusqu'à 55CV",
+        "Navigation de jour (2 milles)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu (Réparation)",
+      "description": "Cours spécialisé dans l'entretien et la réparation de bateaux.",
+      "details": [
+        "Entretien moteur",
+        "Fibre et résine",
+        "Électricité à bord",
+        "Gréement et accastillage"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Cours d'Initiation à la Planche à Voile",
+      "description": "Apprenez les bases de la planche à voile en 5 séances de 2 heures.",
+      "details": [
+        "Équilibre et position",
+        "Direction et virages",
+        "5 séances de 2h",
+        "Matériel adapté"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Stage Planche à Voile",
+      "description": "Stage intensif de planche à voile de 15 heures.",
+      "details": [
+        "Contrôle de voile avancé",
+        "Planning et harnais",
+        "15 heures au total",
+        "Plaisir en mer"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Forfait 3 Sessions Planche à Voile",
+      "description": "Forfait de 3 sessions de planche à voile de 2 heures chacune. Idéal pour s'entraîner.",
+      "details": [
+        "3 sessions de 2h",
+        "Consolidation technique",
+        "Amélioration cap",
+        "Matériel complet"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Initiation Dériveur",
+      "description": "Premier contact avec la voile. Apprenez les bases fondamentales de la voile sur dériveur.",
+      "details": [
+        "Optimist, Laser et 420",
+        "Concepts de vent de base",
+        "Navigation autonome",
+        "Moniteur et matériel"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Bon Dériveur",
+    "alquiler-420": "420 (Double)",
+    "alquiler-raquero-omega": "Raquero / Omega (Collectif)",
+    "atraque-transeunte-8m": "Amarrage Passager (< 8m)",
+    "atraque-transeunte-12m": "Amarrage Passager (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero sans skipper",
+    "atraque-windsurf": "Amarrage Planche à Voile",
+    "atraque-piragua": "Amarrage Canoë",
+    "alquiler-windsurf": "Planche à Voile",
+    "alquiler-j80": "Voiliers J80",
+    "alquiler-paddlesurf": "Paddle Surf",
+    "alquiler-kayak-1": "Kayak (1 Personne)",
+    "alquiler-kayak-2": "Kayak (2 Personnes)",
+    "alquiler-piragua-1": "Canoë (1 Personne)",
+    "alquiler-piragua-2": "Canoë (2 Personnes)"
   }
 }

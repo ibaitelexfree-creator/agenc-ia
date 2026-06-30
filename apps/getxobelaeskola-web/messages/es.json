@@ -78,7 +78,11 @@
       "avanzado": "Avanzado",
       "profesional": "Profesional"
     },
-    "back_to_catalog": "Volver al catálogo"
+    "back_to_catalog": "Volver al catálogo",
+    "book_title": "Reserva tu plaza",
+    "level_label": "Nivel",
+    "investment_label": "Inversión",
+    "learn_title": "Lo que aprenderás"
   },
   "rental_page": {
     "header_eyebrow": "A TU RITMO",
@@ -97,7 +101,8 @@
       "piragua": "Piragua",
       "membresias": "Membresías",
       "bonos": "Bonos",
-      "eventos": "Eventos"
+      "eventos": "Eventos",
+      "atraques": "Atraques"
     },
     "booking": {
       "from": "desde",
@@ -111,7 +116,8 @@
       "invalid_date": "Por favor, completa la fecha correctamente (DD/MM/AAAA)",
       "no_times_available": "No hay horarios disponibles para hoy",
       "no_times_selected_date": "No hay horarios disponibles para la fecha seleccionada",
-      "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo."
+      "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo.",
+      "booking_details": "Detalles de la reserva"
     }
   },
   "experiences_page": {
@@ -334,6 +340,7 @@
     "book_for": "Reservar por",
     "online_course_instant": "Curso Online - Acceso Inmediato",
     "no_dates_needed": "No es necesario seleccionar fechas. Empieza ahora mismo.",
+    "flexible_date_notice": "Reserva flexible. Elegirás la hora exacta con la escuela.",
     "error_generic": "Algo salió mal",
     "payment_gateway_error": "Error al conectar con la pasarela de pago"
   },
@@ -966,12 +973,32 @@
     "email_invalid": "Email no válido",
     "password_short": "Mínimo 6 caracteres",
     "subject_short": "Asunto demasiado corto",
-    "message_short": "El mensaje es demasiado corto"
+    "message_short": "El mensaje es demasiado corto",
+    "name_required": "El nombre es obligatorio",
+    "surnames_required": "Los apellidos son obligatorios",
+    "age_required": "La edad es obligatoria",
+    "swim_required": "Seleccione si sabe nadar",
+    "tutor_name_required": "El nombre del tutor es obligatorio",
+    "tutor_surnames_required": "Los apellidos del tutor son obligatorios",
+    "tutor_dni_required": "El DNI del tutor es obligatorio",
+    "tutor_phone_required": "El teléfono del tutor es obligatorio",
+    "tutor_email_required": "El email del tutor es obligatorio",
+    "week_required": "Escriba la semana que solicita",
+    "birth_date_required": "La fecha de nacimiento es obligatoria",
+    "dni_required": "El documento de identidad es obligatorio",
+    "address_required": "El domicilio es obligatorio",
+    "locality_required": "La localidad es obligatoria",
+    "postal_code_required": "El código postal es obligatorio",
+    "mode_required": "Seleccione una modalidad",
+    "iban_required": "El IBAN es obligatorio",
+    "titular_required": "El titular de la cuenta es obligatorio",
+    "invalid_identity_document": "El documento de identidad no es válido. Compruébalo de nuevo."
   },
   "legal": {
     "privacy_title": "Política de Privacidad",
     "cookies_title": "Política de Cookies",
     "rental_contract": "CONTRATO DE ARRENDAMIENTO DE MATERIAL NÁUTICO - GETXO BELA ESKOLA\n\n1. REQUISITOS DEL ARRENDATARIO: El cliente declara poseer los conocimientos técnicos necesarios para el manejo seguro del material alquilado. En caso de veleros de recreo, se requiere la titulación mínima correspondiente.\n\n2. ESTADO Y DEVOLUCIÓN: El material se entrega en perfecto estado de funcionamiento. El cliente se compromete a devolverlo en el mismo estado. Cualquier daño causado por negligencia será responsabilidad exclusiva del cliente.\n\n3. ZONAS DE NAVEGACIÓN: La navegación se limitará a las zonas autorizadas y tiempos acordados. El cliente se compromete a respetar las normas del Puerto Deportivo de Getxo y la normativa de Capitanía Marítima.\n\n4. SEGURIDAD: El uso del chaleco salvavidas es obligatorio y personal durante todo el tiempo que se permanezca en el agua.\n\n5. RESCATE Y ASISTENCIA: Si el cliente requiere asistencia o rescate por imprudencia o salida de las zonas permitidas, los costes derivados correrán a su cargo.\n\n6. FIRMA DIGITAL: Al marcar la casilla de aceptación, el cliente ratifica que ha comprendido todos los puntos anteriores y asume su responsabilidad legal.",
+    "course_contract": "CONDICIONES GENERALES DE CONTRATACIÓN - GETXO BELA ESKOLA\n\n1. OBJETO Y ÁMBITO DE APLICACIÓN: El presente documento establece las condiciones legales para la inscripción en los cursos impartidos por Getxo Bela Eskola.\n\n2. APTITUD FÍSICA Y SEGURIDAD: El alumno declara estar en condiciones físicas adecuadas para la práctica de la navegación y no padecer enfermedades que lo impidan. Es obligatorio el uso de chaleco salvavidas y seguir las instrucciones del patrón o instructor en todo momento.\n\n3. RESPONSABILIDAD: Getxo Bela Eskola no se hace responsable de las pertenencias personales de los alumnos. La escuela cuenta con los seguros de responsabilidad civil y accidentes obligatorios por ley.\n\n4. CONDICIONES METEOROLÓGICAS: La escuela se reserva el derecho de cancelar o aplazar las sesiones si las condiciones del mar o el viento representan un riesgo para la seguridad de los alumnos y el material.\n\n5. POLÍTICA DE CANCELACIÓN: Las cancelaciones por parte del alumno deberán comunicarse con al menos 48 horas de antelación para tener derecho a reubicación en otra fecha (sujeto a disponibilidad).\n\n6. ACEPTACIÓN: El click en \"Acepto\" constituye una firma electrónica vinculante bajo la legislación vigente de servicios de la sociedad de la información.",
     "consent_acceptance": "He leído y acepto expresamente las condiciones legales detalladas anteriormente. Entiendo que esta aceptación equivale a una firma digital vinculante.",
     "error_log_consent": "No se pudo registrar la firma legal. Inténtalo de nuevo."
   },
@@ -980,15 +1007,25 @@
     "terms_title": "Términos de Inscripción",
     "rental_title": "Condiciones de Alquiler",
     "back": "Volver",
+    "next": "Siguiente",
+    "step_prefix": "Paso",
+    "step_of": "de",
+    "step_doc": "Documentación",
+    "step_form": "Formulario de Inscripción",
+    "step_sign": "Firma Digital",
     "mandatory_docs": "Documentos Legales Obligatorios",
     "click_to_read": "* Haz clic en cada documento para leerlo online desde aquí mismo.",
     "full_name": "Nombre Completo",
     "identity_doc": "Documento de Identidad",
+    "country_label": "País de Origen",
     "email_label": "Email de Registro",
     "confirmation_checkbox": "Confirmo que he leído y acepto expresamente los documentos PDF arriba indicados, así como las condiciones detalladas en este formulario. Entiendo que esta aceptación equivale a una firma digital vinculante.",
     "sign_and_continue": "Firmar y Continuar al Pago",
     "cancel": "Cancelar",
-    "processing": "Procesando..."
+    "processing": "Procesando...",
+    "summary_title": "Resumen de Condiciones y Normas Generales",
+    "digital_signature_title": "Firma Digital del Documento",
+    "digital_signature_desc": "Al rellenar sus datos de identidad a continuación y marcar la casilla de verificación, declara bajo su responsabilidad que toda la información aportada es verídica y que acepta las normas de convivencia, políticas LOPD e imagen detalladas en este proceso."
   },
   "profile_modal": {
     "title": "Editar Perfil",
@@ -1486,11 +1523,21 @@
     "selector_accion": "Acción",
     "calma_title": "Navegar para desconectar.",
     "calma_desc": "Abra interior, aguas protegidas. Velero pequeño, sin prisa. La cabeza se ordena sola y durante unas horas no existe nada más que el viento, el rumbo y el sonido del agua.",
-    "calma_tags": ["Aguas protegidas", "Sin presión", "Meditativo", "Después del trabajo"],
+    "calma_tags": [
+      "Aguas protegidas",
+      "Sin presión",
+      "Meditativo",
+      "Después del trabajo"
+    ],
     "calma_cta": "Ver cursos tranquilos →",
     "accion_title": "Navegar para sentir.",
     "accion_desc": "Abra exterior, viento real. Velocidad, emoción, esfuerzo y recompensa. Para quienes buscan la intensidad de la mar sin filtros.",
-    "accion_tags": ["Mar abierto", "Viento fuerte", "Adrenalina", "Desafío"],
+    "accion_tags": [
+      "Mar abierto",
+      "Viento fuerte",
+      "Adrenalina",
+      "Desafío"
+    ],
     "accion_cta": "Ver cursos intensivos →",
     "cta_eyebrow": "getxobelaeskola · getxo",
     "cta_title": "Por eso la vela sigue siendo tan especial.",
@@ -1667,5 +1714,236 @@
       "badge": "Vela moderna ✦",
       "body": "Los partes meteorológicos actuales permiten prever exactamente las condiciones. Sales cuando quieres, con lo que buscas. La vela ahora es consciente, accesible y a tu medida."
     }
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "Iniciación J80",
+      "description": "Aprende los conceptos básicos de navegación en nuestra flota de J80.",
+      "details": [
+        "Fundamentos de vela",
+        "Maniobras básicas",
+        "12 horas de clase",
+        "Flota J80"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Windsurf 1 Sesión",
+      "description": "Sesión individual de windsurf de 2 horas. Perfecto para probar.",
+      "details": [
+        "Prueba de 2 horas",
+        "Material incluido",
+        "Monitor dedicado",
+        "Primer contacto"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Campus Verano (Empadronados)",
+      "description": "Campus de verano para niños y jóvenes de 5 a 21 años empadronados en Getxo.",
+      "details": [
+        "Navegación en grupo",
+        "Seguridad en el mar",
+        "Juegos y actividades",
+        "20 horas semanales"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Campus Verano (No Empadronados)",
+      "description": "Campus de verano para niños y jóvenes de 5 a 21 años no empadronados en Getxo.",
+      "details": [
+        "Navegación en grupo",
+        "Seguridad en el mar",
+        "Juegos y actividades",
+        "20 horas semanales"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Iniciación Adultos",
+      "description": "Curso de iniciación a la navegación para adultos.",
+      "details": [
+        "Fundamentos de vela",
+        "Maniobras básicas",
+        "12 horas de clase",
+        "Grupos de adultos"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Perfeccionamiento",
+      "description": "Mejora tu técnica de trimado y maniobra.",
+      "details": [
+        "Trimado de velas",
+        "Maniobras avanzadas",
+        "Navegación eficiente",
+        "Práctica en mar abierto"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Vela Ligera",
+      "description": "Aprende los fundamentos de la navegación a vela en Getxo.",
+      "details": [
+        "Optimist, Laser y 420",
+        "Octubre a Junio",
+        "3 domingos al mes",
+        "Incluye monitor y equipo"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Tecnificación Adultos",
+      "description": "Curso de perfeccionamiento y tecnificación para adultos.",
+      "details": [
+        "Tácticas de regata",
+        "Maniobras de precisión",
+        "Puesta a punto",
+        "Entrenamiento en J80"
+      ]
+    },
+    "otros": {
+      "name": "Otros / Varios",
+      "description": "Sesiones y eventos varios no categorizados.",
+      "details": [
+        "Eventos especiales",
+        "Sesiones a medida",
+        "Consultar opciones"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Licencia de Navegación",
+      "description": "Obtén tu titulación oficial en una mañana.",
+      "details": [
+        "Título oficial sin examen",
+        "Gobierno de barcos hasta 6m",
+        "Motos náuticas hasta 55CV",
+        "Navegación diurna (2 millas)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu",
+      "description": "Curso especializado en mantenimiento y reparación naviera.",
+      "details": [
+        "Mantenimiento del motor",
+        "Fibra y resina",
+        "Electricidad a bordo",
+        "Jarcia y acastillaje"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Curso Iniciación Windsurf",
+      "description": "Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.",
+      "details": [
+        "Equilibrio y posición",
+        "Dirección y giros",
+        "5 sesiones de 2h",
+        "Material adaptado"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Campus Windsurf",
+      "description": "Campamento intensivo de windsurf de 15 horas.",
+      "details": [
+        "Uso avanzado de la vela",
+        "Planeo y arnés",
+        "15 horas totales",
+        "Diversión en el mar"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Windsurf 3 Sesiones",
+      "description": "Pack de 3 sesiones de windsurf de 2 horas cada una. Ideal para practicar y mejorar.",
+      "details": [
+        "3 sesiones de 2h",
+        "Consolidación de técnica",
+        "Mejora de rumbo",
+        "Material completo"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Iniciación a la Vela Ligera",
+      "description": "Primer contacto con la navegación a vela. Aprende los fundamentos básicos de la vela en embarcaciones ligeras.",
+      "details": [
+        "Optimist, Laser y 420",
+        "Conceptos básicos de viento",
+        "Navegación autónoma",
+        "Monitor y equipo"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Bono Vela Ligera",
+    "alquiler-420": "420 (Doble)",
+    "alquiler-raquero-omega": "Raquero / Omega (Colectivo)",
+    "atraque-transeunte-8m": "Atraque Transeúnte (< 8m)",
+    "atraque-transeunte-12m": "Atraque Transeúnte (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero sin patrón",
+    "atraque-windsurf": "Atraque Windsurf",
+    "atraque-piragua": "Atraque Piragua",
+    "alquiler-windsurf": "Windsurf",
+    "alquiler-j80": "Veleros J80",
+    "alquiler-paddlesurf": "Paddle Surf",
+    "alquiler-kayak-1": "Kayak (1 Persona)",
+    "alquiler-kayak-2": "Kayak (2 Personas)",
+    "alquiler-piragua-1": "Piragua (1 Persona)",
+    "alquiler-piragua-2": "Piragua (2 Personas)"
+  },
+  "registration_form": {
+    "student_data": "Datos del Alumno/a / Participante",
+    "student_data_prefix": "Datos Alumno/a",
+    "name": "Nombre",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "Ej. Ane",
+    "surnames": "Apellidos",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "Ej. García",
+    "birth_date": "Fecha de Nacimiento",
+    "age_birth_date": "Edad / Fecha de Nacimiento",
+    "age_placeholder_prefix": "Ej. 12 años",
+    "id_doc": "DNI / NIE / Pasaporte",
+    "country_label": "País de Origen",
+    "id_placeholder_prefix": "Ej. 12345678Z",
+    "swim_question": "¿Sabe nadar?",
+    "yes": "SI",
+    "no": "NO",
+    "select_option": "Seleccionar...",
+    "allergies": "Alergias / Intolerancias",
+    "allergies_placeholder": "Ej. Sin alergias",
+    "special_needs": "Necesidades especiales / Observaciones médicas relevantes",
+    "special_needs_placeholder": "Ej. Asma, intolerancia a la lactosa, etc.",
+    "special_needs_placeholder_prefix": "Ej. Asma, déficit de atención...",
+    "address": "Domicilio",
+    "address_placeholder": "Calle Mayor 12, 3ºB",
+    "locality": "Localidad",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Código Postal",
+    "postal_code_placeholder": "48992",
+    "is_minor": "¿El alumno/a es menor de edad?",
+    "bank_data": "Datos Bancarios (Para domiciliación)",
+    "bank_data_required": "Requerido para la formalización del servicio",
+    "iban": "Número de Cuenta (IBAN)",
+    "titular": "Titular de la Cuenta",
+    "titular_placeholder": "Ej. Juan García",
+    "payment_method_label": "Método de Pago",
+    "pay_with_card": "Tarjeta de Crédito (Stripe)",
+    "pay_with_bank": "Cuenta Bancaria (Domiciliación)",
+    "doc_dni": "DNI",
+    "doc_nie": "NIE",
+    "doc_passport": "Pasaporte",
+    "tutor_title": "Datos del Tutor/a (Obligatorio para menores de edad)",
+    "tutor_title_prefix": "Datos del Tutor/a",
+    "tutor_phone": "Teléfono de Contacto",
+    "tutor_phone_placeholder": "Ej. 600111222",
+    "tutor_email": "Email",
+    "tutor_email_placeholder": "Ej. maria@ejemplo.com",
+    "tutor_name": "Nombre",
+    "tutor_name_placeholder": "Ej. María",
+    "enroll_second": "Inscribir a un 2º Alumno/a",
+    "enroll_third": "Inscribir a un 3º Alumno/a",
+    "add_tutor_second": "Añadir Tutor/a Nº2 (Obligatorio en caso de tutores separados)",
+    "add_tutor_second_training": "Añadir Tutor/a Nº2 (Obligatorio en caso de conflicto o tutores separados)",
+    "comments_title": "Solicitud de Semanas y Comentarios",
+    "week_label": "Semana / Fechas del campamento",
+    "week_placeholder": "Ej. Semana del 6 al 10 de Julio",
+    "comments_label": "Comentarios / Ausencias previstas",
+    "comments_placeholder": "Ej. Faltará el jueves por consulta médica",
+    "membership_mode": "Modalidad de Socia",
+    "training_mode": "Modalidad de Entrenamiento",
+    "camp_notice": "Por favor, rellena los datos de los alumnos que deseas inscribir en el campamento de verano."
   }
 }

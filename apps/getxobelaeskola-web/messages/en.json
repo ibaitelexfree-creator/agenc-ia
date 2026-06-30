@@ -78,7 +78,11 @@
       "avanzado": "Advanced",
       "profesional": "Professional"
     },
-    "back_to_catalog": "Back to catalog"
+    "back_to_catalog": "Back to catalog",
+    "book_title": "Book your spot",
+    "level_label": "Level",
+    "investment_label": "Price",
+    "learn_title": "What you will learn"
   },
   "rental_page": {
     "header_eyebrow": "AT YOUR OWN PACE",
@@ -97,7 +101,8 @@
       "piragua": "Canoe",
       "membresias": "Memberships",
       "bonos": "Bonds",
-      "eventos": "Events"
+      "eventos": "Events",
+      "atraques": "Moorings"
     },
     "booking": {
       "from": "from",
@@ -111,7 +116,8 @@
       "invalid_date": "Please, fill the date correctly (DD/MM/YYYY)",
       "no_times_available": "No times available for today",
       "no_times_selected_date": "No times available for the selected date",
-      "booking_error": "Error processing the reservation. Please, try again."
+      "booking_error": "Error processing the reservation. Please, try again.",
+      "booking_details": "Booking details"
     }
   },
   "experiences_page": {
@@ -334,6 +340,7 @@
     "book_for": "Book for",
     "online_course_instant": "Online Course - Instant Access",
     "no_dates_needed": "No dates needed. Start right now.",
+    "flexible_date_notice": "Flexible booking. You will coordinate the exact time with the school.",
     "error_generic": "Something went wrong",
     "payment_gateway_error": "Error connecting to the payment gateway"
   },
@@ -945,12 +952,32 @@
     "email_invalid": "Invalid email",
     "password_short": "Minimum 6 characters",
     "subject_short": "Subject too short",
-    "message_short": "The message is too short"
+    "message_short": "The message is too short",
+    "name_required": "Name is required",
+    "surnames_required": "Surnames are required",
+    "age_required": "Age is required",
+    "swim_required": "Please select if they can swim",
+    "tutor_name_required": "Tutor name is required",
+    "tutor_surnames_required": "Tutor surnames are required",
+    "tutor_dni_required": "Tutor DNI is required",
+    "tutor_phone_required": "Tutor phone number is required",
+    "tutor_email_required": "Tutor email is required",
+    "week_required": "Please enter the requested week",
+    "birth_date_required": "Date of birth is required",
+    "dni_required": "Identity document is required",
+    "address_required": "Address is required",
+    "locality_required": "Locality is required",
+    "postal_code_required": "Postal code is required",
+    "mode_required": "Please select an option",
+    "iban_required": "IBAN is required",
+    "titular_required": "Account holder is required",
+    "invalid_identity_document": "The ID is not valid, check it again."
   },
   "legal": {
     "privacy_title": "Privacy Policy",
     "cookies_title": "Cookies Policy",
     "rental_contract": "NAUTICAL EQUIPMENT RENTAL CONTRACT - GETXO BELA ESKOLA\n\n1. LESSEE REQUIREMENTS: The client declares to possess the necessary technical knowledge for the safe handling of the rented material. In the case of recreational sailboats, the corresponding minimum qualification is required.\n\n2. CONDITION AND RETURN: The material is delivered in perfect working condition. The client agrees to return it in the same condition. Any damage caused by negligence will be the exclusive responsibility of the client.\n\n3. NAVIGATION ZONES: Navigation will be limited to authorized zones and agreed times. The client agrees to respect the rules of the Getxo Marina and the regulations of the Maritime Captaincy.\n\n4. SAFETY: The use of a life jacket is mandatory and personal at all times while in the water.\n\n5. RESCUE AND ASSISTANCE: If the client requires assistance or rescue due to imprudence or leaving the permitted zones, the resulting costs will be at their expense.\n\n6. DIGITAL SIGNATURE: By checking the acceptance box, the client ratifies that they have understood all the previous points and assume their legal responsibility.",
+    "course_contract": "GENERAL TERMS AND CONDITIONS OF CONTRACTING - GETXO BELA ESKOLA\n\n1. OBJECT AND SCOPE OF APPLICATION: This document establishes the legal conditions for enrollment in the courses taught by Getxo Bela Eskola.\n\n2. PHYSICAL FITNESS AND SAFETY: The student declares that they are in suitable physical condition for navigation and do not suffer from any preventing illnesses. The use of a life jacket is mandatory, and following the instructions of the skipper or instructor is required at all times.\n\n3. LIABILITY: Getxo Bela Eskola is not responsible for students' personal belongings. The school has the mandatory civil liability and accident insurance required by law.\n\n4. METEOROLOGICAL CONDITIONS: The school reserves the right to cancel or postpone sessions if sea or wind conditions represent a risk to the safety of students and equipment.\n\n5. CANCELLATION POLICY: Cancellations by the student must be communicated at least 48 hours in advance to be entitled to relocation to another date (subject to availability).\n\n6. ACCEPTANCE: Clicking \"Accept\" constitutes a binding electronic signature under the current legislation on information society services.",
     "consent_acceptance": "I have read and expressly accept the legal conditions detailed above. I understand that this acceptance is equivalent to a binding digital signature.",
     "error_log_consent": "Could not register legal signature. Please try again."
   },
@@ -959,15 +986,25 @@
     "terms_title": "Registration Terms",
     "rental_title": "Rental Conditions",
     "back": "Back",
+    "next": "Next",
+    "step_prefix": "Step",
+    "step_of": "of",
+    "step_doc": "Documentation",
+    "step_form": "Registration Form",
+    "step_sign": "Digital Signature",
     "mandatory_docs": "Mandatory Legal Documents",
     "click_to_read": "* Click on each document to read it online right here.",
     "full_name": "Full Name",
     "identity_doc": "Identity Document",
+    "country_label": "Country of Origin",
     "email_label": "Registration Email",
     "confirmation_checkbox": "I confirm that I have read and expressly accept the PDF documents indicated above, as well as the conditions detailed in this form. I understand that this acceptance is equivalent to a binding digital signature.",
     "sign_and_continue": "Sign and Continue to Payment",
     "cancel": "Cancel",
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "summary_title": "Summary of General Conditions and Rules",
+    "digital_signature_title": "Digital Signature of the Document",
+    "digital_signature_desc": "By filling in your identity details below and checking the checkbox, you declare under your responsibility that all the information provided is true and that you accept the rules of coexistence, LOPD, and image policies detailed in this process."
   },
   "profile_modal": {
     "title": "Edit Profile",
@@ -1426,11 +1463,21 @@
     "selector_accion": "Action",
     "calma_title": "Sail to disconnect.",
     "calma_desc": "Inner Abra, protected waters. Small sailboat, no rush. Your mind clears on its own, and for a few hours, nothing exists except the wind, the heading, and the sound of the water.",
-    "calma_tags": ["Protected waters", "No pressure", "Meditative", "After work"],
+    "calma_tags": [
+      "Protected waters",
+      "No pressure",
+      "Meditative",
+      "After work"
+    ],
     "calma_cta": "View calm courses →",
     "accion_title": "Sail to feel.",
     "accion_desc": "Outer Abra, real wind. Speed, excitement, effort, and reward. For those who seek the intensity of the sea without filters.",
-    "accion_tags": ["Open sea", "Strong wind", "Adrenaline", "Challenge"],
+    "accion_tags": [
+      "Open sea",
+      "Strong wind",
+      "Adrenaline",
+      "Challenge"
+    ],
     "accion_cta": "View intensive courses →",
     "cta_eyebrow": "getxobelaeskola · getxo",
     "cta_title": "That is why sailing remains so special.",
@@ -1607,5 +1654,236 @@
       "badge": "Modern sailing ✦",
       "body": "Current weather reports make it possible to predict conditions exactly. You go out when you want, with what you are looking for. Sailing is now conscious, accessible, and tailored to you."
     }
+  },
+  "courses_data": {
+    "iniciacion-j80": {
+      "name": "J80 Initiation",
+      "description": "Learn the basics of navigation on our J80 fleet.",
+      "details": [
+        "Sailing fundamentals",
+        "Basic maneuvers",
+        "12 class hours",
+        "J80 fleet"
+      ]
+    },
+    "windsurf-1-sesion": {
+      "name": "Windsurf 1 Session",
+      "description": "Individual 2-hour windsurfing session. Perfect to try.",
+      "details": [
+        "2-hour trial",
+        "Equipment included",
+        "Dedicated instructor",
+        "First contact"
+      ]
+    },
+    "campus-verano-getxo": {
+      "name": "Summer Campus (Registered Residents)",
+      "description": "Summer campus for children and youth from 5 to 21 years registered in Getxo.",
+      "details": [
+        "Group sailing",
+        "Safety at sea",
+        "Games and activities",
+        "20 hours per week"
+      ]
+    },
+    "campus-verano-external": {
+      "name": "Summer Campus (Non-Residents)",
+      "description": "Summer campus for children and youth from 5 to 21 years not registered in Getxo.",
+      "details": [
+        "Group sailing",
+        "Safety at sea",
+        "Games and activities",
+        "20 hours per week"
+      ]
+    },
+    "iniciacion-adultos": {
+      "name": "Adult Initiation",
+      "description": "Initiation sailing course for adults.",
+      "details": [
+        "Sailing fundamentals",
+        "Basic maneuvers",
+        "12 hours of class",
+        "Adult groups"
+      ]
+    },
+    "perfeccionamiento": {
+      "name": "Advanced Sailing",
+      "description": "Improve your trimming and maneuvering technique.",
+      "details": [
+        "Sail trimming",
+        "Advanced maneuvers",
+        "Efficient sailing",
+        "Open water practice"
+      ]
+    },
+    "vela-ligera": {
+      "name": "Dinghy Sailing",
+      "description": "Learn the fundamentals of dinghy sailing in Getxo.",
+      "details": [
+        "Optimist, Laser and 420",
+        "October to June",
+        "3 Sundays per month",
+        "Instructor and equipment included"
+      ]
+    },
+    "tecnificacion-adultos": {
+      "name": "Adult Technification",
+      "description": "Advanced training and technification course for adults.",
+      "details": [
+        "Race tactics",
+        "Precision maneuvers",
+        "Fine-tuning",
+        "J80 training"
+      ]
+    },
+    "otros": {
+      "name": "Others / Miscellaneous",
+      "description": "Various uncategorized sessions and events.",
+      "details": [
+        "Special events",
+        "Custom sessions",
+        "Consult options"
+      ]
+    },
+    "licencia-navegacion": {
+      "name": "Sailing License",
+      "description": "Obtain your official sailing license in one morning.",
+      "details": [
+        "Official license without exam",
+        "Navigation of boats up to 6m",
+        "Jet skis up to 55HP",
+        "Daytime navigation (2 miles)"
+      ]
+    },
+    "konpondu": {
+      "name": "Konpondu (Repair)",
+      "description": "Specialized course in boat maintenance and repair.",
+      "details": [
+        "Engine maintenance",
+        "Fiber and resin",
+        "Onboard electricity",
+        "Rigging and deck hardware"
+      ]
+    },
+    "windsurf-iniciacion": {
+      "name": "Windsurf Initiation Course",
+      "description": "Learn the fundamentals of windsurfing in 5 sessions of 2 hours.",
+      "details": [
+        "Balance and position",
+        "Steering and turns",
+        "5 sessions of 2h",
+        "Adapted equipment"
+      ]
+    },
+    "windsurf-campus": {
+      "name": "Windsurf Campus",
+      "description": "15-hour intensive windsurfing camp.",
+      "details": [
+        "Advanced sail control",
+        "Planing and harness",
+        "15 total hours",
+        "Fun at sea"
+      ]
+    },
+    "windsurf-3-sesiones": {
+      "name": "Windsurf 3 Sessions",
+      "description": "Pack of 3 windsurfing sessions of 2 hours each. Ideal to practice and improve.",
+      "details": [
+        "3 sessions of 2h",
+        "Technique consolidation",
+        "Improve course",
+        "Complete gear"
+      ]
+    },
+    "iniciacion-vela-ligera": {
+      "name": "Dinghy Sailing Initiation",
+      "description": "First contact with sailing. Learn the basic fundamentals of sailing on light boats.",
+      "details": [
+        "Optimist, Laser and 420",
+        "Basic wind concepts",
+        "Autonomous sailing",
+        "Instructor and gear"
+      ]
+    }
+  },
+  "rentals_data": {
+    "bono-vela-ligera": "Dinghy Sailing Voucher",
+    "alquiler-420": "420 (Double)",
+    "alquiler-raquero-omega": "Raquero / Omega (Collective)",
+    "atraque-transeunte-8m": "Transient Mooring (< 8m)",
+    "atraque-transeunte-12m": "Transient Mooring (> 8m)",
+    "alquiler-omega-sin-patron": "Omega/Raquero without skipper",
+    "atraque-windsurf": "Windsurf Board Mooring",
+    "atraque-piragua": "Canoe Mooring",
+    "alquiler-windsurf": "Windsurf",
+    "alquiler-j80": "J80 Sailboats",
+    "alquiler-paddlesurf": "Paddle Surf",
+    "alquiler-kayak-1": "Kayak (1 Person)",
+    "alquiler-kayak-2": "Kayak (2 People)",
+    "alquiler-piragua-1": "Canoe (1 Person)",
+    "alquiler-piragua-2": "Canoe (2 People)"
+  },
+  "registration_form": {
+    "student_data": "Student / Participant Details",
+    "student_data_prefix": "Student Details",
+    "name": "Name",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "e.g., Ane",
+    "surnames": "Surnames",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "e.g., García",
+    "birth_date": "Date of Birth",
+    "age_birth_date": "Age / Date of Birth",
+    "age_placeholder_prefix": "e.g., 12 years old",
+    "id_doc": "DNI / NIE / Passport",
+    "country_label": "Country of Origin",
+    "id_placeholder_prefix": "e.g., 12345678Z",
+    "swim_question": "Can they swim?",
+    "yes": "YES",
+    "no": "NO",
+    "select_option": "Select...",
+    "allergies": "Allergies / Intolerances",
+    "allergies_placeholder": "e.g., No allergies",
+    "special_needs": "Special needs / Relevant medical observations",
+    "special_needs_placeholder": "e.g., Asthma, lactose intolerance, etc.",
+    "special_needs_placeholder_prefix": "e.g., Asthma, ADHD...",
+    "address": "Address",
+    "address_placeholder": "Calle Mayor 12, 3ºB",
+    "locality": "Locality",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Postal Code",
+    "postal_code_placeholder": "48992",
+    "is_minor": "Is the student a minor?",
+    "bank_data": "Bank Details (For direct debit)",
+    "bank_data_required": "Required for formalization of the service",
+    "iban": "Account Number (IBAN)",
+    "titular": "Account Holder",
+    "titular_placeholder": "e.g., Juan García",
+    "payment_method_label": "Payment Method",
+    "pay_with_card": "Credit Card (Stripe)",
+    "pay_with_bank": "Bank Account (Direct Debit)",
+    "doc_dni": "DNI",
+    "doc_nie": "NIE",
+    "doc_passport": "Passport",
+    "tutor_title": "Tutor Details (Mandatory for minors)",
+    "tutor_title_prefix": "Tutor Details",
+    "tutor_phone": "Contact Phone",
+    "tutor_phone_placeholder": "e.g., 600111222",
+    "tutor_email": "Email",
+    "tutor_email_placeholder": "e.g., maria@example.com",
+    "tutor_name": "Name",
+    "tutor_name_placeholder": "e.g., María",
+    "enroll_second": "Enroll a 2nd Student",
+    "enroll_third": "Enroll a 3rd Student",
+    "add_tutor_second": "Add Tutor #2 (Mandatory in case of separated parents)",
+    "add_tutor_second_training": "Add Tutor #2 (Mandatory in case of conflict or separated parents)",
+    "comments_title": "Week Request and Comments",
+    "week_label": "Camp Week / Dates",
+    "week_placeholder": "e.g., Week of July 6th to 10th",
+    "comments_label": "Comments / Planned absences",
+    "comments_placeholder": "e.g., Will miss Thursday due to medical appointment",
+    "membership_mode": "Membership Option",
+    "training_mode": "Training Group",
+    "camp_notice": "Please fill in the details of the students you wish to enroll in the summer camp."
   }
 }
