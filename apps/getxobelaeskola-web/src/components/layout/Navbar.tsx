@@ -65,6 +65,7 @@ const localizedLabels: Record<string, Record<string, string>> = {
     horario_contacto_localizacion: { es: 'Horario, Contacto y Localización', eu: 'Ordutegia, Kontaktua eta Kokapena', en: 'Hours, Contact & Location', fr: 'Horaires, Contact & Localisation' },
     logout: { es: 'Cerrar Sesión', eu: 'Saioa itxi', en: 'Logout', fr: 'Déconnexion' },
     login: { es: 'Acceso', eu: 'Saioa hasi', en: 'Login', fr: 'Connexion' },
+    acceso_socias: { es: 'Acceso Socias', eu: 'Bazkideen Sarbidea', en: 'Members Access', fr: 'Accès Membres' },
     admin_panel: { es: 'Panel de Control', eu: 'Kudeaketa panela', en: 'Admin Panel', fr: 'Panneau de gestion' },
     dashboard: { es: 'Mi Área', eu: 'Nire Eremua', en: 'My Area', fr: 'Mon Espace' },
     language_selector: { es: 'Cambiar Idioma', eu: 'Hizkuntza aldatu', en: 'Change Language', fr: 'Changer de langue' }
@@ -487,9 +488,20 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                     prefetch={false} 
                                     className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
                                 >
-                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center">
-                                        <span>ACCESO</span>
-                                        <span>SOCIAS</span>
+                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
+                                        {(() => {
+                                            const label = getLabel('acceso_socias');
+                                            const parts = label.split(' ');
+                                            if (parts.length >= 2) {
+                                                return (
+                                                    <>
+                                                        <span>{parts[0]}</span>
+                                                        <span>{parts.slice(1).join(' ')}</span>
+                                                    </>
+                                                );
+                                            }
+                                            return <span>{label}</span>;
+                                        })()}
                                     </div>
                                 </Link>
                             </motion.div>
