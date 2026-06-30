@@ -1,5 +1,5 @@
 'use client';
-
+// Force deploy trigger
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
