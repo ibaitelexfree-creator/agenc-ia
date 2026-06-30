@@ -46,22 +46,22 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
 
     useEffect(() => {
         setMounted(true);
+        const params = new URLSearchParams(window.location.search);
+        const hasBookParam = params.get('book') === 'true';
+
         const checkUser = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             setUser(user);
             if (user) {
-                const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
-                setProfile(profile);
-
-                // Auto-open booking modal if ?book=true is present in the URL query parameters
-                const params = new URLSearchParams(window.location.search);
-                if (params.get('book') === 'true') {
+                if (hasBookParam) {
                     setIsLegalModalOpen(true);
                     
                     // Clean up URL parameters without reloading
                     const cleanUrl = window.location.pathname;
                     window.history.replaceState({}, '', cleanUrl);
                 }
+                const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
+                setProfile(profile);
             }
         };
         checkUser();
