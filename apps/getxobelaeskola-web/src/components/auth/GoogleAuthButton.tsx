@@ -17,9 +17,13 @@ export default function GoogleAuthButton() {
 
             // Detect if we are in a Capacitor environment
             const isCapacitor = window.location.protocol === 'capacitor:' || window.location.protocol === 'file:';
+            
+            // Force appUrl to be the canonical production URL if not on localhost to guarantee matching whitelisted redirect URLs
             const appUrl = isCapacitor
                 ? (process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, '') || 'https://getxobelaeskola.cloud')
-                : window.location.origin;
+                : (window.location.hostname.includes('localhost') || window.location.hostname.includes('127.0.0.1')
+                    ? window.location.origin
+                    : 'https://getxobelaeskola.cloud');
 
             const searchParams = new URLSearchParams(window.location.search);
             const returnTo = searchParams.get('returnTo');
@@ -27,7 +31,15 @@ export default function GoogleAuthButton() {
             const nextPath = encodeURIComponent(targetPath);
 
             const isSecure = window.location.protocol === 'https:';
-            document.cookie = `sb-redirect-to=${encodeURIComponent(targetPath)}; path=/; max-age=300; SameSite=Lax${isSecure ? '; Secure' : ''}`;
+            
+            // Extract domain parts to set cookie on root domain so it is shared between www. and non-www.
+            const hostname = window.location.hostname;
+            const domainParts = hostname.split('.');
+            const cookieDomain = domainParts.length > 2 && !hostname.match(/^[0-9.]+$/)
+                ? `; domain=.${domainParts.slice(-2).join('.')}`
+                : '';
+
+            document.cookie = `sb-redirect-to=${encodeURIComponent(targetPath)}; path=/; max-age=300; SameSite=Lax${isSecure ? '; Secure' : ''}${cookieDomain}`;
 
             await supabase.auth.signInWithOAuth({
                 provider: 'google',
