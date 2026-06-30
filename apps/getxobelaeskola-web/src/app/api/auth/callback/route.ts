@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 function getPublicOrigin(request: Request) {
     const forwardedHost = request.headers.get('x-forwarded-host');
@@ -25,10 +26,14 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const code = searchParams.get('code');
     
-    // Read redirect cookie if present to bypass stripped URL parameters issues
-    const cookieHeader = request.headers.get('cookie') || '';
-    const cookieMatch = cookieHeader.split(';').find(c => c.trim().startsWith('sb-redirect-to='));
-    const nextCookie = cookieMatch ? decodeURIComponent(cookieMatch.split('=')[1].trim()) : null;
+    // Read redirect cookie using next/headers
+    let nextCookie = null;
+    try {
+        const cookieStore = cookies();
+        nextCookie = cookieStore.get('sb-redirect-to')?.value || null;
+    } catch (e) {
+        console.error('Failed to read cookies in auth callback:', e);
+    }
     
     const next = nextCookie || searchParams.get('next') || '/';
     const origin = getPublicOrigin(request);
