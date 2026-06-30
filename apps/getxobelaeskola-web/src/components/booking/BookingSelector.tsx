@@ -52,6 +52,16 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
             if (user) {
                 const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
                 setProfile(profile);
+
+                // Auto-open booking modal if ?book=true is present in the URL query parameters
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('book') === 'true') {
+                    setIsLegalModalOpen(true);
+                    
+                    // Clean up URL parameters without reloading
+                    const cleanUrl = window.location.pathname;
+                    window.history.replaceState({}, '', cleanUrl);
+                }
             }
         };
         checkUser();
@@ -60,7 +70,8 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
     const handleBookingClick = () => {
         if (!user) {
             const locale = window.location.pathname.split('/')[1] || 'es';
-            router.push(`/${locale}/auth/login?returnTo=${encodeURIComponent(window.location.pathname)}`);
+            const returnToUrl = `${window.location.pathname}?book=true`;
+            router.push(`/${locale}/auth/login?returnTo=${encodeURIComponent(returnToUrl)}`);
             return;
         }
         setIsLegalModalOpen(true);
