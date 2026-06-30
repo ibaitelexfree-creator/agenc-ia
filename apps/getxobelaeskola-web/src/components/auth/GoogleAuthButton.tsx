@@ -32,7 +32,7 @@ export default function GoogleAuthButton() {
             await supabase.auth.signInWithOAuth({
                 provider: 'google',
                 options: {
-                    redirectTo: `${appUrl}/api/auth/callback?next=${nextPath}`,
+                    redirectTo: `${appUrl}/api/auth/callback`,
                     queryParams: {
                         access_type: 'offline',
                         prompt: 'consent',
