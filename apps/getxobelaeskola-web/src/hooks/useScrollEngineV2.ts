@@ -293,20 +293,6 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     window.addEventListener('keydown', handleKeyDown, { passive: false })
     window.addEventListener('scroll', handleScrollSync, { passive: true })
 
-    // Efecto de entrada: simular un deslizamiento suave al cargar la página
-    setTimeout(() => {
-      const scrollContainer = containerRef.current
-      const maxScroll = scrollContainer 
-        ? scrollContainer.offsetHeight - window.innerHeight 
-        : document.documentElement.scrollHeight - window.innerHeight
-      if (maxScroll > 0 && window.scrollY === 0) {
-        // Empezamos con un desplazamiento del 8% de la página
-        const startY = maxScroll * 0.08
-        window.scrollTo(0, startY)
-        // Anímalo lentamente de vuelta a 0
-        animateScroll(0)
-      }
-    }, 300)
 
     return () => {
       window.removeEventListener('wheel', handleWheel)
