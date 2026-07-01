@@ -283,28 +283,28 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           <defs>
             {/* Máscara al 90% para la imagen y el video */}
             <clipPath id={clipId}>
-              <motion.path
+              <path
                 d={d0}
-                animate={{ d: [d0, d1, d2, d0] }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
                 transform="translate(50 50) scale(0.90) translate(-50 -50)"
-              />
+              >
+                <animate
+                  attributeName="d"
+                  dur="8s"
+                  repeatCount="indefinite"
+                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
+                />
+              </path>
             </clipPath>
             {/* Máscara al 100% para el brillo del hover */}
             <clipPath id={`${clipId}-full`}>
-              <motion.path
-                d={d0}
-                animate={{ d: [d0, d1, d2, d0] }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+              <path d={d0}>
+                <animate
+                  attributeName="d"
+                  dur="8s"
+                  repeatCount="indefinite"
+                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
+                />
+              </path>
             </clipPath>
             <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
@@ -316,19 +316,24 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           <motion.path
             d={d0}
             animate={{
-              d: [d0, d1, d2, d0],
               scale: isHovered ? 1.06 : 1.0,
               fill: isHovered ? `${color}44` : `${color}22`
             }}
             transition={{
-              d: { duration: 8, repeat: Infinity, ease: "easeInOut" },
               scale: { type: 'spring', stiffness: 300, damping: 20 },
               fill: { duration: 0.3 }
             }}
             stroke={color}
             strokeWidth="0.8"
             style={{ transformOrigin: 'center' }}
-          />
+          >
+            <animate
+              attributeName="d"
+              dur="8s"
+              repeatCount="indefinite"
+              values={`${d0}; ${d1}; ${d2}; ${d0}`}
+            />
+          </motion.path>
 
           {/* Imagen recortada */}
           <g clipPath={`url(#${clipId})`}>

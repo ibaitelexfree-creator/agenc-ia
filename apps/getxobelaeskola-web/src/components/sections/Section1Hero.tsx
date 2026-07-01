@@ -154,6 +154,11 @@ export function Section1Hero() {
         justifyContent: 'center',
       }}
     >
+      {/* Hoisted preloads for LCP optimization */}
+      <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=3" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/cielo extendido v2.webp?v=3" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
+
       {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
       <motion.div
         style={{
