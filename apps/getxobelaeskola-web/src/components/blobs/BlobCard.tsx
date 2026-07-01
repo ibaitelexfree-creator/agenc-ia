@@ -53,12 +53,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [])
 
-  // Lazy load video only when hovered or when in view (mobile)
+  // Lazy load video only when hovered (desktop only, disable on mobile to save bandwidth/TBT)
   useEffect(() => {
-    if (isHovered || inView) {
+    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches
+    if (isMobileDevice) return
+    if (isHovered) {
       setLoadVideo(true)
     }
-  }, [isHovered, inView])
+  }, [isHovered])
 
   // Check if the video is already cached/loaded when loadVideo triggers
   useEffect(() => {

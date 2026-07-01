@@ -54,14 +54,23 @@ export function Section1Hero() {
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(true)
 
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    handleResize()
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
+    setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (isMobile) {
+      setVideoLoaded(true)
+      return
+    }
+    // Fallback timer for desktop to reveal content if video takes too long to load
+    const timer = setTimeout(() => {
+      setVideoLoaded(true)
+    }, 2000)
+    return () => clearTimeout(timer)
+  }, [isMobile])
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
@@ -243,30 +252,32 @@ export function Section1Hero() {
             }}
           />
           {/* El video de las nubes se carga después del barco - CARGA 4º */}
-          <video
-            src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            onLoadedData={() => setVideoLoaded(true)}
-            style={{
-              position: 'absolute',
-              left: '-105px',
-              right: '-105px',
-              top: '-20px',
-              width: 'calc(100% + 210px)',
-              height: '50%',
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              zIndex: 2,
-              opacity: 1,
-              pointerEvents: 'none',
-              transform: 'translateX(99px)',
-            }}
-          >
-            <track kind="captions" src="data:text/vtt," label="No captions" default />
-          </video>
+          {mounted && !isMobile && (
+            <video
+              src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              onLoadedData={() => setVideoLoaded(true)}
+              style={{
+                position: 'absolute',
+                left: '-105px',
+                right: '-105px',
+                top: '-20px',
+                width: 'calc(100% + 210px)',
+                height: '50%',
+                objectFit: 'cover',
+                objectPosition: 'center top',
+                zIndex: 2,
+                opacity: 1,
+                pointerEvents: 'none',
+                transform: 'translateX(99px)',
+              }}
+            >
+              <track kind="captions" src="data:text/vtt," label="No captions" default />
+            </video>
+          )}
         </motion.div>
       </motion.div>
 
