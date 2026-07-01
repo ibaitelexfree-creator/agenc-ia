@@ -74,7 +74,7 @@ export default function Newsletter({ locale }: { locale: string }) {
                             <button
                                 type="submit"
                                 disabled={status === 'loading'}
-                                className="bg-accent px-6 py-2.5 text-white text-[10px] uppercase tracking-[0.2em] font-black hover:bg-white hover:text-accent transition-premium disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-accent/10 rounded-lg"
+                                className="bg-nautical-blue px-6 py-2.5 text-white text-[10px] uppercase tracking-[0.2em] font-black hover:bg-white hover:text-nautical-blue transition-premium disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-nautical-blue/10 rounded-lg"
                             >
                                 {status === 'loading' ? '...' : t('button')}
                             </button>

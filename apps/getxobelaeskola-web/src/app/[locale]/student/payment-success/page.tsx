@@ -67,7 +67,7 @@ function SuccessContent() {
     const isCourse = type === 'course';
 
     return (
-        <main className="min-h-screen bg-nautical-black flex items-center justify-center pt-24 pb-12 px-4 relative overflow-hidden">
+        <main className="min-h-screen bg-[#001B3A] flex items-center justify-center pt-24 pb-12 px-4 relative overflow-hidden">
             {/* Background Decorative Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brass-gold/5 blur-[120px] rounded-full" />
@@ -76,7 +76,7 @@ function SuccessContent() {
 
             <div className="max-w-2xl w-full relative z-10">
                 {/* Main Card */}
-                <div className="bg-card/40 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-700">
+                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
 
                     {/* Top Accent Bar */}
                     <div className="h-1.5 w-full bg-gradient-to-r from-brass-gold via-white/20 to-sea-foam" />
@@ -192,7 +192,7 @@ function SuccessContent() {
 
 export default function PaymentSuccessPage() {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-nautical-black flex items-center justify-center text-white">Cargando confirmación...</div>}>
+        <Suspense fallback={<div className="min-h-screen bg-[#001B3A] flex items-center justify-center text-white">Cargando confirmación...</div>}>
             <SuccessContent />
         </Suspense>
     );
