@@ -63,11 +63,6 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
 
   return (
     <div className="w-full">
-      {/* Preload critical above-the-fold hero images early in the document head */}
-      <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=3" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
-
       <JsonLd data={jsonLd} />
       <NativeAppRedirect locale={locale} />
       <LandingPageClientV2 />
