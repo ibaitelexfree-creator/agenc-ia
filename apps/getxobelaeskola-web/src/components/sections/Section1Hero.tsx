@@ -261,7 +261,9 @@ export function Section1Hero() {
                   pointerEvents: 'none',
                   transform: 'translateX(99px)',
                 }}
-              />
+              >
+                <track kind="captions" src="data:text/vtt," label="No captions" default />
+              </video>
             )}
           </motion.div>
         </motion.div>

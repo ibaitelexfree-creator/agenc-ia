@@ -358,7 +358,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                         >
                             {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
                             <motion.img 
-                                src="/images/home/parallax/cloud_only_mini.png"
+                                src="/images/home/parallax/cloud_only_mini.webp"
                                 alt="Cloud Base"
                                 className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
                                 animate={{ opacity: isAtHero ? (isHovered ? 0 : 0.95) : 0 }}
@@ -367,7 +367,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
                             {/* Sun Cloud (Fades in on hover or when leaving Hero section) */}
                             <motion.img 
-                                src="/images/home/parallax/cloud_sun_mini.png"
+                                src="/images/home/parallax/cloud_sun_mini.webp"
                                 alt="Cloud Sun"
                                 className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
                                 initial={{ opacity: 0 }}
@@ -379,6 +379,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
                                 alt="Getxo Bela Eskola"
                                 fill
+                                sizes="(max-width: 768px) 112px, 144px"
                                 className="object-contain object-left relative z-10"
                                 priority
                             />
@@ -516,6 +517,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             setMobileExpanded(null);
                         }}
                         className="xl:hidden flex-shrink-0 w-14 h-14 flex items-center justify-center bg-accent text-white rounded-full shadow-2xl relative z-[10000] transition-premium hover:scale-110 active:scale-95 shadow-accent/30"
+                        aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                     >
                         {isMenuOpen ? <X size={24} strokeWidth={3} /> : (
                             <div className="flex flex-col gap-1 w-6">
@@ -556,6 +558,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                         <button
                                             onClick={() => setMobileExpanded(mobileExpanded === item.label ? null : item.label)}
                                             className="p-3 text-sea-foam/40 hover:text-accent transition-colors"
+                                            aria-label={mobileExpanded === item.label ? `Contraer submenú de ${getLabel(item.label)}` : `Expandir submenú de ${getLabel(item.label)}`}
                                         >
                                             <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${mobileExpanded === item.label ? 'rotate-180 text-accent' : ''}`} />
                                         </button>

@@ -63,6 +63,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           poster="/images/course-piragua-competition-double.jpg"
         >
           <source src="/videos/Smoke_forming_text_Udalekuak_202606161557.mp4" type="video/mp4" />
+          <track kind="captions" src="data:text/vtt," label="No captions" default />
         </video>
 
         {/* Slow Forward Loop Video */}
@@ -81,6 +82,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           }}
         >
           <source src="/videos/Smoke_swirling_slow_forward.mp4" type="video/mp4" />
+          <track kind="captions" src="data:text/vtt," label="No captions" default />
         </video>
 
         {/* Slow Reverse Loop Video */}
@@ -99,6 +101,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           }}
         >
           <source src="/videos/Smoke_swirling_slow_reverse.mp4" type="video/mp4" />
+          <track kind="captions" src="data:text/vtt," label="No captions" default />
         </video>
 
         <div className={styles.heroOverlay} style={{ zIndex: 5 }} />

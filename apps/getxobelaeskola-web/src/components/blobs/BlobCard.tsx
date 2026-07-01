@@ -379,6 +379,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
                   ) : (
                     <source src={videoSrc} type="video/mp4" />
                   )}
+                  <track kind="captions" src="data:text/vtt," label="No captions" default />
                 </video>
               )}
             </foreignObject>

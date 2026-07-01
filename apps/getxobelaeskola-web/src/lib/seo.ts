@@ -1,4 +1,7 @@
-export const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
+const rawUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.getxobelaeskola.cloud';
+export const siteUrl = rawUrl.includes('getxobelaeskola.cloud') && !rawUrl.includes('www.getxobelaeskola.cloud')
+    ? rawUrl.replace('getxobelaeskola.cloud', 'www.getxobelaeskola.cloud')
+    : rawUrl;
 
 /**
  * Generates SEO canonical and localized alternate URLs for a given page path.

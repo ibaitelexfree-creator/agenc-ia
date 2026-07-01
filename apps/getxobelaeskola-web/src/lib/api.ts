@@ -5,23 +5,18 @@ export const getApiBaseUrl = () => {
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         const isCapacitor = window.location.protocol === 'capacitor:' || window.location.protocol === 'file:';
 
-        // If we are on localhost in a browser, use the current origin
-        if (isLocalhost && !isCapacitor) {
+        // Standard web browser environment: always use current origin to avoid CORS redirect mismatch
+        if (!isCapacitor) {
             return window.location.origin;
         }
 
-        // In Capacitor or if NEXT_PUBLIC_APP_URL is explicitly set
+        // Capacitor environment: use NEXT_PUBLIC_APP_URL if defined, otherwise fallback
         if (process.env.NEXT_PUBLIC_APP_URL) {
             const appUrl = process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '');
             const isAppUrlLocal = appUrl.includes('localhost') || appUrl.includes('127.0.0.1');
             if (!isAppUrlLocal || isLocalhost || isCapacitor) {
                 return appUrl;
             }
-        }
-
-        // Fallback for production if no env var is found
-        if (!isCapacitor) {
-            return window.location.origin;
         }
         return 'https://getxobelaeskola.cloud';
     }

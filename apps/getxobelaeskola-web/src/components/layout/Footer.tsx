@@ -51,7 +51,7 @@ const AntonioTruebaLogo = () => (
 );
 
 const DecathlonLogo = () => (
-    <a href="https://www.decathlon.es/" target="_blank" rel="noopener noreferrer" className="flex items-center hover:scale-105 transition-all duration-300 select-none">
+    <a href="https://www.decathlon.es/" target="_blank" rel="noopener noreferrer" className="flex items-center hover:scale-105 transition-all duration-300 select-none" aria-label="Decathlon">
         <svg className="h-7 w-auto rounded" viewBox="0 0 110 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect width="110" height="32" fill="#0082C3" />
             <text x="55" y="21" fill="#FFFFFF" fontSize="10.5" fontWeight="900" fontStyle="italic" fontFamily="'Arial Black', 'Impact', sans-serif" textAnchor="middle" letterSpacing="0.04em">DECATHLON</text>
