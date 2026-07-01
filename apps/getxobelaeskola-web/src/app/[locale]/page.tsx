@@ -82,3 +82,12 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
     </div>
   );
 }
+
+export function generateStaticParams() {
+  return [
+    { locale: 'es' },
+    { locale: 'eu' },
+    { locale: 'en' },
+    { locale: 'fr' }
+  ];
+}
