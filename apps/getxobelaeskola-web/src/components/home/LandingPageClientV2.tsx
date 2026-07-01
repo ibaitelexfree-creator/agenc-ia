@@ -5,19 +5,21 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ScrollEngineV2 } from '@/components/layout/ScrollEngineV2'
 import { CanvasV2 } from '@/components/layout/CanvasV2'
 import { Section1Hero } from '@/components/sections/Section1Hero'
-import { Section2Identity } from '@/components/sections/Section2Identity'
-import { Section3Adapts } from '@/components/sections/Section3Adapts'
-import { Section3Path } from '@/components/sections/Section3Path'
-import { Section4Why } from '@/components/sections/Section4Why'
 import { WindParticles } from '@/components/decorative/WindParticles'
 import { useOceanGradient } from '@/hooks/useOceanGradient'
 import { SectionTransitionOverlay } from '@/components/layout/SectionTransitionOverlay'
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 import { ReducedMotionCanvas } from '@/components/layout/ReducedMotionCanvas'
-import { CTASection } from '@/components/sections/CTASection'
 import { LandingSidebar } from '@/components/layout/LandingSidebar'
-import ReviewsSection from '@/components/sections/Reviews/ReviewsSection'
-import BlogSection from '@/components/sections/Blog/BlogSection'
+import dynamic from 'next/dynamic'
+
+const Section2Identity = dynamic(() => import('@/components/sections/Section2Identity').then(mod => mod.Section2Identity), { ssr: true })
+const Section3Adapts = dynamic(() => import('@/components/sections/Section3Adapts').then(mod => mod.Section3Adapts), { ssr: true })
+const Section3Path = dynamic(() => import('@/components/sections/Section3Path').then(mod => mod.Section3Path), { ssr: true })
+const Section4Why = dynamic(() => import('@/components/sections/Section4Why').then(mod => mod.Section4Why), { ssr: true })
+const ReviewsSection = dynamic(() => import('@/components/sections/Reviews/ReviewsSection'), { ssr: true })
+const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection'), { ssr: true })
+const CTASection = dynamic(() => import('@/components/sections/CTASection').then(mod => mod.CTASection), { ssr: true })
 
 function OceanGradientActivator() {
   useOceanGradient()
