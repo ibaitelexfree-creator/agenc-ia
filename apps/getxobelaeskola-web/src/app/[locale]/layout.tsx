@@ -44,6 +44,8 @@ export default async function LocaleLayout({
       <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/cloud_sun_mini.webp" fetchPriority="high" />
       <body suppressHydrationWarning>
         <a href="#main-content" className="skip-link">
           {locale === 'eu' ? 'Edukira jo' : locale === 'en' ? 'Skip to content' : locale === 'fr' ? 'Aller au contenu' : 'Saltar al contenido'}
