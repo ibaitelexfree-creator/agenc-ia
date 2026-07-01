@@ -48,6 +48,7 @@ debug_*.js
 *.txt
 !requirements.txt
 !robots.txt
+!llms.txt
 !LICENSE.txt
 
 # local toolings

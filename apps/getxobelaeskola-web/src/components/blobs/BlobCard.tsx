@@ -14,7 +14,11 @@ interface BlobCardProps {
   index?: number
 }
 
-export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, href, index = 0 }: BlobCardProps) {
+export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [], href, index = 0 }: BlobCardProps) {
+  const d0 = paths[0] || "M50,10 C80,5 95,30 90,55 C85,80 65,95 45,90 C25,85 5,70 10,45 C15,20 20,15 50,10Z"
+  const d1 = paths[1] || d0
+  const d2 = paths[2] || d0
+
   const [isHovered, setIsHovered] = useState(false)
   const [inView, setInView] = useState(false)         // para mobile
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -49,12 +53,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
     }
   }, [])
 
-  // Once the page is loaded, we immediately trigger video loading for all blobs
+  // Lazy load video only when hovered or when in view (mobile)
   useEffect(() => {
-    if (pageLoaded) {
+    if (isHovered || inView) {
       setLoadVideo(true)
     }
-  }, [pageLoaded])
+  }, [isHovered, inView])
 
   // Check if the video is already cached/loaded when loadVideo triggers
   useEffect(() => {
@@ -85,23 +89,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
     return () => clearTimeout(timer)
   }, [pageLoaded, index])
 
-  // Trigger the reveal only when both the staggered time slot has arrived and the video has loaded
+  // Trigger the reveal as soon as the staggered time slot has arrived (no video block)
   useEffect(() => {
-    if (timeToReveal && videoReady) {
+    if (timeToReveal) {
       setStartReveal(true)
     }
-  }, [timeToReveal, videoReady])
-
-  // Fallback to force reveal if the video takes too long to load (slow connection)
-  useEffect(() => {
-    if (!timeToReveal || videoReady) return
-
-    const forceTimer = setTimeout(() => {
-      setVideoReady(true)
-    }, 2500) // 2.5s fallback delay after its slot arrives
-
-    return () => clearTimeout(forceTimer)
-  }, [timeToReveal, videoReady])
+  }, [timeToReveal])
 
   // Atracción magnética muy suave y lenta (como fluido/líquido)
   const { x: magX, y: magY } = useMagneticCursor(cardRef, { 
@@ -291,8 +284,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
             {/* Máscara al 90% para la imagen y el video */}
             <clipPath id={clipId}>
               <motion.path
-                d={paths[0]}
-                animate={{ d: [paths[0], paths[1], paths[2], paths[0]] }}
+                d={d0}
+                animate={{ d: [d0, d1, d2, d0] }}
                 transition={{
                   duration: 8,
                   repeat: Infinity,
@@ -304,8 +297,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
             {/* Máscara al 100% para el brillo del hover */}
             <clipPath id={`${clipId}-full`}>
               <motion.path
-                d={paths[0]}
-                animate={{ d: [paths[0], paths[1], paths[2], paths[0]] }}
+                d={d0}
+                animate={{ d: [d0, d1, d2, d0] }}
                 transition={{
                   duration: 8,
                   repeat: Infinity,
@@ -321,9 +314,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths, hr
 
           {/* Forma visible de fondo que respira e interactúa al hover */}
           <motion.path
-            d={paths[0]}
+            d={d0}
             animate={{
-              d: [paths[0], paths[1], paths[2], paths[0]],
+              d: [d0, d1, d2, d0],
               scale: isHovered ? 1.06 : 1.0,
               fill: isHovered ? `${color}44` : `${color}22`
             }}
