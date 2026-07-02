@@ -120,7 +120,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-[#0a1628] to-[#010816] border border-accent/20 rounded-sm p-8 relative overflow-hidden group shadow-2xl hover:border-accent/40 transition-all"
+                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden group shadow-2xl transition-all"
                 >
                     <div className="absolute top-0 right-0 p-4 opacity-[0.05] pointer-events-none group-hover:scale-125 transition-transform duration-1000">
                         <Wind size={120} />
@@ -129,20 +129,20 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                     <header className="flex justify-between items-center mb-6">
                         <div>
                             <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-1">Viento Hoy</span>
-                            <h4 className="text-white/40 text-[9px] uppercase tracking-widest flex items-center gap-2">
+                            <h4 className="text-black/40 text-[9px] uppercase tracking-widest flex items-center gap-2">
                                 <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                                 {weather.station}
                             </h4>
                         </div>
                         <button onClick={fetchData} disabled={isRefreshing}>
-                            <RefreshCw size={14} className={`text-white/20 hover:text-accent transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
+                            <RefreshCw size={14} className={`text-black/20 hover:text-accent transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
                         </button>
                     </header>
 
                     <div className="flex flex-col items-center justify-center py-4">
                         <div className="relative w-40 h-40">
                             <svg className="w-full h-full transform -rotate-90">
-                                <circle cx="80" cy="80" r="74" fill="transparent" stroke="currentColor" strokeWidth="4" className="text-white/5" />
+                                <circle cx="80" cy="80" r="74" fill="transparent" stroke="currentColor" strokeWidth="4" className="text-black/5" />
                                 <motion.circle
                                     cx="80"
                                     cy="80"
@@ -157,14 +157,14 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                                 />
                             </svg>
                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className="text-6xl font-display text-white italic tracking-tighter transition-all group-hover:scale-110">{weather.knots}</span>
+                                <span className="text-6xl font-display text-black italic tracking-tighter transition-all group-hover:scale-110">{weather.knots}</span>
                                 <span className="text-xs uppercase tracking-[0.3em] text-accent font-black">NUDOS</span>
                             </div>
                         </div>
                         <div className="mt-6 text-center space-y-1">
-                            <p className="text-lg text-white font-display italic">{weather.kmh} <span className="text-white/40 text-xs">km/h</span></p>
-                            <div className="flex items-center gap-4 py-2 px-6 bg-white/5 rounded-full border border-white/5">
-                                <span className="flex items-center gap-1.5 text-brass-gold text-[10px] font-black uppercase tracking-widest border-r border-white/10 pr-4">
+                            <p className="text-lg text-black font-display italic">{weather.kmh} <span className="text-black/40 text-xs">km/h</span></p>
+                            <div className="flex items-center gap-4 py-2 px-6 bg-black/5 rounded-full border border-black/5">
+                                <span className="flex items-center gap-1.5 text-brass-gold text-[10px] font-black uppercase tracking-widest border-r border-black/10 pr-4">
                                     <Navigation size={10} style={{ transform: `rotate(${weather.direction}deg)` }} />
                                     {weather.direction}°
                                 </span>
@@ -182,7 +182,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="bg-gradient-to-br from-[#0a1628] to-[#010816] border border-white/5 rounded-sm p-8 relative overflow-hidden flex flex-col justify-between hover:border-accent/20 transition-all"
+                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col justify-between transition-all"
                 >
                     <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
                         <LifeBuoy size={100} />
@@ -190,29 +190,29 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
 
                     <header className="mb-8">
                         <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-4">Monitor Flota</span>
-                        <p className="text-white/40 text-xs leading-relaxed max-w-[180px]">Estado operacional de embarcaciones en tiempo real.</p>
+                        <p className="text-black/40 text-xs leading-relaxed max-w-[180px]">Estado operacional de embarcaciones en tiempo real.</p>
                     </header>
 
                     <div className="grid grid-cols-1 gap-4">
-                        <div className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-sm hover:translate-x-1 transition-transform group">
+                        <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shadow-glow">
                                     <Anchor size={14} />
                                 </div>
-                                <span className="text-xs uppercase tracking-widest font-bold text-white/80 group-hover:text-white">En Agua</span>
+                                <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">En Agua</span>
                             </div>
-                            <span className="text-2xl font-display text-white italic">{fleet.agua}</span>
+                            <span className="text-2xl font-display text-black italic">{fleet.agua}</span>
                         </div>
-                        <div className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-sm hover:translate-x-1 transition-transform group">
+                        <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded-full bg-brass-gold/10 flex items-center justify-center text-brass-gold">
                                     <RefreshCw size={14} />
                                 </div>
-                                <span className="text-xs uppercase tracking-widest font-bold text-white/80 group-hover:text-white">Retorno</span>
+                                <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">Retorno</span>
                             </div>
-                            <span className="text-2xl font-display text-white italic">{fleet.retorno}</span>
+                            <span className="text-2xl font-display text-black italic">{fleet.retorno}</span>
                         </div>
-                        <div className="flex items-center justify-between p-4 bg-white/5 border border-accent/30 rounded-sm hover:translate-x-1 transition-transform group shadow-[0_0_15px_rgba(var(--accent-rgb),0.1)]">
+                        <div className="flex items-center justify-between p-4 bg-black/5 border border-accent/30 rounded-sm hover:translate-x-1 transition-transform group shadow-[0_0_15px_rgba(var(--accent-rgb),0.1)]">
                             <div className="flex items-center gap-4">
                                 <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent animate-pulse">
                                     <Gauge size={14} />
@@ -235,7 +235,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-gradient-to-br from-[#0a1628] to-[#010816] border border-white/5 rounded-sm p-8 relative overflow-hidden flex flex-col hover:border-sea-foam/20 transition-all"
+                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col transition-all"
                 >
                     <div className="absolute bottom-0 right-0 p-4 opacity-[0.05] pointer-events-none">
                         <Map size={120} />
@@ -243,8 +243,8 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
 
                     <div className="space-y-8 h-full flex flex-col">
                         <section>
-                            <h3 className="text-white/40 uppercase tracking-[0.3em] text-[10px] font-black mb-6">Nota Meteorológica</h3>
-                            <div className="bg-white/5 border border-white/5 p-6 rounded-sm relative">
+                            <h3 className="text-black/40 uppercase tracking-[0.3em] text-[10px] font-black mb-6">Nota Meteorológica</h3>
+                            <div className="bg-black/5 border border-black/10 p-6 rounded-sm relative">
                                 <div className="absolute top-4 right-4 animate-pulse">
                                     <div className="w-2 h-2 rounded-full bg-sea-foam/40" />
                                 </div>
@@ -261,16 +261,16 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                                         ))
                                     ) : (
                                         <>
-                                            <li className="text-xs text-white/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-white/10 rounded-full" />
+                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
+                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
                                                 Viento: {weather.knots} kts ({weather.station})
                                             </li>
-                                            <li className="text-xs text-white/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-white/10 rounded-full" />
+                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
+                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
                                                 Rafagas: {weather.gusts || 0} kts
                                             </li>
-                                            <li className="text-xs text-white/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-white/10 rounded-full" />
+                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
+                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
                                                 Temp: {weather.temp}°C
                                             </li>
                                         </>
@@ -279,7 +279,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                             </div>
                         </section>
 
-                        <div className="mt-auto pt-6 border-t border-white/5">
+                        <div className="mt-auto pt-6 border-t border-black/10">
                             <button className="w-full flex items-center justify-between p-4 bg-sea-foam/10 border border-sea-foam/30 rounded-sm group hover:bg-sea-foam/20 transition-all">
                                 <div className="flex items-center gap-4">
                                     <Map className="text-sea-foam group-hover:scale-110 transition-transform" size={18} />

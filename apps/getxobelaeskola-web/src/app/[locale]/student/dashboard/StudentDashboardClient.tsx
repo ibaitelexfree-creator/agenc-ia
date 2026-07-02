@@ -250,11 +250,10 @@ export default function StudentDashboardClient({
                                         {t.academy_widget.go_to_panel}
                                     </Link>
                                 </div>
-
-                                <div className="bg-gradient-to-br from-[#0a1628] to-[#010816] p-1 lg:p-1 border border-accent/20 rounded-sm relative overflow-hidden group">
+                                <div className="bg-white p-1 lg:p-1 border border-black/10 rounded-sm relative overflow-hidden group">
                                     <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-9xl pointer-events-none group-hover:scale-110 group-hover:opacity-[0.07] transition-all duration-1000">🎓</div>
 
-                                    <div className="bg-[#050c18] p-8 rounded-[1px] relative z-10">
+                                    <div className="bg-white p-8 rounded-[1px] relative z-10">
                                         {/* Streak Widget */}
                                         {currentStreak > 0 && (
                                             <div className="absolute top-6 right-6 flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 px-3 py-1.5 rounded-full backdrop-blur-sm">
@@ -264,7 +263,7 @@ export default function StudentDashboardClient({
                                                 >
                                                     <Flame size={14} className="text-orange-500 fill-orange-500" />
                                                 </motion.div>
-                                                <span className="text-[10px] font-bold text-orange-200 uppercase tracking-wider">
+                                                <span className="text-[10px] font-bold text-orange-600 uppercase tracking-wider">
                                                     {currentStreak} {currentStreak === 1 ? 'Día' : 'Días'} Racha
                                                 </span>
                                             </div>

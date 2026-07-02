@@ -33,8 +33,8 @@ function WaveSVG() {
             <path
                 d="M0,25 C50,15 90,35 140,25 C190,15 230,35 280,25 C330,15 370,30 400,25 L400,40 L0,40 Z"
                 fill="currentColor"
-                className="text-white"
-                opacity="0.3"
+                className="text-black"
+                opacity="0.03"
             >
                 <animateTransform
                     attributeName="transform"
@@ -87,7 +87,7 @@ export default function DailyNauticalQuote({ locale }: DailyNauticalQuoteProps) 
     return (
         <section
             ref={ref}
-            className="relative overflow-hidden border border-accent/15 bg-gradient-to-br from-[#0c1a2e]/90 via-[#081222] to-[#050c18] rounded-sm group cursor-default"
+            className="relative overflow-hidden border border-black/10 bg-white rounded-sm group cursor-default"
             aria-label={locale === 'eu' ? 'Eguneko esaldia' : 'Cita náutica del día'}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}

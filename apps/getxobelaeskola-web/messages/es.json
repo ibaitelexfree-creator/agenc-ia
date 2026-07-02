@@ -1978,6 +1978,8 @@
   },
   "payment_success_page": {
     "loading_confirm": "Cargando confirmación...",
+    "title_loading": "Procesando Pago...",
+    "desc_loading": "Estamos verificando el pago con el banco. Por favor, espera un momento...",
     "title_warning": "Pago Recibido",
     "title_membership": "Bienvenido a Bordo",
     "title_rental": "Reserva Confirmada",

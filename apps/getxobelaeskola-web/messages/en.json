@@ -1918,6 +1918,8 @@
   },
   "payment_success_page": {
     "loading_confirm": "Loading confirmation...",
+    "title_loading": "Processing Payment...",
+    "desc_loading": "We are verifying the payment with the bank. Please wait a moment...",
     "title_warning": "Payment Received",
     "title_membership": "Welcome Aboard",
     "title_rental": "Booking Confirmed",

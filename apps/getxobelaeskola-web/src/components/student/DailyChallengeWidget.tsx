@@ -198,7 +198,7 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
             className="relative overflow-hidden group"
         >
             {/* Premium Background Elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0f213a] via-[#0a1628] to-[#070e1a] border border-accent/20 rounded-sm"></div>
+            <div className="absolute inset-0 bg-white border border-black/10 rounded-sm"></div>
             <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-[60px] rounded-full -mr-16 -mt-16 group-hover:bg-accent/10 transition-colors duration-700"></div>
             <div className="absolute bottom-0 left-0 w-24 h-24 bg-accent/5 blur-[40px] rounded-full -ml-12 -mb-12"></div>
 

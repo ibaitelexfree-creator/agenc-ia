@@ -123,19 +123,23 @@ function SuccessContent() {
                         </div>
 
                         <h1 className="text-4xl md:text-6xl font-display italic text-sea-foam mb-6 tracking-tight">
-                            {showWarning 
-                                ? t('title_warning') 
-                                : (isMembership ? t('title_membership') : isRental ? t('title_rental') : t('title_course'))}
+                            {loading
+                                ? t('title_loading')
+                                : showWarning 
+                                    ? t('title_warning') 
+                                    : (isMembership ? t('title_membership') : isRental ? t('title_rental') : t('title_course'))}
                         </h1>
 
                         <p className="text-lg text-sea-foam/60 font-light max-w-md mx-auto mb-12 leading-relaxed">
-                            {showWarning
-                                ? t('desc_warning')
-                                : (isMembership
-                                    ? t('desc_membership')
-                                    : isRental
-                                        ? t('desc_rental')
-                                        : t('desc_course'))}
+                            {loading
+                                ? t('desc_loading')
+                                : showWarning
+                                    ? t('desc_warning')
+                                    : (isMembership
+                                        ? t('desc_membership')
+                                        : isRental
+                                            ? t('desc_rental')
+                                            : t('desc_course'))}
                         </p>
 
                         {/* Order Confirmation Mockup */}
