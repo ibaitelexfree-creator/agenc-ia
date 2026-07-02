@@ -378,23 +378,23 @@ export default function LegalConsentModal({
     const progressPercentage = ((step + 1) / 3) * 100;
 
     return createPortal(
-        <div className="fixed inset-0 z-[100001] flex items-center justify-center p-4 bg-nautical-black/90 backdrop-blur-sm">
-            <div className="bg-nautical-black border border-black/10 w-full max-w-4xl overflow-hidden flex flex-col max-h-[95vh] shadow-2xl">
+        <div className="fixed inset-0 z-[100001] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <div className="bg-white border border-black/10 w-full max-w-4xl overflow-hidden flex flex-col max-h-[95vh] shadow-2xl rounded-md">
                 {/* Header */}
                 <div className="p-6 border-b border-black/10 flex justify-between items-center bg-black/[0.02]">
                     <div>
-                        <h2 className="text-xl font-display text-sea-foam uppercase tracking-widest">
+                        <h2 className="text-xl font-display text-black font-semibold uppercase tracking-widest">
                             {viewingDoc ? t('viewing_doc') : (activityType === 'rental' ? t('rental_title') : t('terms_title'))}
                         </h2>
                         {!viewingDoc && (
-                            <p className="text-3xs uppercase tracking-widest text-sea-foam/60 mt-1">
+                            <p className="text-3xs uppercase tracking-widest text-slate-500 mt-1">
                                 {t('step_prefix')} {step + 1} {t('step_of')} 3: {step === 0 ? t('step_doc') : step === 1 ? t('step_form') : t('step_sign')}
                             </p>
                         )}
                     </div>
                     <button
                         onClick={viewingDoc ? () => setViewingDoc(null) : onClose}
-                        className="text-sea-foam/60 hover:text-sea-foam transition-colors flex items-center gap-2 text-xs uppercase tracking-widest"
+                        className="text-slate-500 hover:text-black transition-colors flex items-center gap-2 text-xs uppercase tracking-widest"
                     >
                         {viewingDoc ? `← ${t('back')}` : '✕'}
                     </button>
@@ -412,7 +412,7 @@ export default function LegalConsentModal({
 
                 {/* Body */}
                 <form onSubmit={handleSubmit} className="flex flex-col overflow-hidden h-full">
-                    <div id="modal-scroll-container" className="p-8 overflow-y-auto space-y-8 custom-scrollbar flex-1">
+                    <div id="modal-scroll-container" className="p-8 overflow-y-auto space-y-8 custom-scrollbar flex-1 bg-white text-black">
                         {viewingDoc ? (
                             <div className="h-full min-h-[50vh] border border-black/10">
                                 <iframe
@@ -434,19 +434,19 @@ export default function LegalConsentModal({
                                                         key={idx}
                                                         type="button"
                                                         onClick={() => setViewingDoc(doc.path)}
-                                                        className="group p-4 bg-black/[0.02] border border-black/10 hover:border-accent transition-all text-left flex justify-between items-center"
+                                                        className="group p-4 bg-black/[0.02] border border-black/10 hover:border-accent transition-all text-left flex justify-between items-center rounded-sm"
                                                     >
-                                                        <span className="text-sm text-sea-foam/80 group-hover:text-sea-foam">{doc.name}</span>
+                                                        <span className="text-sm text-slate-800 group-hover:text-black font-medium">{doc.name}</span>
                                                         <span className="text-accent">📄</span>
                                                     </button>
                                                 ))}
                                             </div>
-                                            <p className="text-[10px] text-sea-foam/50 italic">{t('click_to_read')}</p>
+                                            <p className="text-[10px] text-slate-400 italic">{t('click_to_read')}</p>
                                         </div>
 
                                         <div className="space-y-2">
                                             <p className="text-xs uppercase tracking-widest text-accent font-bold">{t('summary_title')}</p>
-                                            <div className="bg-black/[0.02] p-6 rounded-sm text-sm text-sea-foam/70 font-light leading-relaxed max-h-48 overflow-y-auto border border-black/5 italic custom-scrollbar block whitespace-pre-line">
+                                            <div className="bg-black/[0.02] p-6 rounded-sm text-sm text-slate-700 font-light leading-relaxed max-h-48 overflow-y-auto border border-black/5 italic custom-scrollbar block whitespace-pre-line">
                                                 {legalText}
                                             </div>
                                         </div>
@@ -470,125 +470,125 @@ export default function LegalConsentModal({
                                     <div className="space-y-6">
                                         <div className="p-6 border border-accent/20 bg-accent/5 rounded-sm space-y-4">
                                             <h4 className="text-xs uppercase tracking-widest text-accent font-bold">{t('digital_signature_title')}</h4>
-                                            <p className="text-xs text-sea-foam/70 leading-relaxed font-light">
+                                            <p className="text-xs text-slate-600 leading-relaxed font-light">
                                                 {t('digital_signature_desc')}
                                             </p>
                                             <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-black/5">
-                                             <div className="space-y-2">
-                                                 <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('full_name')}</label>
-                                                 <input
-                                                     required
-                                                     type="text"
-                                                     value={fullName}
-                                                     onChange={(e) => setFullName(e.target.value)}
-                                                     className="w-full bg-black/[0.02] border border-black/10 p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all"
-                                                     placeholder="Juan Pérez"
-                                                     readOnly={!!initialData?.fullName}
-                                                 />
-                                             </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('full_name')}</label>
+                                                    <input
+                                                        required
+                                                        type="text"
+                                                        value={fullName}
+                                                        onChange={(e) => setFullName(e.target.value)}
+                                                        className="w-full bg-black/[0.02] border border-black/10 p-4 text-black focus:border-accent outline-none text-sm transition-all"
+                                                        placeholder="Juan Pérez"
+                                                        readOnly={!!initialData?.fullName}
+                                                    />
+                                                </div>
 
-                                             <div className="space-y-2">
-                                                 <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('country_label')}</label>
-                                                 <select
-                                                     value={countryCode}
-                                                     onChange={(e) => {
-                                                         const newCountry = e.target.value;
-                                                         setCountryCode(newCountry);
-                                                         if (dni) {
-                                                             const validation = validateIdentityDocument(dni, documentType, newCountry);
-                                                             setDniError(validation.isValid ? null : tV('invalid_identity_document'));
-                                                         }
-                                                     }}
-                                                     className="w-full bg-black/[0.02] border border-black/10 p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer hover:bg-black/5"
-                                                 >
-                                                     <option value="ES" className="bg-nautical-black">España (Spain)</option>
-                                                     <option value="FR" className="bg-nautical-black">France</option>
-                                                     <option value="GB" className="bg-nautical-black">United Kingdom</option>
-                                                     <option value="DE" className="bg-nautical-black">Deutschland (Germany)</option>
-                                                     <option value="IT" className="bg-nautical-black">Italia (Italy)</option>
-                                                     <option value="PT" className="bg-nautical-black">Portugal</option>
-                                                     <option value="AD" className="bg-nautical-black">Andorra</option>
-                                                     <option value="US" className="bg-nautical-black">United States</option>
-                                                     <option value="OTHER" className="bg-nautical-black">Otro / Other</option>
-                                                 </select>
-                                             </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('country_label')}</label>
+                                                    <select
+                                                        value={countryCode}
+                                                        onChange={(e) => {
+                                                            const newCountry = e.target.value;
+                                                            setCountryCode(newCountry);
+                                                            if (dni) {
+                                                                const validation = validateIdentityDocument(dni, documentType, newCountry);
+                                                                setDniError(validation.isValid ? null : tV('invalid_identity_document'));
+                                                            }
+                                                        }}
+                                                        className="w-full bg-black/[0.02] border border-black/10 p-4 text-black focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer hover:bg-black/5"
+                                                    >
+                                                        <option value="ES" className="bg-white text-black">España (Spain)</option>
+                                                        <option value="FR" className="bg-white text-black">France</option>
+                                                        <option value="GB" className="bg-white text-black">United Kingdom</option>
+                                                        <option value="DE" className="bg-white text-black">Deutschland (Germany)</option>
+                                                        <option value="IT" className="bg-white text-black">Italia (Italy)</option>
+                                                        <option value="PT" className="bg-white text-black">Portugal</option>
+                                                        <option value="AD" className="bg-white text-black">Andorra</option>
+                                                        <option value="US" className="bg-white text-black">United States</option>
+                                                        <option value="OTHER" className="bg-white text-black">Otro / Other</option>
+                                                    </select>
+                                                </div>
 
-                                             <div className="space-y-2">
-                                                 <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('identity_doc')}</label>
-                                                 <div className="flex gap-2">
-                                                     <select
-                                                         value={documentType}
-                                                         onChange={(e) => {
-                                                             const newType = e.target.value as DocumentType;
-                                                             setDocumentType(newType);
-                                                             if (dni) {
-                                                                 const validation = validateIdentityDocument(dni, newType, countryCode);
-                                                                 setDniError(validation.isValid ? null : tV('invalid_identity_document'));
-                                                             }
-                                                         }}
-                                                         className="w-20 md:w-24 flex-shrink-0 bg-black/[0.02] border border-black/10 p-3 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer hover:bg-black/5"
-                                                     >
-                                                         <option value="DNI" className="bg-nautical-black">{tReg('doc_dni') || "DNI"}</option>
-                                                         <option value="NIE" className="bg-nautical-black">{tReg('doc_nie') || "NIE"}</option>
-                                                         <option value="PASPORT" className="bg-nautical-black">{tReg('doc_passport') || "Pasaporte"}</option>
-                                                     </select>
-                                                     <input
-                                                         required
-                                                         type="text"
-                                                         value={dni}
-                                                         onChange={(e) => {
-                                                             setDni(e.target.value);
-                                                             if (dniError) setDniError(null);
-                                                         }}
-                                                         onBlur={() => {
-                                                             if (dni) {
-                                                                 const validation = validateIdentityDocument(dni, documentType, countryCode);
-                                                                 if (!validation.isValid) {
-                                                                     setDniError(tV('invalid_identity_document'));
-                                                                 }
-                                                             }
-                                                         }}
-                                                         className={`flex-1 min-w-0 bg-black/[0.02] border ${dniError ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all`}
-                                                         placeholder={documentType === 'DNI' ? '12345678Z' : documentType === 'NIE' ? 'X1234567L' : 'Pasaporte N123456'}
-                                                         readOnly={!!initialData?.dni}
-                                                     />
-                                                 </div>
-                                                 {dniError && (
-                                                     <p className="text-red-400 text-[10px] mt-1 pl-1 flex items-center gap-1">
-                                                         <span>⚠️</span> {dniError}
-                                                     </p>
-                                                 )}
-                                             </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('identity_doc')}</label>
+                                                    <div className="flex gap-2">
+                                                        <select
+                                                            value={documentType}
+                                                            onChange={(e) => {
+                                                                const newType = e.target.value as DocumentType;
+                                                                setDocumentType(newType);
+                                                                if (dni) {
+                                                                    const validation = validateIdentityDocument(dni, newType, countryCode);
+                                                                    setDniError(validation.isValid ? null : tV('invalid_identity_document'));
+                                                                }
+                                                            }}
+                                                            className="w-20 md:w-24 flex-shrink-0 bg-black/[0.02] border border-black/10 p-3 text-black focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer hover:bg-black/5"
+                                                        >
+                                                            <option value="DNI" className="bg-white text-black">{tReg('doc_dni') || "DNI"}</option>
+                                                            <option value="NIE" className="bg-white text-black">{tReg('doc_nie') || "NIE"}</option>
+                                                            <option value="PASPORT" className="bg-white text-black">{tReg('doc_passport') || "Pasaporte"}</option>
+                                                        </select>
+                                                        <input
+                                                            required
+                                                            type="text"
+                                                            value={dni}
+                                                            onChange={(e) => {
+                                                                setDni(e.target.value);
+                                                                if (dniError) setDniError(null);
+                                                            }}
+                                                            onBlur={() => {
+                                                                if (dni) {
+                                                                    const validation = validateIdentityDocument(dni, documentType, countryCode);
+                                                                    if (!validation.isValid) {
+                                                                        setDniError(tV('invalid_identity_document'));
+                                                                    }
+                                                                }
+                                                            }}
+                                                            className={`flex-1 min-w-0 bg-black/[0.02] border ${dniError ? 'border-red-500/50' : 'border-black/10'} p-4 text-black focus:border-accent outline-none text-sm transition-all`}
+                                                            placeholder={documentType === 'DNI' ? '12345678Z' : documentType === 'NIE' ? 'X1234567L' : 'Pasaporte N123456'}
+                                                            readOnly={!!initialData?.dni}
+                                                        />
+                                                    </div>
+                                                    {dniError && (
+                                                        <p className="text-red-500 text-[10px] mt-1 pl-1 flex items-center gap-1 font-medium">
+                                                            <span>⚠️</span> {dniError}
+                                                        </p>
+                                                    )}
+                                                </div>
 
-                                             <div className="space-y-2">
-                                                 <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('email_label')}</label>
-                                                 <input
-                                                     required
-                                                     type="email"
-                                                     value={email}
-                                                     onChange={(e) => {
-                                                         setEmail(e.target.value);
-                                                         if (emailError) setEmailError(null);
-                                                     }}
-                                                     onBlur={() => {
-                                                         if (email) {
-                                                             const validation = validateEmail(email);
-                                                             if (!validation.isValid) {
-                                                                 setEmailError(validation.message || tV('email_invalid'));
-                                                             }
-                                                         }
-                                                     }}
-                                                     className={`w-full bg-black/[0.02] border ${emailError ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all`}
-                                                     placeholder="juan@ejemplo.com"
-                                                     readOnly={!!initialData?.email}
-                                                 />
-                                                 {emailError && (
-                                                     <p className="text-red-400 text-xs mt-1 pl-1 flex items-center gap-1">
-                                                         <span>⚠️</span> {emailError}
-                                                     </p>
-                                                 )}
-                                             </div>
-                                         </div>
+                                                <div className="space-y-2">
+                                                    <label className="text-3xs uppercase tracking-widest text-accent font-bold">{t('email_label')}</label>
+                                                    <input
+                                                        required
+                                                        type="email"
+                                                        value={email}
+                                                        onChange={(e) => {
+                                                            setEmail(e.target.value);
+                                                            if (emailError) setEmailError(null);
+                                                        }}
+                                                        onBlur={() => {
+                                                            if (email) {
+                                                                const validation = validateEmail(email);
+                                                                if (!validation.isValid) {
+                                                                    setEmailError(validation.message || tV('email_invalid'));
+                                                                }
+                                                            }
+                                                        }}
+                                                        className={`w-full bg-black/[0.02] border ${emailError ? 'border-red-500/50' : 'border-black/10'} p-4 text-black focus:border-accent outline-none text-sm transition-all`}
+                                                        placeholder="juan@ejemplo.com"
+                                                        readOnly={!!initialData?.email}
+                                                    />
+                                                    {emailError && (
+                                                        <p className="text-red-500 text-xs mt-1 pl-1 flex items-center gap-1 font-medium">
+                                                            <span>⚠️</span> {emailError}
+                                                        </p>
+                                                    )}
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <label className="flex items-start gap-4 cursor-pointer group p-4 border border-accent/20 bg-accent/5 rounded-sm transition-all hover:bg-accent/10">
@@ -599,7 +599,7 @@ export default function LegalConsentModal({
                                                 className="mt-1 w-5 h-5 accent-accent"
                                                 required
                                             />
-                                            <span className="text-xs text-sea-foam/80 group-hover:text-sea-foam transition-colors leading-relaxed">
+                                            <span className="text-xs text-slate-700 group-hover:text-black transition-colors leading-relaxed">
                                                 {t('confirmation_checkbox')}
                                             </span>
                                         </label>
@@ -616,7 +616,7 @@ export default function LegalConsentModal({
                                 <button
                                     type="button"
                                     onClick={() => setStep(step - 1)}
-                                    className="flex-1 py-5 border border-black/10 text-3xs uppercase tracking-widest font-bold text-sea-foam/60 hover:text-sea-foam hover:bg-black/5 transition-all"
+                                    className="flex-1 py-5 border border-black/10 text-3xs uppercase tracking-widest font-bold text-slate-500 hover:text-black hover:bg-black/5 transition-all rounded-sm"
                                 >
                                     {t('back')}
                                 </button>
@@ -624,7 +624,7 @@ export default function LegalConsentModal({
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="flex-1 py-5 border border-black/10 text-3xs uppercase tracking-widest font-bold text-sea-foam/60 hover:text-sea-foam hover:bg-black/5 transition-all"
+                                    className="flex-1 py-5 border border-black/10 text-3xs uppercase tracking-widest font-bold text-slate-500 hover:text-black hover:bg-black/5 transition-all rounded-sm"
                                 >
                                     {t('cancel')}
                                 </button>
@@ -634,7 +634,7 @@ export default function LegalConsentModal({
                                 <button
                                     type="button"
                                     onClick={handleNextStep}
-                                    className="flex-[2] py-5 bg-accent text-nautical-black text-3xs uppercase tracking-widest font-bold hover:scale-[1.02] shadow-xl shadow-accent/20 transition-all"
+                                    className="flex-[2] py-5 bg-accent text-black text-3xs uppercase tracking-widest font-bold hover:scale-[1.02] shadow-xl shadow-accent/20 transition-all rounded-sm"
                                 >
                                     {t('next')}
                                 </button>
@@ -642,7 +642,7 @@ export default function LegalConsentModal({
                                 <button
                                     type="submit"
                                     disabled={!accepted || loading}
-                                    className={`flex-[2] py-5 bg-accent text-nautical-black text-3xs uppercase tracking-widest font-bold transition-all ${!accepted ? 'opacity-30 grayscale' : 'hover:scale-[1.02] shadow-xl shadow-accent/20'}`}
+                                    className={`flex-[2] py-5 bg-accent text-black text-3xs uppercase tracking-widest font-bold transition-all rounded-sm ${!accepted ? 'opacity-30 grayscale' : 'hover:scale-[1.02] shadow-xl shadow-accent/20'}`}
                                 >
                                     {loading ? t('processing') : t('sign_and_continue')}
                                 </button>
