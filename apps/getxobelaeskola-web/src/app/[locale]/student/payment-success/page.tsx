@@ -4,6 +4,7 @@ import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { verifyPaymentSync } from '@/app/actions/stripe';
 
 function SuccessContent() {
     const searchParams = useSearchParams();
@@ -62,6 +63,12 @@ function SuccessContent() {
                     if (intervalId) clearInterval(intervalId);
                     return true;
                 }
+
+                // If not found in DB yet, try to force a synchronous sync with Stripe
+                // This acts as a robust fallback if the webhook is delayed or missing in production.
+                if (attempts === 0 || attempts === 2) {
+                    await verifyPaymentSync(sessionId);
+                }
             } catch (err) {
                 console.error('Error fetching success details:', err);
             }
@@ -95,6 +102,7 @@ function SuccessContent() {
 
     const isMembership = type === 'membership';
     const isRental = type === 'rental';
+    const isCourse = type === 'course';
 
     return (
         <main className="min-h-screen bg-nautical-deep flex items-center justify-center pt-24 pb-12 px-4 relative overflow-hidden">

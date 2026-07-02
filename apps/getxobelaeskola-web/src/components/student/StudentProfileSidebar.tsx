@@ -65,7 +65,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
 
     const isSocio = currentProfile?.status_socio === 'activo';
 
-    const getTranslatedRole = (role: string) => {
+    const getTranslatedRole = (role?: string) => {
         if (!role) return '';
         const roleLower = role.toLowerCase();
         if (roleLower === 'alumno') return t('student');
