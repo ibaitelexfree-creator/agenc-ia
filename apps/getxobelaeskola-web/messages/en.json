@@ -1035,7 +1035,9 @@
     "managing_subscription": "Manage Subscription",
     "membership_card": "My Membership Card",
     "loading": "Loading...",
-    "portal_error": "Error opening payment portal"
+    "portal_error": "Error opening payment portal",
+    "experience_points": "Experience Points",
+    "my_family": "My Family / Children"
   },
   "nautical_radar": {
     "title": "Bridge Command Navigation Radar",
@@ -1910,5 +1912,30 @@
     "btn_home": "Go to Home",
     "btn_dashboard": "User Area",
     "btn_continue": "Continue with my Booking"
+  },
+  "payment_success_page": {
+    "loading_confirm": "Loading confirmation...",
+    "title_warning": "Payment Received",
+    "title_membership": "Welcome Aboard",
+    "title_rental": "Booking Confirmed",
+    "title_course": "Registration Ready",
+    "desc_warning": "The bank has confirmed the payment, but the automatic activation in our system is taking slightly longer. Don't worry: your booking/registration is safe. You will receive a confirmation email shortly. If it does not appear in your dashboard within a few minutes, please contact us at info@getxobelaeskola.com.",
+    "desc_membership": "Your membership subscription has been successfully activated. You now have access to exclusive rates and benefits across our entire fleet.",
+    "desc_rental": "We have recorded your equipment rental booking. You will receive an email with the details and access code if necessary.",
+    "desc_course": "Your spot in the course has been successfully reserved. You can now access the theoretical material from your student dashboard.",
+    "label_verifying": "Verifying...",
+    "label_transaction": "Transaction",
+    "label_status": "Status",
+    "status_checking": "Verifying with bank...",
+    "status_completed": "Completed and Verified",
+    "status_syncing": "Syncing...",
+    "label_service": "Service",
+    "label_course": "Course",
+    "label_starts": "Starts:",
+    "label_reference": "Reference",
+    "btn_home": "Go to Home",
+    "btn_dashboard": "My Personal Dashboard →",
+    "admin_supabase": "View in Supabase (Admin)",
+    "quote": "\"There is no favorable wind for those who do not know which port they are heading for.\" — Seneca"
   }
 }

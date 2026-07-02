@@ -1373,5 +1373,30 @@
     "alquiler-kayak-2": "Kayaka (2 Pertsona)",
     "alquiler-piragua-1": "Piragua (Pertsona 1)",
     "alquiler-piragua-2": "Piragua (2 Pertsona)"
+  },
+  "payment_success_page": {
+    "loading_confirm": "Berrespena kargatzen...",
+    "title_warning": "Ordainketa jaso da",
+    "title_membership": "Ongi etorri ontzira",
+    "title_rental": "Erreserba berretsia",
+    "title_course": "Izen-ematea prest",
+    "desc_warning": "Bankuak ordainketa berretsi du, baina gure sistemako aktibazio automatikoa pixka bat gehiago kostatzen ari da. Ez kezkatu: zure erreserba/izen-ematea ziur dago. Laster berrespen-mezu bat jasoko duzu. Minutu gutxi barru zure panelean agertzen ez bada, idatz iezaguzu info@getxobelaeskola.com helbidera.",
+    "desc_membership": "Zure bazkide-harpidetza zuzen aktibatu da. Orain tarifa esklusiboak eta abantailak dituzu gure ontziteri osoan.",
+    "desc_rental": "Materialaren erreserba erregistratu dugu. Xehetasunekin eta, behar izanez gero, sartzeko kodearekin mezu bat jasoko duzu.",
+    "desc_course": "Ikastaroko lekua arrakastaz erreserbatu da. Dagoeneko zure ikasle-paneletik eduki teorikoak eskura ditzakezu.",
+    "label_verifying": "Egiaztatzen...",
+    "label_transaction": "Transakzioa",
+    "label_status": "Egoera",
+    "status_checking": "Bankuarekin egiaztatzen...",
+    "status_completed": "Osatua eta egiaztatua",
+    "status_syncing": "Sinkronizatzen...",
+    "label_service": "Zerbitzua",
+    "label_course": "Ikastaroa",
+    "label_starts": "Hasten da:",
+    "label_reference": "Erreferentzia",
+    "btn_home": "Joan hasierara",
+    "btn_dashboard": "Nire panel pertsonala →",
+    "admin_supabase": "Ikusi Supabasen (Admin)",
+    "quote": "\"Ez dago haize mesedegarririk nora doan ez dakienarentzat.\" — Seneka"
   }
 }

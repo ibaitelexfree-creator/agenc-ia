@@ -636,7 +636,9 @@
     "managing_subscription": "Gérer l'abonnement",
     "membership_card": "Ma Carte de Membre",
     "loading": "Chargement...",
-    "portal_error": "Erreur lors de l'ouverture du portail de paiement"
+    "portal_error": "Erreur lors de l'ouverture du portail de paiement",
+    "experience_points": "Points d'Expérience",
+    "my_family": "Mes Enfants / Proches"
   },
   "sea_state_widget": {
     "title": "État de la Mer",
@@ -1476,5 +1478,30 @@
     "btn_home": "Aller à l'Accueil",
     "btn_dashboard": "Espace Utilisateur",
     "btn_continue": "Continuer ma Réservation"
+  },
+  "payment_success_page": {
+    "loading_confirm": "Chargement de la confirmation...",
+    "title_warning": "Paiement Reçu",
+    "title_membership": "Bienvenue à Bord",
+    "title_rental": "Réservation Confirmée",
+    "title_course": "Inscription Prête",
+    "desc_warning": "La banque a confirmé le paiement, mais l'activation automatique dans notre système prend un peu plus de temps. Ne vous inquiétez pas : votre réservation/inscription est sécurisée. Vous recevrez bientôt un e-mail de confirmation. S'il n'avait pas d'impact dans votre tableau de bord dans quelques minutes, écrivez-nous à info@getxobelaeskola.com.",
+    "desc_membership": "Votre abonnement de membre a été activé avec succès. Vous avez désormais accès à des tarifs exclusifs et à des avantages sur toute notre flotte.",
+    "desc_rental": "Nous avons enregistré votre réservation de matériel. Vous recevrez un e-mail avec les détails et le code d'accès si nécessaire.",
+    "desc_course": "Votre place dans le cours a été réservée avec succès. Vous pouvez désormais accéder au matériel théorique depuis votre tableau de bord étudiant.",
+    "label_verifying": "Vérification...",
+    "label_transaction": "Transaction",
+    "label_status": "Statut",
+    "status_checking": "Vérification auprès de la banque...",
+    "status_completed": "Complété et Vérifié",
+    "status_syncing": "Synchronisation...",
+    "label_service": "Service",
+    "label_course": "Cours",
+    "label_starts": "Commence le :",
+    "label_reference": "Référence",
+    "btn_home": "Aller à l'Accueil",
+    "btn_dashboard": "Mon Tableau de Bord →",
+    "admin_supabase": "Voir sur Supabase (Admin)",
+    "quote": "\"Il n'y a pas de vent favorable pour celui qui ne sait pas vers quel port il navigue.\" — Sénèque"
   }
 }

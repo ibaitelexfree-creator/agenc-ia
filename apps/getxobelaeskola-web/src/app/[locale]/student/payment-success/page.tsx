@@ -14,6 +14,7 @@ function SuccessContent() {
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [showWarning, setShowWarning] = useState(false);
+    const t = useTranslations('payment_success_page');
 
     useEffect(() => {
         setMounted(true);
@@ -94,7 +95,6 @@ function SuccessContent() {
 
     const isMembership = type === 'membership';
     const isRental = type === 'rental';
-    const isCourse = type === 'course';
 
     return (
         <main className="min-h-screen bg-nautical-deep flex items-center justify-center pt-24 pb-12 px-4 relative overflow-hidden">
@@ -124,18 +124,18 @@ function SuccessContent() {
 
                         <h1 className="text-4xl md:text-6xl font-display italic text-sea-foam mb-6 tracking-tight">
                             {showWarning 
-                                ? 'Pago Recibido' 
-                                : (isMembership ? 'Bienvenido a Bordo' : isRental ? 'Reserva Confirmada' : 'Inscripción Listos')}
+                                ? t('title_warning') 
+                                : (isMembership ? t('title_membership') : isRental ? t('title_rental') : t('title_course'))}
                         </h1>
 
                         <p className="text-lg text-sea-foam/60 font-light max-w-md mx-auto mb-12 leading-relaxed">
                             {showWarning
-                                ? 'El banco ha confirmado el pago, pero la activación automática en nuestro sistema está tardando un poco más. No te preocupes: tu reserva/inscripción está a salvo. Recibirás un correo de confirmación pronto. Si no aparece en tu panel en unos minutos, escríbenos a info@getxobelaeskola.com.'
+                                ? t('desc_warning')
                                 : (isMembership
-                                    ? 'Tu suscripción de socio ha sido activada correctamente. Ahora tienes acceso a tarifas exclusivas y ventajas en toda nuestra flota.'
+                                    ? t('desc_membership')
                                     : isRental
-                                        ? 'Hemos registrado tu reserva de material. Recibirás un correo con los detalles y el código de acceso si es necesario.'
-                                        : 'Tu plaza en el curso ha sido reservada con éxito. Ya puedes acceder al material teórico desde tu panel de alumno.')}
+                                        ? t('desc_rental')
+                                        : t('desc_course'))}
                         </p>
 
                         {/* Order Confirmation Mockup */}
@@ -143,23 +143,23 @@ function SuccessContent() {
                             <div className="absolute top-0 left-0 w-1 h-full bg-brass-gold transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
 
                             <div className="flex justify-between text-[10px] uppercase tracking-widest text-sea-foam/40 font-bold">
-                                <span>{loading ? 'Verificando...' : 'Transacción'}</span>
+                                <span>{loading ? t('label_verifying') : t('label_transaction')}</span>
                                 <span>#{sessionId?.slice(-8).toUpperCase() || 'PAGO-OK'}</span>
                             </div>
 
                             <div className="h-px bg-black/10 w-full" />
 
                             <div className="space-y-1">
-                                <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">Estado</p>
+                                <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">{t('label_status')}</p>
                                 <p className="text-sea-foam text-sm font-medium flex items-center gap-2">
                                     <span className={`w-2 h-2 rounded-full ${loading ? 'bg-yellow-400 animate-pulse' : (details ? 'bg-sea-foam shadow-[0_0_8px_#4fd1c5]' : 'bg-amber-500 animate-pulse')}`} />
-                                    {loading ? 'Verificando con el banco...' : (details ? 'Completado y Verificado' : 'Sincronizando...')}
+                                    {loading ? t('status_checking') : (details ? t('status_completed') : t('status_syncing'))}
                                 </p>
                             </div>
 
                             {details?.servicios_alquiler && (
                                 <div className="space-y-1 animate-in fade-in slide-in-from-left-4 duration-500">
-                                    <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">Servicio</p>
+                                    <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">{t('label_service')}</p>
                                     <p className="text-sea-foam text-sm font-medium">{details.servicios_alquiler.nombre_es}</p>
                                     <p className="text-sea-foam/40 text-[10px] italic">
                                         {details.fecha_reserva} - {details.hora_inicio.slice(0, 5)}
@@ -169,18 +169,18 @@ function SuccessContent() {
 
                             {details?.cursos && (
                                 <div className="space-y-1 animate-in fade-in slide-in-from-left-4 duration-500">
-                                    <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">Curso</p>
+                                    <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">{t('label_course')}</p>
                                     <p className="text-sea-foam text-sm font-medium">{details.cursos.nombre_es}</p>
                                     {details.metadata?.start_date && (
                                         <p className="text-sea-foam/40 text-[10px] italic">
-                                            Empieza: {new Date(details.metadata.start_date).toLocaleDateString()}
+                                            {t('label_starts')} {new Date(details.metadata.start_date).toLocaleDateString()}
                                         </p>
                                     )}
                                 </div>
                             )}
 
                             <div className="space-y-1">
-                                <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">Referencia</p>
+                                <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">{t('label_reference')}</p>
                                 <p className="text-sea-foam text-sm font-medium">Getxo Bela Eskola</p>
                             </div>
                         </div>
@@ -191,13 +191,13 @@ function SuccessContent() {
                                 href="/"
                                 className="w-full py-5 bg-brass-gold text-nautical-black font-black uppercase tracking-[0.2em] text-[11px] rounded-sm hover:bg-white transition-all shadow-[0_10px_30px_rgba(184,134,11,0.2)] hover:-translate-y-1 active:scale-95 duration-300"
                             >
-                                Ir al Inicio
+                                {t('btn_home')}
                             </Link>
                             <Link
                                 href="/student/dashboard"
                                 className="w-full py-5 border border-black/10 text-sea-foam font-bold uppercase tracking-[0.2em] text-[11px] rounded-sm hover:bg-black/5 transition-all hover:border-black/30 hover:-translate-y-1 active:scale-95 duration-300"
                             >
-                                Mi Panel Personal →
+                                {t('btn_dashboard')}
                             </Link>
 
                             {/* Hidden Dev link to Supabase */}
@@ -208,7 +208,7 @@ function SuccessContent() {
                                     rel="noopener noreferrer"
                                     className="col-span-1 sm:col-span-2 text-[9px] uppercase tracking-widest text-sea-foam/20 hover:text-sea-foam/50 mt-4 text-center block"
                                 >
-                                    Ver en Supabase (Admin)
+                                    {t('admin_supabase')}
                                 </a>
                             )}
                         </div>
@@ -217,7 +217,7 @@ function SuccessContent() {
 
                 {/* Footer Quote */}
                 <p className="text-center mt-12 text-sea-foam/30 text-xs italic font-serif">
-                    "No hay viento favorable para quien no sabe a qué puerto se dirige." — Séneca
+                    {t('quote')}
                 </p>
             </div>
         </main>
@@ -225,8 +225,9 @@ function SuccessContent() {
 }
 
 export default function PaymentSuccessPage() {
+    const t = useTranslations('payment_success_page');
     return (
-        <Suspense fallback={<div className="min-h-screen bg-nautical-deep flex items-center justify-center text-sea-foam">Cargando confirmación...</div>}>
+        <Suspense fallback={<div className="min-h-screen bg-nautical-deep flex items-center justify-center text-sea-foam">{t('loading_confirm')}</div>}>
             <SuccessContent />
         </Suspense>
     );

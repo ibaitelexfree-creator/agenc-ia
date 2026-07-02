@@ -82,7 +82,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                         <div className="text-2xl font-black text-black italic tracking-tighter">
                             {currentProfile?.xp || 0} <span className="text-accent text-xs">XP</span>
                         </div>
-                        <div className="text-[8px] uppercase tracking-[0.3em] text-black/30 font-bold">Puntos de Experiencia</div>
+                        <div className="text-[8px] uppercase tracking-[0.3em] text-black/30 font-bold">{t('experience_points')}</div>
                     </div>
                 </div>
 
@@ -110,7 +110,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                         onClick={() => setIsChildrenOpen(true)}
                         className="w-full py-3 border border-black/5 text-3xs uppercase tracking-widest hover:bg-black/5 transition-colors text-black/60 hover:text-black"
                     >
-                        Mis Hijos / Familiares
+                        {t('my_family')}
                     </button>
 
                     {isSocio && (

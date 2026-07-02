@@ -1056,7 +1056,9 @@
     "managing_subscription": "Gestionar Suscripción",
     "membership_card": "Mi Carnet de Socio",
     "loading": "Cargando...",
-    "portal_error": "Error al abrir el portal de pagos"
+    "portal_error": "Error al abrir el portal de pagos",
+    "experience_points": "Puntos de Experiencia",
+    "my_family": "Mis Hijos / Familiares"
   },
   "nautical_radar": {
     "title": "Radar de Navegación \"Puente de Mando\"",
@@ -1970,5 +1972,30 @@
     "btn_home": "Ir a Inicio",
     "btn_dashboard": "Área de Usuario",
     "btn_continue": "Continuar con mi Reserva"
+  },
+  "payment_success_page": {
+    "loading_confirm": "Cargando confirmación...",
+    "title_warning": "Pago Recibido",
+    "title_membership": "Bienvenido a Bordo",
+    "title_rental": "Reserva Confirmada",
+    "title_course": "Inscripción Lista",
+    "desc_warning": "El banco ha confirmado el pago, pero la activación automática en nuestro sistema está tardando un poco más. No te preocupes: tu reserva/inscripción está a salvo. Recibirás un correo de confirmación pronto. Si no aparece en tu panel en unos minutos, escríbenos a info@getxobelaeskola.com.",
+    "desc_membership": "Tu suscripción de socio ha sido activada correctamente. Ahora tienes acceso a tarifas exclusivas y ventajas en toda nuestra flota.",
+    "desc_rental": "Hemos registrado tu reserva de material. Recibirás un correo con los detalles y el código de acceso si es necesario.",
+    "desc_course": "Tu plaza en el curso ha sido reservada con éxito. Ya puedes acceder al material teórico desde tu panel de alumno.",
+    "label_verifying": "Verificando...",
+    "label_transaction": "Transacción",
+    "label_status": "Estado",
+    "status_checking": "Verificando con el banco...",
+    "status_completed": "Completado y Verificado",
+    "status_syncing": "Sincronizando...",
+    "label_service": "Servicio",
+    "label_course": "Curso",
+    "label_starts": "Empieza:",
+    "label_reference": "Referencia",
+    "btn_home": "Ir al Inicio",
+    "btn_dashboard": "Mi Panel Personal →",
+    "admin_supabase": "Ver en Supabase (Admin)",
+    "quote": "\"No hay viento favorable para quien no sabe a qué puerto se dirige.\" — Séneca"
   }
 }
