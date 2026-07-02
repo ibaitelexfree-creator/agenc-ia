@@ -39,6 +39,68 @@ export async function POST(request: Request) {
 
         const { data: profile } = await supabase.from('profiles').select('nombre, apellidos, status_socio, avatar_url, dni').eq('id', user.id).single();
 
+        // --- SAVE REGISTRATION DETAILS BACK TO PROFILE / CHILDREN LIST ---
+        if (registrationDetails) {
+            const partNombre = (registrationDetails?.nombre || '').trim().toLowerCase();
+            const partApellidos = (registrationDetails?.apellidos || '').trim().toLowerCase();
+            const partDni = (registrationDetails?.dni || '').trim().toUpperCase();
+
+            const parentNombre = (profile?.nombre || '').trim().toLowerCase();
+            const parentApellidos = (profile?.apellidos || '').trim().toLowerCase();
+            const parentDni = (profile?.dni || '').trim().toUpperCase();
+
+            // Check if the participant is the parent
+            const isParentParticipant = 
+                (partNombre && parentNombre && partNombre === parentNombre) ||
+                (partDni && parentDni && partDni === parentDni);
+
+            if (isParentParticipant) {
+                // Update parent profile with latest details
+                await supabase.from('profiles').update({
+                    dni: registrationDetails.dni || profile?.dni,
+                    telefono: registrationDetails.telefono || profile?.telefono,
+                    domicilio: registrationDetails.domicilio || profile?.domicilio,
+                    localidad: registrationDetails.localidad || profile?.localidad,
+                    codigo_postal: registrationDetails.codigo_postal || profile?.codigo_postal,
+                    fecha_nacimiento: registrationDetails.fecha_nacimiento || profile?.fecha_nacimiento
+                }).eq('id', user.id);
+            } else {
+                // Update child profile in avatar_url list
+                if (profile?.avatar_url && profile.avatar_url.startsWith('children_json:')) {
+                    try {
+                        const children = JSON.parse(profile.avatar_url.replace('children_json:', ''));
+                        let updated = false;
+                        const nextChildren = children.map((c: any) => {
+                            const cNombre = (c.nombre || '').trim().toLowerCase();
+                            const cApellidos = (c.apellidos || '').trim().toLowerCase();
+                            const cDni = (c.dni || '').trim().toUpperCase();
+
+                            const match = (cNombre && partNombre && cNombre === partNombre) || (cDni && partDni && cDni === partDni);
+                            if (match) {
+                                updated = true;
+                                return {
+                                    ...c,
+                                    dni: registrationDetails.dni || c.dni,
+                                    fecha_nacimiento: registrationDetails.fecha_nacimiento || c.fecha_nacimiento,
+                                    sabe_nadar: registrationDetails.sabe_nadar || c.sabe_nadar,
+                                    necesidades_especiales: registrationDetails.necesidades_especiales || c.necesidades_especiales
+                                };
+                            }
+                            return c;
+                        });
+
+                        if (updated) {
+                            await supabase.from('profiles').update({
+                                avatar_url: 'children_json:' + JSON.stringify(nextChildren)
+                            }).eq('id', user.id);
+                        }
+                    } catch (e) {
+                        console.error('Error updating child details on checkout:', e);
+                    }
+                }
+            }
+        }
+
         const origin = getPublicOrigin(request);
 
         let course: Course | null = null;
