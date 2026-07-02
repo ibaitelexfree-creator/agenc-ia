@@ -82,7 +82,9 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                     if (hasAnyMember) {
                         setIsMemberDiscountChecked(true);
                     }
-                    
+                }
+
+                if (hasBookParam || hasTryDiscount) {
                     // Clean up URL parameters without reloading
                     const cleanUrl = window.location.pathname;
                     window.history.replaceState({}, '', cleanUrl);
