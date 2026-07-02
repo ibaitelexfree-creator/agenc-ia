@@ -42,6 +42,7 @@ const nextConfig = {
                 source: '/:path*',
                 headers: [
                     { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+                    { key: 'Content-Security-Policy', value: "frame-ancestors 'self' https://getxobelaeskola.cloud https://www.getxobelaeskola.cloud https://*.getxobelaeskola.cloud" },
                     { key: 'X-Content-Type-Options', value: 'nosniff' },
                     { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
                 ],
