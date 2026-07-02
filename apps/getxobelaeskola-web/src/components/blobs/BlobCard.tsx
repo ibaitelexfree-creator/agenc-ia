@@ -53,14 +53,19 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [])
 
-  // Lazy load video only when hovered (desktop only, disable on mobile to save bandwidth/TBT)
+  // Staggered video loading to optimize initial bandwidth usage on mount
   useEffect(() => {
-    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches
-    if (isMobileDevice) return
-    if (isHovered) {
+    if (!pageLoaded) return
+    
+    // Auto-load videos in sequence: Card 0 starts preloading at 1000ms, Card 1 at 2200ms, Card 2 at 3400ms, etc.
+    const staggerLoadDelay = 1000 + (index * 1200)
+    
+    const timer = setTimeout(() => {
       setLoadVideo(true)
-    }
-  }, [isHovered])
+    }, staggerLoadDelay)
+    
+    return () => clearTimeout(timer)
+  }, [pageLoaded, index])
 
   // Check if the video is already cached/loaded when loadVideo triggers
   useEffect(() => {
@@ -107,18 +112,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     mass: 1.2
   })
 
-  // Control de reproducción del video (hover en desktop / inView en mobile)
+  // Control de reproducción del video (play automatically once loaded/ready)
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    const shouldPlay = isHovered || inView
-    if (shouldPlay) {
+    if (loadVideo) {
       video.play().catch(() => {})
-    } else {
-      video.pause()
-      video.currentTime = 0
     }
-  }, [isHovered, inView, loadVideo])
+  }, [loadVideo, videoReady])
 
   // Intersection Observer para activar en mobile al estar al centro de la pantalla
   useEffect(() => {
@@ -347,7 +348,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               height="100"
               preserveAspectRatio="xMidYMid slice"
               style={{
-                opacity: isHovered || inView ? 0 : 1,
+                opacity: videoReady ? 0 : 1,
                 transition: 'opacity 0.4s'
               }}
             />
@@ -367,7 +368,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    opacity: isHovered || inView ? 1 : 0,
+                    opacity: videoReady ? 1 : 0,
                     transition: 'opacity 0.4s',
                   }}
                 >
