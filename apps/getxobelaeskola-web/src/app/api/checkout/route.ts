@@ -37,7 +37,7 @@ export async function POST(request: Request) {
         const { user, supabase, error: authError } = await requireAuth();
         if (authError || !user) return authError || NextResponse.json({ error: 'No autorizado' }, { status: 401 });
 
-        const { data: profile } = await supabase.from('profiles').select('nombre, apellidos').eq('id', user.id).single();
+        const { data: profile } = await supabase.from('profiles').select('nombre, apellidos, status_socio, avatar_url, dni').eq('id', user.id).single();
 
         const origin = getPublicOrigin(request);
 
@@ -157,7 +157,51 @@ export async function POST(request: Request) {
 
             return NextResponse.json({ url: `${origin}/${locale}/student/dashboard?success=true` });
         }
-        // -------------------------
+        // --- MEMBERSHIP VERIFICATION (Strict validation) ---
+        if (isMember) {
+            const partNombre = (registrationDetails?.nombre || '').trim().toLowerCase();
+            const partApellidos = (registrationDetails?.apellidos || '').trim().toLowerCase();
+            const partDni = (registrationDetails?.dni || '').trim().toUpperCase();
+
+            const parentNombre = (profile?.nombre || '').trim().toLowerCase();
+            const parentApellidos = (profile?.apellidos || '').trim().toLowerCase();
+            const parentDni = (profile?.dni || '').trim().toUpperCase();
+
+            // Check if the participant is the parent
+            const isParentParticipant = 
+                (partNombre && parentNombre && partNombre === parentNombre) ||
+                (partDni && parentDni && partDni === parentDni);
+
+            if (isParentParticipant) {
+                if (profile?.status_socio !== 'activo') {
+                    return NextResponse.json({ error: 'El participante seleccionado (tú) no tiene una membresía de socio activa.' }, { status: 400 });
+                }
+            } else {
+                // If not the parent, check the children list
+                let childMatch = null;
+                if (profile?.avatar_url && profile.avatar_url.startsWith('children_json:')) {
+                    try {
+                        const children = JSON.parse(profile.avatar_url.replace('children_json:', ''));
+                        childMatch = children.find((c: any) => {
+                            const cNombre = (c.nombre || '').trim().toLowerCase();
+                            const cApellidos = (c.apellidos || '').trim().toLowerCase();
+                            const cDni = (c.dni || '').trim().toUpperCase();
+                            return (cNombre && partNombre && cNombre === partNombre) || (cDni && partDni && cDni === partDni);
+                        });
+                    } catch (e) {
+                        console.error('Error parsing children list in checkout verification:', e);
+                    }
+                }
+
+                if (!childMatch) {
+                    return NextResponse.json({ error: 'No se pudo verificar la identidad del participante en tu ficha de familiares.' }, { status: 400 });
+                }
+
+                if (!childMatch.is_member) {
+                    return NextResponse.json({ error: `El participante ${childMatch.nombre} no tiene una membresía de socio activa.` }, { status: 400 });
+                }
+            }
+        }
 
         // --- STRIPE CHECKOUT (Price > 0) ---
 

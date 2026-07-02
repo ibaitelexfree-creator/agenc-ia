@@ -51,6 +51,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
         setMounted(true);
         const params = new URLSearchParams(window.location.search);
         const hasBookParam = params.get('book') === 'true';
+        const hasTryDiscount = params.get('tryMemberDiscount') === 'true';
 
         const checkUser = async () => {
             const { data: { user } } = await supabase.auth.getUser();
@@ -58,29 +59,40 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
             if (user) {
                 if (hasBookParam) {
                     setIsLegalModalOpen(true);
-                    
-                    // Clean up URL parameters without reloading
-                    const cleanUrl = window.location.pathname;
-                    window.history.replaceState({}, '', cleanUrl);
                 }
                 const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
                 setProfile(profile);
                 
+                let parsedChildren: any[] = [];
                 if (profile && profile.avatar_url && profile.avatar_url.startsWith('children_json:')) {
                     try {
                         const parsed = JSON.parse(profile.avatar_url.replace('children_json:', ''));
                         if (Array.isArray(parsed)) {
                             setChildrenList(parsed);
+                            parsedChildren = parsed;
                         }
                     } catch (e) {
                         console.error('Error parsing children list in BookingSelector:', e);
                     }
+                }
+
+                if (hasTryDiscount) {
+                    // Check if there is ANY member in the account
+                    const hasAnyMember = (profile?.status_socio === 'activo') || parsedChildren.some((c: any) => c.is_member);
+                    if (hasAnyMember) {
+                        setIsMemberDiscountChecked(true);
+                    }
+                    
+                    // Clean up URL parameters without reloading
+                    const cleanUrl = window.location.pathname;
+                    window.history.replaceState({}, '', cleanUrl);
                 }
             }
         };
         checkUser();
     }, []);
 
+    // Set default discount check only if the selected participant is a member
     useEffect(() => {
         if (selectedParticipant) {
             setIsMemberDiscountChecked(!!selectedParticipant.is_member);
@@ -180,6 +192,41 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
             router.replace(`${window.location.pathname}?${params.toString()}`, { scroll: false });
             setLoading(false);
         }
+    };
+
+    const handleCheckboxChange = (checked: boolean) => {
+        if (!user) {
+            const locale = window.location.pathname.split('/')[1] || 'es';
+            const returnToUrl = `${window.location.pathname}?book=true&tryMemberDiscount=true`;
+            router.push(`/${locale}/auth/login?returnTo=${encodeURIComponent(returnToUrl)}`);
+            return;
+        }
+
+        if (checked) {
+            // Check if there is ANY member in the account (self or children)
+            const hasAnyMember = (profile?.status_socio === 'activo') || childrenList.some(c => c.is_member);
+            if (!hasAnyMember) {
+                alert("No se ha encontrado ninguna membresía activa de socio para tu cuenta o familiares. Para obtener el descuento del 50%, debes ser socio oficial.");
+                setIsMemberDiscountChecked(false);
+                return;
+            }
+
+            // Verify if the CURRENTLY selected participant is the member!
+            if (selectedParticipant) {
+                if (!selectedParticipant.is_member) {
+                    alert(`El participante seleccionado (${selectedParticipant.nombre}) no es socio. Para aplicar el descuento, el participante inscrito debe tener una membresía de socio activa.`);
+                    setIsMemberDiscountChecked(false);
+                    return;
+                }
+            } else {
+                if (profile?.status_socio !== 'activo') {
+                    alert("Tú (titular de la cuenta) no tienes una membresía de socio activa. Para aplicar el descuento, el participante inscrito debe ser socio.");
+                    setIsMemberDiscountChecked(false);
+                    return;
+                }
+            }
+        }
+        setIsMemberDiscountChecked(checked);
     };
 
     const formatDate = (dateStr: string) => {
@@ -295,11 +342,28 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                             <select
                                 onChange={(e) => {
                                     const val = e.target.value;
+                                    let nextParticipant = null;
                                     if (val === 'self') {
-                                        setSelectedParticipant(null);
+                                        nextParticipant = null;
                                     } else {
                                         const child = childrenList.find(c => c.id === val);
-                                        setSelectedParticipant(child || null);
+                                        nextParticipant = child || null;
+                                    }
+                                    setSelectedParticipant(nextParticipant);
+
+                                    // If member discount was checked, verify if the new participant is a member
+                                    if (isMemberDiscountChecked) {
+                                        if (nextParticipant) {
+                                            if (!nextParticipant.is_member) {
+                                                alert(`El participante seleccionado (${nextParticipant.nombre}) no es socio. Se ha desactivado el descuento de socio.`);
+                                                setIsMemberDiscountChecked(false);
+                                            }
+                                        } else {
+                                            if (profile?.status_socio !== 'activo') {
+                                                alert("No tienes una membresía de socio activa. Se ha desactivado el descuento de socio.");
+                                                setIsMemberDiscountChecked(false);
+                                            }
+                                        }
                                     }
                                 }}
                                 className="w-full bg-nautical-deep border border-white/10 p-3 text-sea-foam focus:border-accent outline-none text-sm cursor-pointer hover:bg-white/5"
@@ -319,7 +383,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                             <input
                                 type="checkbox"
                                 checked={isMemberDiscountChecked}
-                                onChange={(e) => setIsMemberDiscountChecked(e.target.checked)}
+                                onChange={(e) => handleCheckboxChange(e.target.checked)}
                                 className="w-5 h-5 accent-accent mt-0.5"
                             />
                             <div>
