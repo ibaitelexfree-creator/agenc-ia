@@ -88,10 +88,6 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     const isAcademy = pathname?.includes('/academy');
     const isAuth = pathname?.includes('/auth/');
 
-    if (isAcademy || isAuth) {
-        return null;
-    }
-
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -160,6 +156,10 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, [pathname, locale]);
+
+    if (isAcademy || isAuth) {
+        return null;
+    }
 
     // Restructured navigation tree according to requirements
     const navItems: NavItem[] = [
