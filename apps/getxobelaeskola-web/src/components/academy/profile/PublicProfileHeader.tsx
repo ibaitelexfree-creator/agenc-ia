@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { User } from 'lucide-react';
 
@@ -13,15 +16,19 @@ interface PublicProfileHeaderProps {
 }
 
 export default function PublicProfileHeader({ profile }: PublicProfileHeaderProps) {
+    const [imgError, setImgError] = useState(false);
+    const hasAvatar = profile.avatar_url && !imgError;
+
     return (
         <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-accent/20 bg-white/5 flex items-center justify-center">
-                {profile.avatar_url ? (
+                {hasAvatar ? (
                     <Image
-                        src={profile.avatar_url}
+                        src={profile.avatar_url!}
                         alt={`${profile.nombre} ${profile.apellidos}`}
                         fill
                         className="object-cover"
+                        onError={() => setImgError(true)}
                     />
                 ) : (
                     <User size={48} className="text-white/20" />

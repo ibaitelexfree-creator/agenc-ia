@@ -32,7 +32,7 @@ export default function MobileProfileClient({
     const router = useRouter();
     const supabase = createClient();
 
-    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.png');
+    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.webp');
 
     useEffect(() => {
         async function loadProfile() {
@@ -59,10 +59,10 @@ export default function MobileProfileClient({
             setCurrentEmail(user.email || '');
 
             const { data: profile } = await supabase
-                .from('profiles')
-                .select('*')
-                .eq('id', user.id)
-                .single();
+                 .from('profiles')
+                 .select('*')
+                 .eq('id', user.id)
+                 .single();
 
             if (profile) {
                 setCurrentProfile(profile);
@@ -106,6 +106,7 @@ export default function MobileProfileClient({
                             alt={currentProfile?.nombre || 'Student'}
                             fill
                             className="object-cover"
+                            onError={() => setAvatarSrc('/images/default-student-avatar.webp')}
                         />
                     </div>
                     <h1 className="text-2xl font-display text-white">

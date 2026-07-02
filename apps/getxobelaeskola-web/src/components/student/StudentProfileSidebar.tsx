@@ -24,7 +24,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
     const [currentProfile, setCurrentProfile] = useState<Profile>(profile);
     const [portalLoading, setPortalLoading] = useState(false);
 
-    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.png');
+    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.webp');
     const supabase = createClient();
 
     // Scroll to top on mount and fetch Google profile pic if exists
@@ -84,6 +84,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                             alt={currentProfile?.nombre || 'Student'}
                             fill
                             className="object-cover"
+                            onError={() => setAvatarSrc('/images/default-student-avatar.webp')}
                         />
                     </div>
                     <h3 className="text-xl font-display italic text-black">{currentProfile?.nombre} {currentProfile?.apellidos}</h3>

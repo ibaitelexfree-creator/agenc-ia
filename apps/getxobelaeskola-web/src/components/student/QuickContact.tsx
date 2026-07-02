@@ -11,7 +11,7 @@ export default function QuickContact() {
     const email = "info@getxobelaeskola.com";
 
     return (
-        <section className="bg-card p-6 border border-card-border rounded-sm relative overflow-hidden group">
+        <section className="bg-white p-6 border border-black/10 rounded-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 text-4xl pointer-events-none group-hover:scale-110 transition-transform">💬</div>
             <h3 className="text-[10px] uppercase tracking-[0.3em] text-accent font-black mb-6 flex items-center gap-2">
                 <span className="w-4 h-[1px] bg-accent/30"></span>
@@ -29,31 +29,31 @@ export default function QuickContact() {
                         <MessageCircle size={20} />
                     </div>
                     <div>
-                        <p className="text-white text-xs font-bold uppercase tracking-widest">{t('whatsapp_title')}</p>
-                        <p className="text-white/60 text-[10px]">{t('whatsapp_desc')}</p>
+                        <p className="text-black text-xs font-bold uppercase tracking-widest">{t('whatsapp_title')}</p>
+                        <p className="text-black/60 text-[10px]">{t('whatsapp_desc')}</p>
                     </div>
                 </a>
 
                 <a
                     href={`mailto:${email}`}
-                    className="flex items-center gap-4 p-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-sm transition-all group/item"
+                    className="flex items-center gap-4 p-4 bg-black/5 hover:bg-black/10 border border-black/10 rounded-sm transition-all group/item"
                 >
-                    <div className="w-10 h-10 bg-white/10 flex items-center justify-center rounded-full text-white/60 group-hover/item:scale-110 transition-transform">
+                    <div className="w-10 h-10 bg-black/5 flex items-center justify-center rounded-full text-black/60 group-hover/item:scale-110 transition-transform">
                         <Mail size={20} />
                     </div>
                     <div>
-                        <p className="text-white text-xs font-bold uppercase tracking-widest">{t('email_title')}</p>
-                        <p className="text-white/60 text-[10px]">{t('email_desc')}</p>
+                        <p className="text-black text-xs font-bold uppercase tracking-widest">{t('email_title')}</p>
+                        <p className="text-black/60 text-[10px]">{t('email_desc')}</p>
                     </div>
                 </a>
             </div>
 
-            <div className="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+            <div className="mt-6 pt-6 border-t border-black/10 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-widest text-white/50 font-bold italic">{t('status_online')}</span>
+                    <span className="text-[9px] uppercase tracking-widest text-black/50 font-bold italic">{t('status_online')}</span>
                 </div>
-                <span className="text-[9px] text-white/40">{t('hours')}</span>
+                <span className="text-[9px] text-black/40">{t('hours')}</span>
             </div>
         </section>
     );

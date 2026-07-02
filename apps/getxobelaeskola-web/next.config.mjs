@@ -15,6 +15,7 @@ const nextConfig = {
             { protocol: 'https', hostname: 'images.pexels.com' },
             { protocol: 'https', hostname: '**.supabase.co' },
             { protocol: 'https', hostname: 'getxobelaeskola.cloud' },
+            { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
         ],
     },
     eslint: { ignoreDuringBuilds: true },
