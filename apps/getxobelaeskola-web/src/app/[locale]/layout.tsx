@@ -16,6 +16,8 @@ import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
 import { FramerProvider } from '@/components/providers/FramerProvider';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -70,6 +72,8 @@ export default async function LocaleLayout({
               <Suspense fallback={null}>
                 <StatusToast />
               </Suspense>
+              <Analytics />
+              <SpeedInsights />
             </FramerProvider>
           </AcademyFeedbackProvider>
         </NextIntlClientProvider>
