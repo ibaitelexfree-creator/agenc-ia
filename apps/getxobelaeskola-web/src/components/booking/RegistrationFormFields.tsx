@@ -3,6 +3,19 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
+const calculateAge = (birthDateString: string) => {
+    if (!birthDateString) return null;
+    const today = new Date();
+    const birthDate = new Date(birthDateString);
+    if (isNaN(birthDate.getTime())) return null;
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+};
+
 export type ActivityType = 'course' | 'rental' | 'udalekus' | 'membership' | 'training';
 
 interface RegistrationFormFieldsProps {
@@ -65,6 +78,11 @@ export default function RegistrationFormFields({
         options?: string[]
     ) => {
         const error = errors[name];
+        const isBirthDate = name === 'fecha_nacimiento';
+        const birthDateVal = formData[name];
+        const age = isBirthDate && birthDateVal ? calculateAge(birthDateVal) : null;
+        const isMinor = age !== null && age < 18;
+
         return (
             <div className="space-y-2">
                 <label className="text-3xs uppercase tracking-widest text-accent font-bold block">
@@ -111,6 +129,14 @@ export default function RegistrationFormFields({
                     />
                 )}
                 {error && <p className="text-red-400 text-xs mt-1">⚠️ {error}</p>}
+                {isBirthDate && isMinor && (
+                    <div className="p-3 border border-red-500/30 bg-red-500/5 text-red-500 rounded-sm space-y-1 mt-2">
+                        <p className="text-xs font-bold">⚠️ {t('underage_detected')}</p>
+                        <p className="text-[10px] text-red-400 font-medium">
+                            {t('tutor_required_notice')}
+                        </p>
+                    </div>
+                )}
             </div>
         );
     };
@@ -371,24 +397,16 @@ export default function RegistrationFormFields({
             );
 
         case 'course':
-        default:
+        default: {
+            const age = calculateAge(formData.fecha_nacimiento);
+            const isMinor = age !== null && age < 18;
             return (
                 <div className="space-y-8">
                     {renderParticipantFields()}
-                    <div className="p-4 border border-black/5 bg-black/[0.02]">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={!!formData.is_minor}
-                                onChange={(e) => handleInputChange('is_minor', e.target.checked)}
-                                className="w-5 h-5 accent-accent"
-                            />
-                            <span className="text-sm font-bold text-sea-foam/80">{t('is_minor')}</span>
-                        </label>
-                    </div>
-                    {formData.is_minor && renderTutorFields('tutor1', t('tutor_title'))}
+                    {renderTutorFields('tutor1', t('tutor_title'), isMinor)}
                     {renderPaymentAndBankFields()}
                 </div>
             );
+        }
     }
 }

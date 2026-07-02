@@ -6,6 +6,19 @@ import { validateIdentityDocument, validateEmail, DocumentType } from '@/lib/uti
 import { useTranslations } from 'next-intl';
 import RegistrationFormFields from '../booking/RegistrationFormFields';
 
+const calculateAge = (birthDateString: string) => {
+    if (!birthDateString) return null;
+    const today = new Date();
+    const birthDate = new Date(birthDateString);
+    if (isNaN(birthDate.getTime())) return null;
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+};
+
 export type ActivityType = 'course' | 'rental' | 'udalekus' | 'membership' | 'training';
 
 interface LegalConsentModalProps {
@@ -165,7 +178,10 @@ export default function LegalConsentModal({
                         if (!registrationDetails.titular_cuenta) errors.titular_cuenta = tV('titular_required');
                     }
 
-                    if (registrationDetails.is_minor) {
+                    const age = calculateAge(registrationDetails.fecha_nacimiento);
+                    const isMinor = age !== null && age < 18;
+
+                    if (isMinor) {
                         if (!registrationDetails.tutor1?.nombre) errors['tutor1.nombre'] = tV('tutor_name_required');
                         if (!registrationDetails.tutor1?.apellidos) errors['tutor1.apellidos'] = tV('tutor_surnames_required');
                         if (!registrationDetails.tutor1?.dni) {

@@ -324,10 +324,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                             />
                             <div>
                                 <span className="text-sm font-bold text-sea-foam/95 block">
-                                    El participante es socio de la escuela
-                                </span>
-                                <span className="text-[10px] text-sea-foam/50 block leading-tight mt-0.5">
-                                    Tiene membresía mensual activa en Stripe y está al corriente de pago.
+                                    {t('is_member')}
                                 </span>
                             </div>
                         </label>
@@ -335,7 +332,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
 
                     {isMemberDiscountChecked && (
                         <div className="text-[10px] text-accent font-bold uppercase tracking-wider pl-1">
-                            ⚡ ¡50% de Descuento de socio aplicado!
+                            {t('member_discount_applied')}
                         </div>
                     )}
                 </div>
