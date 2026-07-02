@@ -78,7 +78,7 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
                 </div>
             )}
 
-            {!isAuth && (
+            {!isAuth && isAcademy && (
                 <>
                     <NotificationContainer />
                     <RealtimeNotifications />
