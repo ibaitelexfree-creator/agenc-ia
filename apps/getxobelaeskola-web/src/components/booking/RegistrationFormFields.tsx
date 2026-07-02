@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 const calculateAge = (birthDateString: string) => {
     if (!birthDateString) return null;
@@ -14,6 +14,33 @@ const calculateAge = (birthDateString: string) => {
         age--;
     }
     return age;
+};
+
+const parseDateString = (dateStr: string) => {
+    if (!dateStr) return { day: '', month: '', year: '' };
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+        return {
+            year: parts[0],
+            month: parts[1],
+            day: parts[2]
+        };
+    }
+    return { day: '', month: '', year: '' };
+};
+
+const getDaysInMonth = (monthStr: string, yearStr: string) => {
+    const month = parseInt(monthStr, 10);
+    const year = parseInt(yearStr, 10);
+    if (!month) return 31;
+    if ([4, 6, 9, 11].includes(month)) return 30;
+    if (month === 2) {
+        if (year && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
+            return 29;
+        }
+        return 28;
+    }
+    return 31;
 };
 
 export type ActivityType = 'course' | 'rental' | 'udalekus' | 'membership' | 'training';
@@ -32,9 +59,30 @@ export default function RegistrationFormFields({
     errors
 }: RegistrationFormFieldsProps) {
     const t = useTranslations('registration_form');
+    const locale = useLocale();
 
     const handleInputChange = (field: string, value: any) => {
         onChange({ ...formData, [field]: value });
+    };
+
+    const handleDatePartChange = (fieldName: string, part: 'day' | 'month' | 'year', value: string) => {
+        const current = parseDateString(formData[fieldName] || '');
+        const newDate = { ...current, [part]: value };
+
+        // Adjust day if selected day exceeds new month's days
+        if (newDate.month && newDate.day) {
+            const maxDays = getDaysInMonth(newDate.month, newDate.year);
+            if (parseInt(newDate.day, 10) > maxDays) {
+                newDate.day = maxDays.toString().padStart(2, '0');
+            }
+        }
+
+        if (newDate.day && newDate.month && newDate.year) {
+            const formattedDate = `${newDate.year}-${newDate.month.padStart(2, '0')}-${newDate.day.padStart(2, '0')}`;
+            handleInputChange(fieldName, formattedDate);
+        } else {
+            handleInputChange(fieldName, '');
+        }
     };
 
     const handleNestedChange = (parent: string, field: string, value: any) => {
@@ -82,6 +130,113 @@ export default function RegistrationFormFields({
         const birthDateVal = formData[name];
         const age = isBirthDate && birthDateVal ? calculateAge(birthDateVal) : null;
         const isMinor = age !== null && age < 18;
+
+        if (isBirthDate) {
+            const { day, month, year } = parseDateString(formData[name] || '');
+            const daysInMonth = getDaysInMonth(month, year);
+            const days = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString().padStart(2, '0'));
+            
+            const months = Array.from({ length: 12 }, (_, i) => {
+                const mNum = (i + 1).toString().padStart(2, '0');
+                let mName = '';
+                try {
+                    mName = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, i, 1));
+                    mName = mName.charAt(0).toUpperCase() + mName.slice(1);
+                } catch (e) {
+                    mName = mNum;
+                }
+                return { value: mNum, label: `${mNum} - ${mName}` };
+            });
+
+            const currentYear = new Date().getFullYear();
+            const maxYear = currentYear - 3;
+            const minYear = 1900;
+            const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => (maxYear - i).toString());
+
+            return (
+                <div className="space-y-2">
+                    <label className="text-3xs uppercase tracking-widest text-accent font-bold block">
+                        {label} {required && <span className="text-red-500">*</span>}
+                    </label>
+                    <div className="grid grid-cols-3 gap-3">
+                        {/* Day Selector */}
+                        <div className="relative">
+                            <select
+                                id={`${name}_day`}
+                                value={day}
+                                onChange={(e) => handleDatePartChange(name, 'day', e.target.value)}
+                                className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 pr-8 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer`}
+                            >
+                                <option value="" className="bg-nautical-black text-sea-foam/50">DD</option>
+                                {days.map((d) => (
+                                    <option key={d} value={d} className="bg-nautical-black text-sea-foam">
+                                        {d}
+                                    </option>
+                                ))}
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sea-foam/40">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        {/* Month Selector */}
+                        <div className="relative">
+                            <select
+                                id={`${name}_month`}
+                                value={month}
+                                onChange={(e) => handleDatePartChange(name, 'month', e.target.value)}
+                                className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 pr-8 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer`}
+                            >
+                                <option value="" className="bg-nautical-black text-sea-foam/50">MM</option>
+                                {months.map((m) => (
+                                    <option key={m.value} value={m.value} className="bg-nautical-black text-sea-foam">
+                                        {m.label}
+                                    </option>
+                                ))}
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sea-foam/40">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        {/* Year Selector */}
+                        <div className="relative">
+                            <select
+                                id={`${name}_year`}
+                                value={year}
+                                onChange={(e) => handleDatePartChange(name, 'year', e.target.value)}
+                                className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 pr-8 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer`}
+                            >
+                                <option value="" className="bg-nautical-black text-sea-foam/50">AAAA</option>
+                                {years.map((y) => (
+                                    <option key={y} value={y} className="bg-nautical-black text-sea-foam">
+                                        {y}
+                                    </option>
+                                ))}
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-sea-foam/40">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    {error && <p className="text-red-400 text-xs mt-1">⚠️ {error}</p>}
+                    {isMinor && (
+                        <div className="p-3 border border-red-500/30 bg-red-500/5 text-red-500 rounded-sm space-y-1 mt-2">
+                            <p className="text-xs font-bold">⚠️ {t('underage_detected')}</p>
+                            <p className="text-[10px] text-red-400 font-medium">
+                                {t('tutor_required_notice')}
+                            </p>
+                        </div>
+                    )}
+                </div>
+            );
+        }
 
         const maxDate = isBirthDate ? (() => {
             const date = new Date();

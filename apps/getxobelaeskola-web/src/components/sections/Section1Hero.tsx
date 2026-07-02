@@ -595,14 +595,14 @@ function SailboatAccesoButton() {
   const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
   const [showButton, setShowButton] = useState(true)
 
-  // Dictionary matching Navbar labels
-  const labels: Record<string, string> = {
-    es: 'Acceso',
-    eu: 'Saioa hasi',
-    en: 'Login',
-    fr: 'Connexion'
+  // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
+  const labels: Record<string, { top: string; bottom: string }> = {
+    es: { top: 'ACCESO', bottom: 'SOCIAS' },
+    eu: { top: 'BAZKIDEEN', bottom: 'SARBIDEA' },
+    en: { top: 'MEMBERS', bottom: 'ACCESS' },
+    fr: { top: 'ACCÈS', bottom: 'MEMBRES' }
   }
-  const label = labels[locale] || 'Acceso'
+  const label = labels[locale] || labels.es
 
   useEffect(() => {
     const updateSize = () => {
@@ -709,8 +709,8 @@ function SailboatAccesoButton() {
                 ease: 'easeInOut'
               }}
             >
-              <span>ACCESO</span>
-              <span>SOCIAS</span>
+              <span>{label.top}</span>
+              <span>{label.bottom}</span>
             </motion.div>
           </Link>
         </motion.div>

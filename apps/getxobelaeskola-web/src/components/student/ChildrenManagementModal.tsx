@@ -1,9 +1,36 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { apiUrl } from '@/lib/api';
 import { Profile } from '@/types/student';
+
+const parseDateString = (dateStr: string) => {
+    if (!dateStr) return { day: '', month: '', year: '' };
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+        return {
+            year: parts[0],
+            month: parts[1],
+            day: parts[2]
+        };
+    }
+    return { day: '', month: '', year: '' };
+};
+
+const getDaysInMonth = (monthStr: string, yearStr: string) => {
+    const month = parseInt(monthStr, 10);
+    const year = parseInt(yearStr, 10);
+    if (!month) return 31;
+    if ([4, 6, 9, 11].includes(month)) return 30;
+    if (month === 2) {
+        if (year && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
+            return 29;
+        }
+        return 28;
+    }
+    return 31;
+};
 
 interface Child {
     id: string;
@@ -29,6 +56,7 @@ export default function ChildrenManagementModal({
     profile,
     onProfileUpdate
 }: ChildrenManagementModalProps) {
+    const locale = useLocale();
     const [children, setChildren] = useState<Child[]>([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [editingChildId, setEditingChildId] = useState<string | null>(null);
@@ -42,6 +70,26 @@ export default function ChildrenManagementModal({
     const [sabeNadar, setSabeNadar] = useState('Sí');
     const [necesidadesEspeciales, setNecesidadesEspeciales] = useState('');
     const [isMember, setIsMember] = useState(false);
+
+    const handleDatePartChange = (part: 'day' | 'month' | 'year', value: string) => {
+        const current = parseDateString(fechaNacimiento || '');
+        const newDate = { ...current, [part]: value };
+
+        // Adjust day if selected day exceeds new month's days
+        if (newDate.month && newDate.day) {
+            const maxDays = getDaysInMonth(newDate.month, newDate.year);
+            if (parseInt(newDate.day, 10) > maxDays) {
+                newDate.day = maxDays.toString().padStart(2, '0');
+            }
+        }
+
+        if (newDate.day && newDate.month && newDate.year) {
+            const formattedDate = `${newDate.year}-${newDate.month.padStart(2, '0')}-${newDate.day.padStart(2, '0')}`;
+            setFechaNacimiento(formattedDate);
+        } else {
+            setFechaNacimiento('');
+        }
+    };
 
     // Load children from profile.avatar_url
     useEffect(() => {
@@ -211,17 +259,103 @@ export default function ChildrenManagementModal({
                             </div>
                         </div>
 
+                        <div className="space-y-1">
+                            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">F. Nacimiento *</label>
+                            {(() => {
+                                const { day, month, year } = parseDateString(fechaNacimiento);
+                                const daysInMonth = getDaysInMonth(month, year);
+                                const days = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString().padStart(2, '0'));
+                                
+                                const months = Array.from({ length: 12 }, (_, i) => {
+                                    const mNum = (i + 1).toString().padStart(2, '0');
+                                    let mName = '';
+                                    try {
+                                        mName = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, i, 1));
+                                        mName = mName.charAt(0).toUpperCase() + mName.slice(1);
+                                    } catch (e) {
+                                        mName = mNum;
+                                    }
+                                    return { value: mNum, label: `${mNum} - ${mName}` };
+                                });
+
+                                const currentYear = new Date().getFullYear();
+                                const maxYear = currentYear - 3;
+                                const minYear = 1900;
+                                const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => (maxYear - i).toString());
+
+                                return (
+                                    <div className="grid grid-cols-3 gap-3">
+                                        {/* Day Selector */}
+                                        <div className="relative">
+                                            <select
+                                                id="child_birth_day"
+                                                value={day}
+                                                onChange={(e) => handleDatePartChange('day', e.target.value)}
+                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
+                                            >
+                                                <option value="" className="bg-white text-black/50">DD</option>
+                                                {days.map((d) => (
+                                                    <option key={d} value={d} className="bg-white text-black">
+                                                        {d}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
+                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        {/* Month Selector */}
+                                        <div className="relative">
+                                            <select
+                                                id="child_birth_month"
+                                                value={month}
+                                                onChange={(e) => handleDatePartChange('month', e.target.value)}
+                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
+                                            >
+                                                <option value="" className="bg-white text-black/50">MM</option>
+                                                {months.map((m) => (
+                                                    <option key={m.value} value={m.value} className="bg-white text-black">
+                                                        {m.label}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
+                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+
+                                        {/* Year Selector */}
+                                        <div className="relative">
+                                            <select
+                                                id="child_birth_year"
+                                                value={year}
+                                                onChange={(e) => handleDatePartChange('year', e.target.value)}
+                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
+                                            >
+                                                <option value="" className="bg-white text-black/50">AAAA</option>
+                                                {years.map((y) => (
+                                                    <option key={y} value={y} className="bg-white text-black">
+                                                        {y}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
+                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })()}
+                        </div>
+
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-1">
-                                <label className="text-[10px] uppercase tracking-widest text-accent font-bold">F. Nacimiento *</label>
-                                <input
-                                    type="date"
-                                    required
-                                    value={fechaNacimiento}
-                                    onChange={e => setFechaNacimiento(e.target.value)}
-                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
-                                />
-                            </div>
                             <div className="space-y-1">
                                 <label className="text-[10px] uppercase tracking-widest text-accent font-bold">DNI / NIE / Pasaporte</label>
                                 <input
@@ -231,19 +365,18 @@ export default function ChildrenManagementModal({
                                     className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 />
                             </div>
-                        </div>
-
-                        <div className="space-y-1">
-                            <label className="text-[10px] uppercase tracking-widest text-accent font-bold">¿Sabe Nadar? *</label>
-                            <select
-                                required
-                                value={sabeNadar}
-                                onChange={e => setSabeNadar(e.target.value)}
-                                className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
-                            >
-                                <option value="Sí" className="bg-white text-black">Sí</option>
-                                <option value="No" className="bg-white text-black">No</option>
-                            </select>
+                            <div className="space-y-1">
+                                <label className="text-[10px] uppercase tracking-widest text-accent font-bold">¿Sabe Nadar? *</label>
+                                <select
+                                    required
+                                    value={sabeNadar}
+                                    onChange={e => setSabeNadar(e.target.value)}
+                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
+                                >
+                                    <option value="Sí" className="bg-white text-black">Sí</option>
+                                    <option value="No" className="bg-white text-black">No</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div className="space-y-1">
