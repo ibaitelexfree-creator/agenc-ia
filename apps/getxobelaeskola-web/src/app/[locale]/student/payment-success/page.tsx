@@ -152,8 +152,8 @@ function SuccessContent() {
                             <div className="space-y-1">
                                 <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">{t('label_status')}</p>
                                 <p className="text-sea-foam text-sm font-medium flex items-center gap-2">
-                                    <span className={`w-2 h-2 rounded-full ${loading ? 'bg-yellow-400 animate-pulse' : (details ? 'bg-sea-foam shadow-[0_0_8px_#4fd1c5]' : 'bg-amber-500 animate-pulse')}`} />
-                                    {loading ? t('status_checking') : (details ? t('status_completed') : t('status_syncing'))}
+                                    <span className={`w-2 h-2 rounded-full ${loading ? 'bg-yellow-400 animate-pulse' : (details ? 'bg-sea-foam shadow-[0_0_8px_#4fd1c5]' : 'bg-amber-500')}`} />
+                                    {loading ? t('status_checking') : (details ? t('status_completed') : t('status_pending'))}
                                 </p>
                             </div>
 

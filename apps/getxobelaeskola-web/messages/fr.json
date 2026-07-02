@@ -1496,6 +1496,7 @@
     "status_checking": "Vérification auprès de la banque...",
     "status_completed": "Complété et Vérifié",
     "status_syncing": "Synchronisation...",
+    "status_pending": "Activation en attente / En file d'attente",
     "label_service": "Service",
     "label_course": "Cours",
     "label_starts": "Commence le :",

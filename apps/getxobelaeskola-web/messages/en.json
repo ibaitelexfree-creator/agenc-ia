@@ -1930,6 +1930,7 @@
     "status_checking": "Verifying with bank...",
     "status_completed": "Completed and Verified",
     "status_syncing": "Syncing...",
+    "status_pending": "Pending Activation / Queued",
     "label_service": "Service",
     "label_course": "Course",
     "label_starts": "Starts:",

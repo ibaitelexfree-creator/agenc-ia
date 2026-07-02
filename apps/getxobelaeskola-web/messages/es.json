@@ -1990,6 +1990,7 @@
     "status_checking": "Verificando con el banco...",
     "status_completed": "Completado y Verificado",
     "status_syncing": "Sincronizando...",
+    "status_pending": "Activación Pendiente / En cola",
     "label_service": "Servicio",
     "label_course": "Curso",
     "label_starts": "Empieza:",

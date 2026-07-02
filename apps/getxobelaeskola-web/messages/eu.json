@@ -1938,6 +1938,7 @@
     "status_checking": "Bankuarekin egiaztatzen...",
     "status_completed": "Osatua eta egiaztatua",
     "status_syncing": "Sinkronizatzen...",
+    "status_pending": "Aktibazioa zain / Ilaran",
     "label_service": "Zerbitzua",
     "label_course": "Ikastaroa",
     "label_starts": "Hasten da:",
