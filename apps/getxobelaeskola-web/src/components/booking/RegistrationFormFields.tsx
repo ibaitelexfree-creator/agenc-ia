@@ -382,26 +382,33 @@ export default function RegistrationFormFields({
                 </div>
             );
 
-        case 'training':
+        case 'training': {
+            const age = calculateAge(formData.fecha_nacimiento);
+            const isMinor = age !== null && age < 18;
             return (
                 <div className="space-y-8">
                     {renderParticipantFields()}
-                    {renderTutorFields('tutor1', t('tutor_title_prefix') + ' Nº1')}
-                    <div className="p-4 border border-black/5 bg-black/[0.02]">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={!!formData.add_tutor_2}
-                                onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
-                                className="w-5 h-5 accent-accent"
-                            />
-                            <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second_training')}</span>
-                        </label>
-                    </div>
-                    {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
+                    {isMinor && (
+                        <>
+                            {renderTutorFields('tutor1', t('tutor_title_prefix') + ' Nº1', true)}
+                            <div className="p-4 border border-black/5 bg-black/[0.02]">
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={!!formData.add_tutor_2}
+                                        onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
+                                        className="w-5 h-5 accent-accent"
+                                    />
+                                    <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second_training')}</span>
+                                </label>
+                            </div>
+                            {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
+                        </>
+                    )}
                     {renderPaymentAndBankFields()}
                 </div>
             );
+        }
 
         case 'course':
         default: {
@@ -410,7 +417,23 @@ export default function RegistrationFormFields({
             return (
                 <div className="space-y-8">
                     {renderParticipantFields()}
-                    {renderTutorFields('tutor1', t('tutor_title'), isMinor)}
+                    {isMinor && (
+                        <>
+                            {renderTutorFields('tutor1', t('tutor_title_prefix') + ' Nº1', true)}
+                            <div className="p-4 border border-black/5 bg-black/[0.02]">
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={!!formData.add_tutor_2}
+                                        onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
+                                        className="w-5 h-5 accent-accent"
+                                    />
+                                    <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second')}</span>
+                                </label>
+                            </div>
+                            {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
+                        </>
+                    )}
                     {renderPaymentAndBankFields()}
                 </div>
             );

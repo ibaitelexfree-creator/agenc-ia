@@ -428,7 +428,12 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                     domicilio: profile?.domicilio,
                     localidad: profile?.localidad,
                     codigo_postal: profile?.codigo_postal,
-                    fecha_nacimiento: selectedParticipant ? selectedParticipant.fecha_nacimiento : profile?.fecha_nacimiento
+                    fecha_nacimiento: selectedParticipant ? selectedParticipant.fecha_nacimiento : profile?.fecha_nacimiento,
+                    parentNombre: profile?.nombre || '',
+                    parentApellidos: profile?.apellidos || '',
+                    parentDni: profile?.dni || '',
+                    parentTelefono: profile?.telefono || '',
+                    parentEmail: user.email || ''
                 } : undefined}
                 legalText={tLegal('course_contract')}
             />

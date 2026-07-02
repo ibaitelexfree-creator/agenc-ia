@@ -103,7 +103,14 @@ export default function LegalConsentModal({
                     domicilio: initialData.domicilio || '',
                     localidad: initialData.localidad || '',
                     codigo_postal: initialData.codigo_postal || '',
-                    fecha_nacimiento: initialData.fecha_nacimiento || ''
+                    fecha_nacimiento: initialData.fecha_nacimiento || '',
+                    tutor1: {
+                        nombre: initialData.parentNombre || '',
+                        apellidos: initialData.parentApellidos || '',
+                        dni: initialData.parentDni || '',
+                        telefono: initialData.parentTelefono || '',
+                        email: initialData.parentEmail || ''
+                    }
                 });
             }
         }
