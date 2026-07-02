@@ -476,8 +476,14 @@ export default function ChildrenManagementModal({
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-nautical-black/80 backdrop-blur-sm animate-fade-in">
-            <div className="bg-card border border-black/10 p-8 rounded-sm w-full max-w-lg shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+        <div 
+            onClick={onClose}
+            className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-nautical-black/80 backdrop-blur-sm animate-fade-in"
+        >
+            <div 
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white border border-black/10 p-8 rounded-sm w-full max-w-lg shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar"
+            >
                 <button
                     onClick={onClose}
                     className="absolute top-4 right-4 text-black/20 hover:text-black transition-colors"

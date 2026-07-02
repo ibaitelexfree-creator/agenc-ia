@@ -43,7 +43,7 @@ export default function EmptyState({ icon = '⚓', title, subtitle, actionLabel,
             <div className="relative z-10 space-y-6">
                 <motion.div
                     whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-                    className="w-20 h-20 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-4xl mx-auto shadow-2xl transition-all duration-700"
+                    className="w-20 h-20 bg-black/5 border border-black/10 rounded-full flex items-center justify-center text-4xl mx-auto shadow-sm transition-all duration-700"
                 >
                     <motion.span
                         animate={{ y: [0, -5, 0] }}
@@ -54,14 +54,14 @@ export default function EmptyState({ icon = '⚓', title, subtitle, actionLabel,
                 </motion.div>
 
                 <div className="space-y-2">
-                    <h3 className="text-2xl font-display text-white italic">
+                    <h3 className="text-2xl font-display text-slate-800 italic">
                         {title}
                     </h3>
                     <motion.p
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.4 }}
+                        animate={{ opacity: 0.8 }}
                         transition={{ delay: 0.5, duration: 1 }}
-                        className="text-foreground/40 font-light text-sm max-w-sm mx-auto"
+                        className="text-slate-500 font-light text-sm max-w-sm mx-auto"
                     >
                         {subtitle}
                     </motion.p>
