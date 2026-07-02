@@ -24,9 +24,21 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
     const [currentProfile, setCurrentProfile] = useState<Profile>(profile);
     const [portalLoading, setPortalLoading] = useState(false);
 
-    // Scroll to top on mount
+    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.png');
+    const supabase = createClient();
+
+    // Scroll to top on mount and fetch Google profile pic if exists
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'instant' });
+        
+        async function fetchAvatar() {
+            const { data: { user } } = await supabase.auth.getUser();
+            const googlePic = user?.user_metadata?.avatar_url || user?.user_metadata?.picture;
+            if (googlePic) {
+                setAvatarSrc(googlePic);
+            }
+        }
+        fetchAvatar();
     }, []);
 
     const handleManageMembership = async () => {
@@ -68,7 +80,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                 <div className="flex flex-col items-center text-center mb-8">
                     <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/20 mb-4 bg-black/5">
                         <Image
-                            src="/images/default-student-avatar.png"
+                            src={avatarSrc}
                             alt={currentProfile?.nombre || 'Student'}
                             fill
                             className="object-cover"

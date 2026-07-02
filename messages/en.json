@@ -996,7 +996,8 @@
     "managing_subscription": "Manage Subscription",
     "membership_card": "My Membership Card",
     "loading": "Loading...",
-    "portal_error": "Error opening payment portal"
+    "portal_error": "Error opening payment portal",
+    "connection_error": "Connection error"
   },
   "nautical_radar": {
     "title": "Bridge Command Navigation Radar",

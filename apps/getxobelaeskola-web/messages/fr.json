@@ -639,7 +639,9 @@
     "loading": "Chargement...",
     "portal_error": "Erreur lors de l'ouverture du portail de paiement",
     "experience_points": "Points d'Expérience",
-    "my_family": "Mes Enfants / Proches"
+    "my_family": "Mes Enfants / Proches",
+    "role": "Rôle",
+    "connection_error": "Erreur de connexion"
   },
   "sea_state_widget": {
     "title": "État de la Mer",

@@ -1017,7 +1017,8 @@
     "managing_subscription": "Gestionar Suscripción",
     "membership_card": "Mi Carnet de Socio",
     "loading": "Cargando...",
-    "portal_error": "Error al abrir el portal de pagos"
+    "portal_error": "Error al abrir el portal de pagos",
+    "connection_error": "Error de conexión"
   },
   "nautical_radar": {
     "title": "Radar de Navegación \"Puente de Mando\"",

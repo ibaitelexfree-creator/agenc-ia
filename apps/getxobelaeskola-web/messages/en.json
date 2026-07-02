@@ -1038,7 +1038,9 @@
     "loading": "Loading...",
     "portal_error": "Error opening payment portal",
     "experience_points": "Experience Points",
-    "my_family": "My Family / Children"
+    "my_family": "My Family / Children",
+    "role": "Role",
+    "connection_error": "Connection error"
   },
   "nautical_radar": {
     "title": "Bridge Command Navigation Radar",

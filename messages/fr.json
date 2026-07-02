@@ -597,7 +597,8 @@
     "managing_subscription": "Gérer l'abonnement",
     "membership_card": "Ma Carte de Membre",
     "loading": "Chargement...",
-    "portal_error": "Erreur lors de l'ouverture du portail de paiement"
+    "portal_error": "Erreur lors de l'ouverture du portail de paiement",
+    "connection_error": "Erreur de connexion"
   },
   "sea_state_widget": {
     "title": "État de la Mer",

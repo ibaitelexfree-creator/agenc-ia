@@ -999,7 +999,8 @@
     "managing_subscription": "Harpidetza Kudeatu",
     "membership_card": "Nire Bazkide Txartela",
     "loading": "Kargatzen...",
-    "portal_error": "Errorea ordainketa-ataria irekitzean"
+    "portal_error": "Errorea ordainketa-ataria irekitzean",
+    "connection_error": "Konexio errorea"
   },
   "nautical_radar": {
     "title": "Nabigazio Radarra \"Puente de Mando\"",

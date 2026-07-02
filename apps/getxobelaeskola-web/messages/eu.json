@@ -1041,7 +1041,9 @@
     "loading": "Kargatzen...",
     "portal_error": "Errorea ordainketa-ataria irekitzean",
     "experience_points": "Esperientzia Puntuak",
-    "my_family": "Nire Seme-Alabak / Senideak"
+    "my_family": "Nire Seme-Alabak / Senideak",
+    "role": "Rola",
+    "connection_error": "Konexio errorea"
   },
   "nautical_radar": {
     "title": "Nabigazio Radarra \"Puente de Mando\"",

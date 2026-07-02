@@ -32,16 +32,24 @@ export default function MobileProfileClient({
     const router = useRouter();
     const supabase = createClient();
 
+    const [avatarSrc, setAvatarSrc] = useState('/images/default-student-avatar.png');
+
     useEffect(() => {
         async function loadProfile() {
+            // Check Google avatar from session metadata
+            const { data: { session } } = await supabase.auth.getSession();
+            const user = session?.user;
+            if (user) {
+                const googlePic = user.user_metadata?.avatar_url || user.user_metadata?.picture;
+                if (googlePic) {
+                    setAvatarSrc(googlePic);
+                }
+            }
+
             if (currentProfile) {
                 setLoading(false);
                 return;
             }
-
-            // Use getSession for faster check on mobile
-            const { data: { session } } = await supabase.auth.getSession();
-            const user = session?.user;
 
             if (!user) {
                 router.replace(`/${locale}/auth/login?returnTo=/${locale}/student/profile`);
@@ -94,7 +102,7 @@ export default function MobileProfileClient({
                 <div className="flex flex-col items-center">
                     <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/20 mb-4 bg-white/5">
                         <Image
-                            src="/images/default-student-avatar.png"
+                            src={avatarSrc}
                             alt={currentProfile?.nombre || 'Student'}
                             fill
                             className="object-cover"
