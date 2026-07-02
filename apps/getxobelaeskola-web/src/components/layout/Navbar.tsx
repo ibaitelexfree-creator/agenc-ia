@@ -355,12 +355,12 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                        >
-                            {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
+                               {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
                              <motion.img 
                                  src="/images/home/parallax/cloud_only_mini.webp"
                                  alt="Cloud Base"
                                  className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
+                                 style={{ opacity: 0.95 }}
                                  animate={{ opacity: isAtHero ? (isHovered ? 0 : 0.95) : 0 }}
                                  transition={{ duration: 0.35, ease: 'easeInOut' }}
                                  fetchPriority="high"
@@ -371,7 +371,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                  src="/images/home/parallax/cloud_sun_mini.webp"
                                  alt="Cloud Sun"
                                  className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
-                                 initial={{ opacity: 0 }}
+                                 style={{ opacity: 0 }}
                                  animate={{ opacity: isAtHero ? (isHovered ? 1 : 0) : 0 }}
                                  transition={{ duration: 0.35, ease: 'easeInOut' }}
                                  fetchPriority="high"
