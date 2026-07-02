@@ -694,7 +694,9 @@ function SailboatAccesoButton() {
             }}
           >
             <motion.div
-              className="flex flex-col items-center justify-center leading-[0.85] text-[24px] font-black tracking-[0.12em] text-center"
+              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
+                locale === 'eu' ? 'text-[18px]' : 'text-[24px]'
+              }`}
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],
                 textShadow: [
