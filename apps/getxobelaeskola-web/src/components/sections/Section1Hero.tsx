@@ -200,8 +200,11 @@ export function Section1Hero() {
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              inset: '-10px',
-              width: 'calc(100% + 20px)',
+              left: '-10px',
+              right: '-15px',
+              top: '-10px',
+              bottom: '-10px',
+              width: 'calc(100% + 25px)',
               height: 'calc(100% + 20px)',
               objectFit: 'cover',
               objectPosition: 'center',
@@ -241,10 +244,10 @@ export function Section1Hero() {
             style={{
               position: 'absolute',
               left: '-100px',
-              right: '-100px',
+              right: '-112px',
               top: '-20px',
               bottom: '-20px',
-              width: 'calc(100% + 200px)',
+              width: 'calc(100% + 212px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
@@ -264,9 +267,9 @@ export function Section1Hero() {
               style={{
                 position: 'absolute',
                 left: '-105px',
-                right: '-105px',
+                right: '-117px',
                 top: '-20px',
-                width: 'calc(100% + 210px)',
+                width: 'calc(100% + 222px)',
                 height: '50%',
                 objectFit: 'cover',
                 objectPosition: 'center top',
