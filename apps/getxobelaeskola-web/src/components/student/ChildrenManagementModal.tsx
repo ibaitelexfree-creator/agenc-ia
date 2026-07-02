@@ -29,8 +29,6 @@ export default function ChildrenManagementModal({
     profile,
     onProfileUpdate
 }: ChildrenManagementModalProps) {
-    const t = useTranslations('children_modal');
-    const tReg = useTranslations('registration_form');
     const [children, setChildren] = useState<Child[]>([]);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const [editingChildId, setEditingChildId] = useState<string | null>(null);
@@ -175,17 +173,17 @@ export default function ChildrenManagementModal({
 
     return (
         <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-nautical-black/80 backdrop-blur-sm animate-fade-in">
-            <div className="bg-card border border-white/10 p-8 rounded-sm w-full max-w-lg shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <div className="bg-card border border-black/10 p-8 rounded-sm w-full max-w-lg shadow-2xl space-y-6 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-white/20 hover:text-white transition-colors"
+                    className="absolute top-4 right-4 text-black/20 hover:text-black transition-colors"
                 >
                     ✕
                 </button>
 
                 <header>
-                    <h3 className="text-2xl font-display text-white italic">Mis Hijos / Familiares</h3>
-                    <p className="text-2xs text-white/40 mt-1">Registra a tus hijos para poder inscribirlos en los cursos escolares y campamentos.</p>
+                    <h3 className="text-2xl font-display text-black italic">Mis Hijos / Familiares</h3>
+                    <p className="text-2xs text-black/40 mt-1">Registra a tus hijos para poder inscribirlos en los cursos escolares y campamentos.</p>
                 </header>
 
                 {isFormOpen ? (
@@ -198,7 +196,7 @@ export default function ChildrenManagementModal({
                                     required
                                     value={nombre}
                                     onChange={e => setNombre(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 />
                             </div>
                             <div className="space-y-1">
@@ -208,7 +206,7 @@ export default function ChildrenManagementModal({
                                     required
                                     value={apellidos}
                                     onChange={e => setApellidos(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 />
                             </div>
                         </div>
@@ -221,7 +219,7 @@ export default function ChildrenManagementModal({
                                     required
                                     value={fechaNacimiento}
                                     onChange={e => setFechaNacimiento(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 />
                             </div>
                             <div className="space-y-1">
@@ -230,7 +228,7 @@ export default function ChildrenManagementModal({
                                     type="text"
                                     value={dni}
                                     onChange={e => setDni(e.target.value)}
-                                    className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                    className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 />
                             </div>
                         </div>
@@ -241,10 +239,10 @@ export default function ChildrenManagementModal({
                                 required
                                 value={sabeNadar}
                                 onChange={e => setSabeNadar(e.target.value)}
-                                className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                             >
-                                <option value="Sí" className="bg-nautical-black text-white">Sí</option>
-                                <option value="No" className="bg-nautical-black text-white">No</option>
+                                <option value="Sí" className="bg-white text-black">Sí</option>
+                                <option value="No" className="bg-white text-black">No</option>
                             </select>
                         </div>
 
@@ -254,13 +252,13 @@ export default function ChildrenManagementModal({
                                 type="text"
                                 value={necesidadesEspeciales}
                                 onChange={e => setNecesidadesEspeciales(e.target.value)}
-                                className="w-full bg-black/20 border border-white/10 p-3 text-white text-sm focus:border-accent outline-none"
+                                className="w-full bg-black/5 border border-black/10 p-3 text-black text-sm focus:border-accent outline-none"
                                 placeholder="Ninguna"
                             />
                         </div>
 
                         <div className="pt-2">
-                            <label className="flex items-center gap-3 cursor-pointer p-4 bg-black/20 border border-white/10 rounded-sm">
+                            <label className="flex items-center gap-3 cursor-pointer p-4 bg-black/5 border border-black/10 rounded-sm">
                                 <input
                                     type="checkbox"
                                     checked={isMember}
@@ -268,8 +266,8 @@ export default function ChildrenManagementModal({
                                     className="w-5 h-5 accent-accent"
                                 />
                                 <div>
-                                    <span className="text-sm font-bold text-white block">Es Socio del Club</span>
-                                    <span className="text-[10px] text-white/40 block">Marcar si paga suscripción mensual de socio en Stripe</span>
+                                    <span className="text-sm font-bold text-black block">Es Socio del Club</span>
+                                    <span className="text-[10px] text-black/40 block">Marcar si paga suscripción mensual de socio en Stripe</span>
                                 </div>
                             </label>
                         </div>
@@ -285,7 +283,7 @@ export default function ChildrenManagementModal({
                             <button
                                 type="button"
                                 onClick={() => setIsFormOpen(false)}
-                                className="px-6 py-3 border border-white/10 text-white font-bold uppercase tracking-wider text-xs hover:bg-white/5 transition-colors"
+                                className="px-6 py-3 border border-black/10 text-black font-bold uppercase tracking-wider text-xs hover:bg-black/5 transition-colors"
                             >
                                 Cancelar
                             </button>
@@ -294,28 +292,28 @@ export default function ChildrenManagementModal({
                 ) : (
                     <div className="space-y-4">
                         {children.length === 0 ? (
-                            <div className="p-8 border border-dashed border-white/10 text-center text-white/40 italic text-sm">
+                            <div className="p-8 border border-dashed border-black/10 text-center text-black/40 italic text-sm">
                                 No tienes familiares registrados todavía.
                             </div>
                         ) : (
                             <div className="space-y-3">
                                 {children.map((child) => (
-                                    <div key={child.id} className="p-4 bg-black/20 border border-white/10 flex justify-between items-center rounded-sm">
+                                    <div key={child.id} className="p-4 bg-black/5 border border-black/10 flex justify-between items-center rounded-sm">
                                         <div>
-                                            <p className="text-sm font-bold text-white flex items-center gap-2">
+                                            <p className="text-sm font-bold text-black flex items-center gap-2">
                                                 {child.nombre} {child.apellidos}
                                                 {child.is_member && (
                                                     <span className="px-2 py-0.5 bg-accent/20 border border-accent/30 text-accent text-[9px] uppercase font-bold tracking-wider rounded">Socio</span>
                                                 )}
                                             </p>
-                                            <p className="text-3xs text-white/40 mt-1 uppercase">
+                                            <p className="text-3xs text-black/40 mt-1 uppercase">
                                                 Nacido/a: {child.fecha_nacimiento} {child.dni ? `— DNI: ${child.dni}` : ''}
                                             </p>
                                         </div>
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => handleOpenEditForm(child)}
-                                                className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs uppercase tracking-wider transition-colors"
+                                                className="px-3 py-1.5 bg-black/5 hover:bg-black/10 border border-black/10 text-black text-xs uppercase tracking-wider transition-colors"
                                             >
                                                 Editar
                                             </button>
@@ -340,7 +338,7 @@ export default function ChildrenManagementModal({
                             </button>
                             <button
                                 onClick={onClose}
-                                className="px-6 py-3 border border-white/10 text-white font-bold uppercase tracking-wider text-xs hover:bg-white/5 transition-colors"
+                                className="px-6 py-3 border border-black/10 text-black font-bold uppercase tracking-wider text-xs hover:bg-black/5 transition-colors"
                             >
                                 Cerrar
                             </button>
