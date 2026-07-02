@@ -342,7 +342,9 @@
     "no_dates_needed": "Ez da beharrezkoa datak hautatzea. Hasi orain.",
     "flexible_date_notice": "Erreserba malgua. Eskolarekin zehaztuko duzu ordu zehatza.",
     "error_generic": "Zerbait gaizki joan da",
-    "payment_gateway_error": "Errorea ordainketa-pasarelararekin konektatzean"
+    "payment_gateway_error": "Errorea ordainketa-pasarelararekin konektatzean",
+    "is_member": "Parte-hartzailea eskolako bazkidea da",
+    "member_discount_applied": "Bazkidearen %50eko deskontua aplikatuta!"
   },
   "staff_panel": {
     "tabs": {
@@ -1834,6 +1836,8 @@
   "registration_form": {
     "student_data": "Ikaslearen / Partaidearen Datuak",
     "student_data_prefix": "Ikaslearen Datuak",
+    "underage_detected": "Adingabeko pertsona atzemanda",
+    "tutor_required_notice": "Derrigorrezkoa da gutxienez tutore baten datuak betetzea.",
     "name": "Izena",
     "name_placeholder": "Ane",
     "name_placeholder_prefix": "Adib. Ane",

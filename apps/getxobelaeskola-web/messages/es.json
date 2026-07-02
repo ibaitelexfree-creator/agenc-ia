@@ -342,7 +342,9 @@
     "no_dates_needed": "No es necesario seleccionar fechas. Empieza ahora mismo.",
     "flexible_date_notice": "Reserva flexible. Elegirás la hora exacta con la escuela.",
     "error_generic": "Algo salió mal",
-    "payment_gateway_error": "Error al conectar con la pasarela de pago"
+    "payment_gateway_error": "Error al conectar con la pasarela de pago",
+    "is_member": "El participante es socio de la escuela",
+    "member_discount_applied": "¡50% de Descuento de socio aplicado!"
   },
   "staff_panel": {
     "tabs": {
@@ -1886,6 +1888,8 @@
   "registration_form": {
     "student_data": "Datos del Alumno/a / Participante",
     "student_data_prefix": "Datos Alumno/a",
+    "underage_detected": "Persona menor de edad detectada",
+    "tutor_required_notice": "Es obligatorio rellenar los datos de al menos un tutor.",
     "name": "Nombre",
     "name_placeholder": "Ane",
     "name_placeholder_prefix": "Ej. Ane",
