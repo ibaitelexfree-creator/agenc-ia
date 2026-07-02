@@ -11,7 +11,7 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json();
-        const { nombre, apellidos, telefono } = body;
+        const { nombre, apellidos, telefono, avatar_url } = body;
 
         // Basic validation
         if (!nombre) {
@@ -23,7 +23,8 @@ export async function POST(request: Request) {
             .update({
                 nombre,
                 apellidos,
-                telefono
+                telefono,
+                avatar_url
             })
             .eq('id', user.id)
             .select()

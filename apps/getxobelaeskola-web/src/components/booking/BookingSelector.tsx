@@ -42,6 +42,9 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
     // Auth state
     const [user, setUser] = useState<any>(null);
     const [profile, setProfile] = useState<any>(null);
+    const [childrenList, setChildrenList] = useState<any[]>([]);
+    const [selectedParticipant, setSelectedParticipant] = useState<any>(null);
+    const [isMemberDiscountChecked, setIsMemberDiscountChecked] = useState(false);
     const supabase = createClient();
 
     useEffect(() => {
@@ -62,10 +65,29 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 }
                 const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
                 setProfile(profile);
+                
+                if (profile && profile.avatar_url && profile.avatar_url.startsWith('children_json:')) {
+                    try {
+                        const parsed = JSON.parse(profile.avatar_url.replace('children_json:', ''));
+                        if (Array.isArray(parsed)) {
+                            setChildrenList(parsed);
+                        }
+                    } catch (e) {
+                        console.error('Error parsing children list in BookingSelector:', e);
+                    }
+                }
             }
         };
         checkUser();
     }, []);
+
+    useEffect(() => {
+        if (selectedParticipant) {
+            setIsMemberDiscountChecked(!!selectedParticipant.is_member);
+        } else {
+            setIsMemberDiscountChecked(profile?.status_socio === 'activo');
+        }
+    }, [selectedParticipant, profile]);
 
     const handleBookingClick = () => {
         if (!user) {
@@ -125,6 +147,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                     legalName: legalData.fullName,
                     legalDni: legalData.dni,
                     legalEmail: legalData.email, // Send email explicitly for guest checkout association
+                    isMember: isMemberDiscountChecked,
                     registrationDetails: {
                         ...legalData.registrationDetails,
                         ...(customDate && !isBoatCourse ? { fecha_seleccionada: customDate } : {})
@@ -261,15 +284,72 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 )}
             </div>
 
+            {/* Participant selector & Member verification */}
+            {user && (
+                <div className="space-y-4 p-4 border border-white/10 bg-white/5 rounded-sm">
+                    {childrenList.length > 0 && (
+                        <div className="space-y-1">
+                            <label className="text-[10px] uppercase tracking-widest text-accent font-bold pl-1">
+                                ¿Quién realizará el curso?
+                            </label>
+                            <select
+                                onChange={(e) => {
+                                    const val = e.target.value;
+                                    if (val === 'self') {
+                                        setSelectedParticipant(null);
+                                    } else {
+                                        const child = childrenList.find(c => c.id === val);
+                                        setSelectedParticipant(child || null);
+                                    }
+                                }}
+                                className="w-full bg-nautical-deep border border-white/10 p-3 text-sea-foam focus:border-accent outline-none text-sm cursor-pointer hover:bg-white/5"
+                            >
+                                <option value="self">Para mí ({profile?.nombre} {profile?.apellidos})</option>
+                                {childrenList.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                        Para mi hijo/a: {c.nombre} {c.apellidos}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    )}
+
+                    <div className="pt-2">
+                        <label className="flex items-start gap-3 cursor-pointer">
+                            <input
+                                type="checkbox"
+                                checked={isMemberDiscountChecked}
+                                onChange={(e) => setIsMemberDiscountChecked(e.target.checked)}
+                                className="w-5 h-5 accent-accent mt-0.5"
+                            />
+                            <div>
+                                <span className="text-sm font-bold text-sea-foam/95 block">
+                                    El participante es socio de la escuela
+                                </span>
+                                <span className="text-[10px] text-sea-foam/50 block leading-tight mt-0.5">
+                                    Tiene membresía mensual activa en Stripe y está al corriente de pago.
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+
+                    {isMemberDiscountChecked && (
+                        <div className="text-[10px] text-accent font-bold uppercase tracking-wider pl-1">
+                            ⚡ ¡50% de Descuento de socio aplicado!
+                        </div>
+                    )}
+                </div>
+            )}
+
             <button
                 onClick={handleBookingClick}
                 disabled={loading}
-                aria-label={loading ? t('processing') : `${t('book_for')} ${coursePrice} euros`}
+                aria-label={loading ? t('processing') : `${t('book_for')} ${isMemberDiscountChecked ? Math.round(coursePrice / 2) : coursePrice} euros`}
                 aria-busy={loading}
                 aria-disabled={loading}
                 className="w-full py-5 bg-accent text-nautical-black hover:text-black text-[13px] uppercase tracking-[0.25em] font-black hover:bg-white transition-all duration-500 disabled:opacity-30 disabled:grayscale focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nautical-black shadow-lg hover:shadow-accent/20"
             >
-                {loading ? t('processing') : `${t('book_for')} ${coursePrice}€`}
+                {loading ? t('processing') : `${t('book_for')} ${isMemberDiscountChecked ? Math.round(coursePrice / 2) : coursePrice}€`}
             </button>
 
             <LegalConsentModal
@@ -278,16 +358,16 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 onConfirm={handleLegalConfirm}
                 activityType={activityType}
                 initialData={user ? {
-                    fullName: profile ? `${profile.nombre} ${profile.apellidos}` : undefined,
+                    fullName: selectedParticipant ? `${selectedParticipant.nombre} ${selectedParticipant.apellidos}` : (profile ? `${profile.nombre} ${profile.apellidos}` : undefined),
                     email: user.email,
-                    dni: profile?.dni,
-                    nombre: profile?.nombre,
-                    apellidos: profile?.apellidos,
+                    dni: selectedParticipant ? selectedParticipant.dni : profile?.dni,
+                    nombre: selectedParticipant ? selectedParticipant.nombre : profile?.nombre,
+                    apellidos: selectedParticipant ? selectedParticipant.apellidos : profile?.apellidos,
                     telefono: profile?.telefono,
                     domicilio: profile?.domicilio,
                     localidad: profile?.localidad,
                     codigo_postal: profile?.codigo_postal,
-                    fecha_nacimiento: profile?.fecha_nacimiento
+                    fecha_nacimiento: selectedParticipant ? selectedParticipant.fecha_nacimiento : profile?.fecha_nacimiento
                 } : undefined}
                 legalText={tLegal('course_contract')}
             />

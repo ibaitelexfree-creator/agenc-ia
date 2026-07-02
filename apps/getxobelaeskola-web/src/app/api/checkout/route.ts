@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 503 });
     }
     try {
-        const { editionId, courseId, locale = 'es', startDate, endDate, legalName, legalDni, registrationDetails } = await request.json();
+        const { editionId, courseId, locale = 'es', startDate, endDate, legalName, legalDni, registrationDetails, isMember } = await request.json();
 
         if (!courseId) {
             return NextResponse.json({ error: 'Falta el ID del curso' }, { status: 400 });
@@ -168,6 +168,8 @@ export async function POST(request: Request) {
             ? `Edición del ${new Date(edition.fecha_inicio).toLocaleDateString()}`
             : 'Curso Online / Acceso Completo';
 
+        const finalPrice = isMember ? Math.round(course.precio / 2) : course.precio;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             tax_id_collection: { enabled: true },
@@ -178,10 +180,10 @@ export async function POST(request: Request) {
                         currency: 'eur',
                         product_data: {
                             name: itemName,
-                            description: description,
+                            description: description + (isMember ? ' (Descuento Socio 50%)' : ''),
                             images: imageUrl ? [imageUrl] : [],
                         },
-                        unit_amount: Math.round(course.precio * 100),
+                        unit_amount: Math.round(finalPrice * 100),
                     },
                     quantity: 1,
                 },
@@ -203,6 +205,7 @@ export async function POST(request: Request) {
                 legal_dni: (legalDni as string) || '',
                 locale: (locale as string) || 'es',
                 mode: 'course',
+                is_member: isMember ? 'true' : 'false',
                 reg_data_1: registrationDetails ? JSON.stringify(registrationDetails).slice(0, 450) : '{}',
                 reg_data_2: registrationDetails ? JSON.stringify(registrationDetails).slice(450, 900) : ''
             },

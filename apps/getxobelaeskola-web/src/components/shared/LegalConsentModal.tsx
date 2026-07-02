@@ -213,7 +213,6 @@ export default function LegalConsentModal({
                     if (!registrationDetails.localidad) errors.localidad = tV('locality_required');
                     if (!registrationDetails.codigo_postal) errors.codigo_postal = tV('postal_code_required');
                     if (!registrationDetails.sabe_nadar) errors.sabe_nadar = tV('swim_required');
-                    if (!registrationDetails.modalidad_entrenamiento) errors.modalidad_entrenamiento = tV('mode_required');
                     
                     if (registrationDetails.payment_method === 'bank') {
                         if (!registrationDetails.iban) errors.iban = tV('iban_required');

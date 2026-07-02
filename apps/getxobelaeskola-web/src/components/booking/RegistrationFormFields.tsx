@@ -366,10 +366,6 @@ export default function RegistrationFormFields({
                         </label>
                     </div>
                     {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
-                    {renderInput(t('training_mode'), 'modalidad_entrenamiento', 'select', '', true, [
-                        'Equipo de Optimist',
-                        'Equipo de Láser y 420'
-                    ])}
                     {renderPaymentAndBankFields()}
                 </div>
             );

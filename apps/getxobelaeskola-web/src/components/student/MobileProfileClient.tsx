@@ -9,6 +9,7 @@ import { User, Sparkles, LogOut, ChevronRight, Settings, CreditCard, Shield, Glo
 import { createClient } from '@/lib/supabase/client';
 import EditProfileModal from '@/components/student/EditProfileModal';
 import SafetySettingsModal from '@/components/student/SafetySettingsModal';
+import ChildrenManagementModal from '@/components/student/ChildrenManagementModal';
 import LogoutButton from '@/components/auth/LogoutButton';
 
 import { Profile } from '@/types/student';
@@ -23,6 +24,7 @@ export default function MobileProfileClient({
     locale: string;
 }) {
     const [isEditing, setIsEditing] = useState(false);
+    const [isChildrenOpen, setIsChildrenOpen] = useState(false);
     const [isSafetySettingsOpen, setIsSafetySettingsOpen] = useState(false);
     const [currentProfile, setCurrentProfile] = useState<Profile | null>(initialProfile || null);
     const [currentEmail, setCurrentEmail] = useState<string>(initialEmail || '');
@@ -126,6 +128,19 @@ export default function MobileProfileClient({
                                     <User className="w-4 h-4" />
                                 </div>
                                 <span className="text-white font-medium text-sm">Datos Personales</span>
+                            </div>
+                            <ChevronRight className="w-4 h-4 text-white/20" />
+                        </button>
+
+                        <button
+                            onClick={() => setIsChildrenOpen(true)}
+                            className="w-full flex items-center justify-between p-4 active:bg-white/5 transition-colors border-b border-white/5 last:border-0"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500">
+                                    <Anchor className="w-4 h-4" />
+                                </div>
+                                <span className="text-white font-medium text-sm">Mis Hijos / Familiares</span>
                             </div>
                             <ChevronRight className="w-4 h-4 text-white/20" />
                         </button>
@@ -380,6 +395,17 @@ export default function MobileProfileClient({
                     onProfileUpdate={(updated) => {
                         setCurrentProfile(updated);
                         setIsEditing(false);
+                    }}
+                />
+            )}
+
+            {currentProfile && (
+                <ChildrenManagementModal
+                    isOpen={isChildrenOpen}
+                    onClose={() => setIsChildrenOpen(false)}
+                    profile={currentProfile}
+                    onProfileUpdate={(updated) => {
+                        setCurrentProfile(updated);
                     }}
                 />
             )}

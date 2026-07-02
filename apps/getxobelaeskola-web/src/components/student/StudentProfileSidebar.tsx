@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Sparkles } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import EditProfileModal from './EditProfileModal';
+import ChildrenManagementModal from './ChildrenManagementModal';
 import LogoutButton from '@/components/auth/LogoutButton';
 import { apiUrl } from '@/lib/api';
 import { Profile } from '@/types/student';
@@ -19,6 +20,7 @@ interface StudentProfileSidebarProps {
 export default function StudentProfileSidebar({ profile, email, locale }: StudentProfileSidebarProps) {
     const t = useTranslations('profile_sidebar');
     const [isEditing, setIsEditing] = useState(false);
+    const [isChildrenOpen, setIsChildrenOpen] = useState(false);
     const [currentProfile, setCurrentProfile] = useState<Profile>(profile);
     const [portalLoading, setPortalLoading] = useState(false);
 
@@ -104,6 +106,13 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                         {t('edit_profile')}
                     </button>
 
+                    <button
+                        onClick={() => setIsChildrenOpen(true)}
+                        className="w-full py-3 border border-black/5 text-3xs uppercase tracking-widest hover:bg-black/5 transition-colors text-black/60 hover:text-black"
+                    >
+                        Mis Hijos / Familiares
+                    </button>
+
                     {isSocio && (
                         <div className="space-y-2">
                             <button
@@ -136,6 +145,15 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                 onProfileUpdate={(updated) => {
                     setCurrentProfile(updated);
                     setIsEditing(false);
+                }}
+            />
+
+            <ChildrenManagementModal
+                isOpen={isChildrenOpen}
+                onClose={() => setIsChildrenOpen(false)}
+                profile={currentProfile}
+                onProfileUpdate={(updated) => {
+                    setCurrentProfile(updated);
                 }}
             />
         </aside>
