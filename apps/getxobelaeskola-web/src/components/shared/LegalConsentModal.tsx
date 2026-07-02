@@ -104,6 +104,11 @@ export default function LegalConsentModal({
                     localidad: initialData.localidad || '',
                     codigo_postal: initialData.codigo_postal || '',
                     fecha_nacimiento: initialData.fecha_nacimiento || '',
+                    // Hydrate student 1 fields for udalekus (prefixed with Nº1_)
+                    Nº1_nombre: initialData.nombre || '',
+                    Nº1_apellidos: initialData.apellidos || '',
+                    Nº1_dni: initialData.dni || '',
+                    Nº1_edad: initialData.fecha_nacimiento ? String(calculateAge(initialData.fecha_nacimiento) || '') : '',
                     tutor1: {
                         nombre: initialData.parentNombre || '',
                         apellidos: initialData.parentApellidos || '',
@@ -150,14 +155,14 @@ export default function LegalConsentModal({
             
             // Check common fields depending on activityType
             if (activityType === 'udalekus') {
-                if (!registrationDetails.N1_nombre) errors.N1_nombre = tV('name_required');
-                if (!registrationDetails.N1_apellidos) errors.N1_apellidos = tV('surnames_required');
-                if (!registrationDetails.N1_edad) {
-                    errors.N1_edad = tV('age_required');
-                } else if (parseInt(registrationDetails.N1_edad) < 3) {
-                    errors.N1_edad = tV('min_age_required');
+                if (!registrationDetails.Nº1_nombre) errors.Nº1_nombre = tV('name_required');
+                if (!registrationDetails.Nº1_apellidos) errors.Nº1_apellidos = tV('surnames_required');
+                if (!registrationDetails.Nº1_edad) {
+                    errors.Nº1_edad = tV('age_required');
+                } else if (parseInt(registrationDetails.Nº1_edad) < 3) {
+                    errors.Nº1_edad = tV('min_age_required');
                 }
-                if (!registrationDetails.N1_sabe_nadar) errors.N1_sabe_nadar = tV('swim_required');
+                if (!registrationDetails.Nº1_sabe_nadar) errors.Nº1_sabe_nadar = tV('swim_required');
 
                 // Dynamic students validation for additional students (Nº2, Nº3, etc.)
                 let studentIdx = 2;
