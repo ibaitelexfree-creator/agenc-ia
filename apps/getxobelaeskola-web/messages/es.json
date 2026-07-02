@@ -343,8 +343,11 @@
     "flexible_date_notice": "Reserva flexible. Elegirás la hora exacta con la escuela.",
     "error_generic": "Algo salió mal",
     "payment_gateway_error": "Error al conectar con la pasarela de pago",
-    "is_member": "El participante es socio de la escuela",
-    "member_discount_applied": "¡50% de Descuento de socio aplicado!"
+    "is_member": "El participante es socio (50% de descuento)",
+    "member_discount_applied": "¡50% de Descuento de socio aplicado!",
+    "membership_not_found": "No se ha encontrado ninguna membresía activa de socio para tu cuenta o familiares. Para obtener el descuento del 50%, debes ser socio oficial.",
+    "selected_not_member": "El participante seleccionado ({name}) no es socio. Para aplicar el descuento, el participante inscrito debe tener una membresía de socio activa.",
+    "parent_not_member": "Tú (titular de la cuenta) no tienes una membresía de socio activa. Para aplicar el descuento, el participante inscrito debe ser socio."
   },
   "staff_panel": {
     "tabs": {

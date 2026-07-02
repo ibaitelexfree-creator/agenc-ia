@@ -343,8 +343,11 @@
     "flexible_date_notice": "Flexible booking. You will coordinate the exact time with the school.",
     "error_generic": "Something went wrong",
     "payment_gateway_error": "Error connecting to the payment gateway",
-    "is_member": "The participant is a school member",
-    "member_discount_applied": "50% Member discount applied!"
+    "is_member": "The participant is a member (50% discount)",
+    "member_discount_applied": "50% Member discount applied!",
+    "membership_not_found": "No active membership was found for your account or family members. To get the 50% discount, you must be an official member.",
+    "selected_not_member": "The selected participant ({name}) is not a member. To apply the discount, the registered participant must have an active membership.",
+    "parent_not_member": "You (account owner) do not have an active membership. To apply the discount, the registered participant must be a member."
   },
   "staff_panel": {
     "tabs": {

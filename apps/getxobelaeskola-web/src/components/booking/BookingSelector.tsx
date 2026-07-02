@@ -206,7 +206,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
             // Check if there is ANY member in the account (self or children)
             const hasAnyMember = (profile?.status_socio === 'activo') || childrenList.some(c => c.is_member);
             if (!hasAnyMember) {
-                alert("No se ha encontrado ninguna membresía activa de socio para tu cuenta o familiares. Para obtener el descuento del 50%, debes ser socio oficial.");
+                alert(t('membership_not_found'));
                 setIsMemberDiscountChecked(false);
                 return;
             }
@@ -214,13 +214,13 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
             // Verify if the CURRENTLY selected participant is the member!
             if (selectedParticipant) {
                 if (!selectedParticipant.is_member) {
-                    alert(`El participante seleccionado (${selectedParticipant.nombre}) no es socio. Para aplicar el descuento, el participante inscrito debe tener una membresía de socio activa.`);
+                    alert(t('selected_not_member', { name: selectedParticipant.nombre }));
                     setIsMemberDiscountChecked(false);
                     return;
                 }
             } else {
                 if (profile?.status_socio !== 'activo') {
-                    alert("Tú (titular de la cuenta) no tienes una membresía de socio activa. Para aplicar el descuento, el participante inscrito debe ser socio.");
+                    alert(t('parent_not_member'));
                     setIsMemberDiscountChecked(false);
                     return;
                 }
@@ -355,12 +355,12 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                                     if (isMemberDiscountChecked) {
                                         if (nextParticipant) {
                                             if (!nextParticipant.is_member) {
-                                                alert(`El participante seleccionado (${nextParticipant.nombre}) no es socio. Se ha desactivado el descuento de socio.`);
+                                                alert(t('selected_not_member', { name: nextParticipant.nombre }));
                                                 setIsMemberDiscountChecked(false);
                                             }
                                         } else {
                                             if (profile?.status_socio !== 'activo') {
-                                                alert("No tienes una membresía de socio activa. Se ha desactivado el descuento de socio.");
+                                                alert(t('parent_not_member'));
                                                 setIsMemberDiscountChecked(false);
                                             }
                                         }

@@ -312,8 +312,11 @@
     "flexible_date_notice": "Réservation flexible. Vous choisirez l'heure exacte avec l'école.",
     "error_generic": "Quelque chose s'est mal passé",
     "payment_gateway_error": "Erreur lors de la connexion à la passerelle de paiement",
-    "is_member": "Le participant est membre de l'école",
-    "member_discount_applied": "Remise de membre de 50 % appliquée !"
+    "is_member": "Le participant est membre (50% de réduction)",
+    "member_discount_applied": "Remise de membre de 50 % appliquée !",
+    "membership_not_found": "Aucune adhésion active n'a été trouvée pour votre compte ou vos proches. Pour bénéficier de la réduction de 50%, vous devez être un membre officiel.",
+    "selected_not_member": "Le participant sélectionné ({name}) n'est pas membre. Pour appliquer la réduction, le participant inscrit doit avoir une adhésion active.",
+    "parent_not_member": "Vous (propriétaire du compte) n'avez pas d'adhésion active. Pour appliquer la réduction, le participant inscrit doit être membre."
   },
   "staff_panel": {
     "tabs": {
