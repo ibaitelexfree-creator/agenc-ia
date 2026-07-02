@@ -83,6 +83,12 @@ export default function RegistrationFormFields({
         const age = isBirthDate && birthDateVal ? calculateAge(birthDateVal) : null;
         const isMinor = age !== null && age < 18;
 
+        const maxDate = isBirthDate ? (() => {
+            const date = new Date();
+            date.setFullYear(date.getFullYear() - 3);
+            return date.toISOString().split('T')[0];
+        })() : undefined;
+
         return (
             <div className="space-y-2">
                 <label className="text-3xs uppercase tracking-widest text-accent font-bold block">
@@ -125,6 +131,7 @@ export default function RegistrationFormFields({
                         placeholder={placeholder}
                         value={formData[name] || ''}
                         onChange={(e) => handleInputChange(name, e.target.value)}
+                        max={maxDate}
                         className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all`}
                     />
                 )}

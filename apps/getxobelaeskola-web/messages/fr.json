@@ -438,7 +438,8 @@
     "mode_required": "Veuillez sélectionner une option",
     "iban_required": "L'IBAN est obligatoire",
     "titular_required": "Le titulaire du compte est obligatoire",
-    "invalid_identity_document": "Le document d'identité n'est pas valide, veuillez vérifier à nouveau."
+    "invalid_identity_document": "Le document d'identité n'est pas valide, veuillez vérifier à nouveau.",
+    "min_age_required": "Le participant doit avoir au moins 3 ans."
   },
   "footer": {
     "courses": "Cours",

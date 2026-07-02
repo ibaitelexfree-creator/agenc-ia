@@ -976,7 +976,8 @@
     "mode_required": "Hautatu modalitate bat",
     "iban_required": "IBANa derrigorrezkoa da",
     "titular_required": "Kontuaren titularra derrigorrezkoa da",
-    "invalid_identity_document": "Nortasun agiria ez da baliozkoa. Egiaztatu berriro."
+    "invalid_identity_document": "Nortasun agiria ez da baliozkoa. Egiaztatu berriro.",
+    "min_age_required": "Parte-hartzaileak gutxienez 3 urte izan behar ditu."
   },
   "legal": {
     "rental_contract": "MATERIAL NAUTIKOA ALOKATZEKO KONTRATUA - GETXO BELA ESKOLA\n\n1. ERRENTATSAILEAREN BALDINTZAK: Bezeroak adierazten du alokatutako materiala modu seguruan erabiltzeko beharrezko ezagutza teknikoak dituela. Aisialdiko belaontzien kasuan, dagokion gutxieneko titulazioa beharrezkoa da.\n\n2. EGOERA ETA ITZULTZEA: Materiala funtzionamendu-egoera egokian entregatzen da. Bezeroak egoera berean itzultzeko konpromisoa hartzen du. Ardura gabekeriagatik sortutako edozein kalte bezeroaren ardura esklusiboa izango da.\n\n3. NABIGAZIO EREMUAK: Nabigazioa baimendutako eremuetara eta adostutako denborara mugatuko da. Bezeroak Getxoko Kirol Portuko arauak eta Itsas Kapaintzaren araudia errespetatzeko konpromisoa hartzen du.\n\n4. SEGURTASUNA: Salbamendu-txalekoa erabiltzea nahitaezkoa eta pertsonala da uretan geratzen den denbora guztian.\n\n5. RESKATEA ETA LAGUNTZA: Bezeroak zuhurtzia faltagatik edo baimendutako eremuetatik kanpo ateratzeagatik laguntza edo erreskatea behar badu, sor daitezkeen gastuak bere kontu izango dira.\n\n6. SINADURA DIGITALA: Onarpen-laukia markatzean, bezeroak berresten du aurreko puntu guztiak ulertu dituela eta bere legezko erantzukizuna onartzen duela.",

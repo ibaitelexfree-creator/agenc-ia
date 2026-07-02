@@ -145,7 +145,11 @@ export default function LegalConsentModal({
             if (activityType === 'udalekus') {
                 if (!registrationDetails.N1_nombre) errors.N1_nombre = tV('name_required');
                 if (!registrationDetails.N1_apellidos) errors.N1_apellidos = tV('surnames_required');
-                if (!registrationDetails.N1_edad) errors.N1_edad = tV('age_required');
+                if (!registrationDetails.N1_edad) {
+                    errors.N1_edad = tV('age_required');
+                } else if (parseInt(registrationDetails.N1_edad) < 3) {
+                    errors.N1_edad = tV('min_age_required');
+                }
                 if (!registrationDetails.N1_sabe_nadar) errors.N1_sabe_nadar = tV('swim_required');
                 if (!registrationDetails.tutor1?.nombre) errors['tutor1.nombre'] = tV('tutor_name_required');
                 if (!registrationDetails.tutor1?.apellidos) errors['tutor1.apellidos'] = tV('tutor_surnames_required');
@@ -159,7 +163,14 @@ export default function LegalConsentModal({
                 if (!registrationDetails.apellidos) errors.apellidos = tV('surnames_required');
                 
                 if (activityType === 'course') {
-                    if (!registrationDetails.fecha_nacimiento) errors.fecha_nacimiento = tV('birth_date_required');
+                    if (!registrationDetails.fecha_nacimiento) {
+                        errors.fecha_nacimiento = tV('birth_date_required');
+                    } else {
+                        const age = calculateAge(registrationDetails.fecha_nacimiento);
+                        if (age !== null && age < 3) {
+                            errors.fecha_nacimiento = tV('min_age_required');
+                        }
+                    }
                     if (!registrationDetails.dni) {
                         errors.dni = tV('dni_required');
                     } else {
@@ -196,7 +207,14 @@ export default function LegalConsentModal({
                         if (!registrationDetails.tutor1?.email) errors['tutor1.email'] = tV('tutor_email_required');
                     }
                 } else if (activityType === 'membership') {
-                    if (!registrationDetails.fecha_nacimiento) errors.fecha_nacimiento = tV('birth_date_required');
+                    if (!registrationDetails.fecha_nacimiento) {
+                        errors.fecha_nacimiento = tV('birth_date_required');
+                    } else {
+                        const age = calculateAge(registrationDetails.fecha_nacimiento);
+                        if (age !== null && age < 3) {
+                            errors.fecha_nacimiento = tV('min_age_required');
+                        }
+                    }
                     if (!registrationDetails.dni) {
                         errors.dni = tV('dni_required');
                     } else {
@@ -216,7 +234,14 @@ export default function LegalConsentModal({
                         if (!registrationDetails.titular_cuenta) errors.titular_cuenta = tV('titular_required');
                     }
                 } else if (activityType === 'training') {
-                    if (!registrationDetails.fecha_nacimiento) errors.fecha_nacimiento = tV('birth_date_required');
+                    if (!registrationDetails.fecha_nacimiento) {
+                        errors.fecha_nacimiento = tV('birth_date_required');
+                    } else {
+                        const age = calculateAge(registrationDetails.fecha_nacimiento);
+                        if (age !== null && age < 3) {
+                            errors.fecha_nacimiento = tV('min_age_required');
+                        }
+                    }
                     if (!registrationDetails.dni) {
                         errors.dni = tV('dni_required');
                     } else {

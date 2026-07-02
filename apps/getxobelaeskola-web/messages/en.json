@@ -973,7 +973,8 @@
     "mode_required": "Please select an option",
     "iban_required": "IBAN is required",
     "titular_required": "Account holder is required",
-    "invalid_identity_document": "The ID is not valid, check it again."
+    "invalid_identity_document": "The ID is not valid, check it again.",
+    "min_age_required": "The participant must be at least 3 years old."
   },
   "legal": {
     "privacy_title": "Privacy Policy",

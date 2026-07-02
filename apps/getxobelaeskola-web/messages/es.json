@@ -994,7 +994,8 @@
     "mode_required": "Seleccione una modalidad",
     "iban_required": "El IBAN es obligatorio",
     "titular_required": "El titular de la cuenta es obligatorio",
-    "invalid_identity_document": "El documento de identidad no es válido. Compruébalo de nuevo."
+    "invalid_identity_document": "El documento de identidad no es válido. Compruébalo de nuevo.",
+    "min_age_required": "El participante debe tener al menos 3 años de edad."
   },
   "legal": {
     "privacy_title": "Política de Privacidad",
