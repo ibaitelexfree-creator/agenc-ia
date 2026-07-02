@@ -355,7 +355,8 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 repeat: Infinity,
                                 ease: "easeInOut"
                             }}
-                               {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
+                        >
+                             {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
                              <motion.img 
                                  src="/images/home/parallax/cloud_only_mini.webp"
                                  alt="Cloud Base"
