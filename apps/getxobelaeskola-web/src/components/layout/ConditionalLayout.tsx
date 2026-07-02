@@ -12,8 +12,8 @@ import ActivityTracker from '@/components/academy/ActivityTracker';
 
 interface ConditionalLayoutProps {
     children: ReactNode;
-    navbar: ReactNode;
-    footer: ReactNode;
+    navbar?: ReactNode;
+    footer?: ReactNode;
 }
 
 export default function ConditionalLayout({ children, navbar, footer }: ConditionalLayoutProps) {
@@ -58,7 +58,7 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
     return (
         <>
             {/* Navbar: Visible on Web (Responsive), Hidden on Native App */}
-            {!isAuth && !isNativeApp && (
+            {!isAuth && !isNativeApp && navbar && (
                 <div className="block">{navbar}</div>
             )}
 
@@ -67,7 +67,7 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
             </main>
 
             {/* Footer: Visible on Web (Responsive), Hidden on Native App */}
-            {!isAuth && !isNativeApp && (
+            {!isAuth && !isNativeApp && footer && (
                 <div className="block">{footer}</div>
             )}
 

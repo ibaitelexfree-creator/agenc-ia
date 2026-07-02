@@ -85,6 +85,13 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
     const locale = propLocale || (params.locale as string) || 'es';
 
+    const isAcademy = pathname?.includes('/academy');
+    const isAuth = pathname?.includes('/auth/');
+
+    if (isAcademy || isAuth) {
+        return null;
+    }
+
     const [user, setUser] = useState<AuthUser | null>(null);
     const [loading, setLoading] = useState(true);
 
