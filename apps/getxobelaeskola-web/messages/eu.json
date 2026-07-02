@@ -1946,5 +1946,34 @@
     "btn_dashboard": "Nire panel pertsonala →",
     "admin_supabase": "Ikusi Supabasen (Admin)",
     "quote": "\"Ez dago haize mesedegarririk nora doan ez dakienarentzat.\" — Seneka"
+  },
+  "membership_widget": {
+    "title": "Egin zaitez Klubeko Bazkide",
+    "description": "Getxo Belako nabigatzaileen komunitatearekin bat egin. {price}/hilabete soilik ordainduta, alokairuetan deskontuak, ikastaroetan lehentasuna eta ekitaldi esklusiboak izango dituzu.",
+    "btn_join": "Batu Orain →",
+    "loading": "Prestatzen...",
+    "subscribe_error": "Errorea harpidetza hastean",
+    "connection_error": "Konexio errorea"
+  },
+  "quick_contact": {
+    "title": "Arreta Zuzena",
+    "whatsapp_title": "Eskolako WhatsApp-a",
+    "whatsapp_desc": "Erantzun azkarra irakaskuntza orduetan",
+    "email_title": "Email Laguntza",
+    "email_desc": "Kudeaketa administratiboak",
+    "status_online": "Online Loguntza",
+    "hours": "Al-Os: 09:00 — 19:00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "Bonorik ez aktibo",
+    "no_active_desc": "Adquiere un pack de horas para navegar con descuento y flexibilidad.",
+    "btn_view_packs": "Ikusi bono erabilgarriak",
+    "active_title": "Nire Bono Aktiboak",
+    "view_history": "Ikusi historia",
+    "bono_default_name": "Bono Orokorra",
+    "valid_until": "{date} arte baliagarria",
+    "available": "Erabilgarri",
+    "remaining_percent": "% {percent} geratzen da",
+    "total_hours": "Guztira: {hours}h"
   }
 }

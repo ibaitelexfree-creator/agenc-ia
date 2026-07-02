@@ -2,6 +2,7 @@
 import React from 'react';
 import { Sparkles, Clock, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface Bono {
     id: string;
@@ -23,6 +24,8 @@ export default function BonosWallet({
     locale: string,
     onBuyClick?: () => void
 }) {
+    const t = useTranslations('bonos_wallet');
+
     if (!bonos || bonos.length === 0) {
         return (
             <div className="bg-card/50 border border-black/5 rounded-sm p-6 flex flex-col items-center justify-center text-center space-y-4">
@@ -30,16 +33,16 @@ export default function BonosWallet({
                     <Sparkles className="w-5 h-5 text-black/40" />
                 </div>
                 <div>
-                    <h3 className="text-black font-display text-lg mb-1">Sin Bonos Activos</h3>
+                    <h3 className="text-black font-display text-lg mb-1">{t('no_active_title')}</h3>
                     <p className="text-black/40 text-sm max-w-[250px]">
-                        Adquiere un pack de horas para navegar con descuento y flexibilidad.
+                        {t('no_active_desc')}
                     </p>
                 </div>
                 <button
                     onClick={onBuyClick}
                     className="px-4 py-2 bg-black/5 hover:bg-black/10 text-black/60 text-xs uppercase tracking-widest font-bold rounded-sm transition-colors border border-black/5"
                 >
-                    Ver Packs Disponibles
+                    {t('btn_view_packs')}
                 </button>
             </div>
         );
@@ -48,9 +51,9 @@ export default function BonosWallet({
     return (
         <div className="space-y-4">
             <div className="flex justify-between items-end">
-                <h2 className="text-xs uppercase tracking-widest text-accent font-bold">Mis Bonos Activos</h2>
+                <h2 className="text-xs uppercase tracking-widest text-accent font-bold">{t('active_title')}</h2>
                 <Link href={`/${locale}/bonos/history`} className="text-[10px] uppercase tracking-widest text-foreground/40 hover:text-accent transition-colors">
-                    Ver Historial
+                    {t('view_history')}
                 </Link>
             </div>
 
@@ -68,12 +71,14 @@ export default function BonosWallet({
                             <div className="relative z-10">
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
-                                        <h3 className="text-black font-display text-xl italic">{bono.tipos_bono?.nombre || 'Bono General'}</h3>
-                                        <p className="text-black/40 text-xs mt-1">Válido hasta {new Date(bono.fecha_expiracion).toLocaleDateString()}</p>
+                                        <h3 className="text-black font-display text-xl italic">{bono.tipos_bono?.nombre || t('bono_default_name')}</h3>
+                                        <p className="text-black/40 text-xs mt-1">
+                                            {t('valid_until', { date: new Date(bono.fecha_expiracion).toLocaleDateString(locale) })}
+                                        </p>
                                     </div>
                                     <div className="text-right">
                                         <div className="text-2xl font-black text-black leading-none">{bono.horas_restantes}h</div>
-                                        <div className="text-[9px] uppercase tracking-widest text-accent/60 mt-1">Disponibles</div>
+                                        <div className="text-[9px] uppercase tracking-widest text-accent/60 mt-1">{t('available')}</div>
                                     </div>
                                 </div>
 
@@ -85,8 +90,8 @@ export default function BonosWallet({
                                         />
                                     </div>
                                     <div className="flex justify-between text-[10px] uppercase tracking-widest text-black/30 font-medium">
-                                        <span>{percentage.toFixed(0)}% Restante</span>
-                                        <span>Total: {bono.horas_iniciales}h</span>
+                                        <span>{t('remaining_percent', { percent: percentage.toFixed(0) })}</span>
+                                        <span>{t('total_hours', { hours: bono.horas_iniciales })}</span>
                                     </div>
                                 </div>
                             </div>

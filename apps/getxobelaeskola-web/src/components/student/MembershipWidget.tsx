@@ -1,8 +1,7 @@
 'use client';
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 import { apiUrl } from '@/lib/api';
-
 
 interface MembershipWidgetProps {
     status: string;
@@ -10,6 +9,7 @@ interface MembershipWidgetProps {
 }
 
 export default function MembershipWidget({ status, locale }: MembershipWidgetProps) {
+    const t = useTranslations('membership_widget');
     const [loading, setLoading] = useState(false);
 
     const handleSubscribe = async () => {
@@ -24,11 +24,11 @@ export default function MembershipWidget({ status, locale }: MembershipWidgetPro
             if (data.url) {
                 window.location.href = data.url;
             } else {
-                alert(data.error || 'Error al iniciar suscripción');
+                alert(data.error || t('subscribe_error'));
             }
         } catch (error) {
             console.error('Subscription error:', error);
-            alert('Error de conexión');
+            alert(t('connection_error'));
         } finally {
             setLoading(false);
         }
@@ -43,9 +43,11 @@ export default function MembershipWidget({ status, locale }: MembershipWidgetPro
 
                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-display italic text-black mb-2 underline decoration-brass-gold/40">Hazte Socio del Club</h3>
+                        <h3 className="text-2xl font-display italic text-black mb-2 underline decoration-brass-gold/40">{t('title')}</h3>
                         <p className="text-black/70 text-sm max-w-md">
-                            Únete a la comunidad de navegantes de Getxo Bela. Por solo <span className="text-brass-gold font-bold">20€/mes</span> tendrás descuentos en alquileres, prioridad en cursos y eventos exclusivos.
+                            {t.rich('description', {
+                                price: (chunks) => <span className="text-brass-gold font-bold">20€</span>
+                            })}
                         </p>
                     </div>
 
@@ -54,7 +56,7 @@ export default function MembershipWidget({ status, locale }: MembershipWidgetPro
                         disabled={loading}
                         className="px-10 py-4 bg-brass-gold text-nautical-black font-black uppercase tracking-widest text-xs rounded hover:bg-white transition-all shadow-[0_0_30px_rgba(184,134,11,0.2)] whitespace-nowrap"
                     >
-                        {loading ? 'Preparando...' : 'Unirme Ahora →'}
+                        {loading ? t('loading') : t('btn_join')}
                     </button>
                 </div>
             </div>

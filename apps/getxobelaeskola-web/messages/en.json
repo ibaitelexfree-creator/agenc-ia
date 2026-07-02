@@ -1938,5 +1938,34 @@
     "btn_dashboard": "My Personal Dashboard →",
     "admin_supabase": "View in Supabase (Admin)",
     "quote": "\"There is no favorable wind for those who do not know which port they are heading for.\" — Seneca"
+  },
+  "membership_widget": {
+    "title": "Become a Club Member",
+    "description": "Join the Getxo Bela community. For just {price}/month you get rental discounts, course priority, and exclusive events.",
+    "btn_join": "Join Now →",
+    "loading": "Preparing...",
+    "subscribe_error": "Error initiating subscription",
+    "connection_error": "Connection error"
+  },
+  "quick_contact": {
+    "title": "Direct Support",
+    "whatsapp_title": "School WhatsApp",
+    "whatsapp_desc": "Quick response during school hours",
+    "email_title": "Support Email",
+    "email_desc": "Administrative procedures",
+    "status_online": "Online Support",
+    "hours": "Mon-Fri: 09:00 — 19:00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "No Active Vouchers",
+    "no_active_desc": "Purchase a pack of hours to sail with discounts and flexibility.",
+    "btn_view_packs": "See Available Packs",
+    "active_title": "My Active Vouchers",
+    "view_history": "View History",
+    "bono_default_name": "General Voucher",
+    "valid_until": "Valid until {date}",
+    "available": "Available",
+    "remaining_percent": "{percent}% Remaining",
+    "total_hours": "Total: {hours}h"
   }
 }

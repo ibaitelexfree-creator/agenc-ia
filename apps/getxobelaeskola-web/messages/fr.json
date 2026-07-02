@@ -1504,5 +1504,34 @@
     "btn_dashboard": "Mon Tableau de Bord →",
     "admin_supabase": "Voir sur Supabase (Admin)",
     "quote": "\"Il n'y a pas de vent favorable pour celui qui ne sait pas vers quel port il navigue.\" — Sénèque"
+  },
+  "membership_widget": {
+    "title": "Devenez Membre du Club",
+    "description": "Rejoignez la communauté des navigateurs de Getxo Bela. Pour seulement {price}/mois, vous bénéficiez de réductions sur les locations, de priorités sur les cours et d'événements exclusifs.",
+    "btn_join": "Rejoindre maintenant →",
+    "loading": "Préparation...",
+    "subscribe_error": "Erreur lors de l'initiation de l'abonnement",
+    "connection_error": "Erreur de connexion"
+  },
+  "quick_contact": {
+    "title": "Support Direct",
+    "whatsapp_title": "WhatsApp École",
+    "whatsapp_desc": "Réponse rapide pendant les heures de cours",
+    "email_title": "Email de Support",
+    "email_desc": "Procédures administratives",
+    "status_online": "Support en Ligne",
+    "hours": "Lun-Ven : 09h00 — 19h00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "Aucun forfait actif",
+    "no_active_desc": "Achetez un pack d'heures pour naviguer avec réduction et flexibilité.",
+    "btn_view_packs": "Voir les packs disponibles",
+    "active_title": "Mes forfaits actifs",
+    "view_history": "Voir l'historique",
+    "bono_default_name": "Forfait Général",
+    "valid_until": "Valable jusqu'au {date}",
+    "available": "Disponibles",
+    "remaining_percent": "{percent}% Restant",
+    "total_hours": "Total : {hours}h"
   }
 }

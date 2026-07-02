@@ -2006,5 +2006,26 @@
     "loading": "Preparando...",
     "subscribe_error": "Error al iniciar suscripción",
     "connection_error": "Error de conexión"
+  },
+  "quick_contact": {
+    "title": "Atención Directa",
+    "whatsapp_title": "WhatsApp Escuela",
+    "whatsapp_desc": "Respuesta rápida en horario lectivo",
+    "email_title": "Email Soporte",
+    "email_desc": "Gestiones administrativas",
+    "status_online": "Soporte Online",
+    "hours": "L-V: 09:00 — 19:00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "Sin Bonos Activos",
+    "no_active_desc": "Adquiere un pack de horas para navegar con descuento y flexibilidad.",
+    "btn_view_packs": "Ver Packs Disponibles",
+    "active_title": "Mis Bonos Activos",
+    "view_history": "Ver Historial",
+    "bono_default_name": "Bono General",
+    "valid_until": "Válido hasta {date}",
+    "available": "Disponibles",
+    "remaining_percent": "{percent}% Restante",
+    "total_hours": "Total: {hours}h"
   }
 }
