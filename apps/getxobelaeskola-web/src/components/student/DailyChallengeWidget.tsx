@@ -174,13 +174,13 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
 
     if (loading) {
         return (
-            <div className="bg-card/30 backdrop-blur-md border border-white/5 p-8 h-[380px] flex flex-col justify-center animate-pulse rounded-sm">
+            <div className="bg-card/30 backdrop-blur-md border border-black/5 p-8 h-[380px] flex flex-col justify-center animate-pulse rounded-sm">
                 <div className="space-y-4">
-                    <div className="h-2 w-16 bg-white/10 mx-auto"></div>
-                    <div className="h-6 w-3/4 bg-white/10 mx-auto"></div>
+                    <div className="h-2 w-16 bg-black/10 mx-auto"></div>
+                    <div className="h-6 w-3/4 bg-black/10 mx-auto"></div>
                     <div className="space-y-2 pt-8">
-                        <div className="h-12 w-full bg-white/5"></div>
-                        <div className="h-12 w-full bg-white/5"></div>
+                        <div className="h-12 w-full bg-black/5"></div>
+                        <div className="h-12 w-full bg-black/5"></div>
                     </div>
                 </div>
             </div>
@@ -208,9 +208,9 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none"
             >
-                <div className="w-[300px] h-[300px] border-[1px] border-white rounded-full flex items-center justify-center">
-                    <div className="w-full h-[1px] bg-white absolute"></div>
-                    <div className="h-full w-[1px] bg-white absolute"></div>
+                <div className="w-[300px] h-[300px] border-[1px] border-black rounded-full flex items-center justify-center">
+                    <div className="w-full h-[1px] bg-black absolute"></div>
+                    <div className="h-full w-[1px] bg-black absolute"></div>
                 </div>
             </motion.div>
 
@@ -221,13 +221,13 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                             <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
                             <h2 className="text-[10px] uppercase tracking-[0.3em] text-accent font-bold">{t('title')}</h2>
                         </div>
-                        <p className="text-[9px] uppercase tracking-widest text-white/30 font-medium">{t('subtitle')}</p>
+                        <p className="text-[9px] uppercase tracking-widest text-black/30 font-medium">{t('subtitle')}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1">
                         <div className="px-3 py-1 bg-accent/10 border border-accent/20 text-accent text-[10px] font-black tracking-tighter italic">
                             {streak} DAY STREAK 🔥
                         </div>
-                        <div className="text-[8px] uppercase tracking-widest text-white/20">IQ NÁUTICO: {accuracy}%</div>
+                        <div className="text-[8px] uppercase tracking-widest text-black/20">IQ NÁUTICO: {accuracy}%</div>
                     </div>
                 </header>
 
@@ -249,17 +249,17 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                                     ⚓
                                 </div>
                             </div>
-                            <h3 className="text-xl font-display text-white mb-2">{t('already_done')}</h3>
-                            <p className="text-white/40 text-xs max-w-[200px] mx-auto leading-relaxed">{t('come_back')}</p>
+                            <h3 className="text-xl font-display text-black mb-2">{t('already_done')}</h3>
+                            <p className="text-black/40 text-xs max-w-[200px] mx-auto leading-relaxed">{t('come_back')}</p>
 
-                            <div className="mt-8 pt-6 border-t border-white/5 flex justify-center gap-8">
+                            <div className="mt-8 pt-6 border-t border-black/5 flex justify-center gap-8">
                                 <div className="text-center">
                                     <div className="text-lg font-bold text-accent">{stats.total_correct}</div>
-                                    <div className="text-[8px] uppercase tracking-widest text-white/30">Aciertos</div>
+                                    <div className="text-[8px] uppercase tracking-widest text-black/30">Aciertos</div>
                                 </div>
                                 <div className="text-center">
                                     <div className="text-lg font-bold text-accent">{streak}</div>
-                                    <div className="text-[8px] uppercase tracking-widest text-white/30">Racha</div>
+                                    <div className="text-[8px] uppercase tracking-widest text-black/30">Racha</div>
                                 </div>
                             </div>
                         </motion.div>
@@ -285,26 +285,26 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                                 </div>
 
                                 <div className="space-y-3">
-                                    <div className="text-[9px] uppercase tracking-widest text-white/40 font-bold">{t('explanation')}</div>
-                                    <p className="text-xs text-white/70 italic leading-relaxed font-light">
+                                    <div className="text-[9px] uppercase tracking-widest text-black/40 font-bold">{t('explanation')}</div>
+                                    <p className="text-xs text-black/70 italic leading-relaxed font-light">
                                         "{locale === 'es' ? challenge?.explicacion_es : challenge?.explicacion_eu}"
                                     </p>
                                 </div>
                             </div>
 
-                            <div className="bg-white/5 p-4 flex justify-between items-center rounded-sm">
-                                <div className="text-[9px] uppercase tracking-widest text-white/40 italic">Progreso de Racha</div>
+                            <div className="bg-black/5 p-4 flex justify-between items-center rounded-sm">
+                                <div className="text-[9px] uppercase tracking-widest text-black/40 italic">Progreso de Racha</div>
                                 <div className="flex gap-1">
                                     {[1, 2, 3, 4, 5].map((it) => (
                                         <div
                                             key={it}
-                                            className={`w-1.5 h-3 rounded-full ${it <= (streak % 5 || 5) ? 'bg-accent' : 'bg-white/10'}`}
+                                            className={`w-1.5 h-3 rounded-full ${it <= (streak % 5 || 5) ? 'bg-accent' : 'bg-black/10'}`}
                                         ></div>
                                     ))}
                                 </div>
                             </div>
 
-                            <p className="text-center text-[9px] uppercase tracking-widest text-white/20 pt-4 cursor-default">
+                            <p className="text-center text-[9px] uppercase tracking-widest text-black/20 pt-4 cursor-default">
                                 {t('come_back')}
                             </p>
                         </motion.div>
@@ -315,7 +315,7 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                             animate={{ opacity: 1 }}
                             className="space-y-8"
                         >
-                            <h3 className="text-2xl font-display text-white leading-[1.2] italic underline decoration-accent/20 underline-offset-8">
+                            <h3 className="text-2xl font-display text-black leading-[1.2] italic underline decoration-accent/20 underline-offset-8">
                                 {locale === 'es' ? challenge?.pregunta_es : challenge?.pregunta_eu}
                             </h3>
 
@@ -329,11 +329,11 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                                         disabled={status === 'answering'}
                                         className={`group/btn w-full text-left p-4 text-xs transition-all border relative overflow-hidden ${selectedOption === index
                                             ? 'border-accent bg-accent/5'
-                                            : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/20'
+                                            : 'border-black/5 bg-black/[0.02] hover:bg-black/[0.05] hover:border-black/20'
                                             }`}
                                     >
                                         <div className="relative z-10 flex items-center justify-between">
-                                            <span className={selectedOption === index ? 'text-accent font-bold' : 'text-white/60'}>
+                                            <span className={selectedOption === index ? 'text-accent font-bold' : 'text-black/60'}>
                                                 {opcion}
                                             </span>
                                             {selectedOption === index && (

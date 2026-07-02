@@ -206,7 +206,7 @@ export default function StudentDashboardClient({
                         <span className="text-accent uppercase tracking-widest text-xs font-semibold mb-4 block">
                             {t.eyebrow}
                         </span>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display mb-4 text-white leading-[1.1]">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display mb-4 text-black leading-[1.1]">
                             {(() => {
                                 const welcome = t.welcome || 'Hola, {name}';
                                 const parts = welcome.includes('{{NAME}}') ? welcome.split('{{NAME}}') : welcome.split('{name}');
@@ -276,24 +276,24 @@ export default function StudentDashboardClient({
                                                     <div className="w-8 h-8 bg-accent/10 flex items-center justify-center rounded-full text-accent shadow-[0_0_15px_rgba(var(--accent-rgb),0.2)]">
                                                         <Sparkles size={14} />
                                                     </div>
-                                                    <h3 className="text-2xl font-display italic text-white">{t.academy_widget.card_title}</h3>
+                                                    <h3 className="text-2xl font-display italic text-black">{t.academy_widget.card_title}</h3>
                                                 </div>
 
-                                                <p className="text-white/50 text-sm max-w-md mb-8 leading-relaxed">
+                                                <p className="text-black/50 text-sm max-w-md mb-8 leading-relaxed">
                                                     {hasAcademyActivity ? t.academy_widget.card_desc_active : t.academy_widget.card_desc_inactive}
                                                 </p>
 
                                                 <div className="grid grid-cols-3 gap-4 lg:gap-8 mb-8">
                                                     <div className="space-y-1">
-                                                        <div className="text-3xl font-black text-white italic tracking-tighter leading-none">{totalMiles}</div>
+                                                        <div className="text-3xl font-black text-black italic tracking-tighter leading-none">{totalMiles}</div>
                                                         <div className="text-[8px] uppercase tracking-[0.2em] text-accent/60 font-medium">Millas</div>
                                                     </div>
                                                     <div className="space-y-1">
-                                                        <div className="text-3xl font-black text-white italic tracking-tighter leading-none">{academyLevels}</div>
+                                                        <div className="text-3xl font-black text-black italic tracking-tighter leading-none">{academyLevels}</div>
                                                         <div className="text-[8px] uppercase tracking-[0.2em] text-accent/60 font-medium">{t.academy_widget.stats_levels}</div>
                                                     </div>
                                                     <div className="space-y-1">
-                                                        <div className="text-3xl font-black text-white italic tracking-tighter leading-none">{academyCerts}</div>
+                                                        <div className="text-3xl font-black text-black italic tracking-tighter leading-none">{academyCerts}</div>
                                                         <div className="text-[8px] uppercase tracking-[0.2em] text-accent/60 font-medium">{t.academy_widget.stats_certs}</div>
                                                     </div>
                                                 </div>
@@ -301,10 +301,10 @@ export default function StudentDashboardClient({
                                                 {/* Global Progress Bar */}
                                                 <div className="space-y-2 group relative">
                                                     <div className="flex justify-between items-end">
-                                                        <span className="text-[9px] uppercase tracking-widest text-white/40 font-semibold">Progreso Global</span>
+                                                        <span className="text-[9px] uppercase tracking-widest text-black/40 font-semibold">Progreso Global</span>
                                                         <span className="text-[10px] font-mono text-accent">{globalProgress}%</span>
                                                     </div>
-                                                    <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+                                                    <div className="h-1.5 w-full bg-black/5 rounded-full overflow-hidden">
                                                         <div
                                                             className="h-full bg-accent rounded-full transition-all duration-1000 ease-out"
                                                             style={{ width: `${globalProgress}%` }}
@@ -312,7 +312,7 @@ export default function StudentDashboardClient({
                                                     </div>
 
                                                     {/* Tooltip */}
-                                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/90 border border-white/10 rounded text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-xl">
+                                                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-black/90 border border-white/10 rounded text-[10px] text-black whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-xl">
                                                         {completedModules} / {totalModules} Módulos completados
                                                         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rotate-45 w-2 h-2 bg-black border-r border-b border-white/10"></div>
                                                     </div>
@@ -330,7 +330,7 @@ export default function StudentDashboardClient({
                                                             fill="transparent"
                                                             stroke="currentColor"
                                                             strokeWidth="4"
-                                                            className="text-white/5"
+                                                            className="text-black/5"
                                                         />
                                                         <circle
                                                             cx="64"
@@ -345,8 +345,8 @@ export default function StudentDashboardClient({
                                                         />
                                                     </svg>
                                                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                                                        <span className="text-[9px] uppercase tracking-widest text-white/30 font-bold">Goal</span>
-                                                        <span className="text-sm font-black text-white">100 Mi</span>
+                                                        <span className="text-[9px] uppercase tracking-widest text-black/30 font-bold">Goal</span>
+                                                        <span className="text-sm font-black text-black">100 Mi</span>
                                                     </div>
                                                 </div>
 
@@ -373,7 +373,7 @@ export default function StudentDashboardClient({
                                                     <div className="flex items-center gap-6">
                                                         <div className="w-12 h-12 bg-accent/10 flex items-center justify-center text-accent text-xl rounded-sm">⛵</div>
                                                         <div>
-                                                            <h3 className="text-lg font-display text-white group-hover:text-accent transition-colors">{courseName}</h3>
+                                                            <h3 className="text-lg font-display text-black group-hover:text-accent transition-colors">{courseName}</h3>
                                                             <p className="text-xs text-foreground/40 font-light">
                                                                 {edition?.fecha_inicio ? `Del ${formatDate(edition.fecha_inicio)}` : 'Pendiente de asignar'}
                                                             </p>
@@ -408,7 +408,7 @@ export default function StudentDashboardClient({
                                                     <div className="flex items-center gap-6">
                                                         <div className="w-12 h-12 bg-accent/10 flex items-center justify-center text-accent text-xl rounded-sm">🌊</div>
                                                         <div>
-                                                            <h3 className="text-lg font-display text-white group-hover:text-accent transition-colors">{itemName}</h3>
+                                                            <h3 className="text-lg font-display text-black group-hover:text-accent transition-colors">{itemName}</h3>
                                                             <p className="text-xs text-foreground/40 font-light">
                                                                 {formatDateTime(rent.fecha_reserva, rent.hora_inicio)}
                                                             </p>
@@ -428,23 +428,23 @@ export default function StudentDashboardClient({
 
                             {/* History Section */}
                             {(pastInscripciones.length > 0 || pastRentals.length > 0) && (
-                                <section className="pt-16 border-t border-white/5">
+                                <section className="pt-16 border-t border-black/5">
                                     <h2 className="text-xs uppercase tracking-widest text-foreground/20 mb-8 font-bold">{t.history_section.title}</h2>
                                     <div className="space-y-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                                         {[...pastInscripciones, ...pastRentals].sort((a, b) => new Date(b.fecha_reserva || b.ediciones_curso?.fecha_inicio || 0).getTime() - new Date(a.fecha_reserva || a.ediciones_curso?.fecha_inicio || 0).getTime()).slice(0, 3).map((item: any) => (
-                                            <div key={item.id} className="flex justify-between items-center py-4 border-b border-white/5 last:border-0 text-sm">
+                                            <div key={item.id} className="flex justify-between items-center py-4 border-b border-black/5 last:border-0 text-sm">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="w-8 h-8 bg-white/5 flex items-center justify-center text-xs rounded-sm">✓</div>
+                                                    <div className="w-8 h-8 bg-black/5 flex items-center justify-center text-xs rounded-sm">✓</div>
                                                     <div>
-                                                        <div className="text-white/60 font-medium">
+                                                        <div className="text-black/60 font-medium">
                                                             {item.cursos ? (locale === 'es' ? item.cursos.nombre_es : item.cursos.nombre_eu) : (item.servicios_alquiler ? (locale === 'es' ? item.servicios_alquiler.nombre_es : item.servicios_alquiler.nombre_eu) : 'Actividad pasada')}
                                                         </div>
-                                                        <div className="text-[10px] text-white/20 uppercase tracking-tighter">
+                                                        <div className="text-[10px] text-black/20 uppercase tracking-tighter">
                                                             {formatDate(item.fecha_reserva || item.ediciones_curso?.fecha_inicio)}
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span className="text-[10px] uppercase tracking-widest text-white/20">{t.history_section.completed}</span>
+                                                <span className="text-[10px] uppercase tracking-widest text-black/20">{t.history_section.completed}</span>
                                             </div>
                                         ))}
                                     </div>

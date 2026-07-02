@@ -55,7 +55,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
         <aside className="space-y-8">
             <div className="bg-card p-8 border border-card-border rounded-sm backdrop-blur-md">
                 <div className="flex flex-col items-center text-center mb-8">
-                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/20 mb-4 bg-white/5">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-accent/20 mb-4 bg-black/5">
                         <Image
                             src="/images/default-student-avatar.png"
                             alt={currentProfile?.nombre || 'Student'}
@@ -63,7 +63,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                             className="object-cover"
                         />
                     </div>
-                    <h3 className="text-xl font-display italic text-white">{currentProfile?.nombre} {currentProfile?.apellidos}</h3>
+                    <h3 className="text-xl font-display italic text-black">{currentProfile?.nombre} {currentProfile?.apellidos}</h3>
                     <div className="flex flex-col items-center gap-2 mt-2">
                         <span className="text-[8px] uppercase tracking-[0.4em] text-accent font-black">{t('verified_member')}</span>
                         {isSocio && (
@@ -77,14 +77,14 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                     </div>
 
                     <div className="mt-6 flex flex-col items-center gap-1">
-                        <div className="text-2xl font-black text-white italic tracking-tighter">
+                        <div className="text-2xl font-black text-black italic tracking-tighter">
                             {currentProfile?.xp || 0} <span className="text-accent text-xs">XP</span>
                         </div>
-                        <div className="text-[8px] uppercase tracking-[0.3em] text-white/30 font-bold">Puntos de Experiencia</div>
+                        <div className="text-[8px] uppercase tracking-[0.3em] text-black/30 font-bold">Puntos de Experiencia</div>
                     </div>
                 </div>
 
-                <h3 className="text-3xs uppercase tracking-widest text-white/40 mb-6 font-bold">{t('account_info')}</h3>
+                <h3 className="text-3xs uppercase tracking-widest text-black/40 mb-6 font-bold">{t('account_info')}</h3>
                 <div className="space-y-4">
                     <div>
                         <p className="text-3xs uppercase tracking-widest text-foreground/40">Email</p>
@@ -99,7 +99,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                 <div className="mt-8 space-y-4">
                     <button
                         onClick={() => setIsEditing(true)}
-                        className="w-full py-3 border border-white/5 text-3xs uppercase tracking-widest hover:bg-white/5 transition-colors text-white/60 hover:text-white"
+                        className="w-full py-3 border border-black/5 text-3xs uppercase tracking-widest hover:bg-black/5 transition-colors text-black/60 hover:text-black"
                     >
                         {t('edit_profile')}
                     </button>
@@ -109,7 +109,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                             <button
                                 onClick={handleManageMembership}
                                 disabled={portalLoading}
-                                className="w-full py-3 bg-white/5 border border-accent/20 text-[9px] uppercase tracking-widest font-bold text-accent hover:bg-accent/10 transition-all flex items-center justify-center gap-2"
+                                className="w-full py-3 bg-black/5 border border-accent/20 text-[9px] uppercase tracking-widest font-bold text-accent hover:bg-accent/10 transition-all flex items-center justify-center gap-2"
                             >
                                 {portalLoading ? t('loading') : `⚙️ ${t('managing_subscription')}`}
                             </button>
@@ -122,7 +122,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                         </div>
                     )}
 
-                    <div className="pt-4 border-t border-white/5">
+                    <div className="pt-4 border-t border-black/5">
                         <LogoutButton locale={locale} />
                     </div>
                 </div>

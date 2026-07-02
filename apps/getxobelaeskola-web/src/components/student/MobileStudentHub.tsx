@@ -72,8 +72,8 @@ export default function MobileStudentHub({
             <header className="px-6 pt-8 relative z-[100]">
                 <div className="flex items-center justify-between mb-2">
                     <div className="flex flex-col">
-                        <span className="text-white/40 text-xs uppercase tracking-widest font-bold">{t.welcome?.split(',')[0]},</span>
-                        <h1 className="text-3xl font-display text-white">
+                        <span className="text-black/40 text-xs uppercase tracking-widest font-bold">{t.welcome?.split(',')[0]},</span>
+                        <h1 className="text-3xl font-display text-black">
                             {userName} <span className="animate-wave inline-block origin-bottom-right">👋</span>
                         </h1>
                     </div>
@@ -90,21 +90,21 @@ export default function MobileStudentHub({
             {/* Academy Quick Stats */}
             {academyStats && (
                 <section className="px-6">
-                    <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex justify-between items-center overflow-hidden relative">
+                    <div className="bg-black/5 border border-black/10 rounded-2xl p-6 flex justify-between items-center overflow-hidden relative">
                         <div className="absolute right-0 top-0 w-32 h-32 bg-accent/5 blur-[40px] rounded-full pointer-events-none" />
 
                         <div className="grid grid-cols-3 gap-8 w-full relative z-10">
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Millas</span>
-                                <span className="text-2xl font-display text-white">{academyStats.totalMiles || 0}</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Millas</span>
+                                <span className="text-2xl font-display text-black">{academyStats.totalMiles || 0}</span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Niveles</span>
-                                <span className="text-2xl font-display text-white">{academyStats.academyLevels || 0}</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Niveles</span>
+                                <span className="text-2xl font-display text-black">{academyStats.academyLevels || 0}</span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">Certif.</span>
-                                <span className="text-2xl font-display text-white">{academyStats.academyCerts || 0}</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Certif.</span>
+                                <span className="text-2xl font-display text-black">{academyStats.academyCerts || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -120,10 +120,10 @@ export default function MobileStudentHub({
                         prefetch={false}
                         className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border backdrop-blur-sm transition-transform active:scale-95 ${action.bg} ${action.border}`}
                     >
-                        <div className="p-3 rounded-full bg-white/5 shadow-inner">
+                        <div className="p-3 rounded-full bg-black/5 shadow-inner">
                             {action.icon}
                         </div>
-                        <span className="text-sm font-bold text-white tracking-wide">{action.label}</span>
+                        <span className="text-sm font-bold text-black tracking-wide">{action.label}</span>
                     </Link>
                 ))}
             </section>
@@ -137,7 +137,7 @@ export default function MobileStudentHub({
             {hasBookings && (
                 <section className="pl-6">
                     <div className="flex items-center justify-between pr-6 mb-4">
-                        <h2 className="text-xs uppercase tracking-widest text-white/60 font-bold">Próximo Evento</h2>
+                        <h2 className="text-xs uppercase tracking-widest text-black/60 font-bold">Próximo Evento</h2>
                     </div>
 
                     <div className="flex gap-4 overflow-x-auto pb-8 pr-6 snap-x snap-mandatory scrollbar-hide">
@@ -145,19 +145,19 @@ export default function MobileStudentHub({
                             const date = ins.ediciones_curso?.fecha_inicio || ins.metadata?.start_date;
                             const name = ins.cursos?.nombre_es || 'Curso de Vela';
                             return (
-                                <div key={`course-${i}`} className="min-w-[85%] sm:min-w-[300px] snap-center bg-nautical-black border border-white/10 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-between group">
+                                <div key={`course-${i}`} className="min-w-[85%] sm:min-w-[300px] snap-center bg-nautical-black border border-black/10 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-between group">
                                     <div className="absolute right-0 top-0 w-24 h-24 bg-blue-500/10 blur-[40px] rounded-full pointer-events-none" />
 
                                     <div className="flex justify-between items-start z-10">
                                         <span className="bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded">
                                             Curso
                                         </span>
-                                        <span className="text-white font-mono text-xs">{formatDate(date)}</span>
+                                        <span className="text-black font-mono text-xs">{formatDate(date)}</span>
                                     </div>
 
                                     <div className="z-10">
-                                        <h3 className="text-lg font-display text-white italic truncate">{name}</h3>
-                                        <p className="text-white/40 text-xs">Arriluze Kaia, Getxo</p>
+                                        <h3 className="text-lg font-display text-black italic truncate">{name}</h3>
+                                        <p className="text-black/40 text-xs">Arriluze Kaia, Getxo</p>
                                     </div>
                                 </div>
                             );
@@ -166,19 +166,19 @@ export default function MobileStudentHub({
                         {upcomingRentals.map((rent: Rental, i: number) => {
                             const date = rent.fecha_reserva;
                             return (
-                                <div key={`rental-${i}`} className="min-w-[85%] sm:min-w-[300px] snap-center bg-nautical-black border border-white/10 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-between">
+                                <div key={`rental-${i}`} className="min-w-[85%] sm:min-w-[300px] snap-center bg-nautical-black border border-black/10 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-between">
                                     <div className="absolute right-0 top-0 w-24 h-24 bg-emerald-500/10 blur-[40px] rounded-full pointer-events-none" />
 
                                     <div className="flex justify-between items-start z-10">
                                         <span className="bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded">
                                             Alquiler
                                         </span>
-                                        <span className="text-white font-mono text-xs">{formatDate(date)}</span>
+                                        <span className="text-black font-mono text-xs">{formatDate(date)}</span>
                                     </div>
 
                                     <div className="z-10">
-                                        <h3 className="text-lg font-display text-white italic">Travesía Libre</h3>
-                                        <p className="text-white/40 text-xs">J80 - Getxo</p>
+                                        <h3 className="text-lg font-display text-black italic">Travesía Libre</h3>
+                                        <p className="text-black/40 text-xs">J80 - Getxo</p>
                                     </div>
                                 </div>
                             );
@@ -199,10 +199,10 @@ export default function MobileStudentHub({
                             <Trophy className="w-6 h-6" />
                         </div>
                         <div>
-                            <h3 className="text-white font-bold text-lg">Reto Diario</h3>
+                            <h3 className="text-black font-bold text-lg">Reto Diario</h3>
                             <p className="text-accent text-xs uppercase tracking-wider font-bold">Gana +50 XP hoy</p>
                         </div>
-                        <ChevronRight className="ml-auto text-white/40" />
+                        <ChevronRight className="ml-auto text-black/40" />
                     </div>
                 </Link>
             </section>

@@ -4,6 +4,7 @@ import type Stripe from 'stripe';
 import { stripe } from '@/lib/stripe';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { StripeHandlers } from '@/lib/stripe/webhook-handlers';
+import { resend, DEFAULT_FROM_EMAIL } from '@/lib/resend';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
@@ -147,6 +148,28 @@ export async function POST(request: Request) {
                 await supabase.from('stripe_audit_logs')
                     .update({ status: 'failed', error_message: (processError as Error).message })
                     .eq('id', auditLogId);
+            }
+
+            // Send instant alert email to staff
+            try {
+                if (resend) {
+                    await resend.emails.send({
+                        from: DEFAULT_FROM_EMAIL,
+                        to: 'info@getxobelaeskola.com',
+                        subject: `🚨 ALERTA: Fallo de Webhook Stripe (${event.type})`,
+                        html: `
+                            <h2>Error al procesar evento de Stripe</h2>
+                            <p><strong>Tipo de Evento:</strong> ${event.type}</p>
+                            <p><strong>ID de Evento:</strong> ${event.id}</p>
+                            <p><strong>Error:</strong> ${(processError as Error).message}</p>
+                            <p><strong>ID de Audit Log:</strong> ${auditLogId || 'No creado'}</p>
+                            <hr />
+                            <p>Por favor, revisa la base de datos de Supabase (tabla <code>stripe_audit_logs</code>) y el dashboard de Stripe para comprobar si el pago se completó correctamente y necesita ser matriculado manualmente.</p>
+                        `
+                    });
+                }
+            } catch (emailErr) {
+                console.error('Failed to send webhook failure alert email:', emailErr);
             }
 
             // Return 500 so Stripe retries

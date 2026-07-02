@@ -4,7 +4,7 @@ import { resend, DEFAULT_FROM_EMAIL } from '../resend';
 import { rentalTemplate, inscriptionTemplate, membershipTemplate, internalOrderNotificationTemplate } from '../email-templates';
 import { createRentalGoogleEvent } from '../google-calendar';
 
-const STAFF_EMAIL = 'getxobelaeskola@gmail.com';
+const STAFF_EMAIL = 'info@getxobelaeskola.com';
 
 export class StripeHandlers {
     constructor(private supabase: SupabaseClient) { }

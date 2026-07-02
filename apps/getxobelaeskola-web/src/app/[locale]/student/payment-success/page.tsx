@@ -13,51 +13,81 @@ function SuccessContent() {
     const [mounted, setMounted] = useState(false);
     const [details, setDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [showWarning, setShowWarning] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        const fetchDetails = async () => {
-            if (!sessionId) {
-                setLoading(false);
-                return;
-            }
+        if (!sessionId) {
+            setLoading(false);
+            return;
+        }
 
+        let attempts = 0;
+        const maxAttempts = 5; // 10 seconds total (5 * 2s)
+        let intervalId: any = null;
+
+        const checkStatus = async () => {
             try {
-                // We'll use a public API route or direct supabase if we have it
-                // For now, let's try to find the reservation/subscription
                 const { createClient } = await import('@/lib/supabase/client');
                 const supabase = createClient();
+                let data = null;
 
                 if (type === 'rental') {
-                    const { data } = await supabase
+                    const res = await supabase
                         .from('reservas_alquiler')
                         .select('*, servicios_alquiler(*)')
                         .eq('stripe_session_id', sessionId)
                         .maybeSingle();
-                    if (data) setDetails(data);
+                    data = res.data;
                 } else if (type === 'course') {
-                    const { data } = await supabase
+                    const res = await supabase
                         .from('inscripciones')
                         .select('*, cursos(*)')
                         .eq('stripe_session_id', sessionId)
                         .maybeSingle();
-                    if (data) setDetails(data);
+                    data = res.data;
                 } else if (type === 'membership') {
-                    const { data } = await supabase
+                    const res = await supabase
                         .from('subscriptions')
                         .select('*')
                         .eq('stripe_session_id', sessionId)
                         .maybeSingle();
-                    if (data) setDetails(data);
+                    data = res.data;
+                }
+
+                if (data) {
+                    setDetails(data);
+                    setLoading(false);
+                    if (intervalId) clearInterval(intervalId);
+                    return true;
                 }
             } catch (err) {
                 console.error('Error fetching success details:', err);
-            } finally {
-                setLoading(false);
             }
+            return false;
         };
 
-        fetchDetails();
+        // Initial check
+        checkStatus().then((found) => {
+            if (found) return;
+
+            // Poll every 2 seconds if not found immediately
+            intervalId = setInterval(async () => {
+                attempts++;
+                const foundInPoll = await checkStatus();
+                if (foundInPoll || attempts >= maxAttempts) {
+                    clearInterval(intervalId);
+                    setLoading(false);
+                    if (!foundInPoll) {
+                        setShowWarning(true);
+                    }
+                }
+            }, 2000);
+        });
+
+        return () => {
+            if (intervalId) clearInterval(intervalId);
+        };
     }, [sessionId, type]);
 
     if (!mounted) return null;
@@ -87,21 +117,25 @@ function SuccessContent() {
                             <div className="w-24 h-24 rounded-full bg-brass-gold/10 flex items-center justify-center text-5xl border border-brass-gold/20 shadow-[0_0_50px_rgba(184,134,11,0.1)] animate-pulse">
                                 ⚓
                             </div>
-                            <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-sea-foam rounded-full flex items-center justify-center text-nautical-black text-xl border-4 border-nautical-black">
-                                ✓
+                            <div className={`absolute -bottom-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center text-white text-xl border-4 border-nautical-black ${showWarning ? 'bg-amber-500' : 'bg-sea-foam'}`}>
+                                {showWarning ? '⌛' : '✓'}
                             </div>
                         </div>
 
                         <h1 className="text-4xl md:text-6xl font-display italic text-sea-foam mb-6 tracking-tight">
-                            {isMembership ? 'Bienvenido a Bordo' : isRental ? 'Reserva Confirmada' : 'Inscripción Listos'}
+                            {showWarning 
+                                ? 'Pago Recibido' 
+                                : (isMembership ? 'Bienvenido a Bordo' : isRental ? 'Reserva Confirmada' : 'Inscripción Listos')}
                         </h1>
 
                         <p className="text-lg text-sea-foam/60 font-light max-w-md mx-auto mb-12 leading-relaxed">
-                            {isMembership
-                                ? 'Tu suscripción de socio ha sido activada correctamente. Ahora tienes acceso a tarifas exclusivas y ventajas en toda nuestra flota.'
-                                : isRental
-                                    ? 'Hemos registrado tu reserva de material. Recibirás un correo con los detalles y el código de acceso si es necesario.'
-                                    : 'Tu plaza en el curso ha sido reservada con éxito. Ya puedes acceder al material teórico desde tu panel de alumno.'}
+                            {showWarning
+                                ? 'El banco ha confirmado el pago, pero la activación automática en nuestro sistema está tardando un poco más. No te preocupes: tu reserva/inscripción está a salvo. Recibirás un correo de confirmación pronto. Si no aparece en tu panel en unos minutos, escríbenos a info@getxobelaeskola.com.'
+                                : (isMembership
+                                    ? 'Tu suscripción de socio ha sido activada correctamente. Ahora tienes acceso a tarifas exclusivas y ventajas en toda nuestra flota.'
+                                    : isRental
+                                        ? 'Hemos registrado tu reserva de material. Recibirás un correo con los detalles y el código de acceso si es necesario.'
+                                        : 'Tu plaza en el curso ha sido reservada con éxito. Ya puedes acceder al material teórico desde tu panel de alumno.')}
                         </p>
 
                         {/* Order Confirmation Mockup */}
@@ -118,8 +152,8 @@ function SuccessContent() {
                             <div className="space-y-1">
                                 <p className="text-2xs uppercase tracking-tighter text-brass-gold font-black">Estado</p>
                                 <p className="text-sea-foam text-sm font-medium flex items-center gap-2">
-                                    <span className={`w-2 h-2 rounded-full shadow-[0_0_8px_#4fd1c5] ${loading ? 'bg-yellow-400 animate-pulse' : 'bg-sea-foam'}`} />
-                                    {loading ? 'Verificando con el banco...' : (details ? 'Completado y Verificado' : 'Procesando...')}
+                                    <span className={`w-2 h-2 rounded-full ${loading ? 'bg-yellow-400 animate-pulse' : (details ? 'bg-sea-foam shadow-[0_0_8px_#4fd1c5]' : 'bg-amber-500 animate-pulse')}`} />
+                                    {loading ? 'Verificando con el banco...' : (details ? 'Completado y Verificado' : 'Sincronizando...')}
                                 </p>
                             </div>
 

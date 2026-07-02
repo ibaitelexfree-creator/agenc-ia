@@ -98,12 +98,12 @@ export default function DailyNauticalQuote({ locale }: DailyNauticalQuoteProps) 
                 aria-hidden="true"
             />
             <div
-                className="absolute -bottom-4 -left-4 w-20 h-20 bg-white/[0.02] blur-[30px] rounded-full pointer-events-none"
+                className="absolute -bottom-4 -left-4 w-20 h-20 bg-black/[0.02] blur-[30px] rounded-full pointer-events-none"
                 aria-hidden="true"
             />
 
             {/* Top rule with logbook number */}
-            <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b border-white/[0.06]">
+            <div className="flex items-center gap-3 px-5 pt-4 pb-3 border-b border-black/[0.06]">
                 <motion.div
                     className="w-8 h-8 bg-accent/10 border border-accent/20 flex items-center justify-center rounded-full text-accent shrink-0"
                     variants={headerVariants as any}
@@ -127,7 +127,7 @@ export default function DailyNauticalQuote({ locale }: DailyNauticalQuoteProps) 
                     <span className="text-[9px] uppercase tracking-[0.3em] font-black text-accent/80">
                         {locale === 'eu' ? 'Eguneko Esaldia' : 'Bitácora'}
                     </span>
-                    <span className="text-[8px] font-mono text-white/20 ml-auto">
+                    <span className="text-[8px] font-mono text-black/20 ml-auto">
                         Nº {quoteNumber}
                     </span>
                 </motion.div>
@@ -145,7 +145,7 @@ export default function DailyNauticalQuote({ locale }: DailyNauticalQuoteProps) 
 
                 <blockquote className="relative z-10">
                     <motion.p
-                        className="text-white/85 text-[0.84rem] italic leading-[1.75] font-serif pl-3"
+                        className="text-black/85 text-[0.84rem] italic leading-[1.75] font-serif pl-3"
                         variants={quoteVariants as any}
                         initial="hidden"
                         animate={isInView ? 'visible' : 'hidden'}

@@ -25,7 +25,24 @@ export async function GET(request: NextRequest) {
             .select('key, data')
             .in('key', ['weather_current', 'euskalmet_alerts', 'sea_state']);
 
-        const weather = cacheEntries?.find(e => e.key === 'weather_current')?.data || null;
+        let weather = cacheEntries?.find(e => e.key === 'weather_current')?.data || null;
+
+        if (!weather) {
+            try {
+                weather = await fetchWeatherData();
+            } catch (e) {
+                weather = {
+                    station: 'Getxo (Simulado)',
+                    knots: 12,
+                    kmh: 22.2,
+                    direction: 315,
+                    temp: 19.5,
+                    timestamp: new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' }),
+                    gusts: 15
+                };
+            }
+        }
+
         const alerts = cacheEntries?.find(e => e.key === 'euskalmet_alerts')?.data || [];
         const seaState = cacheEntries?.find(e => e.key === 'sea_state')?.data || {
             waveHeight: 1.0,

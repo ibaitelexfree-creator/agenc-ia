@@ -43,8 +43,8 @@ export default function MembershipWidget({ status, locale }: MembershipWidgetPro
 
                 <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                     <div className="text-center md:text-left">
-                        <h3 className="text-2xl font-display italic text-white mb-2 underline decoration-brass-gold/40">Hazte Socio del Club</h3>
-                        <p className="text-white/70 text-sm max-w-md">
+                        <h3 className="text-2xl font-display italic text-black mb-2 underline decoration-brass-gold/40">Hazte Socio del Club</h3>
+                        <p className="text-black/70 text-sm max-w-md">
                             Únete a la comunidad de navegantes de Getxo Bela. Por solo <span className="text-brass-gold font-bold">20€/mes</span> tendrás descuentos en alquileres, prioridad en cursos y eventos exclusivos.
                         </p>
                     </div>
