@@ -327,7 +327,8 @@
     "resend_email": "Resend",
     "resend_success": "Email resent successfully.",
     "google_btn": "Continue with Google",
-    "rate_limit": "You have exceeded the attempt limit. Please wait a few minutes before trying again."
+    "rate_limit": "You have exceeded the attempt limit. Please wait a few minutes before trying again.",
+    "or_divider": "OR"
   },
   "booking": {
     "select_date": "Select a date",

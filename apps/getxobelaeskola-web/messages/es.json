@@ -327,7 +327,8 @@
     "resend_email": "Reenviar",
     "resend_success": "Email reenviado correctamente.",
     "google_btn": "Continuar con Google",
-    "rate_limit": "Has excedido el límite de intentos. Por favor, espera unos minutos antes de intentar de nuevo."
+    "rate_limit": "Has excedido el límite de intentos. Por favor, espera unos minutos antes de intentar de nuevo.",
+    "or_divider": "O BIEN"
   },
   "booking": {
     "select_date": "Selecciona una fecha",

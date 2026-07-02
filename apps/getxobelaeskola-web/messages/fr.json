@@ -381,7 +381,8 @@
     "resend_email": "Renvoyer",
     "resend_success": "Email renvoyé avec succès.",
     "google_btn": "Continuer avec Google",
-    "rate_limit": "Vous avez dépassé la limite de tentatives. Veuillez attendre quelques minutes avant de réessayer."
+    "rate_limit": "Vous avez dépassé la limite de tentatives. Veuillez attendre quelques minutes avant de réessayer.",
+    "or_divider": "OU BIEN"
   },
   "legal": {
     "rental_contract": "CONTRAT DE LOCATION DE MATÉRIEL NAUTIQUE - GETXO BELA ESKOLA\n\n1. EXIGENCES DU LOCATAIRE : Le client déclare posséder les connaissances techniques nécessaires à la manipulation en toute sécurité du matériel loué. Dans le cas des voiliers de plaisance, la qualification minimale correspondante est requise.\n\n2. ÉTAT ET RETOUR : Le matériel est livré en parfait état de fonctionnement. Le client s'engage à le restituer dans le même état. Tout dommage causé par négligence sera de la responsabilité exclusive du client.\n\n3. ZONES DE NAVIGATION : La navigation sera limitée aux zones autorisées et aux horaires convenus. Le client s'engage à respecter les règles de la Marina de Getxo et les règlements de la Capitainerie Maritime.\n\n4. SÉCURITÉ : L'utilisation d'un gilet de sauvetage est obligatoire et personnelle à tout moment dans l'eau.\n\n5. SAUVETAGE ET ASSISTANCE : Si le client nécessite une assistance ou un sauvetage en raison d'une imprudence ou d'une sortie des zones autorisées, les frais en résultant seront à sa charge.\n\n6. SIGNATURE NUMÉRIQUE : En cochant la case d'acceptation, le client ratifie qu'il a compris tous les points précédents et assume sa responsabilité légale.",

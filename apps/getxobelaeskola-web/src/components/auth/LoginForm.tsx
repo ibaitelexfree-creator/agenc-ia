@@ -221,7 +221,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                     <div className="w-full border-t border-black/10"></div>
                 </div>
                 <div className="relative flex justify-center text-[10px] uppercase tracking-widest">
-                    <span className="bg-white px-4 text-black/50 font-bold italic">O BIEN</span>
+                    <span className="bg-white px-4 text-black/50 font-bold italic">{t('or_divider')}</span>
                 </div>
             </div>
 

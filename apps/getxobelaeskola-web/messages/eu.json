@@ -327,7 +327,8 @@
     "resend_email": "Berriz bidali",
     "resend_success": "Emaila ondo bidali da berriro.",
     "google_btn": "Google-rekin jarraitu",
-    "rate_limit": "Saiakera muga gainditu duzu. Mesedez, itxaron minutu batzuk berriro saiatu aurretik."
+    "rate_limit": "Saiakera muga gainditu duzu. Mesedez, itxaron minutu batzuk berriro saiatu aurretik.",
+    "or_divider": "EDO"
   },
   "booking": {
     "select_date": "Hautatu data bat",
