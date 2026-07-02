@@ -1903,5 +1903,12 @@
     "membership_mode": "Membership Option",
     "training_mode": "Training Group",
     "camp_notice": "Please fill in the details of the students you wish to enroll in the summer camp."
+  },
+  "register_success": {
+    "title": "Registration Completed!",
+    "message": "Your account has been successfully created and confirmed. Welcome to the crew!",
+    "btn_home": "Go to Home",
+    "btn_dashboard": "User Area",
+    "btn_continue": "Continue with my Booking"
   }
 }

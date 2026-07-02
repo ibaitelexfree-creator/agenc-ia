@@ -1963,5 +1963,12 @@
     "membership_mode": "Modalidad de Socia",
     "training_mode": "Modalidad de Entrenamiento",
     "camp_notice": "Por favor, rellena los datos de los alumnos que deseas inscribir en el campamento de verano."
+  },
+  "register_success": {
+    "title": "¡Registro Completado!",
+    "message": "Tu cuenta ha sido creada y confirmada correctamente. ¡Bienvenido/a a la tripulación!",
+    "btn_home": "Ir a Inicio",
+    "btn_dashboard": "Área de Usuario",
+    "btn_continue": "Continuar con mi Reserva"
   }
 }

@@ -1911,5 +1911,12 @@
     "membership_mode": "Bazkide Modalitatea",
     "training_mode": "Entrenamendu Modalitatea",
     "camp_notice": "Mesedez, bete udako kanpamentuan izena eman nahi duten ikasleen datuak."
+  },
+  "register_success": {
+    "title": "Erregistroa Burutua!",
+    "message": "Zure kontua ondo sortu eta berretsi da. Ongi etorri tripulaziora!",
+    "btn_home": "Joan Hasierara",
+    "btn_dashboard": "Erabiltzaile Eremua",
+    "btn_continue": "Erreserbarekin Jarraitu"
   }
 }

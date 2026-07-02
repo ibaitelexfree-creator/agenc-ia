@@ -1469,5 +1469,12 @@
     "membership_mode": "Option d'adhésion",
     "training_mode": "Groupe d'entraînement",
     "camp_notice": "Veuillez remplir les coordonnées des étudiants que vous souhaitez inscrire au camp d'été."
+  },
+  "register_success": {
+    "title": "Inscription Réussie !",
+    "message": "Votre compte a été créé et confirmé avec succès. Bienvenue dans l'équipage !",
+    "btn_home": "Aller à l'Accueil",
+    "btn_dashboard": "Espace Utilisateur",
+    "btn_continue": "Continuer ma Réservation"
   }
 }

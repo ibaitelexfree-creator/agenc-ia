@@ -69,13 +69,13 @@ export default function RegisterForm() {
 
         const searchParams = new URLSearchParams(window.location.search);
         const returnTo = searchParams.get('returnTo');
-        const nextPath = returnTo ? encodeURIComponent(returnTo) : `/${locale}/student/dashboard`;
+        const nextPath = `/${locale}/auth/register-success` + (returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : '');
 
         const { error: authError } = await supabase.auth.signUp({
             email: data.email,
             password: data.password,
             options: {
-                emailRedirectTo: `${appUrl}/api/auth/callback?next=${nextPath}`,
+                emailRedirectTo: `${appUrl}/api/auth/callback?next=${encodeURIComponent(nextPath)}`,
                 data: {
                     nombre: data.nombre,
                     apellidos: data.apellidos,
