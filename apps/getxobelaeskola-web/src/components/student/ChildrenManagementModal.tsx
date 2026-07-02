@@ -1,36 +1,292 @@
-'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { apiUrl } from '@/lib/api';
 import { Profile } from '@/types/student';
 
-const parseDateString = (dateStr: string) => {
-    if (!dateStr) return { day: '', month: '', year: '' };
-    const parts = dateStr.split('-');
-    if (parts.length === 3) {
-        return {
-            year: parts[0],
-            month: parts[1],
-            day: parts[2]
-        };
-    }
-    return { day: '', month: '', year: '' };
-};
-
-const getDaysInMonth = (monthStr: string, yearStr: string) => {
-    const month = parseInt(monthStr, 10);
-    const year = parseInt(yearStr, 10);
-    if (!month) return 31;
-    if ([4, 6, 9, 11].includes(month)) return 30;
-    if (month === 2) {
-        if (year && ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0)) {
-            return 29;
+export function PremiumDatePicker({
+    value,
+    onChange,
+    placeholder = 'DD/MM/AAAA',
+    error,
+    id,
+    locale
+}: {
+    value: string;
+    onChange: (val: string) => void;
+    placeholder?: string;
+    error?: boolean;
+    id: string;
+    locale: string;
+}) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [viewMode, setViewMode] = useState<'days' | 'months' | 'years'>('days');
+    const [currentDate, setCurrentDate] = useState<Date>(() => {
+        if (value) {
+            const d = new Date(value);
+            if (!isNaN(d.getTime())) return d;
         }
-        return 28;
-    }
-    return 31;
-};
+        const defaultDate = new Date();
+        defaultDate.setFullYear(defaultDate.getFullYear() - 10); // default child age is usually younger
+        return defaultDate;
+    });
+    
+    const [decadeStart, setDecadeStart] = useState(() => {
+        const year = currentDate.getFullYear();
+        return Math.floor(year / 10) * 10;
+    });
+
+    const popoverRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (popoverRef.current && !popoverRef.current.contains(event.target as Node)) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const getDisplayValue = () => {
+        if (!value) return '';
+        const parts = value.split('-');
+        if (parts.length === 3) {
+            return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        }
+        return value;
+    };
+
+    const getDays = () => {
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+        
+        const firstDayOfMonth = new Date(year, month, 1);
+        const lastDayOfMonth = new Date(year, month + 1, 0);
+        const daysInMonth = lastDayOfMonth.getDate();
+        
+        let startDayOfWeek = firstDayOfMonth.getDay();
+        startDayOfWeek = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
+        
+        const dayArr = [];
+        for (let i = 0; i < startDayOfWeek; i++) {
+            dayArr.push(null);
+        }
+        for (let day = 1; day <= daysInMonth; day++) {
+            dayArr.push(new Date(year, month, day));
+        }
+        return dayArr;
+    };
+
+    const getMonthName = (monthIndex: number) => {
+        try {
+            const mName = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, monthIndex, 1));
+            return mName.charAt(0).toUpperCase() + mName.slice(1);
+        } catch (e) {
+            return (monthIndex + 1).toString().padStart(2, '0');
+        }
+    };
+
+    const handlePrev = () => {
+        if (viewMode === 'days') {
+            const newDate = new Date(currentDate);
+            newDate.setMonth(newDate.getMonth() - 1);
+            setCurrentDate(newDate);
+        } else if (viewMode === 'months') {
+            const newDate = new Date(currentDate);
+            newDate.setFullYear(newDate.getFullYear() - 1);
+            setCurrentDate(newDate);
+        } else if (viewMode === 'years') {
+            setDecadeStart(prev => prev - 10);
+        }
+    };
+
+    const handleNext = () => {
+        if (viewMode === 'days') {
+            const newDate = new Date(currentDate);
+            newDate.setMonth(newDate.getMonth() + 1);
+            setCurrentDate(newDate);
+        } else if (viewMode === 'months') {
+            const newDate = new Date(currentDate);
+            newDate.setFullYear(newDate.getFullYear() + 1);
+            setCurrentDate(newDate);
+        } else if (viewMode === 'years') {
+            setDecadeStart(prev => prev + 10);
+        }
+    };
+
+    const handleSelectDay = (date: Date) => {
+        const y = date.getFullYear();
+        const m = (date.getMonth() + 1).toString().padStart(2, '0');
+        const d = date.getDate().toString().padStart(2, '0');
+        onChange(`${y}-${m}-${d}`);
+        setIsOpen(false);
+    };
+
+    const handleSelectMonth = (monthIdx: number) => {
+        const newDate = new Date(currentDate);
+        newDate.setMonth(monthIdx);
+        setCurrentDate(newDate);
+        setViewMode('days');
+    };
+
+    const handleSelectYear = (year: number) => {
+        const newDate = new Date(currentDate);
+        newDate.setFullYear(year);
+        setCurrentDate(newDate);
+        setViewMode('months');
+    };
+
+    const days = getDays();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth();
+
+    const weekDays = locale === 'es' ? ['Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá', 'Do'] :
+                     locale === 'eu' ? ['Al', 'As', 'Az', 'Og', 'Or', 'La', 'Ig'] :
+                     locale === 'fr' ? ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'] :
+                     ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
+
+    return (
+        <div className="relative w-full" ref={popoverRef}>
+            <input
+                id={id}
+                type="text"
+                readOnly
+                placeholder={placeholder}
+                value={getDisplayValue()}
+                onClick={() => {
+                    setIsOpen(!isOpen);
+                    setViewMode('days');
+                }}
+                className={`w-full bg-black/5 border ${error ? 'border-red-500/50' : 'border-black/10'} p-3 text-black focus:border-accent outline-none text-sm cursor-pointer select-none transition-all`}
+            />
+            {isOpen && (
+                <div className="absolute z-[999] mt-2 left-0 w-80 bg-white border border-black/10 p-4 shadow-2xl rounded-sm">
+                    <div className="flex justify-between items-center mb-4">
+                        <button
+                            type="button"
+                            onClick={handlePrev}
+                            className="p-2 text-black/60 hover:text-black transition-colors"
+                        >
+                            ◀
+                        </button>
+                        
+                        <div className="font-bold text-sm text-black select-none flex gap-1">
+                            {viewMode === 'days' && (
+                                <>
+                                    <button
+                                        type="button"
+                                        onClick={() => setViewMode('months')}
+                                        className="hover:text-accent hover:underline transition-all"
+                                    >
+                                        {getMonthName(currentMonth)}
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            setDecadeStart(Math.floor(currentYear / 10) * 10);
+                                            setViewMode('years');
+                                        }}
+                                        className="hover:text-accent hover:underline transition-all"
+                                    >
+                                        {currentYear}
+                                    </button>
+                                </>
+                            )}
+                            {viewMode === 'months' && (
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setDecadeStart(Math.floor(currentYear / 10) * 10);
+                                        setViewMode('years');
+                                    }}
+                                    className="hover:text-accent hover:underline transition-all"
+                                >
+                                    {currentYear}
+                                </button>
+                            )}
+                            {viewMode === 'years' && (
+                                <span>{decadeStart} - {decadeStart + 11}</span>
+                            )}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={handleNext}
+                            className="p-2 text-black/60 hover:text-black transition-colors"
+                        >
+                            ▶
+                        </button>
+                    </div>
+
+                    {viewMode === 'days' && (
+                        <div>
+                            <div className="grid grid-cols-7 gap-1 text-center text-3xs font-bold uppercase tracking-widest text-black/40 mb-2">
+                                {weekDays.map(d => <div key={d}>{d}</div>)}
+                            </div>
+                            
+                            <div className="grid grid-cols-7 gap-1 text-center">
+                                {days.map((date, idx) => {
+                                    if (!date) return <div key={`empty-${idx}`} />;
+                                    
+                                    const isSelected = value && 
+                                        date.getFullYear() === new Date(value).getFullYear() &&
+                                        date.getMonth() === new Date(value).getMonth() &&
+                                        date.getDate() === new Date(value).getDate();
+                                        
+                                    return (
+                                        <button
+                                            key={date.toISOString()}
+                                            type="button"
+                                            onClick={() => handleSelectDay(date)}
+                                            className={`py-2 text-xs transition-colors rounded-sm ${isSelected ? 'bg-accent text-white font-bold' : 'text-black hover:bg-black/5'}`}
+                                        >
+                                            {date.getDate()}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
+
+                    {viewMode === 'months' && (
+                        <div className="grid grid-cols-3 gap-2">
+                            {Array.from({ length: 12 }, (_, i) => (
+                                <button
+                                    key={i}
+                                    type="button"
+                                    onClick={() => handleSelectMonth(i)}
+                                    className={`py-3 text-xs transition-colors rounded-sm ${currentMonth === i ? 'bg-accent text-white font-bold' : 'text-black hover:bg-black/5'}`}
+                                >
+                                    {getMonthName(i)}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    {viewMode === 'years' && (
+                        <div className="grid grid-cols-3 gap-2">
+                            {Array.from({ length: 12 }, (_, i) => {
+                                const year = decadeStart + i;
+                                const isCurrent = year === currentYear;
+                                return (
+                                    <button
+                                        key={year}
+                                        type="button"
+                                        onClick={() => handleSelectYear(year)}
+                                        className={`py-3 text-xs transition-colors rounded-sm ${isCurrent ? 'bg-accent text-white font-bold' : 'text-black hover:bg-black/5'}`}
+                                    >
+                                        {year}
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+}
 
 interface Child {
     id: string;
@@ -261,98 +517,12 @@ export default function ChildrenManagementModal({
 
                         <div className="space-y-1">
                             <label className="text-[10px] uppercase tracking-widest text-accent font-bold">F. Nacimiento *</label>
-                            {(() => {
-                                const { day, month, year } = parseDateString(fechaNacimiento);
-                                const daysInMonth = getDaysInMonth(month, year);
-                                const days = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString().padStart(2, '0'));
-                                
-                                const months = Array.from({ length: 12 }, (_, i) => {
-                                    const mNum = (i + 1).toString().padStart(2, '0');
-                                    let mName = '';
-                                    try {
-                                        mName = new Intl.DateTimeFormat(locale, { month: 'long' }).format(new Date(2026, i, 1));
-                                        mName = mName.charAt(0).toUpperCase() + mName.slice(1);
-                                    } catch (e) {
-                                        mName = mNum;
-                                    }
-                                    return { value: mNum, label: `${mNum} - ${mName}` };
-                                });
-
-                                const currentYear = new Date().getFullYear();
-                                const maxYear = currentYear - 3;
-                                const minYear = 1900;
-                                const years = Array.from({ length: maxYear - minYear + 1 }, (_, i) => (maxYear - i).toString());
-
-                                return (
-                                    <div className="grid grid-cols-3 gap-3">
-                                        {/* Day Selector */}
-                                        <div className="relative">
-                                            <select
-                                                id="child_birth_day"
-                                                value={day}
-                                                onChange={(e) => handleDatePartChange('day', e.target.value)}
-                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
-                                            >
-                                                <option value="" className="bg-white text-black/50">DD</option>
-                                                {days.map((d) => (
-                                                    <option key={d} value={d} className="bg-white text-black">
-                                                        {d}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
-                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        {/* Month Selector */}
-                                        <div className="relative">
-                                            <select
-                                                id="child_birth_month"
-                                                value={month}
-                                                onChange={(e) => handleDatePartChange('month', e.target.value)}
-                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
-                                            >
-                                                <option value="" className="bg-white text-black/50">MM</option>
-                                                {months.map((m) => (
-                                                    <option key={m.value} value={m.value} className="bg-white text-black">
-                                                        {m.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
-                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-
-                                        {/* Year Selector */}
-                                        <div className="relative">
-                                            <select
-                                                id="child_birth_year"
-                                                value={year}
-                                                onChange={(e) => handleDatePartChange('year', e.target.value)}
-                                                className="w-full bg-black/5 border border-black/10 p-3 pr-8 text-black text-sm focus:border-accent outline-none appearance-none cursor-pointer"
-                                            >
-                                                <option value="" className="bg-white text-black/50">AAAA</option>
-                                                {years.map((y) => (
-                                                    <option key={y} value={y} className="bg-white text-black">
-                                                        {y}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black/40">
-                                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                                );
-                            })()}
+                            <PremiumDatePicker
+                                id="child_birth_date"
+                                value={fechaNacimiento}
+                                onChange={setFechaNacimiento}
+                                locale={locale}
+                            />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">

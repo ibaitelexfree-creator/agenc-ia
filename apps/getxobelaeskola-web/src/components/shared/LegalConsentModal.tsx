@@ -157,10 +157,14 @@ export default function LegalConsentModal({
             if (activityType === 'udalekus') {
                 if (!registrationDetails.Nº1_nombre) errors.Nº1_nombre = tV('name_required');
                 if (!registrationDetails.Nº1_apellidos) errors.Nº1_apellidos = tV('surnames_required');
-                if (!registrationDetails.Nº1_edad) {
-                    errors.Nº1_edad = tV('age_required');
-                } else if (parseInt(registrationDetails.Nº1_edad) < 3) {
-                    errors.Nº1_edad = tV('min_age_required');
+                
+                if (!registrationDetails.Nº1_fecha_nacimiento) {
+                    errors.Nº1_fecha_nacimiento = tV('birth_date_required');
+                } else {
+                    const age = calculateAge(registrationDetails.Nº1_fecha_nacimiento);
+                    if (age !== null && age < 3) {
+                        errors.Nº1_fecha_nacimiento = tV('min_age_required');
+                    }
                 }
                 if (!registrationDetails.Nº1_sabe_nadar) errors.Nº1_sabe_nadar = tV('swim_required');
 
@@ -170,27 +174,46 @@ export default function LegalConsentModal({
                     const prefix = `Nº${studentIdx}`;
                     const nameKey = `${prefix}_nombre`;
                     const surnameKey = `${prefix}_apellidos`;
-                    const ageKey = `${prefix}_edad`;
+                    const dobKey = `${prefix}_fecha_nacimiento`;
                     const swimKey = `${prefix}_sabe_nadar`;
 
                     if (!registrationDetails[nameKey]) errors[nameKey] = tV('name_required');
                     if (!registrationDetails[surnameKey]) errors[surnameKey] = tV('surnames_required');
-                    if (!registrationDetails[ageKey]) {
-                        errors[ageKey] = tV('age_required');
-                    } else if (parseInt(registrationDetails[ageKey]) < 3) {
-                        errors[ageKey] = tV('min_age_required');
+                    
+                    if (!registrationDetails[dobKey]) {
+                        errors[dobKey] = tV('birth_date_required');
+                    } else {
+                        const age = calculateAge(registrationDetails[dobKey]);
+                        if (age !== null && age < 3) {
+                            errors[dobKey] = tV('min_age_required');
+                        }
                     }
                     if (!registrationDetails[swimKey]) errors[swimKey] = tV('swim_required');
 
                     studentIdx++;
                 }
 
-                if (!registrationDetails.tutor1?.nombre) errors['tutor1.nombre'] = tV('tutor_name_required');
-                if (!registrationDetails.tutor1?.apellidos) errors['tutor1.apellidos'] = tV('tutor_surnames_required');
-                if (!registrationDetails.tutor1?.dni) errors['tutor1.dni'] = tV('tutor_dni_required');
-                if (!registrationDetails.tutor1?.telefono) errors['tutor1.telefono'] = tV('tutor_phone_required');
-                if (!registrationDetails.tutor1?.email) errors['tutor1.email'] = tV('tutor_email_required');
-                if (!registrationDetails.semana_solicitada) errors.semana_solicitada = tV('week_required');
+                // Check if any student is a minor to validate tutor fields
+                const isAnyMinor = () => {
+                    const age1 = calculateAge(registrationDetails.Nº1_fecha_nacimiento);
+                    if (age1 !== null && age1 < 18) return true;
+
+                    let idx = 2;
+                    while (registrationDetails[`add_alumno_${idx}`]) {
+                        const age = calculateAge(registrationDetails[`Nº${idx}_fecha_nacimiento`]);
+                        if (age !== null && age < 18) return true;
+                        idx++;
+                    }
+                    return false;
+                };
+
+                if (isAnyMinor()) {
+                    if (!registrationDetails.tutor1?.nombre) errors['tutor1.nombre'] = tV('tutor_name_required');
+                    if (!registrationDetails.tutor1?.apellidos) errors['tutor1.apellidos'] = tV('tutor_surnames_required');
+                    if (!registrationDetails.tutor1?.dni) errors['tutor1.dni'] = tV('tutor_dni_required');
+                    if (!registrationDetails.tutor1?.telefono) errors['tutor1.telefono'] = tV('tutor_phone_required');
+                    if (!registrationDetails.tutor1?.email) errors['tutor1.email'] = tV('tutor_email_required');
+                }
             } else {
                 // Course, Membership, Training
                 if (!registrationDetails.nombre) errors.nombre = tV('name_required');

@@ -1059,7 +1059,9 @@
     "loading": "Cargando...",
     "portal_error": "Error al abrir el portal de pagos",
     "experience_points": "Puntos de Experiencia",
-    "my_family": "Mis Hijos / Familiares"
+    "my_family": "Mis Hijos / Familiares",
+    "role": "Rol",
+    "connection_error": "Error de conexión"
   },
   "nautical_radar": {
     "title": "Radar de Navegación \"Puente de Mando\"",
