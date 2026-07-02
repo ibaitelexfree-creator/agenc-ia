@@ -53,6 +53,15 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
 
     const isSocio = currentProfile?.status_socio === 'activo';
 
+    const getTranslatedRole = (role: string) => {
+        if (!role) return '';
+        const roleLower = role.toLowerCase();
+        if (roleLower === 'alumno') return t('student');
+        if (roleLower === 'socio') return t('partner');
+        if (roleLower === 'instructor') return t('instructor');
+        return role;
+    };
+
     return (
         <aside className="space-y-8">
             <div className="bg-card p-8 border border-card-border rounded-sm backdrop-blur-md">
@@ -94,7 +103,7 @@ export default function StudentProfileSidebar({ profile, email, locale }: Studen
                     </div>
                     <div>
                         <p className="text-3xs uppercase tracking-widest text-foreground/40">{t('role')}</p>
-                        <p className="text-sm font-light uppercase tracking-wider" title="Tu nivel de acceso actual en el sistema de la escuela.">{currentProfile?.rol || t('student')}</p>
+                        <p className="text-sm font-light uppercase tracking-wider" title="Tu nivel de acceso actual en el sistema de la escuela.">{getTranslatedRole(currentProfile?.rol)}</p>
                     </div>
                 </div>
 

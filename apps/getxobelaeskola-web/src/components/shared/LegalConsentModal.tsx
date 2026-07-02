@@ -158,6 +158,28 @@ export default function LegalConsentModal({
                     errors.N1_edad = tV('min_age_required');
                 }
                 if (!registrationDetails.N1_sabe_nadar) errors.N1_sabe_nadar = tV('swim_required');
+
+                // Dynamic students validation for additional students (Nº2, Nº3, etc.)
+                let studentIdx = 2;
+                while (registrationDetails[`add_alumno_${studentIdx}`]) {
+                    const prefix = `Nº${studentIdx}`;
+                    const nameKey = `${prefix}_nombre`;
+                    const surnameKey = `${prefix}_apellidos`;
+                    const ageKey = `${prefix}_edad`;
+                    const swimKey = `${prefix}_sabe_nadar`;
+
+                    if (!registrationDetails[nameKey]) errors[nameKey] = tV('name_required');
+                    if (!registrationDetails[surnameKey]) errors[surnameKey] = tV('surnames_required');
+                    if (!registrationDetails[ageKey]) {
+                        errors[ageKey] = tV('age_required');
+                    } else if (parseInt(registrationDetails[ageKey]) < 3) {
+                        errors[ageKey] = tV('min_age_required');
+                    }
+                    if (!registrationDetails[swimKey]) errors[swimKey] = tV('swim_required');
+
+                    studentIdx++;
+                }
+
                 if (!registrationDetails.tutor1?.nombre) errors['tutor1.nombre'] = tV('tutor_name_required');
                 if (!registrationDetails.tutor1?.apellidos) errors['tutor1.apellidos'] = tV('tutor_surnames_required');
                 if (!registrationDetails.tutor1?.dni) errors['tutor1.dni'] = tV('tutor_dni_required');

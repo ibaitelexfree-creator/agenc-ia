@@ -421,18 +421,26 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 onConfirm={handleLegalConfirm}
                 activityType={activityType}
                 initialData={user ? {
-                    fullName: selectedParticipant ? `${selectedParticipant.nombre} ${selectedParticipant.apellidos}` : (profile ? `${profile.nombre} ${profile.apellidos}` : undefined),
+                    fullName: selectedParticipant 
+                        ? `${selectedParticipant.nombre} ${selectedParticipant.apellidos}` 
+                        : ((profile?.nombre || user.user_metadata?.nombre) 
+                            ? `${profile?.nombre || user.user_metadata?.nombre} ${profile?.apellidos || user.user_metadata?.apellidos}` 
+                            : (user.user_metadata?.full_name || undefined)),
                     email: user.email,
                     dni: selectedParticipant ? selectedParticipant.dni : profile?.dni,
-                    nombre: selectedParticipant ? selectedParticipant.nombre : profile?.nombre,
-                    apellidos: selectedParticipant ? selectedParticipant.apellidos : profile?.apellidos,
+                    nombre: selectedParticipant 
+                        ? selectedParticipant.nombre 
+                        : (profile?.nombre || user.user_metadata?.nombre || (user.user_metadata?.full_name ? user.user_metadata.full_name.split(' ')[0] : undefined)),
+                    apellidos: selectedParticipant 
+                        ? selectedParticipant.apellidos 
+                        : (profile?.apellidos || user.user_metadata?.apellidos || (user.user_metadata?.full_name ? user.user_metadata.full_name.split(' ').slice(1).join(' ') : undefined)),
                     telefono: profile?.telefono,
                     domicilio: profile?.domicilio,
                     localidad: profile?.localidad,
                     codigo_postal: profile?.codigo_postal,
                     fecha_nacimiento: selectedParticipant ? selectedParticipant.fecha_nacimiento : profile?.fecha_nacimiento,
-                    parentNombre: profile?.nombre || '',
-                    parentApellidos: profile?.apellidos || '',
+                    parentNombre: profile?.nombre || user.user_metadata?.nombre || '',
+                    parentApellidos: profile?.apellidos || user.user_metadata?.apellidos || '',
                     parentDni: profile?.dni || '',
                     parentTelefono: profile?.telefono || '',
                     parentEmail: user.email || ''

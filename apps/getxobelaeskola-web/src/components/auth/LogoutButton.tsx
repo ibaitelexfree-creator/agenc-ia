@@ -20,12 +20,21 @@ export default function LogoutButton({ locale }: { locale: string }) {
         }
     };
 
+    const getLogoutLabel = () => {
+        switch (locale) {
+            case 'en': return 'Logout';
+            case 'eu': return 'Saioa itxi';
+            case 'fr': return 'Se déconnecter';
+            default: return 'Cerrar Sesión';
+        }
+    };
+
     return (
         <button
             onClick={handleLogout}
             className="text-3xs uppercase tracking-widest text-foreground/40 hover:text-accent transition-colors block w-full text-left mt-4 pt-4 border-t border-white/5"
         >
-            Cerrar Sesión
+            {getLogoutLabel()}
         </button>
     );
 }

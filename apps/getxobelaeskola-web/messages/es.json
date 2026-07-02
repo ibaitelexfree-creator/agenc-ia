@@ -1050,8 +1050,9 @@
     "verified_member": "Miembro verificado",
     "official_partner": "Socio Oficial",
     "account_info": "Información de Cuenta",
-    "role": "Rol",
     "student": "Estudiante",
+    "partner": "Socio",
+    "instructor": "Instructor",
     "edit_profile": "Editar Perfil",
     "managing_subscription": "Gestionar Suscripción",
     "membership_card": "Mi Carnet de Socio",
@@ -1997,5 +1998,13 @@
     "btn_dashboard": "Mi Panel Personal →",
     "admin_supabase": "Ver en Supabase (Admin)",
     "quote": "\"No hay viento favorable para quien no sabe a qué puerto se dirige.\" — Séneca"
+  },
+  "membership_widget": {
+    "title": "Hazte Socio del Club",
+    "description": "Únete a la comunidad de navegantes de Getxo Bela. Por solo {price}/mes tendrás descuentos en alquileres, prioridad en cursos y eventos exclusivos.",
+    "btn_join": "Unirme Ahora →",
+    "loading": "Preparando...",
+    "subscribe_error": "Error al iniciar suscripción",
+    "connection_error": "Error de conexión"
   }
 }

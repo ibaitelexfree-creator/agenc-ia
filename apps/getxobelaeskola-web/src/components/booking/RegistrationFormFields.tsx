@@ -464,39 +464,93 @@ export default function RegistrationFormFields({
     };
 
     switch (activityType) {
-        case 'udalekus':
+        case 'udalekus': {
+            const renderStudentFlow = () => {
+                const elements = [];
+                let currentIdx = 2;
+                let showNextCheckbox = true;
+
+                // Student 1 is always rendered
+                elements.push(<React.Fragment key="student-1">{renderParticipantFields('Nº1')}</React.Fragment>);
+
+                while (showNextCheckbox) {
+                    const prevChecked = currentIdx === 2 ? true : !!formData[`add_alumno_${currentIdx - 1}`];
+                    
+                    if (prevChecked) {
+                        const currentChecked = !!formData[`add_alumno_${currentIdx}`];
+                        const displayIndex = currentIdx;
+
+                        // Create localized label for "Enroll a X Student"
+                        let labelText = '';
+                        if (locale === 'es') {
+                            labelText = `Matricular a un ${displayIndex}º Alumno/a`;
+                        } else if (locale === 'eu') {
+                            labelText = `${displayIndex}. Ikaslea matrikulatu`;
+                        } else if (locale === 'fr') {
+                            labelText = `Inscrire un ${displayIndex}e élève`;
+                        } else {
+                            let suffix = 'th';
+                            if (displayIndex % 10 === 2 && displayIndex % 100 !== 12) suffix = 'nd';
+                            else if (displayIndex % 10 === 3 && displayIndex % 100 !== 13) suffix = 'rd';
+                            labelText = `Enroll a ${displayIndex}${suffix} Student`;
+                        }
+
+                        elements.push(
+                            <div key={`checkbox-wrapper-${displayIndex}`} className="p-4 border border-black/5 bg-black/[0.02]">
+                                <label className="flex items-center gap-3 cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={currentChecked}
+                                        onChange={(e) => {
+                                            const isChecked = e.target.checked;
+                                            const updatedData = { ...formData, [`add_alumno_${displayIndex}`]: isChecked };
+                                            if (!isChecked) {
+                                                let cleanIdx = displayIndex;
+                                                while (formData[`add_alumno_${cleanIdx}`] !== undefined || updatedData[`add_alumno_${cleanIdx}`]) {
+                                                    updatedData[`add_alumno_${cleanIdx}`] = false;
+                                                    delete updatedData[`Nº${cleanIdx}_nombre`];
+                                                    delete updatedData[`Nº${cleanIdx}_apellidos`];
+                                                    delete updatedData[`Nº${cleanIdx}_edad`];
+                                                    delete updatedData[`Nº${cleanIdx}_dni`];
+                                                    delete updatedData[`Nº${cleanIdx}_sabe_nadar`];
+                                                    delete updatedData[`Nº${cleanIdx}_alergias`];
+                                                    delete updatedData[`Nº${cleanIdx}_necesidades_especiales`];
+                                                    cleanIdx++;
+                                                }
+                                            }
+                                            onChange(updatedData);
+                                        }}
+                                        className="w-5 h-5 accent-accent"
+                                    />
+                                    <span className="text-sm font-bold text-sea-foam/80">{labelText}</span>
+                                </label>
+                            </div>
+                        );
+
+                        if (currentChecked) {
+                            elements.push(
+                                <React.Fragment key={`student-${displayIndex}`}>
+                                    {renderParticipantFields(`Nº${displayIndex}`)}
+                                </React.Fragment>
+                            );
+                            currentIdx++;
+                        } else {
+                            showNextCheckbox = false;
+                        }
+                    } else {
+                        showNextCheckbox = false;
+                    }
+                }
+                return elements;
+            };
+
             return (
                 <div className="space-y-8">
                     <p className="text-xs text-sea-foam/60">
                         {t('camp_notice')}
                     </p>
-                    {renderParticipantFields('Nº1')}
                     
-                    <div className="p-4 border border-black/5 bg-black/[0.02]">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={!!formData.add_alumno_2}
-                                onChange={(e) => handleInputChange('add_alumno_2', e.target.checked)}
-                                className="w-5 h-5 accent-accent"
-                            />
-                            <span className="text-sm font-bold text-sea-foam/80">{t('enroll_second')}</span>
-                        </label>
-                    </div>
-                    {formData.add_alumno_2 && renderParticipantFields('Nº2')}
-
-                    <div className="p-4 border border-black/5 bg-black/[0.02]">
-                        <label className="flex items-center gap-3 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={!!formData.add_alumno_3}
-                                onChange={(e) => handleInputChange('add_alumno_3', e.target.checked)}
-                                className="w-5 h-5 accent-accent"
-                            />
-                            <span className="text-sm font-bold text-sea-foam/80">{t('enroll_third')}</span>
-                        </label>
-                    </div>
-                    {formData.add_alumno_3 && renderParticipantFields('Nº3')}
+                    {renderStudentFlow()}
 
                     {renderTutorFields('tutor1', t('tutor_title_prefix') + ' Nº1')}
                     
@@ -522,6 +576,7 @@ export default function RegistrationFormFields({
                     </div>
                 </div>
             );
+        }
 
         case 'membership':
             return (
