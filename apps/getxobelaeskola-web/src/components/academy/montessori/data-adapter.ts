@@ -44,6 +44,7 @@ export const getAllTopics = (): MontessoriTopic[] => {
         description: part.definition,
         difficulty: 0.3, // Default difficulty for nomenclature
         category: mapBoatPartCategory(part.category),
+        imageUrl: '/images/academy/partes.png',
         originalData: part
     }));
 
@@ -54,7 +55,7 @@ export const getAllTopics = (): MontessoriTopic[] => {
         description: knot.description,
         difficulty: mapDifficulty(knot.difficulty),
         category: mapKnotCategory(knot.category),
-        imageUrl: knot.steps[0]?.image_url, // Use first step image if available
+        imageUrl: '/images/academy/cabuyeria.png', // Use local cabuyeria image
         originalData: knot
     }));
 
@@ -65,7 +66,7 @@ export const getAllTopics = (): MontessoriTopic[] => {
         description: card.back.description,
         difficulty: mapDifficulty(card.difficulty),
         category: mapFlashcardCategory(card.category),
-        imageUrl: card.front.type === 'image' ? card.front.content : undefined,
+        imageUrl: card.front.type === 'image' ? card.front.content : '/images/academy/seguridad.png', // Fallback to seguridad image
         originalData: card
     }));
 
