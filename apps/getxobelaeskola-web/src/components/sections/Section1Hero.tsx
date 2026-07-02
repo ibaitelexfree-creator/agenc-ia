@@ -243,11 +243,11 @@ export function Section1Hero() {
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-100px',
+              left: '-112px',
               right: '-112px',
               top: '-20px',
               bottom: '-20px',
-              width: 'calc(100% + 212px)',
+              width: 'calc(100% + 224px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
@@ -266,10 +266,10 @@ export function Section1Hero() {
               onLoadedData={() => setVideoLoaded(true)}
               style={{
                 position: 'absolute',
-                left: '-105px',
+                left: '-117px',
                 right: '-117px',
                 top: '-20px',
-                width: 'calc(100% + 222px)',
+                width: 'calc(100% + 234px)',
                 height: '50%',
                 objectFit: 'cover',
                 objectPosition: 'center top',
