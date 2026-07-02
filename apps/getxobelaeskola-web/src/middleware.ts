@@ -26,6 +26,19 @@ export default async function middleware(request: NextRequest) {
         return response;
     }
 
+    // Bypass database auth session queries for public static landing pages to maximize TTFB and LCP speed
+    const pathname = request.nextUrl.pathname;
+    const isPublicStatic = 
+        pathname === '/' ||
+        pathname === '/es' || pathname === '/es/' ||
+        pathname === '/en' || pathname === '/en/' ||
+        pathname === '/eu' || pathname === '/eu/' ||
+        pathname === '/fr' || pathname === '/fr/';
+
+    if (isPublicStatic) {
+        return response;
+    }
+
     // 2. Supabase session logic
     // Check for required environment variables to avoid crash
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
