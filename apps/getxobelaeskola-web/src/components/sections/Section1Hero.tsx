@@ -58,6 +58,12 @@ export function Section1Hero() {
 
   useEffect(() => {
     setMounted(true)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1280) // 1280px matches the xl layout breakpoint where the C-shape card structure has enough space on the left
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile, { passive: true })
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
