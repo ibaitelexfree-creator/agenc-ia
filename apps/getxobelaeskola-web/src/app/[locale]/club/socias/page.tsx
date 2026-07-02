@@ -59,8 +59,8 @@ export default function ClubSociasPage() {
                             {t('title')}
                         </span>
                         <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
-                            Forma parte de <br />
-                            <span className="italic font-light text-accent/90">nuestra tripulación</span>
+                            {t('hero_title_part1')} <br />
+                            <span className="italic font-light text-accent/90">{t('hero_title_part2')}</span>
                         </h1>
                         <p className="max-w-2xl mx-auto text-foreground/70 font-light text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-8 md:pl-12 mt-12 text-left md:text-center">
                             {t('subtitle')} {t('description2')}
@@ -89,8 +89,8 @@ export default function ClubSociasPage() {
 
                         <div className="lg:col-span-6 space-y-8">
                             <h2 className="text-3xl md:text-5xl font-display uppercase tracking-tight">
-                                Mucho más que navegar, <br />
-                                <span className="italic font-light text-accent">un estilo de vida compartido</span>
+                                {t('section_title_part1')} <br />
+                                <span className="italic font-light text-accent">{t('section_title_part2')}</span>
                             </h2>
                             <p className="text-foreground/80 font-light text-lg leading-relaxed">
                                 {t('description1')}
@@ -104,8 +104,8 @@ export default function ClubSociasPage() {
             <section className="py-32 relative bg-sea-foam/[0.02] border-t border-sea-foam/10">
                 <div className="container mx-auto px-6">
                     <header className="mb-24 text-center">
-                        <span className="text-accent uppercase tracking-[0.5em] text-xs font-black mb-4 block">Beneficios Exclusivos</span>
-                        <h2 className="text-3xl md:text-5xl font-display">Ventajas de ser miembro</h2>
+                        <span className="text-accent uppercase tracking-[0.5em] text-xs font-black mb-4 block">{t('benefits_eyebrow')}</span>
+                        <h2 className="text-3xl md:text-5xl font-display">{t('benefits_title')}</h2>
                         <div className="w-24 h-px bg-accent/40 mx-auto mt-6" />
                     </header>
 
@@ -136,17 +136,17 @@ export default function ClubSociasPage() {
                 <div className="absolute inset-0 bg-maps opacity-5 pointer-events-none" />
                 <div className="container mx-auto px-6 relative z-10 space-y-12">
                     <h2 className="text-4xl md:text-6xl font-display uppercase tracking-tight">
-                        ¿Listo para unirte a la tripulación?
+                        {t('cta_title')}
                     </h2>
                     <p className="text-sea-foam/60 text-lg font-light max-w-xl mx-auto leading-relaxed">
-                        Ponte en contacto con nuestro equipo administrativo para solicitar tu alta de socia o realizar una prueba de navegación con nuestros instructores.
+                        {t('cta_desc')}
                     </p>
                     <div className="pt-6">
                         <Link
                             href="/contacto/localizacion"
                             className="inline-flex items-center gap-3 border border-accent bg-accent/5 px-10 py-5 rounded-full text-xs uppercase tracking-[0.3em] font-black text-accent hover:bg-accent hover:text-nautical-black transition-premium shadow-lg shadow-accent/15 group"
                         >
-                            Solicitar Información
+                            {t('cta_button')}
                             <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </Link>
                     </div>

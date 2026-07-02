@@ -1147,7 +1147,16 @@
       "b5_desc": "Ez da soilik egun zehatz batean etortzea, elkarrekin ikasten, garatzen eta gozatzen duen komunitate baten parte izatea baizik.",
       "b6_title": "Federazioa eta Asegurua",
       "b6_desc": "Bi aukeretan beharrezkoa da Euskadiko Bela Federazioan federatzea, asegurua eta estropadetarako sarbidea emanez (64€ inguru)."
-    }
+    },
+    "hero_title_part1": "Egin zaitez",
+    "hero_title_part2": "gure tripulazioko kide",
+    "section_title_part1": "Nabaritzea baino askoz gehiago,",
+    "section_title_part2": "bateratutako bizi-estilo bat",
+    "benefits_eyebrow": "Abantaila Esklusiboak",
+    "benefits_title": "Kide izatearen abantailak",
+    "cta_title": "Tripulaziora batzeko prest?",
+    "cta_desc": "Jarri harremanetan gure administrazio-taldearekin zure bazkide alta eskatzeko edo gure monitoreekin nabigazio proba bat egiteko.",
+    "cta_button": "Informazioa Eskatu"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Zure bela-eskola Abraren ondoan",

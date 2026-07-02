@@ -1199,7 +1199,16 @@
       "b5_desc": "No se trata solo de venir un día puntual, sino de formar parte de una comunidad que aprende, evoluciona y disfruta junta.",
       "b6_title": "Federación y Seguro",
       "b6_desc": "En ambas opciones es necesario federarse en la Federación Vasca de Vela, aportando seguro y acceso a regatas (aprox 64€)."
-    }
+    },
+    "hero_title_part1": "Forma parte de",
+    "hero_title_part2": "nuestra tripulación",
+    "section_title_part1": "Mucho más que navegar,",
+    "section_title_part2": "un estilo de vida compartido",
+    "benefits_eyebrow": "Beneficios Exclusivos",
+    "benefits_title": "Ventajas de ser miembro",
+    "cta_title": "¿Listo para unirte a la tripulación?",
+    "cta_desc": "Ponte en contacto con nuestro equipo administrativo para solicitar tu alta de socia o realizar una prueba de navegación con nuestros instructores.",
+    "cta_button": "Solicitar Información"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Tu escuela de vela en el Abra",

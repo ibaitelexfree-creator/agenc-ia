@@ -691,7 +691,30 @@
         "L'option la plus complète : s'entraîner de manière structurée et naviguer librement"
       ]
     },
-    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an)."
+    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an).",
+    "benefits": {
+      "b1_title": "Membre de base",
+      "b1_desc": "Jusqu'à 30 sorties par an de 4-5 heures chacune (en croiseur J80 ou dériveur). 630 €/an ou 350 € pour 15 sorties semestrielles.",
+      "b2_title": "Pack Complet",
+      "b2_desc": "Technicisation + Membre. Participation aux entraînements (3 jours/mois, 4h) et sorties illimitées. 1200 €/an.",
+      "b3_title": "Naviguer en groupe",
+      "b3_desc": "Accès à un groupe WhatsApp où les équipages sont formés et les sorties organisées selon le niveau et les conditions.",
+      "b4_title": "Accompagnement Réel",
+      "b4_desc": "Les membres apprennent à leur rythme, sans pression, et font partie de la vie interne du club : propositions et améliorations partagées.",
+      "b5_title": "Communauté Active",
+      "b5_desc": "Il ne s'agit pas seulement de venir un jour précis, mais de faire partie d'une communauté qui apprend, évolue et s'amuse ensemble.",
+      "b6_title": "Fédération et Assurance",
+      "b6_desc": "Dans les deux options, il est nécessaire d'adhérer à la Fédération Basque de Voile, offrant une assurance et l'accès aux régates (environ 64 €)."
+    },
+    "hero_title_part1": "Faites partie de",
+    "hero_title_part2": "notre équipage",
+    "section_title_part1": "Bien plus que naviguer,",
+    "section_title_part2": "un style de vie partagé",
+    "benefits_eyebrow": "Avantages Exclusifs",
+    "benefits_title": "Avantages d'être membre",
+    "cta_title": "Prêt à rejoindre l'équipage ?",
+    "cta_desc": "Contactez notre équipe administrative pour demander votre inscription ou pour effectuer une sortie d'essai avec nos instructeurs.",
+    "cta_button": "Demander des informations"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Ton école de voile sur l'Abra",
