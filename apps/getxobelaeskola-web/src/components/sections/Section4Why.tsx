@@ -9,11 +9,6 @@ import { Crab } from '@/components/creatures/Crab'
 import { Seahorse } from '@/components/creatures/Seahorse'
 import { ShimmerBadge } from '@/components/ui/ShimmerBadge'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
-
-import { useState } from 'react'
-
-const pillars = ['pillar1', 'pillar2', 'pillar3'] as const
-
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
