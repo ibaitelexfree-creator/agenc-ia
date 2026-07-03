@@ -78,16 +78,13 @@ export function Section4Why() {
 
       {/* Los 3 pilares */}
       <div
-        className="grid grid-cols-1 md:grid-cols-3"
         style={{
           flex: 1,
-          padding: 'clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 5vw, 3rem)',
-          gap: '1.25rem',
-          alignContent: 'center',
-          maxWidth: '1200px',
-          width: '100%',
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          padding: 'clamp(1rem, 3vh, 1.5rem) clamp(1.5rem, 5vw, 3rem)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          gap: '0.75rem',
         }}
       >
         {pillars.map((pillar, i) => (
@@ -103,44 +100,49 @@ export function Section4Why() {
               filter: { duration: 0.5 },
             }}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className="flex flex-col items-center text-center justify-center p-6 aspect-auto md:aspect-square"
             style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '1rem',
               backgroundColor: 'var(--foam)',
               borderRadius: '14px',
+              padding: '1rem 1.25rem',
               border: '1px solid rgba(10, 126, 200, 0.1)',
             }}
           >
             {/* Icono emoji como decorativo */}
-            <span style={{ fontSize: '2.2rem', flexShrink: 0, lineHeight: 1, marginBottom: '0.75rem' }}>
+            <span style={{ fontSize: '1.8rem', flexShrink: 0, lineHeight: 1 }}>
               {t(`${pillar}.icon`)}
             </span>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
-              <h3
-                style={{
-                  fontSize: '1.05rem',
-                  fontWeight: 700,
-                  color: 'var(--ocean-deep)',
-                }}
-              >
-                {t(`${pillar}.title`)}
-              </h3>
-              {/* Badge especial con Shimmer y contador animado */}
-              {pillar === 'pillar1' && (
-                <ShimmerBadge color="gold">
-                  Desde{' '}
-                  <CounterNumber
-                    from={0}
-                    to={52.5}
-                    suffix="€/mes"
-                    prefix=""
-                    decimals={1}
-                  />
-                </ShimmerBadge>
-              )}
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem' }}>
+                <h3
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    color: 'var(--ocean-deep)',
+                  }}
+                >
+                  {t(`${pillar}.title`)}
+                </h3>
+                {/* Badge especial con Shimmer y contador animado */}
+                {pillar === 'pillar1' && (
+                  <ShimmerBadge color="gold">
+                    Desde{' '}
+                    <CounterNumber
+                      from={0}
+                      to={52.5}
+                      suffix="€/mes"
+                      prefix=""
+                      decimals={1}
+                    />
+                  </ShimmerBadge>
+                )}
+              </div>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                {t(`${pillar}.body`)}
+              </p>
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-              {t(`${pillar}.body`)}
-            </p>
           </motion.div>
         ))}
       </div>
