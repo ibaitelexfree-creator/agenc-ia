@@ -227,7 +227,7 @@ export default function StudentDashboardClient({
                     <MicroLessonTray />
 
                     <div className="mb-12">
-                        <WeatherPremium />
+                        <WeatherPremium showFleetMonitor={false} />
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

@@ -18,9 +18,10 @@ interface WeatherData {
 
 interface WeatherPremiumProps {
     refreshInterval?: number;
+    showFleetMonitor?: boolean;
 }
 
-export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPremiumProps) {
+export default function WeatherPremium({ refreshInterval = 600000, showFleetMonitor = true }: WeatherPremiumProps) {
     const [data, setData] = useState<{
         weather: WeatherData;
         fleet: { agua: number; retorno: number; pendiente: number };
@@ -115,7 +116,7 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                 )}
             </AnimatePresence>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+            <div className={`grid grid-cols-1 ${showFleetMonitor ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-4 lg:gap-6`}>
                 {/* WIND GAUGE - PREMIUM */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -178,57 +179,59 @@ export default function WeatherPremium({ refreshInterval = 600000 }: WeatherPrem
                 </motion.div>
 
                 {/* MONITOR FLOTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 }}
-                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col justify-between transition-all"
-                >
-                    <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
-                        <LifeBuoy size={100} />
-                    </div>
-
-                    <header className="mb-8">
-                        <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-4">Monitor Flota</span>
-                        <p className="text-black/40 text-xs leading-relaxed max-w-[180px]">Estado operacional de embarcaciones en tiempo real.</p>
-                    </header>
-
-                    <div className="grid grid-cols-1 gap-4">
-                        <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
-                            <div className="flex items-center gap-4">
-                                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shadow-glow">
-                                    <Anchor size={14} />
-                                </div>
-                                <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">En Agua</span>
-                            </div>
-                            <span className="text-2xl font-display text-black italic">{fleet.agua}</span>
+                {showFleetMonitor && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col justify-between transition-all"
+                    >
+                        <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
+                            <LifeBuoy size={100} />
                         </div>
-                        <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
-                            <div className="flex items-center gap-4">
-                                <div className="w-8 h-8 rounded-full bg-brass-gold/10 flex items-center justify-center text-brass-gold">
-                                    <RefreshCw size={14} />
-                                </div>
-                                <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">Retorno</span>
-                            </div>
-                            <span className="text-2xl font-display text-black italic">{fleet.retorno}</span>
-                        </div>
-                        <div className="flex items-center justify-between p-4 bg-black/5 border border-accent/30 rounded-sm hover:translate-x-1 transition-transform group shadow-[0_0_15px_rgba(var(--accent-rgb),0.1)]">
-                            <div className="flex items-center gap-4">
-                                <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent animate-pulse">
-                                    <Gauge size={14} />
-                                </div>
-                                <span className="text-xs uppercase tracking-widest font-black text-accent drop-shadow-sm">Pendientes</span>
-                            </div>
-                            <span className="text-2xl font-display text-accent italic shadow-glow">{fleet.pendiente}</span>
-                        </div>
-                    </div>
 
-                    <div className="mt-8 flex gap-2">
-                        <Link href="/staff/activity" className="text-[9px] uppercase tracking-widest text-accent font-black hover:underline underline-offset-4">
-                            Gestionar Operaciones →
-                        </Link>
-                    </div>
-                </motion.div>
+                        <header className="mb-8">
+                            <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-4">Monitor Flota</span>
+                            <p className="text-black/40 text-xs leading-relaxed max-w-[180px]">Estado operacional de embarcaciones en tiempo real.</p>
+                        </header>
+
+                        <div className="grid grid-cols-1 gap-4">
+                            <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shadow-glow">
+                                        <Anchor size={14} />
+                                    </div>
+                                    <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">En Agua</span>
+                                </div>
+                                <span className="text-2xl font-display text-black italic">{fleet.agua}</span>
+                            </div>
+                            <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-brass-gold/10 flex items-center justify-center text-brass-gold">
+                                        <RefreshCw size={14} />
+                                    </div>
+                                    <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">Retorno</span>
+                                </div>
+                                <span className="text-2xl font-display text-black italic">{fleet.retorno}</span>
+                            </div>
+                            <div className="flex items-center justify-between p-4 bg-black/5 border border-accent/30 rounded-sm hover:translate-x-1 transition-transform group shadow-[0_0_15px_rgba(var(--accent-rgb),0.1)]">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent animate-pulse">
+                                        <Gauge size={14} />
+                                    </div>
+                                    <span className="text-xs uppercase tracking-widest font-black text-accent drop-shadow-sm">Pendientes</span>
+                                </div>
+                                <span className="text-2xl font-display text-accent italic shadow-glow">{fleet.pendiente}</span>
+                            </div>
+                        </div>
+
+                        <div className="mt-8 flex gap-2">
+                            <Link href="/staff/activity" className="text-[9px] uppercase tracking-widest text-accent font-black hover:underline underline-offset-4">
+                                Gestionar Operaciones →
+                            </Link>
+                        </div>
+                    </motion.div>
+                )}
 
                 {/* RADAR & WINDGURU */}
                 <motion.div
