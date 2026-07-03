@@ -766,22 +766,30 @@ a:hover {
   --font-body-promise: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 
   --fs-eyebrow: 0.8125rem;
-  --fs-card-title-front: 1.35rem; /* slightly smaller to fit wider text cleanly */
-  --fs-body: 0.95rem; /* optimized for description readability */
-  --fs-hook: 0.9rem;
+  --fs-card-title-front: 1.35rem;
+  --fs-body: 0.92rem;
+  --fs-hook: 0.88rem;
 
-  /* Card dimensions made wider and shorter to prevent text overflow */
-  --card-w: 360px;
-  --card-h: 320px;
+  /* Card dimensions made wider and shorter to prevent vertical text overflow */
+  --card-w: 380px;
+  --card-h: 280px;
   --card-radius: 20px;
-  --section-max-w: 1200px;
-  --gap: 32px;
+  --section-max-w: 1240px;
+  --gap: 24px;
 
   --flip-duration: 1.2s;
   --flip-easing: cubic-bezier(0.65, 0, 0.35, 1);
 
   --shadow-rest: 0 8px 24px rgba(0, 27, 58, 0.08);
   --shadow-hover: 0 20px 40px rgba(0, 27, 58, 0.16);
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --card-w: 310px;
+    --card-h: 300px;
+    --gap: 16px;
+  }
 }
 
 .sr-only {
@@ -793,7 +801,7 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(32px, 6vh, 96px) 24px;
+  padding: clamp(24px, 5vh, 64px) 24px;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -817,14 +825,14 @@ a:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin: 0 0 12px;
+  margin: 0 0 10px;
 }
 
 .promise__title {
   font-family: var(--font-display-promise);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
   color: var(--color-navy-900);
-  margin: 0 0 clamp(24px, 4vh, 48px);
+  margin: 0 0 clamp(20px, 4vh, 40px);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -835,10 +843,6 @@ a:hover {
   gap: var(--gap);
   justify-items: center;
   width: 100%;
-}
-
-@media (min-width: 641px) and (max-width: 1023px) {
-  .promise__grid { gap: 20px; }
 }
 
 @media (max-width: 900px) {

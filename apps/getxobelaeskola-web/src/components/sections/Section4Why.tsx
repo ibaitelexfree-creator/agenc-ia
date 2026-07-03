@@ -17,30 +17,174 @@ type FlipCardProps = {
 
 function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  // Rotate card either on desktop hover (state managed) or touch click
+  const isRotated = hovered || flipped
 
   return (
-    <button
-      type="button"
-      className={`flip-card ${flipped ? 'is-flipped' : ''}`}
-      aria-pressed={flipped}
-      onClick={() => setFlipped((f) => !f)}
+    <div
+      className="flip-card-wrapper"
+      style={{
+        position: 'relative',
+        width: 'var(--card-w)',
+        height: 'var(--card-h)',
+        perspective: '1600px',
+        cursor: 'pointer',
+        WebkitTapHighlightColor: 'transparent',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => setFlipped(!flipped)}
     >
       <span className="sr-only">{title}. Pulsa para ver más detalles.</span>
-      <div className="flip-card__inner">
-        <div className="flip-card__face flip-card__face--front">
-          <span className="flip-card__icon" aria-hidden="true">{icon}</span>
-          <h3 className="flip-card__title">{title}</h3>
-          <p className="flip-card__hook">{hook}</p>
-          <span className="flip-card__cta">Descubre más ↻</span>
+      
+      {/* 3D Inner container that rotates */}
+      <div
+        className="flip-card__inner"
+        style={{
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          transition: 'transform var(--flip-duration) var(--flip-easing)',
+          transformStyle: 'preserve-3d',
+          transform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          pointerEvents: 'none', // Ignore pointer events so they don't trigger mouseleave during rotation
+        }}
+      >
+        {/* Front Face */}
+        <div
+          className="flip-card__face flip-card__face--front"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            borderRadius: 'var(--card-radius)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px 20px',
+            backgroundColor: 'var(--color-white)',
+            border: '1px solid var(--color-border)',
+            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
+            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <span
+            className="flip-card__icon"
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: 'var(--color-gold-soft)',
+              color: 'var(--color-navy-900)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '20px',
+              transition: 'transform var(--flip-duration) var(--flip-easing)',
+              transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
+            }}
+          >
+            {icon}
+          </span>
+          <h3
+            className="flip-card__title"
+            style={{
+              fontFamily: 'var(--font-display-promise)',
+              fontSize: 'var(--fs-card-title-front)',
+              color: 'var(--color-navy-900)',
+              margin: '0 0 10px',
+              fontWeight: 600,
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {title}
+          </h3>
+          <p
+            className="flip-card__hook"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-hook)',
+              color: 'var(--color-ink-soft)',
+              lineHeight: 1.5,
+              margin: '0 0 16px',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {hook}
+          </p>
+          <span
+            className="flip-card__cta"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              color: 'var(--color-gold)',
+              letterSpacing: '0.02em',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            Descubre más ↻
+          </span>
         </div>
-        <div className="flip-card__face flip-card__face--back">
-          <span className="flip-card__label">{label}</span>
-          <p className="flip-card__desc">{description}</p>
+
+        {/* Back Face */}
+        <div
+          className="flip-card__face flip-card__face--back"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            borderRadius: 'var(--card-radius)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            padding: '28px 20px 20px',
+            background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
+            transform: 'rotateY(180deg)',
+            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
+            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          <span
+            className="flip-card__label"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-eyebrow)',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              color: 'var(--color-gold)',
+              margin: '0 0 12px',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {label}
+          </span>
+          <p
+            className="flip-card__desc"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-body)',
+              color: 'var(--color-white)',
+              opacity: 0.92,
+              lineHeight: 1.6,
+              margin: 0,
+              textAlign: 'center',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {description}
+          </p>
         </div>
       </div>
-      {/* Flat transparent overlay captures cursor events on top, protecting 3D hover state */}
-      <div className="flip-card__overlay" />
-    </button>
+    </div>
   )
 }
 
