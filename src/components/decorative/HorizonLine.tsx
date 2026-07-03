@@ -1,4 +1,5 @@
 // src/components/decorative/HorizonLine.tsx
+// Fake commit to verify develop branch push flow
 'use client'
 
 import { motion } from 'framer-motion'
