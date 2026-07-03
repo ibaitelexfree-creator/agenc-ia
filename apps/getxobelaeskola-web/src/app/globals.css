@@ -752,39 +752,33 @@ a:hover {
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
-  /* Color */
-  --color-navy-900: #001B3A;   /* marca — fondo cara trasera, texto principal */
-  --color-navy-700: #0A2E52;   /* variante para gradiente sutil en cara trasera */
+  --color-navy-900: #001B3A;
+  --color-navy-700: #0A2E52;
   --color-white:    #FFFFFF;
-  --color-off-white:#F7F8FA;   /* fondo de sección, no blanco puro */
-  --color-gold:     #C6A15B;   /* acento náutico secundario (latón/madera de cubierta) */
-  --color-gold-soft:#E9DCC3;   /* halo/hover del icono */
-  --color-ink:      #1C2530;   /* texto de párrafo sobre blanco */
-  --color-ink-soft: #5B6472;   /* texto secundario/subtítulo */
+  --color-off-white:#F7F8FA;
+  --color-gold:     #C6A15B;
+  --color-gold-soft:#E9DCC3;
+  --color-ink:      #1C2530;
+  --color-ink-soft: #5B6472;
   --color-border:   #E5E8EC;
 
-  /* Tipografía */
-  --font-display-promise: "Fraunces", "Iowan Old Style", Georgia, serif; /* títulos — carácter editorial/náutico */
-  --font-body-promise: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif; /* cuerpo — limpio, Apple-like */
+  --font-display-promise: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body-promise: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 
-  --fs-eyebrow: 0.8125rem;   /* 13px */
-  --fs-card-title-front: 1.5rem;   /* 24px */
-  --fs-card-title-back: 1.125rem;  /* 18px */
-  --fs-body: 1rem;           /* 16px */
-  --fs-hook: 0.9375rem;      /* 15px */
+  --fs-eyebrow: 0.8125rem;
+  --fs-card-title-front: 1.5rem;
+  --fs-body: 1rem;
+  --fs-hook: 0.9375rem;
 
-  /* Layout */
   --card-w: 320px;
   --card-h: 400px;
   --card-radius: 20px;
   --section-max-w: 1180px;
   --gap: 32px;
 
-  /* Motion */
-  --flip-duration: 0.7s;
+  --flip-duration: 1.2s;
   --flip-easing: cubic-bezier(0.65, 0, 0.35, 1);
 
-  /* Elevación */
   --shadow-rest: 0 8px 24px rgba(0, 27, 58, 0.08);
   --shadow-hover: 0 20px 40px rgba(0, 27, 58, 0.16);
 }
@@ -798,7 +792,7 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: 80px 24px;
+  padding: 96px 24px;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -827,9 +821,9 @@ a:hover {
 
 .promise__title {
   font-family: var(--font-display-promise);
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 2.75rem);
   color: var(--color-navy-900);
-  margin: 0 0 40px;
+  margin: 0 0 56px;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -842,9 +836,13 @@ a:hover {
   width: 100%;
 }
 
+@media (min-width: 641px) and (max-width: 1023px) {
+  .promise__grid { gap: 20px; }
+}
+
 @media (max-width: 900px) {
   .promise__grid { 
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
     gap: 16px;
     max-height: calc(100vh - 200px);
     overflow-y: auto;
@@ -858,14 +856,7 @@ a:hover {
   }
 }
 
-@media (min-width: 641px) and (max-width: 1023px) {
-  .promise__grid { gap: 20px; }
-}
-
-/* ---------- FLIP CARD ---------- */
-
 .flip-card {
-  /* reset de <button> */
   border: none;
   background: none;
   padding: 0;
@@ -887,7 +878,6 @@ a:hover {
   transform-style: preserve-3d;
 }
 
-/* Desktop: hover gira la tarjeta */
 @media (hover: hover) and (pointer: fine) {
   .flip-card:hover .flip-card__inner,
   .flip-card:focus-visible .flip-card__inner {
@@ -895,7 +885,6 @@ a:hover {
   }
 }
 
-/* Touch / click: clase JS gira la tarjeta (ver sección 6) */
 .flip-card.is-flipped .flip-card__inner {
   transform: rotateY(180deg);
 }
@@ -910,9 +899,22 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 32px 24px;
+  padding: 40px 28px;
   box-shadow: var(--shadow-rest);
   transition: box-shadow var(--flip-duration) var(--flip-easing);
+  /* contexto 3D propio para que los hijos puedan "despegarse" con translateZ */
+  transform-style: preserve-3d;
+}
+
+/* Efecto de profundidad: el icono y el texto flotan por delante
+   del fondo de la tarjeta (igual que el ejemplo de referencia). */
+.flip-card__icon,
+.flip-card__title,
+.flip-card__hook,
+.flip-card__cta,
+.flip-card__label,
+.flip-card__desc {
+  transform: translateZ(90px);
 }
 
 .flip-card:hover .flip-card__face,
@@ -929,32 +931,32 @@ a:hover {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
   justify-content: flex-start;
-  padding-top: 48px;
+  padding-top: 56px;
 }
 
 .flip-card__icon {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   background: var(--color-gold-soft);
   color: var(--color-navy-900);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
 .flip-card:hover .flip-card__icon,
 .flip-card.is-flipped .flip-card__icon {
-  transform: scale(1.08);
+  transform: translateZ(90px) scale(1.08);
 }
 
 .flip-card__title {
   font-family: var(--font-display-promise);
   font-size: var(--fs-card-title-front);
   color: var(--color-navy-900);
-  margin: 0 0 12px;
+  margin: 0 0 20px;
   font-weight: 600;
 }
 
@@ -962,8 +964,8 @@ a:hover {
   font-family: var(--font-body-promise);
   font-size: var(--fs-hook);
   color: var(--color-ink-soft);
-  line-height: 1.5;
-  margin: 0 0 20px;
+  line-height: 1.6;
+  margin: 0 0 32px;
 }
 
 .flip-card__cta {
@@ -980,7 +982,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-gold);
-  margin: 0 0 16px;
+  margin: 0 0 28px;
 }
 
 .flip-card__desc {
@@ -988,12 +990,11 @@ a:hover {
   font-size: var(--fs-body);
   color: var(--color-white);
   opacity: 0.92;
-  line-height: 1.6;
+  line-height: 1.75;
   margin: 0;
   text-align: center;
 }
 
-/* Accesibilidad: respeta reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .flip-card__inner,
   .flip-card__icon,
@@ -1002,7 +1003,6 @@ a:hover {
   }
 }
 
-/* Foco visible para teclado */
 .flip-card:focus-visible {
   outline: 3px solid var(--color-gold);
   outline-offset: 4px;
