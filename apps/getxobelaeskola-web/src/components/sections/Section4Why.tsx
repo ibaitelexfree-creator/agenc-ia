@@ -14,7 +14,31 @@ import { useState } from 'react'
 
 const pillars = ['pillar1', 'pillar2', 'pillar3'] as const
 
-function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3'; i: number; t: any }) {
+import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
+
+const pillars = ['pillar1', 'pillar2', 'pillar3'] as const
+
+// Define ocean-inspired card gradients
+const CARD_GRADIENTS = {
+  pillar1: 'linear-gradient(135deg, rgba(224, 242, 254, 0.95) 0%, rgba(186, 230, 253, 0.95) 100%)', // Sky/Light Blue
+  pillar2: 'linear-gradient(135deg, rgba(204, 251, 241, 0.95) 0%, rgba(153, 246, 228, 0.95) 100%)', // Mint/Turquoise
+  pillar3: 'linear-gradient(135deg, rgba(254, 243, 199, 0.95) 0%, rgba(253, 230, 138, 0.95) 100%)', // Yellow/Sand
+}
+
+function PillarCard({ 
+  pillar, 
+  i, 
+  t, 
+  isOpen, 
+  onClick 
+}: { 
+  pillar: 'pillar1' | 'pillar2' | 'pillar3'; 
+  i: number; 
+  t: any; 
+  isOpen: boolean; 
+  onClick: () => void; 
+}) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 60, filter: 'blur(8px)', scale: 0.95 }}
@@ -25,39 +49,64 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
         duration: 0.7,
         ease: [0.25, 0.1, 0.25, 1],
       }}
-      whileHover="hover"
+      whileHover={isOpen ? undefined : "hover"}
+      onClick={onClick}
       className="w-full aspect-square relative flex flex-col justify-between items-center text-center"
+      animate={{
+        scale: isOpen ? 1.05 : 1,
+        y: isOpen ? -10 : 0,
+        boxShadow: isOpen
+          ? '0 25px 50px rgba(10, 126, 200, 0.2), 0 0 0 3px rgba(10, 126, 200, 0.3)'
+          : '0 10px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.01)',
+        borderColor: isOpen ? 'rgba(10, 126, 200, 0.5)' : 'rgba(10, 126, 200, 0.06)',
+      }}
       variants={{
-        initial: { 
-          y: 0, 
-          scale: 1,
-          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.01)',
-          borderColor: 'rgba(10, 126, 200, 0.06)',
-        },
         hover: {
           y: -14,
           scale: 1.03,
-          boxShadow: '0 20px 45px rgba(10, 126, 200, 0.1), 0 4px 12px rgba(10, 126, 200, 0.03)',
+          boxShadow: '0 20px 45px rgba(10, 126, 200, 0.12), 0 4px 12px rgba(10, 126, 200, 0.03)',
           borderColor: 'rgba(10, 126, 200, 0.35)',
           transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
         }
       }}
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.78)',
+        background: CARD_GRADIENTS[pillar],
         backdropFilter: 'blur(20px)',
-        borderRadius: '26px',
+        borderRadius: '28px',
         padding: '2.5rem 2rem',
-        borderWidth: '1px',
+        borderWidth: '2px',
         borderStyle: 'solid',
         overflow: 'hidden',
         cursor: 'pointer',
+        transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
       }}
     >
-      {/* Icon at the top (with hover bounce/rotation) */}
+      {/* Decorative Wave SVG Pattern inside card */}
+      <svg
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '60px',
+          opacity: 0.12,
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+        viewBox="0 0 1440 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0 60 C360 120 720 0 1080 60 C1260 90 1380 60 1440 60 L1440 120 L0 120 Z"
+          fill="var(--ocean-deep)"
+        />
+      </svg>
+
+      {/* Icon at the top (with hover float and click pulse variants) */}
       <motion.span 
-        style={{ fontSize: '3.2rem', display: 'inline-block', lineHeight: 1 }}
+        style={{ fontSize: '3.4rem', display: 'inline-block', lineHeight: 1, zIndex: 2 }}
         variants={{
-          initial: { y: 0, rotate: 0 },
+          initial: { scale: 1, y: 0, rotate: 0 },
           hover: { 
             y: [0, -8, 0],
             rotate: [0, 6, -6, 0],
@@ -69,79 +118,127 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
             }
           }
         }}
+        animate={isOpen ? {
+          scale: [1, 1.25, 1],
+          transition: { duration: 0.4, ease: 'easeInOut' }
+        } : undefined}
       >
         {t(`${pillar}.icon`)}
       </motion.span>
 
-      {/* Middle: Title & Description */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', flex: 1, justifyContent: 'center', margin: '1rem 0' }}>
+      {/* Middle & Bottom Layout wrapper */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, width: '100%', zIndex: 2 }}>
         <h3
           style={{
-            fontSize: '1.25rem',
+            fontSize: '1.3rem',
             fontWeight: 800,
             color: 'var(--ocean-deep)',
             letterSpacing: '-0.02em',
+            marginTop: '0.75rem',
+            marginBottom: '0.25rem',
           }}
         >
           {t(`${pillar}.title`)}
         </h3>
-        {pillar === 'pillar1' && (
-          <div style={{ transform: 'scale(1.05)', marginBottom: '0.25rem' }}>
-            <ShimmerBadge color="gold">
-              Desde{' '}
-              <CounterNumber
-                from={0}
-                to={52.5}
-                suffix="€/mes"
-                prefix=""
-                decimals={1}
-              />
-            </ShimmerBadge>
-          </div>
-        )}
-        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '280px' }}>
-          {t(`${pillar}.body`)}
-        </p>
-      </div>
 
-      {/* Bottom: Learn More button (revealed with smooth fade-up on hover) */}
-      <motion.div
-        variants={{
-          initial: { opacity: 0, y: 15, scale: 0.95 },
-          hover: { 
-            opacity: 1, 
-            y: 0, 
-            scale: 1,
-            transition: { duration: 0.3, ease: 'easeOut' } 
-          }
-        }}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.35rem',
-          fontSize: '0.85rem',
-          fontWeight: 700,
-          color: 'var(--ocean-bright)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.06em',
-        }}
-      >
-        <span>{t('learn_more')}</span>
-        <motion.span
-          variants={{
-            initial: { x: 0 },
-            hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
-          }}
-        >
-          →
-        </motion.span>
-      </motion.div>
+        <AnimatePresence mode="wait">
+          {!isOpen ? (
+            <motion.div
+              key="front"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyBetween: 'space-between', flex: 1, width: '100%' }}
+            >
+              {/* Pillar description */}
+              <p style={{ fontSize: '0.9rem', color: 'var(--ocean-deep)', opacity: 0.8, lineHeight: 1.6, maxWidth: '280px', margin: '0.75rem 0', flex: 1, display: 'flex', alignItems: 'center' }}>
+                {t(`${pillar}.body`)}
+              </p>
+
+              {/* Modern Rounded Learn More Button */}
+              <motion.div
+                variants={{
+                  initial: { scale: 0.95 },
+                  hover: { scale: 1.05 }
+                }}
+                style={{
+                  padding: '0.65rem 1.5rem',
+                  borderRadius: '50px',
+                  backgroundColor: 'var(--ocean-deep)',
+                  color: 'white',
+                  fontSize: '0.85rem',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  boxShadow: '0 4px 12px rgba(13, 33, 55, 0.15)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  marginTop: '0.5rem',
+                }}
+              >
+                <span>{t('learn_more')}</span>
+                <motion.span
+                  variants={{
+                    initial: { x: 0 },
+                    hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
+                  }}
+                >
+                  →
+                </motion.span>
+              </motion.div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="back"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, width: '100%' }}
+            >
+              {/* Back Content Details */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', margin: '0.5rem 0', flex: 1, justifyContent: 'center' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--ocean-bright)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  {t(`${pillar}.backTitle`)}
+                </span>
+                <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ocean-deep)', opacity: 0.85 }}>
+                  {t(`${pillar}.backSubtitle`)}
+                </h4>
+                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', marginTop: '0.25rem' }}>
+                  {t(`${pillar}.backBody`)}
+                </p>
+              </div>
+
+              {/* Modern Collapse / Volver Button */}
+              <div
+                style={{
+                  padding: '0.5rem 1.25rem',
+                  borderRadius: '50px',
+                  backgroundColor: 'rgba(10, 126, 200, 0.1)',
+                  color: 'var(--ocean-bright)',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem',
+                  marginTop: '0.5rem',
+                }}
+              >
+                <span>← Volver</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.div>
   )
 }
 
 export function Section4Why() {
   const t = useTranslations('s4')
+  const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   return (
     <section
@@ -219,7 +316,14 @@ export function Section4Why() {
         }}
       >
         {pillars.map((pillar, i) => (
-          <PillarCard key={pillar} pillar={pillar} i={i} t={t} />
+          <PillarCard 
+            key={pillar} 
+            pillar={pillar} 
+            i={i} 
+            t={t} 
+            isOpen={activeIndex === i}
+            onClick={() => setActiveIndex(activeIndex === i ? null : i)}
+          />
         ))}
       </div>
 
