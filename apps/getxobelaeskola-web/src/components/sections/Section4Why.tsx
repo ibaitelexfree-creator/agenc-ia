@@ -39,7 +39,7 @@ function PillarCard({
       onClick={onClick}
       className="w-full aspect-square relative"
       style={{
-        perspective: '1500px',
+        perspective: '1800px',
         zIndex: isOpen ? 50 : 1,
         cursor: 'pointer',
       }}
@@ -53,26 +53,27 @@ function PillarCard({
         animate={{
           y: isOpen ? -10 : 0,
           scale: isOpen ? 1.05 : 1,
-          transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] }
+          transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
         }}
       >
-        {/* Inside Page (Right side / base of the journal) */}
-        <motion.div
+        {/* Right Inside Page (Base page of the book) */}
+        <div
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: '#faf8f5', // Clean paper texture color
+            backgroundColor: '#faf8f5', // Clean paper texture
             backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0)',
             backgroundSize: '16px 16px',
-            borderRadius: '24px',
+            borderRadius: isOpen ? '0 24px 24px 0' : '24px', // Folds at left spine when open
+            borderLeft: isOpen ? '2px solid rgba(0, 0, 0, 0.08)' : '1px solid rgba(13, 33, 55, 0.08)',
             padding: '2rem 1.75rem',
-            border: isOpen 
-              ? '2px solid rgba(10, 126, 200, 0.45)' // Glowing brand color border when active
-              : '1px solid rgba(13, 33, 55, 0.08)',
+            borderRight: '1px solid rgba(13, 33, 55, 0.08)',
+            borderTop: '1px solid rgba(13, 33, 55, 0.08)',
+            borderBottom: '1px solid rgba(13, 33, 55, 0.08)',
             boxShadow: isOpen 
-              ? '0 20px 45px rgba(10, 126, 200, 0.16), inset 0 0 20px rgba(0,0,0,0.02)' // Layered paper shadow
+              ? '10px 15px 35px rgba(0, 0, 0, 0.05), inset 10px 0 15px rgba(0,0,0,0.03)' 
               : '0 4px 15px rgba(0,0,0,0.02)',
             zIndex: 1,
             display: 'flex',
@@ -81,23 +82,18 @@ function PillarCard({
             alignItems: 'center',
             textAlign: 'center',
             backfaceVisibility: 'hidden',
-            transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ 
-            opacity: 1,
-            transition: { delay: 0.2 } 
+            transition: 'border-radius 0.4s ease, border-left 0.4s ease, box-shadow 0.4s ease',
           }}
         >
-          {/* Subtle Decorative Waves for Inside Page */}
+          {/* Subtle Decorative Wave for Inside Page */}
           <svg
             style={{
               position: 'absolute',
               top: '1rem',
-              left: '1rem',
+              right: '1rem',
               width: '40px',
               height: '15px',
-              opacity: 0.1,
+              opacity: 0.08,
               pointerEvents: 'none',
             }}
             viewBox="0 0 100 30"
@@ -105,18 +101,18 @@ function PillarCard({
             <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke="var(--ocean-deep)" strokeWidth="3" />
           </svg>
 
-          {/* Top: Icon (moves gracefully to page header) */}
+          {/* Top: Icon in the opened page header */}
           <motion.span 
             style={{ fontSize: '2.5rem', display: 'inline-block', lineHeight: 1 }}
             animate={isOpen ? {
               scale: [1, 1.2, 1],
-              transition: { duration: 0.4, ease: 'easeInOut' }
+              transition: { duration: 0.5, ease: 'easeInOut' }
             } : { scale: 1 }}
           >
             {t(`${pillar}.icon`)}
           </motion.span>
 
-          {/* Middle: Detailed Text */}
+          {/* Middle: Title & Description */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', flex: 1, justifyContent: 'center' }}>
             <span style={{ fontSize: '0.7rem', color: 'var(--ocean-bright)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
               {t(`${pillar}.backTitle`)}
@@ -124,12 +120,18 @@ function PillarCard({
             <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--ocean-deep)', opacity: 0.9, fontFamily: 'Georgia, serif' }}>
               {t(`${pillar}.backSubtitle`)}
             </h4>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.55, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}>
+            {/* Description fades and appears naturally */}
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={isOpen ? { opacity: 0.9, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
+              style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.55, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}
+            >
               "{t(`${pillar}.backBody`)}"
-            </p>
+            </motion.p>
           </div>
 
-          {/* Bottom: Volver Indicator */}
+          {/* Bottom: Close / Volver link */}
           <div
             style={{
               padding: '0.4rem 1rem',
@@ -145,140 +147,209 @@ function PillarCard({
           >
             <span>← Cerrar Diario</span>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Front Cover (Rotating hardcover) */}
+        {/* Rotating cover wrapper (Front Cover & Left Inside Page) */}
         <motion.div
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            background: 'linear-gradient(135deg, #0d2137 0%, #0a7ec8 100%)', // Premium Deep Navy to Aqua Blue gradient
-            borderRadius: '24px',
-            padding: '2.25rem 2rem',
-            border: '2px solid rgba(212, 175, 55, 0.25)', // Elegant Sunlight Gold border outline
-            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+            transformStyle: 'preserve-3d',
+            transformOrigin: 'left center', // Open spine from left edge
             zIndex: 2,
-            transformOrigin: 'left center', // Rotate open like a book cover
-            backfaceVisibility: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}
-          variants={{
-            hover: {
-              boxShadow: '0 20px 45px rgba(10, 126, 200, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.4)',
-              transition: { duration: 0.35 }
-            }
           }}
           animate={{
-            rotateY: isOpen ? -145 : 0, // Book opens on click
-            transition: { duration: 0.75, ease: [0.25, 1, 0.5, 1] }
+            rotateY: isOpen ? -180 : 0, // Swings 180 degrees open
           }}
+          transition={{ duration: 0.85, ease: [0.25, 1, 0.5, 1] }}
         >
-          {/* Gentle light reflection sweeping across cover on hover */}
-          <motion.div
+          {/* Double-Sided cover - Front Face (Hardcover) */}
+          <div
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0) 80%)',
-              top: 0,
-              left: '-100%',
-              zIndex: 3,
-              pointerEvents: 'none',
-            }}
-            variants={{
-              hover: {
-                left: '200%',
-                transition: { duration: 1.4, ease: 'easeInOut' }
-              }
-            }}
-          />
-
-          {/* Top: Icon (floating with waves on hover) */}
-          <motion.span 
-            style={{ fontSize: '3.4rem', display: 'inline-block', lineHeight: 1 }}
-            variants={{
-              initial: { y: 0, rotate: 0 },
-              hover: { 
-                y: [0, -8, 0],
-                rotate: [0, 5, -5, 0],
-                transition: { 
-                  duration: 1.2,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }
-              }
+              width: '100%',
+              height: '100%',
+              background: 'linear-gradient(135deg, #0d2137 0%, #0a7ec8 100%)', // Vibrant Ocean gradients
+              borderRadius: '24px',
+              padding: '2.25rem 2rem',
+              border: '2px solid rgba(212, 175, 55, 0.25)', // Sunset Gold accent
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+              backfaceVisibility: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              textAlign: 'center',
+              zIndex: 2,
             }}
           >
-            {t(`${pillar}.icon`)}
-          </motion.span>
-
-          {/* Middle: Title & Main Text */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
-            <h3
+            {/* Light reflection sweeping across surface on hover */}
+            <motion.div
               style={{
-                fontSize: '1.25rem',
-                fontWeight: 800,
-                color: 'white',
-                letterSpacing: '-0.02em',
-                textShadow: '0 2px 4px rgba(0,0,0,0.15)',
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 80%)',
+                top: 0,
+                left: '-100%',
+                zIndex: 3,
+                pointerEvents: 'none',
+              }}
+              variants={{
+                hover: {
+                  left: '200%',
+                  transition: { duration: 1.4, ease: 'easeInOut' }
+                }
+              }}
+            />
+
+            {/* Top: Icon (floats on hover) */}
+            <motion.span 
+              style={{ fontSize: '3.4rem', display: 'inline-block', lineHeight: 1 }}
+              variants={{
+                initial: { y: 0, rotate: 0 },
+                hover: { 
+                  y: [0, -8, 0],
+                  rotate: [0, 5, -5, 0],
+                  transition: { 
+                    duration: 1.2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut"
+                  }
+                }
               }}
             >
-              {t(`${pillar}.title`)}
-            </h3>
-            {pillar === 'pillar1' && (
-              <div style={{ transform: 'scale(1.05)', marginBottom: '0.25rem' }}>
-                <ShimmerBadge color="gold">
-                  Desde{' '}
-                  <CounterNumber
-                    from={0}
-                    to={52.5}
-                    suffix="€/mes"
-                    prefix=""
-                    decimals={1}
-                  />
-                </ShimmerBadge>
-              </div>
-            )}
-            <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: '280px' }}>
-              {t(`${pillar}.body`)}
-            </p>
+              {t(`${pillar}.icon`)}
+            </motion.span>
+
+            {/* Middle: Title & Main Text */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
+              <h3
+                style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 800,
+                  color: 'white',
+                  letterSpacing: '-0.02em',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.15)',
+                }}
+              >
+                {t(`${pillar}.title`)}
+              </h3>
+              {pillar === 'pillar1' && (
+                <div style={{ transform: 'scale(1.05)', marginBottom: '0.25rem' }}>
+                  <ShimmerBadge color="gold">
+                    Desde{' '}
+                    <CounterNumber
+                      from={0}
+                      to={52.5}
+                      suffix="€/mes"
+                      prefix=""
+                      decimals={1}
+                    />
+                  </ShimmerBadge>
+                </div>
+              )}
+              <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: '280px' }}>
+                {t(`${pillar}.body`)}
+              </p>
+            </div>
+
+            {/* Bottom: Learn More bookmark button */}
+            <div
+              style={{
+                padding: '0.55rem 1.35rem',
+                borderRadius: '50px',
+                backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                border: '1px solid rgba(212, 175, 55, 0.4)',
+                color: '#ffd700',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              }}
+            >
+              <span>{t('learn_more')}</span>
+              <motion.span
+                variants={{
+                  initial: { x: 0 },
+                  hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
+                }}
+              >
+                →
+              </motion.span>
+            </div>
           </div>
 
-          {/* Bottom: Bookmark-style Learn More Button */}
+          {/* Double-Sided cover - Back Face (Left Page of open book) */}
           <div
             style={{
-              padding: '0.55rem 1.35rem',
-              borderRadius: '50px',
-              backgroundColor: 'rgba(255, 255, 255, 0.15)',
-              border: '1px solid rgba(212, 175, 55, 0.4)', // Gold Accent on cover button
-              color: '#ffd700', // Gold text
-              fontSize: '0.8rem',
-              fontWeight: 700,
-              display: 'inline-flex',
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: '#faf8f5', // Matching paper texture
+              backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0)',
+              backgroundSize: '16px 16px',
+              borderRadius: '24px 0 0 24px', // Spine folds on right edge when cover swings 180deg
+              borderRight: '3px solid rgba(0, 0, 0, 0.12)', // Subtle spine shadow/line
+              padding: '2rem 1.75rem',
+              borderTop: '1px solid rgba(13, 33, 55, 0.08)',
+              borderBottom: '1px solid rgba(13, 33, 55, 0.08)',
+              borderLeft: '1px solid rgba(13, 33, 55, 0.08)',
+              boxShadow: '-10px 15px 35px rgba(0, 0, 0, 0.05)',
+              transform: 'rotateY(180deg)', // Rotated so it aligns as left page when open
+              backfaceVisibility: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
-              gap: '0.35rem',
-              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
+              textAlign: 'center',
+              zIndex: 1,
             }}
           >
-            <span>{t('learn_more')}</span>
-            <motion.span
-              variants={{
-                initial: { x: 0 },
-                hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
+            {/* Compass / Sailing log illustration for visual immersion */}
+            <span style={{ fontSize: '3rem', opacity: 0.75 }}>📖</span>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--ocean-deep)', fontFamily: 'Georgia, serif', marginTop: '1.25rem', letterSpacing: '-0.01em' }}>
+              Diario de a bordo
+            </h4>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontStyle: 'italic', fontFamily: 'Georgia, serif', marginTop: '0.5rem', maxWidth: '200px', lineHeight: 1.4 }}>
+              "El mar une los destinos que la tierra separa."
+            </p>
+            {/* Subtle Decorative Wave at bottom left page */}
+            <svg
+              style={{
+                width: '60px',
+                height: '15px',
+                opacity: 0.1,
+                pointerEvents: 'none',
+                marginTop: '1.25rem'
               }}
+              viewBox="0 0 100 30"
             >
-              →
-            </motion.span>
+              <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke="var(--ocean-deep)" strokeWidth="3" />
+            </svg>
           </div>
         </motion.div>
+
+        {/* Soft glowing ocean-blue border highlight on the active book */}
+        {isOpen && (
+          <motion.div
+            layoutId="activeBorderGlow"
+            className="absolute -inset-1 pointer-events-none rounded-[26px]"
+            style={{
+              border: '2.5px solid rgba(10, 126, 200, 0.5)',
+              boxShadow: '0 0 20px rgba(10, 126, 200, 0.25)',
+              zIndex: 3,
+            }}
+          />
+        )}
       </motion.div>
     </div>
   )
