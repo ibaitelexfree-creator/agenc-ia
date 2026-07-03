@@ -38,6 +38,8 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
           <p className="flip-card__desc">{description}</p>
         </div>
       </div>
+      {/* Flat transparent overlay captures cursor events on top, protecting 3D hover state */}
+      <div className="flip-card__overlay" />
     </button>
   )
 }

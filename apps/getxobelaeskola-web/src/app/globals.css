@@ -766,15 +766,15 @@ a:hover {
   --font-body-promise: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 
   --fs-eyebrow: 0.8125rem;
-  --fs-card-title-front: 1.5rem;
-  --fs-body: 1rem;
-  --fs-hook: 0.9375rem;
+  --fs-card-title-front: 1.35rem; /* slightly smaller to fit wider text cleanly */
+  --fs-body: 0.95rem; /* optimized for description readability */
+  --fs-hook: 0.9rem;
 
-  /* Card dimensions restored exactly as requested */
-  --card-w: 320px;
-  --card-h: 400px;
+  /* Card dimensions made wider and shorter to prevent text overflow */
+  --card-w: 360px;
+  --card-h: 320px;
   --card-radius: 20px;
-  --section-max-w: 1180px;
+  --section-max-w: 1200px;
   --gap: 32px;
 
   --flip-duration: 1.2s;
@@ -824,7 +824,7 @@ a:hover {
   font-family: var(--font-display-promise);
   font-size: clamp(2rem, 4vw, 2.75rem);
   color: var(--color-navy-900);
-  margin: 0 0 clamp(24px, 4vh, 56px);
+  margin: 0 0 clamp(24px, 4vh, 48px);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -858,9 +858,9 @@ a:hover {
 }
 
 .flip-card {
+  position: relative;
   border: none;
-  /* Hit-testable transparent background color resolves the 3D hover state loss completely */
-  background-color: rgba(0, 0, 0, 0) !important;
+  background-color: transparent !important;
   padding: 0;
   font: inherit;
   cursor: pointer;
@@ -878,6 +878,16 @@ a:hover {
   height: 100%;
   transition: transform var(--flip-duration) var(--flip-easing);
   transform-style: preserve-3d;
+}
+
+/* Flat, static transparent overlay captures hovers and clicks.
+   This guarantees that mouse hover doesn't break when children rotate in 3D. */
+.flip-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -901,7 +911,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 28px;
+  padding: 24px 20px; /* reduced padding to fit more text */
   box-shadow: var(--shadow-rest);
   transition: box-shadow var(--flip-duration) var(--flip-easing);
   /* contexto 3D propio para que los hijos puedan "despegarse" con translateZ */
@@ -933,19 +943,19 @@ a:hover {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
   justify-content: flex-start;
-  padding-top: 56px;
+  padding-top: 32px; /* reduced padding for description */
 }
 
 .flip-card__icon {
-  width: 72px;
-  height: 72px;
+  width: 64px; /* slightly smaller icon */
+  height: 64px;
   border-radius: 50%;
   background: var(--color-gold-soft);
   color: var(--color-navy-900);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
@@ -958,7 +968,7 @@ a:hover {
   font-family: var(--font-display-promise);
   font-size: var(--fs-card-title-front);
   color: var(--color-navy-900);
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   font-weight: 600;
 }
 
@@ -966,8 +976,8 @@ a:hover {
   font-family: var(--font-body-promise);
   font-size: var(--fs-hook);
   color: var(--color-ink-soft);
-  line-height: 1.6;
-  margin: 0 0 32px;
+  line-height: 1.5;
+  margin: 0 0 20px;
 }
 
 .flip-card__cta {
@@ -984,7 +994,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-gold);
-  margin: 0 0 28px;
+  margin: 0 0 16px;
 }
 
 .flip-card__desc {
@@ -992,7 +1002,7 @@ a:hover {
   font-size: var(--fs-body);
   color: var(--color-white);
   opacity: 0.92;
-  line-height: 1.75;
+  line-height: 1.6;
   margin: 0;
   text-align: center;
 }
