@@ -770,11 +770,12 @@ a:hover {
   --fs-body: 1rem;
   --fs-hook: 0.9375rem;
 
-  --card-w: 320px;
-  --card-h: 400px;
+  /* Spacing and Dimensions made fluid so they fit locked 100vh canvas */
+  --card-w: clamp(280px, 22vw, 340px);
+  --card-h: clamp(320px, 46vh, 400px);
   --card-radius: 20px;
   --section-max-w: 1180px;
-  --gap: 32px;
+  --gap: clamp(16px, 3vh, 32px);
 
   --flip-duration: 1.2s;
   --flip-easing: cubic-bezier(0.65, 0, 0.35, 1);
@@ -792,7 +793,7 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: 96px 24px;
+  padding: clamp(2rem, 5vh, 6rem) 24px;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -816,14 +817,14 @@ a:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-gold);
-  margin: 0 0 12px;
+  margin: 0 0 clamp(8px, 1.5vh, 12px);
 }
 
 .promise__title {
   font-family: var(--font-display-promise);
-  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-size: clamp(1.8rem, 3.8vh, 2.75rem);
   color: var(--color-navy-900);
-  margin: 0 0 56px;
+  margin: 0 0 clamp(20px, 5vh, 56px);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -876,6 +877,8 @@ a:hover {
   height: 100%;
   transition: transform var(--flip-duration) var(--flip-easing);
   transform-style: preserve-3d;
+  /* Prevent pointer-events inside the rotating container to stabilize 3D hovers */
+  pointer-events: none;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -899,7 +902,7 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 28px;
+  padding: clamp(24px, 4.5vh, 40px) clamp(20px, 2.5vw, 28px);
   box-shadow: var(--shadow-rest);
   transition: box-shadow var(--flip-duration) var(--flip-easing);
   /* contexto 3D propio para que los hijos puedan "despegarse" con translateZ */
@@ -931,19 +934,19 @@ a:hover {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
   justify-content: flex-start;
-  padding-top: 56px;
+  padding-top: clamp(32px, 6vh, 56px);
 }
 
 .flip-card__icon {
-  width: 72px;
-  height: 72px;
+  width: clamp(56px, 8vh, 72px);
+  height: clamp(56px, 8vh, 72px);
   border-radius: 50%;
   background: var(--color-gold-soft);
   color: var(--color-navy-900);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 36px;
+  margin-bottom: clamp(20px, 4vh, 36px);
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
@@ -954,18 +957,18 @@ a:hover {
 
 .flip-card__title {
   font-family: var(--font-display-promise);
-  font-size: var(--fs-card-title-front);
+  font-size: clamp(1.2rem, 2.5vh, var(--fs-card-title-front));
   color: var(--color-navy-900);
-  margin: 0 0 20px;
+  margin: 0 0 clamp(10px, 2vh, 20px);
   font-weight: 600;
 }
 
 .flip-card__hook {
   font-family: var(--font-body-promise);
-  font-size: var(--fs-hook);
+  font-size: clamp(0.85rem, 1.8vh, var(--fs-hook));
   color: var(--color-ink-soft);
-  line-height: 1.6;
-  margin: 0 0 32px;
+  line-height: 1.5;
+  margin: 0 0 clamp(16px, 3vh, 32px);
 }
 
 .flip-card__cta {
@@ -982,15 +985,15 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-gold);
-  margin: 0 0 28px;
+  margin: 0 0 clamp(16px, 3vh, 28px);
 }
 
 .flip-card__desc {
   font-family: var(--font-body-promise);
-  font-size: var(--fs-body);
+  font-size: clamp(0.85rem, 2vh, var(--fs-body));
   color: var(--color-white);
   opacity: 0.92;
-  line-height: 1.75;
+  line-height: 1.7;
   margin: 0;
   text-align: center;
 }
