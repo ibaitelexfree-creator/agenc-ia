@@ -16,6 +16,7 @@ type FlipCardProps = {
 }
 
 function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
+  const t = useTranslations('s4')
   const [flipped, setFlipped] = useState(false)
   const [hovered, setHovered] = useState(false)
 
@@ -128,7 +129,7 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
               transform: 'translateZ(90px)',
             }}
           >
-            Descubre más ↻
+            {t('cta')}
           </span>
         </div>
 
