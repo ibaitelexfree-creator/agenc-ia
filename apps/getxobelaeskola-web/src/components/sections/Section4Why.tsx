@@ -35,199 +35,252 @@ function PillarCard({
   onClick: () => void; 
 }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 60, filter: 'blur(8px)', scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-      viewport={{ once: false, margin: '-30px' }}
-      transition={{
-        delay: i * 0.15,
-        duration: 0.7,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
-      whileHover={isOpen ? undefined : "hover"}
+    <div
       onClick={onClick}
-      className="w-full aspect-square relative flex flex-col justify-between items-center text-center"
-      animate={{
-        scale: isOpen ? 1.05 : 1,
-        y: isOpen ? -10 : 0,
-        boxShadow: isOpen
-          ? '0 25px 50px rgba(10, 126, 200, 0.2), 0 0 0 3px rgba(10, 126, 200, 0.3)'
-          : '0 10px 30px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.01)',
-        borderColor: isOpen ? 'rgba(10, 126, 200, 0.5)' : 'rgba(10, 126, 200, 0.06)',
-      }}
-      variants={{
-        hover: {
-          y: -14,
-          scale: 1.03,
-          boxShadow: '0 20px 45px rgba(10, 126, 200, 0.12), 0 4px 12px rgba(10, 126, 200, 0.03)',
-          borderColor: 'rgba(10, 126, 200, 0.35)',
-          transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }
-        }
-      }}
+      className="w-full aspect-square relative"
       style={{
-        background: CARD_GRADIENTS[pillar],
-        backdropFilter: 'blur(20px)',
-        borderRadius: '28px',
-        padding: '2.5rem 2rem',
-        borderWidth: '2px',
-        borderStyle: 'solid',
-        overflow: 'hidden',
+        perspective: '1500px',
+        zIndex: isOpen ? 50 : 1,
         cursor: 'pointer',
-        transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
       }}
     >
-      {/* Decorative Wave SVG Pattern inside card */}
-      <svg
+      <motion.div
+        className="w-full h-full relative"
         style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          height: '60px',
-          opacity: 0.12,
-          pointerEvents: 'none',
-          zIndex: 1,
+          transformStyle: 'preserve-3d',
         }}
-        viewBox="0 0 1440 120"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 60 C360 120 720 0 1080 60 C1260 90 1380 60 1440 60 L1440 120 L0 120 Z"
-          fill="var(--ocean-deep)"
-        />
-      </svg>
-
-      {/* Icon at the top (with hover float and click pulse variants) */}
-      <motion.span 
-        style={{ fontSize: '3.4rem', display: 'inline-block', lineHeight: 1, zIndex: 2 }}
-        variants={{
-          initial: { scale: 1, y: 0, rotate: 0 },
-          hover: { 
-            y: [0, -8, 0],
-            rotate: [0, 6, -6, 0],
-            transition: { 
-              duration: 0.8,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }
-          }
+        whileHover={isOpen ? undefined : "hover"}
+        animate={{
+          y: isOpen ? -10 : 0,
+          scale: isOpen ? 1.05 : 1,
+          transition: { duration: 0.6, ease: [0.25, 1, 0.5, 1] }
         }}
-        animate={isOpen ? {
-          scale: [1, 1.25, 1],
-          transition: { duration: 0.4, ease: 'easeInOut' }
-        } : undefined}
       >
-        {t(`${pillar}.icon`)}
-      </motion.span>
-
-      {/* Middle & Bottom Layout wrapper */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, width: '100%', zIndex: 2 }}>
-        <h3
+        {/* Inside Page (Right side / base of the journal) */}
+        <motion.div
           style={{
-            fontSize: '1.3rem',
-            fontWeight: 800,
-            color: 'var(--ocean-deep)',
-            letterSpacing: '-0.02em',
-            marginTop: '0.75rem',
-            marginBottom: '0.25rem',
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: '#faf8f5', // Clean paper texture color
+            backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0)',
+            backgroundSize: '16px 16px',
+            borderRadius: '24px',
+            padding: '2rem 1.75rem',
+            border: isOpen 
+              ? '2px solid rgba(10, 126, 200, 0.45)' // Glowing brand color border when active
+              : '1px solid rgba(13, 33, 55, 0.08)',
+            boxShadow: isOpen 
+              ? '0 20px 45px rgba(10, 126, 200, 0.16), inset 0 0 20px rgba(0,0,0,0.02)' // Layered paper shadow
+              : '0 4px 15px rgba(0,0,0,0.02)',
+            zIndex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            textAlign: 'center',
+            backfaceVisibility: 'hidden',
+            transition: 'border-color 0.4s ease, box-shadow 0.4s ease',
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: 1,
+            transition: { delay: 0.2 } 
           }}
         >
-          {t(`${pillar}.title`)}
-        </h3>
+          {/* Subtle Decorative Waves for Inside Page */}
+          <svg
+            style={{
+              position: 'absolute',
+              top: '1rem',
+              left: '1rem',
+              width: '40px',
+              height: '15px',
+              opacity: 0.1,
+              pointerEvents: 'none',
+            }}
+            viewBox="0 0 100 30"
+          >
+            <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke="var(--ocean-deep)" strokeWidth="3" />
+          </svg>
 
-        <AnimatePresence mode="wait">
-          {!isOpen ? (
-            <motion.div
-              key="front"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyBetween: 'space-between', flex: 1, width: '100%' }}
+          {/* Top: Icon (moves gracefully to page header) */}
+          <motion.span 
+            style={{ fontSize: '2.5rem', display: 'inline-block', lineHeight: 1 }}
+            animate={isOpen ? {
+              scale: [1, 1.2, 1],
+              transition: { duration: 0.4, ease: 'easeInOut' }
+            } : { scale: 1 }}
+          >
+            {t(`${pillar}.icon`)}
+          </motion.span>
+
+          {/* Middle: Detailed Text */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', flex: 1, justifyContent: 'center' }}>
+            <span style={{ fontSize: '0.7rem', color: 'var(--ocean-bright)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              {t(`${pillar}.backTitle`)}
+            </span>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--ocean-deep)', opacity: 0.9, fontFamily: 'Georgia, serif' }}>
+              {t(`${pillar}.backSubtitle`)}
+            </h4>
+            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.55, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}>
+              "{t(`${pillar}.backBody`)}"
+            </p>
+          </div>
+
+          {/* Bottom: Volver Indicator */}
+          <div
+            style={{
+              padding: '0.4rem 1rem',
+              borderRadius: '50px',
+              backgroundColor: 'rgba(10, 126, 200, 0.08)',
+              color: 'var(--ocean-bright)',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.25rem',
+            }}
+          >
+            <span>← Cerrar Diario</span>
+          </div>
+        </motion.div>
+
+        {/* Front Cover (Rotating hardcover) */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(135deg, #0d2137 0%, #0a7ec8 100%)', // Premium Deep Navy to Aqua Blue gradient
+            borderRadius: '24px',
+            padding: '2.25rem 2rem',
+            border: '2px solid rgba(212, 175, 55, 0.25)', // Elegant Sunlight Gold border outline
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+            zIndex: 2,
+            transformOrigin: 'left center', // Rotate open like a book cover
+            backfaceVisibility: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            textAlign: 'center',
+          }}
+          variants={{
+            hover: {
+              boxShadow: '0 20px 45px rgba(10, 126, 200, 0.25), 0 0 0 2px rgba(212, 175, 55, 0.4)',
+              transition: { duration: 0.35 }
+            }
+          }}
+          animate={{
+            rotateY: isOpen ? -145 : 0, // Book opens on click
+            transition: { duration: 0.75, ease: [0.25, 1, 0.5, 1] }
+          }}
+        >
+          {/* Gentle light reflection sweeping across cover on hover */}
+          <motion.div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0) 80%)',
+              top: 0,
+              left: '-100%',
+              zIndex: 3,
+              pointerEvents: 'none',
+            }}
+            variants={{
+              hover: {
+                left: '200%',
+                transition: { duration: 1.4, ease: 'easeInOut' }
+              }
+            }}
+          />
+
+          {/* Top: Icon (floating with waves on hover) */}
+          <motion.span 
+            style={{ fontSize: '3.4rem', display: 'inline-block', lineHeight: 1 }}
+            variants={{
+              initial: { y: 0, rotate: 0 },
+              hover: { 
+                y: [0, -8, 0],
+                rotate: [0, 5, -5, 0],
+                transition: { 
+                  duration: 1.2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut"
+                }
+              }
+            }}
+          >
+            {t(`${pillar}.icon`)}
+          </motion.span>
+
+          {/* Middle: Title & Main Text */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', flex: 1, justifyContent: 'center' }}>
+            <h3
+              style={{
+                fontSize: '1.25rem',
+                fontWeight: 800,
+                color: 'white',
+                letterSpacing: '-0.02em',
+                textShadow: '0 2px 4px rgba(0,0,0,0.15)',
+              }}
             >
-              {/* Pillar description */}
-              <p style={{ fontSize: '0.9rem', color: 'var(--ocean-deep)', opacity: 0.8, lineHeight: 1.6, maxWidth: '280px', margin: '0.75rem 0', flex: 1, display: 'flex', alignItems: 'center' }}>
-                {t(`${pillar}.body`)}
-              </p>
+              {t(`${pillar}.title`)}
+            </h3>
+            {pillar === 'pillar1' && (
+              <div style={{ transform: 'scale(1.05)', marginBottom: '0.25rem' }}>
+                <ShimmerBadge color="gold">
+                  Desde{' '}
+                  <CounterNumber
+                    from={0}
+                    to={52.5}
+                    suffix="€/mes"
+                    prefix=""
+                    decimals={1}
+                  />
+                </ShimmerBadge>
+              </div>
+            )}
+            <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: '280px' }}>
+              {t(`${pillar}.body`)}
+            </p>
+          </div>
 
-              {/* Modern Rounded Learn More Button */}
-              <motion.div
-                variants={{
-                  initial: { scale: 0.95 },
-                  hover: { scale: 1.05 }
-                }}
-                style={{
-                  padding: '0.65rem 1.5rem',
-                  borderRadius: '50px',
-                  backgroundColor: 'var(--ocean-deep)',
-                  color: 'white',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  boxShadow: '0 4px 12px rgba(13, 33, 55, 0.15)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  marginTop: '0.5rem',
-                }}
-              >
-                <span>{t('learn_more')}</span>
-                <motion.span
-                  variants={{
-                    initial: { x: 0 },
-                    hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
-                  }}
-                >
-                  →
-                </motion.span>
-              </motion.div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="back"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, width: '100%' }}
+          {/* Bottom: Bookmark-style Learn More Button */}
+          <div
+            style={{
+              padding: '0.55rem 1.35rem',
+              borderRadius: '50px',
+              backgroundColor: 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(212, 175, 55, 0.4)', // Gold Accent on cover button
+              color: '#ffd700', // Gold text
+              fontSize: '0.8rem',
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em',
+            }}
+          >
+            <span>{t('learn_more')}</span>
+            <motion.span
+              variants={{
+                initial: { x: 0 },
+                hover: { x: 4, transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 } }
+              }}
             >
-              {/* Back Content Details */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', margin: '0.5rem 0', flex: 1, justifyContent: 'center' }}>
-                <span style={{ fontSize: '0.75rem', color: 'var(--ocean-bright)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                  {t(`${pillar}.backTitle`)}
-                </span>
-                <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ocean-deep)', opacity: 0.85 }}>
-                  {t(`${pillar}.backSubtitle`)}
-                </h4>
-                <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', marginTop: '0.25rem' }}>
-                  {t(`${pillar}.backBody`)}
-                </p>
-              </div>
-
-              {/* Modern Collapse / Volver Button */}
-              <div
-                style={{
-                  padding: '0.5rem 1.25rem',
-                  borderRadius: '50px',
-                  backgroundColor: 'rgba(10, 126, 200, 0.1)',
-                  color: 'var(--ocean-bright)',
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.35rem',
-                  marginTop: '0.5rem',
-                }}
-              >
-                <span>← Volver</span>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
+              →
+            </motion.span>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
   )
 }
 
