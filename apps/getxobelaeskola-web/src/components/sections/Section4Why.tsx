@@ -27,10 +27,21 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
         duration: 0.7,
         ease: [0.25, 0.1, 0.25, 1],
       }}
-      className="w-full aspect-auto md:aspect-square"
+      whileHover={{
+        y: -8,
+        boxShadow: isFlipped 
+          ? '0 16px 32px rgba(10, 126, 200, 0.25)' 
+          : '0 12px 30px rgba(0, 0, 0, 0.08)',
+        transition: { duration: 0.3 }
+      }}
+      className="w-full aspect-square relative"
       style={{
-        position: 'relative',
         zIndex: isFlipped ? 10 : 1,
+        borderRadius: '20px',
+        boxShadow: isFlipped 
+          ? '0 8px 24px rgba(10, 126, 200, 0.15)' 
+          : '0 4px 20px rgba(0, 0, 0, 0.04)',
+        transition: 'box-shadow 0.3s ease, transform 0.3s ease',
       }}
     >
       {/* 3D card structure (visuals only, pointerEvents: none prevents flickering) */}
@@ -50,33 +61,33 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             textAlign: 'center',
-            backgroundColor: 'var(--foam)',
-            borderRadius: '14px',
-            padding: '1.5rem',
-            border: '1px solid rgba(10, 126, 200, 0.1)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
+            backgroundColor: 'var(--white)',
+            borderRadius: '20px',
+            padding: '1.75rem',
+            border: '1px solid rgba(0, 0, 0, 0.05)',
             overflow: 'hidden',
             height: '100%',
             width: '100%',
           }}
         >
-          {/* Icono emoji */}
-          <span style={{ fontSize: '2.2rem', flexShrink: 0, lineHeight: 1, marginBottom: '0.75rem' }}>
+          {/* Top: Icon */}
+          <span style={{ fontSize: '2.5rem', flexShrink: 0, lineHeight: 1, marginTop: '0.25rem' }}>
             {t(`${pillar}.icon`)}
           </span>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+
+          {/* Middle: Heading and description */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', flex: 1, justifyContent: 'center' }}>
             <h3
               style={{
-                fontSize: '1.05rem',
+                fontSize: '1.1rem',
                 fontWeight: 700,
                 color: 'var(--ocean-deep)',
               }}
             >
               {t(`${pillar}.title`)}
             </h3>
-            {/* Badge especial con Shimmer y contador animado */}
             {pillar === 'pillar1' && (
               <ShimmerBadge color="gold">
                 Desde{' '}
@@ -89,10 +100,15 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
                 />
               </ShimmerBadge>
             )}
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+              {t(`${pillar}.body`)}
+            </p>
           </div>
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-            {t(`${pillar}.body`)}
-          </p>
+
+          {/* Bottom: Learn More link */}
+          <span style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ocean-bright)', textDecoration: 'underline', marginBottom: '0.25rem' }}>
+            {t('learn_more')} →
+          </span>
         </div>
 
         {/* Back Side */}
@@ -102,24 +118,25 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: 'space-between',
             textAlign: 'center',
             backgroundColor: 'var(--ocean-deep)',
             color: 'var(--white)',
-            borderRadius: '14px',
-            padding: '1.5rem',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            boxShadow: '0 8px 24px rgba(10, 126, 200, 0.15)',
+            borderRadius: '20px',
+            padding: '1.75rem',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             overflow: 'hidden',
             height: '100%',
             width: '100%',
           }}
         >
-          {/* Icono emoji */}
-          <span style={{ fontSize: '2.2rem', flexShrink: 0, lineHeight: 1, marginBottom: '0.75rem' }}>
+          {/* Top: Icon */}
+          <span style={{ fontSize: '2.5rem', flexShrink: 0, lineHeight: 1, marginTop: '0.25rem' }}>
             {t(`${pillar}.icon`)}
           </span>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem', marginBottom: '0.5rem' }}>
+
+          {/* Middle: Heading and description */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem', flex: 1, justifyContent: 'center' }}>
             <h3
               style={{
                 fontSize: '0.85rem',
@@ -135,18 +152,24 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
             <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.75)', fontWeight: 600, lineHeight: 1.2 }}>
               {t(`${pillar}.backSubtitle`)}
             </span>
+            <p
+              style={{
+                fontSize: '0.75rem',
+                color: 'rgba(255,255,255,0.9)',
+                lineHeight: 1.4,
+                overflowY: 'auto',
+                paddingRight: '4px',
+                marginTop: '0.25rem',
+              }}
+            >
+              {t(`${pillar}.backBody`)}
+            </p>
           </div>
-          <p
-            style={{
-              fontSize: '0.75rem',
-              color: 'rgba(255,255,255,0.9)',
-              lineHeight: 1.4,
-              overflowY: 'auto',
-              paddingRight: '4px',
-            }}
-          >
-            {t(`${pillar}.backBody`)}
-          </p>
+
+          {/* Bottom: Back side indicator */}
+          <span style={{ fontSize: '0.8rem', opacity: 0.7, textDecoration: 'underline', marginBottom: '0.25rem' }}>
+            ← Volver
+          </span>
         </div>
       </div>
 
@@ -162,6 +185,7 @@ function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3
           zIndex: 20,
           cursor: 'pointer',
           backgroundColor: 'transparent',
+          borderRadius: '20px',
         }}
       />
     </motion.div>
@@ -234,11 +258,11 @@ export function Section4Why() {
 
       {/* Los 3 pilares */}
       <div
-        className="grid grid-cols-1 md:grid-cols-3"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
         style={{
           flex: 1,
           padding: 'clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 5vw, 3rem)',
-          gap: '1.25rem',
+          gap: '1.5rem',
           alignContent: 'center',
           maxWidth: '1200px',
           width: '100%',
