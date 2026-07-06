@@ -232,8 +232,14 @@ export function Section4Why() {
       />
 
       <div className="promise__inner">
-        <p className="promise__eyebrow">{t('title')}</p>
-        <h2 id="promise-heading" className="promise__title">{t('eyebrow')}</h2>
+        {t('eyebrow') ? (
+          <>
+            <p className="promise__eyebrow">{t('title')}</p>
+            <h2 id="promise-heading" className="promise__title">{t('eyebrow')}</h2>
+          </>
+        ) : (
+          <h2 id="promise-heading" className="promise__title">{t('title')}</h2>
+        )}
 
         <motion.div
           className="promise__grid"
