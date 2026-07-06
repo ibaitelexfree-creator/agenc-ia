@@ -19,6 +19,7 @@
 | T-008 | Jules | Strengthen edge-case coverage for fetchWeatherData | 2026-02-24 | completado |
 | T-009 | Jules | Optimize Dashboard Stats API | 2026-02-23 | completado |
 | T-010 | Antigravity | Create HostingerAgent (Agent #10 Master Plan) | 2026-04-03 | completado |
+| T-011 | Antigravity | Redesign "Why sail with us?" cream journal layout | 2026-07-06 | completado |
 
 ## Bloqueos / Conflictos
 Ninguno actualmente.

@@ -10,15 +10,22 @@ import { Seahorse } from '@/components/creatures/Seahorse'
 import { ShimmerBadge } from '@/components/ui/ShimmerBadge'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
 import { useState } from 'react'
-import { AnimatePresence } from 'framer-motion'
 
 const pillars = ['pillar1', 'pillar2', 'pillar3'] as const
 
-// Define ocean-inspired card gradients
-const CARD_GRADIENTS = {
-  pillar1: 'linear-gradient(135deg, rgba(224, 242, 254, 0.95) 0%, rgba(186, 230, 253, 0.95) 100%)', // Sky/Light Blue
-  pillar2: 'linear-gradient(135deg, rgba(204, 251, 241, 0.95) 0%, rgba(153, 246, 228, 0.95) 100%)', // Mint/Turquoise
-  pillar3: 'linear-gradient(135deg, rgba(254, 243, 199, 0.95) 0%, rgba(253, 230, 138, 0.95) 100%)', // Yellow/Sand
+// Elegant cream-navy-gold palette
+const COLORS = {
+  bgMain: '#F8F5EF',       // Soft warm cream
+  bgSecondary: '#F3EFE6',  // Secondary cream (covers)
+  bgIvory: '#FCFAF7',      // Very light ivory (pages)
+  navyAccent: '#123E63',   // Accent Navy
+  goldAccent: '#C8A96A',   // Gold accent
+  textDarkNavy: '#1B2F45', // Text dark navy
+}
+
+const FONTS = {
+  serif: 'Cormorant Garamond, "Playfair Display", Georgia, serif',
+  sans: 'Inter, Manrope, "DM Sans", sans-serif',
 }
 
 function PillarCard({ 
@@ -63,18 +70,18 @@ function PillarCard({
             inset: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: '#faf8f5', // Clean paper texture
-            backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0)',
+            backgroundColor: COLORS.bgIvory,
+            backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.02) 1px, transparent 0)',
             backgroundSize: '16px 16px',
-            borderRadius: isOpen ? '0 24px 24px 0' : '24px', // Folds at left spine when open
-            borderLeft: isOpen ? '2px solid rgba(0, 0, 0, 0.08)' : '1px solid rgba(13, 33, 55, 0.08)',
+            borderRadius: isOpen ? '0 24px 24px 0' : '24px',
+            borderLeft: isOpen ? '2px solid rgba(18, 62, 99, 0.15)' : `1px solid ${COLORS.navyAccent}`,
             padding: '2rem 1.75rem',
-            borderRight: '1px solid rgba(13, 33, 55, 0.08)',
-            borderTop: '1px solid rgba(13, 33, 55, 0.08)',
-            borderBottom: '1px solid rgba(13, 33, 55, 0.08)',
+            borderRight: `2px solid ${COLORS.navyAccent}`,
+            borderTop: `2px solid ${COLORS.navyAccent}`,
+            borderBottom: `2px solid ${COLORS.navyAccent}`,
             boxShadow: isOpen 
-              ? '10px 15px 35px rgba(0, 0, 0, 0.05), inset 10px 0 15px rgba(0,0,0,0.03)' 
-              : '0 4px 15px rgba(0,0,0,0.02)',
+              ? '10px 15px 35px rgba(27, 47, 69, 0.08), inset 10px 0 15px rgba(0,0,0,0.02)' 
+              : '0 4px 15px rgba(27, 47, 69, 0.02)',
             zIndex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -93,12 +100,12 @@ function PillarCard({
               right: '1rem',
               width: '40px',
               height: '15px',
-              opacity: 0.08,
+              opacity: 0.05,
               pointerEvents: 'none',
             }}
             viewBox="0 0 100 30"
           >
-            <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke="var(--ocean-deep)" strokeWidth="3" />
+            <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke={COLORS.navyAccent} strokeWidth="3" />
           </svg>
 
           {/* Top: Icon in the opened page header */}
@@ -114,18 +121,17 @@ function PillarCard({
 
           {/* Middle: Title & Description */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', flex: 1, justifyContent: 'center' }}>
-            <span style={{ fontSize: '0.7rem', color: 'var(--ocean-bright)', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <span style={{ fontSize: '0.7rem', color: COLORS.navyAccent, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', fontFamily: FONTS.sans }}>
               {t(`${pillar}.backTitle`)}
             </span>
-            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: 'var(--ocean-deep)', opacity: 0.9, fontFamily: 'Georgia, serif' }}>
+            <h4 style={{ fontSize: '0.9rem', fontWeight: 800, color: COLORS.textDarkNavy, opacity: 0.9, fontFamily: FONTS.serif }}>
               {t(`${pillar}.backSubtitle`)}
             </h4>
-            {/* Description fades and appears naturally */}
             <motion.p 
               initial={{ opacity: 0, y: 10 }}
               animate={isOpen ? { opacity: 0.9, y: 0 } : { opacity: 0, y: 10 }}
               transition={{ delay: 0.35, duration: 0.4 }}
-              style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', lineHeight: 1.55, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', fontStyle: 'italic', fontFamily: 'Georgia, serif' }}
+              style={{ fontSize: '0.78rem', color: COLORS.textDarkNavy, lineHeight: 1.55, overflowY: 'auto', maxHeight: '110px', paddingRight: '4px', fontStyle: 'italic', fontFamily: FONTS.serif }}
             >
               "{t(`${pillar}.backBody`)}"
             </motion.p>
@@ -136,13 +142,14 @@ function PillarCard({
             style={{
               padding: '0.4rem 1rem',
               borderRadius: '50px',
-              backgroundColor: 'rgba(10, 126, 200, 0.08)',
-              color: 'var(--ocean-bright)',
+              backgroundColor: 'rgba(18, 62, 99, 0.05)',
+              color: COLORS.navyAccent,
               fontSize: '0.75rem',
               fontWeight: 700,
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.25rem',
+              fontFamily: FONTS.sans,
             }}
           >
             <span>← Cerrar Diario</span>
@@ -172,11 +179,11 @@ function PillarCard({
               inset: 0,
               width: '100%',
               height: '100%',
-              background: 'linear-gradient(135deg, #0d2137 0%, #0a7ec8 100%)', // Vibrant Ocean gradients
+              backgroundColor: COLORS.bgSecondary,
               borderRadius: '24px',
               padding: '2.25rem 2rem',
-              border: '2px solid rgba(212, 175, 55, 0.25)', // Sunset Gold accent
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+              border: `2px solid ${COLORS.navyAccent}`,
+              boxShadow: '0 8px 24px rgba(27, 47, 69, 0.06)',
               backfaceVisibility: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -191,7 +198,7 @@ function PillarCard({
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 80%)',
+                background: 'linear-gradient(110deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 80%)',
                 top: 0,
                 left: '-100%',
                 zIndex: 3,
@@ -231,9 +238,9 @@ function PillarCard({
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: 800,
-                  color: 'white',
+                  color: COLORS.textDarkNavy,
+                  fontFamily: FONTS.serif,
                   letterSpacing: '-0.02em',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.15)',
                 }}
               >
                 {t(`${pillar}.title`)}
@@ -241,38 +248,49 @@ function PillarCard({
               {pillar === 'pillar1' && (
                 <div style={{ transform: 'scale(1.05)', marginBottom: '0.25rem' }}>
                   <ShimmerBadge color="gold">
-                    Desde{' '}
-                    <CounterNumber
-                      from={0}
-                      to={52.5}
-                      suffix="€/mes"
-                      prefix=""
-                      decimals={1}
-                    />
+                    <span style={{ color: COLORS.textDarkNavy, fontWeight: 700 }}>
+                      Desde{' '}
+                      <CounterNumber
+                        from={0}
+                        to={52.5}
+                        suffix="€/mes"
+                        prefix=""
+                        decimals={1}
+                      />
+                    </span>
                   </ShimmerBadge>
                 </div>
               )}
-              <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: '280px' }}>
+              <p style={{ fontSize: '0.88rem', color: COLORS.textDarkNavy, lineHeight: 1.6, maxWidth: '280px', fontFamily: FONTS.sans }}>
                 {t(`${pillar}.body`)}
               </p>
             </div>
 
             {/* Bottom: Learn More bookmark button */}
-            <div
+            <motion.div
               style={{
                 padding: '0.55rem 1.35rem',
                 borderRadius: '50px',
-                backgroundColor: 'rgba(255, 255, 255, 0.15)',
-                border: '1px solid rgba(212, 175, 55, 0.4)',
-                color: '#ffd700',
+                backgroundColor: COLORS.bgIvory,
+                border: `1.5px solid ${COLORS.navyAccent}`,
+                color: COLORS.navyAccent,
                 fontSize: '0.8rem',
                 fontWeight: 700,
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 4px 10px rgba(18, 62, 99, 0.05)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
+                fontFamily: FONTS.sans,
+              }}
+              variants={{
+                initial: { backgroundColor: COLORS.bgIvory, color: COLORS.navyAccent },
+                hover: { 
+                  backgroundColor: COLORS.navyAccent, 
+                  color: COLORS.bgIvory,
+                  transition: { duration: 0.3 }
+                }
               }}
             >
               <span>{t('learn_more')}</span>
@@ -284,7 +302,7 @@ function PillarCard({
               >
                 →
               </motion.span>
-            </div>
+            </motion.div>
           </div>
 
           {/* Double-Sided cover - Back Face (Left Page of open book) */}
@@ -294,17 +312,17 @@ function PillarCard({
               inset: 0,
               width: '100%',
               height: '100%',
-              backgroundColor: '#faf8f5', // Matching paper texture
-              backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.02) 1px, transparent 0)',
+              backgroundColor: COLORS.bgIvory,
+              backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.02) 1px, transparent 0)',
               backgroundSize: '16px 16px',
-              borderRadius: '24px 0 0 24px', // Spine folds on right edge when cover swings 180deg
-              borderRight: '3px solid rgba(0, 0, 0, 0.12)', // Subtle spine shadow/line
+              borderRadius: '24px 0 0 24px',
+              borderRight: `3px solid ${COLORS.navyAccent}`,
               padding: '2rem 1.75rem',
-              borderTop: '1px solid rgba(13, 33, 55, 0.08)',
-              borderBottom: '1px solid rgba(13, 33, 55, 0.08)',
-              borderLeft: '1px solid rgba(13, 33, 55, 0.08)',
-              boxShadow: '-10px 15px 35px rgba(0, 0, 0, 0.05)',
-              transform: 'rotateY(180deg)', // Rotated so it aligns as left page when open
+              borderTop: `2px solid ${COLORS.navyAccent}`,
+              borderBottom: `2px solid ${COLORS.navyAccent}`,
+              borderLeft: `2px solid ${COLORS.navyAccent}`,
+              boxShadow: '-10px 15px 35px rgba(27, 47, 69, 0.05)',
+              transform: 'rotateY(180deg)',
               backfaceVisibility: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -315,11 +333,11 @@ function PillarCard({
             }}
           >
             {/* Compass / Sailing log illustration for visual immersion */}
-            <span style={{ fontSize: '3rem', opacity: 0.75 }}>📖</span>
-            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--ocean-deep)', fontFamily: 'Georgia, serif', marginTop: '1.25rem', letterSpacing: '-0.01em' }}>
+            <span style={{ fontSize: '3rem', opacity: 0.65 }}>📖</span>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, marginTop: '1.25rem', letterSpacing: '-0.01em' }}>
               Diario de a bordo
             </h4>
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', fontStyle: 'italic', fontFamily: 'Georgia, serif', marginTop: '0.5rem', maxWidth: '200px', lineHeight: 1.4 }}>
+            <p style={{ fontSize: '0.78rem', color: COLORS.textDarkNavy, fontStyle: 'italic', fontFamily: FONTS.serif, marginTop: '0.5rem', maxWidth: '200px', lineHeight: 1.4 }}>
               "El mar une los destinos que la tierra separa."
             </p>
             {/* Subtle Decorative Wave at bottom left page */}
@@ -327,25 +345,25 @@ function PillarCard({
               style={{
                 width: '60px',
                 height: '15px',
-                opacity: 0.1,
+                opacity: 0.05,
                 pointerEvents: 'none',
                 marginTop: '1.25rem'
               }}
               viewBox="0 0 100 30"
             >
-              <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke="var(--ocean-deep)" strokeWidth="3" />
+              <path d="M0 15 Q25 0 50 15 T100 15" fill="none" stroke={COLORS.navyAccent} strokeWidth="3" />
             </svg>
           </div>
         </motion.div>
 
-        {/* Soft glowing ocean-blue border highlight on the active book */}
+        {/* Soft glowing active border */}
         {isOpen && (
           <motion.div
             layoutId="activeBorderGlow"
             className="absolute -inset-1 pointer-events-none rounded-[26px]"
             style={{
-              border: '2.5px solid rgba(10, 126, 200, 0.5)',
-              boxShadow: '0 0 20px rgba(10, 126, 200, 0.25)',
+              border: `2px solid ${COLORS.navyAccent}`,
+              boxShadow: '0 0 15px rgba(18, 62, 99, 0.15)',
               zIndex: 3,
             }}
           />
@@ -362,19 +380,19 @@ export function Section4Why() {
   return (
     <section
       style={{
-        gridArea: 's5',
+        gridArea: 's4',
         position: 'relative',
         width: '100vw',
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: 'var(--white)',
+        backgroundColor: COLORS.bgMain,
       }}
     >
       {/* Seahorse — floating creature on the upper left corner */}
       <Seahorse
-        style={{ position: 'absolute', top: '18%', left: '4%', zIndex: 15 }}
+        style={{ position: 'absolute', top: '5%', left: '5%', zIndex: 15 }}
         enterDelay={0.5}
       />
 
@@ -391,7 +409,7 @@ export function Section4Why() {
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, rgba(13,33,55,0.25) 0%, #ffffff 90%)',
+            background: `linear-gradient(to bottom, rgba(248, 245, 239, 0.2) 0%, ${COLORS.bgMain} 95%)`,
           }}
         />
         {/* Título flotando sobre la imagen */}
@@ -406,13 +424,14 @@ export function Section4Why() {
             left: 'clamp(1.5rem, 5vw, 3rem)',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />
+          <SectionEyebrow text={t('eyebrow')} color={COLORS.navyAccent} />
           <h2
             style={{
               fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
               fontWeight: 700,
-              color: 'var(--ocean-deep)',
+              color: COLORS.textDarkNavy,
               lineHeight: 1.2,
+              fontFamily: FONTS.serif,
             }}
           >
             {t('title')}
@@ -425,7 +444,7 @@ export function Section4Why() {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
         style={{
           flex: 1,
-          padding: 'clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 6vw, 4rem)',
+          padding: 'clamp(1rem, 3vh, 1.5rem) clamp(1.5rem, 5vw, 3rem)',
           gap: '2.25rem',
           alignContent: 'center',
           maxWidth: '1350px',
@@ -448,7 +467,7 @@ export function Section4Why() {
 
       {/* Cangrejo — criatura de la esquina */}
       <Crab
-        style={{ position: 'absolute', bottom: '3%', right: '10%', zIndex: 5 }}
+        style={{ position: 'absolute', bottom: '3%', right: '3%', zIndex: 5 }}
         enterDelay={1.0}
       />
     </section>
