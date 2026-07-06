@@ -1399,5 +1399,121 @@
     "btn_dashboard": "Nire panel pertsonala →",
     "admin_supabase": "Ikusi Supabasen (Admin)",
     "quote": "\"Ez dago haize mesedegarririk nora doan ez dakienarentzat.\" — Seneka"
+  },
+  "equipos_entrenamiento": {
+    "hero": {
+      "eyebrow": "GETXO BELA ESKOLA",
+      "title": "ESTROPADAK",
+      "subtitle_line": "Entrenamenduak eta taldeak",
+      "subtitle_body": "Ez dugu txapeldunik bilatzen edozein preziotan.<br/>Nabigatzen haztea, partekatzea eta bidea elkarrekin gozatzea bilatzen dugu."
+    },
+    "marquee": [
+      "nabigatzen haztea",
+      "partekatzea",
+      "bideaz gozatzea",
+      "txapeldunik gabe edozein preziotan",
+      "talde-lana",
+      "itsasoa irakasle gisa",
+      "elkarrekin ikastea"
+    ],
+    "teams": {
+      "title_eyebrow": "GURE TALDEAK",
+      "title": "Aukeratu zure flota.",
+      "view_team": "IKUSI TALDEA",
+      "close": "↑ itxi",
+      "infantil": {
+        "label": "HAURRAK",
+        "age": "5 urtetik aurrera",
+        "description": "Oinarrizko lana Optimist-etan egiten da, txango puntualekin Raquero edo J80-etan. Haizearen irakurketa, maniobrak eta uretako segurtasuna hobetzen dira, giro hurbil eta motibatzaile batetik.",
+        "schedule": "Hilabete bakoitzeko lehenengo 3 igandeak",
+        "focus": "Konfiantza · Haizearen irakurketa · Erabakiak hartzea"
+      },
+      "jovenes": {
+        "label": "GAZTEAK",
+        "age": "14 urtetik aurrera",
+        "description": "Talde egonkorrak oinarritik ikasi nahi dutenentzat edo hazten jarraitu nahi dutenentzat. Hainbat ontzitan nabigatzen da, nabigatzaile osoak eta arduratsuak hezteko.",
+        "schedule": "Hilabete bakoitzeko lehenengo 3 igandeak",
+        "focus": "Kohesioa · Komunikazioa ontzian · Erantzukizun partekatua",
+        "vessel_various": "Hainbat mota"
+      },
+      "adultas": {
+        "label": "HELDUAK",
+        "age": "Teknifikazioa",
+        "description": "Teknifikazioa Laser/ILCA, 420 eta J80 gurutzaontzietan. Estropadetan adituak diren monitoreek emana. 4 orduko saioak, hilean 3 aldiz, irailetik ekainera.",
+        "schedule": "Hilean 3 egun · 4 orduko saioak",
+        "focus": "Ontziaren kontrola · Belen trimatzea · Estropada estrategia",
+        "note": "Bazkideentzako Pack Osoan barne · 1.200€/urteko"
+      }
+    },
+    "calendar": {
+      "title_eyebrow": "ENTRENAMENDU CALENDARIOA",
+      "title": "Hilabete bakoitzeko lehenengo 3 igandeak.",
+      "prev_month": "Aurreko hilabetea",
+      "next_month": "Hurrengo hilabetea",
+      "legend_training": "Entrenamendua",
+      "legend_rest": "Igande librea",
+      "months": [
+        "Urtarrila",
+        "Otsaila",
+        "Martxoa",
+        "Apirila",
+        "Maiatza",
+        "Ekaina",
+        "Uztaila",
+        "Abuztua",
+        "Iraila",
+        "Urria",
+        "Azaroa",
+        "Abendua"
+      ],
+      "days": [
+        "A",
+        "Ar",
+        "Az",
+        "O",
+        "Os",
+        "L",
+        "I"
+      ]
+    },
+    "logbook": {
+      "title_eyebrow": "BALDINTZAK",
+      "title": "Flotara batzeko.",
+      "log_title": "BITAKORA-KOADERNOA",
+      "log_subtitle": "Getxo Bela Eskola · Sartzeko baldintzak",
+      "signature": "Angharad · Getxo Bela Eskola · getxobelaeskola.cloud",
+      "ganas": {
+        "title": "Ikasteko eta partekatzeko gogoa",
+        "body": "Kidetasunarekin konprometitutako pertsonak bilatzen ditugu. Tripulazioek elkarri laguntzen diote, aurrerapenak ospatzen dituzte eta akatsa kirolaren zati gisa normalizatzen dute."
+      },
+      "nivel": {
+        "title": "Aurreko maila kategoriaren arabera",
+        "body": "Haurrak eta gazteak oinarritik has daitezke. Helduentzat Kruzera Hasiera gainditu izana gomendatzen da."
+      },
+      "licencia": {
+        "title": "Lizentzia Federatiboa",
+        "body": "Derrigorrezkoa entrenatzeko eta estropadetarako. Euskadiko Bela Federazioa · ~64€/urteko. Aseguru osagarria barne hartzen du.",
+        "highlight": "~64€/urteko"
+      },
+      "socia": {
+        "title": "Klubeko bazkide izatea",
+        "body": "Pack Osoa: 1.200€/urteko · Teknifikazio gidatuko 3 egun/hilean (irailetik ekainera) + urte osoan irteera mugagabeak.",
+        "highlight": "1.200€/urteko"
+      }
+    },
+    "cta": {
+      "title_eyebrow": "BATU FLOTARA",
+      "headline_1": "Bizi",
+      "headline_2": "itsasoa",
+      "headline_3": "elkarrekin.",
+      "tagline": "Plaza libreen berri ematen dugu konpromisorik gabe.",
+      "message": "MEZUA",
+      "online": "ONLINE",
+      "intro": "Idatzi iezaguzu eta talde eta plaza libreen berri emango dizuegu.",
+      "send": "📡 Mezua bidali",
+      "whatsapp": "💬 WhatsApp",
+      "note": "24 ordu baino gutxiagoan erantzuten dugu · Konpromisorik gabe",
+      "sent": "Mezua jaso da! Laster jarriko gara harremanetan."
+    }
   }
 }

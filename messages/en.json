@@ -1391,5 +1391,121 @@
     "btn_dashboard": "My Personal Dashboard →",
     "admin_supabase": "View in Supabase (Admin)",
     "quote": "\"There is no favorable wind for those who do not know which port they are heading for.\" — Seneca"
+  },
+  "equipos_entrenamiento": {
+    "hero": {
+      "eyebrow": "GETXO BELA ESKOLA",
+      "title": "REGATTAS",
+      "subtitle_line": "Training & teams",
+      "subtitle_body": "We don't look for champions at any price.<br/>We seek to grow sailing, share and enjoy the path together."
+    },
+    "marquee": [
+      "grow sailing",
+      "share",
+      "enjoy the path",
+      "no champions at any cost",
+      "teamwork",
+      "the sea as a teacher",
+      "learn together"
+    ],
+    "teams": {
+      "title_eyebrow": "OUR TEAMS",
+      "title": "Choose your fleet.",
+      "view_team": "VIEW TEAM",
+      "close": "↑ close",
+      "infantil": {
+        "label": "KIDS",
+        "age": "From 5 years old",
+        "description": "The foundation is built in Optimist, with occasional outings in Raquero or J80. Wind reading, maneuvers, and safety on the water are improved in a close and motivating environment.",
+        "schedule": "First 3 Sundays of every month",
+        "focus": "Confidence · Wind reading · Decision making"
+      },
+      "jovenes": {
+        "label": "YOUTH",
+        "age": "From 14 years old",
+        "description": "Stable groups for those who want to learn from the basics or keep growing. Sailing is done in different vessels to train complete and responsible sailors.",
+        "schedule": "First 3 Sundays of every month",
+        "focus": "Cohesion · Communication on board · Shared responsibility",
+        "vessel_various": "Various types"
+      },
+      "adultas": {
+        "label": "ADULTS",
+        "age": "Performance training",
+        "description": "Performance training in Laser/ILCA, 420, and J80 cruisers. Taught by regatta specialist instructors. 4-hour sessions, 3 times a month, from September to June.",
+        "schedule": "3 days a month · 4-hour sessions",
+        "focus": "Boat control · Sail trimming · Regatta strategy",
+        "note": "Included in Complete Membership Pack · €1,200/year"
+      }
+    },
+    "calendar": {
+      "title_eyebrow": "TRAINING CALENDAR",
+      "title": "First 3 Sundays of every month.",
+      "prev_month": "Previous month",
+      "next_month": "Next month",
+      "legend_training": "Training",
+      "legend_rest": "Free Sunday",
+      "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "days": [
+        "M",
+        "T",
+        "W",
+        "T",
+        "F",
+        "S",
+        "S"
+      ]
+    },
+    "logbook": {
+      "title_eyebrow": "REQUIREMENTS",
+      "title": "To join the fleet.",
+      "log_title": "LOGBOOK",
+      "log_subtitle": "Getxo Bela Eskola · Entry conditions",
+      "signature": "Angharad · Getxo Bela Eskola · getxobelaeskola.cloud",
+      "ganas": {
+        "title": "Eagerness to learn and share",
+        "body": "We look for people committed to companionship. Crews support each other, celebrate progress and normalize errors as part of the sport."
+      },
+      "nivel": {
+        "title": "Previous level depending on category",
+        "body": "Kids and youth can start from the basics. For adults, having completed Cruiser Initiation is recommended."
+      },
+      "licencia": {
+        "title": "Federation License",
+        "body": "Mandatory for training and racing. Basque Sailing Federation · ~€64/year. Includes complementary insurance.",
+        "highlight": "~€64/year"
+      },
+      "socia": {
+        "title": "Be a Club Member",
+        "body": "Complete Pack: €1,200/year · 3 days/month of guided performance training (Sept–June) + unlimited outings all year.",
+        "highlight": "€1,200/year"
+      }
+    },
+    "cta": {
+      "title_eyebrow": "JOIN THE FLEET",
+      "headline_1": "Live the",
+      "headline_2": "sea",
+      "headline_3": "together.",
+      "tagline": "We inform you of available places without obligation.",
+      "message": "MESSAGE",
+      "online": "ONLINE",
+      "intro": "Write to us and we will inform you of the teams and available places.",
+      "send": "📡 Send message",
+      "whatsapp": "💬 WhatsApp",
+      "note": "We reply in less than 24h · Without obligation",
+      "sent": "Message received! We will contact you soon."
+    }
   }
 }

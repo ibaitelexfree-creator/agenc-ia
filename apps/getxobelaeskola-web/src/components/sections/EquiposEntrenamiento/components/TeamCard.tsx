@@ -33,10 +33,24 @@ interface CustomCSSProperties extends React.CSSProperties {
   "--accent"?: string;
 }
 
+import { useTranslations } from "next-intl";
+
 // ── Componente ────────────────────────────────────────────────
 export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: TeamCardProps) {
-  const { label, age, emoji, accentColor,
-          description, schedule, focus, embarcaciones, note } = team;
+  const { id: teamKey, emoji, accentColor, embarcaciones } = team;
+  const t = useTranslations('equipos_entrenamiento.teams');
+
+  const label = t(`${teamKey}.label`);
+  const age = t(`${teamKey}.age`);
+  const description = t(`${teamKey}.description`);
+  const schedule = t(`${teamKey}.schedule`);
+  const focus = t(`${teamKey}.focus`);
+  const note = teamKey === 'adultas' ? t(`${teamKey}.note`) : undefined;
+
+  const translatedEmbarcaciones = embarcaciones.map((e) => {
+    if (e === 'Varios tipos') return t('jovenes.vessel_various');
+    return e;
+  });
 
   return (
     // Contenedor con perspectiva — da el efecto 3D al flip
@@ -65,7 +79,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
           tabIndex={0}
           onKeyDown={(e) => e.key === "Enter" && onToggle()}
           aria-expanded={isActive}
-          aria-label={`Ver equipo ${label}`}
+          aria-label={`${t('view_team')} ${label}`}
         >
           {/* Borde superior coloreado */}
           <div className={styles['team-card__accent-bar']} />
@@ -90,7 +104,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             animate={{ y: [0, 4, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <span>VER EQUIPO</span>
+            <span>{t('view_team')}</span>
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
               <path d="M1 1L6 7L11 1" stroke="currentColor" strokeWidth="1.5"
                     strokeLinecap="round" strokeLinejoin="round"/>
@@ -105,7 +119,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
           onClick={onToggle}
           role="button"
           tabIndex={isActive ? 0 : -1}
-          aria-label={`Cerrar equipo ${label}`}
+          aria-label={`${t('close')} ${label}`}
         >
           {/* Borde de acento */}
           <div className={styles['team-card__accent-bar']} />
@@ -142,7 +156,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
 
                 {/* Chips de embarcaciones */}
                 <div className={styles['team-card__chips']}>
-                  {embarcaciones.map((e) => (
+                  {translatedEmbarcaciones.map((e) => (
                     <span key={e} className={styles['team-card__chip']}
                           style={{ borderColor: accentColor }}>
                       {e}
@@ -157,7 +171,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
 
                 {/* Cerrar */}
                 <button className={styles['team-card__close']}>
-                  ↑ cerrar
+                  {t('close')}
                 </button>
               </motion.div>
             )}

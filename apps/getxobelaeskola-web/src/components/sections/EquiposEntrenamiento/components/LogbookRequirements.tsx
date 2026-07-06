@@ -1,8 +1,8 @@
-// LogbookRequirements.tsx
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { REQUIREMENTS } from "../data/requirements";
 import styles from "../EquiposEntrenamiento.module.css";
+import { useTranslations } from "next-intl";
 
 interface AnimatedCheckProps {
   color?: string;
@@ -32,6 +32,7 @@ function AnimatedCheck({ color = "#E63900", delay = 0, isVisible }: AnimatedChec
 export default function LogbookRequirements() {
   const ref      = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-60px" });
+  const t = useTranslations('equipos_entrenamiento.logbook');
 
   return (
     <section className={styles['logbook-section']}>
@@ -42,7 +43,7 @@ export default function LogbookRequirements() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: false }}
       >
-        REQUISITOS
+        {t('title_eyebrow')}
       </motion.p>
 
       <motion.h2
@@ -52,7 +53,7 @@ export default function LogbookRequirements() {
         viewport={{ once: false }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Para unirte a la flota.
+        {t('title')}
       </motion.h2>
 
       {/* El "cuaderno" */}
@@ -65,51 +66,58 @@ export default function LogbookRequirements() {
       >
         {/* Encabezado estilo bitácora */}
         <div className={styles['logbook__header']}>
-          <span className={styles['logbook__title']}>CUADERNO DE BITÁCORA</span>
-          <span className={styles['logbook__subtitle']}>Getxo Bela Eskola · Condiciones de acceso</span>
+          <span className={styles['logbook__title']}>{t('log_title')}</span>
+          <span className={styles['logbook__subtitle']}>{t('log_subtitle')}</span>
         </div>
 
         <div className={styles['logbook__divider']} />
 
         {/* Entradas */}
-        {REQUIREMENTS.map((req, i) => (
-          <motion.div
-            key={req.id}
-            className={styles['logbook__entry']}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {/* Número de entrada */}
-            <span className={styles['logbook__entry-num']}>[{req.number}]</span>
+        {REQUIREMENTS.map((req, i) => {
+          const reqKey = req.id;
+          const title = t(`${reqKey}.title`);
+          const body = t(`${reqKey}.body`);
+          const highlight = req.highlight ? t(`${reqKey}.highlight`) : undefined;
 
-            {/* Contenido */}
-            <div className={styles['logbook__entry-body']}>
-              <div className={styles['logbook__entry-header']}>
-                <span className={styles['logbook__entry-icon']} aria-hidden="true">
-                  {req.icon}
-                </span>
-                <span className={styles['logbook__entry-title']}>{req.title}</span>
+          return (
+            <motion.div
+              key={req.id}
+              className={styles['logbook__entry']}
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Número de entrada */}
+              <span className={styles['logbook__entry-num']}>[{req.number}]</span>
+
+              {/* Contenido */}
+              <div className={styles['logbook__entry-body']}>
+                <div className={styles['logbook__entry-header']}>
+                  <span className={styles['logbook__entry-icon']} aria-hidden="true">
+                    {req.icon}
+                  </span>
+                  <span className={styles['logbook__entry-title']}>{title}</span>
+                </div>
+                <p className={styles['logbook__entry-text']}>{body}</p>
+                {highlight && (
+                  <span className={styles['logbook__highlight']}>{highlight}</span>
+                )}
               </div>
-              <p className={styles['logbook__entry-text']}>{req.body}</p>
-              {req.highlight && (
-                <span className={styles['logbook__highlight']}>{req.highlight}</span>
-              )}
-            </div>
 
-            {/* Check animado */}
-            <div className={styles['logbook__check']}>
-              <AnimatedCheck
-                delay={0.5 + i * 0.12}
-                isVisible={isInView}
-              />
-            </div>
-          </motion.div>
-        ))}
+              {/* Check animado */}
+              <div className={styles['logbook__check']}>
+                <AnimatedCheck
+                  delay={0.5 + i * 0.12}
+                  isVisible={isInView}
+                />
+              </div>
+            </motion.div>
+          );
+        })}
 
         {/* Firma del logbook */}
         <div className={styles['logbook__signature']}>
-          <span>Angharad · Getxo Bela Eskola · getxobelaeskola.cloud</span>
+          <span>{t('signature')}</span>
         </div>
 
       </motion.div>

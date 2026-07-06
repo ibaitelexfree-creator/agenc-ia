@@ -1,11 +1,13 @@
 import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
+import { useTranslations } from "next-intl";
 
 export default function CTAFinal() {
   const ref      = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-80px" });
   const [sent, setSent] = useState(false);
+  const t = useTranslations('equipos_entrenamiento.cta');
 
   // Texto del lado izquierdo que escala sutilmente al scrollear
   const { scrollYProgress } = useScroll({
@@ -29,7 +31,7 @@ export default function CTAFinal() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          ÚNETE A LA FLOTA
+          {t('title_eyebrow')}
         </motion.p>
 
         <motion.h2
@@ -38,9 +40,9 @@ export default function CTAFinal() {
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          Vivid la<br/>
-          mar<br/>
-          <em>juntas.</em>
+          {t('headline_1')}<br/>
+          {t('headline_2')}<br/>
+          <em>{t('headline_3')}</em>
         </motion.h2>
 
         <motion.p
@@ -49,8 +51,7 @@ export default function CTAFinal() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.35 }}
         >
-          Informamos de plazas disponibles<br/>
-          sin compromiso.
+          {t('tagline')}
         </motion.p>
       </motion.div>
 
@@ -78,14 +79,14 @@ export default function CTAFinal() {
       >
         <div className={styles['radio-msg']}>
           <div className={styles['radio-msg__header']}>
-            <span className={styles['radio-msg__label']}>MENSAJE · CANAL 16</span>
-            <span className={styles['radio-msg__status']}>EN LÍNEA</span>
+            <span className={styles['radio-msg__label']}>{t('message')}</span>
+            <span className={styles['radio-msg__status']}>{t('online')}</span>
           </div>
 
           {!sent ? (
             <>
               <p className={styles['radio-msg__intro']}>
-                Escríbenos y os informamos de los equipos y plazas disponibles.
+                {t('intro')}
               </p>
 
               {/* Botón principal */}
@@ -95,7 +96,7 @@ export default function CTAFinal() {
                 whileHover={{ scale: 1.03, boxShadow: "var(--glow-bio)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                📡 Enviar mensaje
+                {t('send')}
               </motion.a>
 
               {/* O por WhatsApp */}
@@ -107,11 +108,11 @@ export default function CTAFinal() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
-                💬 WhatsApp
+                {t('whatsapp')}
               </motion.a>
 
               <p className={styles['radio-msg__note']}>
-                Respondemos en menos de 24h · Sin compromiso
+                {t('note')}
               </p>
             </>
           ) : (
@@ -123,7 +124,7 @@ export default function CTAFinal() {
               transition={{ type: "spring", stiffness: 200 }}
             >
               <span className={styles['radio-msg__sent-icon']}>📡</span>
-              <p>¡Mensaje recibido! <br/>Nos ponemos en contacto pronto.</p>
+              <p dangerouslySetInnerHTML={{ __html: t('sent') }} />
             </motion.div>
           )}
         </div>

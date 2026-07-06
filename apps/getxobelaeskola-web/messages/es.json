@@ -2033,5 +2033,121 @@
     "available": "Disponibles",
     "remaining_percent": "{percent}% Restante",
     "total_hours": "Total: {hours}h"
+  },
+  "equipos_entrenamiento": {
+    "hero": {
+      "eyebrow": "GETXO BELA ESKOLA",
+      "title": "REGATAS",
+      "subtitle_line": "Entrenamientos y equipos",
+      "subtitle_body": "No buscamos campeonas a cualquier precio.<br/>Buscamos crecer navegando, compartir y disfrutar del camino juntas."
+    },
+    "marquee": [
+      "crecer navegando",
+      "compartir",
+      "disfrutar del camino",
+      "sin campeonas a cualquier precio",
+      "trabajo en equipo",
+      "la mar como maestra",
+      "aprender juntas"
+    ],
+    "teams": {
+      "title_eyebrow": "NUESTROS EQUIPOS",
+      "title": "Elige tu flota.",
+      "view_team": "VER EQUIPO",
+      "close": "↑ cerrar",
+      "infantil": {
+        "label": "INFANTIL",
+        "age": "A partir de 5 años",
+        "description": "La base del trabajo se realiza en Optimist, con salidas puntuales en Raquero o J80. Se mejora la lectura del viento, las maniobras y la seguridad en el agua desde un ambiente cercano y motivador.",
+        "schedule": "Primeros 3 domingos de cada mes",
+        "focus": "Confianza · Lectura del viento · Toma de decisiones"
+      },
+      "jovenes": {
+        "label": "JÓVENES",
+        "age": "A partir de 14 años",
+        "description": "Grupos estables para quienes quieren aprender desde la base o seguir creciendo. Se navega en distintas embarcaciones para formar navegantes completas y responsables.",
+        "schedule": "Primeros 3 domingos de cada mes",
+        "focus": "Cohesión · Comunicación a bordo · Responsabilidad compartida",
+        "vessel_various": "Varios tipos"
+      },
+      "adultas": {
+        "label": "ADULTAS",
+        "age": "Tecnificación",
+        "description": "Tecnificación en Laser/ILCA, 420 y cruceros J80. Impartido por monitores especialistas en regata. Sesiones de 4 horas, 3 veces al mes, de septiembre a junio.",
+        "schedule": "3 días al mes · Sesiones de 4 horas",
+        "focus": "Control del barco · Trimado de velas · Estrategia de regata",
+        "note": "Incluido en Pack Completo Socias · 1.200€/año"
+      }
+    },
+    "calendar": {
+      "title_eyebrow": "CALENDARIO DE ENTRENAMIENTOS",
+      "title": "Primeros 3 domingos de cada mes.",
+      "prev_month": "Mes anterior",
+      "next_month": "Mes siguiente",
+      "legend_training": "Entrenamiento",
+      "legend_rest": "Domingo libre",
+      "months": [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+      ],
+      "days": [
+        "L",
+        "M",
+        "X",
+        "J",
+        "V",
+        "S",
+        "D"
+      ]
+    },
+    "logbook": {
+      "title_eyebrow": "REQUISITOS",
+      "title": "Para unirte a la flota.",
+      "log_title": "CUADERNO DE BITÁCORA",
+      "log_subtitle": "Getxo Bela Eskola · Condiciones de acceso",
+      "signature": "Angharad · Getxo Bela Eskola · getxobelaeskola.cloud",
+      "ganas": {
+        "title": "Ganas de aprender y compartir",
+        "body": "Buscamos personas comprometidas con el compañerismo. Las tripulaciones se apoyan, celebran avances y normalizan el error como parte del deporte."
+      },
+      "nivel": {
+        "title": "Nivel previo según categoría",
+        "body": "Infantiles y jóvenes pueden empezar desde la base. Para adultas se recomienda haber superado el Crucero Iniciación."
+      },
+      "licencia": {
+        "title": "Licencia Federativa",
+        "body": "Obligatoria para entrenar y regate. Federación Vasca de Vela · ~64€/año. Incluye seguro complementario.",
+        "highlight": "~64€/año"
+      },
+      "socia": {
+        "title": "Ser Socia del Club",
+        "body": "Pack Completo: 1.200€/año · 3 días/mes de tecnificación guiada (sept–junio) + salidas ilimitadas todo el año.",
+        "highlight": "1.200€/año"
+      }
+    },
+    "cta": {
+      "title_eyebrow": "ÚNETE A LA FLOTA",
+      "headline_1": "Vivid la",
+      "headline_2": "mar",
+      "headline_3": "juntas.",
+      "tagline": "Informamos de plazas disponibles sin compromiso.",
+      "message": "MENSAJE",
+      "online": "EN LÍNEA",
+      "intro": "Escríbenos y os informamos de los equipos y plazas disponibles.",
+      "send": "📡 Enviar mensaje",
+      "whatsapp": "💬 WhatsApp",
+      "note": "Respondemos en menos de 24h · Sin compromiso",
+      "sent": "¡Mensaje recibido! Nos ponemos en contacto pronto."
+    }
   }
 }

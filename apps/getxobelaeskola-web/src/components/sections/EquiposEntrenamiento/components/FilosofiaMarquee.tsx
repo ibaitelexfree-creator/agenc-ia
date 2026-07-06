@@ -2,25 +2,18 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
-
-// Palabras que se repiten (separadas por bullet)
-const WORDS = [
-  "crecer navegando",
-  "compartir",
-  "disfrutar del camino",
-  "sin campeonas a cualquier precio",
-  "trabajo en equipo",
-  "la mar como maestra",
-  "aprender juntas",
-];
-
-// Duplicamos para el efecto seamless
-const TEXT = [...WORDS, ...WORDS]
-  .map((w) => `${w}  ·  `)
-  .join("");
+import { useTranslations } from "next-intl";
 
 export default function FilosofiaMarquee() {
   const isHovered = useRef(false);
+  const t = useTranslations('equipos_entrenamiento');
+  
+  const WORDS: string[] = t.raw('marquee') || [];
+
+  // Duplicamos para el efecto seamless
+  const TEXT = [...WORDS, ...WORDS]
+    .map((w) => `${w}  ·  `)
+    .join("");
 
   return (
     <div

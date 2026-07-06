@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
+import { useTranslations } from "next-intl";
 
 // ── Variante letra por letra ──────────────────────────────────
 const letterVariants: Variants = {
@@ -34,11 +35,12 @@ const scrollDot: Variants = {
   }
 };
 
-const TITLE_WORD = "REGATAS";
-
 export default function HeroEquipos() {
   const ref      = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false });
+  const t = useTranslations('equipos_entrenamiento.hero');
+
+  const TITLE_WORD = t('title');
 
   return (
     <div ref={ref} className={styles['hero-equipos']}>
@@ -53,7 +55,7 @@ export default function HeroEquipos() {
         }
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        GETXO BELA ESKOLA
+        {t('eyebrow')}
       </motion.span>
 
       {/* Título — letras individuales con perspectiva 3D */}
@@ -107,12 +109,12 @@ export default function HeroEquipos() {
         animate={isInView ? "visible" : "hidden"}
       >
         <p className={styles['hero-eq__subtitle-line']}>
-          Entrenamientos y equipos
+          {t('subtitle_line')}
         </p>
-        <p className={styles['hero-eq__subtitle-body']}>
-          No buscamos campeonas a cualquier precio.<br/>
-          Buscamos crecer navegando, compartir y disfrutar del camino juntas.
-        </p>
+        <p 
+          className={styles['hero-eq__subtitle-body']}
+          dangerouslySetInnerHTML={{ __html: t('subtitle_body') }}
+        />
       </motion.div>
 
       {/* Scroll indicator */}
