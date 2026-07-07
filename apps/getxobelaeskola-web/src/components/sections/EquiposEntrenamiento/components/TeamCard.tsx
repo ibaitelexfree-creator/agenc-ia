@@ -53,7 +53,9 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
     infantil: "Confianza en el agua y aprendizaje a través del juego.",
     jovenes: "Navegación estable, amistad y responsabilidad compartida.",
     adultas: "Estrategia, trimado avanzado y tecnificación de regata.",
-  }  return (
+  };
+
+  return (
     <motion.div
       className={styles['team-card-wrapper']}
       style={{
@@ -167,7 +169,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
                   {e}
                 </span>
               ))}
-            </div>   </div>
+            </div>
 
             {/* Note */}
             {note && (
