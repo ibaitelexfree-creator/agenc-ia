@@ -115,86 +115,16 @@ export function Section3Adapts() {
         flexDirection: 'column',
       }}
     >
-      {/* 38% Superior: Estadísticas animadas sobre la sección con fondo azul claro y letras oscuras */}
-      <div 
-        style={{ 
-          position: 'relative', 
-          height: '38%', 
-          backgroundColor: 'var(--gbe-mist)', // Azul clarito
-          display: 'flex',
-          alignItems: 'center',
-          borderBottom: '1px solid rgba(11, 44, 85, 0.08)',
-          overflow: 'hidden'
-        }}
-        className="selection:bg-accent selection:text-nautical-black"
-      >
-        <div className="absolute inset-0 bg-accent/[0.01] pointer-events-none" />
-        <div className="absolute inset-0 bg-waves opacity-[0.02] pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-accent/5 blur-[80px] rounded-full pointer-events-none" />
-        
-        <div className="container mx-auto px-6 py-2 relative z-10 w-full">
-          <div className="grid grid-cols-3 gap-2 text-center divide-x divide-gbe-navy-900/10 max-w-4xl mx-auto">
-            {/* Stat 1: 15+ Años de Pasión */}
-            <div className="flex flex-col items-center justify-center group">
-              <span 
-                style={{ color: 'var(--gbe-navy-900)' }} 
-                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
-              >
-                <AnimatedCounter from={0} to={15} suffix="+" />
-              </span>
-              <span 
-                style={{ color: 'var(--gbe-text-muted)' }} 
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
-              >
-                {tStats('pasion')}
-              </span>
-            </div>
-
-            {/* Stat 2: 7K+ Alumnos Formados */}
-            <div className="flex flex-col items-center justify-center group">
-              <span 
-                style={{ color: 'var(--gbe-navy-900)' }} 
-                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
-              >
-                <AnimatedCounter from={0} to={7} suffix="K+" />
-              </span>
-              <span 
-                style={{ color: 'var(--gbe-text-muted)' }} 
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
-              >
-                {tStats('alumnos')}
-              </span>
-            </div>
-
-            {/* Stat 3: 30+ Barcos en Flota */}
-            <div className="flex flex-col items-center justify-center group">
-              <span 
-                style={{ color: 'var(--gbe-navy-900)' }} 
-                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
-              >
-                <AnimatedCounter from={0} to={30} suffix="+" />
-              </span>
-              <span 
-                style={{ color: 'var(--gbe-text-muted)' }} 
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
-              >
-                {tStats('flota')}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 62% Inferior: Panel del configurador interactivo original con fondo de imagen reactivo */}
+      {/* Panel del configurador interactivo original con fondo de imagen reactivo */}
       <div
         style={{
           flex: 1,
           position: 'relative',
-          padding: 'clamp(0.75rem, 2.5vh, 1.5rem) clamp(1.2rem, 5vw, 4rem)',
+          padding: 'clamp(2rem, 6vh, 4rem) clamp(1.5rem, 6vw, 5rem)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
         }}
       >
         {/* Filtro de cristal blanco traslúcido para legibilidad */}
