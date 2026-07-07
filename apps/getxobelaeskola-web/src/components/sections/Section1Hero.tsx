@@ -3,7 +3,6 @@
 
 import { useRef, useContext, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { Seagull } from '@/components/creatures/Seagull'
@@ -11,37 +10,83 @@ import { Fish } from '@/components/creatures/Fish'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
 import { ScrollContext } from '@/components/layout/ScrollEngine'
-import { BlobCard } from '@/components/blobs/BlobCard'
-import { BLOB_PATHS } from '@/data/blobPaths'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
-// Variantes de animación de entrada
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
-    },
-  },
+// Design Tokens
+const COLORS = {
+  navyCover: '#0A1E36',     // Deep ocean blue
+  goldFoil: '#C8A96A',      // Gold foil accent
+  paperWhite: '#FCFAF7',    // Premium paper white
+  textDarkNavy: '#1B2F45',  // Text navy
+  glassBg: 'rgba(10, 25, 45, 0.35)',
+  glassBorder: 'rgba(200, 169, 106, 0.25)',
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
-  },
+const FONTS = {
+  serif: 'Cormorant Garamond, "Playfair Display", Georgia, serif',
+  sans: 'Inter, Manrope, "DM Sans", sans-serif',
 }
 
-const BLOB_POSITIONS = [
-  { left: '60%', top: '35%' },
-  { left: '74%', top: '22%' },
-  { left: '78%', top: '58%' },
-  { left: '68%', top: '75%' },
-  { left: '88%', top: '50%' },
-]
+interface LuxuryCardProps {
+  num: string;
+  title: string;
+  subtitle: string;
+  href: string;
+  index: number;
+}
+
+function LuxuryCard({ num, title, subtitle, href, index }: LuxuryCardProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
+  return (
+    <Link href={href} style={{ textDecoration: 'none' }}>
+      <motion.div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="w-full aspect-square relative rounded-[20px] overflow-hidden"
+        style={{
+          border: `1.5px solid ${isHovered ? COLORS.goldFoil : COLORS.glassBorder}`,
+          backgroundColor: isHovered ? 'rgba(10, 30, 54, 0.85)' : COLORS.glassBg,
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          padding: '1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          cursor: 'pointer',
+          boxShadow: isHovered 
+            ? '0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(200, 169, 106, 0.1)' 
+            : '0 8px 24px rgba(0, 0, 0, 0.1)',
+        }}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.12, duration: 0.6, ease: 'easeOut' }}
+        whileHover={{ y: -8, scale: 1.02 }}
+      >
+        {/* Luxury Top Bar */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <span style={{ fontSize: '0.95rem', fontWeight: 700, color: COLORS.goldFoil, fontFamily: FONTS.serif, letterSpacing: '0.1em' }}>
+            {num}
+          </span>
+          <svg style={{ width: '16px', height: '16px', color: COLORS.goldFoil, opacity: isHovered ? 1 : 0.6, transform: isHovered ? 'rotate(-45deg)' : 'none', transition: 'all 0.3s ease' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </div>
+
+        {/* Card Content */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', textAlign: 'left' }}>
+          <h3 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'white', fontFamily: FONTS.serif, letterSpacing: '0.02em', textTransform: 'uppercase' }}>
+            {title}
+          </h3>
+          <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.75)', fontFamily: FONTS.sans, lineHeight: 1.45, fontWeight: 300 }}>
+            {subtitle}
+          </p>
+        </div>
+      </motion.div>
+    </Link>
+  )
+}
 
 export function Section1Hero() {
   const t = useTranslations('s1')
@@ -53,13 +98,14 @@ export function Section1Hero() {
   const [barcoLoaded, setBarcoLoaded] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(true)
-
   const [mounted, setMounted] = useState(false)
+
+  const heroRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setMounted(true)
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1280) // 1280px matches the xl layout breakpoint where the C-shape card structure has enough space on the left
+      setIsMobile(window.innerWidth < 1024)
     }
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
@@ -71,15 +117,11 @@ export function Section1Hero() {
       setVideoLoaded(true)
       return
     }
-    // Fallback timer for desktop to reveal content if video takes too long to load
     const timer = setTimeout(() => {
       setVideoLoaded(true)
     }, 2000)
     return () => clearTimeout(timer)
   }, [isMobile])
-  
-  // Parallax Setup
-  const heroRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress: localHeroScroll } = useScroll({
     target: heroRef,
@@ -89,69 +131,41 @@ export function Section1Hero() {
 
   const activeScroll = scrollCtx ? scrollCtx.scrollYProgress : localHeroScroll
 
-  // 3 capas de parallax con velocidades distintas
-  // Si hay ScrollContext (V2), la animación ocurre al transicionar entre sección 1 y 2 (0.0 a 0.20)
-  const layer1Y = useTransform(
-    activeScroll,
-    scrollCtx ? [0, 0.20, 1] : [0, 1],
-    scrollCtx ? ['0%', '15%', '15%'] : ['0%', '15%']
-  )
-  const layer2Y = useTransform(
-    activeScroll,
-    scrollCtx ? [0, 0.20, 1] : [0, 1],
-    scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
-  )
-  const layer3Y = useTransform(
-    activeScroll,
-    scrollCtx ? [0, 0.20, 1] : [0, 1],
-    scrollCtx ? ['0%', '35%', '35%'] : ['0%', '35%']
-  )
+  // Parallax Transform Layers
+  const layer1Y = useTransform(activeScroll, [0, 0.2, 1], ['0%', '15%', '15%'])
+  const layer2Y = useTransform(activeScroll, [0, 0.2, 1], ['0%', '25%', '25%'])
+  const layer3Y = useTransform(activeScroll, [0, 0.2, 1], ['0%', '35%', '35%'])
 
   const CARDS = [
     {
+      num: '01',
       title: t('card_cursos_title'),
       subtitle: t('card_cursos_subtitle'),
-      color: '#2EC4B6',
-      videoSrc: '/videos/cursos_optimized.webm',
-      imageSrc: '/images/cursos_thumb.webp',
-      paths: BLOB_PATHS.cursos,
-      href: `/${locale}/servicios/cursos`,
+      href: `/${locale}/courses`,
     },
     {
+      num: '02',
       title: t('card_club_title'),
       subtitle: t('card_club_subtitle'),
-      color: '#F4A623',
-      videoSrc: '/videos/club_optimized.webm',
-      imageSrc: '/images/club_thumb.webp',
-      paths: BLOB_PATHS.clubSocias,
-      href: `/${locale}/servicios/socias`,
+      href: `/${locale}/club`,
     },
     {
+      num: '03',
       title: t('card_equipos_title'),
       subtitle: t('card_equipos_subtitle'),
-      color: '#1D6FA4',
-      videoSrc: '/videos/equipos_optimized.webm',
-      imageSrc: '/images/equipos_thumb.webp',
-      paths: BLOB_PATHS.equipos,
-      href: `/${locale}/servicios/equipos`,
+      href: `/${locale}/about`,
     },
     {
+      num: '04',
       title: t('card_udalekuak_title'),
       subtitle: t('card_udalekuak_subtitle'),
-      color: '#8B5CF6',
-      videoSrc: '/videos/udalekuak_optimized.webm',
-      imageSrc: '/images/udalekuak_thumb.webp',
-      paths: BLOB_PATHS.udalekuak,
       href: `/${locale}/servicios/udalekuak`,
     },
     {
+      num: '05',
       title: t('card_entidades_title'),
       subtitle: t('card_entidades_subtitle'),
-      color: '#0A0A0A',
-      videoSrc: '/videos/entidades_optimized.webm',
-      imageSrc: '/images/entidades_thumb.webp',
-      paths: BLOB_PATHS.entidades,
-      href: `/${locale}/servicios/team-building`,
+      href: `/${locale}/contact`,
     },
   ]
 
@@ -165,11 +179,12 @@ export function Section1Hero() {
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        backgroundColor: COLORS.navyCover,
       }}
     >
-      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
+      {/* Background Layer 2: Sea & Land */}
       <motion.div
         style={{
           position: 'absolute',
@@ -178,17 +193,17 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 2,
-          scale: 1.015,
+          scale: 1.02,
         }}
       >
         <motion.div
           style={{ width: '100%', height: '100%', position: 'relative' }}
           animate={{
-            y: [0, 18, 0, -18, 0],
-            x: [0, -5, 0, 5, 0],
+            y: [0, 15, 0, -15, 0],
+            x: [0, -4, 0, 4, 0],
           }}
           transition={{
-            duration: 12,
+            duration: 14,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -200,11 +215,8 @@ export function Section1Hero() {
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-10px',
-              right: '-15px',
-              top: '-10px',
-              bottom: '-10px',
-              width: 'calc(100% + 25px)',
+              inset: '-10px',
+              width: 'calc(100% + 20px)',
               height: 'calc(100% + 20px)',
               objectFit: 'cover',
               objectPosition: 'center',
@@ -213,7 +225,7 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) - CARGA 2º */}
+      {/* Background Layer 1: Sky */}
       <motion.div
         style={{
           position: 'absolute',
@@ -227,11 +239,11 @@ export function Section1Hero() {
         <motion.div
           style={{ width: '100%', height: '100%', position: 'relative' }}
           animate={{
-            y: [0, 10, 0, -10, 0],
-            x: [0, -3, 0, 3, 0],
+            y: [0, 8, 0, -8, 0],
+            x: [0, -2, 0, 2, 0],
           }}
           transition={{
-            duration: 12,
+            duration: 14,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -243,19 +255,17 @@ export function Section1Hero() {
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-112px',
-              right: '-112px',
+              left: '-100px',
+              right: '-100px',
               top: '-20px',
               bottom: '-20px',
-              width: 'calc(100% + 224px)',
+              width: 'calc(100% + 200px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 1,
-              transform: 'translateX(105px)',
             }}
           />
-          {/* El video de las nubes se carga después del barco - CARGA 4º */}
           {mounted && !isMobile && (
             <video
               src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
@@ -266,17 +276,16 @@ export function Section1Hero() {
               onLoadedData={() => setVideoLoaded(true)}
               style={{
                 position: 'absolute',
-                left: '-117px',
-                right: '-117px',
+                left: '-100px',
+                right: '-100px',
                 top: '-20px',
-                width: 'calc(100% + 234px)',
+                width: 'calc(100% + 200px)',
                 height: '50%',
                 objectFit: 'cover',
                 objectPosition: 'center top',
                 zIndex: 2,
-                opacity: 1,
+                opacity: 0.9,
                 pointerEvents: 'none',
-                transform: 'translateX(99px)',
               }}
             >
               <track kind="captions" src="data:text/vtt," label="No captions" default />
@@ -285,7 +294,7 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) - CARGA 3º */}
+      {/* Background Layer 3: Sailboat */}
       <motion.div
         style={{
           position: 'absolute',
@@ -299,9 +308,9 @@ export function Section1Hero() {
         <motion.div
           style={{ width: '100%', height: '100%', position: 'relative' }}
           animate={{
-            y: [0, -35, 0, 35, 0],
-            x: [0, 6, 0, -6, 0],
-            rotate: [0, 0.8, 0, -0.8, 0],
+            y: [0, -25, 0, 25, 0],
+            x: [0, 4, 0, -4, 0],
+            rotate: [0, 0.5, 0, -0.5, 0],
           }}
           transition={{
             duration: 12,
@@ -316,222 +325,120 @@ export function Section1Hero() {
             onLoad={() => setBarcoLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-280px',
-              right: '-180px',
-              top: '-60px',
-              bottom: '-60px',
-              width: 'calc(100% + 460px)',
-              height: 'calc(100% + 120px)',
+              left: '-200px',
+              right: '-100px',
+              top: '-40px',
+              bottom: '-40px',
+              width: 'calc(100% + 300px)',
+              height: 'calc(100% + 80px)',
               objectFit: 'cover',
               objectPosition: 'center',
-              transform: 'translateX(292px)',
             }}
           />
           <SailboatAccesoButton />
         </motion.div>
       </motion.div>
 
-      {/* Overlay gradiente oscuro */}
+      {/* Gradient Dark Overlay */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(to bottom, rgba(13,33,55,0.1) 0%, rgba(13,33,55,0.7) 100%)',
+          background: 'linear-gradient(to bottom, rgba(10, 30, 54, 0.25) 0%, rgba(10, 30, 54, 0.85) 100%)',
           zIndex: 4,
           pointerEvents: 'none',
         }}
       />
 
-
-
-      {/* Contenido principal — alineado a la izquierda (zona de mar) y elevado para evitar colisión */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, margin: '-30px' }}
+      {/* Main Editorial Content Header */}
+      <div
         style={{
           position: 'relative',
           zIndex: 10,
-          textAlign: 'left',
-          padding: '0 clamp(1.5rem, 5vw, 4rem)',
           width: '100%',
-          maxWidth: '650px',
-          color: 'var(--white)',
-          y: layer3Y,
-          marginTop: '-40px',
-          left: '-70px',
+          maxWidth: '1400px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          padding: 'clamp(2rem, 5vh, 4rem) clamp(1.5rem, 6vw, 4rem) 0',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '1.25rem',
+          flex: 1,
+          justifyContent: 'center',
         }}
       >
-        {/* Desktop: Los 5 blobs en forma de "C" (arriba 2, medio 1, abajo 2) a la izquierda */}
-        {/* Desktop: Los 5 blobs en forma de "C" - CARGA 5º */}
-        {!isMobile && videoLoaded && (
-          <div
-            style={{
-              position: 'absolute',
-              left: '-410px',
-              top: '55%',
-              transform: 'translateY(-50%)',
-              marginTop: '50px',
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '-5.25rem',
-                alignItems: 'flex-start',
-              }}
-            >
-              {/* Arriba: Club de socias (Card 1) y Aprende a navegar (Card 0) */}
-              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-                <BlobCard {...CARDS[1]} index={1} />
-                <BlobCard {...CARDS[0]} index={0} />
-              </div>
+        {/* Eyebrow Location */}
+        <SectionEyebrow text={t('eyebrow')} color={COLORS.goldFoil} />
 
-              {/* Medio: Compite y supérate (Card 2) */}
-              <BlobCard {...CARDS[2]} index={2} />
-
-              {/* Abajo: Campamentos (Card 3) y Colabora (Card 4) */}
-              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-                <BlobCard {...CARDS[3]} index={3} />
-                <BlobCard {...CARDS[4]} index={4} />
-              </div>
-            </motion.div>
-          </div>
-        )}
-
-        {/* Eyebrow — ubicación */}
-        <div
-          style={{
-            display: 'inline-flex',
-            justifyContent: 'flex-start',
-            marginBottom: '1rem',
-          }}
-        >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
+        {/* Luxury Logo Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <svg width="24" height="24" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+            <path d="M18 4 L4 28 L18 26 Z" fill={COLORS.goldFoil} opacity="0.9" />
+            <path d="M18 8 L32 28 L18 26 Z" fill={COLORS.goldFoil} opacity="0.5" />
+          </svg>
+          <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'white', letterSpacing: '0.15em', textTransform: 'uppercase', fontFamily: FONTS.sans }}>
+            Getxo Bela Eskola
+          </span>
         </div>
- 
-        {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <LogoGBE />
-        </div>
- 
-        {/* Título principal */}
+
+        {/* Large Editorial Headline */}
         <h1
           style={{
-            fontSize: 'clamp(2.9rem, 6.5vw, 6.0rem)',
+            fontSize: 'clamp(2.2rem, 6vw, 5rem)',
             fontWeight: 700,
             lineHeight: 1.1,
-            color: 'var(--white)',
-            marginBottom: '1.25rem',
+            color: 'white',
+            fontFamily: FONTS.serif,
+            maxWidth: '900px',
             textAlign: 'left',
           }}
         >
-          {t('title').split('|').map((part, index) => {
-            return (
-              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
-                <AnimatedText
-                  text={part.trim()}
-                  effect="falling"
-                  delay={0.6 + index * 0.45}
-                />
-              </span>
-            );
-          })}
+          {t('title').split('|').map((part, index) => (
+            <span key={index} style={{ display: 'block' }}>
+              <AnimatedText text={part.trim()} effect="falling" delay={0.3 + index * 0.3} />
+            </span>
+          ))}
         </h1>
- 
-        {/* Subtítulo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            gap: '16px',
-            maxWidth: '710px',
-            margin: '0 0 2.2rem',
-            textAlign: 'left',
-          }}
-        >
-          {/* Línea vertical color granate del logotipo */}
-          <motion.div
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
-            style={{
-              width: '4px',
-              backgroundColor: '#A91D22', // Granate del logo
-              transformOrigin: 'top',
-              flexShrink: 0,
-            }}
-          />
-          <div
-            style={{
-              fontSize: 'clamp(1.3rem, 2.6vw, 1.6rem)',
-              fontWeight: 400,
-              lineHeight: 1.35,
-              color: 'rgba(255,255,255,0.92)',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <AnimatedText
-              text={t('subtitle')}
-              effect="falling"
-              delay={1.5}
-            />
-          </div>
-        </div>
- 
-        {/* CTA con atracción magnética */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-        >
-          <GlowButton href="#" color="garnet" size="xxl">
-            {t('cta')}
-          </GlowButton>
-        </motion.div>
-      </motion.div>
 
-      {/* Mobile: Los 5 blobs interactivos alineados en fila al pie del Hero */}
-      {/* Mobile: Los 5 blobs interactivos en fila - CARGA 5º */}
-      {isMobile && videoLoaded && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '50px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '100%',
-            maxWidth: '1200px',
-            padding: '0 24px',
-            zIndex: 15,
-          }}
-        >
+        {/* Subheadline and CTA */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '650px', width: '100%', marginTop: '0.5rem' }}>
+          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: 300, lineHeight: 1.45, color: 'rgba(255,255,255,0.85)', fontFamily: FONTS.sans, borderLeft: `3px solid ${COLORS.goldFoil}`, paddingLeft: '1rem' }}>
+            {t('subtitle')}
+          </p>
+
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 'clamp(12px, 3vw, 40px)',
-              width: '100%',
-            }}
+            transition={{ delay: 1.2, duration: 0.6 }}
           >
-            {CARDS.map((card, idx) => (
-              <BlobCard key={card.title} {...card} index={idx} />
-            ))}
+            <GlowButton href={`/${locale}/about`} color="gold" size="lg">
+              {t('cta')}
+            </GlowButton>
           </motion.div>
         </div>
-      )}
+      </div>
 
-      {/* Criaturas animadas — pasan detrás del contenido */}
+      {/* Horizontal Luxury Cards Grid */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+          maxWidth: '1400px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          padding: '0 clamp(1.5rem, 6vw, 4rem) clamp(2rem, 5vh, 4rem)',
+        }}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          {CARDS.map((card, idx) => (
+            <LuxuryCard key={card.title} {...card} index={idx} />
+          ))}
+        </div>
+      </div>
+
+      {/* Floating Animated Creatures */}
       <Seagull
         style={{ position: 'absolute', top: '15%', right: '-10%', zIndex: 8 }}
         enterDelay={1.5}
@@ -547,55 +454,12 @@ export function Section1Hero() {
   )
 }
 
-// ── Componente interno: logo GBE ───────────────────────────────────────────────
-function LogoGBE() {
-  return (
-    <div
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '12px',
-      }}
-    >
-      <motion.svg 
-        width="40" 
-        height="40" 
-        viewBox="0 0 36 36" 
-        fill="none" 
-        aria-hidden="true"
-        initial={{ y: -60, opacity: 0, scale: 0.5 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
-      >
-        <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
-        <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
-        <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
-      </motion.svg>
-      <AnimatedText
-        text="Getxo Bela Eskola"
-        effect="falling"
-        delay={0.35}
-        style={{
-          fontSize: '1.45rem',
-          fontWeight: 700,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-          color: 'white',
-        }}
-      />
-    </div>
-  )
-}
-
-
-
 // ── Componente interno: botón de Acceso flotando en el velero ─────────────────
 function SailboatAccesoButton() {
   const locale = useLocale()
   const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
   const [showButton, setShowButton] = useState(true)
 
-  // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
   const labels: Record<string, { top: string; bottom: string }> = {
     es: { top: 'ACCESO', bottom: 'SOCIAS' },
     eu: { top: 'BAZKIDEEN', bottom: 'SARBIDEA' },
@@ -609,10 +473,10 @@ function SailboatAccesoButton() {
       const imgW = 2752
       const imgH = 1536
       const imgRatio = imgW / imgH
-      const bleedLeft = 280
-      const bleedRight = 180
-      const bleedTop = 60
-      const bleedBottom = 60
+      const bleedLeft = 200
+      const bleedRight = 100
+      const bleedTop = 40
+      const bleedBottom = 40
       const canvasW = window.innerWidth + bleedLeft + bleedRight
       const canvasH = window.innerHeight + bleedTop + bleedBottom
       const canvasRatio = canvasW / canvasH
@@ -632,7 +496,6 @@ function SailboatAccesoButton() {
         left = (canvasW - actualW) / 2
       }
 
-      // Subtract bleedLeft and bleedTop because the container starts at -bleedLeft and -bleedTop
       setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
     }
 
@@ -643,7 +506,6 @@ function SailboatAccesoButton() {
     updateSize()
     window.addEventListener('resize', updateSize)
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
 
     return () => {
       window.removeEventListener('resize', updateSize)
@@ -653,10 +515,6 @@ function SailboatAccesoButton() {
 
   if (aspect.width === 0) return null
 
-  // Exact bounds midpoint on image coordinate space:
-  // X midpoint: (2361 + 2614) / 2 = 2487.5
-  // Y midpoint: (207 + 339) / 2 = 273
-  // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
   const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 179
   const buttonTop = aspect.top + (273 / 1536) * aspect.height + 555
  
@@ -672,7 +530,6 @@ function SailboatAccesoButton() {
             top: `${buttonTop}px`,
             x: '-50%',
             y: '-50%',
-            rotate: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -683,30 +540,29 @@ function SailboatAccesoButton() {
           <Link
             href={`/${locale}/auth/login`}
             prefetch={false}
-            className="transition-premium cursor-pointer text-center select-none"
+            className="cursor-pointer text-center select-none"
             style={{ 
-              fontWeight: 950,
+              fontWeight: 900,
               whiteSpace: 'nowrap',
-              border: 'none',
-              background: 'rgba(0, 0, 0, 0.001)',
-              padding: '25px 50px',
-              display: 'inline-block'
+              padding: '20px 40px',
+              display: 'inline-block',
+              textDecoration: 'none',
             }}
           >
             <motion.div
-              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
-                locale === 'eu' ? 'text-[18px]' : 'text-[24px]'
+              className={`flex flex-col items-center justify-center leading-[0.9] font-black tracking-[0.15em] text-center ${
+                locale === 'eu' ? 'text-[14px]' : 'text-[18px]'
               }`}
               animate={{
-                color: ['#ffffff', '#ff0000', '#ffffff'],
+                color: [COLORS.goldFoil, '#ffffff', COLORS.goldFoil],
                 textShadow: [
-                  '0 0 4px rgba(255,255,255,0.4)',
-                  '0 0 15px rgba(255,0,0,0.8), 0 0 30px rgba(255,0,0,0.6)',
-                  '0 0 4px rgba(255,255,255,0.4)'
+                  '0 0 4px rgba(200,169,106,0.3)',
+                  '0 0 15px rgba(200,169,106,0.6), 0 0 30px rgba(200,169,106,0.4)',
+                  '0 0 4px rgba(200,169,106,0.3)'
                 ]
               }}
               transition={{
-                duration: 1.2,
+                duration: 1.5,
                 repeat: Infinity,
                 ease: 'easeInOut'
               }}

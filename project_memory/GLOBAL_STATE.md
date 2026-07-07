@@ -21,6 +21,7 @@
 | T-010 | Antigravity | Create HostingerAgent (Agent #10 Master Plan) | 2026-04-03 | completado |
 | T-011 | Antigravity | Redesign "Why sail with us?" cream journal layout | 2026-07-06 | completado |
 | T-012 | Antigravity | Redesign "What is Getxo Bela Eskola?" book configurator | 2026-07-07 | completado |
+| T-013 | Antigravity | Redesign Hero Section from scratch into luxury layout | 2026-07-07 | completado |
 
 ## Bloqueos / Conflictos
 Ninguno actualmente.
