@@ -150,30 +150,68 @@ export function Section1Hero() {
         <motion.h1
           variants={itemVariants}
           style={{
-            fontSize: 'clamp(2.2rem, 5vw, 4.5rem)',
+            fontSize: 'clamp(2.0rem, 4.5vw, 4.0rem)',
             fontWeight: 700,
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             color: 'var(--white)',
             marginBottom: '1.25rem',
+            textAlign: 'left',
           }}
         >
-          {t('title')}
+          {t('title').split('|').map((part, index) => {
+            return (
+              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+                <AnimatedText
+                  text={part.trim()}
+                  effect="falling"
+                  delay={0.6 + index * 0.45}
+                />
+              </span>
+            );
+          })}
         </motion.h1>
 
         {/* Subtítulo */}
-        <motion.p
+        <motion.div
           variants={itemVariants}
           style={{
-            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-            fontWeight: 400,
-            lineHeight: 1.65,
-            color: 'rgba(255,255,255,0.85)',
-            maxWidth: '560px',
-            margin: '0 auto 2rem',
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: '16px',
+            maxWidth: '710px',
+            margin: '0 0 2.2rem',
+            textAlign: 'left',
           }}
         >
-          {t('subtitle')}
-        </motion.p>
+          {/* Línea vertical color granate del logotipo */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+            style={{
+              width: '4px',
+              backgroundColor: '#A91D22', // Granate del logo
+              transformOrigin: 'top',
+              flexShrink: 0,
+            }}
+          />
+          <div
+            style={{
+              fontSize: 'clamp(0.95rem, 1.8vw, 1.25rem)',
+              fontWeight: 400,
+              lineHeight: 1.35,
+              color: 'rgba(255,255,255,0.92)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <AnimatedText
+              text={t('subtitle')}
+              effect="falling"
+              delay={1.5}
+            />
+          </div>
+        </motion.div>
 
         {/* CTA con atracción magnética */}
         <motion.div variants={itemVariants}>

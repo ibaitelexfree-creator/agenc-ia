@@ -423,9 +423,9 @@ export function Section1Hero() {
         {/* Título principal */}
         <h1
           style={{
-            fontSize: 'clamp(2.9rem, 6.5vw, 6.0rem)',
+            fontSize: 'clamp(2.2rem, 4.8vw, 4.2rem)',
             fontWeight: 700,
-            lineHeight: 1.1,
+            lineHeight: 1.15,
             color: 'var(--white)',
             marginBottom: '1.25rem',
             textAlign: 'left',
@@ -469,7 +469,7 @@ export function Section1Hero() {
           />
           <div
             style={{
-              fontSize: 'clamp(1.3rem, 2.6vw, 1.6rem)',
+              fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
               fontWeight: 400,
               lineHeight: 1.35,
               color: 'rgba(255,255,255,0.92)',

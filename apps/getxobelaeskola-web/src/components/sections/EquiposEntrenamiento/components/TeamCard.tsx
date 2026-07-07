@@ -53,15 +53,13 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
     infantil: "Confianza en el agua y aprendizaje a través del juego.",
     jovenes: "Navegación estable, amistad y responsabilidad compartida.",
     adultas: "Estrategia, trimado avanzado y tecnificación de regata.",
-  };
-
-  return (
+  }  return (
     <motion.div
       className={styles['team-card-wrapper']}
       style={{
         perspective: '2000px',
         zIndex: activeOpen ? 50 : 10,
-        height: '420px', // slightly increased height for luxurious proportions
+        height: '370px', // optimized height for compact screens
       }}
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -77,11 +75,11 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
           transformStyle: 'preserve-3d',
         }}
         animate={{
-          y: activeOpen ? -10 : 0,
-          scale: activeOpen ? 1.03 : 1,
+          y: activeOpen ? -8 : 0,
+          scale: activeOpen ? 1.02 : 1,
           boxShadow: activeOpen 
-            ? '0 30px 60px rgba(10, 25, 45, 0.35)' 
-            : '0 10px 30px rgba(10, 25, 45, 0.15)',
+            ? '0 20px 40px rgba(10, 25, 45, 0.25)' 
+            : '0 8px 24px rgba(10, 25, 45, 0.12)',
         }}
         transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
       >
@@ -95,12 +93,12 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             backgroundSize: '16px 16px',
             borderRadius: activeOpen ? '0 18px 18px 0' : '18px',
             borderLeft: activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`,
-            padding: '1.5rem',
+            padding: '1.1rem',
             borderRight: `1px solid ${COLORS.navyCover}`,
             borderTop: `1px solid ${COLORS.navyCover}`,
             borderBottom: `1px solid ${COLORS.navyCover}`,
             boxShadow: activeOpen 
-              ? '10px 15px 35px rgba(10, 25, 45, 0.15), inset 15px 0 20px rgba(0,0,0,0.03)' 
+              ? '8px 12px 28px rgba(10, 25, 45, 0.12), inset 12px 0 16px rgba(0,0,0,0.02)' 
               : 'none',
             zIndex: 1,
             display: 'flex',
@@ -123,24 +121,24 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
           />
 
           {/* Header */}
-          <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.2rem', textAlign: 'center' }}>
-            <span style={{ fontSize: '0.65rem', color: accentColor, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: FONTS.sans }}>
+          <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.15rem', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.62rem', color: accentColor, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: FONTS.sans }}>
               {age}
             </span>
-            <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, letterSpacing: '-0.01em' }}>
+            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, letterSpacing: '-0.01em' }}>
               {label}
             </h4>
-            <div style={{ width: '30px', height: '1.2px', backgroundColor: COLORS.goldFoil, margin: '0.2rem auto 0' }} />
+            <div style={{ width: '30px', height: '1.2px', backgroundColor: COLORS.goldFoil, margin: '0.15rem auto 0' }} />
           </div>
 
           {/* Description Body */}
-          <div style={{ zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.5rem', padding: '0.25rem 0', textAlign: 'left' }}>
-            <p style={{ fontSize: '0.78rem', color: COLORS.textDarkNavy, lineHeight: 1.5, fontFamily: FONTS.sans, opacity: 0.9 }}>
+          <div style={{ zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.35rem', padding: '0.1rem 0', textAlign: 'left' }}>
+            <p style={{ fontSize: '0.74rem', color: COLORS.textDarkNavy, lineHeight: 1.45, fontFamily: FONTS.sans, opacity: 0.9 }}>
               {description}
             </p>
 
             {/* Metainfo */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.4rem', fontSize: '0.75rem', color: COLORS.textDarkNavy }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: '0.2rem', fontSize: '0.7rem', color: COLORS.textDarkNavy }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <span>📅</span>
                 <span style={{ fontWeight: 500 }}>{schedule}</span>
@@ -152,13 +150,13 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             </div>
 
             {/* Chips */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.5rem' }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginTop: '0.3rem' }}>
               {translatedEmbarcaciones.map((e) => (
                 <span
                   key={e}
                   style={{
-                    fontSize: '0.62rem',
-                    padding: '0.2rem 0.5rem',
+                    fontSize: '0.6rem',
+                    padding: '0.15rem 0.45rem',
                     borderRadius: '12px',
                     border: `1px solid ${accentColor}`,
                     color: COLORS.textDarkNavy,
@@ -169,7 +167,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
                   {e}
                 </span>
               ))}
-            </div>
+            </div>   </div>
 
             {/* Note */}
             {note && (
