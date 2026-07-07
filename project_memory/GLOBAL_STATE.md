@@ -22,6 +22,7 @@
 | T-011 | Antigravity | Redesign "Why sail with us?" cream journal layout | 2026-07-06 | completado |
 | T-012 | Antigravity | Redesign "What is Getxo Bela Eskola?" book configurator | 2026-07-07 | completado |
 | T-013 | Antigravity | Revert Section1Hero back to original blob-card layout | 2026-07-07 | completado |
+| T-014 | Antigravity | Revert Section3Adapts back to original stats and config layout | 2026-07-07 | completado |
 
 ## Bloqueos / Conflictos
 Ninguno actualmente.

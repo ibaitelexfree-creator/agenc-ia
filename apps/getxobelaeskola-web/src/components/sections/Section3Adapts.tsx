@@ -4,269 +4,95 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { Card3D } from '@/components/ui/Card3D'
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
+import { Windsurfer } from '@/components/creatures/Windsurfer'
 
 type ExperienceType = 'calm' | 'action'
 type EnvironmentType = 'inner' | 'outer'
 type BoatType = 'small' | 'big'
 
-// Design Tokens
-const COLORS = {
-  navyCover: '#0A1E36',     // Deep ocean blue cover
-  goldFoil: '#C8A96A',      // Luxurious gold foil accent
-  paperWhite: '#FCFAF7',    // Premium ivory paper
-  textDarkNavy: '#1B2F45',  // Readable dark navy text
-  overlayDark: 'rgba(10, 25, 45, 0.65)',
+interface AnimatedCounterProps {
+    from: number;
+    to: number;
+    duration?: number; // en ms
+    suffix?: string;
 }
 
-const FONTS = {
-  serif: 'Cormorant Garamond, "Playfair Display", Georgia, serif',
-  sans: 'Inter, Manrope, "DM Sans", sans-serif',
-}
+function AnimatedCounter({ from, to, duration = 1500, suffix = '' }: AnimatedCounterProps) {
+    const [count, setCount] = useState(from);
+    const elementRef = useRef<HTMLSpanElement>(null);
+    const animationRef = useRef<number | null>(null);
 
-interface BookCardProps {
-  title: string;
-  subtitle?: string;
-  coverTitle: string;
-  icon: React.ReactNode;
-  isOpen: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}
+    useEffect(() => {
+        const currentElement = elementRef.current;
+        if (!currentElement) return;
 
-function BookCard({ title, subtitle, coverTitle, icon, isOpen, onToggle, children }: BookCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const activeOpen = isOpen || isHovered
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    let startTime: number | null = null;
 
-  return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={onToggle}
-      className="w-full aspect-square relative select-none"
-      style={{
-        perspective: '2000px',
-        zIndex: activeOpen ? 50 : 10,
-        cursor: 'pointer',
-      }}
-    >
-      <motion.div
-        className="w-full h-full relative"
-        style={{
-          transformStyle: 'preserve-3d',
-        }}
-        animate={{
-          y: activeOpen ? -12 : 0,
-          scale: activeOpen ? 1.04 : 1,
-          boxShadow: activeOpen 
-            ? '0 30px 60px rgba(10, 25, 45, 0.4)' 
-            : '0 10px 30px rgba(10, 25, 45, 0.15)',
-        }}
-        transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-      >
-        {/* Right Inside Page (The Content page inside the book) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundColor: COLORS.paperWhite,
-            backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.015) 1px, transparent 0)',
-            backgroundSize: '16px 16px',
-            borderRadius: activeOpen ? '0 18px 18px 0' : '18px',
-            borderLeft: activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`,
-            padding: '1.5rem',
-            borderRight: `1px solid ${COLORS.navyCover}`,
-            borderTop: `1px solid ${COLORS.navyCover}`,
-            borderBottom: `1px solid ${COLORS.navyCover}`,
-            boxShadow: activeOpen 
-              ? '10px 15px 35px rgba(10, 25, 45, 0.15), inset 15px 0 20px rgba(0,0,0,0.03)' 
-              : 'none',
-            zIndex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            textAlign: 'center',
-            backfaceVisibility: 'hidden',
-            transition: 'border-radius 0.4s ease, border-left 0.4s ease, box-shadow 0.4s ease',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Subtle inside page thin frame */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: '8px',
-              border: '1px solid rgba(18, 62, 99, 0.08)',
-              borderRadius: '12px',
-              pointerEvents: 'none',
-            }}
-          />
+                    const step = (timestamp: number) => {
+                        if (!startTime) startTime = timestamp;
+                        const elapsed = timestamp - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Easing: easeOutQuad
+                        const easeProgress = progress * (2 - progress);
+                        const currentValue = Math.floor(from + (to - from) * easeProgress);
+                        
+                        setCount(currentValue);
 
-          {/* Inside Page Header */}
-          <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem' }}>
-            <span style={{ fontSize: '0.65rem', color: COLORS.goldFoil, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: FONTS.sans }}>
-              {subtitle || 'Getxo Bela Eskola'}
-            </span>
-            <h4 style={{ fontSize: '1rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, letterSpacing: '-0.01em' }}>
-              {title}
-            </h4>
-            <div style={{ width: '30px', height: '1.2px', backgroundColor: COLORS.goldFoil, marginTop: '0.2rem' }} />
-          </div>
+                        if (progress < 1) {
+                            animationRef.current = requestAnimationFrame(step);
+                        }
+                    };
 
-          {/* Inside Page Content */}
-          <div style={{ zIndex: 2, flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', padding: '0.5rem 0' }}>
-            {children}
-          </div>
+                    animationRef.current = requestAnimationFrame(step);
+                } else {
+                    // Resetear al salir de vista
+                    if (animationRef.current) {
+                        cancelAnimationFrame(animationRef.current);
+                        animationRef.current = null;
+                    }
+                    setCount(from);
+                }
+            },
+            { 
+                threshold: 0.1,
+                rootMargin: '-30px 0px' 
+            }
+        );
 
-          {/* Inside Page Footer */}
-          <div style={{ zIndex: 2, fontSize: '0.65rem', color: 'rgba(27, 47, 69, 0.5)', fontFamily: FONTS.sans, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            {activeOpen ? '✦ Diario de a Bordo ✦' : 'Click para Abrir'}
-          </div>
-        </div>
+        observer.observe(currentElement);
 
-        {/* Rotating cover wrapper */}
-        <motion.div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            transformStyle: 'preserve-3d',
-            transformOrigin: 'left center',
-            zIndex: 2,
-          }}
-          animate={{
-            rotateY: activeOpen ? -180 : 0,
-          }}
-          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-        >
-          {/* Cover Front Face (Hardcover Cover) */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              backgroundColor: COLORS.navyCover,
-              backgroundImage: 'radial-gradient(rgba(200, 169, 106, 0.05) 1px, transparent 0)',
-              backgroundSize: '24px 24px',
-              borderRadius: '18px',
-              padding: '2rem 1.5rem',
-              border: `2px solid ${COLORS.goldFoil}`,
-              boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.3)',
-              backfaceVisibility: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              textAlign: 'center',
-              zIndex: 2,
-              overflow: 'hidden',
-            }}
-          >
-            {/* Elegant Corner Ornaments in Gold */}
-            <div style={{ position: 'absolute', top: '8px', left: '8px', width: '10px', height: '10px', borderTop: `1px solid ${COLORS.goldFoil}`, borderLeft: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
-            <div style={{ position: 'absolute', top: '8px', right: '8px', width: '10px', height: '10px', borderTop: `1px solid ${COLORS.goldFoil}`, borderRight: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
-            <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '10px', height: '10px', borderBottom: `1px solid ${COLORS.goldFoil}`, borderLeft: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
-            <div style={{ position: 'absolute', bottom: '8px', right: '8px', width: '10px', height: '10px', borderBottom: `1px solid ${COLORS.goldFoil}`, borderRight: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
+        return () => {
+            observer.unobserve(currentElement);
+            if (animationRef.current) {
+                cancelAnimationFrame(animationRef.current);
+            }
+        };
+    }, [from, to, duration]);
 
-            {/* Embossed Sailing Icon */}
-            <div style={{ color: COLORS.goldFoil, opacity: 0.85, marginTop: '1rem' }}>
-              {icon}
-            </div>
-
-            {/* Title / Emblem */}
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.4rem' }}>
-              <h3
-                style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 700,
-                  color: COLORS.goldFoil,
-                  fontFamily: FONTS.serif,
-                  letterSpacing: '0.02em',
-                  lineHeight: 1.3,
-                  textTransform: 'uppercase',
-                }}
-              >
-                {coverTitle}
-              </h3>
-              <div style={{ width: '40px', height: '1px', backgroundColor: COLORS.goldFoil, margin: '0.25rem auto', opacity: 0.5 }} />
-            </div>
-
-            {/* Bookmark Ribbon Hint */}
-            <div style={{ fontSize: '0.65rem', color: COLORS.goldFoil, opacity: 0.8, fontFamily: FONTS.sans, letterSpacing: '0.05em' }}>
-              VER DETALLES →
-            </div>
-          </div>
-
-          {/* Cover Back Face (Left Page of the Open Book) */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              backgroundColor: COLORS.paperWhite,
-              backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.02) 1px, transparent 0)',
-              backgroundSize: '16px 16px',
-              borderRadius: '18px 0 0 18px',
-              borderRight: `3px solid ${COLORS.goldFoil}`,
-              padding: '2rem 1.5rem',
-              borderTop: `2px solid ${COLORS.navyCover}`,
-              borderBottom: `2px solid ${COLORS.navyCover}`,
-              borderLeft: `2px solid ${COLORS.navyCover}`,
-              boxShadow: '-10px 15px 35px rgba(10, 25, 45, 0.1)',
-              transform: 'rotateY(180deg)',
-              backfaceVisibility: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-              textAlign: 'center',
-              zIndex: 1,
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                position: 'absolute',
-                inset: '8px',
-                border: '1px solid rgba(18, 62, 99, 0.08)',
-                borderRadius: '12px',
-                pointerEvents: 'none',
-              }}
-            />
-
-            <span style={{ fontSize: '2.5rem', opacity: 0.7 }}>📖</span>
-            <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, marginTop: '1rem' }}>
-              Bitácora Getxo
-            </h4>
-            <p style={{ fontSize: '0.75rem', color: COLORS.textDarkNavy, fontStyle: 'italic', fontFamily: FONTS.serif, marginTop: '0.4rem', maxWidth: '160px', opacity: 0.8, lineHeight: 1.45 }}>
-              "Vivir la mar desde la cercanía y los valores."
-            </p>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  )
+    return <span ref={elementRef}>{count}{suffix}</span>;
 }
 
 export function Section3Adapts() {
   const t = useTranslations('s3_adapts')
-  const tIdentity = useTranslations('s2_identity')
-  
-  // States of the interactive configurator
+  const tStats = useTranslations('home.stats')
+  const params = useParams()
+  const locale = (params?.locale as string) || 'es'
+
+  // Estados del configurador reactivo
   const [experience, setExperience] = useState<ExperienceType>('calm')
   const [environment, setEnvironment] = useState<EnvironmentType>('inner')
   const [boat, setBoat] = useState<BoatType>('small')
-  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
 
-  // Floating particles array
-  const particles = Array.from({ length: 12 })
-
-  // Get dynamic subtitle description based on options combination
+  // Obtener el subtítulo dinámico según la combinación
   const getDynamicSubtitle = () => {
     const envKey = environment === 'inner' ? 'int' : 'ext'
     const key = `combo_${experience}_${envKey}_${boat}`
@@ -275,35 +101,6 @@ export function Section3Adapts() {
     } catch {
       return t('subtitle_default')
     }
-  }
-
-  // Cover gold embossed Icons
-  const Icons = {
-    school: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" />
-      </svg>
-    ),
-    experienceInfo: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499c-.105-.347-.492-.546-.861-.485L5.75 3.75a.75.75 0 00-.5.686v13.5c0 .354.249.662.593.72l4.986.832c.164.027.332-.008.47-.099l4.57-2.999a.75.75 0 01.861 0l3.07 2.016A.75.75 0 0021 17.75V4.25a.75.75 0 00-.317-.613l-4.57-2.999a.75.75 0 00-.861 0l-3.772 2.86z" />
-      </svg>
-    ),
-    experience: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z" />
-      </svg>
-    ),
-    scenario: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1.5M12 19.5V21M3.75 12H5.25M18.75 12H20.25M17.657 6.343l-1.06 1.06M7.404 16.596l-1.06 1.06M17.657 17.657l-1.06-1.06M7.404 7.404l-1.06-1.06M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
-      </svg>
-    ),
-    boat: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-      </svg>
-    ),
   }
 
   return (
@@ -318,300 +115,438 @@ export function Section3Adapts() {
         flexDirection: 'column',
       }}
     >
-      {/* Dynamic Background Image with Blur */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 1 }} className="pointer-events-none select-none">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={experience}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.4 }} 
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
-            style={{ position: 'absolute', inset: 0, filter: 'blur(6px)', scale: 1.05 }}
-          >
-            <Image
-              src={experience === 'calm' ? '/images/ai/section2-calm-bay.webp' : '/images/ai/section2-action-sea.webp'}
-              alt="Fondo interactivo"
-              fill
-              quality={75}
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Dark Overlay for readability */}
+      {/* 38% Superior: Estadísticas animadas sobre la sección con fondo azul claro y letras oscuras */}
       <div 
         style={{ 
-          position: 'absolute', 
-          inset: 0, 
-          backgroundColor: COLORS.overlayDark, 
-          zIndex: 2 
-        }} 
-        className="pointer-events-none"
-      />
+          position: 'relative', 
+          height: '38%', 
+          backgroundColor: 'var(--gbe-mist)', // Azul clarito
+          display: 'flex',
+          alignItems: 'center',
+          borderBottom: '1px solid rgba(11, 44, 85, 0.08)',
+          overflow: 'hidden'
+        }}
+        className="selection:bg-accent selection:text-nautical-black"
+      >
+        <div className="absolute inset-0 bg-accent/[0.01] pointer-events-none" />
+        <div className="absolute inset-0 bg-waves opacity-[0.02] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[250px] bg-accent/5 blur-[80px] rounded-full pointer-events-none" />
+        
+        <div className="container mx-auto px-6 py-2 relative z-10 w-full">
+          <div className="grid grid-cols-3 gap-2 text-center divide-x divide-gbe-navy-900/10 max-w-4xl mx-auto">
+            {/* Stat 1: 15+ Años de Pasión */}
+            <div className="flex flex-col items-center justify-center group">
+              <span 
+                style={{ color: 'var(--gbe-navy-900)' }} 
+                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
+              >
+                <AnimatedCounter from={0} to={15} suffix="+" />
+              </span>
+              <span 
+                style={{ color: 'var(--gbe-text-muted)' }} 
+                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
+              >
+                {tStats('pasion')}
+              </span>
+            </div>
 
-      {/* Gold Floating Particles */}
-      {particles.map((_, i) => (
-        <motion.div
-          key={i}
-          style={{
-            position: 'absolute',
-            width: `${Math.random() * 4 + 2}px`,
-            height: `${Math.random() * 4 + 2}px`,
-            borderRadius: '50%',
-            backgroundColor: COLORS.goldFoil,
-            filter: 'blur(0.5px)',
-            opacity: Math.random() * 0.35 + 0.15,
-            left: `${Math.random() * 90 + 5}%`,
-            top: `${Math.random() * 90 + 5}%`,
-            zIndex: 3,
-            pointerEvents: 'none',
-          }}
-          animate={{
-            y: [0, Math.random() * -80 - 40, 0],
-            x: [0, Math.random() * 40 - 20, 0],
-          }}
-          transition={{
-            duration: Math.random() * 12 + 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-      ))}
+            {/* Stat 2: 7K+ Alumnos Formados */}
+            <div className="flex flex-col items-center justify-center group">
+              <span 
+                style={{ color: 'var(--gbe-navy-900)' }} 
+                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
+              >
+                <AnimatedCounter from={0} to={7} suffix="K+" />
+              </span>
+              <span 
+                style={{ color: 'var(--gbe-text-muted)' }} 
+                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
+              >
+                {tStats('alumnos')}
+              </span>
+            </div>
 
-      {/* Content Container */}
+            {/* Stat 3: 30+ Barcos en Flota */}
+            <div className="flex flex-col items-center justify-center group">
+              <span 
+                style={{ color: 'var(--gbe-navy-900)' }} 
+                className="text-3xl md:text-5xl font-display font-bold mb-1 group-hover:text-accent transition-colors duration-500"
+              >
+                <AnimatedCounter from={0} to={30} suffix="+" />
+              </span>
+              <span 
+                style={{ color: 'var(--gbe-text-muted)' }} 
+                className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-black text-center group-hover:text-accent transition-colors duration-500"
+              >
+                {tStats('flota')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 62% Inferior: Panel del configurador interactivo original con fondo de imagen reactivo */}
       <div
         style={{
           flex: 1,
+          position: 'relative',
+          padding: 'clamp(0.75rem, 2.5vh, 1.5rem) clamp(1.2rem, 5vw, 4rem)',
+          overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          padding: 'clamp(2rem, 5vh, 4rem) clamp(1.5rem, 6vw, 5rem)',
-          position: 'relative',
-          zIndex: 10,
-          maxWidth: '1400px',
-          width: '100%',
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          justifyContent: 'space-between',
         }}
       >
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          style={{ marginBottom: '2.5rem', textAlign: 'center' }}
-        >
-          <span style={{ fontSize: '0.8rem', color: COLORS.goldFoil, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: FONTS.sans }}>
-            {tIdentity('eyebrow')}
-          </span>
+        {/* Filtro de cristal blanco traslúcido para legibilidad */}
+        <div 
+          style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            backgroundColor: 'rgba(255, 255, 255, 0.75)', 
+            backdropFilter: 'blur(5px)',
+            WebkitBackdropFilter: 'blur(5px)',
+            zIndex: 1 
+          }} 
+          className="pointer-events-none"
+        />
+
+        {/* Imagen de fondo reactiva colocada sobre el filtro con buena opacidad */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 2 }} className="pointer-events-none select-none">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={experience}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.25 }} 
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
+              style={{ position: 'absolute', inset: 0 }}
+            >
+              <Image
+                src={experience === 'calm' ? '/images/ai/section2-calm-bay.webp' : '/images/ai/section2-action-sea.webp'}
+                alt="Fondo interactivo"
+                fill
+                quality={70}
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Header con Subtítulo Dinámico */}
+        <div style={{ marginBottom: '1rem', position: 'relative', zIndex: 3 }}>
+          <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" />
           <h2
             style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)',
               fontWeight: 700,
-              color: 'white',
-              lineHeight: 1.2,
-              marginTop: '0.4rem',
-              marginBottom: '0.6rem',
-              fontFamily: FONTS.serif,
-              textShadow: '0 2px 10px rgba(0,0,0,0.3)',
+              color: 'var(--gbe-navy-900)',
+              lineHeight: 1.15,
+              marginBottom: '0.4rem',
+              fontFamily: 'var(--gbe-font-display)',
             }}
           >
-            {tIdentity('title_line1')} {tIdentity('title_line2')}
+            {t('title')}
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: 'clamp(0.95rem, 1.8vw, 1.15rem)', maxWidth: '800px', margin: '0 auto', fontFamily: FONTS.sans, fontWeight: 300, lineHeight: 1.5 }}>
-            {getDynamicSubtitle()}
-          </p>
-        </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={getDynamicSubtitle()}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -5 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                color: 'var(--gbe-text-muted)',
+                fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
+                lineHeight: 1.5,
+                fontWeight: 300,
+                minHeight: '2.5rem',
+              }}
+            >
+              {getDynamicSubtitle()}
+            </motion.p>
+          </AnimatePresence>
+        </div>
 
-        {/* Books Grid */}
+        {/* Grid interactivo apilado */}
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6"
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+            gap: '0.85rem',
+            marginBottom: '1rem',
+            position: 'relative',
+            zIndex: 3,
           }}
         >
-          {/* Book 1: What is Getxo Bela Eskola? */}
-          <BookCard
-            coverTitle="La Escuela"
-            subtitle="Quiénes Somos"
-            title="Getxo Bela Eskola"
-            icon={Icons.school}
-            isOpen={activeCardIndex === 0}
-            onToggle={() => setActiveCardIndex(activeCardIndex === 0 ? null : 0)}
-          >
-            <p style={{ fontSize: '0.82rem', color: COLORS.textDarkNavy, lineHeight: 1.6, fontFamily: FONTS.serif, fontStyle: 'italic', padding: '0 0.5rem' }}>
-              {tIdentity('value1_prefix')} <strong>{tIdentity('value1_highlight')}</strong>
-              <br /><br />
-              Un lugar donde aprender a navegar, compartir y disfrutar de la mar.
-            </p>
-          </BookCard>
-
-          {/* Book 2: The Experience Info */}
-          <BookCard
-            coverTitle="Vela Moderna"
-            subtitle="El Concepto"
-            title="La Experiencia"
-            icon={Icons.experienceInfo}
-            isOpen={activeCardIndex === 1}
-            onToggle={() => setActiveCardIndex(activeCardIndex === 1 ? null : 1)}
-          >
-            <p style={{ fontSize: '0.82rem', color: COLORS.textDarkNavy, lineHeight: 1.6, fontFamily: FONTS.sans, opacity: 0.9 }}>
-              {t('card4.body')}
-            </p>
-          </BookCard>
-
-          {/* Book 3: Experience Toggle */}
-          <BookCard
-            coverTitle="Experiencia"
-            subtitle="Configurador"
-            title="Tu Aventura"
-            icon={Icons.experience}
-            isOpen={activeCardIndex === 2}
-            onToggle={() => setActiveCardIndex(activeCardIndex === 2 ? null : 2)}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', padding: '0 0.5rem' }}>
-              <button
-                onClick={(e) => { e.stopPropagation(); setExperience('calm'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: experience === 'calm' ? COLORS.navyCover : 'transparent',
-                  color: experience === 'calm' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                ☁️ Calma
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); setExperience('action'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: experience === 'action' ? COLORS.navyCover : 'transparent',
-                  color: experience === 'action' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                💨 Acción
-              </button>
+          {/* Card 1: Tipo de experiencia */}
+          <Card3D intensity={5}>
+            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+                Experiencia
+              </span>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  onClick={() => setExperience('calm')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: experience === 'calm' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: experience === 'calm' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  ☁️ Calma
+                </button>
+                <button
+                  onClick={() => setExperience('action')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: experience === 'action' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: experience === 'action' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  💨 Acción
+                </button>
+              </div>
             </div>
-          </BookCard>
+          </Card3D>
 
-          {/* Book 4: Scenario Toggle */}
-          <BookCard
-            coverTitle="Escenario"
-            subtitle="Configurador"
-            title="El Abra"
-            icon={Icons.scenario}
-            isOpen={activeCardIndex === 3}
-            onToggle={() => setActiveCardIndex(activeCardIndex === 3 ? null : 3)}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', padding: '0 0.5rem' }}>
-              <button
-                onClick={(e) => { e.stopPropagation(); setEnvironment('inner'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: environment === 'inner' ? COLORS.navyCover : 'transparent',
-                  color: environment === 'inner' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                🌊 Abra interior
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); setEnvironment('outer'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: environment === 'outer' ? COLORS.navyCover : 'transparent',
-                  color: environment === 'outer' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                🌊🌊 Abra exterior
-              </button>
+          {/* Card 2: El escenario */}
+          <Card3D intensity={5}>
+            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+                El escenario
+              </span>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  onClick={() => setEnvironment('inner')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: environment === 'inner' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: environment === 'inner' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  🌊 Abra interior
+                </button>
+                <button
+                  onClick={() => setEnvironment('outer')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: environment === 'outer' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: environment === 'outer' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  🌊🌊 Abra exterior
+                </button>
+              </div>
             </div>
-          </BookCard>
+          </Card3D>
 
-          {/* Book 5: Boat Toggle */}
-          <BookCard
-            coverTitle="Embarcación"
-            subtitle="Configurador"
-            title="La Flota"
-            icon={Icons.boat}
-            isOpen={activeCardIndex === 4}
-            onToggle={() => setActiveCardIndex(activeCardIndex === 4 ? null : 4)}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%', padding: '0 0.5rem' }}>
-              <button
-                onClick={(e) => { e.stopPropagation(); setBoat('small'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: boat === 'small' ? COLORS.navyCover : 'transparent',
-                  color: boat === 'small' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                ⛵ Pequeño (J80)
-              </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); setBoat('big'); }}
-                style={{
-                  width: '100%',
-                  padding: '0.65rem',
-                  borderRadius: '30px',
-                  border: `1.5px solid ${COLORS.navyCover}`,
-                  fontWeight: 600,
-                  fontSize: '0.85rem',
-                  fontFamily: FONTS.sans,
-                  cursor: 'pointer',
-                  backgroundColor: boat === 'big' ? COLORS.navyCover : 'transparent',
-                  color: boat === 'big' ? 'white' : COLORS.textDarkNavy,
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                🚢 Crucero
-              </button>
+          {/* Card 3: Con quién navegar */}
+          <Card3D intensity={5}>
+            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+                Embarcación
+              </span>
+              <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <button
+                  onClick={() => setBoat('small')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: boat === 'small' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: boat === 'small' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  ⛵ Pequeño
+                </button>
+                <button
+                  onClick={() => setBoat('big')}
+                  style={{
+                    flex: 1,
+                    padding: '0.6rem',
+                    borderRadius: '10px',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    cursor: 'pointer',
+                    backgroundColor: boat === 'big' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
+                    color: boat === 'big' ? 'white' : 'var(--gbe-text)',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  🚢 Crucero
+                </button>
+              </div>
             </div>
-          </BookCard>
+          </Card3D>
+
+          {/* Card 4: Vela Moderna */}
+          <Card3D
+            intensity={5}
+            style={{
+              backgroundColor: 'var(--gbe-mist)',
+              borderRadius: '16px',
+              padding: '1rem 1.25rem',
+              color: 'var(--gbe-navy-900)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+              <span
+                style={{
+                  alignSelf: 'flex-start',
+                  backgroundColor: 'var(--gbe-navy-900)',
+                  color: 'var(--gbe-gold)',
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  padding: '2px 8px',
+                  borderRadius: '20px',
+                  marginBottom: '0.4rem',
+                }}
+              >
+                {t('card4.badge')}
+              </span>
+              <p
+                style={{
+                  fontSize: '0.78rem',
+                  lineHeight: 1.45,
+                  color: 'var(--gbe-text-muted)',
+                }}
+              >
+                {t('card4.body')}
+              </p>
+            </div>
+          </Card3D>
+        </div>
+
+        {/* Enlace global para "Leer más" */}
+        <div style={{ alignSelf: 'center', margin: '0.4rem 0 1rem 0', position: 'relative', zIndex: 3 }}>
+          <Link
+            href={`/${locale}/courses`}
+            className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
+            style={{ textDecoration: 'none' }}
+          >
+            <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
+            {t('card4.badge')} →
+          </Link>
         </div>
       </div>
+
+      {/* Ola decorativa animada en la parte inferior */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '100px',
+          overflow: 'hidden',
+          zIndex: 5,
+          pointerEvents: 'none',
+        }}
+      >
+        <motion.div
+          animate={{ x: ['0%', '-50%'] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
+          style={{ display: 'flex', width: '200%', height: '100%' }}
+        >
+          <WaveSVG3D opacity={0.35} experience={experience} />
+          <WaveSVG3D opacity={0.35} experience={experience} />
+        </motion.div>
+      </div>
+
+      {/* Criatura windsurf flotando de fondo */}
+      <Windsurfer
+        style={{ position: 'absolute', top: '15%', right: '-5%', zIndex: 20 }}
+        enterDelay={0.5}
+      />
     </section>
+  )
+}
+
+function WaveSVG3D({ opacity, experience }: { opacity: number; experience: ExperienceType }) {
+  const speed = experience === 'calm' ? 8 : 4.5
+  return (
+    <motion.div
+      style={{
+        perspective: '200px',
+        width: '50%',
+        height: '100%',
+        flexShrink: 0,
+      }}
+      animate={{ rotateX: [0, 1.5, 0, -1.5, 0] }}
+      transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+    >
+      <svg
+        viewBox="0 0 1440 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ width: '100%', height: '100%' }}
+        preserveAspectRatio="none"
+      >
+        <motion.path
+          d="M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z"
+          fill={`rgba(11, 61, 99, ${opacity})`}
+          animate={{
+            d: [
+              "M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z",
+              experience === 'calm'
+                ? "M0 70 C200 90 400 50 580 75 C760 100 940 60 1120 75 C1280 90 1400 60 1440 70 L1440 120 L0 120 Z"
+                : "M0 50 C200 110 400 30 580 90 C760 130 940 40 1120 95 C1280 115 1400 45 1440 80 L1440 120 L0 120 Z"
+            ]
+          }}
+          transition={{ duration: speed, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+        />
+        <motion.path
+          d="M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z"
+          fill={`rgba(44, 110, 155, ${opacity * 0.7})`}
+          animate={{
+            d: [
+              "M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z",
+              experience === 'calm'
+                ? "M0 65 C220 90 440 40 620 60 C800 90 980 50 1160 65 C1320 80 1410 55 1440 60 L1440 120 L0 120 Z"
+                : "M0 80 C220 120 440 20 620 85 C800 125 980 30 1160 85 C1320 105 1410 40 1440 70 L1440 120 L0 120 Z"
+            ]
+          }}
+          transition={{ duration: speed * 1.3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut', delay: 0.2 }}
+        />
+      </svg>
+    </motion.div>
   )
 }
