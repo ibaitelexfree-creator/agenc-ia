@@ -351,10 +351,11 @@ export function Section3Adapts() {
             style={{
               backgroundColor: 'var(--gbe-mist)',
               borderRadius: '16px',
-              padding: '1rem 1.25rem',
+              padding: '0.75rem 1rem',
               color: 'var(--gbe-navy-900)',
               position: 'relative',
               overflow: 'hidden',
+              transform: 'translateY(12px)', // shifted down
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
@@ -363,21 +364,21 @@ export function Section3Adapts() {
                   alignSelf: 'flex-start',
                   backgroundColor: 'var(--gbe-navy-900)',
                   color: 'var(--gbe-gold)',
-                  fontSize: '0.65rem',
+                  fontSize: '0.58rem',
                   fontWeight: 700,
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
                   padding: '2px 8px',
                   borderRadius: '20px',
-                  marginBottom: '0.4rem',
+                  marginBottom: '0.3rem',
                 }}
               >
                 {t('card4.badge')}
               </span>
               <p
                 style={{
-                  fontSize: '0.78rem',
-                  lineHeight: 1.45,
+                  fontSize: '0.70rem',
+                  lineHeight: 1.4,
                   color: 'var(--gbe-text-muted)',
                 }}
               >
