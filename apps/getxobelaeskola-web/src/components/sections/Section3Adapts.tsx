@@ -120,11 +120,11 @@ export function Section3Adapts() {
         style={{
           flex: 1,
           position: 'relative',
-          padding: 'clamp(2rem, 6vh, 4rem) clamp(1.5rem, 6vw, 5rem)',
+          padding: 'clamp(4.5rem, 12vh, 9rem) clamp(1.5rem, 6vw, 5rem) clamp(2rem, 5vh, 4rem)', // increased top padding to push everything down
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'flex-start', // align to top so top padding pushes content down
         }}
       >
         {/* Filtro de cristal blanco traslúcido para legibilidad */}
@@ -355,7 +355,6 @@ export function Section3Adapts() {
               color: 'var(--gbe-navy-900)',
               position: 'relative',
               overflow: 'hidden',
-              transform: 'translateY(12px)', // shifted down
             }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
