@@ -534,7 +534,42 @@
       "btn_start": "Commencer maintenant"
     },
     "micro_lessons": {
-      "title": "Micro-Leçons"
+      "title": "Micro-Leçons",
+      "weekly_updates": "Nouveautés Hebdomadaires",
+      "categories": {
+        "maniobra": "Manœuvre",
+        "cabuyeria": "Matelotage",
+        "teoria": "Théorie",
+        "seguridad": "Sécurité",
+        "partes": "Pièces"
+      },
+      "lessons": {
+        "1": {
+          "title": "L'Œil du Vent",
+          "category": "Manœuvre",
+          "description": "Comprenez la zone où les voiles ne portent pas et comment l'éviter."
+        },
+        "2": {
+          "title": "Nœud de Chaise",
+          "category": "Matelotage",
+          "description": "Le roi des nœuds : sûr, solide et facile à défaire."
+        },
+        "3": {
+          "title": "Au Vent vs Sous le Vent",
+          "category": "Théorie",
+          "description": "Apprenez à différencier les côtés du bateau selon le vent."
+        },
+        "4": {
+          "title": "Priorités de Passage",
+          "category": "Sécurité",
+          "description": "Règles de base pour éviter les abordages en mer."
+        },
+        "5": {
+          "title": "Parties de la Voile",
+          "category": "Pièces",
+          "description": "Point de drisse, point d'amure et point d'écoute. Qui est qui ?"
+        }
+      }
     },
     "courses_section": {
       "title": "Vos prochains cours en personne",
@@ -552,6 +587,55 @@
     "history_section": {
       "title": "Historique Récent",
       "completed": "Terminé"
+    },
+    "daily_challenge": {
+      "title": "Défi du Jour",
+      "subtitle": "Apprenez quelque chose de nouveau aujourd'hui",
+      "reward": "+{xp} XP",
+      "submit": "Vérifier la réponse",
+      "correct": "Excellent ! Vous avez gagné {xp} XP.",
+      "wrong": "Ce n'est pas correct. La réponse était : {answer}",
+      "already_done": "Vous avez déjà complété votre défi quotidien.",
+      "come_back": "Revenez demain pour continuer à accumuler des points.",
+      "explanation": "Le saviez-vous...",
+      "streak": "{streak} JOURS CONSÉCUTIFS 🔥",
+      "iq": "IQ NAUTIQUE : {accuracy}%",
+      "correct_attempts": "Réponses correctes",
+      "current_streak": "Série",
+      "streak_progress": "Progression de la série",
+      "syncing": "SYNCHRONISATION DU CAP...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "Qu'est-ce que l'Amure ?",
+          "options": [
+            "La partie avant du flanc du navire",
+            "La partie arrière du navire",
+            "Le câble maintenant le mât",
+            "Une petite voile"
+          ],
+          "explanation": "L'amure est la zone du flanc du navire qui se rétrécit pour former la proue."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "Comment s'appelle le côté droit du navire en regardant vers l'avant (la proue) ?",
+          "options": [
+            "Bâbord",
+            "Tribord",
+            "Poupe",
+            "Flanc"
+          ],
+          "explanation": "Tribord est le nom donné au côté droit d'un navire."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Académie Numérique",
+      "club": "Club",
+      "upcoming_event": "Événement à Venir",
+      "course": "Cours",
+      "rental": "Location",
+      "free_sailing": "Navigation Libre",
+      "daily_challenge_teaser": "Défi du Jour",
+      "earn_xp": "Gagnez +{xp} XP aujourd'hui"
     }
   },
   "wind_lab": {

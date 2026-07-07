@@ -358,22 +358,22 @@ export default function RentalClient({
                         <h3 className="text-3xl font-display italic text-sea-foam mb-8 pr-8">{t('booking.booking_details')}</h3>
 
                         <div className="space-y-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="flex flex-col gap-6">
                                 <div className="space-y-4">
                                     <label className="text-[10px] uppercase tracking-[0.3em] text-accent font-black">{t('booking.date_label')}</label>
-                                    <div className="flex items-center gap-4 bg-sea-foam/[0.02] border border-sea-foam/10 p-4 rounded-sm">
+                                    <div className="flex items-center gap-4 bg-sea-foam/[0.02] border border-sea-foam/10 p-4 rounded-sm w-full">
                                         <input ref={dayRef} type="text" placeholder="DD" value={day} onChange={handleDayChange} onWheel={(e) => handleWheel(e, 'day')} className="w-8 bg-transparent text-sea-foam text-center outline-none font-display italic" />
                                         <span className="text-sea-foam/20">/</span>
                                         <input type="text" placeholder="MM" value={month} onChange={handleMonthChange} onWheel={(e) => handleWheel(e, 'month')} className="w-8 bg-transparent text-sea-foam text-center outline-none font-display italic" />
                                         <span className="text-sea-foam/20">/</span>
-                                        <select value={year} onChange={(e) => setYear(e.target.value)} onWheel={(e) => handleWheel(e, 'year')} className="bg-transparent text-sea-foam outline-none cursor-pointer font-display italic">
+                                        <select value={year} onChange={(e) => setYear(e.target.value)} onWheel={(e) => handleWheel(e, 'year')} className="bg-transparent text-sea-foam outline-none cursor-pointer font-display italic pr-8">
                                             <option value={currentYear} className="text-sea-foam bg-nautical-black">{currentYear}</option>
                                             <option value={currentYear + 1} className="text-sea-foam bg-nautical-black">{currentYear + 1}</option>
                                         </select>
                                     </div>
                                 </div>
 
-                                <div className="space-y-4">
+                                <div className="space-y-4 max-w-[200px]">
                                     <label className="text-[10px] uppercase tracking-[0.3em] text-accent font-black">{t('booking.time_label')}</label>
                                     <select value={selectedTime} onChange={(e) => setSelectedTime(e.target.value)} onWheel={handleTimeWheel} className="w-full bg-sea-foam/[0.02] border border-sea-foam/10 text-sea-foam p-4 rounded-sm outline-none font-display italic appearance-none">
                                         {availableTimes.map(t => <option key={t} value={t} className="text-sea-foam bg-nautical-black">{t}</option>)}

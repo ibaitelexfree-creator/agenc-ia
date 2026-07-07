@@ -60,6 +60,16 @@ export default async function StudentDashboard({
         },
         micro_lessons: {
             title: t('micro_lessons.title')
+        },
+        mobile_hub: {
+            digital_academy: t('mobile_hub.digital_academy'),
+            club: t('mobile_hub.club'),
+            upcoming_event: t('mobile_hub.upcoming_event'),
+            course: t('mobile_hub.course'),
+            rental: t('mobile_hub.rental'),
+            free_sailing: t('mobile_hub.free_sailing'),
+            daily_challenge_teaser: t('mobile_hub.daily_challenge_teaser'),
+            earn_xp: t('mobile_hub.earn_xp', { xp: 50 })
         }
     };
 

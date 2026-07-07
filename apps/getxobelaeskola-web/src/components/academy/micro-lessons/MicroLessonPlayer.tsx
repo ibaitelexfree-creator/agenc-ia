@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { MicroLesson } from '@/data/academy/micro-lessons';
 import { Heart, MessageCircle, Share2, Volume2, VolumeX, Play } from 'lucide-react';
 
@@ -17,6 +18,7 @@ export default function MicroLessonPlayer({
     isMuted,
     onToggleMute
 }: MicroLessonPlayerProps) {
+    const t = useTranslations('student_dashboard.micro_lessons');
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
@@ -71,6 +73,10 @@ export default function MicroLessonPlayer({
         }
     };
 
+    const translatedTitle = t(`lessons.${lesson.id}.title`) || lesson.title;
+    const translatedCategory = t(`lessons.${lesson.id}.category`) || lesson.category;
+    const translatedDescription = t(`lessons.${lesson.id}.description`) || lesson.description;
+
     return (
         <div className="relative w-full h-full bg-black snap-center flex-shrink-0 overflow-hidden">
             <video
@@ -98,7 +104,7 @@ export default function MicroLessonPlayer({
             <div className="absolute bottom-0 left-0 right-0 p-6 pb-8 flex flex-col gap-2 z-20 pointer-events-auto">
                 <div className="flex items-center gap-2 mb-1">
                     <span className="bg-accent/20 text-accent text-[10px] font-bold px-2 py-0.5 rounded-sm uppercase tracking-wider backdrop-blur-sm border border-accent/20">
-                        {lesson.category}
+                        {translatedCategory}
                     </span>
                     <span className="text-white/60 text-xs flex items-center gap-1 font-mono">
                         {Math.floor(lesson.duration / 60)}:{(lesson.duration % 60).toString().padStart(2, '0')}
@@ -106,11 +112,11 @@ export default function MicroLessonPlayer({
                 </div>
 
                 <h3 className="text-white font-display text-xl leading-tight drop-shadow-md">
-                    {lesson.title}
+                    {translatedTitle}
                 </h3>
 
                 <p className="text-white/80 text-sm line-clamp-2 drop-shadow-sm max-w-[85%] font-light leading-relaxed">
-                    {lesson.description}
+                    {translatedDescription}
                 </p>
             </div>
 

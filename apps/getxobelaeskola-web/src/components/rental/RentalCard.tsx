@@ -109,14 +109,6 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
                         </div>
                         <div className="w-px h-8 bg-sea-foam/10" />
                         <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Service</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70">
-                                <Anchor className="w-3.5 h-3.5" />
-                                <span className="text-xs font-bold font-mono">PRO</span>
-                            </div>
-                        </div>
-                        <div className="w-px h-8 bg-sea-foam/10" />
-                        <div className="flex flex-col gap-1">
                             <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Price/h</span>
                             <div className="flex items-center gap-1.5 text-sea-foam/70 text-lg">
                                 <span className="font-display italic text-sea-foam">{service.precio_base}€</span>

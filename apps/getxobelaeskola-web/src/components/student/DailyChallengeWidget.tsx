@@ -191,6 +191,37 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
         ? Math.round((stats.total_correct / stats.total_attempts) * 100)
         : 0;
 
+    const translatedQuestion = (() => {
+        if (!challenge) return '';
+        try {
+            const val = t(`challenges.${challenge.id}.question`);
+            if (val && !val.includes(`challenges.${challenge.id}.question`)) return val;
+        } catch (e) {}
+        return locale === 'es' ? challenge.pregunta_es : challenge.pregunta_eu;
+    })();
+
+    const translatedExplanation = (() => {
+        if (!challenge) return '';
+        try {
+            const val = t(`challenges.${challenge.id}.explanation`);
+            if (val && !val.includes(`challenges.${challenge.id}.explanation`)) return val;
+        } catch (e) {}
+        return locale === 'es' ? challenge.explicacion_es : challenge.explicacion_eu;
+    })();
+
+    const translatedOptions = (() => {
+        if (!challenge) return [];
+        try {
+            const rawOpts = t.raw(`challenges.${challenge.id}.options`);
+            if (Array.isArray(rawOpts)) {
+                return rawOpts;
+            }
+        } catch (e) {}
+        return challenge.opciones;
+    })();
+
+    const correctOptionText = challenge ? (translatedOptions[challenge.respuesta_correcta] || '') : '';
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -225,9 +256,9 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                     </div>
                     <div className="flex flex-col items-end gap-1">
                         <div className="px-3 py-1 bg-accent/10 border border-accent/20 text-accent text-[10px] font-black tracking-tighter italic">
-                            {streak} DAY STREAK 🔥
+                            {t('streak', { streak })}
                         </div>
-                        <div className="text-[8px] uppercase tracking-widest text-black/20">IQ NÁUTICO: {accuracy}%</div>
+                        <div className="text-[8px] uppercase tracking-widest text-black/20">{t('iq', { accuracy })}</div>
                     </div>
                 </header>
 
@@ -255,11 +286,11 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                             <div className="mt-8 pt-6 border-t border-black/5 flex justify-center gap-8">
                                 <div className="text-center">
                                     <div className="text-lg font-bold text-accent">{stats.total_correct}</div>
-                                    <div className="text-[8px] uppercase tracking-widest text-black/30">Aciertos</div>
+                                    <div className="text-[8px] uppercase tracking-widest text-black/30">{t('correct_attempts')}</div>
                                 </div>
                                 <div className="text-center">
                                     <div className="text-lg font-bold text-accent">{streak}</div>
-                                    <div className="text-[8px] uppercase tracking-widest text-black/30">Racha</div>
+                                    <div className="text-[8px] uppercase tracking-widest text-black/30">{t('current_streak')}</div>
                                 </div>
                             </div>
                         </motion.div>
@@ -280,20 +311,20 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                                         {status === 'correct' ? '✓' : '✗'}
                                     </div>
                                     <p className="text-sm font-bold tracking-tight uppercase">
-                                        {status === 'correct' ? t('correct', { xp: xpAwarded }) : t('wrong', { answer: (challenge && challenge.opciones[challenge.respuesta_correcta]) || '' })}
+                                        {status === 'correct' ? t('correct', { xp: xpAwarded }) : t('wrong', { answer: correctOptionText })}
                                     </p>
                                 </div>
 
                                 <div className="space-y-3">
                                     <div className="text-[9px] uppercase tracking-widest text-black/40 font-bold">{t('explanation')}</div>
                                     <p className="text-xs text-black/70 italic leading-relaxed font-light">
-                                        "{locale === 'es' ? challenge?.explicacion_es : challenge?.explicacion_eu}"
+                                        "{translatedExplanation}"
                                     </p>
                                 </div>
                             </div>
 
                             <div className="bg-black/5 p-4 flex justify-between items-center rounded-sm">
-                                <div className="text-[9px] uppercase tracking-widest text-black/40 italic">Progreso de Racha</div>
+                                <div className="text-[9px] uppercase tracking-widest text-black/40 italic">{t('streak_progress')}</div>
                                 <div className="flex gap-1">
                                     {[1, 2, 3, 4, 5].map((it) => (
                                         <div
@@ -316,11 +347,11 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                             className="space-y-8"
                         >
                             <h3 className="text-2xl font-display text-black leading-[1.2] italic underline decoration-accent/20 underline-offset-8">
-                                {locale === 'es' ? challenge?.pregunta_es : challenge?.pregunta_eu}
+                                {translatedQuestion}
                             </h3>
 
                             <div className="grid gap-3">
-                                {challenge?.opciones.map((opcion, index) => (
+                                {translatedOptions.map((opcion: string, index: number) => (
                                     <motion.button
                                         key={index}
                                         whileHover={{ x: 5 }}
@@ -357,7 +388,7 @@ export default function DailyChallengeWidget({ locale }: DailyChallengeWidgetPro
                                 disabled={selectedOption === null || status === 'answering'}
                                 className="w-full py-4 bg-accent text-nautical-black text-xs font-black uppercase tracking-[0.2em] shadow-[0_10px_30px_-10px_rgba(var(--accent-rgb),0.5)] transition-all hover:bg-white disabled:opacity-30 disabled:grayscale disabled:cursor-not-allowed"
                             >
-                                {status === 'answering' ? <span className="animate-pulse">SINCRONIZANDO RUMBO...</span> : t('submit')}
+                                {status === 'answering' ? <span className="animate-pulse">{t('syncing')}</span> : t('submit')}
                             </motion.button>
                         </motion.div>
                     )}

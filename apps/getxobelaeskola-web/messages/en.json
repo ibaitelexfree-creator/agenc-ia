@@ -815,7 +815,42 @@
       "btn_start": "Start Now"
     },
     "micro_lessons": {
-      "title": "Micro-Lessons"
+      "title": "Micro-Lessons",
+      "weekly_updates": "Weekly Updates",
+      "categories": {
+        "maniobra": "Maneuver",
+        "cabuyeria": "Riggings",
+        "teoria": "Theory",
+        "seguridad": "Safety",
+        "partes": "Parts"
+      },
+      "lessons": {
+        "1": {
+          "title": "The Eye of the Wind",
+          "category": "Maneuver",
+          "description": "Understand the zone where sails do not carry wind and how to avoid it."
+        },
+        "2": {
+          "title": "Bowline Knot",
+          "category": "Riggings",
+          "description": "The king of knots: secure, strong, and easy to undo."
+        },
+        "3": {
+          "title": "Windward vs Leeward",
+          "category": "Theory",
+          "description": "Learn to differentiate the sides of the boat according to the wind."
+        },
+        "4": {
+          "title": "Right of Way",
+          "category": "Safety",
+          "description": "Basic rules to avoid collisions at sea."
+        },
+        "5": {
+          "title": "Parts of the Sail",
+          "category": "Parts",
+          "description": "Head, tack, and clew. Which is which?"
+        }
+      }
     },
     "courses_section": {
       "title": "Your Next Face-to-Face Courses",
@@ -843,7 +878,45 @@
       "wrong": "That's not correct. The answer was: {answer}",
       "already_done": "You have already completed your daily challenge.",
       "come_back": "Come back tomorrow to keep adding points.",
-      "explanation": "Did you know..."
+      "explanation": "Did you know...",
+      "streak": "{streak} DAY STREAK 🔥",
+      "iq": "NAUTICAL IQ: {accuracy}%",
+      "correct_attempts": "Correct",
+      "current_streak": "Streak",
+      "streak_progress": "Streak Progress",
+      "syncing": "SYNCING HEADING...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "What is the Bow (Tack / Amura)?",
+          "options": [
+            "The front part of the side of the vessel",
+            "The rear part of the vessel",
+            "The cable holding the mast",
+            "A small sail"
+          ],
+          "explanation": "The tack (amura) is the area of the side of the vessel that narrows to form the bow."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "What is the right side of the vessel called when looking forward (to the bow)?",
+          "options": [
+            "Port",
+            "Starboard",
+            "Stern",
+            "Side"
+          ],
+          "explanation": "Starboard is the name given to the right side of a vessel."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Digital Academy",
+      "club": "Club",
+      "upcoming_event": "Upcoming Event",
+      "course": "Course",
+      "rental": "Rental",
+      "free_sailing": "Free Sailing",
+      "daily_challenge_teaser": "Daily Challenge",
+      "earn_xp": "Earn +{xp} XP today"
     }
   },
   "wind_lab": {

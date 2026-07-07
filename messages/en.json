@@ -218,7 +218,8 @@
     "header_suffix": "Getxo Bela Eskola",
     "since": "Founded in Getxo",
     "desc1": "More than 15 years ago we were born in Getxo with a clear goal: to bring the sea closer to everyone from a human, educational and accessible approach. We are a non-profit association and a social project that understands sailing as a tool for learning, coexistence and personal transformation.",
-    "desc2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community.",
+    "desc2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community, and our path remains focused on accompanying people to experience the sea in a simple, safe and authentic way.",
+    "desc3": "We are not a company, and we do not act as such. As a non-profit association, everything that comes in is reinvested in improving the project: renewing boats, training instructors, maintaining the facilities and expanding activities.",
     "values": {
       "v1_title": "Our Facilities",
       "v1_desc": "Located in a privileged area of the Getxo Marina, a few meters from Ereaga beach and with direct access to the Abra. We have an audiovisual classroom, well-kept changing rooms, large outdoor space, workshop and chill-out area with a small sauna.",
@@ -326,7 +327,8 @@
     "resend_email": "Resend",
     "resend_success": "Email resent successfully.",
     "google_btn": "Continue with Google",
-    "rate_limit": "You have exceeded the attempt limit. Please wait a few minutes before trying again."
+    "rate_limit": "You have exceeded the attempt limit. Please wait a few minutes before trying again.",
+    "or_divider": "OR"
   },
   "booking": {
     "select_date": "Select a date",
@@ -339,8 +341,14 @@
     "book_for": "Book for",
     "online_course_instant": "Online Course - Instant Access",
     "no_dates_needed": "No dates needed. Start right now.",
+    "flexible_date_notice": "Flexible booking. You will coordinate the exact time with the school.",
     "error_generic": "Something went wrong",
-    "payment_gateway_error": "Error connecting to the payment gateway"
+    "payment_gateway_error": "Error connecting to the payment gateway",
+    "is_member": "The participant is a member (50% discount)",
+    "member_discount_applied": "50% Member discount applied!",
+    "membership_not_found": "No active membership was found for your account or family members. To get the 50% discount, you must be an official member.",
+    "selected_not_member": "The selected participant ({name}) is not a member. To apply the discount, the registered participant must have an active membership.",
+    "parent_not_member": "You (account owner) do not have an active membership. To apply the discount, the registered participant must be a member."
   },
   "staff_panel": {
     "tabs": {
@@ -807,7 +815,42 @@
       "btn_start": "Start Now"
     },
     "micro_lessons": {
-      "title": "Micro-Lessons"
+      "title": "Micro-Lessons",
+      "weekly_updates": "Weekly Updates",
+      "categories": {
+        "maniobra": "Maneuver",
+        "cabuyeria": "Riggings",
+        "teoria": "Theory",
+        "seguridad": "Safety",
+        "partes": "Parts"
+      },
+      "lessons": {
+        "1": {
+          "title": "The Eye of the Wind",
+          "category": "Maneuver",
+          "description": "Understand the zone where sails do not carry wind and how to avoid it."
+        },
+        "2": {
+          "title": "Bowline Knot",
+          "category": "Riggings",
+          "description": "The king of knots: secure, strong, and easy to undo."
+        },
+        "3": {
+          "title": "Windward vs Leeward",
+          "category": "Theory",
+          "description": "Learn to differentiate the sides of the boat according to the wind."
+        },
+        "4": {
+          "title": "Right of Way",
+          "category": "Safety",
+          "description": "Basic rules to avoid collisions at sea."
+        },
+        "5": {
+          "title": "Parts of the Sail",
+          "category": "Parts",
+          "description": "Head, tack, and clew. Which is which?"
+        }
+      }
     },
     "courses_section": {
       "title": "Your Next Face-to-Face Courses",
@@ -835,7 +878,45 @@
       "wrong": "That's not correct. The answer was: {answer}",
       "already_done": "You have already completed your daily challenge.",
       "come_back": "Come back tomorrow to keep adding points.",
-      "explanation": "Did you know..."
+      "explanation": "Did you know...",
+      "streak": "{streak} DAY STREAK 🔥",
+      "iq": "NAUTICAL IQ: {accuracy}%",
+      "correct_attempts": "Correct",
+      "current_streak": "Streak",
+      "streak_progress": "Streak Progress",
+      "syncing": "SYNCING HEADING...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "What is the Bow (Tack / Amura)?",
+          "options": [
+            "The front part of the side of the vessel",
+            "The rear part of the vessel",
+            "The cable holding the mast",
+            "A small sail"
+          ],
+          "explanation": "The tack (amura) is the area of the side of the vessel that narrows to form the bow."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "What is the right side of the vessel called when looking forward (to the bow)?",
+          "options": [
+            "Port",
+            "Starboard",
+            "Stern",
+            "Side"
+          ],
+          "explanation": "Starboard is the name given to the right side of a vessel."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Digital Academy",
+      "club": "Club",
+      "upcoming_event": "Upcoming Event",
+      "course": "Course",
+      "rental": "Rental",
+      "free_sailing": "Free Sailing",
+      "daily_challenge_teaser": "Daily Challenge",
+      "earn_xp": "Earn +{xp} XP today"
     }
   },
   "wind_lab": {
@@ -950,12 +1031,33 @@
     "email_invalid": "Invalid email",
     "password_short": "Minimum 6 characters",
     "subject_short": "Subject too short",
-    "message_short": "The message is too short"
+    "message_short": "The message is too short",
+    "name_required": "Name is required",
+    "surnames_required": "Surnames are required",
+    "age_required": "Age is required",
+    "swim_required": "Please select if they can swim",
+    "tutor_name_required": "Tutor name is required",
+    "tutor_surnames_required": "Tutor surnames are required",
+    "tutor_dni_required": "Tutor DNI is required",
+    "tutor_phone_required": "Tutor phone number is required",
+    "tutor_email_required": "Tutor email is required",
+    "week_required": "Please enter the requested week",
+    "birth_date_required": "Date of birth is required",
+    "dni_required": "Identity document is required",
+    "address_required": "Address is required",
+    "locality_required": "Locality is required",
+    "postal_code_required": "Postal code is required",
+    "mode_required": "Please select an option",
+    "iban_required": "IBAN is required",
+    "titular_required": "Account holder is required",
+    "invalid_identity_document": "The ID is not valid, check it again.",
+    "min_age_required": "The participant must be at least 3 years old."
   },
   "legal": {
     "privacy_title": "Privacy Policy",
     "cookies_title": "Cookies Policy",
     "rental_contract": "NAUTICAL EQUIPMENT RENTAL CONTRACT - GETXO BELA ESKOLA\n\n1. LESSEE REQUIREMENTS: The client declares to possess the necessary technical knowledge for the safe handling of the rented material. In the case of recreational sailboats, the corresponding minimum qualification is required.\n\n2. CONDITION AND RETURN: The material is delivered in perfect working condition. The client agrees to return it in the same condition. Any damage caused by negligence will be the exclusive responsibility of the client.\n\n3. NAVIGATION ZONES: Navigation will be limited to authorized zones and agreed times. The client agrees to respect the rules of the Getxo Marina and the regulations of the Maritime Captaincy.\n\n4. SAFETY: The use of a life jacket is mandatory and personal at all times while in the water.\n\n5. RESCUE AND ASSISTANCE: If the client requires assistance or rescue due to imprudence or leaving the permitted zones, the resulting costs will be at their expense.\n\n6. DIGITAL SIGNATURE: By checking the acceptance box, the client ratifies that they have understood all the previous points and assume their legal responsibility.",
+    "course_contract": "GENERAL TERMS AND CONDITIONS OF CONTRACTING - GETXO BELA ESKOLA\n\n1. OBJECT AND SCOPE OF APPLICATION: This document establishes the legal conditions for enrollment in the courses taught by Getxo Bela Eskola.\n\n2. PHYSICAL FITNESS AND SAFETY: The student declares that they are in suitable physical condition for navigation and do not suffer from any preventing illnesses. The use of a life jacket is mandatory, and following the instructions of the skipper or instructor is required at all times.\n\n3. LIABILITY: Getxo Bela Eskola is not responsible for students' personal belongings. The school has the mandatory civil liability and accident insurance required by law.\n\n4. METEOROLOGICAL CONDITIONS: The school reserves the right to cancel or postpone sessions if sea or wind conditions represent a risk to the safety of students and equipment.\n\n5. CANCELLATION POLICY: Cancellations by the student must be communicated at least 48 hours in advance to be entitled to relocation to another date (subject to availability).\n\n6. ACCEPTANCE: Clicking \"Accept\" constitutes a binding electronic signature under the current legislation on information society services.",
     "consent_acceptance": "I have read and expressly accept the legal conditions detailed above. I understand that this acceptance is equivalent to a binding digital signature.",
     "error_log_consent": "Could not register legal signature. Please try again."
   },
@@ -964,15 +1066,25 @@
     "terms_title": "Registration Terms",
     "rental_title": "Rental Conditions",
     "back": "Back",
+    "next": "Next",
+    "step_prefix": "Step",
+    "step_of": "of",
+    "step_doc": "Documentation",
+    "step_form": "Registration Form",
+    "step_sign": "Digital Signature",
     "mandatory_docs": "Mandatory Legal Documents",
     "click_to_read": "* Click on each document to read it online right here.",
     "full_name": "Full Name",
     "identity_doc": "Identity Document",
+    "country_label": "Country of Origin",
     "email_label": "Registration Email",
     "confirmation_checkbox": "I confirm that I have read and expressly accept the PDF documents indicated above, as well as the conditions detailed in this form. I understand that this acceptance is equivalent to a binding digital signature.",
     "sign_and_continue": "Sign and Continue to Payment",
     "cancel": "Cancel",
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "summary_title": "Summary of General Conditions and Rules",
+    "digital_signature_title": "Digital Signature of the Document",
+    "digital_signature_desc": "By filling in your identity details below and checking the checkbox, you declare under your responsibility that all the information provided is true and that you accept the rules of coexistence, LOPD, and image policies detailed in this process."
   },
   "profile_modal": {
     "title": "Edit Profile",
@@ -990,13 +1102,17 @@
     "verified_member": "Verified member",
     "official_partner": "Official Partner",
     "account_info": "Account Information",
-    "role": "Role",
     "student": "Student",
+    "partner": "Member",
+    "instructor": "Instructor",
     "edit_profile": "Edit Profile",
     "managing_subscription": "Manage Subscription",
     "membership_card": "My Membership Card",
     "loading": "Loading...",
     "portal_error": "Error opening payment portal",
+    "experience_points": "Experience Points",
+    "my_family": "My Family / Children",
+    "role": "Role",
     "connection_error": "Connection error"
   },
   "nautical_radar": {
@@ -1106,7 +1222,16 @@
       "b5_desc": "It's not just about coming for a specific day, but being part of a community that learns, evolves, and enjoys together.",
       "b6_title": "Federation and Insurance",
       "b6_desc": "In both options it is necessary to federate in the Basque Sailing Federation, providing insurance and access to regattas (approx 64€)."
-    }
+    },
+    "hero_title_part1": "Become part of",
+    "hero_title_part2": "our crew",
+    "section_title_part1": "Much more than sailing,",
+    "section_title_part2": "a shared lifestyle",
+    "benefits_eyebrow": "Exclusive Benefits",
+    "benefits_title": "Advantages of being a member",
+    "cta_title": "Ready to join the crew?",
+    "cta_desc": "Get in touch with our administrative team to apply for your member registration or to schedule a trial sail with our instructors.",
+    "cta_button": "Request Information"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Your sailing school at the Abra",
@@ -1114,10 +1239,25 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "We're not a school. We're your sea.",
-    "subtitle": "A meeting point where sailing is the excuse to share, grow and feel the sea without pressure.",
-    "cta": "Discover →",
-    "scroll_hint": "Keep sailing"
+    "title": "Sailing Club | in Getxo",
+    "subtitle": "Sail, learn and share",
+    "cta": "Become a Member",
+    "scroll_hint": "Keep sailing",
+    "word1": "Sail.",
+    "word2": "Learn.",
+    "word3": "Share.",
+    "tu_mar_tu_club": "Your sea. Your club.",
+    "todo_lo_que_ofrecemos": "Everything we offer",
+    "card_cursos_title": "Courses",
+    "card_cursos_subtitle": "Learn to sail",
+    "card_club_title": "Club Members",
+    "card_club_subtitle": "Join the community",
+    "card_equipos_title": "Teams",
+    "card_equipos_subtitle": "Compete and improve",
+    "card_udalekuak_title": "Udalekuak",
+    "card_udalekuak_subtitle": "Summer camps",
+    "card_entidades_title": "Entities",
+    "card_entidades_subtitle": "Partner with us"
   },
   "s2": {
     "eyebrow": "The experience",
@@ -1174,30 +1314,442 @@
   "s4": {
     "eyebrow": "",
     "title": "Why sail with us?",
+    "learn_more": "Learn more",
     "pillar1": {
       "icon": "💶",
       "title": "Accessible for everyone",
       "body": "A municipal school democratising sailing. Become a member and sail from €52.5/month.",
-      "badge": "From €52.5/month"
+      "badge": "From €52.5/month",
+      "backTitle": "AFFORDABLE",
+      "backSubtitle": "Adjusted price",
+      "backBody": "We believe that fun should not be expensive. We offer adjusted prices for groups so everyone can enjoy an exciting experience on the water. Discover how we can help you plan an unforgettable adventure at an affordable price."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "A real community",
       "body": "You'll meet people with the same love of the sea. Bonds that last beyond the boat.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "COMMUNITY",
+      "backSubtitle": "We are not just a school, we are a very close community with values.",
+      "backBody": "A place to meet people with the same love of the sea, share experiences and grow sailing together. You come here to learn, but also to be part of something."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "On your terms",
       "body": "We adapt every outing to your pace, your goals and your mood that day.",
-      "badge": ""
-    }
+      "badge": "",
+      "backTitle": "ON YOUR TERMS",
+      "backSubtitle": "Customization",
+      "backBody": "We adapt to your needs to provide you with a personalized and unique experience. Discover how our team of water activity experts can help you plan the perfect excursion."
+    },
+    "cta": "Discover more ↻"
   },
   "cta": {
     "title": "Set sail with us",
     "subtitle": "Your first trip could be this weekend.",
     "button": "Book now",
     "href": "https://getxobelaeskola.cloud/en/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "SERVICE",
+      "title_line1": "Store your",
+      "title_line2": "sports",
+      "title_line3": "equipment",
+      "subtitle": "No transport. No waiting.\nJust arrive and sail."
+    },
+    "value_props": {
+      "eyebrow": "WHAT'S INCLUDED?",
+      "storage_title": "Store your vessel",
+      "storage_desc": "Dinghy sailing, windsurf or kayak. Always in its place, always ready.",
+      "access_title": "Free access · 24/7",
+      "access_desc": "Any day, at any time. Without asking for permission each time.",
+      "facilities_title": "All-inclusive",
+      "facilities_desc": "Ramp, changing rooms and classrooms. The price hides no surprises."
+    },
+    "carousel": {
+      "eyebrow": "ACCEPTED EQUIPMENT",
+      "title": "Your boat,\nin good hands.",
+      "vela_title": "Dinghy Sailing",
+      "vela_desc": "Optimist, Laser, Pico... Your boat rests here until the next trip.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Boards and masts stored with care. Arrive and rig up in minutes.",
+      "piragua_title": "Kayak / Canoe",
+      "piragua_desc": "From touring kayaks to surf-skis. The Abra awaits you, no excuses."
+    },
+    "pricing": {
+      "eyebrow": "PRICING",
+      "amount": "50",
+      "period": "month",
+      "currency": "€",
+      "item1": "Space for your equipment",
+      "item2": "Free 24/7 access",
+      "item3": "Use of the ramp",
+      "item4": "Changing rooms and classrooms",
+      "cta": "Check availability",
+      "note": "No minimum contract · Ask us without obligation"
+    },
+    "closing": {
+      "phrase": "Arrive. Prepare. Sail.",
+      "btn": "Write to us →"
+    }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "CELEBRATIONS",
+      "title": "CELEBRATE YOUR DAY HERE",
+      "subtitle": "Birthdays · Bachelor Parties · Special Gatherings",
+      "cta": "See how it can be"
+    },
+    "cards": {
+      "title": "What can your celebration look like?",
+      "chill_title": "Chill Out Zone",
+      "chill_desc": "A space to hang out. Music, sofas, shade.",
+      "chill_detail": "artificial grass, tables, awning",
+      "velero_title": "Sailing Boat Navigation",
+      "velero_desc": "One hour sailing the bay",
+      "velero_badge": "~1 hour · J80 or Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Coordination, laughs, and probably water",
+      "combo_title": "Combined Activity",
+      "combo_desc": "Large group? Divide and rotate",
+      "combo_badge": "FOR LARGE GROUPS",
+      "catering_title": "Catering",
+      "catering_desc": "You bring the people, we provide the food"
+    },
+    "timeline": {
+      "title": "This is your day",
+      "step1_time": "11:00",
+      "step1_title": "Arrival",
+      "step1_desc": "You arrive, get settled, music starts",
+      "step2_time": "12:00",
+      "step2_title": "Into the water",
+      "step2_desc": "Sailing or Big SUP — or both",
+      "step3_time": "13:30",
+      "step3_title": "Rest & Sun",
+      "step3_desc": "Rest, chat, sun",
+      "step4_time": "15:00",
+      "step4_title": "Food & toast",
+      "step4_desc": "The best part: together, eating, remembering"
+    },
+    "bigsup": {
+      "title": "Our Big SUP Board",
+      "desc": "Hop on the board! Click on empty seats to fill the crew.",
+      "full": "Crew complete! That's how we roll on the Big SUP.",
+      "cta": "Book this activity"
+    },
+    "catering": {
+      "title": "Catering Options",
+      "subtitle": "We adapt the snacks to your needs",
+      "option1_title": "FULL MEAL",
+      "option1_desc": "Menu prepared by school's catering",
+      "option1_btn": "Inquire",
+      "option2_title": "SNACKS & DRINKS",
+      "option2_desc": "Snacks, fruits, drinks, something sweet",
+      "option2_btn": "Inquire",
+      "option2_badge": "MOST POPULAR",
+      "option3_title": "BRING YOUR OWN",
+      "option3_desc": "Fridges and tables available",
+      "option3_btn": "Free of charge"
+    },
+    "closing": {
+      "phrase": "Celebrate, share, and live something different.",
+      "question": "When do you want to come?",
+      "date": "Select a date",
+      "group": "Number of people",
+      "btn": "Tell us more"
+    }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Summer",
+      "title": "Udalekuak",
+      "subtitle": "Weeks that leave a mark on the sea",
+      "cta": "Book your place {year} →",
+      "scroll": "discover"
+    },
+    "intro": {
+      "title": "They are not just sailing camps.",
+      "subtitle1": "They are complete experiences where",
+      "subtitle2": "learning",
+      "subtitle3": "coexistence",
+      "subtitle4": "play",
+      "subtitle5": "go hand in hand.",
+      "note": "Valid for beginners and experienced sailors alike ✦"
+    },
+    "features": {
+      "eyebrow": "what the camp offers",
+      "title": "A week at sea",
+      "nav_title": "Daily sailing",
+      "nav_desc": "The foundation of the camp. Learn to handle different boats, understand the wind, and navigate with confidence at sea, adapted to each age and level.",
+      "water_title": "Water activities",
+      "water_desc": "Paddle surfing, Big SUP, and kayaking combine with sailing for a complete water experience.",
+      "team_title": "Coexistence and team",
+      "team_desc": "Group dynamics that strengthen teamwork and friendships. When weather stops sailing, cooperative games, workshops, and practical theory.",
+      "friday_title": "Friday snacks",
+      "friday_desc": "Every Friday we close the week with a special moment to celebrate what we lived, laugh together, and say goodbye to the camp as it deserves."
+    },
+    "timeline": {
+      "eyebrow": "availability",
+      "title": "When can you come?",
+      "ss_label": "Easter\nWeek",
+      "ss_sub": "Variable dates",
+      "jun_label": "June",
+      "jun_sub": "From the\n3rd week",
+      "jul_label": "July",
+      "jul_sub": "Full month",
+      "ago_label": "August",
+      "ago_sub": "Full month",
+      "sep_label": "September",
+      "sep_sub": "1st week",
+      "note": "Monday to Friday · Small groups · From 3 years old ✦"
+    },
+    "details": {
+      "eyebrow": "practical information",
+      "title": "What you need to know",
+      "card1_val": "3 years",
+      "card1_lbl": "Minimum age",
+      "card2_val": "5 kids",
+      "card2_lbl": "Minimum per group",
+      "card3_val": "Mon – Fri",
+      "card3_lbl": "Weekly schedule",
+      "card4_val": "Getxo",
+      "card4_lbl": "Port of Algorta",
+      "body1": "Our Udalekus are summer weeks designed for children to live the sea in an intense, fun, and safe way. The core of the camp is daily sailing, adapted to each age and level, combined with water activities like paddle surfing, Big SUP or kayaking, and group dynamics that strengthen teamwork and friendships.",
+      "body2": "When the weather doesn't allow sailing, we organize alternatives like cooperative games, workshops, or practical theory. Every Friday we close the week with a shared snack time — a special moment to celebrate what we have lived."
+    },
+    "cta": {
+      "eyebrow": "summer {year}",
+      "title": "Ready to sail?",
+      "subtitle": "Places are limited. Don't let summer slip away.",
+      "btn_enroll": "Enroll now →",
+      "btn_info": "More info"
+    }
+  },
+  "que_es_la_vela": {
+    "hero_eyebrow": "GetxoBelaEskola · Getxo, Basque Country",
+    "hero_line1": "What is",
+    "hero_line2": "sailing.",
+    "hero_subtitle": "A wonderful sport that combines technique, calm, and a deep connection with the sea. For every person, something different.",
+    "hero_discover": "Discover",
+    "essencia_eyebrow": "the essence",
+    "philosophy_eyebrow": "philosophy",
+    "philosophy_title": "Sailing adapts to you.",
+    "philosophy_subtitle": "You don't have to adapt to the sailing. You can choose what you want to experience and how on every outing.",
+    "cards": {
+      "carta_title": "Bespoke Sailing",
+      "carta_text": "Current weather reports are precise and accessible to anyone. You can choose to sail on calm days, challenging days, or any point in between. All options are valid.",
+      "experiencia_title": "Choose your experience",
+      "experiencia_text": "Calm and meditation, or intensity and adrenaline. Some disconnect from work with hours of silence on the water; others seek strong winds. The sea has all of that.",
+      "escenario_title": "Choose your setting",
+      "escenario_text": "Inner Abra: protected waters to learn and relax. Outer Abra: open and exciting sea. You can start in one and explore the other whenever you want.",
+      "compania_title": "Choose your company",
+      "compania_text": "Small sailboats for 2–6 people, highly active and maneuverable. Or cruiser yachts for up to 8 people, ideal for team dynamics and groups who want to sail together."
+    },
+    "history_eyebrow": "our history",
+    "history_p1": "Sailing is not an exclusively adrenaline-fueled sport nor is it reserved for those seeking extreme emotions. It can also be a gentle, meditative, and deeply relaxing practice.",
+    "history_p1_highlight": "gentle, meditative, and deeply relaxing practice.",
+    "history_p2": "There are those who go out on a small sailboat after work and, for a few hours, completely detach from land-bound worries. On the water, your mind clears on its own: you are attuned to the wind, the heading, the sound of the water, and the movement of the boat. Nothing else.",
+    "history_p3": "In the Basque Country, we have historically had a deep connection with the sea. Our towns grew because of it. Our ancestors fished in small wooden sailboats, competing to reach port first and sell their catch at the best price.",
+    "history_p3_highlight": "deep connection with the sea.",
+    "history_p4": "Sailing is part of our collective memory, even if we sometimes forget it. Today we can rebuild that connection in very different ways, each in our own style and according to what we seek at any given moment.",
+    "selector_eyebrow": "choose your way",
+    "selector_title": "How do you want to sail today?",
+    "selector_calma": "Calm",
+    "selector_accion": "Action",
+    "calma_title": "Sail to disconnect.",
+    "calma_desc": "Inner Abra, protected waters. Small sailboat, no rush. Your mind clears on its own, and for a few hours, nothing exists except the wind, the heading, and the sound of the water.",
+    "calma_tags": [
+      "Protected waters",
+      "No pressure",
+      "Meditative",
+      "After work"
+    ],
+    "calma_cta": "View calm courses →",
+    "accion_title": "Sail to feel.",
+    "accion_desc": "Outer Abra, real wind. Speed, excitement, effort, and reward. For those who seek the intensity of the sea without filters.",
+    "accion_tags": [
+      "Open sea",
+      "Strong wind",
+      "Adrenaline",
+      "Challenge"
+    ],
+    "accion_cta": "View intensive courses →",
+    "cta_eyebrow": "getxobelaeskola · getxo",
+    "cta_title": "That is why sailing remains so special.",
+    "cta_subtitle": "Because it allows you to find your own place in the sea and enjoy it in a thousand different ways.",
+    "cta_button_start": "Start sailing",
+    "cta_button_all": "View all courses",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Preparing experience",
+    "beauty_badge": "↓ Keep exploring",
+    "skip_3d": "Skip 3D experience",
+    "fallback_message": "Your browser does not support 3D graphics. Please update your browser for the full experience.",
+    "aria_3d_region": "Interactive 3D experience: Optimist sailboat shown from different angles as you scroll"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · CORPORATE REGATTA · GETXO",
+      "line1": "Here,",
+      "line2": "hierarchies",
+      "line3": "dissolve",
+      "line4": "into the wind.",
+      "description": "Experiences on the water for companies seeking to truly strengthen their team.",
+      "cta": "★ Request custom quote",
+      "cta_sub": "How it works",
+      "pill1": "⏱ 3–3.5h session",
+      "pill2": "⛵ J80 sailboats",
+      "pill3": "✓ No exp. required",
+      "pill4": "✎ Tailored to your group"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Meeting room",
+        "office_phrase": "Communication is planned.",
+        "sea_label": "Aboard the J80",
+        "sea_phrase": "Aboard, it happens on its own."
+      },
+      "contrast2": {
+        "office_label": "Fixed hierarchies",
+        "office_phrase": "There are those who rule and those who obey.",
+        "sea_label": "Real crew",
+        "sea_phrase": "Everyone has a role that matters."
+      },
+      "contrast3": {
+        "office_label": "Familiar pressure",
+        "office_phrase": "Unexpected events are managed in delay.",
+        "sea_label": "The wind decides",
+        "sea_phrase": "Here, unexpected events happen in real time."
+      },
+      "scrolled_line": "The office no longer exists. Only the team."
+    },
+    "diagram": {
+      "eyebrow": "THE SAILBOAT",
+      "title": "Our J80s. Agile, fun, and perfect for learning together.",
+      "proa": {
+        "label": "Bow",
+        "description": "The front of the boat. Whoever works here handles the headsails, requiring foresight and constant communication.",
+        "skill": "Foresight · Communication"
+      },
+      "timon": {
+        "label": "Helm",
+        "description": "Whoever steers directs the boat but relies on the team to do it well. Real leadership, not just nominal.",
+        "skill": "Leadership · Listening"
+      },
+      "vela_mayor": {
+        "label": "Mainsail",
+        "description": "The primary sail. Its collective handling requires precise coordination and quick reaction to wind changes.",
+        "skill": "Coordination · Reaction"
+      },
+      "winch": {
+        "label": "Winches",
+        "description": "Tension winches. Physical and mechanical work that requires strength, rhythm, and communication with the helmsman.",
+        "skill": "Execution · Rhythm"
+      }
+    },
+    "jornada": {
+      "title": "Your Day",
+      "subtitle": "3h – 3h 30min total",
+      "land": "Land",
+      "sea": "Water",
+      "step1": {
+        "fase": "Land",
+        "title": "Welcome briefing",
+        "desc": "Simple explanation of roles on board, basics of sailing, and the importance of coordination. No technical jargon.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Water",
+        "title": "Sailing and roles",
+        "desc": "The entire team on board the J80s. Every person has a real role. Manoeuvres are the practice: tacks, gybes, communication under pressure.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Water",
+        "title": "Friendly regatta",
+        "desc": "Optional. If there are multiple boats, a friendly regatta where the focus is not on winning, but on applying what was learned. The wind equals everyone.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Land",
+        "title": "Debriefing",
+        "desc": "Back on land. Integrating what was lived: what happened on the boat? What can be taken back to work? A conversation that closes the loop.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "WHAT YOU TAKE AWAY",
+      "title": "It is not a one-off activity. It is an experience that changes how you communicate.",
+      "quote": "At the end, we hold a debriefing to integrate what was lived and apply it to the workplace.",
+      "trans1": {
+        "mar": "Tacking manoeuvre",
+        "trabajo": "Adapting to change"
+      },
+      "trans2": {
+        "mar": "Communication under pressure",
+        "trabajo": "Crisis management"
+      },
+      "trans3": {
+        "mar": "Real role on board",
+        "trabajo": "Individual responsibility"
+      },
+      "trans4": {
+        "mar": "Unpredictable wind",
+        "trabajo": "Tolerance for uncertainty"
+      },
+      "trans5": {
+        "mar": "Collective regatta",
+        "trabajo": "Team above ego"
+      }
+    },
+    "details": {
+      "duration_lbl": "Duration",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Groups",
+      "groups_val": "Adapted to your team size",
+      "availability_lbl": "Availability",
+      "availability_val": "By agreement · Year-round",
+      "level_lbl": "Level required",
+      "level_val": "No prior experience necessary",
+      "form_title": "Ready to get your team out of the meeting room?",
+      "form_subtitle": "We adapt the proposal to your team and budget",
+      "form_company": "Company name",
+      "form_people": "Number of participants",
+      "form_date": "Preferred date",
+      "form_contact": "Contact name and surname",
+      "form_email": "Contact email",
+      "form_message": "Tell us about your specific needs",
+      "form_success": "Request sent successfully! We will get in touch with you as soon as possible.",
+      "cta_gold": "Request custom quote",
+      "cta_secondary": "Write to us directly",
+      "glow_tooltip": "We adapt the proposal to your team and budget"
+    }
+  },
+  "s2_identity": {
+    "eyebrow": "Who we are",
+    "title_line1": "What is",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "We are not a conventional school, but a ",
+    "value1_highlight": "close community with values.",
+    "value2": "A place to <gold>learn to sail</gold>, share, and <gold>enjoy</gold> the sea.",
+    "cta": "Read more"
+  },
+  "s3_adapts": {
+    "eyebrow": "The experience",
+    "title": "Sailing adapts to you",
+    "subtitle_default": "No two days are the same at sea. You choose how to live it.",
+    "combo_calm_int_small": "A quiet afternoon learning in protected waters, you and the sea.",
+    "combo_calm_int_big": "Social sailing in calm waters, learning together without rush.",
+    "combo_calm_ext_small": "Open but calm sea, feeling the breeze, no pressure.",
+    "combo_calm_ext_big": "A serene cruise through the Abra, enjoying the immensity.",
+    "combo_action_int_small": "Intensity in protected waters, ideal for practicing maneuvers.",
+    "combo_action_int_big": "Group adrenaline, strong wind in the inner Abra.",
+    "combo_action_ext_small": "Pure challenge: open sea, agile sailboat, real sensations.",
+    "combo_action_ext_big": "The complete experience: open sea, strong wind, your group.",
+    "card4": {
+      "badge": "Modern sailing ✦",
+      "body": "Current weather reports make it possible to predict conditions exactly. You go out when you want, with what you are looking for. Sailing is now conscious, accessible, and tailored to you."
+    }
   },
   "courses_data": {
     "iniciacion-j80": {
@@ -1367,8 +1919,82 @@
     "alquiler-piragua-1": "Canoe (1 Person)",
     "alquiler-piragua-2": "Canoe (2 People)"
   },
+  "registration_form": {
+    "student_data": "Student / Participant Details",
+    "student_data_prefix": "Student Details",
+    "underage_detected": "Underage person detected",
+    "tutor_required_notice": "It is mandatory to fill in the details of at least one tutor.",
+    "name": "Name",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "e.g., Ane",
+    "surnames": "Surnames",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "e.g., García",
+    "birth_date": "Date of Birth",
+    "age_birth_date": "Age / Date of Birth",
+    "age_placeholder_prefix": "e.g., 12 years old",
+    "id_doc": "DNI / NIE / Passport",
+    "country_label": "Country of Origin",
+    "id_placeholder_prefix": "e.g., 12345678Z",
+    "swim_question": "Can they swim?",
+    "yes": "YES",
+    "no": "NO",
+    "select_option": "Select...",
+    "allergies": "Allergies / Intolerances",
+    "allergies_placeholder": "e.g., No allergies",
+    "special_needs": "Special needs / Relevant medical observations",
+    "special_needs_placeholder": "e.g., Asthma, lactose intolerance, etc.",
+    "special_needs_placeholder_prefix": "e.g., Asthma, ADHD...",
+    "address": "Address",
+    "address_placeholder": "Calle Mayor 12, 3ºB",
+    "locality": "Locality",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Postal Code",
+    "postal_code_placeholder": "48992",
+    "is_minor": "Is the student a minor?",
+    "bank_data": "Bank Details (For direct debit)",
+    "bank_data_required": "Required for formalization of the service",
+    "iban": "Account Number (IBAN)",
+    "titular": "Account Holder",
+    "titular_placeholder": "e.g., Juan García",
+    "payment_method_label": "Payment Method",
+    "pay_with_card": "Credit Card (Stripe)",
+    "pay_with_bank": "Bank Account (Direct Debit)",
+    "doc_dni": "DNI",
+    "doc_nie": "NIE",
+    "doc_passport": "Passport",
+    "tutor_title": "Tutor Details (Mandatory for minors)",
+    "tutor_title_prefix": "Tutor Details",
+    "tutor_phone": "Contact Phone",
+    "tutor_phone_placeholder": "e.g., 600111222",
+    "tutor_email": "Email",
+    "tutor_email_placeholder": "e.g., maria@example.com",
+    "tutor_name": "Name",
+    "tutor_name_placeholder": "e.g., María",
+    "enroll_second": "Enroll a 2nd Student",
+    "enroll_third": "Enroll a 3rd Student",
+    "add_tutor_second": "Add Tutor #2 (Mandatory in case of separated parents)",
+    "add_tutor_second_training": "Add Tutor #2 (Mandatory in case of conflict or separated parents)",
+    "comments_title": "Week Request and Comments",
+    "week_label": "Camp Week / Dates",
+    "week_placeholder": "e.g., Week of July 6th to 10th",
+    "comments_label": "Comments / Planned absences",
+    "comments_placeholder": "e.g., Will miss Thursday due to medical appointment",
+    "membership_mode": "Membership Option",
+    "training_mode": "Training Group",
+    "camp_notice": "Please fill in the details of the students you wish to enroll in the summer camp."
+  },
+  "register_success": {
+    "title": "Registration Completed!",
+    "message": "Your account has been successfully created and confirmed. Welcome to the crew!",
+    "btn_home": "Go to Home",
+    "btn_dashboard": "User Area",
+    "btn_continue": "Continue with my Booking"
+  },
   "payment_success_page": {
     "loading_confirm": "Loading confirmation...",
+    "title_loading": "Processing Payment...",
+    "desc_loading": "We are verifying the payment with the bank. Please wait a moment...",
     "title_warning": "Payment Received",
     "title_membership": "Welcome Aboard",
     "title_rental": "Booking Confirmed",
@@ -1383,6 +2009,7 @@
     "status_checking": "Verifying with bank...",
     "status_completed": "Completed and Verified",
     "status_syncing": "Syncing...",
+    "status_pending": "Pending Activation / Queued",
     "label_service": "Service",
     "label_course": "Course",
     "label_starts": "Starts:",
@@ -1391,6 +2018,35 @@
     "btn_dashboard": "My Personal Dashboard →",
     "admin_supabase": "View in Supabase (Admin)",
     "quote": "\"There is no favorable wind for those who do not know which port they are heading for.\" — Seneca"
+  },
+  "membership_widget": {
+    "title": "Become a Club Member",
+    "description": "Join the Getxo Bela community. For just {price}/month you get rental discounts, course priority, and exclusive events.",
+    "btn_join": "Join Now →",
+    "loading": "Preparing...",
+    "subscribe_error": "Error initiating subscription",
+    "connection_error": "Connection error"
+  },
+  "quick_contact": {
+    "title": "Direct Support",
+    "whatsapp_title": "School WhatsApp",
+    "whatsapp_desc": "Quick response during school hours",
+    "email_title": "Support Email",
+    "email_desc": "Administrative procedures",
+    "status_online": "Online Support",
+    "hours": "Mon-Fri: 09:00 — 19:00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "No Active Vouchers",
+    "no_active_desc": "Purchase a pack of hours to sail with discounts and flexibility.",
+    "btn_view_packs": "See Available Packs",
+    "active_title": "My Active Vouchers",
+    "view_history": "View History",
+    "bono_default_name": "General Voucher",
+    "valid_until": "Valid until {date}",
+    "available": "Available",
+    "remaining_percent": "{percent}% Remaining",
+    "total_hours": "Total: {hours}h"
   },
   "equipos_entrenamiento": {
     "hero": {

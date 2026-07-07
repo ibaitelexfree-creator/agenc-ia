@@ -216,7 +216,8 @@
     "header_suffix": "École Getxo Bela",
     "since": "Fondée à Getxo",
     "desc1": "Il y a plus de 15 ans, nous sommes nés à Getxo avec un objectif clair : rapprocher la mer de tous à partir d'une approche humaine, éducative et accessible. Nous sommes une association à but non lucratif et un projet social qui considère la voile comme un outil d'apprentissage, de coexistence et de transformation personnelle.",
-    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté.",
+    "desc2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté, et notre chemin reste centré sur l'accompagnement des personnes pour qu'elles vivent la mer de manière simple, sûre et authentique.",
+    "desc3": "Nous ne sommes pas une entreprise, et nous n'agissons pas comme telle. En tant qu'association à but non lucratif, tout ce qui rentre est réinvesti dans l'amélioration du projet : renouvellement des bateaux, formation des moniteurs, entretien des installations et développement des activités.",
     "values": {
       "v1_title": "Nos installations",
       "v1_desc": "Situé dans une zone privilégiée de la Marina de Getxo, à quelques mètres de la plage d'Ereaga et avec accès direct à l'Abra. Nous disposons d'une salle de classe audiovisuelle, de vestiaires bien entretenus, d'un grand espace extérieur, d'un atelier et d'un espace détente avec un petit sauna.",
@@ -308,8 +309,14 @@
     "book_for": "Réserver pour",
     "online_course_instant": "Cours en ligne - Accès immédiat",
     "no_dates_needed": "Aucune date n'est nécessaire. Commencez maintenant.",
+    "flexible_date_notice": "Réservation flexible. Vous choisirez l'heure exacte avec l'école.",
     "error_generic": "Quelque chose s'est mal passé",
-    "payment_gateway_error": "Erreur lors de la connexion à la passerelle de paiement"
+    "payment_gateway_error": "Erreur lors de la connexion à la passerelle de paiement",
+    "is_member": "Le participant est membre (50% de réduction)",
+    "member_discount_applied": "Remise de membre de 50 % appliquée !",
+    "membership_not_found": "Aucune adhésion active n'a été trouvée pour votre compte ou vos proches. Pour bénéficier de la réduction de 50%, vous devez être un membre officiel.",
+    "selected_not_member": "Le participant sélectionné ({name}) n'est pas membre. Pour appliquer la réduction, le participant inscrit doit avoir une adhésion active.",
+    "parent_not_member": "Vous (propriétaire du compte) n'avez pas d'adhésion active. Pour appliquer la réduction, le participant inscrit doit être membre."
   },
   "staff_panel": {
     "tabs": {
@@ -374,10 +381,12 @@
     "resend_email": "Renvoyer",
     "resend_success": "Email renvoyé avec succès.",
     "google_btn": "Continuer avec Google",
-    "rate_limit": "Vous avez dépassé la limite de tentatives. Veuillez attendre quelques minutes avant de réessayer."
+    "rate_limit": "Vous avez dépassé la limite de tentatives. Veuillez attendre quelques minutes avant de réessayer.",
+    "or_divider": "OU BIEN"
   },
   "legal": {
     "rental_contract": "CONTRAT DE LOCATION DE MATÉRIEL NAUTIQUE - GETXO BELA ESKOLA\n\n1. EXIGENCES DU LOCATAIRE : Le client déclare posséder les connaissances techniques nécessaires à la manipulation en toute sécurité du matériel loué. Dans le cas des voiliers de plaisance, la qualification minimale correspondante est requise.\n\n2. ÉTAT ET RETOUR : Le matériel est livré en parfait état de fonctionnement. Le client s'engage à le restituer dans le même état. Tout dommage causé par négligence sera de la responsabilité exclusive du client.\n\n3. ZONES DE NAVIGATION : La navigation sera limitée aux zones autorisées et aux horaires convenus. Le client s'engage à respecter les règles de la Marina de Getxo et les règlements de la Capitainerie Maritime.\n\n4. SÉCURITÉ : L'utilisation d'un gilet de sauvetage est obligatoire et personnelle à tout moment dans l'eau.\n\n5. SAUVETAGE ET ASSISTANCE : Si le client nécessite une assistance ou un sauvetage en raison d'une imprudence ou d'une sortie des zones autorisées, les frais en résultant seront à sa charge.\n\n6. SIGNATURE NUMÉRIQUE : En cochant la case d'acceptation, le client ratifie qu'il a compris tous les points précédents et assume sa responsabilité légale.",
+    "course_contract": "CONDITIONS GÉNÉRALES DE VENTE - GETXO BELA ESKOLA\n\n1. OBJET ET CHAMP D'APPLICATION : Le présent document établit les conditions légales pour l'inscription aux cours dispensés par Getxo Bela Eskola.\n\n2. APTITUDE PHYSIQUE ET SÉCURITÉ : L'élève déclare être dans des conditions physiques adéquates pour la pratique de la navigation et ne pas souffrir de maladies qui l'empêchent. Le port d'un gilet de sauvetage est obligatoire et il est impératif de suivre les instructions du skipper ou du moniteur à tout moment.\n\n3. RESPONSABILITÉ : Getxo Bela Eskola n'est pas responsable des effets personnels des élèves. L'école dispose des assurances responsabilité civile et accidents obligatoires par la loi.\n\n4. CONDITIONS MÉTÉOROLOGIQUES : L'école se réserve le droit d'annuler ou de reporter les sessions si les conditions de mer ou de vent représentent un risque pour la sécurité des élèves et du matériel.\n\n5. POLITIQUE D'ANNULATION : Les annulations par l'élève doivent être communiquées au moins 48 heures à l'avance pour avoir droit à un report à une autre date (sous réserve de disponibilité).\n\n6. ACCEPTATION : Cliquer sur \"Accepter\" constitue une signature électronique contraignante en vertu de la législation en vigueur sur les services de la société de l'information.",
     "consent_acceptance": "J'ai lu et j'accepte expressément les conditions légales détaillées ci-dessus. Je comprends que cette acceptation équivaut à une signature numérique contraignante.",
     "error_log_consent": "Impossible d'enregistrer la signature légale. Veuillez réessayer.",
     "privacy_title": "Politique de Confidentialité",
@@ -388,15 +397,25 @@
     "terms_title": "Conditions d'Inscription",
     "rental_title": "Conditions de Location",
     "back": "Retour",
+    "next": "Suivant",
+    "step_prefix": "Étape",
+    "step_of": "sur",
+    "step_doc": "Documentation",
+    "step_form": "Formulaire d'inscription",
+    "step_sign": "Signature numérique",
     "mandatory_docs": "Documents Légaux Obligatoires",
     "click_to_read": "* Cliquez sur chaque document pour le lire en ligne ici même.",
     "full_name": "Nom Complet",
     "identity_doc": "Document d'Identité",
+    "country_label": "Pays d'Origine",
     "email_label": "Email d'Inscription",
     "confirmation_checkbox": "Je confirme avoir lu et accepté expressément les documents PDF indiqués ci-dessus, ainsi que les conditions détaillées dans ce formulaire. Je comprends que cette acceptation équivaut à une signature numérique contraignante.",
     "sign_and_continue": "Signer et passer au paiement",
     "cancel": "Annuler",
-    "processing": "Traitement..."
+    "processing": "Traitement...",
+    "summary_title": "Résumé des Conditions Générales et Règlements",
+    "digital_signature_title": "Signature Numérique du Document",
+    "digital_signature_desc": "En remplissant vos coordonnées d'identité ci-dessous et en cochant la case, vous déclarez sous votre responsabilité que toutes les informations fournies sont exactes et que vous acceptez les règles de coexistence, de LOPD et d'image détaillées dans ce processus."
   },
   "validation": {
     "name_short": "Nom trop court",
@@ -404,7 +423,27 @@
     "email_invalid": "Email invalide",
     "password_short": "Minimum 6 caractères",
     "subject_short": "Sujet trop court",
-    "message_short": "Le message est trop court"
+    "message_short": "Le message est trop court",
+    "name_required": "Le nom est obligatoire",
+    "surnames_required": "Les noms de famille sont obligatoires",
+    "age_required": "L'âge est obligatoire",
+    "swim_required": "Veuillez sélectionner s'il sait nager",
+    "tutor_name_required": "Le nom du tuteur est obligatoire",
+    "tutor_surnames_required": "Les noms de famille du tuteur sont obligatoires",
+    "tutor_dni_required": "Le DNI du tuteur est obligatoire",
+    "tutor_phone_required": "Le téléphone du tuteur est obligatoire",
+    "tutor_email_required": "L'email du tuteur est obligatoire",
+    "week_required": "Veuillez saisir la semaine demandée",
+    "birth_date_required": "La date de naissance est obligatoire",
+    "dni_required": "Le document d'identité est obligatoire",
+    "address_required": "L'adresse est obligatoire",
+    "locality_required": "La localité est obligatoire",
+    "postal_code_required": "Le code postal est obligatoire",
+    "mode_required": "Veuillez sélectionner une option",
+    "iban_required": "L'IBAN est obligatoire",
+    "titular_required": "Le titulaire du compte est obligatoire",
+    "invalid_identity_document": "Le document d'identité n'est pas valide, veuillez vérifier à nouveau.",
+    "min_age_required": "Le participant doit avoir au moins 3 ans."
   },
   "footer": {
     "courses": "Cours",
@@ -495,7 +534,42 @@
       "btn_start": "Commencer maintenant"
     },
     "micro_lessons": {
-      "title": "Micro-Leçons"
+      "title": "Micro-Leçons",
+      "weekly_updates": "Nouveautés Hebdomadaires",
+      "categories": {
+        "maniobra": "Manœuvre",
+        "cabuyeria": "Matelotage",
+        "teoria": "Théorie",
+        "seguridad": "Sécurité",
+        "partes": "Pièces"
+      },
+      "lessons": {
+        "1": {
+          "title": "L'Œil du Vent",
+          "category": "Manœuvre",
+          "description": "Comprenez la zone où les voiles ne portent pas et comment l'éviter."
+        },
+        "2": {
+          "title": "Nœud de Chaise",
+          "category": "Matelotage",
+          "description": "Le roi des nœuds : sûr, solide et facile à défaire."
+        },
+        "3": {
+          "title": "Au Vent vs Sous le Vent",
+          "category": "Théorie",
+          "description": "Apprenez à différencier les côtés du bateau selon le vent."
+        },
+        "4": {
+          "title": "Priorités de Passage",
+          "category": "Sécurité",
+          "description": "Règles de base pour éviter les abordages en mer."
+        },
+        "5": {
+          "title": "Parties de la Voile",
+          "category": "Pièces",
+          "description": "Point de drisse, point d'amure et point d'écoute. Qui est qui ?"
+        }
+      }
     },
     "courses_section": {
       "title": "Vos prochains cours en personne",
@@ -513,6 +587,55 @@
     "history_section": {
       "title": "Historique Récent",
       "completed": "Terminé"
+    },
+    "daily_challenge": {
+      "title": "Défi du Jour",
+      "subtitle": "Apprenez quelque chose de nouveau aujourd'hui",
+      "reward": "+{xp} XP",
+      "submit": "Vérifier la réponse",
+      "correct": "Excellent ! Vous avez gagné {xp} XP.",
+      "wrong": "Ce n'est pas correct. La réponse était : {answer}",
+      "already_done": "Vous avez déjà complété votre défi quotidien.",
+      "come_back": "Revenez demain pour continuer à accumuler des points.",
+      "explanation": "Le saviez-vous...",
+      "streak": "{streak} JOURS CONSÉCUTIFS 🔥",
+      "iq": "IQ NAUTIQUE : {accuracy}%",
+      "correct_attempts": "Réponses correctes",
+      "current_streak": "Série",
+      "streak_progress": "Progression de la série",
+      "syncing": "SYNCHRONISATION DU CAP...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "Qu'est-ce que l'Amure ?",
+          "options": [
+            "La partie avant du flanc du navire",
+            "La partie arrière du navire",
+            "Le câble maintenant le mât",
+            "Une petite voile"
+          ],
+          "explanation": "L'amure est la zone du flanc du navire qui se rétrécit pour former la proue."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "Comment s'appelle le côté droit du navire en regardant vers l'avant (la proue) ?",
+          "options": [
+            "Bâbord",
+            "Tribord",
+            "Poupe",
+            "Flanc"
+          ],
+          "explanation": "Tribord est le nom donné au côté droit d'un navire."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Académie Numérique",
+      "club": "Club",
+      "upcoming_event": "Événement à Venir",
+      "course": "Cours",
+      "rental": "Location",
+      "free_sailing": "Navigation Libre",
+      "daily_challenge_teaser": "Défi du Jour",
+      "earn_xp": "Gagnez +{xp} XP aujourd'hui"
     }
   },
   "wind_lab": {
@@ -591,13 +714,17 @@
     "verified_member": "Membre vérifié",
     "official_partner": "Partenaire Officiel",
     "account_info": "Informations du compte",
-    "role": "Rôle",
     "student": "Étudiant",
+    "partner": "Membre",
+    "instructor": "Instructeur",
     "edit_profile": "Modifier le Profil",
     "managing_subscription": "Gérer l'abonnement",
     "membership_card": "Ma Carte de Membre",
     "loading": "Chargement...",
     "portal_error": "Erreur lors de l'ouverture du portail de paiement",
+    "experience_points": "Points d'Expérience",
+    "my_family": "Mes Enfants / Proches",
+    "role": "Rôle",
     "connection_error": "Erreur de connexion"
   },
   "sea_state_widget": {
@@ -658,7 +785,30 @@
         "L'option la plus complète : s'entraîner de manière structurée et naviguer librement"
       ]
     },
-    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an)."
+    "federation": "Fédération et assurance : Licence de la Fédération Basque de Voile (environ 64 € par an).",
+    "benefits": {
+      "b1_title": "Membre de base",
+      "b1_desc": "Jusqu'à 30 sorties par an de 4-5 heures chacune (en croiseur J80 ou dériveur). 630 €/an ou 350 € pour 15 sorties semestrielles.",
+      "b2_title": "Pack Complet",
+      "b2_desc": "Technicisation + Membre. Participation aux entraînements (3 jours/mois, 4h) et sorties illimitées. 1200 €/an.",
+      "b3_title": "Naviguer en groupe",
+      "b3_desc": "Accès à un groupe WhatsApp où les équipages sont formés et les sorties organisées selon le niveau et les conditions.",
+      "b4_title": "Accompagnement Réel",
+      "b4_desc": "Les membres apprennent à leur rythme, sans pression, et font partie de la vie interne du club : propositions et améliorations partagées.",
+      "b5_title": "Communauté Active",
+      "b5_desc": "Il ne s'agit pas seulement de venir un jour précis, mais de faire partie d'une communauté qui apprend, évolue et s'amuse ensemble.",
+      "b6_title": "Fédération et Assurance",
+      "b6_desc": "Dans les deux options, il est nécessaire d'adhérer à la Fédération Basque de Voile, offrant une assurance et l'accès aux régates (environ 64 €)."
+    },
+    "hero_title_part1": "Faites partie de",
+    "hero_title_part2": "notre équipage",
+    "section_title_part1": "Bien plus que naviguer,",
+    "section_title_part2": "un style de vie partagé",
+    "benefits_eyebrow": "Avantages Exclusifs",
+    "benefits_title": "Avantages d'être membre",
+    "cta_title": "Prêt à rejoindre l'équipage ?",
+    "cta_desc": "Contactez notre équipe administrative pour demander votre inscription ou pour effectuer une sortie d'essai avec nos instructeurs.",
+    "cta_button": "Demander des informations"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Ton école de voile sur l'Abra",
@@ -666,10 +816,25 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "On n'est pas une école. On est ta mer.",
-    "subtitle": "Un lieu de rencontre où la voile est le prétexte pour partager, grandir et ressentir la mer sans pression.",
-    "cta": "Découvrir →",
-    "scroll_hint": "Continue à naviguer"
+    "title": "Club de Voile | à Getxo",
+    "subtitle": "Naviguez, apprenez et partagez",
+    "cta": "Devenir Membre",
+    "scroll_hint": "Continuer à naviguer",
+    "word1": "Naviguez.",
+    "word2": "Apprenez.",
+    "word3": "Partagez.",
+    "tu_mar_tu_club": "Votre mer. Votre club.",
+    "todo_lo_que_ofrecemos": "Tout ce que nous offrons",
+    "card_cursos_title": "Cours",
+    "card_cursos_subtitle": "Apprenez à naviguer",
+    "card_club_title": "Club Membres",
+    "card_club_subtitle": "Rejoignez la communauté",
+    "card_equipos_title": "Équipes",
+    "card_equipos_subtitle": "Visez l'excellence",
+    "card_udalekuak_title": "Udalekuak",
+    "card_udalekuak_subtitle": "Camps de voile",
+    "card_entidades_title": "Entités",
+    "card_entidades_subtitle": "Devenez partenaire"
   },
   "s2": {
     "eyebrow": "L'expérience",
@@ -726,30 +891,442 @@
   "s4": {
     "eyebrow": "",
     "title": "Pourquoi naviguer avec nous ?",
+    "learn_more": "En savoir plus",
     "pillar1": {
       "icon": "💶",
       "title": "Accessible à tous",
       "body": "École municipale qui démocratise la voile. Deviens membre et navigue dès 52,5 €/mois.",
-      "badge": "Dès 52,5 €/mois"
+      "badge": "Dès 52,5 €/mois",
+      "backTitle": "ÉCONOMIQUE",
+      "backSubtitle": "Prix ajusté",
+      "backBody": "Nous pensons que le plaisir ne doit pas être coûteux. Nous proposons des prix adaptés aux groupes pour que chacun puisse profiter d'une expérience passionnante sur l'eau. Découvrez comment nous pouvons vous aider à planifier une aventure inoubliable à un prix abordable."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "Une vraie communauté",
       "body": "Tu rencontreras des gens avec le même amour de la mer. Des liens qui durent au-delà du bateau.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "COMMUNAUTÉ",
+      "backSubtitle": "Nous ne sommes pas seulement une école, nous sommes une communauté très proche avec des valeurs.",
+      "backBody": "Un endroit pour rencontrer des gens partageant le même amour de la mer, partager des expériences et grandir en naviguant ensemble. Ici, vous venez pour apprendre, mais aussi pour faire partie de quelque chose."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "À ta mesure",
       "body": "On adapte chaque sortie à ton rythme, tes objectifs et tes envies du jour.",
-      "badge": ""
-    }
+      "badge": "",
+      "backTitle": "À TA MESURE",
+      "backSubtitle": "Personnalisation",
+      "backBody": "Nous nous adaptons à vos besoins pour vous offrir une expérience personnalisée et unique. Découvrez comment notre équipe d'experts en activités nautiques peut vous aider à planifier l'excursion parfaite."
+    },
+    "cta": "En savoir plus ↻"
   },
   "cta": {
     "title": "Prends le large avec nous",
     "subtitle": "Ta première sortie peut être ce week-end.",
     "button": "Réserver maintenant",
     "href": "https://getxobelaeskola.cloud/fr/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "SERVICE",
+      "title_line1": "Stockez votre",
+      "title_line2": "matériel",
+      "title_line3": "de sport",
+      "subtitle": "Pas de transport. Pas d'attente.\nArrivez et naviguez, tout simplement."
+    },
+    "value_props": {
+      "eyebrow": "QU'EST-CE QUI EST INCLUS ?",
+      "storage_title": "Stockez votre embarcation",
+      "storage_desc": "Dériveur, planche à voile ou kayak. Toujours à sa place, toujours prêt.",
+      "access_title": "Accès libre · 24/7",
+      "access_desc": "N'importe quel jour, à n'importe quelle heure. Sans demander la permission.",
+      "facilities_title": "Tout inclus",
+      "facilities_desc": "Rampe, vestiaires et salles. Le prix ne cache aucune surprise."
+    },
+    "carousel": {
+      "eyebrow": "MATÉRIEL ACCEPTÉ",
+      "title": "Votre embarcation,\nentre de bonnes mains.",
+      "vela_title": "Voile Légère",
+      "vela_desc": "Optimist, Laser, Pico... Votre bateau se repose ici en attendant la prochaine sortie.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Planches et mâts stockés avec soin. Arrivez et gréez en quelques minutes.",
+      "piragua_title": "Kayak / Pirogue",
+      "piragua_desc": "Du kayak de randonnée au surf-ski. L'Abra vous attend, pas d'excuse."
+    },
+    "pricing": {
+      "eyebrow": "TARIF",
+      "amount": "50",
+      "period": "mois",
+      "currency": "€",
+      "item1": "Espace pour votre matériel",
+      "item2": "Accès libre 24/7",
+      "item3": "Utilisation de la rampe",
+      "item4": "Vestiaires et salles",
+      "cta": "Vérifier la disponibilité",
+      "note": "Sans engagement de durée · Consultez-nous sans engagement"
+    },
+    "closing": {
+      "phrase": "Arrivez. Préparez. Naviguez.",
+      "btn": "Écrivez-nous →"
+    }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "CÉLÉBRATIONS",
+      "title": "CÉLÉBREZ VOTRE JOURNÉE ICI",
+      "subtitle": "Anniversaires · EVG/EVJF · Rencontres spéciales",
+      "cta": "Découvrez le programme"
+    },
+    "cards": {
+      "title": "À quoi peut ressembler votre fête ?",
+      "chill_title": "Espace Chill Out",
+      "chill_desc": "Un endroit pour se détendre. Musique, canapés, ombre.",
+      "chill_detail": "pelouse artificielle, tables, auvent",
+      "velero_title": "Navigation en Voilier",
+      "velero_desc": "Une heure de voile dans la baie",
+      "velero_badge": "~1 heure · J80 ou Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Coordination, rires, et probablement de l'eau",
+      "combo_title": "Activité Combinée",
+      "combo_desc": "Grand groupe ? Divisez et alternez",
+      "combo_badge": "POUR LES GRANDS GROUPES",
+      "catering_title": "Restauration",
+      "catering_desc": "Vous amenez le monde, nous offrons le repas"
+    },
+    "timeline": {
+      "title": "Votre journée type",
+      "step1_time": "11:00",
+      "step1_title": "Arrivée",
+      "step1_desc": "Vous arrivez, vous vous installez, la musique commence",
+      "step2_time": "12:00",
+      "step2_title": "À l'eau",
+      "step2_desc": "Voilier ou Big SUP — ou les deux",
+      "step3_time": "13:30",
+      "step3_title": "Détente & Soleil",
+      "step3_desc": "Détente, discussion, soleil",
+      "step4_time": "15:00",
+      "step4_title": "Repas & Toast",
+      "step4_desc": "Le meilleur moment : ensemble, manger, se remémorer"
+    },
+    "bigsup": {
+      "title": "Notre Planche de Big SUP",
+      "desc": "Montez sur la planche ! Cliquez sur les sièges vides pour compléter l'équipage.",
+      "full": "Équipage au complet ! C'est ça le plaisir du Big SUP.",
+      "cta": "Réserver cette activité"
+    },
+    "catering": {
+      "title": "Options Traiteur",
+      "subtitle": "Nous adaptons le goûter à vos besoins",
+      "option1_title": "REPAS COMPLET",
+      "option1_desc": "Menu préparé par le traiteur de l'école",
+      "option1_btn": "Consulter",
+      "option2_title": "GOÛTER",
+      "option2_desc": "Snacks, fruits, boissons, sucreries",
+      "option2_btn": "Consulter",
+      "option2_badge": "LE PLUS POPULAIRE",
+      "option3_title": "APPORTEZ LE VÔTRE",
+      "option3_desc": "Réfrigérateurs et tables disponibles",
+      "option3_btn": "Sans frais"
+    },
+    "closing": {
+      "phrase": "Célébrer, partager et vivre autre chose.",
+      "question": "Quand voulez-vous venir ?",
+      "date": "Sélectionnez une date",
+      "group": "Nombre de personnes",
+      "btn": "Dites-en nous plus"
+    }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Été",
+      "title": "Udalekuak",
+      "subtitle": "Des semaines qui laissent une empreinte sur la mer",
+      "cta": "Réserver votre place {year} →",
+      "scroll": "découvrir"
+    },
+    "intro": {
+      "title": "Ce ne sont pas seulement des camps de voile.",
+      "subtitle1": "Ce sont des expériences complètes où",
+      "subtitle2": "l'apprentissage",
+      "subtitle3": "la coexistence",
+      "subtitle4": "le jeu",
+      "subtitle5": "vont de pair.",
+      "note": "Valable pour les débutants comme pour les initiés ✦"
+    },
+    "features": {
+      "eyebrow": "ce que propose le camp",
+      "title": "Une semaine en mer",
+      "nav_title": "Navigation quotidienne",
+      "nav_desc": "La base du camp. Apprendre à manœuvrer différents bateaux, comprendre le vent et se déplacer en toute confiance en mer, adapté à chaque âge et niveau.",
+      "water_title": "Activités aquatiques",
+      "water_desc": "Le paddle surf, le Big SUP et le kayak se combinent avec la voile pour une expérience aquatique complète.",
+      "team_title": "Coexistence et équipe",
+      "team_desc": "Des dynamiques de groupe qui renforcent le travail d'équipe et les amitiés. Si la météo empêche de naviguer : jeux coopératifs, ateliers et théorie pratique.",
+      "friday_title": "Le goûter du vendredi",
+      "friday_desc": "Chaque vendredi, nous clôturons la semaine avec un moment spécial pour célébrer ce que nous avons vécu, rire ensemble et dire au revoir au camp."
+    },
+    "timeline": {
+      "eyebrow": "disponibilité",
+      "title": "Quand pouvez-vous venir ?",
+      "ss_label": "Semaine\nSainte",
+      "ss_sub": "Dates variables",
+      "jun_label": "Juin",
+      "jun_sub": "À partir de la\n3ème semaine",
+      "jul_label": "Juillet",
+      "jul_sub": "Mois complet",
+      "ago_label": "Août",
+      "ago_sub": "Mois complet",
+      "sep_label": "Septembre",
+      "sep_sub": "1ère semaine",
+      "note": "Du lundi au vendredi · Petits groupes · À partir de 3 ans ✦"
+    },
+    "details": {
+      "eyebrow": "informations pratiques",
+      "title": "Ce que vous devez savoir",
+      "card1_val": "3 ans",
+      "card1_lbl": "Âge minimum",
+      "card2_val": "5 enfants",
+      "card2_lbl": "Minimum par groupe",
+      "card3_val": "Lu – Ve",
+      "card3_lbl": "Horaire hebdomadaire",
+      "card4_val": "Getxo",
+      "card4_lbl": "Port d'Algorta",
+      "body1": "Nos Udalekus sont des semaines d'été conçues pour que les enfants vivent la mer de manière intense, amusante et sécurisée. La base du camp est la navigation quotidienne, adaptée à chaque âge et niveau, combinée à des activités aquatiques comme le paddle surf, le Big SUP ou le kayak, et à des dynamiques de groupe qui renforcent le travail d'équipe et les amitiés.",
+      "body2": "Lorsque la météo ne permet pas de naviguer, des alternatives telles que des jeux coopératifs, des ateliers ou de la théorie pratique sont organisées. Chaque vendredi, nous clôturons la semaine avec un goûter partagé — un moment privilégié pour célébrer ce qui a été vécu."
+    },
+    "cta": {
+      "eyebrow": "été {year}",
+      "title": "Prêt à embarquer ?",
+      "subtitle": "Les places sont limitées. Ne laissez pas passer l'été.",
+      "btn_enroll": "S'inscrire maintenant →",
+      "btn_info": "Plus d'informations"
+    }
+  },
+  "que_es_la_vela": {
+    "hero_eyebrow": "GetxoBelaEskola · Getxo, Pays Basque",
+    "hero_line1": "Qu'est-ce que",
+    "hero_line2": "la voile.",
+    "hero_subtitle": "Un sport merveilleux qui allie technique, calme et une connexion profonde avec la mer. Pour chaque personne, quelque chose de différent.",
+    "hero_discover": "Découvrir",
+    "essencia_eyebrow": "l'essence",
+    "philosophy_eyebrow": "philosophie",
+    "philosophy_title": "La voile s'adapte à vous.",
+    "philosophy_subtitle": "Vous n'avez pas à vous adapter à la navigation. Vous pouvez choisir ce que vous voulez vivre et comment à chaque sortie.",
+    "cards": {
+      "carta_title": "Navigation à la carte",
+      "carta_text": "Les bulletins météo actuels sont précis et accessibles à tous. Vous pouvez choisir de naviguer par jours calmes, jours sportifs ou n'importe où entre les deux. Toutes les options sont valables.",
+      "experiencia_title": "Choisissez votre expérience",
+      "experiencia_text": "Calme et méditation, ou intensité et adrénaline. Certains se déconnectent du travail avec des heures de silence sur l'eau ; d'autres recherchent des vents forts. La mer a tout cela.",
+      "escenario_title": "Choisissez votre décor",
+      "escenario_text": "Abra intérieur : des eaux protégées pour apprendre et se détendre. Abra extérieur : mer ouverte et excitante. Vous pouvez commencer dans l'un et explorer l'autre quand vous le souhaitez.",
+      "compania_title": "Choisissez votre compagnie",
+      "compania_text": "Petits voiliers pour 2 à 6 personnes, très réactifs et maniables. Ou bateaux de croisière jusqu'à 8 personnes, idéaux pour la dynamique d'équipe et les groupes qui veulent naviguer ensemble."
+    },
+    "history_eyebrow": "notre histoire",
+    "history_p1": "La voile n'est pas un sport exclusivement axé sur l'adrénaline ni réservé à ceux qui recherchent des émotions fortes. Elle peut aussi être une pratique douce, méditative et profondément relaxante.",
+    "history_p1_highlight": "douce, méditative et profondément relaxante.",
+    "history_p2": "Certains sortent sur un petit voilier après le travail et, pendant quelques heures, se détachent complètement des soucis de la terre. En mer, l'esprit s'apaise de lui-même : vous êtes attentif au vent, au cap, au bruit de l'eau et au mouvement du bateau. Rien d'autre.",
+    "history_p3": "Au Pays Basque, nous avons historiquement eu une relation profonde avec la mer. Nos villages se sont développés grâce à elle. Nos ancêtres pêchaient dans de petits voiliers en bois, rivalisant pour arriver au port en premier et vendre leur poisson au meilleur prix.",
+    "history_p3_highlight": "relation profonde avec la mer.",
+    "history_p4": "La voile fait partie de notre mémoire collective, même si nous l'avons parfois oubliée. Aujourd'hui, nous pouvons renouer avec cette relation de différentes manières, chacune à son rythme et selon ce qu'elle recherche à chaque instant.",
+    "selector_eyebrow": "choisissez votre voie",
+    "selector_title": "Comment voulez-vous naviguer aujourd'hui ?",
+    "selector_calma": "Calme",
+    "selector_accion": "Action",
+    "calma_title": "Naviguer pour déconnecter.",
+    "calma_desc": "Abra intérieur, eaux protégées. Petit voilier, pas de précipitation. L'esprit s'apaise de lui-même, et pendant quelques heures, plus rien n'existe à part le vent, le cap et le bruit de l'eau.",
+    "calma_tags": [
+      "Eaux protégées",
+      "Sans pression",
+      "Méditatif",
+      "Après le travail"
+    ],
+    "calma_cta": "Voir les cours calmes →",
+    "accion_title": "Naviguer pour ressentir.",
+    "accion_desc": "Abra extérieur, vent réel. Vitesse, émotion, effort et récompense. Pour ceux qui recherchent l'intensité de la mer sans filtres.",
+    "accion_tags": [
+      "Mer ouverte",
+      "Vent fort",
+      "Adrénaline",
+      "Défi"
+    ],
+    "accion_cta": "Voir les cours intensifs →",
+    "cta_eyebrow": "getxobelaeskola · getxo",
+    "cta_title": "C'est pourquoi la voile reste si spéciale.",
+    "cta_subtitle": "Parce qu'elle permet de trouver sa propre place en mer et d'en profiter de mille façons différentes.",
+    "cta_button_start": "Commencer à naviguer",
+    "cta_button_all": "Voir tous les cours",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Préparation de l'expérience",
+    "beauty_badge": "↓ Continuez à explorer",
+    "skip_3d": "Passer l'expérience 3D",
+    "fallback_message": "Votre navigateur ne supporte pas les graphiques 3D. Veuillez mettre à jour votre navigateur pour l'expérience complète.",
+    "aria_3d_region": "Expérience 3D interactive : voilier Optimist sous différents angles en faisant défiler"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · RÉGATE D'ENTREPRISE · GETXO",
+      "line1": "Ici,",
+      "line2": "les hiérarchies",
+      "line3": "se dissolvent",
+      "line4": "dans le vent.",
+      "description": "Des expériences en mer pour les entreprises qui cherchent à renforcer réellement leur équipe.",
+      "cta": "★ Demander un devis sur mesure",
+      "cta_sub": "Comment ça marche",
+      "pill1": "⏱ 3–3,5h de session",
+      "pill2": "⛵ Voiliers J80",
+      "pill3": "✓ Sans exp. requise",
+      "pill4": "✎ Sur mesure pour votre groupe"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Salle de réunion",
+        "office_phrase": "La communication est planifiée.",
+        "sea_label": "À bord du J80",
+        "sea_phrase": "À bord, elle se fait toute seule."
+      },
+      "contrast2": {
+        "office_label": "Hiérarchies fixes",
+        "office_phrase": "Il y a ceux qui dirigent et ceux qui obéissent.",
+        "sea_label": "Équipage réel",
+        "sea_phrase": "Chacun a un rôle qui compte."
+      },
+      "contrast3": {
+        "office_label": "Pression familière",
+        "office_phrase": "Les imprévus sont gérés en différé.",
+        "sea_label": "Le vent décide",
+        "sea_phrase": "Ici, les imprévus sont en temps réel."
+      },
+      "scrolled_line": "Le bureau n'existe plus. Seule l'équipe compte."
+    },
+    "diagram": {
+      "eyebrow": "LE VOILIER",
+      "title": "Nos J80. Agiles, amusants et parfaits pour apprendre ensemble.",
+      "proa": {
+        "label": "Proue",
+        "description": "L'avant du bateau. Celui qui travaille ici manipule les voiles d'avant, nécessitant anticipation et communication constante.",
+        "skill": "Anticipation · Communication"
+      },
+      "timon": {
+        "label": "Barre",
+        "description": "Celui qui barre dirige le bateau mais dépend de l'équipe pour bien le faire. Liderazgo réel, non nominal.",
+        "skill": "Leadership · Écoute"
+      },
+      "vela_mayor": {
+        "label": "Grand-voile",
+        "description": "La voile principale. Sa manipulation collective exige une coordination précise et une réaction rapide aux changements de vent.",
+        "skill": "Coordination · Réaction"
+      },
+      "winch": {
+        "label": "Winchs",
+        "description": "Les tambours de tension. Travail physique et mécanique qui demande force, rythme et communication avec le barreur.",
+        "skill": "Exécution · Rythme"
+      }
+    },
+    "jornada": {
+      "title": "Votre Journée",
+      "subtitle": "3h – 3h 30min au total",
+      "land": "Terre",
+      "sea": "Eau",
+      "step1": {
+        "fase": "Terre",
+        "title": "Briefing de bienvenue",
+        "desc": "Explication simple des rôles à bord, des bases de la navigation et de l'importance de la coordination. Sans jargon technique.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Eau",
+        "title": "Navigation et rôles",
+        "desc": "Toute l'équipe à bord des J80. Chaque personne occupe un rôle réel. Les manoeuvres sont la pratique : virements, empannages, communication sous pression.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Eau",
+        "title": "Régate amicale",
+        "desc": "Optionnel. S'il y a plusieurs bateaux, une régate amicale où le but n'est pas de gagner, mais de mettre en pratique ce qui a été appris. Le vent met tout le monde à égalité.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Terre",
+        "title": "Débriefing",
+        "desc": "Retour à terre. Intégration de l'expérience : que s'est-il passé sur le bateau ? Que peut-on transposer au travail ? Une discussion qui boucle la boucle.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "CE QUE VOUS EN RETIREZ",
+      "title": "Ce n'est pas une activité ponctuelle. C'est une expérience qui change votre façon de communiquer.",
+      "quote": "À la fin, nous tenons un débriefing pour intégrer l'expérience et la transposer au travail.",
+      "trans1": {
+        "mar": "Manoeuvre de virement",
+        "trabajo": "S'adapter au changement"
+      },
+      "trans2": {
+        "mar": "Communication sous pression",
+        "trabajo": "Gestion de crise"
+      },
+      "trans3": {
+        "mar": "Rôle réel à bord",
+        "trabajo": "Responsabilité individuelle"
+      },
+      "trans4": {
+        "mar": "Vent imprévisible",
+        "trabajo": "Tolérance à l'incertitude"
+      },
+      "trans5": {
+        "mar": "Régate collective",
+        "trabajo": "L'équipe au-dessus de l'ego"
+      }
+    },
+    "details": {
+      "duration_lbl": "Durée",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Groupes",
+      "groups_val": "Adaptés à la taille de votre équipe",
+      "availability_lbl": "Disponibilité",
+      "availability_val": "À convenir · Toute l'année",
+      "level_lbl": "Niveau requis",
+      "level_val": "Aucune expérience préalable requise",
+      "form_title": "Prêt à sortir votre équipe de la salle de réunion ?",
+      "form_subtitle": "Nous adaptons la proposition à votre équipe et à votre budget",
+      "form_company": "Nom de l'entreprise",
+      "form_people": "Nombre de participants",
+      "form_date": "Date souhaitée",
+      "form_contact": "Nom et prénom du contact",
+      "form_email": "E-mail de contact",
+      "form_message": "Parlez-nous de vos besoins spécifiques",
+      "form_success": "Demande envoyée avec succès! Nous vous contacterons dans les plus brefs délais.",
+      "cta_gold": "Demander un devis sur mesure",
+      "cta_secondary": "Nous écrire directement",
+      "glow_tooltip": "Nous adaptons la proposition à votre équipe et à votre budget"
+    }
+  },
+  "s2_identity": {
+    "eyebrow": "Qui sommes-nous",
+    "title_line1": "Qu'est-ce que",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "Nous ne sommes pas une école conventionnelle, mais une ",
+    "value1_highlight": "communauté proche avec des valeurs.",
+    "value2": "Un endroit pour <gold>apprendre à naviguer</gold>, partager et <gold>profiter</gold> de la mer.",
+    "cta": "Lire plus"
+  },
+  "s3_adapts": {
+    "eyebrow": "L'expérience",
+    "title": "La voile s'adapte à vous",
+    "subtitle_default": "Il n'y a pas deux jours pareils en mer. Vous choisissez comment le vivre.",
+    "combo_calm_int_small": "Un après-midi tranquille à apprendre dans des eaux protégées, vous et la mer.",
+    "combo_calm_int_big": "Navigation sociale dans des eaux calmes, apprendre ensemble sans se presser.",
+    "combo_calm_ext_small": "Mer ouverte mais calme, ressentir la brise, sans pression.",
+    "combo_calm_ext_big": "Une croisière sereine à travers l'Abra, en profitant de l'immensité.",
+    "combo_action_int_small": "Intensité dans des eaux protégées, idéale pour pratiquer les manœuvres.",
+    "combo_action_int_big": "Adrénaline en groupe, vent fort dans l'Abra intérieur.",
+    "combo_action_ext_small": "Défi pur : mer ouverte, voilier agile, sensations réelles.",
+    "combo_action_ext_big": "L'expérience complète : mer ouverte, vent fort, votre groupe.",
+    "card4": {
+      "badge": "Voile moderne ✦",
+      "body": "Les prévisions météo actuelles permettent de prévoir précisément les conditions. Vous sortez quand vous voulez, avec ce que vous cherchez. La voile est désormais consciente, accessible et sur mesure."
+    }
   },
   "courses_data": {
     "iniciacion-j80": {
@@ -919,6 +1496,78 @@
     "alquiler-piragua-1": "Canoë (1 Personne)",
     "alquiler-piragua-2": "Canoë (2 Personnes)"
   },
+  "registration_form": {
+    "student_data": "Détails de l'étudiant / participant",
+    "student_data_prefix": "Détails de l'étudiant",
+    "underage_detected": "Personne mineure détectée",
+    "tutor_required_notice": "Il est obligatoire de renseigner les coordonnées d'au moins un tuteur.",
+    "name": "Nom",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "ex., Ane",
+    "surnames": "Noms de famille",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "ex., García",
+    "birth_date": "Date de naissance",
+    "age_birth_date": "Âge / Date de naissance",
+    "age_placeholder_prefix": "ex., 12 ans",
+    "id_doc": "DNI / NIE / Passeport",
+    "country_label": "Pays d'Origine",
+    "id_placeholder_prefix": "ex., 12345678Z",
+    "swim_question": "Sait-il nager?",
+    "yes": "OUI",
+    "no": "NON",
+    "select_option": "Sélectionner...",
+    "allergies": "Allergies / Intolérances",
+    "allergies_placeholder": "ex., Sans allergies",
+    "special_needs": "Besoins spéciaux / Observations médicales pertinentes",
+    "special_needs_placeholder": "ex., Asthme, intolérance au lactose, etc.",
+    "special_needs_placeholder_prefix": "ex., Asthme, TDAH...",
+    "address": "Adresse",
+    "address_placeholder": "Calle Mayor 12, 3ºB",
+    "locality": "Localité",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Code postal",
+    "postal_code_placeholder": "48992",
+    "is_minor": "L'étudiant est-il mineur?",
+    "bank_data": "Coordonnées bancaires (Pour prélèvement)",
+    "bank_data_required": "Requis pour la formalisation du service",
+    "iban": "Numéro de compte (IBAN)",
+    "titular": "Titulaire du compte",
+    "titular_placeholder": "ex., Juan García",
+    "payment_method_label": "Mode de Paiement",
+    "pay_with_card": "Carte de Crédit (Stripe)",
+    "pay_with_bank": "Prélèvement Bancaire",
+    "doc_dni": "DNI",
+    "doc_nie": "NIE",
+    "doc_passport": "Passeport",
+    "tutor_title": "Détails du tuteur (Obligatoire pour les mineurs)",
+    "tutor_title_prefix": "Détails du tuteur",
+    "tutor_phone": "Téléphone de contact",
+    "tutor_phone_placeholder": "ex., 600111222",
+    "tutor_email": "Email",
+    "tutor_email_placeholder": "ex., maria@exemple.com",
+    "tutor_name": "Nom",
+    "tutor_name_placeholder": "ex., María",
+    "enroll_second": "Inscrire un 2e étudiant",
+    "enroll_third": "Inscrire un 3e étudiant",
+    "add_tutor_second": "Ajouter tuteur #2 (Obligatoire en cas de parents séparés)",
+    "add_tutor_second_training": "Ajouter tuteur #2 (Obligatoire en cas de conflit ou de parents séparés)",
+    "comments_title": "Demande de semaine et commentaires",
+    "week_label": "Semaine de camp / Dates",
+    "week_placeholder": "ex., Semaine du 6 au 10 juillet",
+    "comments_label": "Commentaires / Absences prévues",
+    "comments_placeholder": "ex., Sera absent jeudi pour rendez-vous médical",
+    "membership_mode": "Option d'adhésion",
+    "training_mode": "Groupe d'entraînement",
+    "camp_notice": "Veuillez remplir les coordonnées des étudiants que vous souhaitez inscrire au camp d'été."
+  },
+  "register_success": {
+    "title": "Inscription Réussie !",
+    "message": "Votre compte a été créé et confirmé avec succès. Bienvenue dans l'équipage !",
+    "btn_home": "Aller à l'Accueil",
+    "btn_dashboard": "Espace Utilisateur",
+    "btn_continue": "Continuer ma Réservation"
+  },
   "payment_success_page": {
     "loading_confirm": "Chargement de la confirmation...",
     "title_warning": "Paiement Reçu",
@@ -935,6 +1584,7 @@
     "status_checking": "Vérification auprès de la banque...",
     "status_completed": "Complété et Vérifié",
     "status_syncing": "Synchronisation...",
+    "status_pending": "Activation en attente / En file d'attente",
     "label_service": "Service",
     "label_course": "Cours",
     "label_starts": "Commence le :",
@@ -943,6 +1593,35 @@
     "btn_dashboard": "Mon Tableau de Bord →",
     "admin_supabase": "Voir sur Supabase (Admin)",
     "quote": "\"Il n'y a pas de vent favorable pour celui qui ne sait pas vers quel port il navigue.\" — Sénèque"
+  },
+  "membership_widget": {
+    "title": "Devenez Membre du Club",
+    "description": "Rejoignez la communauté des navigateurs de Getxo Bela. Pour seulement {price}/mois, vous bénéficiez de réductions sur les locations, de priorités sur les cours et d'événements exclusifs.",
+    "btn_join": "Rejoindre maintenant →",
+    "loading": "Préparation...",
+    "subscribe_error": "Erreur lors de l'initiation de l'abonnement",
+    "connection_error": "Erreur de connexion"
+  },
+  "quick_contact": {
+    "title": "Support Direct",
+    "whatsapp_title": "WhatsApp École",
+    "whatsapp_desc": "Réponse rapide pendant les heures de cours",
+    "email_title": "Email de Support",
+    "email_desc": "Procédures administratives",
+    "status_online": "Support en Ligne",
+    "hours": "Lun-Ven : 09h00 — 19h00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "Aucun forfait actif",
+    "no_active_desc": "Achetez un pack d'heures pour naviguer avec réduction et flexibilité.",
+    "btn_view_packs": "Voir les packs disponibles",
+    "active_title": "Mes forfaits actifs",
+    "view_history": "Voir l'historique",
+    "bono_default_name": "Forfait Général",
+    "valid_until": "Valable jusqu'au {date}",
+    "available": "Disponibles",
+    "remaining_percent": "{percent}% Restant",
+    "total_hours": "Total : {hours}h"
   },
   "equipos_entrenamiento": {
     "hero": {

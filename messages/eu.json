@@ -218,7 +218,8 @@
     "header_suffix": "Getxo Bela Eskola",
     "since": "Getxon Sortua",
     "desc1": "Duela 15 urte baino gehiago jaio ginen Getxon helburu argi batekin: itsasoa pertsona guztiei hurbiltzea ikuspegi humano, hezitzaile eta eskuragarri batetik. Irabazi-asmorik gabeko elkarte bat gara eta bela ikaskuntzarako, elkarbizitzarako eta eraldaketa pertsonalerako tresna gisa ulertzen duen proiektu soziala.",
-    "desc2": "Urteetan zehar hazi egin gara, profesionalizatu eta jarduerak zabaldu ditugu, beti oinarri berdinarekin: pertsonak erdian jartzea. Eskola leku hurbil eta sinplea izaten jarraitzen du, komunitatetik eraikia.",
+    "desc2": "Urteetan zehar hazi egin gara, profesionalizatu eta jarduerak zabaldu ditugu, beti oinarri berdinarekin: pertsonak erdian jartzea. Eskola leku hurbil eta sinplea izaten jarraitzen du, komunitatetik eraikia, eta gure bideak pertsonei laguntzen jarraitzen du, itsasoa modu sinple, seguru eta autentikoan bizi dezaten.",
+    "desc3": "Ez gara enpresa bat, eta ez dugu hala jokatzen. Irabazi-asmorik gabeko elkarte gisa, sartzen den guztia proiektua hobetzeko bideratzen da: ontziak berritzeko, monitoreak prestatzeko, instalazioak zaintzeko eta jarduerak zabaltzeko.",
     "values": {
       "v1_title": "Gure Instalazioak",
       "v1_desc": "Getxoko Kirol Portuko gune pribilegiatu batean kokatua, Ereagako hondartzatik metro gutxira eta Abrara irteera zuzenarekin. Ikus-entzunezko gela, aldagela zainduak, kanpoko espazio zabala, tailerra eta chill-out gunea sauna txiki batekin ditugu.",
@@ -326,7 +327,8 @@
     "resend_email": "Berriz bidali",
     "resend_success": "Emaila ondo bidali da berriro.",
     "google_btn": "Google-rekin jarraitu",
-    "rate_limit": "Saiakera muga gainditu duzu. Mesedez, itxaron minutu batzuk berriro saiatu aurretik."
+    "rate_limit": "Saiakera muga gainditu duzu. Mesedez, itxaron minutu batzuk berriro saiatu aurretik.",
+    "or_divider": "EDO"
   },
   "booking": {
     "select_date": "Hautatu data bat",
@@ -339,8 +341,14 @@
     "book_for": "Erreservatu",
     "online_course_instant": "Online Ikastaroa - Berehalako Sarbidea",
     "no_dates_needed": "Ez da beharrezkoa datak hautatzea. Hasi orain.",
+    "flexible_date_notice": "Erreserba malgua. Eskolarekin zehaztuko duzu ordu zehatza.",
     "error_generic": "Zerbait gaizki joan da",
-    "payment_gateway_error": "Errorea ordainketa-pasarelararekin konektatzean"
+    "payment_gateway_error": "Errorea ordainketa-pasarelararekin konektatzean",
+    "is_member": "Parte-hartzailea bazkidea da (%50eko deskontua)",
+    "member_discount_applied": "Bazkidearen %50eko deskontua aplikatuta!",
+    "membership_not_found": "Ez da bazkide kuota aktiborik aurkitu zure kontuan edo senideetan. %50eko deskontua lortzeko, bazkide ofiziala izan behar duzu.",
+    "selected_not_member": "Hautatutako parte-hartzailea ({name}) ez da bazkidea. Deskontua aplikatzeko, izena emandako parte-hartzaileak bazkidetza aktiboa izan behar du.",
+    "parent_not_member": "Zuk (kontuaren jabeak) ez duzu bazkidetza aktiborik. Deskontua aplikatzeko, izena emandako parte-hartzaileak bazkide izan behar du."
   },
   "staff_panel": {
     "tabs": {
@@ -856,7 +864,42 @@
       "btn_start": "Hasi Orain"
     },
     "micro_lessons": {
-      "title": "Mikro-Ikasgaiak"
+      "title": "Mikro-Ikasgaiak",
+      "weekly_updates": "Asteko Berriak",
+      "categories": {
+        "maniobra": "Maniobra",
+        "cabuyeria": "Abaotza",
+        "teoria": "Teoria",
+        "seguridad": "Segurtasuna",
+        "partes": "Zatiak"
+      },
+      "lessons": {
+        "1": {
+          "title": "Haizearen Begia",
+          "category": "Maniobra",
+          "description": "Ulertu belak haizea hartzen ez duten eremua eta nola saihestu."
+        },
+        "2": {
+          "title": "Gida-Asa Korapiloa",
+          "category": "Abaotza",
+          "description": "Korapiloen erregea: segurua, sendoa eta askatzeko erraza."
+        },
+        "3": {
+          "title": "Haizealdea vs Haizebekoa",
+          "category": "Teoria",
+          "description": "Ikasi ontziaren aldeak haizearen arabera bereizten."
+        },
+        "4": {
+          "title": "Bide-Lehentasunak",
+          "category": "Segurtasuna",
+          "description": "Itsasoan talkak saihesteko oinarrizko arauak."
+        },
+        "5": {
+          "title": "Belaren Zatiak",
+          "category": "Zatiak",
+          "description": "Triza-begia, amura eta eskotila. Zein da zein?"
+        }
+      }
     },
     "courses_section": {
       "title": "Zure Hurrengo Ikastaro Presentzialak",
@@ -884,7 +927,45 @@
       "wrong": "Ez da zuzena. Erantzuna hauxe zen: {answer}",
       "already_done": "Dagoeneko osatu duzu gaurko erronka.",
       "come_back": "Itzuli bihar puntuak batzen jarraitzeko.",
-      "explanation": "Bazekien..."
+      "explanation": "Bazekien...",
+      "streak": "{streak} EGUNEKO RACHA 🔥",
+      "iq": "IQ NAUTIKOA: {accuracy}%",
+      "correct_attempts": "Aciertos",
+      "current_streak": "Racha",
+      "streak_progress": "Racha Progress",
+      "syncing": "RUMBO SINKRONIZATZEN...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "Zer da Amura?",
+          "options": [
+            "Ontziaren alboaren aurreko zatia",
+            "Ontziaren atzeko zatia",
+            "Masta eusten duen kablea",
+            "Bela txiki bat"
+          ],
+          "explanation": "Amura ontziaren alboaren zati bat da, branka osatzeko estutzen dena."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "Nola deitzen da ontziaren eskuineko aldea brankara begiratzean?",
+          "options": [
+            "Babor",
+            "Estribor",
+            "Popa",
+            "Alboa"
+          ],
+          "explanation": "Estribor ontzi baten eskuineko alboak jasotzen duen izena da."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Akademia Digitala",
+      "club": "Kluba",
+      "upcoming_event": "Hurrengo Ekitaldia",
+      "course": "Ikastaroa",
+      "rental": "Alokairua",
+      "free_sailing": "Nabigazio Librea",
+      "daily_challenge_teaser": "Eguneko Erronka",
+      "earn_xp": "Irabazi +{xp} XP gaur"
     }
   },
   "wind_lab": {
@@ -953,10 +1034,31 @@
     "email_invalid": "Email baliogabea",
     "password_short": "Gutxienez 6 karaktere",
     "subject_short": "Gaia laburregia da",
-    "message_short": "Mezua laburregia da"
+    "message_short": "Mezua laburregia da",
+    "name_required": "Izena derrigorrezkoa da",
+    "surnames_required": "Abizenak derrigorrezkoak dira",
+    "age_required": "Adina derrigorrezkoa da",
+    "swim_required": "Hautatu badaki igeri egiten",
+    "tutor_name_required": "Tutorearen izena derrigorrezkoa da",
+    "tutor_surnames_required": "Tutorearen abizenak derrigorrezkoak dira",
+    "tutor_dni_required": "Tutorearen NANa derrigorrezkoa da",
+    "tutor_phone_required": "Tutorearen telefonoa derrigorrezkoa da",
+    "tutor_email_required": "Tutorearen emaila derrigorrezkoa da",
+    "week_required": "Idatzi eskatutako astea",
+    "birth_date_required": "Jaiotza-data derrigorrezkoa da",
+    "dni_required": "Nortasun agiria derrigorrezkoa da",
+    "address_required": "Helbidea derrigorrezkoa da",
+    "locality_required": "Herria derrigorrezkoa da",
+    "postal_code_required": "Posta kodea derrigorrezkoa da",
+    "mode_required": "Hautatu modalitate bat",
+    "iban_required": "IBANa derrigorrezkoa da",
+    "titular_required": "Kontuaren titularra derrigorrezkoa da",
+    "invalid_identity_document": "Nortasun agiria ez da baliozkoa. Egiaztatu berriro.",
+    "min_age_required": "Parte-hartzaileak gutxienez 3 urte izan behar ditu."
   },
   "legal": {
     "rental_contract": "MATERIAL NAUTIKOA ALOKATZEKO KONTRATUA - GETXO BELA ESKOLA\n\n1. ERRENTATSAILEAREN BALDINTZAK: Bezeroak adierazten du alokatutako materiala modu seguruan erabiltzeko beharrezko ezagutza teknikoak dituela. Aisialdiko belaontzien kasuan, dagokion gutxieneko titulazioa beharrezkoa da.\n\n2. EGOERA ETA ITZULTZEA: Materiala funtzionamendu-egoera egokian entregatzen da. Bezeroak egoera berean itzultzeko konpromisoa hartzen du. Ardura gabekeriagatik sortutako edozein kalte bezeroaren ardura esklusiboa izango da.\n\n3. NABIGAZIO EREMUAK: Nabigazioa baimendutako eremuetara eta adostutako denborara mugatuko da. Bezeroak Getxoko Kirol Portuko arauak eta Itsas Kapaintzaren araudia errespetatzeko konpromisoa hartzen du.\n\n4. SEGURTASUNA: Salbamendu-txalekoa erabiltzea nahitaezkoa eta pertsonala da uretan geratzen den denbora guztian.\n\n5. RESKATEA ETA LAGUNTZA: Bezeroak zuhurtzia faltagatik edo baimendutako eremuetatik kanpo ateratzeagatik laguntza edo erreskatea behar badu, sor daitezkeen gastuak bere kontu izango dira.\n\n6. SINADURA DIGITALA: Onarpen-laukia markatzean, bezeroak berresten du aurreko puntu guztiak ulertu dituela eta bere legezko erantzukizuna onartzen duela.",
+    "course_contract": "KONTRATAZIO BALDINTZA OROKORRAK - GETXO BELA ESKOLA\n\n1. HELBURUA ETA APLIKAZIO EREMUA: Dokumentu honek Getxo Bela Eskolak ematen dituen ikastaroetan izena emateko legezko baldintzak ezartzen ditu.\n\n2. SORMEN FISIKOA ETA SEGURTASUNA: Ikasleak adierazten du nabigaziorako baldintza fisiko egokietan dagoela eta ez duela hori eragozten duen gaixotasunik. Nahitaezkoa da salbamendu-jaka erabiltzea eta patroiaren edo instruktorearen jarraibideak uneoro jarraitzea.\n\n3. ERANTZUKIZUNA: Getxo Bela Eskola ez da ikasleen ondasun pertsonalen arduradun egiten. Eskolak legeak agindutako erantzukizun zibileko eta istripu-aseguruak ditu.\n\n4. BALDINTZA METEOROLOGIKOAK: Eskolak saioak bertan behera uzteko edo atzeratzeko eskubedgea erreserbatzen du, itsasoaren edo haizearen baldintzek ikasleen eta materialaren segurtasunerako arriskua badute.\n\n5. UTZTE POLITIKA: Ikasleak bertan behera uzteko asmoa gutxienez 48 ordu lehenago jakinarazi beharko du, beste data batean kokatzeko eskubidea izateko (erabilgarritasunaren arabera).\n\n6. ONARPENA: \"Ados\" sakatzeak sinadura elektroniko sidatzailea dakar, informazioaren gizartearen zerbitzuei buruzko indarreko legediaren arabera.",
     "consent_acceptance": "Goian zehaztutako legezko baldintzak irakurri eta berariaz onartzen ditut. Ulertzen dut onarpen honek sinadura digital lotesle baten balioa duela.",
     "error_log_consent": "Ezin izan da legezko sinadura erregistratu. Saiatu berriro.",
     "privacy_title": "Pribatutasun Politika",
@@ -967,15 +1069,25 @@
     "terms_title": "Izen-emate Baldintzak",
     "rental_title": "Alokairu Baldintzak",
     "back": "Itzuli",
+    "next": "Hurrengoa",
+    "step_prefix": "Urratsa",
+    "step_of": "/",
+    "step_doc": "Dokumentazioa",
+    "step_form": "Izena Emateko Formularioa",
+    "step_sign": "Sinadura Digitala",
     "mandatory_docs": "Nahitaezko Lege Dokumentuak",
     "click_to_read": "* Egin klik dokumentu bakoitzean hemendik bertatik online irakurtzeko.",
     "full_name": "Izen Osoa",
     "identity_doc": "Nortasun Agiria",
+    "country_label": "Jatorrizko Herrialdea",
     "email_label": "Erregistro Emaila",
     "confirmation_checkbox": "Berresten dut goian adierazitako PDF dokumentuak eta formulario honetan zehaztutako baldintzak irakurri eta berariaz onartzen ditudala. Ulertzen dut onarpen honek sinadura digital lotesle baten balioa duela.",
     "sign_and_continue": "Sinatu eta Ordainketara Jarraitu",
     "cancel": "Utzi",
-    "processing": "Prozesatzen..."
+    "processing": "Prozesatzen...",
+    "summary_title": "Baldintza Orokorren eta Arauen Laburpena",
+    "digital_signature_title": "Dokumentuaren Sinadura Digitala",
+    "digital_signature_desc": "Jarraian zure nortasun-datuak betetzean eta laukia markatzean, zure erantzukizunpean adierazten duzu emandako informazio guztia egiazkoa dela eta prozesu honetan zehaztutako bizikidetza-arauak, LOPD eta irudi-politikak onartzen dituzula."
   },
   "profile_modal": {
     "title": "Profila Editatu",
@@ -993,13 +1105,17 @@
     "verified_member": "Kide egiaztatua",
     "official_partner": "Bazkide Ofiziala",
     "account_info": "Kontuaren Informazioa",
-    "role": "Rola",
     "student": "Ikaslea",
+    "partner": "Bazkidea",
+    "instructor": "Irakaslea",
     "edit_profile": "Profila Editatu",
     "managing_subscription": "Harpidetza Kudeatu",
     "membership_card": "Nire Bazkide Txartela",
     "loading": "Kargatzen...",
     "portal_error": "Errorea ordainketa-ataria irekitzean",
+    "experience_points": "Esperientzia Puntuak",
+    "my_family": "Nire Seme-Alabak / Senideak",
+    "role": "Rola",
     "connection_error": "Konexio errorea"
   },
   "nautical_radar": {
@@ -1114,7 +1230,16 @@
       "b5_desc": "Ez da soilik egun zehatz batean etortzea, elkarrekin ikasten, garatzen eta gozatzen duen komunitate baten parte izatea baizik.",
       "b6_title": "Federazioa eta Asegurua",
       "b6_desc": "Bi aukeretan beharrezkoa da Euskadiko Bela Federazioan federatzea, asegurua eta estropadetarako sarbidea emanez (64€ inguru)."
-    }
+    },
+    "hero_title_part1": "Egin zaitez",
+    "hero_title_part2": "gure tripulazioko kide",
+    "section_title_part1": "Nabaritzea baino askoz gehiago,",
+    "section_title_part2": "bateratutako bizi-estilo bat",
+    "benefits_eyebrow": "Abantaila Esklusiboak",
+    "benefits_title": "Kide izatearen abantailak",
+    "cta_title": "Tripulaziora batzeko prest?",
+    "cta_desc": "Jarri harremanetan gure administrazio-taldearekin zure bazkide alta eskatzeko edo gure monitoreekin nabigazio proba bat egiteko.",
+    "cta_button": "Informazioa Eskatu"
   },
   "meta": {
     "title": "Getxo Bela Eskola — Zure bela-eskola Abraren ondoan",
@@ -1122,10 +1247,25 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Ez gara eskola bat. Zu zaren itsasoa gara.",
-    "subtitle": "Topagune bat non bela aitzakia den partekatzeko, hazteko eta itsasoa sentitzeko presiorik gabe.",
-    "cta": "Aurkitu →",
-    "scroll_hint": "Jarraitu nabigatzera"
+    "title": "Bela Nabigazio Kluba | Getxon",
+    "subtitle": "Nabigatu, ikasi eta partekatu",
+    "cta": "Egin zaitez bazkide",
+    "scroll_hint": "Jarraitu nabigatzera",
+    "word1": "Nabigatu.",
+    "word2": "Ikasi.",
+    "word3": "Partekatu.",
+    "tu_mar_tu_club": "Zure itsasoa. Zure kluba.",
+    "todo_lo_que_ofrecemos": "Eskaintzen dugun guztia",
+    "card_cursos_title": "Ikastaroak",
+    "card_cursos_subtitle": "Ikasi nabigatzen",
+    "card_club_title": "Bazkide Kluba",
+    "card_club_subtitle": "Bat egin komunitatearekin",
+    "card_equipos_title": "Taldeak",
+    "card_equipos_subtitle": "Lehiatu eta hobetu",
+    "card_udalekuak_title": "Udalekuak",
+    "card_udalekuak_subtitle": "Bela udalekuak",
+    "card_entidades_title": "Erakundeak",
+    "card_entidades_subtitle": "Lagundu gurekin"
   },
   "s2": {
     "eyebrow": "Esperientzia",
@@ -1182,30 +1322,442 @@
   "s4": {
     "eyebrow": "",
     "title": "Zergatik nabigatu gurekin?",
+    "learn_more": "Gehiago ikasi",
     "pillar1": {
       "icon": "💶",
       "title": "Guztientzat eskuragarria",
       "body": "Udal-eskola bela demokratizatzen duena. Bazkide egin eta nabigatu 52,5 €/hilabetetik.",
-      "badge": "52,5 €/hilabetetik"
+      "badge": "52,5 €/hilabetetik",
+      "backTitle": "EKONOMIKOA",
+      "backSubtitle": "Prezio doitua",
+      "backBody": "Dibertitzea ez dela garestia izan behar uste dugu. Taldera doitutako prezioak eskaintzen ditugu, denek uretan esperientzia zirraragarri batez gozatu ahal izan dezaten. Ezagutu nola lagun zaitzakegun abentura ahaztezin bat antolatzen prezio eskuragarrian."
     },
     "pillar2": {
       "icon": "🤝",
       "title": "Komunitate erreala",
       "body": "Itsasoaren irrika berarekin jende berria ezagutuko duzu. Belatik harago irauten duten loturak.",
-      "badge": ""
+      "badge": "",
+      "backTitle": "KOMUNITATEA",
+      "backSubtitle": "Ez gara eskola soil bat, komunitate oso hurbila eta balioduna gara.",
+      "backBody": "Itsasoaren irrika bera duten pertsonak ezagutzeko, esperientziak partekatzeko eta elkarrekin nabigatuz hazteko lekua. Hona ikastera etortzen zara, baina baita zerbaiten parte izatera ere."
     },
     "pillar3": {
       "icon": "🧭",
       "title": "Zure neurrira",
       "body": "Irteera bakoitza zure erritmoari, helburuei eta eguneko gogoari egokitzen diogu.",
-      "badge": ""
-    }
+      "badge": "",
+      "backTitle": "ZURE NEURRIRA",
+      "backSubtitle": "Pertsonalizazioa",
+      "backBody": "Zure beharretara egokitzen gara esperientzia pertsonalizatu eta paregabea eskaintzeko. Ezagutu nola lagun zaitzakeen gure uretako jardueretako aditu taldeak irteera perfektua antolatzen."
+    },
+    "cta": "Ezagutu gehiago ↻"
   },
   "cta": {
     "title": "Atera itsasora gurekin",
     "subtitle": "Zure lehen irteera aste honetan bertan izan daiteke.",
     "button": "Erreserbatu orain",
     "href": "https://getxobelaeskola.cloud/eu/"
+  },
+  "guarda_material": {
+    "hero": {
+      "eyebrow": "ZERBITZUA",
+      "title_line1": "Gorde zure",
+      "title_line2": "kirol",
+      "title_line3": "materiala",
+      "subtitle": "Garraiorik gabe. Itxaronaldirik gabe.\nHeldu eta nabigatu bakarrik."
+    },
+    "value_props": {
+      "eyebrow": "ZER SARTZEN DA?",
+      "storage_title": "Gorde zure ontzia",
+      "storage_desc": "Bela arina, windsurfa edo piragua. Beti bere lekuan, beti prest.",
+      "access_title": "Sarrera librea · 24/7",
+      "access_desc": "Edozein egunetan, edozein ordutan. Baimenik eskatu beharrik gabe.",
+      "facilities_title": "Dena barne",
+      "facilities_desc": "Ranpa, aldagelak eta gelak. Prezioak ez du sorpresarik ezkutatzen."
+    },
+    "carousel": {
+      "eyebrow": "ONARTUTAKO MATERIALA",
+      "title": "Zure ontzia,\nesku onetan.",
+      "vela_title": "Bela Arina",
+      "vela_desc": "Optimist, Laser, Pico... Zure ontziak hemen gordetzen du bere ametsa hurrengo irteerara arte.",
+      "windsurf_title": "Windsurf",
+      "windsurf_desc": "Taulak eta mastak kontu handiz biltegiratuta. Iritsi eta muntatu minutu gutxian.",
+      "piragua_title": "Piragua / Kayak",
+      "piragua_desc": "Zeharkako kayak-etik surf-ski-ra. Abra zure zain dago, aitzakiarik gabe."
+    },
+    "pricing": {
+      "eyebrow": "TARIFA",
+      "amount": "50",
+      "period": "hil",
+      "currency": "€",
+      "item1": "Zure materialarentzako lekua",
+      "item2": "Sarrera librea 24/7",
+      "item3": "Ranpako erabilera",
+      "item4": "Aldagelak eta gelak",
+      "cta": "Eskuragarritasuna egiaztatu",
+      "note": "Gutxieneko iraupenik gabe · Galdetu konpromisorik gabe"
+    },
+    "closing": {
+      "phrase": "Heldu. Prestatu. Nabigatu.",
+      "btn": "Idatzi iezaguzu →"
+    }
+  },
+  "celebra_dia": {
+    "hero": {
+      "eyebrow": "OSPAKIZUNAK",
+      "title": "OSPATU HEMEN ZURE EGUNA",
+      "subtitle": "Urtebetetzeak · Agurrak · Topaketa bereziak",
+      "cta": "Ikusi nola izan daitekeen"
+    },
+    "cards": {
+      "title": "Nolakoa izan daiteke zure ospakizuna?",
+      "chill_title": "Chill Out Gunea",
+      "chill_desc": "Egonaldiko gunea. Musika, sofak, itzala.",
+      "chill_detail": "belar artifiziala, mahaiak, toldoa",
+      "velero_title": "Belaontzian Nabigazioa",
+      "velero_desc": "Ordu bat badian nabigatzen",
+      "velero_badge": "~ordu 1 · J80 edo Raquero",
+      "sup_title": "Big SUP",
+      "sup_desc": "Koordinazioa, barreak eta seguruenik ura",
+      "combo_title": "Jarduera Konbinatua",
+      "combo_desc": "Talde handia? Banatu eta txandakatu",
+      "combo_badge": "TALDE HANDIENTZAT",
+      "catering_title": "Cateringa",
+      "catering_desc": "Zuk jendea ekarri, guk janaria jarriko dugu"
+    },
+    "timeline": {
+      "title": "Honela da zuen eguna",
+      "step1_time": "11:00",
+      "step1_title": "Iritsiera",
+      "step1_desc": "Iritsi, egokitu eta musika hasiko da",
+      "step2_time": "12:00",
+      "step2_title": "Urara",
+      "step2_desc": "Belaontzia edo Big SUP — edo biak",
+      "step3_time": "13:30",
+      "step3_title": "Chill Out",
+      "step3_desc": "Atsedena, berriketaldia, eguzkia",
+      "step4_time": "15:00",
+      "step4_title": "Bazkaria eta topa",
+      "step4_desc": "Parterik onena: elkarrekin, jaten, gogoratzen"
+    },
+    "bigsup": {
+      "title": "Gure Big SUP Taula",
+      "desc": "Igo taulara! Egin klik eserleku hutsetan eskifaia osatzeko.",
+      "full": "Eskifaia osoa! Honelakoa da dibertsioa Big SUP taulan.",
+      "cta": "Jarduera hau erreserbatu"
+    },
+    "catering": {
+      "title": "Catering Aukerak",
+      "subtitle": "Askaria zuen beharretara moldatzen dugu",
+      "option1_title": "BAZKARIA OSORIK",
+      "option1_desc": "Eskolako cateringak prestatutako menua",
+      "option1_btn": "Galdetu",
+      "option2_title": "ASKARIA",
+      "option2_desc": "Snack-ak, frutak, edariak, zerbait gozoa",
+      "option2_btn": "Galdetu",
+      "option2_badge": "POPULARRENA",
+      "option3_title": "ZUEK EKARTZEN DUZUE",
+      "option3_desc": "Hemen dituzue hozkailua eta mahaiak",
+      "option3_btn": "Kosturik gabe"
+    },
+    "closing": {
+      "phrase": "Ospatu, partekatu eta zerbait desberdina bizi.",
+      "question": "Noiz etorri nahi duzue?",
+      "date": "Aukeratu data",
+      "group": "Pertsona kopurua",
+      "btn": "Esaiguzu gehiago"
+    }
+  },
+  "udalekuak": {
+    "hero": {
+      "eyebrow": "GetxoBelaEskola · Uda",
+      "title": "Udalekuak",
+      "subtitle": "Itsasoan aztarna uzten duten asteak",
+      "cta": "Erreserbatu lekua {year} →",
+      "scroll": "aurkitu"
+    },
+    "intro": {
+      "title": "Ez dira nabigazioko kanpamentuak soilik.",
+      "subtitle1": "Esperientzia osoak dira, non",
+      "subtitle2": "ikaskuntza",
+      "subtitle3": "bizikidetza",
+      "subtitle4": "jolasa",
+      "subtitle5": "eskutik doazen.",
+      "note": "Hasi berrientzat eta nabigatzen dakitenentzat balio du ✦"
+    },
+    "features": {
+      "eyebrow": "zer eskaintzen duen kanpamentuak",
+      "title": "Aste bat itsasoan",
+      "nav_title": "Eguneroko nabigazioa",
+      "nav_desc": "Kanpamentuaren oinarria. Hainbat ontzi gidatzen, haizea ulertzen eta itsasoan konfiantzaz mugitzen ikasten da, adin eta maila bakoitzera egokituta.",
+      "water_title": "Ur-jarduerak",
+      "water_desc": "Paddle surfa, Big SUPa eta piraguismoa nabigazioarekin konbinatzen dira uretan esperientzia osoa izateko.",
+      "team_title": "Bizikidetza eta taldea",
+      "team_desc": "Taldeko lanak eta adiskidetasuna sendotzen dituzten dinamikak. Eguraldiak nabigatzen uzten ez duenean, jolas kooperatiboak, tailerrak eta teoria praktikoa.",
+      "friday_title": "Ostiraleko askaria",
+      "friday_desc": "Ostiralero astea ixten dugu une berezi batekin bizi izandakoa ospatzeko, elkarrekin barre egiteko eta campamentuari merezi duen agurra emateko."
+    },
+    "timeline": {
+      "eyebrow": "erabilgarritasuna",
+      "title": "Noiz etor zaitezke?",
+      "ss_label": "Semana\nSanta",
+      "ss_sub": "Data aldakorrak",
+      "jun_label": "Ekaina",
+      "jun_sub": "3. astetik\naurrera",
+      "jul_label": "Uztaila",
+      "jul_sub": "Hilabete osoa",
+      "ago_label": "Abuztua",
+      "ago_sub": "Hilabete osoa",
+      "sep_label": "Iraila",
+      "sep_sub": "1. astea",
+      "note": "Astelehenetik ostiralera · Talde txikiak · 3 urtetik aurrera ✦"
+    },
+    "details": {
+      "eyebrow": "informazio praktikoa",
+      "title": "Jakin behar duzuna",
+      "card1_val": "3 urte",
+      "card1_lbl": "Gutxieneko adina",
+      "card2_val": "5 haur",
+      "card2_lbl": "Gutxienekoa taldeko",
+      "card3_val": "Al – Os",
+      "card3_lbl": "Asteko ordutegia",
+      "card4_val": "Getxo",
+      "card4_lbl": "Algortako portua",
+      "body1": "Gure Udalekuak itsasoa modu sakon, dibertigarri eta seguruan bizitzeko uda-asteak dira. Eguneroko nabigazioa da oinarria, adin eta maila bakoitzera egokitua, paddle surfa, Big SUPa edota piragua bezalako ur-jarduerekin eta talde-lana nahiz adiskidetasuna sendotzen duten dinamikekin konbinatuta.",
+      "body2": "Eguraldiak nabigatzen uzten ez duenean, jolas kooperatiboak, tailerrak edo teoria praktikoa bezalako alternatibak antolatzen dira. Ostiralero askaria egiten dugu astea amaitzeko — bizi izandakoa ospatzeko une berezia."
+    },
+    "cta": {
+      "eyebrow": "{year}eko uda",
+      "title": "Itsasoratzeko prest?",
+      "subtitle": "Leku mugatuak dira. Ez utzi uda ihes egiten.",
+      "btn_enroll": "Eman izena orain →",
+      "btn_info": "Informazio gehiago"
+    }
+  },
+  "que_es_la_vela": {
+    "hero_eyebrow": "GetxoBelaEskola · Getxo, Euskal Herria",
+    "hero_line1": "Zer da",
+    "hero_line2": "bela.",
+    "hero_subtitle": "Teknika, lasaitasuna eta itsasoarekin konexio sakona uztartzen dituen kirol zoragarria. Pertsona bakoitzarentzat, zerbait desberdina.",
+    "hero_discover": "Ezagutu",
+    "essencia_eyebrow": "funtsa",
+    "philosophy_eyebrow": "filosofia",
+    "philosophy_title": "Bela zure beharretara egokitzen da.",
+    "philosophy_subtitle": "Ez zara zu nabigaziora egokitu behar duena. Irteera bakoitzean zer bizi nahi duzun eta nola aukeratu dezakezu.",
+    "cards": {
+      "carta_title": "Nabigazioa neurrira",
+      "carta_text": "Gaur egungo eguraldi iragarpenak zehatzak eta edonorentzat eskuragarriak dira. Egun lasaietan, egun indartsuetan edo tarteko edozertan nabigatzea aukeratu dezakezu. Aukera guztiak baliagarriak dira.",
+      "experiencia_title": "Aukeratu zure esperientzia",
+      "experiencia_text": "Lasaitasuna eta meditazioa, edo intentsitatea eta adrenalina. Batzuek lanetik deskonektatzen dute uretan isiltasun orduak igaroz; beste batzuek haize indartsua bilatzen dute. Itsasoak hori guztia dauka.",
+      "escenario_title": "Aukeratu zure agertokia",
+      "escenario_text": "Barneko Abra: uretako eremu babestua ikasteko eta lasaitzeko. Kanpoko Abra: itsaso zabal eta zirraragarria. Batean has zaitezke eta nahi duzunean bestea esploratu.",
+      "compania_title": "Aukeratu zure konpainia",
+      "compania_text": "Belaontzi txikiak 2-6 pertsonarentzat, oso aktiboak eta erraz mugitzekoak. Edo 8 pertsonara arteko gurutzaontziak, talde-dinamikarako eta elkarrekin nabigatu nahi duten taldeentzat aproposak."
+    },
+    "history_eyebrow": "gure historia",
+    "history_p1": "Vela ez da kirol adrenalitiko hutsa, ezta muturreko emozioak bilatzen dituztenentzat bakarrik gordetako zerbait ere. Praktika leuna, meditatiboa eta oso lasaigarria ere izan daiteke.",
+    "history_p1_highlight": "leuna, meditatiboa eta oso lasaigarria",
+    "history_p2": "Batzuk lan ostean belaontzi txiki batean ateratzen dira eta, ordu batzuez, lurreko kezkak erabat ahazten dituzte. Itsasoan, burua berez antolatzen da: haizera, norabidera, uraren soinura, ontziaren mugimendura zaude. Eta kitto.",
+    "history_p3": "Euskal Herrian historikoki itsasoarekin harreman sakona izan dugu. Gure herriak hari esker hazi ziren. Gure arbasoek zurezko belaontzi txikietan arrantza egiten zuten, portura lehenago iristeko eta arraina preziorik onenean saltzeko lehiatuz.",
+    "history_p3_highlight": "itsasoarekin harreman sakona",
+    "history_p4": "Bela gure memoria kolektiboaren parte da, nahiz eta batzuetan ahaztu egin dugun. Gaur egun harreman hori oso leku desberdinetatik berreskura dezakegu, bakoitzak bere erara eta une bakoitzean bilatzen duenaren arabera.",
+    "selector_eyebrow": "aukeratu zure bidea",
+    "selector_title": "Nola nabigatu nahi duzu gaur?",
+    "selector_calma": "Lasaitasuna",
+    "selector_accion": "Ekintza",
+    "calma_title": "Nabigatu deskonektatzeko.",
+    "calma_desc": "Barneko Abra, ur babestuak. Belaontzi txikia, presarik gabe. Burua berez ordenatzen da, eta ordu batzuez ez dago haizea, norabidea eta uraren soinua besterik.",
+    "calma_tags": [
+      "Ur babestuak",
+      "Presiorik gabe",
+      "Meditatiboa",
+      "Lan ostean"
+    ],
+    "calma_cta": "Ikusi ikastaro lasaiak →",
+    "accion_title": "Nabigatu sentitzeko.",
+    "accion_desc": "Kanpoko Abra, benetako haizea. Abiadura, emozioa, ahalegina eta saria. Itsasoaren intentsitatea iragazkirik gabe bizi nahi dutenentzat.",
+    "accion_tags": [
+      "Itsaso zabala",
+      "Haize indartsua",
+      "Adrenalina",
+      "Erronka"
+    ],
+    "accion_cta": "Ikusi ikastaro biziak →",
+    "cta_eyebrow": "getxobelaeskola · getxo",
+    "cta_title": "Horregatik jarraitzen du belak hain berezia izaten.",
+    "cta_subtitle": "Itsasoan zure lekua aurkitzeko eta mila modu desberdinetan gozatzeko aukera ematen duelako.",
+    "cta_button_start": "Hasi nabigatzen",
+    "cta_button_all": "Ikusi ikastaro guztiak",
+    "loading_brand": "GetxoBelaEskola",
+    "loading_text": "Esperientzia prestatzen",
+    "beauty_badge": "↓ Jarraitu esploratzen",
+    "skip_3d": "Saltatu 3D esperientzia",
+    "fallback_message": "Zure nabigatzaileak ez ditu 3D grafikoak onartzen. Mesedez eguneratu zure nabigatzailea esperientzia osorako.",
+    "aria_3d_region": "3D esperientzia interaktiboa: Optimist belontzia angelu ezberdinetatik ikusia scroll egiterakoan"
+  },
+  "team_building": {
+    "hero": {
+      "eyebrow": "TEAM BUILDING · ENPRESA ESTROPADA · GETXO",
+      "line1": "Hemen",
+      "line2": "hierarkiak",
+      "line3": "haizean",
+      "line4": "disolbatzen dira.",
+      "description": "Itsasoko esperientziak euren taldea benetan sendotu nahi duten enpresentzat.",
+      "cta": "★ Eskatu neurriko aurrekontua",
+      "cta_sub": "Nola funtzionatzen du",
+      "pill1": "⏱ 3–3,5h-ko jardunaldia",
+      "pill2": "⛵ J80 belaontziak",
+      "pill3": "✓ Esperientziarik gabe",
+      "pill4": "✎ Zure taldeari neurrira"
+    },
+    "split": {
+      "contrast1": {
+        "office_label": "Bileren gela",
+        "office_phrase": "Komunikazioa planifikatu egiten da.",
+        "sea_label": "J80 ontzian",
+        "sea_phrase": "Ontzi gainean, berez gertatzen da."
+      },
+      "contrast2": {
+        "office_label": "Hierarkia finkoak",
+        "office_phrase": "Bada agintzen duenik eta obeditzen duenik.",
+        "sea_label": "Benetako tripulazioa",
+        "sea_phrase": "Guztiek duzue axola duen zeregin bat."
+      },
+      "contrast3": {
+        "office_label": "Presio ezaguna",
+        "office_phrase": "Ustekabekoak geroratu egiten dira kudeatzeko.",
+        "sea_label": "Haizeak erabakitzen du",
+        "sea_phrase": "Hemen ustekabekoak denbora errealean dira."
+      },
+      "scrolled_line": "Bulegoa ez da existitzen. Taldea bakarrik."
+    },
+    "diagram": {
+      "eyebrow": "BELAONTZIA",
+      "title": "Gure J80 ontziak. Bizkorrak, dibertigarriak eta elkarrekin ikasteko ezin hobeak.",
+      "proa": {
+        "label": "Proa",
+        "description": "Ontziaren aurrealdea. Hemen lan egiten duenak aurreko belak kudeatzen ditu; aurreikuspena eta komunikazio etengabea behar ditu.",
+        "skill": "Aurreikuspena · Komunikazioa"
+      },
+      "timon": {
+        "label": "Lema",
+        "description": "Lema daramanak ontzia gidatzen du, baina taldearen mende dago ondo egiteko. Benetako lidergoa, ez izenezkoa soilik.",
+        "skill": "Lidergoa · Entzumena"
+      },
+      "vela_mayor": {
+        "label": "Bela nagusia",
+        "description": "Bela nagusia. Bere kudeaketa kolektiboak koordinazio zehatza eta haize-aldaketei erreakzio azkarra eskatzen du.",
+        "skill": "Koordinazioa · Erreakzioa"
+      },
+      "winch": {
+        "label": "Wintxeak",
+        "description": "Tentsio-karreteak. Indarra, erritmoa eta lemazainarekiko komunikazioa eskatzen dituen lan fisiko eta mekanikoa.",
+        "skill": "Exekuzioa · Erritmoa"
+      }
+    },
+    "jornada": {
+      "title": "Nolakoa da zuen eguna",
+      "subtitle": "3h – 3h 30min guztira",
+      "land": "Lurra",
+      "sea": "Ura",
+      "step1": {
+        "fase": "Lurra",
+        "title": "Ongietorri briefing-a",
+        "desc": "Ontziratutako rolen, nabigazioaren oinarrien eta koordinazioaren garrantziaren azalpen sinplea. Teknikotasunik gabe.",
+        "duration": "20–30 min"
+      },
+      "step2": {
+        "fase": "Ura",
+        "title": "Nabigazioa eta rolak",
+        "desc": "Talde osoa J80 ontzietan. Pertsona bakoitzak benetako rol bat du. Maniobra praktikoak: biraketak, trasluchadak, komunikazioa presiopean.",
+        "duration": "90 min"
+      },
+      "step3": {
+        "fase": "Ura",
+        "title": "Itsas lasterketa ontzien artean",
+        "desc": "Aukerakoa. Ontzi bat baino gehiago badago, estropada lagunkoi bat non helburua ez den irabaztea, ikasitakoa aplikatzea baizik. Haizeak guztiak berdintzen ditu.",
+        "duration": "60 min"
+      },
+      "step4": {
+        "fase": "Lurra",
+        "title": "Bateratze saioa",
+        "desc": "Lurrera buelta. Bizi izandakoa integratzea: zer gertatu da ontzian? Zer eraman daiteke lanera? Zirkulua ixteko elkarrizketa.",
+        "duration": "20 min"
+      }
+    },
+    "aprendizaje": {
+      "eyebrow": "ERAMATEN DUZUENA",
+      "title": "Ez da puntualki egiteko jarduera bat. Zuen komunikazio modua aldatzen duen bizipena da.",
+      "quote": "Amaieran, bateratze saio bat egiten dugu bizi izandakoa integratzeko eta lan-eremura eramateko.",
+      "trans1": {
+        "mar": "Biraketa maniobra",
+        "trabajo": "Aldaketetara egokitzea"
+      },
+      "trans2": {
+        "mar": "Komunikazioa presiopean",
+        "trabajo": "Krisi kudeaketa"
+      },
+      "trans3": {
+        "mar": "Benetako rola ontzian",
+        "trabajo": "Banakako erantzukizuna"
+      },
+      "trans4": {
+        "mar": "Haize ezpredictiboa",
+        "trabajo": "Ziurgabetasunarekiko tolerantzia"
+      },
+      "trans5": {
+        "mar": "Estropada kolektiboa",
+        "trabajo": "Taldea egoaren gainetik"
+      }
+    },
+    "details": {
+      "duration_lbl": "Iraupena",
+      "duration_val": "3h – 3h 30min",
+      "groups_lbl": "Taldeak",
+      "groups_val": "Zure taldearen tamainara egokituta",
+      "availability_lbl": "Eskuragarritasuna",
+      "availability_val": "Adosteko · Urte osoan",
+      "level_lbl": "Beharrezko maila",
+      "level_val": "Ez da aldez aurreko esperientziarik behar",
+      "form_title": "Zure taldea bileren gelatik ateratzeko prest?",
+      "form_subtitle": "Proposamena zure taldeari eta aurrekontuari egokitzen diogu",
+      "form_company": "Enpresaren izena",
+      "form_people": "Parte-hartzaile kopurua",
+      "form_date": "Nahiago duzuen data",
+      "form_contact": "Harremanetarako izen-abizenak",
+      "form_email": "Harremanetarako posta elektronikoa",
+      "form_message": "Esaiguzu zein diren zure behar espezifikoak",
+      "form_success": "Eskaera ongi bidali da! Zurekin harremanetan jarriko gara ahalik eta lasterren.",
+      "cta_gold": "Eskatu neurriko aurrekontua",
+      "cta_secondary": "Idatzi iezaguzu zuzenean",
+      "glow_tooltip": "Proposamena zure taldeari eta aurrekontuari egokitzen diogu"
+    }
+  },
+  "s2_identity": {
+    "eyebrow": "Nor gara",
+    "title_line1": "Zer da",
+    "title_line2": "Getxo Bela Eskola?",
+    "value1_prefix": "Ez gara ohiko eskola bat, ",
+    "value1_highlight": "balioak dituen komunitate hurbil bat baizik.",
+    "value2": "<gold>Nabigatzen ikasteko</gold>, partekatzeko eta itsasoaz <gold>gozatzeko</gold> lekua.",
+    "cta": "Irakurri gehiago"
+  },
+  "s3_adapts": {
+    "eyebrow": "Esperientzia",
+    "title": "Bela zure neurrira",
+    "subtitle_default": "Ez dago itsasoan bi egun berdin. Zuk aukeratzen duzu nola bizi.",
+    "combo_calm_int_small": "Arratsalde lasai bat uretan ikasten, zu eta itsasoa.",
+    "combo_calm_int_big": "Nabigazio soziala ur lasaietan, presarik gabe elkarrekin ikasiz.",
+    "combo_calm_ext_small": "Itsaso zabala baina lasai, haize leuna sentituz, presiorik gabe.",
+    "combo_calm_ext_big": "Ibilaldi lasai bat Abratik, itsasoaren handitasunaz gozatuz.",
+    "combo_action_int_small": "Intentsitatea babestutako uretan, maniobrak lantzeko bikaina.",
+    "combo_action_int_big": "Adrenalina taldean, haize zakarra barneko Abran.",
+    "combo_action_ext_small": "Erronka hutsa: itsaso zabala, velero bizia, benetako sentsazioak.",
+    "combo_action_ext_big": "Esperientzia osoa: itsaso zabala, haize indartsua, zure taldea.",
+    "card4": {
+      "badge": "Bela modernoa ✦",
+      "body": "Gaur egungo eguraldi-iragarpenek baldintzak zehatz-mehatz aurreikustea ahalbidetzen dute. Nahi duzunean ateratzen zara, bilatzen duzunarekin. Bela kontzientea, eskuragarria eta zure neurrikoa da orain."
+    }
   },
   "courses_data": {
     "iniciacion-j80": {
@@ -1375,6 +1927,78 @@
     "alquiler-piragua-1": "Piragua (Pertsona 1)",
     "alquiler-piragua-2": "Piragua (2 Pertsona)"
   },
+  "registration_form": {
+    "student_data": "Ikaslearen / Partaidearen Datuak",
+    "student_data_prefix": "Ikaslearen Datuak",
+    "underage_detected": "Adingabeko pertsona atzemanda",
+    "tutor_required_notice": "Derrigorrezkoa da gutxienez tutore baten datuak betetzea.",
+    "name": "Izena",
+    "name_placeholder": "Ane",
+    "name_placeholder_prefix": "Adib. Ane",
+    "surnames": "Abizenak",
+    "surnames_placeholder": "García",
+    "surnames_placeholder_prefix": "Adib. García",
+    "birth_date": "Jaiotza Data",
+    "age_birth_date": "Adina / Jaiotza Data",
+    "age_placeholder_prefix": "Adib. 12 urte",
+    "id_doc": "NAN / AIZ / Pasaportea",
+    "country_label": "Jatorrizko Herrialdea",
+    "id_placeholder_prefix": "Adib. 12345678Z",
+    "swim_question": "Badaki igeri egiten?",
+    "yes": "BAI",
+    "no": "EZ",
+    "select_option": "Hautatu...",
+    "allergies": "Alergiak / Tolerantziaezinak",
+    "allergies_placeholder": "Adib. Alergiarik gabe",
+    "special_needs": "Premia bereziak / Behaketa mediko garrantzitsuak",
+    "special_needs_placeholder": "Adib. Asma, laktosarekiko tolerantzia eza, etab.",
+    "special_needs_placeholder_prefix": "Adib. Asma, arreta gabezia...",
+    "address": "Helbidea",
+    "address_placeholder": "Kale Nagusia 12, 3.B",
+    "locality": "Herria",
+    "locality_placeholder": "Getxo",
+    "postal_code": "Posta Kodea",
+    "postal_code_placeholder": "48992",
+    "is_minor": "Ikaslea adingabea da?",
+    "bank_data": "Bankuko Datuak (Helbideratzeko)",
+    "bank_data_required": "Zerbitzua formalizatzeko beharrezkoa da",
+    "iban": "Kontu Zenbakia (IBAN)",
+    "titular": "Kontuaren Titularra",
+    "titular_placeholder": "Adib. Juan García",
+    "payment_method_label": "Ordaintzeko Era",
+    "pay_with_card": "Kreditu Txartela (Stripe)",
+    "pay_with_bank": "Helbideratze Bankarioa",
+    "doc_dni": "NAN",
+    "doc_nie": "AIZ",
+    "doc_passport": "Pasaportea",
+    "tutor_title": "Tutorearen Datuak (Adingabeentzako derrigorrezkoa)",
+    "tutor_title_prefix": "Tutorearen Datuak",
+    "tutor_phone": "Harremanetarako Telefonoa",
+    "tutor_phone_placeholder": "Adib. 600111222",
+    "tutor_email": "Posta Elektronikoa",
+    "tutor_email_placeholder": "Adib. maria@adibidez.com",
+    "tutor_name": "Izena",
+    "tutor_name_placeholder": "Adib. María",
+    "enroll_second": "Izena eman 2. Ikasle bati",
+    "enroll_third": "Izena eman 3. Ikasle bati",
+    "add_tutor_second": "Gehitu 2. Tutorea (Derrigorrezkoa guraso bananduen kasuan)",
+    "add_tutor_second_training": "Gehitu 2. Tutorea (Derrigorrezkoa gatazka edo guraso bananduen kasuan)",
+    "comments_title": "Aste Eskaera eta Iruzkinak",
+    "week_label": "Kanpamenduko Astea / Datak",
+    "week_placeholder": "Adib. Uztailaren 6tik 10erako astea",
+    "comments_label": "Iruzkinak / Aurreikusitako faltak",
+    "comments_placeholder": "Adib. Ostegunean faltako da medikuarenera joateko",
+    "membership_mode": "Bazkide Modalitatea",
+    "training_mode": "Entrenamendu Modalitatea",
+    "camp_notice": "Mesedez, bete udako kanpamentuan izena eman nahi duten ikasleen datuak."
+  },
+  "register_success": {
+    "title": "Erregistroa Burutua!",
+    "message": "Zure kontua ondo sortu eta berretsi da. Ongi etorri tripulaziora!",
+    "btn_home": "Joan Hasierara",
+    "btn_dashboard": "Erabiltzaile Eremua",
+    "btn_continue": "Erreserbarekin Jarraitu"
+  },
   "payment_success_page": {
     "loading_confirm": "Berrespena kargatzen...",
     "title_warning": "Ordainketa jaso da",
@@ -1391,6 +2015,7 @@
     "status_checking": "Bankuarekin egiaztatzen...",
     "status_completed": "Osatua eta egiaztatua",
     "status_syncing": "Sinkronizatzen...",
+    "status_pending": "Aktibazioa zain / Ilaran",
     "label_service": "Zerbitzua",
     "label_course": "Ikastaroa",
     "label_starts": "Hasten da:",
@@ -1399,6 +2024,35 @@
     "btn_dashboard": "Nire panel pertsonala →",
     "admin_supabase": "Ikusi Supabasen (Admin)",
     "quote": "\"Ez dago haize mesedegarririk nora doan ez dakienarentzat.\" — Seneka"
+  },
+  "membership_widget": {
+    "title": "Egin zaitez Klubeko Bazkide",
+    "description": "Getxo Belako nabigatzaileen komunitatearekin bat egin. {price}/hilabete soilik ordainduta, alokairuetan deskontuak, ikastaroetan lehentasuna eta ekitaldi esklusiboak izango dituzu.",
+    "btn_join": "Batu Orain →",
+    "loading": "Prestatzen...",
+    "subscribe_error": "Errorea harpidetza hastean",
+    "connection_error": "Konexio errorea"
+  },
+  "quick_contact": {
+    "title": "Arreta Zuzena",
+    "whatsapp_title": "Eskolako WhatsApp-a",
+    "whatsapp_desc": "Erantzun azkarra irakaskuntza orduetan",
+    "email_title": "Email Laguntza",
+    "email_desc": "Kudeaketa administratiboak",
+    "status_online": "Online Loguntza",
+    "hours": "Al-Os: 09:00 — 19:00"
+  },
+  "bonos_wallet": {
+    "no_active_title": "Bonorik ez aktibo",
+    "no_active_desc": "Adquiere un pack de horas para navegar con descuento y flexibilidad.",
+    "btn_view_packs": "Ikusi bono erabilgarriak",
+    "active_title": "Nire Bono Aktiboak",
+    "view_history": "Ikusi historia",
+    "bono_default_name": "Bono Orokorra",
+    "valid_until": "{date} arte baliagarria",
+    "available": "Erabilgarri",
+    "remaining_percent": "% {percent} geratzen da",
+    "total_hours": "Guztira: {hours}h"
   },
   "equipos_entrenamiento": {
     "hero": {

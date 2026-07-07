@@ -45,14 +45,14 @@ export default function MobileStudentHub({
             href: `/${locale}/student/rentals`
         },
         {
-            label: 'Academia Digital',
+            label: t.mobile_hub?.digital_academy || 'Academia Digital',
             icon: <Compass className="w-6 h-6 text-cyan-400" />,
             bg: 'bg-cyan-500/10',
             border: 'border-cyan-500/20',
             href: `/${locale}/academy`
         },
         {
-            label: 'Club',
+            label: t.mobile_hub?.club || 'Club',
             icon: <Anchor className="w-6 h-6 text-brass-gold" />,
             bg: 'bg-brass-gold/10',
             border: 'border-brass-gold/20',
@@ -64,6 +64,13 @@ export default function MobileStudentHub({
         if (!dateStr) return '';
         const date = new Date(dateStr);
         return date.toLocaleDateString(locale, { day: 'numeric', month: 'short' });
+    };
+
+    const getMilesLabel = () => {
+        if (locale === 'en') return 'Miles';
+        if (locale === 'eu') return 'Miliak';
+        if (locale === 'fr') return 'Milles';
+        return 'Millas';
     };
 
     return (
@@ -95,15 +102,15 @@ export default function MobileStudentHub({
 
                         <div className="grid grid-cols-3 gap-8 w-full relative z-10">
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Millas</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">{getMilesLabel()}</span>
                                 <span className="text-2xl font-display text-black">{academyStats.totalMiles || 0}</span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Niveles</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">{t.academy_widget?.stats_levels || 'Niveles'}</span>
                                 <span className="text-2xl font-display text-black">{academyStats.academyLevels || 0}</span>
                             </div>
                             <div className="flex flex-col gap-1">
-                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">Certif.</span>
+                                <span className="text-[10px] uppercase tracking-widest text-black/40 font-bold">{t.academy_widget?.stats_certs || 'Certif.'}</span>
                                 <span className="text-2xl font-display text-black">{academyStats.academyCerts || 0}</span>
                             </div>
                         </div>
@@ -137,20 +144,20 @@ export default function MobileStudentHub({
             {hasBookings && (
                 <section className="pl-6">
                     <div className="flex items-center justify-between pr-6 mb-4">
-                        <h2 className="text-xs uppercase tracking-widest text-black/60 font-bold">Próximo Evento</h2>
+                        <h2 className="text-xs uppercase tracking-widest text-black/60 font-bold">{t.mobile_hub?.upcoming_event || 'Próximo Evento'}</h2>
                     </div>
 
                     <div className="flex gap-4 overflow-x-auto pb-8 pr-6 snap-x snap-mandatory scrollbar-hide">
                         {upcomingInscripciones.map((ins: Inscripcion, i: number) => {
                             const date = ins.ediciones_curso?.fecha_inicio || ins.metadata?.start_date;
-                            const name = ins.cursos?.nombre_es || 'Curso de Vela';
+                            const name = (locale === 'eu' ? ins.cursos?.nombre_eu : ins.cursos?.nombre_es) || 'Curso de Vela';
                             return (
                                 <div key={`course-${i}`} className="min-w-[85%] sm:min-w-[300px] snap-center bg-nautical-black border border-black/10 rounded-2xl p-5 relative overflow-hidden h-32 flex flex-col justify-between group">
                                     <div className="absolute right-0 top-0 w-24 h-24 bg-blue-500/10 blur-[40px] rounded-full pointer-events-none" />
 
                                     <div className="flex justify-between items-start z-10">
                                         <span className="bg-blue-500/20 text-blue-400 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded">
-                                            Curso
+                                            {t.mobile_hub?.course || 'Curso'}
                                         </span>
                                         <span className="text-black font-mono text-xs">{formatDate(date)}</span>
                                     </div>
@@ -171,13 +178,13 @@ export default function MobileStudentHub({
 
                                     <div className="flex justify-between items-start z-10">
                                         <span className="bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-widest px-2 py-1 rounded">
-                                            Alquiler
+                                            {t.mobile_hub?.rental || 'Alquiler'}
                                         </span>
                                         <span className="text-black font-mono text-xs">{formatDate(date)}</span>
                                     </div>
 
                                     <div className="z-10">
-                                        <h3 className="text-lg font-display text-black italic">Travesía Libre</h3>
+                                        <h3 className="text-lg font-display text-black italic">{t.mobile_hub?.free_sailing || 'Travesía Libre'}</h3>
                                         <p className="text-black/40 text-xs">J80 - Getxo</p>
                                     </div>
                                 </div>
@@ -199,8 +206,8 @@ export default function MobileStudentHub({
                             <Trophy className="w-6 h-6" />
                         </div>
                         <div>
-                            <h3 className="text-black font-bold text-lg">Reto Diario</h3>
-                            <p className="text-accent text-xs uppercase tracking-wider font-bold">Gana +50 XP hoy</p>
+                            <h3 className="text-black font-bold text-lg">{t.mobile_hub?.daily_challenge_teaser || 'Reto Diario'}</h3>
+                            <p className="text-accent text-xs uppercase tracking-wider font-bold">{t.mobile_hub?.earn_xp || 'Gana +50 XP hoy'}</p>
                         </div>
                         <ChevronRight className="ml-auto text-black/40" />
                     </div>

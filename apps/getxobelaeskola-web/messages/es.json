@@ -853,7 +853,42 @@
       "completed": "Completado"
     },
     "micro_lessons": {
-      "title": "Micro-Lecciones"
+      "title": "Micro-Lecciones",
+      "weekly_updates": "Novedades Semanales",
+      "categories": {
+        "maniobra": "Maniobra",
+        "cabuyeria": "Cabuyería",
+        "teoria": "Teoría",
+        "seguridad": "Seguridad",
+        "partes": "Partes"
+      },
+      "lessons": {
+        "1": {
+          "title": "El Ojo del Viento",
+          "category": "Maniobra",
+          "description": "Entiende la zona donde las velas no portan y cómo evitarla."
+        },
+        "2": {
+          "title": "Nudo de Bolina",
+          "category": "Cabuyería",
+          "description": "El rey de los nudos: seguro, fuerte y fácil de deshacer."
+        },
+        "3": {
+          "title": "Barlovento vs Sotavento",
+          "category": "Teoría",
+          "description": "Aprende a diferenciar los lados del barco según el viento."
+        },
+        "4": {
+          "title": "Prioridades de Paso",
+          "category": "Seguridad",
+          "description": "Reglas básicas para evitar abordajes en el mar."
+        },
+        "5": {
+          "title": "Partes de la Vela",
+          "category": "Partes",
+          "description": "Puño de driza, amura y escota. ¿Cuál es cuál?"
+        }
+      }
     },
     "daily_challenge": {
       "title": "Desafío del Día",
@@ -864,7 +899,45 @@
       "wrong": "No es correcto. La respuesta era: {answer}",
       "already_done": "Ya has completado tu desafío diario.",
       "come_back": "Vuelve mañana para seguir sumando.",
-      "explanation": "Sabías que..."
+      "explanation": "Sabías que...",
+      "streak": "{streak} DÍAS SEGUIDOS 🔥",
+      "iq": "IQ NÁUTICO: {accuracy}%",
+      "correct_attempts": "Aciertos",
+      "current_streak": "Racha",
+      "streak_progress": "Progreso de Racha",
+      "syncing": "SINCRONIZANDO RUMBO...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "¿Qué es la Amura?",
+          "options": [
+            "La parte delantera del costado del buque",
+            "La parte trasera del buque",
+            "El cable que sujeta el palo",
+            "Una vela pequeña"
+          ],
+          "explanation": "La amura es la zona del costado del buque que se estrecha para formar la proa."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "¿Cómo se llama el lado derecho de la embarcación mirando a proa?",
+          "options": [
+            "Babor",
+            "Estribor",
+            "Popa",
+            "Costado"
+          ],
+          "explanation": "Estribor es el nombre que recibe el costado derecho de una embarcación."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Academia Digital",
+      "club": "Club",
+      "upcoming_event": "Próximo Evento",
+      "course": "Curso",
+      "rental": "Alquiler",
+      "free_sailing": "Travesía Libre",
+      "daily_challenge_teaser": "Reto Diario",
+      "earn_xp": "Gana +{xp} XP hoy"
     }
   },
   "wind_lab": {

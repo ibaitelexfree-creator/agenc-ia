@@ -864,7 +864,42 @@
       "btn_start": "Hasi Orain"
     },
     "micro_lessons": {
-      "title": "Mikro-Ikasgaiak"
+      "title": "Mikro-Ikasgaiak",
+      "weekly_updates": "Asteko Berriak",
+      "categories": {
+        "maniobra": "Maniobra",
+        "cabuyeria": "Abaotza",
+        "teoria": "Teoria",
+        "seguridad": "Segurtasuna",
+        "partes": "Zatiak"
+      },
+      "lessons": {
+        "1": {
+          "title": "Haizearen Begia",
+          "category": "Maniobra",
+          "description": "Ulertu belak haizea hartzen ez duten eremua eta nola saihestu."
+        },
+        "2": {
+          "title": "Gida-Asa Korapiloa",
+          "category": "Abaotza",
+          "description": "Korapiloen erregea: segurua, sendoa eta askatzeko erraza."
+        },
+        "3": {
+          "title": "Haizealdea vs Haizebekoa",
+          "category": "Teoria",
+          "description": "Ikasi ontziaren aldeak haizearen arabera bereizten."
+        },
+        "4": {
+          "title": "Bide-Lehentasunak",
+          "category": "Segurtasuna",
+          "description": "Itsasoan talkak saihesteko oinarrizko arauak."
+        },
+        "5": {
+          "title": "Belaren Zatiak",
+          "category": "Zatiak",
+          "description": "Triza-begia, amura eta eskotila. Zein da zein?"
+        }
+      }
     },
     "courses_section": {
       "title": "Zure Hurrengo Ikastaro Presentzialak",
@@ -892,7 +927,45 @@
       "wrong": "Ez da zuzena. Erantzuna hauxe zen: {answer}",
       "already_done": "Dagoeneko osatu duzu gaurko erronka.",
       "come_back": "Itzuli bihar puntuak batzen jarraitzeko.",
-      "explanation": "Bazekien..."
+      "explanation": "Bazekien...",
+      "streak": "{streak} EGUNEKO RACHA 🔥",
+      "iq": "IQ NAUTIKOA: {accuracy}%",
+      "correct_attempts": "Aciertos",
+      "current_streak": "Racha",
+      "streak_progress": "Racha Progress",
+      "syncing": "RUMBO SINKRONIZATZEN...",
+      "challenges": {
+        "0f2b587a-8c69-44c8-b658-f8367fecd965": {
+          "question": "Zer da Amura?",
+          "options": [
+            "Ontziaren alboaren aurreko zatia",
+            "Ontziaren atzeko zatia",
+            "Masta eusten duen kablea",
+            "Bela txiki bat"
+          ],
+          "explanation": "Amura ontziaren alboaren zati bat da, branka osatzeko estutzen dena."
+        },
+        "e1d8391a-e679-471d-9e07-97adfabbaa90": {
+          "question": "Nola deitzen da ontziaren eskuineko aldea brankara begiratzean?",
+          "options": [
+            "Babor",
+            "Estribor",
+            "Popa",
+            "Alboa"
+          ],
+          "explanation": "Estribor ontzi baten eskuineko alboak jasotzen duen izena da."
+        }
+      }
+    },
+    "mobile_hub": {
+      "digital_academy": "Akademia Digitala",
+      "club": "Kluba",
+      "upcoming_event": "Hurrengo Ekitaldia",
+      "course": "Ikastaroa",
+      "rental": "Alokairua",
+      "free_sailing": "Nabigazio Librea",
+      "daily_challenge_teaser": "Eguneko Erronka",
+      "earn_xp": "Irabazi +{xp} XP gaur"
     }
   },
   "wind_lab": {
