@@ -215,7 +215,7 @@ export function Section4Why() {
             left: 'clamp(1.5rem, 5vw, 3rem)',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />
+          {t('eyebrow') && <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />}
           <h2
             style={{
               fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',

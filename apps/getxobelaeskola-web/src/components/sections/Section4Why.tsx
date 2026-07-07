@@ -1,248 +1,283 @@
 // src/components/sections/Section4Why.tsx
 'use client'
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useTranslations } from 'next-intl'
-import { CounterNumber } from '@/components/ui/CounterNumber'
-import { Crab } from '@/components/creatures/Crab'
-import { Seahorse } from '@/components/creatures/Seahorse'
-import { ShimmerBadge } from '@/components/ui/ShimmerBadge'
-import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
-
 import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { useTranslations } from 'next-intl'
+import { Seahorse } from '@/components/creatures/Seahorse'
+import { Crab } from '@/components/creatures/Crab'
 
-const pillars = ['pillar1', 'pillar2', 'pillar3'] as const
+type FlipCardProps = {
+  icon: React.ReactNode
+  title: string
+  hook: string
+  label: string
+  description: string
+}
 
-function PillarCard({ pillar, i, t }: { pillar: 'pillar1' | 'pillar2' | 'pillar3'; i: number; t: any }) {
-  const [isFlipped, setIsFlipped] = useState(false)
+function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
+  const t = useTranslations('s4')
+  const [flipped, setFlipped] = useState(false)
+  const [hovered, setHovered] = useState(false)
+
+  // Rotate card either on desktop hover (state managed) or touch click
+  const isRotated = hovered || flipped
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 60, filter: 'blur(8px)', scale: 0.95 }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)', scale: 1 }}
-      viewport={{ once: false, margin: '-30px' }}
-      transition={{
-        delay: i * 0.15,
-        duration: 0.7,
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
+    <div
+      className="flip-card-wrapper"
       style={{
-        flex: 1,
         position: 'relative',
-        width: '100%',
-        minHeight: '110px',
-        zIndex: isFlipped ? 10 : 1,
+        width: 'var(--card-w)',
+        height: 'var(--card-h)',
+        perspective: '1600px',
+        cursor: 'pointer',
+        WebkitTapHighlightColor: 'transparent',
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => setFlipped(!flipped)}
     >
-      {/* 3D card structure (visuals only, pointerEvents: none prevents flickering) */}
+      <span className="sr-only">{title}. Pulsa para ver más detalles.</span>
+      
+      {/* 3D Inner container that rotates */}
       <div
-        className="flip-card-inner"
+        className="flip-card__inner"
         style={{
-          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          pointerEvents: 'none',
+          position: 'relative',
+          width: '100%',
+          height: '100%',
+          transition: 'transform var(--flip-duration) var(--flip-easing)',
+          transformStyle: 'preserve-3d',
+          transform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          pointerEvents: 'none', // Ignore pointer events so they don't trigger mouseleave during rotation
         }}
       >
-        {/* Front Side */}
+        {/* Front Face */}
         <div
-          className="flip-card-front"
+          className="flip-card__face flip-card__face--front"
           style={{
+            position: 'absolute',
+            inset: 0,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            borderRadius: 'var(--card-radius)',
             display: 'flex',
-            alignItems: 'flex-start',
-            gap: '1rem',
-            backgroundColor: 'var(--foam)',
-            borderRadius: '14px',
-            padding: '1rem 1.25rem',
-            border: '1px solid rgba(10, 126, 200, 0.1)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-            overflow: 'hidden',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '24px 20px',
+            backgroundColor: 'var(--color-white)',
+            border: '1px solid var(--color-border)',
+            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
+            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
+            transformStyle: 'preserve-3d',
           }}
         >
-          {/* Icono emoji */}
-          <span style={{ fontSize: '1.8rem', flexShrink: 0, lineHeight: 1 }}>
-            {t(`${pillar}.icon`)}
+          <span
+            className="flip-card__icon"
+            style={{
+              width: '64px',
+              height: '64px',
+              borderRadius: '50%',
+              background: 'var(--color-gold-soft)',
+              color: 'var(--color-navy-900)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '20px',
+              transition: 'transform var(--flip-duration) var(--flip-easing)',
+              transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
+            }}
+          >
+            {icon}
           </span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.35rem', flexWrap: 'wrap' }}>
-              <h3
-                style={{
-                  fontSize: '1.05rem',
-                  fontWeight: 700,
-                  color: 'var(--ocean-deep)',
-                }}
-              >
-                {t(`${pillar}.title`)}
-              </h3>
-              {/* Badge especial con Shimmer y contador animado */}
-              {pillar === 'pillar1' && (
-                <ShimmerBadge color="gold">
-                  Desde{' '}
-                  <CounterNumber
-                    from={0}
-                    to={52.5}
-                    suffix="€/mes"
-                    prefix=""
-                    decimals={1}
-                  />
-                </ShimmerBadge>
-              )}
-            </div>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
-              {t(`${pillar}.body`)}
-            </p>
-          </div>
+          <h3
+            className="flip-card__title"
+            style={{
+              fontFamily: 'var(--font-display-promise)',
+              fontSize: 'var(--fs-card-title-front)',
+              color: 'var(--color-navy-900)',
+              margin: '0 0 10px',
+              fontWeight: 600,
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {title}
+          </h3>
+          <p
+            className="flip-card__hook"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-hook)',
+              color: 'var(--color-ink-soft)',
+              lineHeight: 1.5,
+              margin: '0 0 16px',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {hook}
+          </p>
+          <span
+            className="flip-card__cta"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              color: 'var(--color-gold)',
+              letterSpacing: '0.02em',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {t('cta')}
+          </span>
         </div>
 
-        {/* Back Side */}
+        {/* Back Face */}
         <div
-          className="flip-card-back"
+          className="flip-card__face flip-card__face--back"
           style={{
+            position: 'absolute',
+            inset: 0,
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            borderRadius: 'var(--card-radius)',
             display: 'flex',
-            alignItems: 'flex-start',
-            gap: '1rem',
-            backgroundColor: 'var(--ocean-deep)',
-            color: 'var(--white)',
-            borderRadius: '14px',
-            padding: '1rem 1.25rem',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
-            boxShadow: '0 8px 24px rgba(10, 126, 200, 0.15)',
-            overflow: 'hidden',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            padding: '28px 20px 20px',
+            background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
+            transform: 'rotateY(180deg)',
+            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
+            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
+            transformStyle: 'preserve-3d',
           }}
         >
-          {/* Icono emoji */}
-          <span style={{ fontSize: '1.8rem', flexShrink: 0, lineHeight: 1 }}>
-            {t(`${pillar}.icon`)}
+          <span
+            className="flip-card__label"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-eyebrow)',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              color: 'var(--color-gold)',
+              margin: '0 0 12px',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {label}
           </span>
-          <div style={{ flex: 1, minWidth: 0, height: '100%', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.1rem', marginBottom: '0.35rem' }}>
-              <h3
-                style={{
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  color: 'var(--ocean-bright)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  lineHeight: 1.1,
-                }}
-              >
-                {t(`${pillar}.backTitle`)}
-              </h3>
-              <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.75)', fontWeight: 600, lineHeight: 1.2 }}>
-                {t(`${pillar}.backSubtitle`)}
-              </span>
-            </div>
-            <p
-              style={{
-                fontSize: '0.75rem',
-                color: 'rgba(255,255,255,0.9)',
-                lineHeight: 1.4,
-                overflowY: 'auto',
-                paddingRight: '4px',
-                flex: 1,
-              }}
-            >
-              {t(`${pillar}.backBody`)}
-            </p>
-          </div>
+          <p
+            className="flip-card__desc"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: 'var(--fs-body)',
+              color: 'var(--color-white)',
+              opacity: 0.92,
+              lineHeight: 1.6,
+              margin: 0,
+              textAlign: 'center',
+              transform: 'translateZ(90px)',
+            }}
+          >
+            {description}
+          </p>
         </div>
       </div>
-
-      {/* 2D Flat Hover Shield (handles all interactions safely) */}
-      <div
-        onClick={() => setIsFlipped(!isFlipped)}
-        onMouseEnter={() => setIsFlipped(true)}
-        onMouseLeave={() => setIsFlipped(false)}
-        className="flip-card-container"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 20,
-          cursor: 'pointer',
-          backgroundColor: 'transparent',
-        }}
-      />
-    </motion.div>
+    </div>
   )
+}
+
+const CoinIcon = () => (
+  <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
+    <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+    <path d="M24 14v20M29 18.5c0-2.5-2.5-4.5-5.5-4.5S18 15.7 18 18.2c0 5 11 3.4 11 8.4 0 2.6-2.7 4.4-6 4.4s-6-1.9-6-4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+)
+
+const HandsIcon = () => (
+  <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
+    <path d="M6 24l8-8 8 4 6-4 8 6-6 6-8-4-6 4-10-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M14 28l6 6 6-4M28 26l4 4-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+)
+
+const CompassIcon = () => (
+  <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
+    <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+    <path d="M30 18l-8 6-4 8 8-6 4-8z" fill="currentColor"/>
+  </svg>
+)
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+}
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.65, 0, 0.35, 1] } },
 }
 
 export function Section4Why() {
   const t = useTranslations('s4')
 
   return (
-    <section
-      style={{
-        gridArea: 's5',
-        position: 'relative',
-        width: '100vw',
-        height: '100vh',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'var(--white)',
-      }}
-    >
+    <section className="promise" aria-labelledby="promise-heading">
       {/* Seahorse — floating creature on the upper left corner */}
       <Seahorse
-        style={{ position: 'absolute', top: '18%', left: '4%', zIndex: 15 }}
+        style={{ position: 'absolute', top: '15%', left: '4%', zIndex: 15 }}
         enterDelay={0.5}
       />
 
-      {/* Imagen superior */}
-      <div style={{ position: 'relative', height: '40%', overflow: 'hidden' }}>
-        <Image
-          src="/images/ai/section4-community.webp"
-          alt="Comunidad de vela en Getxo"
-          fill
-          quality={80}
-          style={{ objectFit: 'cover', objectPosition: 'center top' }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(to bottom, rgba(13,33,55,0.25) 0%, #ffffff 90%)',
-          }}
-        />
-        {/* Título flotando sobre la imagen */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.7 }}
-          style={{
-            position: 'absolute',
-            bottom: '1rem',
-            left: 'clamp(1.5rem, 5vw, 3rem)',
-          }}
-        >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />
-          <h2
-            style={{
-              fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)',
-              fontWeight: 700,
-              color: 'var(--ocean-deep)',
-              lineHeight: 1.2,
-            }}
-          >
-            {t('title')}
-          </h2>
-        </motion.div>
-      </div>
+      <div className="promise__inner">
+        {t('eyebrow') ? (
+          <>
+            <p className="promise__eyebrow">{t('title')}</p>
+            <h2 id="promise-heading" className="promise__title">{t('eyebrow')}</h2>
+          </>
+        ) : (
+          <h2 id="promise-heading" className="promise__title">{t('title')}</h2>
+        )}
 
-      {/* Los 3 pilares */}
-      <div
-        style={{
-          flex: 1,
-          padding: 'clamp(1rem, 3vh, 1.5rem) clamp(1.5rem, 5vw, 3rem)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          gap: '0.75rem',
-        }}
-      >
-        {pillars.map((pillar, i) => (
-          <PillarCard key={pillar} pillar={pillar} i={i} t={t} />
-        ))}
+        <motion.div
+          className="promise__grid"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <motion.div variants={item}>
+            <FlipCard
+              icon={<CoinIcon />}
+              title={t('pillar1.title')}
+              hook={t('pillar1.body')}
+              label={t('pillar1.backTitle')}
+              description={t('pillar1.backBody')}
+            />
+          </motion.div>
+
+          <motion.div variants={item}>
+            <FlipCard
+              icon={<HandsIcon />}
+              title={t('pillar2.title')}
+              hook={t('pillar2.body')}
+              label={t('pillar2.backTitle')}
+              description={t('pillar2.backBody')}
+            />
+          </motion.div>
+
+          <motion.div variants={item}>
+            <FlipCard
+              icon={<CompassIcon />}
+              title={t('pillar3.title')}
+              hook={t('pillar3.body')}
+              label={t('pillar3.backTitle')}
+              description={t('pillar3.backBody')}
+            />
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Cangrejo — criatura de la esquina */}

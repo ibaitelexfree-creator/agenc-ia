@@ -724,7 +724,7 @@
     "cta_course": "Voir le programme →"
   },
   "s4": {
-    "eyebrow": "Notre promesse",
+    "eyebrow": "",
     "title": "Pourquoi naviguer avec nous ?",
     "pillar1": {
       "icon": "💶",
@@ -943,5 +943,121 @@
     "btn_dashboard": "Mon Tableau de Bord →",
     "admin_supabase": "Voir sur Supabase (Admin)",
     "quote": "\"Il n'y a pas de vent favorable pour celui qui ne sait pas vers quel port il navigue.\" — Sénèque"
+  },
+  "equipos_entrenamiento": {
+    "hero": {
+      "eyebrow": "GETXO BELA ESKOLA",
+      "title": "RÉGATES",
+      "subtitle_line": "Entraînements et équipes",
+      "subtitle_body": "Nous ne cherchons pas des championnes à tout prix.<br/>Nous cherchons à grandir en naviguant, à partager et à apprécier le chemin ensemble."
+    },
+    "marquee": [
+      "grandir en naviguant",
+      "partager",
+      "apprécier le chemin",
+      "sans championnes à tout prix",
+      "travail d'équipe",
+      "la mer comme maîtresse",
+      "apprendre ensemble"
+    ],
+    "teams": {
+      "title_eyebrow": "NOS ÉQUIPES",
+      "title": "Choisissez votre flotte.",
+      "view_team": "VOIR L'ÉQUIPE",
+      "close": "↑ fermer",
+      "infantil": {
+        "label": "ENFANTS",
+        "age": "À partir de 5 ans",
+        "description": "La base du travail se fait en Optimist, avec des sorties occasionnelles en Raquero ou J80. L'observation du vent, les manœuvres et la sécurité sur l'eau sont améliorées dans un environnement convivial et motivant.",
+        "schedule": "Les 3 premiers dimanches de chaque mois",
+        "focus": "Confiance · Lecture du vent · Prise de décision"
+      },
+      "jovenes": {
+        "label": "JEUNES",
+        "age": "À partir de 14 ans",
+        "description": "Des groupes stables pour ceux qui souhaitent apprendre les bases ou continuer à progresser. La navigation se fait sur différents bateaux pour former des marins complets et responsables.",
+        "schedule": "Les 3 premiers dimanches de chaque mois",
+        "focus": "Cohésion · Communication à bord · Responsabilité partagée",
+        "vessel_various": "Divers types"
+      },
+      "adultas": {
+        "label": "ADULTES",
+        "age": "Perfectionnement",
+        "description": "Perfectionnement en Laser/ILCA, 420 et croiseurs J80. Animé par des moniteurs spécialistes de la régate. Sessions de 4 heures, 3 fois par mois, de septembre à juin.",
+        "schedule": "3 jours par mois · Sessions de 4 heures",
+        "focus": "Contrôle du bateau · Réglage des voiles · Stratégie de régate",
+        "note": "Inclus dans le Pack Membre Complet · 1 200 €/an"
+      }
+    },
+    "calendar": {
+      "title_eyebrow": "CALENDRIER D'ENTRAÎNEMENT",
+      "title": "Les 3 premiers dimanches de chaque mois.",
+      "prev_month": "Mois précédent",
+      "next_month": "Mois suivant",
+      "legend_training": "Entraînement",
+      "legend_rest": "Dimanche libre",
+      "months": [
+        "Janvier",
+        "Février",
+        "Mars",
+        "Avril",
+        "Mai",
+        "Juin",
+        "Juillet",
+        "Août",
+        "Septembre",
+        "Octobre",
+        "Novembre",
+        "Décembre"
+      ],
+      "days": [
+        "L",
+        "M",
+        "M",
+        "J",
+        "V",
+        "S",
+        "D"
+      ]
+    },
+    "logbook": {
+      "title_eyebrow": "CONDITIONS",
+      "title": "Pour rejoindre la flotte.",
+      "log_title": "JOURNAL DE BORD",
+      "log_subtitle": "Getxo Bela Eskola · Conditions d'accès",
+      "signature": "Angharad · Getxo Bela Eskola · getxobelaeskola.cloud",
+      "ganas": {
+        "title": "Envie d'apprendre et de partager",
+        "body": "Nous recherchons des personnes engagées dans l'esprit d'équipe. Les équipages se soutiennent, célèbrent les progrès et normalisent l'erreur comme faisant partie du sport."
+      },
+      "nivel": {
+        "title": "Niveau préalable selon la catégorie",
+        "body": "Les enfants et les jeunes peuvent commencer à partir de zéro. Pour les adultes, il est recommandé d'avoir suivi le cours d'Initiation au Croiseur."
+      },
+      "licencia": {
+        "title": "Licence de la Fédération",
+        "body": "Obligatoire pour l'entraînement et la régate. Fédération Basque de Voile · ~64 €/an. Comprend une assurance complémentaire.",
+        "highlight": "~64 €/an"
+      },
+      "socia": {
+        "title": "Être membre du club",
+        "body": "Pack Complet : 1 200 €/an · 3 jours/mois de perfectionnement encadré (sept-juin) + sorties illimitées toute l'année.",
+        "highlight": "1 200 €/an"
+      }
+    },
+    "cta": {
+      "title_eyebrow": "REJOINS LA FLOTTE",
+      "headline_1": "Vivez la",
+      "headline_2": "mer",
+      "headline_3": "ensemble.",
+      "tagline": "Nous vous informons des places disponibles sans engagement.",
+      "message": "MESSAGE",
+      "online": "EN LIGNE",
+      "intro": "Écrivez-nous et nous vous informerons des équipes et des places disponibles.",
+      "send": "📡 Envoyer un message",
+      "whatsapp": "💬 WhatsApp",
+      "note": "Nous répondons en moins de 24h · Sans engagement",
+      "sent": "Message reçu ! Nous vous contacterons bientôt."
+    }
   }
 }

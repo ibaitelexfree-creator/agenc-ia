@@ -4,9 +4,11 @@ import { motion } from "framer-motion";
 import TeamCard from "./TeamCard";
 import { TEAMS } from "../data/teams";
 import styles from "../EquiposEntrenamiento.module.css";
+import { useTranslations } from "next-intl";
 
 export default function TeamCards() {
   const [activeTeam, setActiveTeam] = useState<string | null>(null);
+  const t = useTranslations('equipos_entrenamiento.teams');
 
   const toggle = (id: string) =>
     setActiveTeam((prev) => (prev === id ? null : id));
@@ -21,7 +23,7 @@ export default function TeamCards() {
         viewport={{ once: false }}
         transition={{ duration: 0.5 }}
       >
-        NUESTROS EQUIPOS
+        {t('title_eyebrow')}
       </motion.p>
 
       <motion.h2
@@ -31,7 +33,7 @@ export default function TeamCards() {
         viewport={{ once: false }}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Elige tu flota.
+        {t('title')}
       </motion.h2>
 
       <div className={styles['team-cards-grid']}>

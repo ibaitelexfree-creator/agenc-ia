@@ -1,11 +1,10 @@
-// CalendarView.tsx
 import { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
-  getSundaysOfMonth, isTrainingDay,
-  MONTH_NAMES, DAY_NAMES
+  getSundaysOfMonth, isTrainingDay
 } from "../data/calendar";
 import styles from "../EquiposEntrenamiento.module.css";
+import { useTranslations } from "next-intl";
 
 // Genera los días del mes para pintar la cuadrícula
 function getMonthGrid(year: number, month: number): (number | null)[] {
@@ -24,6 +23,10 @@ export default function CalendarView() {
   const [month, setMonth] = useState(now.getMonth());
   const ref     = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-60px" });
+  const t = useTranslations('equipos_entrenamiento.calendar');
+
+  const MONTH_NAMES: string[] = t.raw('months') || [];
+  const DAY_NAMES: string[] = t.raw('days') || [];
 
   const sundays = getSundaysOfMonth(year, month);
   const sundayDates = sundays.map((d) => d.getDate());
@@ -59,7 +62,7 @@ export default function CalendarView() {
         animate={isInView ? { opacity: 1 } : {}}
         transition={{ duration: 0.5 }}
       >
-        CALENDARIO DE ENTRENAMIENTOS
+        {t('title_eyebrow')}
       </motion.p>
 
       <motion.h2
@@ -68,7 +71,7 @@ export default function CalendarView() {
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.1 }}
       >
-        Primeros 3 domingos<br/>de cada mes.
+        {t('title')}
       </motion.h2>
 
       {/* Tarjeta calendario */}
@@ -86,7 +89,7 @@ export default function CalendarView() {
             onClick={prevMonth}
             whileHover={{ x: -3 }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Mes anterior"
+            aria-label={t('prev_month')}
           >
             ←
           </motion.button>
@@ -109,7 +112,7 @@ export default function CalendarView() {
             onClick={nextMonth}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.9 }}
-            aria-label="Mes siguiente"
+            aria-label={t('next_month')}
           >
             →
           </motion.button>
@@ -171,11 +174,11 @@ export default function CalendarView() {
         <div className={styles['cal-legend']}>
           <span className={`${styles['cal-legend__item']} ${styles['cal-legend__item--training']}`}>
             <span className={styles['cal-legend__dot']} />
-            Entrenamiento
+            {t('legend_training')}
           </span>
           <span className={styles['cal-legend__item']}>
             <span className={`${styles['cal-legend__dot']} ${styles['cal-legend__dot--rest']}`} />
-            Domingo libre
+            {t('legend_rest')}
           </span>
         </div>
 
