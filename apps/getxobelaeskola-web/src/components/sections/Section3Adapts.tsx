@@ -346,45 +346,47 @@ export function Section3Adapts() {
           </Card3D>
 
           {/* Card 4: Vela Moderna */}
-          <Card3D
-            intensity={5}
-            style={{
-              backgroundColor: 'var(--gbe-mist)',
-              borderRadius: '16px',
-              padding: '0.75rem 1rem',
-              color: 'var(--gbe-navy-900)',
-              position: 'relative',
-              overflow: 'hidden',
-            }}
-          >
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
-              <span
-                style={{
-                  alignSelf: 'flex-start',
-                  backgroundColor: 'var(--gbe-navy-900)',
-                  color: 'var(--gbe-gold)',
-                  fontSize: '0.58rem',
-                  fontWeight: 700,
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  padding: '2px 8px',
-                  borderRadius: '20px',
-                  marginBottom: '0.3rem',
-                }}
-              >
-                {t('card4.badge')}
-              </span>
-              <p
-                style={{
-                  fontSize: '0.70rem',
-                  lineHeight: 1.4,
-                  color: 'var(--gbe-text-muted)',
-                }}
-              >
-                {t('card4.body')}
-              </p>
-            </div>
-          </Card3D>
+          <div style={{ transform: 'translateY(24px)' }}>
+            <Card3D
+              intensity={5}
+              style={{
+                backgroundColor: 'var(--gbe-mist)',
+                borderRadius: '16px',
+                padding: '0.75rem 1rem',
+                color: 'var(--gbe-navy-900)',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+                <span
+                  style={{
+                    alignSelf: 'flex-start',
+                    backgroundColor: 'var(--gbe-navy-900)',
+                    color: 'var(--gbe-gold)',
+                    fontSize: '0.58rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    padding: '2px 8px',
+                    borderRadius: '20px',
+                    marginBottom: '0.3rem',
+                  }}
+                >
+                  {t('card4.badge')}
+                </span>
+                <p
+                  style={{
+                    fontSize: '0.70rem',
+                    lineHeight: 1.4,
+                    color: 'var(--gbe-text-muted)',
+                  }}
+                >
+                  {t('card4.body')}
+                </p>
+              </div>
+            </Card3D>
+          </div>
         </div>
 
         {/* Enlace global para "Leer más" */}
