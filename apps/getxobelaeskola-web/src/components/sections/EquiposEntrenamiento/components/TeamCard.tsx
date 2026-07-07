@@ -1,25 +1,12 @@
 // TeamCard.tsx
+'use client'
+
+import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
 import { Team } from "../data/teams";
 import React from "react";
-
-// ── Variantes del flip ────────────────────────────────────────
-const flipVariants: Variants = {
-  front: {
-    rotateY: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  },
-  back: {
-    rotateY: 180,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
-  }
-};
-
-const backContentVariants: Variants = {
-  hidden:  { opacity: 0 },
-  visible: { opacity: 1, transition: { delay: 0.3, duration: 0.3 } }
-};
+import { useTranslations } from "next-intl";
 
 interface TeamCardProps {
   team: Team;
@@ -28,17 +15,26 @@ interface TeamCardProps {
   entryDelay?: number;
 }
 
-// Custom CSS properties type declaration
-interface CustomCSSProperties extends React.CSSProperties {
-  "--accent"?: string;
+// Design Tokens (Matching Section 3 and 4 premium styles)
+const COLORS = {
+  navyCover: '#0A1E36',     // Deep ocean blue cover
+  goldFoil: '#C8A96A',      // Luxurious gold foil accent
+  paperWhite: '#FCFAF7',    // Premium ivory paper
+  textDarkNavy: '#1B2F45',  // Readable dark navy text
+  overlayDark: 'rgba(10, 25, 45, 0.65)',
 }
 
-import { useTranslations } from "next-intl";
+const FONTS = {
+  serif: 'Cormorant Garamond, "Playfair Display", Georgia, serif',
+  sans: 'Inter, Manrope, "DM Sans", sans-serif',
+}
 
-// ── Componente ────────────────────────────────────────────────
 export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: TeamCardProps) {
   const { id: teamKey, emoji, accentColor, embarcaciones } = team;
   const t = useTranslations('equipos_entrenamiento.teams');
+  
+  const [isHovered, setIsHovered] = useState(false);
+  const activeOpen = isActive || isHovered;
 
   const label = t(`${teamKey}.label`);
   const age = t(`${teamKey}.age`);
@@ -52,132 +48,281 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
     return e;
   });
 
+  // Short descriptive values for Left Inside Page
+  const shortQuotes: Record<string, string> = {
+    infantil: "Confianza en el agua y aprendizaje a través del juego.",
+    jovenes: "Navegación estable, amistad y responsabilidad compartida.",
+    adultas: "Estrategia, trimado avanzado y tecnificación de regata.",
+  };
+
   return (
-    // Contenedor con perspectiva — da el efecto 3D al flip
     <motion.div
       className={styles['team-card-wrapper']}
-      style={{ perspective: "900px" }}
+      style={{
+        perspective: '2000px',
+        zIndex: activeOpen ? 50 : 10,
+        height: '420px', // slightly increased height for luxurious proportions
+      }}
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, margin: "-40px" }}
-      transition={{ duration: 0.7, delay: entryDelay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.7, delay: entryDelay, ease: [0.25, 1, 0.5, 1] }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={onToggle}
     >
-      {/* Capa que rota */}
       <motion.div
-        className={styles['team-card-flipper']}
-        animate={isActive ? "back" : "front"}
-        variants={flipVariants}
-        style={{ transformStyle: "preserve-3d" }}
+        className="w-full h-full relative"
+        style={{
+          transformStyle: 'preserve-3d',
+        }}
+        animate={{
+          y: activeOpen ? -10 : 0,
+          scale: activeOpen ? 1.03 : 1,
+          boxShadow: activeOpen 
+            ? '0 30px 60px rgba(10, 25, 45, 0.35)' 
+            : '0 10px 30px rgba(10, 25, 45, 0.15)',
+        }}
+        transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
       >
-
-        {/* ── CARA FRONTAL ────────────────────────────────── */}
+        {/* RIGHT INSIDE PAGE (Content revealed on the right side) */}
         <div
-          className={`${styles['team-card']} ${styles['team-card--front']}`}
-          style={{ "--accent": accentColor } as CustomCSSProperties}
-          onClick={onToggle}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && onToggle()}
-          aria-expanded={isActive}
-          aria-label={`${t('view_team')} ${label}`}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: COLORS.paperWhite,
+            backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.015) 1px, transparent 0)',
+            backgroundSize: '16px 16px',
+            borderRadius: activeOpen ? '0 18px 18px 0' : '18px',
+            borderLeft: activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`,
+            padding: '1.5rem',
+            borderRight: `1px solid ${COLORS.navyCover}`,
+            borderTop: `1px solid ${COLORS.navyCover}`,
+            borderBottom: `1px solid ${COLORS.navyCover}`,
+            boxShadow: activeOpen 
+              ? '10px 15px 35px rgba(10, 25, 45, 0.15), inset 15px 0 20px rgba(0,0,0,0.03)' 
+              : 'none',
+            zIndex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            backfaceVisibility: 'hidden',
+            transition: 'border-radius 0.4s ease, border-left 0.4s ease, box-shadow 0.4s ease',
+            overflow: 'hidden',
+          }}
         >
-          {/* Borde superior coloreado */}
-          <div className={styles['team-card__accent-bar']} />
+          {/* Inside page border outline */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: '8px',
+              border: '1px solid rgba(18, 62, 99, 0.08)',
+              borderRadius: '12px',
+              pointerEvents: 'none',
+            }}
+          />
 
-          {/* Emoji grande */}
-          <motion.div
-            className={styles['team-card__emoji']}
-            animate={isActive ? { scale: 0.8, opacity: 0 } : { scale: 1, opacity: 1 }}
-            transition={{ duration: 0.2 }}
-          >
-            {emoji}
-          </motion.div>
-
-          <div className={styles['team-card__front-text']}>
-            <span className={styles['team-card__label']}>{label}</span>
-            <span className={styles['team-card__age']}>{age}</span>
+          {/* Header */}
+          <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', gap: '0.2rem', textAlign: 'center' }}>
+            <span style={{ fontSize: '0.65rem', color: accentColor, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', fontFamily: FONTS.sans }}>
+              {age}
+            </span>
+            <h4 style={{ fontSize: '1.15rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, letterSpacing: '-0.01em' }}>
+              {label}
+            </h4>
+            <div style={{ width: '30px', height: '1.2px', backgroundColor: COLORS.goldFoil, margin: '0.2rem auto 0' }} />
           </div>
 
-          {/* Indicador de apertura */}
-          <motion.div
-            className={styles['team-card__toggle-hint']}
-            animate={{ y: [0, 4, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span>{t('view_team')}</span>
-            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-              <path d="M1 1L6 7L11 1" stroke="currentColor" strokeWidth="1.5"
-                    strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </motion.div>
-        </div>
+          {/* Description Body */}
+          <div style={{ zIndex: 2, flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.5rem', padding: '0.25rem 0', textAlign: 'left' }}>
+            <p style={{ fontSize: '0.78rem', color: COLORS.textDarkNavy, lineHeight: 1.5, fontFamily: FONTS.sans, opacity: 0.9 }}>
+              {description}
+            </p>
 
-        {/* ── CARA TRASERA ────────────────────────────────── */}
-        <div
-          className={`${styles['team-card']} ${styles['team-card--back']}`}
-          style={{ "--accent": accentColor, transform: "rotateY(180deg)" } as CustomCSSProperties}
-          onClick={onToggle}
-          role="button"
-          tabIndex={isActive ? 0 : -1}
-          aria-label={`${t('close')} ${label}`}
-        >
-          {/* Borde de acento */}
-          <div className={styles['team-card__accent-bar']} />
+            {/* Metainfo */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', marginTop: '0.4rem', fontSize: '0.75rem', color: COLORS.textDarkNavy }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <span>📅</span>
+                <span style={{ fontWeight: 500 }}>{schedule}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <span>🎯</span>
+                <span style={{ fontWeight: 500 }}>{focus}</span>
+              </div>
+            </div>
 
-          {/* Contenido con su propia animación de entrada */}
-          <AnimatePresence>
-            {isActive && (
-              <motion.div
-                className={styles['team-card__back-content']}
-                variants={backContentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-              >
-                <div className={styles['team-card__back-header']}>
-                  <span className={styles['team-card__label']}>{label}</span>
-                  <span className={styles['team-card__age']} style={{ color: accentColor }}>
-                    {age}
-                  </span>
-                </div>
+            {/* Chips */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginTop: '0.5rem' }}>
+              {translatedEmbarcaciones.map((e) => (
+                <span
+                  key={e}
+                  style={{
+                    fontSize: '0.62rem',
+                    padding: '0.2rem 0.5rem',
+                    borderRadius: '12px',
+                    border: `1px solid ${accentColor}`,
+                    color: COLORS.textDarkNavy,
+                    fontWeight: 600,
+                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                  }}
+                >
+                  {e}
+                </span>
+              ))}
+            </div>
 
-                <p className={styles['team-card__description']}>{description}</p>
-
-                <div className={styles['team-card__meta']}>
-                  <div className={styles['team-card__meta-row']}>
-                    <span className={styles['team-card__meta-icon']}>📅</span>
-                    <span>{schedule}</span>
-                  </div>
-                  <div className={styles['team-card__meta-row']}>
-                    <span className={styles['team-card__meta-icon']}>🎯</span>
-                    <span>{focus}</span>
-                  </div>
-                </div>
-
-                {/* Chips de embarcaciones */}
-                <div className={styles['team-card__chips']}>
-                  {translatedEmbarcaciones.map((e) => (
-                    <span key={e} className={styles['team-card__chip']}
-                          style={{ borderColor: accentColor }}>
-                      {e}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Nota especial si existe */}
-                {note && (
-                  <p className={styles['team-card__note']}>{note}</p>
-                )}
-
-                {/* Cerrar */}
-                <button className={styles['team-card__close']}>
-                  {t('close')}
-                </button>
-              </motion.div>
+            {/* Note */}
+            {note && (
+              <p style={{ fontSize: '0.68rem', color: 'rgba(27, 47, 69, 0.75)', fontStyle: 'italic', marginTop: '0.4rem' }}>
+                {note}
+              </p>
             )}
-          </AnimatePresence>
+          </div>
+
+          {/* Footer */}
+          <div style={{ zIndex: 2, display: 'flex', justifyContent: 'center' }}>
+            <button
+              style={{
+                fontSize: '0.65rem',
+                color: 'rgba(27, 47, 69, 0.5)',
+                fontFamily: FONTS.sans,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+            >
+              {t('close')}
+            </button>
+          </div>
         </div>
 
+        {/* ROTATING COVER WRAPPER */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            transformStyle: 'preserve-3d',
+            transformOrigin: 'left center',
+            zIndex: 2,
+          }}
+          animate={{
+            rotateY: activeOpen ? -180 : 0,
+          }}
+          transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+        >
+          {/* Cover Front Face (Hardcover Navy Cover) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: COLORS.navyCover,
+              backgroundImage: 'radial-gradient(rgba(200, 169, 106, 0.05) 1px, transparent 0)',
+              backgroundSize: '24px 24px',
+              borderRadius: '18px',
+              padding: '2.5rem 1.5rem',
+              border: `2px solid ${COLORS.goldFoil}`,
+              boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.3)',
+              backfaceVisibility: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              textAlign: 'center',
+              zIndex: 2,
+              overflow: 'hidden',
+            }}
+          >
+            {/* Elegant Corner Ornaments in Gold */}
+            <div style={{ position: 'absolute', top: '8px', left: '8px', width: '10px', height: '10px', borderTop: `1px solid ${COLORS.goldFoil}`, borderLeft: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
+            <div style={{ position: 'absolute', top: '8px', right: '8px', width: '10px', height: '10px', borderTop: `1px solid ${COLORS.goldFoil}`, borderRight: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
+            <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '10px', height: '10px', borderBottom: `1px solid ${COLORS.goldFoil}`, borderLeft: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
+            <div style={{ position: 'absolute', bottom: '8px', right: '8px', width: '10px', height: '10px', borderBottom: `1px solid ${COLORS.goldFoil}`, borderRight: `1px solid ${COLORS.goldFoil}`, opacity: 0.6 }} />
+
+            {/* Embossed Sailing Icon / Emoji */}
+            <div style={{ fontSize: '2.5rem', filter: 'grayscale(1) contrast(1.5) sepia(1) hue-rotate(15deg) saturate(1.8)' }}>
+              {emoji}
+            </div>
+
+            {/* Title / Emblem */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.4rem' }}>
+              <h3
+                style={{
+                  fontSize: '1.25rem',
+                  fontWeight: 700,
+                  color: COLORS.goldFoil,
+                  fontFamily: FONTS.serif,
+                  letterSpacing: '0.04em',
+                  lineHeight: 1.3,
+                  textTransform: 'uppercase',
+                }}
+              >
+                {label}
+              </h3>
+              <span style={{ fontSize: '0.75rem', color: 'rgba(255, 255, 255, 0.7)', fontFamily: FONTS.sans }}>
+                {age}
+              </span>
+              <div style={{ width: '40px', height: '1px', backgroundColor: COLORS.goldFoil, margin: '0.3rem auto 0', opacity: 0.5 }} />
+            </div>
+
+            {/* Bookmark hint */}
+            <div style={{ fontSize: '0.65rem', color: COLORS.goldFoil, opacity: 0.9, fontFamily: FONTS.sans, letterSpacing: '0.08em', fontWeight: 600 }}>
+              {t('view_team').toUpperCase()} →
+            </div>
+          </div>
+
+          {/* Cover Back Face (Left Inside Page) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              backgroundColor: COLORS.paperWhite,
+              backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.02) 1px, transparent 0)',
+              backgroundSize: '16px 16px',
+              borderRadius: '18px 0 0 18px',
+              borderRight: `3px solid ${COLORS.goldFoil}`,
+              padding: '2rem 1.5rem',
+              borderTop: `2px solid ${COLORS.navyCover}`,
+              borderBottom: `2px solid ${COLORS.navyCover}`,
+              borderLeft: `2px solid ${COLORS.navyCover}`,
+              boxShadow: '-10px 15px 35px rgba(10, 25, 45, 0.1)',
+              transform: 'rotateY(180deg)',
+              backfaceVisibility: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              zIndex: 1,
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                position: 'absolute',
+                inset: '8px',
+                border: '1px solid rgba(18, 62, 99, 0.08)',
+                borderRadius: '12px',
+                pointerEvents: 'none',
+              }}
+            />
+
+            <span style={{ fontSize: '2rem', filter: 'grayscale(1) sepia(1) saturate(1.5)' }}>⚓</span>
+            <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: COLORS.textDarkNavy, fontFamily: FONTS.serif, marginTop: '1rem', textTransform: 'uppercase' }}>
+              {label}
+            </h4>
+            <p style={{ fontSize: '0.72rem', color: COLORS.textDarkNavy, fontStyle: 'italic', fontFamily: FONTS.serif, marginTop: '0.4rem', maxWidth: '170px', opacity: 0.85, lineHeight: 1.45 }}>
+              "{shortQuotes[teamKey] || "Navegar con pasión y valores."}"
+            </p>
+          </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
