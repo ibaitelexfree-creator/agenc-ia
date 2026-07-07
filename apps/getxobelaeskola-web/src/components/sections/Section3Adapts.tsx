@@ -163,7 +163,7 @@ export function Section3Adapts() {
         </div>
 
         {/* Header con Subtítulo Dinámico */}
-        <div style={{ marginBottom: '1rem', position: 'relative', zIndex: 3 }}>
+        <div style={{ marginBottom: '2rem', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" />
           <h2
             style={{
@@ -171,7 +171,7 @@ export function Section3Adapts() {
               fontWeight: 700,
               color: 'var(--gbe-navy-900)',
               lineHeight: 1.15,
-              marginBottom: '0.4rem',
+              marginBottom: '0.6rem',
               fontFamily: 'var(--gbe-font-display)',
             }}
           >
@@ -190,6 +190,8 @@ export function Section3Adapts() {
                 lineHeight: 1.5,
                 fontWeight: 300,
                 minHeight: '2.5rem',
+                maxWidth: '700px',
+                margin: '0 auto',
               }}
             >
               {getDynamicSubtitle()}
