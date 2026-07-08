@@ -115,7 +115,7 @@ export function Section3Adapts() {
         flexDirection: 'column',
       }}
     >
-      {/* Panel del configurador interactivo original con fondo de imagen reactivo */}
+      {/* 62% Inferior: Panel del configurador interactivo original con fondo de imagen reactivo */}
       <div
         style={{
           flex: 1,
