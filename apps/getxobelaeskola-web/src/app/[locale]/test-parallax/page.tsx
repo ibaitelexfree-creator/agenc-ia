@@ -6,6 +6,7 @@ import { PivotParallaxCard } from '@/components/ui/PivotParallaxCard'
 import { MultiLayerParallaxCard } from '@/components/ui/MultiLayerParallaxCard'
 import { PortholeParallaxCard } from '@/components/ui/PortholeParallaxCard'
 import { ZoomRotateCard } from '@/components/ui/ZoomRotateCard'
+import { BoatParallaxCard } from '@/components/ui/BoatParallaxCard'
 import { LiquidButton } from '@/components/ui/LiquidButton'
 import { LiquidButton as LiquidButtonReal } from '@/components/ui/liquid-button-real'
 import { FullScreenWaves } from '@/components/ui/FullScreenWaves'
@@ -55,10 +56,10 @@ export default function TestParallaxPage() {
         <div className="flex flex-col items-center">
           <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 3: Parallax Multicapa</span>
           <MultiLayerParallaxCard
-            backgroundImage="/images/home/paralax-2/Black_image_to_sea_2K_202607081817.jpeg"
-            characterImage="/images/home/paralax-2/เรือและคนบนเรือ_2K_202607081818.jpeg"
-            title="Travesía Nocturna"
-            subtitle="El barco y su tripulación sobre las olas"
+            backgroundImage="/images/home/paralax-2/fondo.jpeg"
+            characterImage="/images/home/paralax-2/sin-fondo.png?v=3"
+            title="Aventuras en el Mar"
+            subtitle="Las capas se desplazan de forma independiente"
             badge="MULTICAPA"
           />
         </div>
@@ -83,6 +84,18 @@ export default function TestParallaxPage() {
             title="Velero desde las Alturas"
             subtitle="Efecto de zoom rotatorio"
             badge="ZOOM & ROTATE"
+          />
+        </div>
+
+        {/* Versión 6: Parallax Multicapa Personalizado */}
+        <div className="flex flex-col items-center">
+          <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 6: Mar de Sombras (Oleaje 3D)</span>
+          <BoatParallaxCard
+            backgroundImage="/images/home/paralax-2/Black_image_to_sea_2K_202607081817.jpeg"
+            boatImage="/images/home/paralax-2/เรือและคนบนเรือ_2K_202607081818.jpeg"
+            title="Mar y Barca"
+            subtitle="Navegando con oleaje 3D"
+            badge="MAR DE SOMBRAS"
           />
         </div>
       </div>

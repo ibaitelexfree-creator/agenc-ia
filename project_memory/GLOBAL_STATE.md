@@ -24,8 +24,7 @@
 | T-013 | Antigravity | Revert Section1Hero back to original blob-card layout | 2026-07-07 | completado |
 | T-014 | Antigravity | Revert Section3Adapts back to original stats and config layout | 2026-07-07 | completado |
 | T-015 | Antigravity | Redesign EquiposEntrenamiento TeamCard into book-opening layout | 2026-07-07 | completado |
-| T-016 | Antigravity | Update multilayer parallax cards with custom user images on test-parallax page | 2026-07-08 | completado |
-
+| T-016 | Antigravity | Add custom Multilayer Parallax (Versión 6) to test-parallax page | 2026-07-08 | completado |
 
 ## Bloqueos / Conflictos
 Ninguno actualmente.
