@@ -55,10 +55,10 @@ export default function TestParallaxPage() {
         <div className="flex flex-col items-center">
           <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 3: Parallax Multicapa</span>
           <MultiLayerParallaxCard
-            backgroundImage="/images/home/paralax-2/fondo.jpeg"
-            characterImage="/images/home/paralax-2/sin-fondo.png?v=3"
-            title="Aventuras en el Mar"
-            subtitle="Las capas se desplazan de forma independiente"
+            backgroundImage="/images/home/paralax-2/Black_image_to_sea_2K_202607081817.jpeg"
+            characterImage="/images/home/paralax-2/เรือและคนบนเรือ_2K_202607081818.jpeg"
+            title="Travesía Nocturna"
+            subtitle="El barco y su tripulación sobre las olas"
             badge="MULTICAPA"
           />
         </div>
