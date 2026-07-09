@@ -92,7 +92,7 @@ export default function TestParallaxPage() {
           <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 6: Mar de Sombras (Oleaje 3D)</span>
           <BoatParallaxCard
             backgroundImage="/images/home/paralax-2/Black_image_to_sea_2K_202607081817.jpeg"
-            boatImage="/images/home/paralax-2/เรือและคนบนเรือ_2K_202607081818.jpeg"
+            boatImage="/images/home/paralax-2/boat_cutout_2K.png?v=4"
             title="Mar y Barca"
             subtitle="Navegando con oleaje 3D"
             badge="MAR DE SOMBRAS"
