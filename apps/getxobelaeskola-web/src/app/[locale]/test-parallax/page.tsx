@@ -7,6 +7,7 @@ import { MultiLayerParallaxCard } from '@/components/ui/MultiLayerParallaxCard'
 import { PortholeParallaxCard } from '@/components/ui/PortholeParallaxCard'
 import { ZoomRotateCard } from '@/components/ui/ZoomRotateCard'
 import { BoatParallaxCard } from '@/components/ui/BoatParallaxCard'
+import { ThreeDVideoParallaxCard } from '@/components/ui/ThreeDVideoParallaxCard'
 import { LiquidButton } from '@/components/ui/LiquidButton'
 import { LiquidButton as LiquidButtonReal } from '@/components/ui/liquid-button-real'
 import { FullScreenWaves } from '@/components/ui/FullScreenWaves'
@@ -96,6 +97,17 @@ export default function TestParallaxPage() {
             title="Mar y Barca"
             subtitle="Navegando con oleaje 3D"
             badge="MAR DE SOMBRAS"
+          />
+        </div>
+
+        {/* Versión 7: Video 3D (Dolly In) */}
+        <div className="flex flex-col items-center">
+          <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 7: Video 3D (Dolly In)</span>
+          <ThreeDVideoParallaxCard
+            backgroundImage="/images/home/paralax-2/แปลงรูปภาพเป็นวิดีโอ_3_มิติ_2K_202607092355.jpeg"
+            title="Velero en Tormenta"
+            subtitle="Efecto Parallax 3D & Dolly In"
+            badge="VIDEO 3D LOOP"
           />
         </div>
       </div>
