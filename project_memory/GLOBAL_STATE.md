@@ -26,6 +26,7 @@
 | T-015 | Antigravity | Redesign EquiposEntrenamiento TeamCard into book-opening layout | 2026-07-07 | completado |
 | T-016 | Antigravity | Add and refine custom Multilayer Parallax (Versión 6) with waves & boat wake | 2026-07-08 | completado |
 | T-017 | Antigravity | Cut black frame from boat image & enhance rocking/splash animation in BoatParallaxCard | 2026-07-08 | completado |
+| T-018 | Antigravity | Implement Dolly-In 3D Video Parallax Card (Versión 7) for image_202607092355 | 2026-07-10 | completado |
 
 
 
