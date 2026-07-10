@@ -100,7 +100,7 @@ export function ThreeDVideoParallaxCard({
               rotateZ: { repeat: Infinity, duration: 12, ease: 'easeInOut' },
               y: { repeat: Infinity, duration: 6, ease: 'easeInOut' }
             }}
-            className="absolute -inset-6 w-[calc(100%+48px)] h-[calc(100%+48px)] select-none pointer-events-none filter blur-[1.5px] brightness-90 saturate-95"
+            className="absolute -inset-6 w-[calc(100%+48px)] h-[calc(100%+48px)] select-none pointer-events-none"
           >
             <Image
               src={backgroundImage}
@@ -138,7 +138,7 @@ export function ThreeDVideoParallaxCard({
               src={backgroundImage}
               alt="3D Scene Foreground"
               fill
-              className="object-cover filter brightness-105 contrast-105 saturate-105"
+              className="object-cover"
               sizes="440px"
             />
           </motion.div>

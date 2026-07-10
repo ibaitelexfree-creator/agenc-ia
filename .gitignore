@@ -82,3 +82,11 @@ public/workbox-*.js
 
 # documents and specs
 public/Documentos/
+
+# Google Flow files containing sensitive tokens
+**/Google Flow - *
+**/*Google Flow*
+
+# scratch files
+scratch/
+

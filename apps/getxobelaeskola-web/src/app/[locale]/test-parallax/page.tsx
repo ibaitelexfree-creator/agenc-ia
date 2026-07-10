@@ -7,7 +7,7 @@ import { MultiLayerParallaxCard } from '@/components/ui/MultiLayerParallaxCard'
 import { PortholeParallaxCard } from '@/components/ui/PortholeParallaxCard'
 import { ZoomRotateCard } from '@/components/ui/ZoomRotateCard'
 import { BoatParallaxCard } from '@/components/ui/BoatParallaxCard'
-import { ThreeDVideoParallaxCard } from '@/components/ui/ThreeDVideoParallaxCard'
+import { BoatPivotParallaxCard } from '@/components/ui/BoatPivotParallaxCard'
 import { LiquidButton } from '@/components/ui/LiquidButton'
 import { LiquidButton as LiquidButtonReal } from '@/components/ui/liquid-button-real'
 import { FullScreenWaves } from '@/components/ui/FullScreenWaves'
@@ -100,14 +100,15 @@ export default function TestParallaxPage() {
           />
         </div>
 
-        {/* Versión 7: Video 3D (Dolly In) */}
+        {/* Versión 7: Fondo Pivotante (30°) */}
         <div className="flex flex-col items-center">
-          <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 7: Video 3D (Dolly In)</span>
-          <ThreeDVideoParallaxCard
-            backgroundImage="/images/home/paralax-2/แปลงรูปภาพเป็นวิดีโอ_3_มิติ_2K_202607092355.jpeg"
-            title="Velero en Tormenta"
-            subtitle="Efecto Parallax 3D & Dolly In"
-            badge="VIDEO 3D LOOP"
+          <span className="text-xs text-slate-500 font-bold font-mono mb-2">Versión 7: Fondo Pivotante (30°)</span>
+          <BoatPivotParallaxCard
+            backgroundImage="/images/home/paralax-2/นำสีดำออกให้เหลือแค่น้ำทะเล_2K_202607100100.jpeg"
+            boatImage="/images/home/paralax-2/ปรับภาพสีคนบนเรือ_cutout_2K.png?v=2"
+            title="Mar y Barca"
+            subtitle="Fondo pivotante con mar real"
+            badge="PIVOT 30°"
           />
         </div>
       </div>
