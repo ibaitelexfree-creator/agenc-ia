@@ -261,9 +261,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         y: magY,
       }}
     >
-      {/* El charco SVG (Reducido ~25% para evitar solapamientos y lograr equilibrio perfecto) */}
+      {/* El charco SVG (ขยายขนาดให้ใหญ่ขึ้นอย่างเหมาะสม เห็นชัดเจนและสวยงาม) */}
       <motion.div
-        className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
+        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28"
         animate={{
           y: floatY,
           x: floatX,
@@ -471,9 +471,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* Texto de la etiqueta */}
-      <div className="text-center max-w-[120px] sm:max-w-[140px]">
+      <div className="text-center max-w-[140px] sm:max-w-[170px]">
         <motion.p
-          className="font-bold tracking-[0.03em] text-[10px] sm:text-xs select-none uppercase truncate"
+          className="font-bold tracking-[0.04em] text-xs sm:text-sm md:text-base select-none uppercase truncate"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -482,8 +482,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[9px] sm:text-[10px] text-white/70 mt-[1px] truncate"
-            animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? -1 : 0 }}
+            className="text-[10px] sm:text-xs text-white/80 mt-[2px] truncate"
+            animate={{ opacity: isHovered ? 1 : 0.75, y: isHovered ? -1 : 0 }}
           >
             {subtitle}
           </motion.p>

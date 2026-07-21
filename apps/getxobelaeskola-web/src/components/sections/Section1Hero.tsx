@@ -430,15 +430,15 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos — tamaño reducido ~25% y espaciado horizontal uniforme y holgado */}
+      {/* Los 5 blobs/วิดีโอ interactivos — ขนาดใหญ่ขึ้น ชัดเจน มีระยะห่างที่สวยงามพอดี */}
       <div
         style={{
           position: 'absolute',
-          bottom: '24px',
+          bottom: '28px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
-          maxWidth: '1300px',
+          maxWidth: '1400px',
           padding: '0 24px',
           zIndex: 15,
         }}
@@ -451,7 +451,7 @@ export function Section1Hero() {
             display: 'flex',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            gap: 'clamp(16px, 4vw, 52px)',
+            gap: 'clamp(12px, 3vw, 40px)',
             width: '100%',
           }}
         >
