@@ -345,16 +345,15 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     <motion.div
                         animate={{
                             y: isAtHero ? 23 : 8,
-                            x: isAtHero ? 5 : 0,
+                            x: 0,
                         }}
                         transition={{ type: 'spring', stiffness: 50, damping: 15 }}
                         className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
-                        {/* Wrapper that sways both the logo and the cloud together in unison */}
+                        {/* Wrapper for subtle vertical floating animation */}
                         <motion.div
                             className="absolute inset-0 w-full h-full"
                             animate={{
-                                x: [0, 8, -12, 5, -15, 10, -5, 15, 0],
                                 y: [0, 6, 2, 8, 4, 10, 3, 9, 0],
                             }}
                             transition={{
@@ -363,28 +362,6 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 ease: "easeInOut"
                             }}
                         >
-                             {/* Base Cloud (No Sun) - Fades out on hover or when leaving Hero section */}
-                             <motion.img 
-                                 src="/images/home/parallax/cloud_only_mini.webp"
-                                 alt="Cloud Base"
-                                 className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
-                                 style={{ opacity: 0.95 }}
-                                 animate={{ opacity: isAtHero ? (isHovered ? 0 : 0.95) : 0 }}
-                                 transition={{ duration: 0.35, ease: 'easeInOut' }}
-                                 fetchPriority="high"
-                             />
-
-                             {/* Sun Cloud (Fades in on hover or when leaving Hero section) */}
-                             <motion.img 
-                                 src="/images/home/parallax/cloud_sun_mini.webp"
-                                 alt="Cloud Sun"
-                                 className="absolute bottom-[-55px] left-[-80px] w-[195%] max-w-none h-auto object-contain -z-10"
-                                 style={{ opacity: 0 }}
-                                 animate={{ opacity: isAtHero ? (isHovered ? 1 : 0) : 0 }}
-                                 transition={{ duration: 0.35, ease: 'easeInOut' }}
-                                 fetchPriority="high"
-                             />
-
                             <Image
                                 src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
                                 alt="Getxo Bela Eskola"
