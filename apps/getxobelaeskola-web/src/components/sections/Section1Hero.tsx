@@ -430,16 +430,16 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero (ขนาดลดลง ~25% ไม่ทับซ้อน) */}
+      {/* Los 5 blobs/วิดีโอ interactivos — tamaño reducido ~25% y espaciado horizontal uniforme y holgado */}
       <div
         style={{
           position: 'absolute',
-          bottom: '16px',
+          bottom: '24px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
-          maxWidth: '1200px',
-          padding: '0 16px',
+          maxWidth: '1300px',
+          padding: '0 24px',
           zIndex: 15,
         }}
       >
@@ -449,9 +449,9 @@ export function Section1Hero() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'space-evenly',
             alignItems: 'center',
-            gap: 'clamp(10px, 2.5vw, 28px)',
+            gap: 'clamp(16px, 4vw, 52px)',
             width: '100%',
           }}
         >
