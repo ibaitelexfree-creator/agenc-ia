@@ -261,9 +261,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         y: magY,
       }}
     >
-      {/* El charco SVG (ขนาดกระทัดรัด พอดีแถบด้านล่าง ไม่ทับซ้อนส่วนอื่น) */}
+      {/* El charco SVG (Reducido ~25% para evitar solapamientos y lograr equilibrio perfecto) */}
       <motion.div
-        className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
+        className="relative w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20"
         animate={{
           y: floatY,
           x: floatX,

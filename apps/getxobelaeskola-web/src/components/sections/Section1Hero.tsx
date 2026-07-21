@@ -348,7 +348,7 @@ export function Section1Hero() {
         </div>
  
         {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: '1.5rem' }}>
+        <div style={{ marginBottom: '1.2rem' }}>
           <LogoGBE />
         </div>
  
@@ -359,7 +359,7 @@ export function Section1Hero() {
             fontWeight: 700,
             lineHeight: 1.15,
             color: 'var(--white)',
-            marginBottom: '1.25rem',
+            marginBottom: '1rem',
             textAlign: 'left',
           }}
         >
@@ -383,7 +383,7 @@ export function Section1Hero() {
             alignItems: 'stretch',
             gap: '16px',
             maxWidth: '710px',
-            margin: '0 0 2.2rem',
+            margin: '0 0 1.6rem',
             textAlign: 'left',
           }}
         >
@@ -422,6 +422,7 @@ export function Section1Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+          style={{ marginBottom: '1rem' }}
         >
           <GlowButton href="#" color="garnet" size="xxl">
             {t('cta')}
@@ -429,11 +430,11 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero (ขนาดกระทัดรัด ไม่ทับซ้อน) */}
+      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero (ขนาดลดลง ~25% ไม่ทับซ้อน) */}
       <div
         style={{
           position: 'absolute',
-          bottom: '20px',
+          bottom: '16px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -450,7 +451,7 @@ export function Section1Hero() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 'clamp(8px, 2vw, 24px)',
+            gap: 'clamp(10px, 2.5vw, 28px)',
             width: '100%',
           }}
         >
@@ -476,38 +477,42 @@ export function Section1Hero() {
   )
 }
 
-// ── Componente interno: logo GBE (เอฟเฟกต์นิ่ง ไม่เคลื่อนไหว) ───────────────────────────────
+// ── Componente interno: logo GBE (Reducido ~18% conservando estilo e identidad) ───────────────────────────────
 function LogoGBE() {
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '12px',
+        gap: '10px',
       }}
     >
-      <svg 
-        width="40" 
-        height="40" 
+      <motion.svg 
+        width="33" 
+        height="33" 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
+        initial={{ y: -60, opacity: 0, scale: 0.5 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
       >
         <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
         <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
-      </svg>
-      <span
+      </motion.svg>
+      <AnimatedText
+        text="Getxo Bela Eskola"
+        effect="falling"
+        delay={0.35}
         style={{
-          fontSize: '1.45rem',
+          fontSize: '1.18rem',
           fontWeight: 700,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
           color: 'white',
         }}
-      >
-        Getxo Bela Eskola
-      </span>
+      />
     </div>
   )
 }
