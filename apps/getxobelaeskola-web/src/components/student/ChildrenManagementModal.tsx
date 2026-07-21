@@ -68,7 +68,7 @@ export function PremiumDatePicker({
         let startDayOfWeek = firstDayOfMonth.getDay();
         startDayOfWeek = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
         
-        const dayArr = [];
+        const dayArr: (Date | null)[] = [];
         for (let i = 0; i < startDayOfWeek; i++) {
             dayArr.push(null);
         }
@@ -326,6 +326,22 @@ export default function ChildrenManagementModal({
     const [sabeNadar, setSabeNadar] = useState('Sí');
     const [necesidadesEspeciales, setNecesidadesEspeciales] = useState('');
     const [isMember, setIsMember] = useState(false);
+
+function parseDateString(dateStr: string) {
+    if (!dateStr) return { day: '', month: '', year: '' };
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+        return { year: parts[0], month: parts[1], day: parts[2] };
+    }
+    return { day: '', month: '', year: '' };
+}
+
+function getDaysInMonth(monthStr: string, yearStr: string) {
+    const month = parseInt(monthStr, 10);
+    const year = parseInt(yearStr, 10) || new Date().getFullYear();
+    if (isNaN(month) || month < 1 || month > 12) return 31;
+    return new Date(year, month, 0).getDate();
+}
 
     const handleDatePartChange = (part: 'day' | 'month' | 'year', value: string) => {
         const current = parseDateString(fechaNacimiento || '');

@@ -110,11 +110,11 @@ export default function LegalConsentModal({
                     Nº1_dni: initialData.dni || '',
                     Nº1_edad: initialData.fecha_nacimiento ? String(calculateAge(initialData.fecha_nacimiento) || '') : '',
                     tutor1: {
-                        nombre: initialData.parentNombre || '',
-                        apellidos: initialData.parentApellidos || '',
-                        dni: initialData.parentDni || '',
-                        telefono: initialData.parentTelefono || '',
-                        email: initialData.parentEmail || ''
+                        nombre: (initialData as any)?.parentNombre || '',
+                        apellidos: (initialData as any)?.parentApellidos || '',
+                        dni: (initialData as any)?.parentDni || '',
+                        telefono: (initialData as any)?.parentTelefono || '',
+                        email: (initialData as any)?.parentEmail || ''
                     }
                 });
             }
