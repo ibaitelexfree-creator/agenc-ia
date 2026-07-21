@@ -250,30 +250,20 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             stiffness: 90,
             damping: 14,
             mass: 1.1,
-            delay: 0.15 // Emerge right at the peak of the glow portal
+            delay: 0.15
           }
         }
       }}
       initial="hidden"
       animate={startReveal ? "visible" : "hidden"}
-      style={{
-        x: magX,
-        y: magY,
-      }}
     >
-      {/* El charco SVG (ขยายขนาดวงกลมวิดีโอให้โดดเด่น คมชัด ใหญ่สะดุดตา) */}
+      {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
       <motion.div
         className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
         animate={{
-          y: floatY,
-          x: floatX,
-          rotate: floatRotate,
-          scale: isHovered ? 1.15 : 1.0,
+          scale: isHovered ? 1.08 : 1.0,
         }}
         transition={{
-          y: { duration: 24, repeat: Infinity, ease: "easeInOut" },
-          x: { duration: 24, repeat: Infinity, ease: "easeInOut" },
-          rotate: { duration: 24, repeat: Infinity, ease: "easeInOut" },
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
