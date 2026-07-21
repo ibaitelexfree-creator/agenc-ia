@@ -255,33 +255,6 @@ export function Section1Hero() {
               transform: 'translateX(105px)',
             }}
           />
-          {/* El video de las nubes se carga después del barco - CARGA 4º */}
-          {mounted && !isMobile && (
-            <video
-              src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              onLoadedData={() => setVideoLoaded(true)}
-              style={{
-                position: 'absolute',
-                left: '-117px',
-                right: '-117px',
-                top: '-20px',
-                width: 'calc(100% + 234px)',
-                height: '50%',
-                objectFit: 'cover',
-                objectPosition: 'center top',
-                zIndex: 2,
-                opacity: 1,
-                pointerEvents: 'none',
-                transform: 'translateX(99px)',
-              }}
-            >
-              <track kind="captions" src="data:text/vtt," label="No captions" default />
-            </video>
-          )}
         </motion.div>
       </motion.div>
 
@@ -344,7 +317,7 @@ export function Section1Hero() {
 
 
 
-      {/* Contenido principal — alineado a la izquierda (zona de mar) y elevado para evitar colisión */}
+      {/* Contenido principal — alineado con container fluido para evitar desbordamientos en pantallas 13"-16" */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -356,54 +329,13 @@ export function Section1Hero() {
           textAlign: 'left',
           padding: '0 clamp(1.5rem, 5vw, 4rem)',
           width: '100%',
-          maxWidth: '650px',
+          maxWidth: 'min(1400px, 90vw)',
+          margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
           marginTop: '-40px',
-          left: '-70px',
         }}
       >
-        {/* Desktop: Los 5 blobs en forma de "C" (arriba 2, medio 1, abajo 2) a la izquierda */}
-        {/* Desktop: Los 5 blobs en forma de "C" - CARGA 5º */}
-        {!isMobile && videoLoaded && (
-          <div
-            style={{
-              position: 'absolute',
-              left: '-410px',
-              top: '55%',
-              transform: 'translateY(-50%)',
-              marginTop: '50px',
-            }}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '-5.25rem',
-                alignItems: 'flex-start',
-              }}
-            >
-              {/* Arriba: Club de socias (Card 1) y Aprende a navegar (Card 0) */}
-              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-                <BlobCard {...CARDS[1]} index={1} />
-                <BlobCard {...CARDS[0]} index={0} />
-              </div>
-
-              {/* Medio: Compite y supérate (Card 2) */}
-              <BlobCard {...CARDS[2]} index={2} />
-
-              {/* Abajo: Campamentos (Card 3) y Colabora (Card 4) */}
-              <div style={{ display: 'flex', flexDirection: 'row', gap: '30px', alignItems: 'center' }}>
-                <BlobCard {...CARDS[3]} index={3} />
-                <BlobCard {...CARDS[4]} index={4} />
-              </div>
-            </motion.div>
-          </div>
-        )}
-
         {/* Eyebrow — ubicación */}
         <div
           style={{
@@ -497,39 +429,37 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Mobile: Los 5 blobs interactivos alineados en fila al pie del Hero */}
-      {/* Mobile: Los 5 blobs interactivos en fila - CARGA 5º */}
-      {isMobile && videoLoaded && (
-        <div
+      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '100%',
+          maxWidth: '1200px',
+          padding: '0 24px',
+          zIndex: 15,
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{
-            position: 'absolute',
-            bottom: '50px',
-            left: '50%',
-            transform: 'translateX(-50%)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 'clamp(12px, 3vw, 36px)',
             width: '100%',
-            maxWidth: '1200px',
-            padding: '0 24px',
-            zIndex: 15,
+            flexWrap: 'wrap',
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              gap: 'clamp(12px, 3vw, 40px)',
-              width: '100%',
-            }}
-          >
-            {CARDS.map((card, idx) => (
-              <BlobCard key={card.title} {...card} index={idx} />
-            ))}
-          </motion.div>
-        </div>
-      )}
+          {CARDS.map((card, idx) => (
+            <BlobCard key={card.title} {...card} index={idx} />
+          ))}
+        </motion.div>
+      </div>
 
       {/* Criaturas animadas — pasan detrás del contenido */}
       <Seagull
@@ -547,7 +477,7 @@ export function Section1Hero() {
   )
 }
 
-// ── Componente interno: logo GBE ───────────────────────────────────────────────
+// ── Componente interno: logo GBE (เอฟเฟกต์นิ่ง ไม่เคลื่อนไหว) ───────────────────────────────
 function LogoGBE() {
   return (
     <div
@@ -557,24 +487,18 @@ function LogoGBE() {
         gap: '12px',
       }}
     >
-      <motion.svg 
+      <svg 
         width="40" 
         height="40" 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
-        initial={{ y: -60, opacity: 0, scale: 0.5 }}
-        animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
       >
         <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
         <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
-      </motion.svg>
-      <AnimatedText
-        text="Getxo Bela Eskola"
-        effect="falling"
-        delay={0.35}
+      </svg>
+      <span
         style={{
           fontSize: '1.45rem',
           fontWeight: 700,
@@ -582,7 +506,9 @@ function LogoGBE() {
           textTransform: 'uppercase',
           color: 'white',
         }}
-      />
+      >
+        Getxo Bela Eskola
+      </span>
     </div>
   )
 }
@@ -653,12 +579,9 @@ function SailboatAccesoButton() {
 
   if (aspect.width === 0) return null
 
-  // Exact bounds midpoint on image coordinate space:
-  // X midpoint: (2361 + 2614) / 2 = 2487.5
-  // Y midpoint: (207 + 339) / 2 = 273
-  // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
-  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 179
-  const buttonTop = aspect.top + (273 / 1536) * aspect.height + 555
+  // Relative anchor positioning calculated from boat's image coordinates
+  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - Math.min(179, aspect.width * 0.06)
+  const buttonTop = aspect.top + (273 / 1536) * aspect.height + Math.min(555, aspect.height * 0.36)
  
   return (
     <>

@@ -58,7 +58,7 @@ export default function ClubSociasPage() {
                             <Sparkles className="w-3.5 h-3.5" />
                             {t('title')}
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
+                        <h1 className="text-[clamp(2.5rem,6vw,5.5rem)] font-display text-sea-foam leading-[1.05] uppercase">
                             {t('hero_title_part1')} <br />
                             <span className="italic font-light text-accent/90">{t('hero_title_part2')}</span>
                         </h1>

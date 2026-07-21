@@ -125,7 +125,7 @@ export default async function CoursesPage({
                         <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-display leading-[0.9] text-sea-foam mb-12 animate-reveal relative">
+                        <h1 className="text-[clamp(2.5rem,6vw,6.5rem)] font-display leading-[0.95] text-sea-foam mb-12 animate-reveal relative">
                             {t('header_title')} <br />
                             <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
                         </h1>
