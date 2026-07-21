@@ -145,24 +145,24 @@ export default async function Footer({ locale }: { locale: string }) {
                     <GetxoKirolakLogo />
                     
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                    <div className="h-4 sm:h-5 w-auto relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
-                            width={160}
-                            height={28}
-                            className="object-contain"
+                            width={120}
+                            height={24}
+                            className="object-contain max-h-full w-auto"
                         />
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                    <div className="h-4 sm:h-5 w-auto relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={160}
-                            height={28}
-                            className="object-contain"
+                            width={130}
+                            height={24}
+                            className="object-contain max-h-full w-auto"
                         />
                     </div>
                 </div>

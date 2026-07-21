@@ -7,18 +7,8 @@ import HomeStats from '@/components/shared/HomeStats';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
+import CollaboratorsGrid from '@/components/shared/CollaboratorsGrid';
 
-const GetxoKirolakLogo = () => (
-    <div className="flex items-center gap-2 text-sea-foam/40 hover:text-accent transition-all duration-300 cursor-pointer group/kirolak">
-        <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5h-2v-2h2v2zm0-4.5h-2V7h2v6z" />
-        </svg>
-        <div className="flex flex-col text-left">
-            <span className="text-[9px] font-black uppercase tracking-[0.15em] leading-none">GETXO</span>
-            <span className="text-[7px] font-bold uppercase tracking-[0.1em] text-sea-foam/20 group-hover/kirolak:text-accent/60 transition-all duration-300">KIROLAK</span>
-        </div>
-    </div>
-);
 
 const SalesianasLogo = () => (
     <a href="https://barakaldo.salesianas.org/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:scale-105 transition-all duration-300 select-none">
@@ -220,42 +210,29 @@ export default async function Footer({ locale }: { locale: string }) {
                 <div className="w-24 h-px bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent mb-12" />
 
                 {/* Colaboradores Section */}
-                <div className="flex flex-col items-center gap-6 w-full max-w-4xl mb-12">
-                    <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30">
-                        Colaboradores
-                    </span>
-                    <div className="flex flex-wrap justify-center items-center gap-10 bg-white/95 backdrop-blur-sm px-8 py-6 rounded-2xl w-full border border-white/10 shadow-xl shadow-black/10">
-                        <SalesianasLogo />
-                        <AntonioTruebaLogo />
-                        <DecathlonLogo />
-                        <DeustukoIkastolaLogo />
-                        <DownFundacionLogo />
-                    </div>
-                </div>
+                <CollaboratorsGrid />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-2xl px-6">
-                    <GetxoKirolakLogo />
-                    
+                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-6">
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                    <div className="h-4 sm:h-5 w-auto relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
-                            width={160}
-                            height={28}
-                            className="object-contain"
+                            width={120}
+                            height={24}
+                            className="object-contain max-h-full w-auto"
                         />
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-8 w-auto relative opacity-40 hover:opacity-100 transition-all duration-300 cursor-pointer">
+                    <div className="h-4 sm:h-5 w-auto relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={160}
-                            height={28}
-                            className="object-contain"
+                            width={130}
+                            height={24}
+                            className="object-contain max-h-full w-auto"
                         />
                     </div>
                 </div>
