@@ -29,6 +29,7 @@
 | T-018 | Antigravity | Implement Dolly-In 3D Video Parallax Card (Versión 7) for image_202607092355 | 2026-07-10 | completado |
 | T-019 | Antigravity | Replace Dolly-In card (Versión 7) with PivotParallaxCard (30°) using custom sea background and boat cutout | 2026-07-10 | completado |
 | T-020 | Antigravity | Apply color-adjusted boat cutout (ปรับภาพสีคนบนเรือ_cutout_2K) to Versión 7 | 2026-07-10 | completado |
+| T-021 | Antigravity | Remove cloud graphic and horizontal sway from header logo | 2026-07-21 | completado |
 
 
 
