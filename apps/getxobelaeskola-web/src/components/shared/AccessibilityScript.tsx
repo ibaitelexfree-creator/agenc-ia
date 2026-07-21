@@ -6,7 +6,7 @@ export default function AccessibilityScript() {
     return (
         <Script
             id="equalweb-accessibility-script"
-            strategy="afterInteractive"
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
                 __html: `
 window.interdeal = {
@@ -50,8 +50,6 @@ window.interdeal = {
     var coreCall             = doc.createElement('script');
     coreCall.src             = interdeal.domains.js + 'core/5.3.1/accessibility.js';
     coreCall.defer           = true;
-    coreCall.integrity       = 'sha512-3qLj5jbjMQnXk+FqEdVJjUnjJBGuBTRVOwaiT0ms6mQKQcrz4nulBxl2Hsr0/PpvEqdyJsMsU1NB+Mtfzw8hxA==';
-    coreCall.crossOrigin     = 'anonymous';
     coreCall.setAttribute('data-cfasync', true );
     body? body.appendChild(coreCall) : head.appendChild(coreCall);
 })(document, document.head, document.body);
@@ -60,3 +58,4 @@ window.interdeal = {
         />
     );
 }
+
