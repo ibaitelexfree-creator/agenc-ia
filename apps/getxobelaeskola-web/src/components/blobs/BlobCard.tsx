@@ -261,14 +261,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         y: magY,
       }}
     >
-      {/* El charco SVG (ขยายขนาดให้ใหญ่ขึ้นอย่างเหมาะสม เห็นชัดเจนและสวยงาม) */}
+      {/* El charco SVG (ขยายขนาดวงกลมวิดีโอให้โดดเด่น คมชัด ใหญ่สะดุดตา) */}
       <motion.div
-        className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28"
+        className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
         animate={{
           y: floatY,
           x: floatX,
           rotate: floatRotate,
-          scale: isHovered ? 1.18 : 1.0,
+          scale: isHovered ? 1.15 : 1.0,
         }}
         transition={{
           y: { duration: 24, repeat: Infinity, ease: "easeInOut" },
@@ -470,10 +470,10 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </AnimatePresence>
       </motion.div>
 
-      {/* Texto de la etiqueta */}
-      <div className="text-center max-w-[140px] sm:max-w-[170px]">
+      {/* ข้อความกำกับ — เพิ่มความคมชัด (Text Shadow + Font Weight) ชัดเจน 100% */}
+      <div className="text-center max-w-[150px] sm:max-w-[180px] md:max-w-[200px]">
         <motion.p
-          className="font-bold tracking-[0.04em] text-xs sm:text-sm md:text-base select-none uppercase truncate"
+          className="font-extrabold tracking-[0.05em] text-xs sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -482,8 +482,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[10px] sm:text-xs text-white/80 mt-[2px] truncate"
-            animate={{ opacity: isHovered ? 1 : 0.75, y: isHovered ? -1 : 0 }}
+            className="text-[11px] sm:text-xs md:text-sm font-medium text-white/95 mt-[2px] drop-shadow-[0_1px_5px_rgba(0,0,0,0.9)]"
+            animate={{ opacity: isHovered ? 1 : 0.85, y: isHovered ? -1 : 0 }}
           >
             {subtitle}
           </motion.p>

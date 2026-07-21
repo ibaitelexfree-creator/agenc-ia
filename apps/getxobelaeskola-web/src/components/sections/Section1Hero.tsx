@@ -317,7 +317,7 @@ export function Section1Hero() {
 
 
 
-      {/* Contenido principal — alineado con container fluido para evitar desbordamientos en pantallas 13"-16" */}
+      {/* Contenido principal — alineado con container fluido para evitar desbordamientos */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -333,7 +333,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: '-40px',
+          marginTop: '-60px',
         }}
       >
         {/* Eyebrow — ubicación */}
@@ -341,25 +341,25 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: '1rem',
+            marginBottom: '0.75rem',
           }}
         >
           <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
         </div>
  
         {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: '1.2rem' }}>
+        <div style={{ marginBottom: '1rem' }}>
           <LogoGBE />
         </div>
  
         {/* Título principal */}
         <h1
           style={{
-            fontSize: 'clamp(2.2rem, 4.8vw, 4.2rem)',
+            fontSize: 'clamp(2rem, 4.2vw, 3.8rem)',
             fontWeight: 700,
-            lineHeight: 1.15,
+            lineHeight: 1.12,
             color: 'var(--white)',
-            marginBottom: '1rem',
+            marginBottom: '0.85rem',
             textAlign: 'left',
           }}
         >
@@ -383,7 +383,7 @@ export function Section1Hero() {
             alignItems: 'stretch',
             gap: '16px',
             maxWidth: '710px',
-            margin: '0 0 1.6rem',
+            margin: '0 0 1.25rem',
             textAlign: 'left',
           }}
         >
@@ -401,7 +401,7 @@ export function Section1Hero() {
           />
           <div
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.35rem)',
+              fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
               fontWeight: 400,
               lineHeight: 1.35,
               color: 'rgba(255,255,255,0.92)',
@@ -422,7 +422,6 @@ export function Section1Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-          style={{ marginBottom: '1rem' }}
         >
           <GlowButton href="#" color="garnet" size="xxl">
             {t('cta')}
@@ -430,16 +429,16 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos — ขนาดใหญ่ขึ้น ชัดเจน มีระยะห่างที่สวยงามพอดี */}
+      {/* Los 5 blobs/วิดีโอ interactivos — ขยายขนาดใหญ่ขึ้น ชัดเจน 100% ไม่ทับซ้อนส่วนอื่น */}
       <div
         style={{
           position: 'absolute',
-          bottom: '28px',
+          bottom: '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
-          maxWidth: '1400px',
-          padding: '0 24px',
+          maxWidth: '1450px',
+          padding: '0 20px',
           zIndex: 15,
         }}
       >
@@ -451,7 +450,7 @@ export function Section1Hero() {
             display: 'flex',
             justifyContent: 'space-evenly',
             alignItems: 'center',
-            gap: 'clamp(12px, 3vw, 40px)',
+            gap: 'clamp(12px, 2.5vw, 36px)',
             width: '100%',
           }}
         >
