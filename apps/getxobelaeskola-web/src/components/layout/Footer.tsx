@@ -135,27 +135,6 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                 </div>
 
-                {/* Footer Navigation Links */}
-                <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[10px] md:text-[11px] uppercase tracking-[0.4em] font-black text-sea-foam/50 mb-12">
-                    {[
-                        { href: '', label: 'Inicio' },
-                        { href: 'club/conocenos', label: 'Club' },
-                        { href: 'servicios/cursos', label: 'Servicios' },
-                        { href: 'blog/noticias', label: 'Blog' },
-                        { href: 'contacto/localizacion', label: 'Contacto' },
-                        { href: 'tienda', label: 'Tienda' }
-                    ].map((link) => (
-                        <Link
-                            key={link.href}
-                            href={`/${locale}/${link.href}`}
-                            className="hover:text-accent transition-premium relative group/f"
-                        >
-                            {link.label.toUpperCase()}
-                            <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent transition-premium group-hover/f:w-full" />
-                        </Link>
-                    ))}
-                </div>
-
                 {/* Horario, Contacto y Ubicación Column */}
                 <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
                     <div className="flex flex-col items-center md:items-start gap-2 flex-1">
