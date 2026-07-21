@@ -47,7 +47,7 @@ export default function Newsletter({ locale }: { locale: string }) {
                         <div className="flex items-center justify-center gap-3 mb-4">
                             <div className="w-6 h-[1px] bg-accent/30" />
                             <span className="text-accent uppercase tracking-[0.4em] text-[9px] font-black">
-                                Join the fleet
+                                {t('eyebrow')}
                             </span>
                             <div className="w-6 h-[1px] bg-accent/30" />
                         </div>

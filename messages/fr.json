@@ -276,6 +276,7 @@
     "hours_val": "Lundi au Dimanche\n09:00 — 20:00"
   },
   "newsletter": {
+    "eyebrow": "Montez à bord",
     "title": "Abonnez-vous à la Newsletter",
     "subtitle": "Recevez des nouvelles, des offres exclusives et des conseils de navigation dans votre boîte de réception.",
     "email_placeholder": "votre@email.com",

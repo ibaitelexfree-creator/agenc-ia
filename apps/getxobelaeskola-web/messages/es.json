@@ -259,6 +259,7 @@
     "hours_val": "Lunes a Domingo\n09:00 — 20:00"
   },
   "newsletter": {
+    "eyebrow": "Súbete a bordo",
     "title": "Suscríbete a la Newsletter",
     "subtitle": "Recibe noticias, ofertas exclusivas y consejos de navegación en tu correo.",
     "email_placeholder": "tu@correo.com",

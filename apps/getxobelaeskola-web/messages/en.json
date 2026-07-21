@@ -259,6 +259,7 @@
     "hours_val": "Monday to Sunday\n09:00 — 20:00"
   },
   "newsletter": {
+    "eyebrow": "Welcome aboard",
     "title": "Subscribe to our Newsletter",
     "subtitle": "Receive news, exclusive offers, and sailing tips in your inbox.",
     "email_placeholder": "you@email.com",
