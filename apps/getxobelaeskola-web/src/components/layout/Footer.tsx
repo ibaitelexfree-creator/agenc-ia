@@ -7,6 +7,7 @@ import HomeStats from '@/components/shared/HomeStats';
 import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
+import CollaboratorsGrid from '@/components/shared/CollaboratorsGrid';
 
 
 const SalesianasLogo = () => (
