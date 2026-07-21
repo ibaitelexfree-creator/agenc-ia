@@ -143,7 +143,7 @@
   },
   "home": {
     "hero": {
-      "slide1_title": "Zer da\nGetxo\nBela Eskola?",
+      "slide1_title": "Zer da Getxo Bela Eskola?",
       "slide1_subtitle": "Ez gara eskola konbentzional bat, itsasoaren eta horrekin batera doazen balioen inguruan eraikitako komunitate hurbil bat baizik.",
       "slide1_action": "Gure Filosofia",
       "slide2_title": "Bela Zuri\nEgokitzen Zaizu",
@@ -1754,6 +1754,15 @@
     "combo_action_int_big": "Adrenalina taldean, haize zakarra barneko Abran.",
     "combo_action_ext_small": "Erronka hutsa: itsaso zabala, velero bizia, benetako sentsazioak.",
     "combo_action_ext_big": "Esperientzia osoa: itsaso zabala, haize indartsua, zure taldea.",
+    "experience_label": "Esperientzia",
+    "calm_label": "☁️ Lasaitasuna",
+    "action_label": "💨 Ekintza",
+    "setting_label": "Eszenatokia",
+    "inner_abra_label": "🌊 Barne Abra",
+    "outer_abra_label": "🌊🌊 Kanpo Abra",
+    "boat_label": "Ontzia",
+    "small_label": "⛵ Txikia",
+    "cruise_label": "🚢 Kruzeroa",
     "card4": {
       "badge": "Bela modernoa ✦",
       "body": "Gaur egungo eguraldi-iragarpenek baldintzak zehatz-mehatz aurreikustea ahalbidetzen dute. Nahi duzunean ateratzen zara, bilatzen duzunarekin. Bela kontzientea, eskuragarria eta zure neurrikoa da orain."

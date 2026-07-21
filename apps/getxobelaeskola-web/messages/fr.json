@@ -141,7 +141,7 @@
   },
   "home": {
     "hero": {
-      "slide1_title": "Qu'est-ce que\nGetxo\nBela Eskola?",
+      "slide1_title": "Qu'est-ce que Getxo Bela Eskola?",
       "slide1_subtitle": "Nous ne sommes pas une école conventionnelle, mais une communauté proche construite autour de la mer et des valeurs qui l'accompagnent.",
       "slide1_action": "Notre philosophie",
       "slide2_title": "La voile\ns'adapte à vous",
@@ -1323,6 +1323,15 @@
     "combo_action_int_big": "Adrénaline en groupe, vent fort dans l'Abra intérieur.",
     "combo_action_ext_small": "Défi pur : mer ouverte, voilier agile, sensations réelles.",
     "combo_action_ext_big": "L'expérience complète : mer ouverte, vent fort, votre groupe.",
+    "experience_label": "Expérience",
+    "calm_label": "☁️ Calme",
+    "action_label": "💨 Action",
+    "setting_label": "Le décor",
+    "inner_abra_label": "🌊 Abra intérieur",
+    "outer_abra_label": "🌊🌊 Abra extérieur",
+    "boat_label": "Embarcation",
+    "small_label": "⛵ Petit",
+    "cruise_label": "🚢 Croiseur",
     "card4": {
       "badge": "Voile moderne ✦",
       "body": "Les prévisions météo actuelles permettent de prévoir précisément les conditions. Vous sortez quand vous voulez, avec ce que vous cherchez. La voile est désormais consciente, accessible et sur mesure."
