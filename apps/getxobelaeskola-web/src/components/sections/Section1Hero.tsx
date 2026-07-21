@@ -429,16 +429,16 @@ export function Section1Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero */}
+      {/* Los 5 blobs/วิดีโอ interactivos จัดเรียงในแนวนอนด้านล่างสุดของ Hero (ขนาดกระทัดรัด ไม่ทับซ้อน) */}
       <div
         style={{
           position: 'absolute',
-          bottom: '40px',
+          bottom: '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1200px',
-          padding: '0 24px',
+          padding: '0 16px',
           zIndex: 15,
         }}
       >
@@ -450,9 +450,8 @@ export function Section1Hero() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 'clamp(12px, 3vw, 36px)',
+            gap: 'clamp(8px, 2vw, 24px)',
             width: '100%',
-            flexWrap: 'wrap',
           }}
         >
           {CARDS.map((card, idx) => (

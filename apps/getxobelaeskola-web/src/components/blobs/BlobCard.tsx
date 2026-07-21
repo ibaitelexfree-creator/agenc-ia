@@ -261,9 +261,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         y: magY,
       }}
     >
-      {/* El charco SVG (flota en tempo de 24s con el velero, pero con personalidad propia y se agranda al hover) */}
+      {/* El charco SVG (ขนาดกระทัดรัด พอดีแถบด้านล่าง ไม่ทับซ้อนส่วนอื่น) */}
       <motion.div
-        className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-40 lg:h-40"
+        className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
         animate={{
           y: floatY,
           x: floatX,
@@ -471,19 +471,19 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* Texto de la etiqueta */}
-      <div className="text-center">
+      <div className="text-center max-w-[120px] sm:max-w-[140px]">
         <motion.p
-          className="font-bold tracking-[0.05em] text-sm sm:text-base md:text-lg select-none uppercase"
+          className="font-bold tracking-[0.03em] text-[10px] sm:text-xs select-none uppercase truncate"
           style={{ color: '#ffffff' }}
-          animate={{ y: isHovered ? -4 : 0 }}
+          animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
         >
           {title}
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-sm sm:text-base text-white mt-[2px]"
-            animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? -2 : 0 }}
+            className="text-[9px] sm:text-[10px] text-white/70 mt-[1px] truncate"
+            animate={{ opacity: isHovered ? 1 : 0.6, y: isHovered ? -1 : 0 }}
           >
             {subtitle}
           </motion.p>
