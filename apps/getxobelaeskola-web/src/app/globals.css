@@ -1054,3 +1054,20 @@ a.text-nautical-black.hover\:bg-white:hover,
   opacity: 1 !important;
   filter: none !important;
 }
+
+/* EqualWeb Accessibility Widget Layer & Close Fix */
+#accessibility-toolbar-container,
+.accessibility-menu-container,
+[id*="equalweb"],
+[id*="interdeal"] {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+[id*="accessibility"] button,
+[id*="equalweb"] button,
+.accessibility-menu-close,
+.accessibility-btn-close {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
