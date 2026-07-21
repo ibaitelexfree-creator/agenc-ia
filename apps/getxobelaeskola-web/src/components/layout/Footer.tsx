@@ -194,24 +194,24 @@ export default async function Footer({ locale }: { locale: string }) {
                 {/* Sponsor Collaborators section */}
                 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-6">
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 md:h-10 w-auto relative opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div className="h-8 md:h-10 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
                             width={180}
                             height={40}
-                            className="object-contain h-full w-auto"
+                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
                         />
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-8 md:h-10 w-auto relative opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div className="h-6 md:h-8 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={190}
-                            height={40}
-                            className="object-contain h-full w-auto"
+                            width={170}
+                            height={34}
+                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
                         />
                     </div>
                 </div>
