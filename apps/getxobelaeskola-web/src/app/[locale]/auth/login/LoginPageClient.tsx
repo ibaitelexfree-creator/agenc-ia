@@ -15,14 +15,6 @@ function LoginPageContent({ locale }: { locale: string }) {
     const returnTo = searchParams.get('returnTo');
     const router = useRouter();
     const [checking, setChecking] = useState(true);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 1024);
-        check();
-        window.addEventListener('resize', check);
-        return () => window.removeEventListener('resize', check);
-    }, []);
 
     // Auto-redirect if already authenticated
     useEffect(() => {
@@ -42,13 +34,6 @@ function LoginPageContent({ locale }: { locale: string }) {
         });
     }, [locale, router, returnTo]);
 
-    // Render nothing while we decide if we need to redirect
-    // BUT we should render the form as soon as possible if we want 100 speed
-    // So let's only hide if we are CERTAIN we are redirecting.
-    // However, to avoid flash of content, we can use a simpler approach.
-    // For 100 speed, we render the page immediately and the useEffect handles the "already logged in" edge case.
-
-    // If we are still checking for a session, show a loading state instead of the login form
     if (checking) {
         return (
             <div className="min-h-screen bg-nautical-black flex items-center justify-center">
@@ -63,24 +48,22 @@ function LoginPageContent({ locale }: { locale: string }) {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-brass-gold/5 blur-[120px] rounded-full pointer-events-none" />
 
-            {/* Desktop: Two Column Layout */}
-            {!isMobile && (
-                <div className="hidden lg:block absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-                    <img
-                        src="/images/login-page-captain.jpeg"
-                        alt="Capitán"
-                        className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-nautical-black via-transparent to-nautical-black" />
-                    <div className="absolute bottom-20 left-16 z-10">
-                        <h2 className="text-5xl font-display mb-3 italic text-sea-foam">{t('hero_text')}</h2>
-                        <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
-                    </div>
+            {/* Desktop Hero Column */}
+            <div className="hidden lg:block fixed inset-y-0 left-0 w-1/2 overflow-hidden pointer-events-none">
+                <img
+                    src="/images/login-page-captain.jpeg"
+                    alt="Capitán"
+                    className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-nautical-black via-transparent to-nautical-black" />
+                <div className="absolute bottom-16 left-12 xl:left-20 z-10 max-w-lg">
+                    <h2 className="text-4xl xl:text-5xl font-display mb-3 italic text-sea-foam leading-tight">{t('hero_text')}</h2>
+                    <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
-            )}
+            </div>
 
-            {/* Content — Full on mobile, right half on desktop */}
-            <div className="flex-1 flex items-center justify-center px-6 py-12 lg:ml-[50%] relative z-10">
+            {/* Content Container — Centered form across mobile, tablet, desktop */}
+            <div className="flex-1 flex items-center justify-center px-6 py-12 lg:w-1/2 lg:ml-auto relative z-10">
                 <div className="w-full max-w-sm">
                     {/* Brand Header */}
                     <header className="text-center mb-10">
