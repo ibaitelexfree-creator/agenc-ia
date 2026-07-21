@@ -80,6 +80,7 @@ export function Section1Hero() {
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
+  const boatContainerRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress: localHeroScroll } = useScroll({
     target: heroRef,
@@ -309,11 +310,8 @@ export function Section1Hero() {
             ease: 'easeInOut',
           }}
         >
-          <img
-            src="/images/home/parallax/velero.webp?v=3"
-            alt="Velero navegando en Getxo"
-            fetchPriority="high"
-            onLoad={() => setBarcoLoaded(true)}
+          <div
+            ref={boatContainerRef}
             style={{
               position: 'absolute',
               left: '-280px',
@@ -322,12 +320,23 @@ export function Section1Hero() {
               bottom: '-60px',
               width: 'calc(100% + 460px)',
               height: 'calc(100% + 120px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              transform: 'translateX(292px)',
+              transform: 'translateX(10.61%)',
             }}
-          />
-          <SailboatAccesoButton />
+          >
+            <img
+              src="/images/home/parallax/velero.webp?v=3"
+              alt="Velero navegando en Getxo"
+              fetchPriority="high"
+              onLoad={() => setBarcoLoaded(true)}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+            />
+            <SailboatAccesoButton containerRef={boatContainerRef} />
+          </div>
         </motion.div>
       </motion.div>
 
@@ -590,10 +599,10 @@ function LogoGBE() {
 
 
 // ── Componente interno: botón de Acceso flotando en el velero ─────────────────
-function SailboatAccesoButton() {
+function SailboatAccesoButton({ containerRef }: { containerRef: React.RefObject<HTMLDivElement> }) {
   const locale = useLocale()
-  const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
   const [showButton, setShowButton] = useState(true)
+  const [pos, setPos] = useState<{ leftPct: number; topPct: number }>({ leftPct: 81.56, topPct: 64.79 })
 
   // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
   const labels: Record<string, { top: string; bottom: string }> = {
@@ -605,61 +614,58 @@ function SailboatAccesoButton() {
   const label = labels[locale] || labels.es
 
   useEffect(() => {
-    const updateSize = () => {
-      const imgW = 2752
-      const imgH = 1536
-      const imgRatio = imgW / imgH
-      const bleedLeft = 280
-      const bleedRight = 180
-      const bleedTop = 60
-      const bleedBottom = 60
-      const canvasW = window.innerWidth + bleedLeft + bleedRight
-      const canvasH = window.innerHeight + bleedTop + bleedBottom
-      const canvasRatio = canvasW / canvasH
-
-      let actualW = 0
-      let actualH = 0
-      let left = 0
-      let top = 0
-
-      if (canvasRatio > imgRatio) {
-        actualW = canvasW
-        actualH = canvasW / imgRatio
-        top = (canvasH - actualH) / 2
-      } else {
-        actualH = canvasH
-        actualW = canvasH * imgRatio
-        left = (canvasW - actualW) / 2
-      }
-
-      // Subtract bleedLeft and bleedTop because the container starts at -bleedLeft and -bleedTop
-      setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
-    }
-
     const handleScroll = () => {
       setShowButton(window.scrollY < 200)
     }
-
-    updateSize()
-    window.addEventListener('resize', updateSize)
     window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll()
-
-    return () => {
-      window.removeEventListener('resize', updateSize)
-      window.removeEventListener('scroll', handleScroll)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  if (aspect.width === 0) return null
+  useEffect(() => {
+    const updatePosition = () => {
+      if (!containerRef.current) return
+      const w = containerRef.current.clientWidth
+      const h = containerRef.current.clientHeight
+      if (!w || !h) return
 
-  // Exact bounds midpoint on image coordinate space:
-  // X midpoint: (2361 + 2614) / 2 = 2487.5
-  // Y midpoint: (207 + 339) / 2 = 273
-  // Image is translated by 210px to the right, and button is moved 310px to the left of the boat (resulting in -100px relative to centered)
-  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - 179
-  const buttonTop = aspect.top + (273 / 1536) * aspect.height + 555
- 
+      const aspectContainer = w / h
+      const aspectImg = 1920 / 1072
+
+      let doorX: number
+      let doorY: number
+
+      if (aspectContainer > aspectImg) {
+        const renderedH = w / aspectImg
+        doorX = w * (1566 / 1920)
+        doorY = h / 2 + renderedH * (694.5 / 1072 - 0.5)
+      } else {
+        const renderedW = h * aspectImg
+        doorX = w / 2 + renderedW * (1566 / 1920 - 0.5)
+        doorY = h * (694.5 / 1072)
+      }
+
+      setPos({
+        leftPct: (doorX / w) * 100,
+        topPct: (doorY / h) * 100,
+      })
+    }
+
+    updatePosition()
+
+    if (!containerRef.current) return
+    const resizeObserver = new ResizeObserver(() => {
+      updatePosition()
+    })
+    resizeObserver.observe(containerRef.current)
+    window.addEventListener('resize', updatePosition, { passive: true })
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updatePosition)
+    }
+  }, [containerRef])
+
   return (
     <>
       {showButton && (
@@ -668,11 +674,9 @@ function SailboatAccesoButton() {
           transition={{ type: 'spring', stiffness: 40, damping: 18 }}
           style={{
             position: 'absolute',
-            left: `${buttonLeft}px`,
-            top: `${buttonTop}px`,
-            x: '-50%',
-            y: '-50%',
-            rotate: 0,
+            left: `${pos.leftPct}%`,
+            top: `${pos.topPct}%`,
+            transform: 'translate(-50%, -50%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -689,13 +693,13 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: '25px 50px',
+              padding: 'clamp(4px, 1.2vw, 20px) clamp(8px, 2vw, 36px)',
               display: 'inline-block'
             }}
           >
             <motion.div
-              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
-                locale === 'eu' ? 'text-[18px]' : 'text-[24px]'
+              className={`flex flex-col items-center justify-center leading-[0.88] font-black tracking-[0.08em] sm:tracking-[0.12em] text-center text-[clamp(10px,1.4vw,24px)] ${
+                locale === 'eu' ? '!text-[clamp(8px,1.1vw,18px)]' : ''
               }`}
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],
