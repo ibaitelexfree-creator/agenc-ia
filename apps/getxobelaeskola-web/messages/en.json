@@ -712,6 +712,7 @@
     "contact": "Contact",
     "privacy": "Privacy",
     "cookies": "Cookies",
+    "accessibility": "Accessibility",
     "copyright": "© 2026 Getxo Bela Eskola · Premium Nautical Experience",
     "slogan": "Getxo Bela Eskola  Nautical experience par excellence in the Getxo Marina."
   },
@@ -1747,6 +1748,15 @@
     "combo_action_int_big": "Group adrenaline, strong wind in the inner Abra.",
     "combo_action_ext_small": "Pure challenge: open sea, agile sailboat, real sensations.",
     "combo_action_ext_big": "The complete experience: open sea, strong wind, your group.",
+    "experience_label": "Experience",
+    "calm_label": "☁️ Calm",
+    "action_label": "💨 Action",
+    "setting_label": "Setting",
+    "inner_abra_label": "🌊 Inner Abra",
+    "outer_abra_label": "🌊🌊 Outer Abra",
+    "boat_label": "Boat",
+    "small_label": "⛵ Small",
+    "cruise_label": "🚢 Cruiser",
     "card4": {
       "badge": "Modern sailing ✦",
       "body": "Current weather reports make it possible to predict conditions exactly. You go out when you want, with what you are looking for. Sailing is now conscious, accessible, and tailored to you."

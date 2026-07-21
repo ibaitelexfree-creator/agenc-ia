@@ -118,15 +118,6 @@ export default async function Footer({ locale }: { locale: string }) {
             <div className="py-24 container mx-auto px-6 flex flex-col items-center">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center gap-6 mb-12 group">
-                    <div className="relative w-28 h-28 md:w-36 md:h-36 transition-premium group-hover:scale-105">
-                        <Image
-                            src="/images/LogoGetxoBelaEskola.webp"
-                            alt="Getxo Bela Eskola"
-                            fill
-                            sizes="(max-width: 768px) 112px, 144px"
-                            className="object-contain"
-                        />
-                    </div>
                     <div className="flex flex-col items-center">
                         <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none">
                             GETXO <span className="italic font-light text-accent">BELA</span>
@@ -219,6 +210,7 @@ export default async function Footer({ locale }: { locale: string }) {
                 <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/20 mb-12">
                     <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium">{t('privacy')}</Link>
                     <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium">{t('cookies')}</Link>
+                    <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium">{t('accessibility')}</Link>
                 </div>
 
                 <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">

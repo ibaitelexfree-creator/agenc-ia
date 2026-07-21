@@ -282,7 +282,8 @@
     "email_placeholder": "votre@email.com",
     "button": "S'abonner",
     "success": "Vous vous êtes abonné avec succès !",
-    "error": "Erreur lors de l'abonnement. Veuillez réessayer."
+    "error": "Erreur lors de l'abonnement. Veuillez réessayer.",
+    "email_aria_label": "Entrez votre adresse e-mail"
   },
   "auth": {
     "login_title": "Bienvenue",
@@ -455,7 +456,8 @@
     "slogan": "Getxo Bela Eskola · L'expérience nautique par excellence dans la Marina de Getxo.",
     "privacy": "Confidentialité",
     "terms": "Conditions",
-    "cookies": "Cookies"
+    "cookies": "Cookies",
+    "accessibility": "Accessibilité"
   },
   "nautical_radar": {
     "title": "Radar de Navigation \"Pont de Commandement\"",

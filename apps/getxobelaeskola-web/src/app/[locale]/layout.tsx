@@ -18,6 +18,7 @@ const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { s
 import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import AccessibilityScript from '@/components/shared/AccessibilityScript';
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -44,7 +45,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${cormorantGaramond.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <link rel="dns-prefetch" href="https://xbledhifomblirxurtyv.supabase.co" />
       {/* Preload critical above-the-fold hero images early in the document head */}
-      <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=3" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=5" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp" fetchPriority="high" />
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
               </Suspense>
               <Analytics />
               <SpeedInsights />
+              <AccessibilityScript />
             </FramerProvider>
           </AcademyFeedbackProvider>
         </NextIntlClientProvider>
