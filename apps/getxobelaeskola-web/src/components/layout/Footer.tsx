@@ -205,12 +205,12 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-6 md:h-8 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
+                    <div className="h-4.5 md:h-6 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={170}
-                            height={34}
+                            width={140}
+                            height={26}
                             className="object-contain h-full w-auto transition-transform duration-500 ease-out"
                         />
                     </div>
