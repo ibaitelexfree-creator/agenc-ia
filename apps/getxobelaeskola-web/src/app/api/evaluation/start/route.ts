@@ -4,6 +4,8 @@ import { createAdminClient } from '@/lib/supabase/admin';
 import { NextResponse } from 'next/server';
 import { rateLimit } from '@/lib/security/rate-limit';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
     try {
         const supabase = await createClient();
