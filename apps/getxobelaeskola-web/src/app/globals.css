@@ -1059,7 +1059,10 @@ a.text-nautical-black.hover\:bg-white:hover,
 #accessibility-toolbar-container,
 .accessibility-menu-container,
 [id*="equalweb"],
-[id*="interdeal"] {
+[id*="interdeal"],
+iframe[src*="equalweb"],
+iframe[title*="equalweb"],
+iframe[id*="equalweb"] {
   z-index: 999999 !important;
   pointer-events: auto !important;
 }
@@ -1070,4 +1073,14 @@ a.text-nautical-black.hover\:bg-white:hover,
 .accessibility-btn-close {
   pointer-events: auto !important;
   cursor: pointer !important;
+}
+
+/* Ensure the outer wrapper created by some versions of EqualWeb does not block clicks if it fills the screen */
+.equalweb-wrapper,
+.interdeal-wrapper {
+  pointer-events: none !important;
+}
+.equalweb-wrapper *,
+.interdeal-wrapper * {
+  pointer-events: auto !important;
 }
