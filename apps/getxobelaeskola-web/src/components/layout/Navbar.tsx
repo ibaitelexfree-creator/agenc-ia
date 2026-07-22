@@ -117,6 +117,13 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
         })();
     }, []);
 
+    useEffect(() => {
+        if (!loading) {
+            (window as any).__navbarAuthLoaded = true;
+            window.dispatchEvent(new Event('auth-loaded'));
+        }
+    }, [loading]);
+
     const handleLogout = async () => {
         const supabase = createClient();
         await supabase.auth.signOut();
@@ -140,6 +147,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     }, [isMenuOpen]);
 
     const [isAtHero, setIsAtHero] = useState(true);
+    const [isIntroActive, setIsIntroActive] = useState(true);
 
     useEffect(() => {
         const isHome = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === '/';
@@ -156,6 +164,15 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, [pathname, locale]);
+
+    useEffect(() => {
+        if (!loading) {
+            const t = setTimeout(() => {
+                setIsIntroActive(false);
+            }, 800);
+            return () => clearTimeout(t);
+        }
+    }, [loading]);
 
     if (isAcademy || isAuth) {
         return null;
@@ -436,7 +453,36 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
 
                     {loading ? (
-                        <div className="hidden xl:block w-32 h-10 bg-sea-foam/5 animate-pulse rounded-full" />
+                        (!isAtHero || isIntroActive) && (
+                            <motion.div
+                                layoutId="acceso-button-wrapper"
+                                transition={{ type: 'spring', stiffness: 40, damping: 18 }}
+                                className="hidden xl:block"
+                                style={{ rotate: 0 }}
+                            >
+                                <Link 
+                                    href={`/${locale}/auth/login`} 
+                                    prefetch={false} 
+                                    className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
+                                >
+                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
+                                        {(() => {
+                                            const label = getLabel('acceso_socias');
+                                            const parts = label.split(' ');
+                                            if (parts.length >= 2) {
+                                                return (
+                                                    <>
+                                                        <span>{parts[0]}</span>
+                                                        <span>{parts.slice(1).join(' ')}</span>
+                                                    </>
+                                                );
+                                            }
+                                            return <span>{label}</span>;
+                                        })()}
+                                    </div>
+                                </Link>
+                            </motion.div>
+                        )
                     ) : user ? (
                         <div className="hidden xl:flex gap-8 items-center">
                             {user.status_socio === 'activo' && (
@@ -464,7 +510,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             </button>
                         </div>
                     ) : (
-                        !isAtHero && (
+                        (!isAtHero || isIntroActive) && (
                             <motion.div
                                 layoutId="acceso-button-wrapper"
                                 transition={{ type: 'spring', stiffness: 40, damping: 18 }}

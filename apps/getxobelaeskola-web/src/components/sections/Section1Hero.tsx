@@ -66,6 +66,63 @@ export function Section1Hero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (!heroRef.current) return
+      const containerW = heroRef.current.clientWidth
+      const containerH = heroRef.current.clientHeight
+
+      const imgW = 1920
+      const imgH = 1072
+      const imgRatio = imgW / imgH
+      const bleedLeft = 364
+      const bleedRight = 234
+      const bleedTop = 78
+      const bleedBottom = 78
+      const canvasW = containerW + bleedLeft + bleedRight
+      const canvasH = containerH + bleedTop + bleedBottom
+      const canvasRatio = canvasW / canvasH
+
+      let actualW = 0
+      let actualH = 0
+      let left = 0
+      let top = 0
+
+      if (canvasRatio > imgRatio) {
+        actualW = canvasW
+        actualH = canvasW / imgRatio
+        top = (canvasH - actualH) / 2
+      } else {
+        actualH = canvasH
+        actualW = canvasH * imgRatio
+        left = (canvasW - actualW) / 2
+      }
+
+      setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
+    }
+
+    updateSize()
+    
+    // Add timeouts to correct layout timing shifts on load
+    const t1 = setTimeout(updateSize, 100)
+    const t2 = setTimeout(updateSize, 500)
+    
+    if (!heroRef.current) return
+    const resizeObserver = new ResizeObserver(() => {
+      updateSize()
+    })
+    resizeObserver.observe(heroRef.current)
+    window.addEventListener('resize', updateSize)
+    return () => {
+      clearTimeout(t1)
+      clearTimeout(t2)
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateSize)
+    }
+  }, [])
+
   useEffect(() => {
     if (isMobile) {
       setVideoLoaded(true)
@@ -80,6 +137,7 @@ export function Section1Hero() {
   
   // Parallax Setup
   const heroRef = useRef<HTMLDivElement>(null)
+  const boatContainerRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress: localHeroScroll } = useScroll({
     target: heroRef,
@@ -282,25 +340,32 @@ export function Section1Hero() {
             ease: 'easeInOut',
           }}
         >
-          <img
-            src="/images/home/parallax/velero.webp?v=3"
-            alt="Velero navegando en Getxo"
-            fetchPriority="high"
-            onLoad={() => setBarcoLoaded(true)}
-            style={{
-              position: 'absolute',
-              left: '-280px',
-              right: '-180px',
-              top: '-60px',
-              bottom: '-60px',
-              width: 'calc(100% + 460px)',
-              height: 'calc(100% + 120px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-              transform: 'translateX(292px)',
-            }}
-          />
-          <SailboatAccesoButton />
+          {aspect.width > 0 && (
+            <div
+              style={{
+                position: 'absolute',
+                left: `${aspect.left}px`,
+                top: `${aspect.top}px`,
+                width: `${aspect.width}px`,
+                height: `${aspect.height}px`,
+                transform: 'translateX(-100px)',
+              }}
+            >
+              <img
+                src="/images/home/parallax/velero.webp?v=3"
+                alt="Velero navegando en Getxo"
+                fetchPriority="high"
+                onLoad={() => setBarcoLoaded(true)}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+              <SailboatAccesoButton />
+            </div>
+          )}
         </motion.div>
       </motion.div>
 
@@ -347,87 +412,87 @@ export function Section1Hero() {
           <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
         </div>
  
-        {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: '1rem' }}>
-          <LogoGBE />
-        </div>
- 
-        {/* Título principal */}
-        <h1
-          style={{
-            fontSize: 'clamp(2rem, 4.2vw, 3.8rem)',
-            fontWeight: 700,
-            lineHeight: 1.12,
-            color: 'var(--white)',
-            marginBottom: '0.85rem',
-            textAlign: 'left',
-          }}
-        >
-          {t('title').split('|').map((part, index) => {
-            return (
-              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
-                <AnimatedText
-                  text={part.trim()}
-                  effect="falling"
-                  delay={0.6 + index * 0.45}
-                />
-              </span>
-            );
-          })}
-        </h1>
- 
-        {/* Subtítulo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            gap: '16px',
-            maxWidth: '710px',
-            margin: '0 0 1.25rem',
-            textAlign: 'left',
-          }}
-        >
-          {/* Línea vertical color granate del logotipo */}
-          <motion.div
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+          {/* Logo / Nombre de la escuela */}
+          <div style={{ marginBottom: '1rem' }}>
+            <LogoGBE />
+          </div>
+  
+          {/* Título principal */}
+          <h1
             style={{
-              width: '4px',
-              backgroundColor: '#A91D22', // Granate del logo
-              transformOrigin: 'top',
-              flexShrink: 0,
-            }}
-          />
-          <div
-            style={{
-              fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
-              fontWeight: 400,
-              lineHeight: 1.35,
-              color: 'rgba(255,255,255,0.92)',
-              display: 'flex',
-              alignItems: 'center',
+              fontSize: 'clamp(2rem, 4.2vw, 3.8rem)',
+              fontWeight: 700,
+              lineHeight: 1.12,
+              color: 'var(--white)',
+              marginBottom: '0.85rem',
+              textAlign: 'left',
             }}
           >
-            <AnimatedText
-              text={t('subtitle')}
-              effect="falling"
-              delay={1.5}
+            {t('title').split('|').map((part, index) => {
+              return (
+                <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+                  <AnimatedText
+                    text={part.trim()}
+                    effect="falling"
+                    delay={0.6 + index * 0.45}
+                  />
+                </span>
+              );
+            })}
+          </h1>
+  
+          {/* Subtítulo */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'stretch',
+              gap: '16px',
+              maxWidth: '710px',
+              margin: '0 0 1.25rem',
+              textAlign: 'left',
+            }}
+          >
+            {/* Línea vertical color granate del logotipo */}
+            <motion.div
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{ scaleY: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+              style={{
+                width: '4px',
+                backgroundColor: '#A91D22', // Granate del logo
+                transformOrigin: 'top',
+                flexShrink: 0,
+              }}
             />
+            <div
+              style={{
+                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
+                fontWeight: 400,
+                lineHeight: 1.35,
+                color: 'rgba(255,255,255,0.92)',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <AnimatedText
+                text={t('subtitle')}
+                effect="falling"
+                delay={1.5}
+              />
+            </div>
           </div>
-        </div>
- 
-        {/* CTA con atracción magnética */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-        >
-          <GlowButton href="#" color="garnet" size="lg">
-            {t('cta')}
-          </GlowButton>
+  
+          {/* CTA con atracción magnética */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+          >
+            <GlowButton href="#" color="garnet" size="lg">
+              {t('cta')}
+            </GlowButton>
+          </motion.div>
         </motion.div>
-      </motion.div>
 
       {/* Los 5 blobs/วิดีโอ interactivos — ขยายขนาดใหญ่ขึ้น ชัดเจน 100% ไม่ทับซ้อนส่วนอื่น */}
       <div
@@ -521,8 +586,7 @@ function LogoGBE() {
 // ── Componente interno: botón de Acceso flotando en el velero ─────────────────
 function SailboatAccesoButton() {
   const locale = useLocale()
-  const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
-  const [showButton, setShowButton] = useState(true)
+  const [showButton, setShowButton] = useState(false)
 
   // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
   const labels: Record<string, { top: string; bottom: string }> = {
@@ -534,59 +598,40 @@ function SailboatAccesoButton() {
   const label = labels[locale] || labels.es
 
   useEffect(() => {
-    const updateSize = () => {
-      const imgW = 2752
-      const imgH = 1536
-      const imgRatio = imgW / imgH
-      const bleedLeft = 280
-      const bleedRight = 180
-      const bleedTop = 60
-      const bleedBottom = 60
-      const canvasW = window.innerWidth + bleedLeft + bleedRight
-      const canvasH = window.innerHeight + bleedTop + bleedBottom
-      const canvasRatio = canvasW / canvasH
-
-      let actualW = 0
-      let actualH = 0
-      let left = 0
-      let top = 0
-
-      if (canvasRatio > imgRatio) {
-        actualW = canvasW
-        actualH = canvasW / imgRatio
-        top = (canvasH - actualH) / 2
-      } else {
-        actualH = canvasH
-        actualW = canvasH * imgRatio
-        left = (canvasW - actualW) / 2
-      }
-
-      // Subtract bleedLeft and bleedTop because the container starts at -bleedLeft and -bleedTop
-      setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
-    }
+    let timeoutId: NodeJS.Timeout
 
     const handleScroll = () => {
       setShowButton(window.scrollY < 200)
     }
 
-    updateSize()
-    window.addEventListener('resize', updateSize)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    const startTimer = () => {
+      // Delay the initial check so it starts in the Navbar and then moves to the boat
+      timeoutId = setTimeout(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true })
+        handleScroll()
+      }, 800)
+    }
+
+    if ((window as any).__navbarAuthLoaded) {
+      startTimer()
+    } else {
+      const handler = () => {
+        startTimer()
+      }
+      window.addEventListener('auth-loaded', handler)
+      return () => {
+        window.removeEventListener('auth-loaded', handler)
+        clearTimeout(timeoutId)
+        window.removeEventListener('scroll', handleScroll)
+      }
+    }
 
     return () => {
-      window.removeEventListener('resize', updateSize)
+      clearTimeout(timeoutId)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
-  if (aspect.width === 0) return null
-
-  // Keep the Members Access button at its original mast position by user request (July 22, 2026)
-  // Relative anchor positioning calculated from boat's image coordinates
-  const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - Math.min(179, aspect.width * 0.06)
-  const buttonTop = aspect.top + (273 / 1536) * aspect.height + Math.min(555, aspect.height * 0.36)
- 
   return (
     <>
       {showButton && (
@@ -595,11 +640,10 @@ function SailboatAccesoButton() {
           transition={{ type: 'spring', stiffness: 40, damping: 18 }}
           style={{
             position: 'absolute',
-            left: `${buttonLeft}px`,
-            top: `${buttonTop}px`,
+            left: '85.23%',
+            top: '66.40%',
             x: '-50%',
             y: '-50%',
-            rotate: 0,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -616,20 +660,20 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: '6px 12px',
+              padding: '26px 55px',
               display: 'inline-block'
             }}
           >
             <motion.div
-              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.08em] text-center ${
-                locale === 'eu' ? 'text-[9px]' : 'text-[11px]'
+              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
+                locale === 'eu' ? 'text-[21px]' : 'text-[26px]'
               }`}
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],
                 textShadow: [
-                  '0 0 2px rgba(255,255,255,0.4)',
-                  '0 0 6px rgba(255,0,0,0.8), 0 0 12px rgba(255,0,0,0.6)',
-                  '0 0 2px rgba(255,255,255,0.4)'
+                  '0 0 4px rgba(255,255,255,0.4)',
+                  '0 0 15px rgba(255,0,0,0.8), 0 0 30px rgba(255,0,0,0.6)',
+                  '0 0 4px rgba(255,255,255,0.4)'
                 ]
               }}
               transition={{

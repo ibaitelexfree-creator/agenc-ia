@@ -32,6 +32,8 @@
 | T-021 | Antigravity | Remove cloud graphic and horizontal sway from header logo | 2026-07-21 | completado |
 | T-022 | Antigravity | Reduce size of 'Become Member' sailboat access button | 2026-07-22 | completado |
 | T-023 | Antigravity | Adjust layout spacing of the 5 interactive video cards in Hero | 2026-07-22 | completado |
+| T-024 | Antigravity | Move MEMBER ACCESS button to stairwell opening responsively (X: 84.94%, Y: 66.12%) | 2026-07-22 | completado |
+| T-025 | Antigravity | Synchronize button layout transition from Navbar to boat, scale text sizes, shift translateX, and inline French title | 2026-07-22 | completado |
 
 
 ## Bloqueos / Conflictos
