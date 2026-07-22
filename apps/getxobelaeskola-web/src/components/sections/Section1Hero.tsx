@@ -582,6 +582,7 @@ function SailboatAccesoButton() {
 
   if (aspect.width === 0) return null
 
+  // Keep the Members Access button at its original mast position by user request (July 22, 2026)
   // Relative anchor positioning calculated from boat's image coordinates
   const buttonLeft = aspect.left + (2487.5 / 2752) * aspect.width - Math.min(179, aspect.width * 0.06)
   const buttonTop = aspect.top + (273 / 1536) * aspect.height + Math.min(555, aspect.height * 0.36)
