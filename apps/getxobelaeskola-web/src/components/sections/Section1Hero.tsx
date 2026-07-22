@@ -423,7 +423,7 @@ export function Section1Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
         >
-          <GlowButton href="#" color="garnet" size="xxl">
+          <GlowButton href="#" color="garnet" size="lg">
             {t('cta')}
           </GlowButton>
         </motion.div>
@@ -437,7 +437,7 @@ export function Section1Hero() {
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
-          maxWidth: '1450px',
+          maxWidth: '1280px',
           padding: '0 20px',
           zIndex: 15,
         }}
@@ -448,9 +448,9 @@ export function Section1Hero() {
           transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{
             display: 'flex',
-            justifyContent: 'space-evenly',
+            justifyContent: 'center',
             alignItems: 'center',
-            gap: 'clamp(12px, 2.5vw, 36px)',
+            gap: 'clamp(14px, 3.2vw, 42px)',
             width: '100%',
           }}
         >
@@ -616,20 +616,20 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: '25px 50px',
+              padding: '6px 12px',
               display: 'inline-block'
             }}
           >
             <motion.div
-              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
-                locale === 'eu' ? 'text-[18px]' : 'text-[24px]'
+              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.08em] text-center ${
+                locale === 'eu' ? 'text-[9px]' : 'text-[11px]'
               }`}
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],
                 textShadow: [
-                  '0 0 4px rgba(255,255,255,0.4)',
-                  '0 0 15px rgba(255,0,0,0.8), 0 0 30px rgba(255,0,0,0.6)',
-                  '0 0 4px rgba(255,255,255,0.4)'
+                  '0 0 2px rgba(255,255,255,0.4)',
+                  '0 0 6px rgba(255,0,0,0.8), 0 0 12px rgba(255,0,0,0.6)',
+                  '0 0 2px rgba(255,255,255,0.4)'
                 ]
               }}
               transition={{

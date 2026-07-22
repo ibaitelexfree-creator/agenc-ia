@@ -30,7 +30,8 @@
 | T-019 | Antigravity | Replace Dolly-In card (Versión 7) with PivotParallaxCard (30°) using custom sea background and boat cutout | 2026-07-10 | completado |
 | T-020 | Antigravity | Apply color-adjusted boat cutout (ปรับภาพสีคนบนเรือ_cutout_2K) to Versión 7 | 2026-07-10 | completado |
 | T-021 | Antigravity | Remove cloud graphic and horizontal sway from header logo | 2026-07-21 | completado |
-
+| T-022 | Antigravity | Reduce size of 'Become Member' sailboat access button | 2026-07-22 | completado |
+| T-023 | Antigravity | Adjust layout spacing of the 5 interactive video cards in Hero | 2026-07-22 | completado |
 
 
 ## Bloqueos / Conflictos
