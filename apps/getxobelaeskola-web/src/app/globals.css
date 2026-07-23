@@ -881,6 +881,14 @@ a:hover {
   }
 }
 
+@media (max-width: 768px) {
+  .flip-card-wrapper {
+    width: 80vw !important;
+    max-width: 80vw !important;
+    margin: 0 auto !important;
+  }
+}
+
 .flip-card {
   position: relative;
   border: none;

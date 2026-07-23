@@ -91,6 +91,16 @@ export function Section3Adapts() {
   const [experience, setExperience] = useState<ExperienceType>('calm')
   const [environment, setEnvironment] = useState<EnvironmentType>('inner')
   const [boat, setBoat] = useState<BoatType>('small')
+  
+  const [isPhone, setIsPhone] = useState(false)
+  useEffect(() => {
+    const checkSize = () => {
+      setIsPhone(window.innerWidth < 768)
+    }
+    checkSize()
+    window.addEventListener('resize', checkSize)
+    return () => window.removeEventListener('resize', checkSize)
+  }, [])
 
   // Obtener el subtítulo dinámico según la combinación
   const getDynamicSubtitle = () => {
@@ -120,7 +130,9 @@ export function Section3Adapts() {
         style={{
           flex: 1,
           position: 'relative',
-          padding: 'clamp(4.5rem, 12vh, 9rem) clamp(1.5rem, 6vw, 5rem) clamp(2rem, 5vh, 4rem)', // increased top padding to push everything down
+          padding: isPhone 
+            ? '6rem 1rem 1rem' 
+            : 'clamp(2.5rem, 7vh, 4.5rem) clamp(1.5rem, 6vw, 5rem) clamp(1.5rem, 4vh, 3.5rem)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
@@ -164,7 +176,7 @@ export function Section3Adapts() {
 
         {/* Header con Subtítulo Dinámico */}
         <div style={{ marginBottom: '2rem', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" />
+          <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" hideLineOnMobile={true} />
           <h2
             style={{
               fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)',
@@ -204,15 +216,15 @@ export function Section3Adapts() {
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '0.85rem',
-            marginBottom: '1rem',
+            gap: '0.5rem', // closer between them
+            marginBottom: '0.8rem',
             position: 'relative',
             zIndex: 3,
           }}
         >
           {/* Card 1: Tipo de experiencia */}
           <Card3D intensity={5}>
-            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('experience_label')}
               </span>
@@ -257,7 +269,7 @@ export function Section3Adapts() {
 
           {/* Card 2: El escenario */}
           <Card3D intensity={5}>
-            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('setting_label')}
               </span>
@@ -302,7 +314,7 @@ export function Section3Adapts() {
 
           {/* Card 3: Con quién navegar */}
           <Card3D intensity={5}>
-            <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('boat_label')}
               </span>
@@ -346,7 +358,13 @@ export function Section3Adapts() {
           </Card3D>
 
           {/* Card 4: Vela Moderna */}
-          <div style={{ transform: 'translateY(24px)' }}>
+          <div 
+            style={{ 
+              transform: isPhone ? 'none' : 'translateY(24px)',
+              width: isPhone ? '75%' : 'auto',
+              margin: isPhone ? '0 auto' : '0'
+            }}
+          >
             <Card3D
               intensity={5}
               style={{
@@ -390,16 +408,18 @@ export function Section3Adapts() {
         </div>
 
         {/* Enlace global para "Leer más" */}
-        <div style={{ alignSelf: 'center', margin: '0.4rem 0 1rem 0', position: 'relative', zIndex: 3 }}>
-          <Link
-            href={`/${locale}/courses`}
-            className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
-            style={{ textDecoration: 'none' }}
-          >
-            <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
-            {t('card4.badge')} →
-          </Link>
-        </div>
+        {!isPhone && (
+          <div style={{ alignSelf: 'center', margin: '0.4rem 0 1rem 0', position: 'relative', zIndex: 3 }}>
+            <Link
+              href={`/${locale}/courses`}
+              className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
+              style={{ textDecoration: 'none' }}
+            >
+              <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
+              {t('card4.badge')} →
+            </Link>
+          </div>
+        )}
       </div>
 
       {/* Ola decorativa animada en la parte inferior */}
@@ -425,11 +445,6 @@ export function Section3Adapts() {
         </motion.div>
       </div>
 
-      {/* Criatura windsurf flotando de fondo */}
-      <Windsurfer
-        style={{ position: 'absolute', top: '15%', right: '-5%', zIndex: 20 }}
-        enterDelay={0.5}
-      />
     </section>
   )
 }

@@ -143,6 +143,34 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     }, [pathname]);
 
     useEffect(() => {
+        if (!isLangDropdownOpen) return;
+
+        const handleOutsideClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest('.lang-dropdown-container')) {
+                setIsLangDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('click', handleOutsideClick);
+        return () => document.removeEventListener('click', handleOutsideClick);
+    }, [isLangDropdownOpen]);
+
+    useEffect(() => {
+        if (!activeDropdown) return;
+
+        const handleOutsideClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (!target.closest('.nav-item-container')) {
+                setActiveDropdown(null);
+            }
+        };
+
+        document.addEventListener('click', handleOutsideClick);
+        return () => document.removeEventListener('click', handleOutsideClick);
+    }, [activeDropdown]);
+
+    useEffect(() => {
         document.body.style.overflow = isMenuOpen ? 'hidden' : 'unset';
     }, [isMenuOpen]);
 
@@ -261,13 +289,31 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     <div className="flex items-center gap-5">
                         {/* Language Selector Dropdown */}
                         <div 
-                            className="relative cursor-pointer flex items-center gap-1.5 hover:text-white transition-colors py-1 text-xs font-bold"
+                            className="relative lang-dropdown-container"
                             onMouseEnter={() => setIsLangDropdownOpen(true)}
                             onMouseLeave={() => setIsLangDropdownOpen(false)}
-                            onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                            onBlur={(e) => {
+                                if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+                                    setIsLangDropdownOpen(false);
+                                }
+                            }}
                         >
-                            <span>{locale.toUpperCase()}</span>
-                            <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                            <button 
+                                type="button"
+                                tabIndex={0}
+                                className="cursor-pointer flex items-center gap-1.5 hover:text-white transition-colors py-1 text-xs font-bold bg-transparent border-none text-neutral-400 font-inherit outline-none focus:text-white focus:ring-1 focus:ring-accent rounded px-1"
+                                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Escape') {
+                                        setIsLangDropdownOpen(false);
+                                    }
+                                }}
+                                aria-expanded={isLangDropdownOpen}
+                                aria-haspopup="true"
+                            >
+                                <span>{locale.toUpperCase()}</span>
+                                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
                             
                             <AnimatePresence>
                                 {isLangDropdownOpen && (
@@ -367,17 +413,10 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                         transition={{ type: 'spring', stiffness: 50, damping: 15 }}
                         className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
-                        {/* Wrapper for subtle vertical floating animation */}
-                        <motion.div
+                        {/* Wrapper for subtle vertical floating animation - stopped and positioned 5px higher */}
+                        <div
                             className="absolute inset-0 w-full h-full"
-                            animate={{
-                                y: [0, 6, 2, 8, 4, 10, 3, 9, 0],
-                            }}
-                            transition={{
-                                duration: 22,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
+                            style={{ transform: 'translateY(-5px)' }}
                         >
                             <Image
                                 src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
@@ -386,8 +425,8 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                                 sizes="(max-width: 768px) 112px, 144px"
                                 className="object-contain object-left relative z-10"
                                 priority
-                            />
-                        </motion.div>
+                             />
+                        </div>
                     </motion.div>
                 </Link>
  
@@ -396,23 +435,47 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
-                            className="relative h-full flex items-center"
+                            className="relative h-full flex items-center nav-item-container"
                             onMouseEnter={() => item.dropdown && setActiveDropdown(item.label)}
                             onMouseLeave={() => setActiveDropdown(null)}
+                            onBlur={(e) => {
+                                if (item.dropdown && !e.currentTarget.contains(e.relatedTarget as Node)) {
+                                    setActiveDropdown(null);
+                                }
+                            }}
                         >
-                            <Link
-                                href={`/${locale}/${item.href}`}
-                                prefetch={false}
-                                className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent`}
-                                style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
-                            >
-                                {item.icon}
-                                {getLabel(item.label)}
-                                {item.dropdown && (
-                                    <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180 text-accent' : ''}`} />
-                                )}
-                                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
-                            </Link>
+                            {item.dropdown ? (
+                                <button
+                                    type="button"
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        setActiveDropdown(activeDropdown === item.label ? null : item.label);
+                                    }}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Escape') {
+                                            setActiveDropdown(null);
+                                        }
+                                    }}
+                                >
+                                    {item.icon}
+                                    {getLabel(item.label)}
+                                    <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180 text-accent' : ''}`} />
+                                    <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
+                                </button>
+                            ) : (
+                                <Link
+                                    href={`/${locale}/${item.href}`}
+                                    prefetch={false}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
+                                >
+                                    {item.icon}
+                                    {getLabel(item.label)}
+                                    <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
+                                </Link>
+                            )}
  
                             {/* Dropdown Panel with AnimatePresence */}
                             <AnimatePresence>
@@ -453,36 +516,34 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
 
 
                     {loading ? (
-                        (!isAtHero || isIntroActive) && (
-                            <motion.div
-                                layoutId="acceso-button-wrapper"
-                                transition={{ type: 'spring', stiffness: 40, damping: 18 }}
-                                className="hidden xl:block"
-                                style={{ rotate: 0 }}
+                        <motion.div
+                            layoutId="acceso-button-wrapper"
+                            transition={{ type: 'spring', stiffness: 40, damping: 18 }}
+                            className="hidden xl:block"
+                            style={{ rotate: 0 }}
+                        >
+                            <Link 
+                                href={`/${locale}/auth/login`} 
+                                prefetch={false} 
+                                className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
                             >
-                                <Link 
-                                    href={`/${locale}/auth/login`} 
-                                    prefetch={false} 
-                                    className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
-                                >
-                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
-                                        {(() => {
-                                            const label = getLabel('acceso_socias');
-                                            const parts = label.split(' ');
-                                            if (parts.length >= 2) {
-                                                return (
-                                                    <>
-                                                        <span>{parts[0]}</span>
-                                                        <span>{parts.slice(1).join(' ')}</span>
-                                                    </>
-                                                );
-                                            }
-                                            return <span>{label}</span>;
-                                        })()}
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        )
+                                <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
+                                    {(() => {
+                                        const label = getLabel('acceso_socias');
+                                        const parts = label.split(' ');
+                                        if (parts.length >= 2) {
+                                            return (
+                                                <>
+                                                    <span>{parts[0]}</span>
+                                                    <span>{parts.slice(1).join(' ')}</span>
+                                                </>
+                                            );
+                                        }
+                                        return <span>{label}</span>;
+                                    })()}
+                                </div>
+                            </Link>
+                        </motion.div>
                     ) : user ? (
                         <div className="hidden xl:flex gap-8 items-center">
                             {user.status_socio === 'activo' && (
@@ -510,36 +571,34 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
                             </button>
                         </div>
                     ) : (
-                        (!isAtHero || isIntroActive) && (
-                            <motion.div
-                                layoutId="acceso-button-wrapper"
-                                transition={{ type: 'spring', stiffness: 40, damping: 18 }}
-                                className="hidden xl:block"
-                                style={{ rotate: 0 }}
+                        <motion.div
+                            layoutId="acceso-button-wrapper"
+                            transition={{ type: 'spring', stiffness: 40, damping: 18 }}
+                            className="hidden xl:block"
+                            style={{ rotate: 0 }}
+                        >
+                            <Link 
+                                href={`/${locale}/auth/login`} 
+                                prefetch={false} 
+                                className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
                             >
-                                <Link 
-                                    href={`/${locale}/auth/login`} 
-                                    prefetch={false} 
-                                    className="bg-white hover:bg-neutral-200 text-black px-6 py-2 rounded-xl transition-premium flex items-center justify-center border border-white"
-                                >
-                                    <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
-                                        {(() => {
-                                            const label = getLabel('acceso_socias');
-                                            const parts = label.split(' ');
-                                            if (parts.length >= 2) {
-                                                return (
-                                                    <>
-                                                        <span>{parts[0]}</span>
-                                                        <span>{parts.slice(1).join(' ')}</span>
-                                                    </>
-                                                );
-                                            }
-                                            return <span>{label}</span>;
-                                        })()}
-                                    </div>
-                                </Link>
-                            </motion.div>
-                        )
+                                <div className="flex flex-col items-center justify-center leading-[0.85] text-[12px] font-black tracking-[0.08em] text-center uppercase">
+                                    {(() => {
+                                        const label = getLabel('acceso_socias');
+                                        const parts = label.split(' ');
+                                        if (parts.length >= 2) {
+                                            return (
+                                                <>
+                                                    <span>{parts[0]}</span>
+                                                    <span>{parts.slice(1).join(' ')}</span>
+                                                </>
+                                            );
+                                        }
+                                        return <span>{label}</span>;
+                                    })()}
+                                </div>
+                            </Link>
+                        </motion.div>
                     )}
 
                     {/* Mobile Menu Toggle */}

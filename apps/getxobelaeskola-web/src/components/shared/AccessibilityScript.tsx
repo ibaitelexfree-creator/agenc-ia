@@ -22,12 +22,12 @@ window.interdeal = {
     "draggable": true,
     "btnStyle": {
         "vPosition": [
-            "80%",
-            "80%"
+            "99.8%",
+            "99.8%"
         ],
         "margin": [
-            "0",
-            "0"
+            "10",
+            "10"
         ],
         "scale": [
             "0.5",

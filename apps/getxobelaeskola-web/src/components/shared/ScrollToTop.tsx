@@ -28,7 +28,7 @@ export default function ScrollToTop() {
     // 2. Show button on scroll
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.scrollY > 300) {
+            if (window.scrollY > 400) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -63,22 +63,39 @@ export default function ScrollToTop() {
     return (
         <button
             onClick={scrollToTop}
-            className={`fixed bottom-32 md:bottom-8 right-8 z-[9999] p-3 rounded-full bg-accent text-nautical-black shadow-lg shadow-accent/20 transition-all duration-500 hover:scale-110 hover:-translate-y-1 group ${isVisible && !isExternallyHidden ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
+            style={{
+                position: 'fixed',
+                bottom: '24px',
+                right: '24px',
+                zIndex: 9999,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '60px',
+                height: '60px',
+                borderRadius: '50%',
+                backgroundColor: '#A91D22', // Rojo granate corporativo
+                boxShadow: '0 4px 16px rgba(169, 29, 34, 0.3)',
+                cursor: 'pointer',
+                border: 'none',
+                color: 'white',
+            }}
+            className={`transition-all duration-500 hover:scale-110 group ${isVisible && !isExternallyHidden ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-50 pointer-events-none'
                 }`}
             aria-label="Volver al inicio de la página"
         >
-            <div className="absolute inset-0 rounded-full border border-accent/50 animate-ping opacity-20 group-hover:opacity-40" />
+            <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-25 group-hover:opacity-40" />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
+                width="26"
+                height="26"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-6 h-6 transform group-hover:-translate-y-0.5 transition-transform"
+                className="transform group-hover:-translate-y-0.5 transition-transform"
             >
                 <path d="m18 15-6-6-6 6" />
             </svg>

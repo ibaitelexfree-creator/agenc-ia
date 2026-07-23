@@ -9,6 +9,7 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
   const { canvasX, canvasY } = useScrollContext()
   return (
     <motion.div
+      className="canvas-container"
       style={{
         width: '100vw',
         height: '800vh',

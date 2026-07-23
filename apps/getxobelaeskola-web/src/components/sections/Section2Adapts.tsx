@@ -259,11 +259,6 @@ export function Section2Adapts() {
         </motion.div>
       </div>
 
-      {/* Criatura — windsurf entrando desde la derecha */}
-      <Windsurfer
-        style={{ position: 'absolute', top: '20%', right: '-5%', zIndex: 20 }}
-        enterDelay={0.5}
-      />
     </section>
   )
 }

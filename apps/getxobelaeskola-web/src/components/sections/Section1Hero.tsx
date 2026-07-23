@@ -53,13 +53,22 @@ export function Section1Hero() {
   const [barcoLoaded, setBarcoLoaded] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [isMobile, setIsMobile] = useState(true)
+  const [isTabletPortrait, setIsTabletPortrait] = useState(false)
+  const [isTabletLandscape, setIsTabletLandscape] = useState(false)
+  const [isPhone, setIsPhone] = useState(false)
 
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1280) // 1280px matches the xl layout breakpoint where the C-shape card structure has enough space on the left
+      const w = window.innerWidth
+      const h = window.innerHeight
+      const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
+      setIsMobile(w < 1280) // 1280px matches the xl layout breakpoint
+      setIsTabletPortrait(isTabletSize && h > w)
+      setIsTabletLandscape(isTabletSize && w >= h)
+      setIsPhone(w < 768)   // 768px covers mobile and small phone sizes
     }
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
@@ -109,18 +118,21 @@ export function Section1Hero() {
     const t1 = setTimeout(updateSize, 100)
     const t2 = setTimeout(updateSize, 500)
     
-    if (!heroRef.current) return
-    const resizeObserver = new ResizeObserver(() => {
-      updateSize()
-    })
-    resizeObserver.observe(heroRef.current)
     window.addEventListener('resize', updateSize)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
-      resizeObserver.disconnect()
       window.removeEventListener('resize', updateSize)
     }
+  }, [])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTierraLoaded(true)
+      setNubesLoaded(true)
+      setBarcoLoaded(true)
+    }, 3000)
+    return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {
@@ -340,7 +352,7 @@ export function Section1Hero() {
             ease: 'easeInOut',
           }}
         >
-          {aspect.width > 0 && (
+          {tierraLoaded && nubesLoaded && aspect.width > 0 && (
             <div
               style={{
                 position: 'absolute',
@@ -348,7 +360,8 @@ export function Section1Hero() {
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: 'translateX(-100px)',
+                transform: isPhone ? 'translateX(-100px) scale(0.9)' : 'translateX(-100px)',
+                transformOrigin: 'center center',
               }}
             >
               <img
@@ -398,7 +411,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: '-60px',
+          marginTop: isPhone ? '-120px' : '-60px', // Pull the container up on mobile
+          top: isPhone ? '-30px' : '0px',
         }}
       >
         {/* Eyebrow — ubicación */}
@@ -494,11 +508,11 @@ export function Section1Hero() {
           </motion.div>
         </motion.div>
 
-      {/* Los 5 blobs/วิดีโอ interactivos — ขยายขนาดใหญ่ขึ้น ชัดเจน 100% ไม่ทับซ้อนส่วนอื่น */}
+      {/* Los 5 blobs/videos interactivos */}
       <div
         style={{
           position: 'absolute',
-          bottom: '20px',
+          bottom: isTabletPortrait ? 'calc(20px + 10vh)' : isTabletLandscape ? 'calc(20px - 1vh)' : '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -507,35 +521,90 @@ export function Section1Hero() {
           zIndex: 15,
         }}
       >
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: 'clamp(14px, 3.2vw, 42px)',
-            width: '100%',
-          }}
-        >
-          {CARDS.map((card, idx) => (
-            <BlobCard key={card.title} {...card} index={idx} />
-          ))}
-        </motion.div>
+        <AnimatePresence>
+          {barcoLoaded && (
+            isPhone ? (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px',
+                  width: '100%',
+                }}
+              >
+                {/* Fila superior: 3 blobs ligeramente desplazados a la derecha para dejar espacio al widget de accesibilidad de la izquierda */}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '10px',
+                    width: '100%',
+                    transform: 'translateX(18px)', // Desplazamiento a la derecha
+                  }}
+                >
+                  {CARDS.slice(0, 3).map((card, idx) => (
+                    <BlobCard key={card.title} {...card} index={idx} />
+                  ))}
+                </div>
+                {/* Fila inferior: 2 blobs centrados olímpicamente */}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '10px',
+                    width: '100%',
+                  }}
+                >
+                  {CARDS.slice(3, 5).map((card, idx) => (
+                    <BlobCard key={card.title} {...card} index={idx + 3} />
+                  ))}
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: isTabletLandscape 
+                    ? 'clamp(6px, 1.8vw, 20px)' 
+                    : isTabletPortrait 
+                    ? 'clamp(10px, 2.5vw, 32px)' 
+                    : 'clamp(14px, 3.2vw, 42px)',
+                  width: '100%',
+                  transform: isTabletLandscape ? 'scale(0.90)' : 'none',
+                  transformOrigin: 'bottom center',
+                }}
+              >
+                {CARDS.map((card, idx) => (
+                  <BlobCard key={card.title} {...card} index={idx} />
+                ))}
+              </motion.div>
+            )
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Criaturas animadas — pasan detrás del contenido */}
       <Seagull
-        style={{ position: 'absolute', top: '15%', right: '-10%', zIndex: 8 }}
+        style={{
+          position: 'absolute',
+          top: '15%',
+          right: isPhone ? '10%' : '-10%', // 20% más a la izquierda (de -10% a 10%)
+          zIndex: 2, // Detrás del barco (zIndex 3) y delante del cielo (zIndex 1)
+          transform: isPhone ? 'scale(0.8)' : 'none', // 20% más pequeña
+        }}
         enterDelay={1.5}
         direction="left"
-      />
-      <Fish
-        style={{ position: 'absolute', bottom: '18%', left: '-8%', zIndex: 8 }}
-        enterDelay={2.0}
-        direction="right"
-        size="small"
       />
     </section>
   )
@@ -598,36 +667,26 @@ function SailboatAccesoButton() {
   const label = labels[locale] || labels.es
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout
-
     const handleScroll = () => {
       setShowButton(window.scrollY < 200)
     }
 
-    const startTimer = () => {
-      // Delay the initial check so it starts in the Navbar and then moves to the boat
-      timeoutId = setTimeout(() => {
-        window.addEventListener('scroll', handleScroll, { passive: true })
-        handleScroll()
-      }, 800)
-    }
-
     if ((window as any).__navbarAuthLoaded) {
-      startTimer()
+      setShowButton(window.scrollY < 200)
+      window.addEventListener('scroll', handleScroll, { passive: true })
     } else {
       const handler = () => {
-        startTimer()
+        setShowButton(window.scrollY < 200)
+        window.addEventListener('scroll', handleScroll, { passive: true })
       }
       window.addEventListener('auth-loaded', handler)
       return () => {
         window.removeEventListener('auth-loaded', handler)
-        clearTimeout(timeoutId)
         window.removeEventListener('scroll', handleScroll)
       }
     }
 
     return () => {
-      clearTimeout(timeoutId)
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
@@ -642,8 +701,7 @@ function SailboatAccesoButton() {
             position: 'absolute',
             left: '85.23%',
             top: '66.40%',
-            x: '-50%',
-            y: '-50%',
+            translate: '-50% -50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -660,13 +718,13 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: '26px 55px',
+              padding: '23px 50px',
               display: 'inline-block'
             }}
           >
             <motion.div
               className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
-                locale === 'eu' ? 'text-[21px]' : 'text-[26px]'
+                locale === 'eu' ? 'text-[19px]' : 'text-[23px]'
               }`}
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],

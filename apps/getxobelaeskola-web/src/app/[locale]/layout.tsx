@@ -51,9 +51,6 @@ export default async function LocaleLayout({
       <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cloud_sun_mini.webp" fetchPriority="high" />
       <body suppressHydrationWarning>
-        <a href="#main-content" className="skip-link">
-          {locale === 'eu' ? 'Edukira jo' : locale === 'en' ? 'Skip to content' : locale === 'fr' ? 'Aller au contenu' : 'Saltar al contenido'}
-        </a>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <AcademyFeedbackProvider>
             <FramerProvider>

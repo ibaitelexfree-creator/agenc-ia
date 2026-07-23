@@ -309,7 +309,7 @@ export function Section2Identity() {
         {/* CTA "Leer más" con spring de entrada */}
         <motion.div
           variants={{
-            hidden: { scale: 0.8, opacity: 0 },
+            hidden: { scale: 0.95, opacity: 1 },
             visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 15 } }
           }}
         >

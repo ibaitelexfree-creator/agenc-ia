@@ -7,9 +7,10 @@ type SectionEyebrowProps = {
   text: string
   color?: string
   fontSize?: string
+  hideLineOnMobile?: boolean
 }
 
-export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize = '0.7rem' }: SectionEyebrowProps) {
+export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize = '0.7rem', hideLineOnMobile = false }: SectionEyebrowProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -28,6 +29,7 @@ export function SectionEyebrow({ text, color = 'var(--ocean-bright)', fontSize =
         whileInView={{ scaleX: 1 }}
         viewport={{ once: false }}
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        className={hideLineOnMobile ? "hidden md:block" : ""}
         style={{
           width: '32px',
           height: '2px',

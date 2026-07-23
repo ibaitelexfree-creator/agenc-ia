@@ -1,44 +1,64 @@
 // src/components/sections/Section4Why.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Seahorse } from '@/components/creatures/Seahorse'
 import { Crab } from '@/components/creatures/Crab'
 
-type FlipCardProps = {
+interface FlipCardProps {
   icon: React.ReactNode
   title: string
   hook: string
   label: string
   description: string
+  isPhone?: boolean
+  isFlipped: boolean
+  onToggle: () => void
 }
 
-function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
+function FlipCard({ icon, title, hook, label, description, isPhone = false, isFlipped, onToggle }: FlipCardProps) {
   const t = useTranslations('s4')
-  const [flipped, setFlipped] = useState(false)
   const [hovered, setHovered] = useState(false)
 
   // Rotate card either on desktop hover (state managed) or touch click
-  const isRotated = hovered || flipped
+  const isRotated = hovered || isFlipped
 
   return (
     <div
       className="flip-card-wrapper"
+      tabIndex={0}
+      role="button"
+      aria-expanded={isRotated}
+      aria-label={`${title}. ${isRotated ? description : hook}`}
       style={{
         position: 'relative',
-        width: 'var(--card-w)',
-        height: 'var(--card-h)',
+        width: isPhone ? '80vw' : 'var(--card-w)',
+        height: isPhone ? '150px' : 'var(--card-h)',
+        margin: isPhone ? '0 auto' : '0',
         perspective: '1600px',
         cursor: 'pointer',
         WebkitTapHighlightColor: 'transparent',
+        outline: 'none',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => setFlipped(!flipped)}
+      onClick={onToggle}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onToggle()
+        }
+      }}
+      onBlur={(e) => {
+        // Reset card state when focus leaves this wrapper
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) {
+          if (hovered) setHovered(false)
+        }
+      }}
     >
-      <span className="sr-only">{title}. Pulsa para ver más detalles.</span>
+      <span className="sr-only">{title}. Pulsa Enter para dar la vuelta.</span>
       
       {/* 3D Inner container that rotates */}
       <div
@@ -64,9 +84,9 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             borderRadius: 'var(--card-radius)',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '24px 20px',
+            alignItems: isPhone ? 'flex-start' : 'center',
+            justifyContent: isPhone ? 'space-between' : 'center',
+            padding: isPhone ? '16px 20px' : '24px 20px',
             backgroundColor: 'var(--color-white)',
             border: '1px solid var(--color-border)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
@@ -74,33 +94,36 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             transformStyle: 'preserve-3d',
           }}
         >
-          <span
-            className="flip-card__icon"
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              background: 'var(--color-gold-soft)',
-              color: 'var(--color-navy-900)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '20px',
-              transition: 'transform var(--flip-duration) var(--flip-easing)',
-              transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
-            }}
-          >
-            {icon}
-          </span>
+          {!isPhone && (
+            <span
+              className="flip-card__icon"
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: 'var(--color-gold-soft)',
+                color: 'var(--color-navy-900)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '20px',
+                transition: 'transform var(--flip-duration) var(--flip-easing)',
+                transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
+              }}
+            >
+              {icon}
+            </span>
+          )}
           <h3
             className="flip-card__title"
             style={{
               fontFamily: 'var(--font-display-promise)',
-              fontSize: 'var(--fs-card-title-front)',
+              fontSize: isPhone ? '1.15rem' : 'var(--fs-card-title-front)',
               color: 'var(--color-navy-900)',
-              margin: '0 0 10px',
+              margin: '0 0 4px',
               fontWeight: 600,
               transform: 'translateZ(90px)',
+              textAlign: 'left',
             }}
           >
             {title}
@@ -109,28 +132,64 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             className="flip-card__hook"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: 'var(--fs-hook)',
+              fontSize: isPhone ? '0.78rem' : 'var(--fs-hook)',
               color: 'var(--color-ink-soft)',
-              lineHeight: 1.5,
-              margin: '0 0 16px',
+              lineHeight: 1.4,
+              margin: isPhone ? '0' : '0 0 16px',
               transform: 'translateZ(90px)',
+              textAlign: 'left',
             }}
           >
             {hook}
           </p>
-          <span
-            className="flip-card__cta"
-            style={{
-              fontFamily: 'var(--font-body-promise)',
-              fontSize: '0.8125rem',
-              fontWeight: 600,
-              color: 'var(--color-gold)',
-              letterSpacing: '0.02em',
-              transform: 'translateZ(90px)',
-            }}
-          >
-            {t('cta')}
-          </span>
+
+          {isPhone ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', transform: 'translateZ(90px)', marginTop: '8px' }}>
+              <span
+                className="flip-card__icon"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  background: 'var(--color-gold-soft)',
+                  color: 'var(--color-navy-900)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <div style={{ transform: 'scale(0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {icon}
+                </div>
+              </span>
+              <span
+                className="flip-card__cta"
+                style={{
+                  fontFamily: 'var(--font-body-promise)',
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  color: 'var(--color-gold)',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {t('cta')}
+              </span>
+            </div>
+          ) : (
+            <span
+              className="flip-card__cta"
+              style={{
+                fontFamily: 'var(--font-body-promise)',
+                fontSize: '0.8125rem',
+                fontWeight: 600,
+                color: 'var(--color-gold)',
+                letterSpacing: '0.02em',
+                transform: 'translateZ(90px)',
+              }}
+            >
+              {t('cta')}
+            </span>
+          )}
         </div>
 
         {/* Back Face */}
@@ -145,8 +204,8 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'flex-start',
-            padding: '28px 20px 20px',
+            justifyContent: isPhone ? 'center' : 'flex-start',
+            padding: isPhone ? '16px' : '28px 20px 20px',
             background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
             transform: 'rotateY(180deg)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
@@ -158,11 +217,11 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             className="flip-card__label"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: 'var(--fs-eyebrow)',
+              fontSize: isPhone ? '0.75rem' : 'var(--fs-eyebrow)',
               fontWeight: 700,
               letterSpacing: '0.1em',
               color: 'var(--color-gold)',
-              margin: '0 0 12px',
+              margin: isPhone ? '0 0 6px' : '0 0 12px',
               transform: 'translateZ(90px)',
             }}
           >
@@ -172,10 +231,10 @@ function FlipCard({ icon, title, hook, label, description }: FlipCardProps) {
             className="flip-card__desc"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: 'var(--fs-body)',
+              fontSize: isPhone ? '0.78rem' : 'var(--fs-body)',
               color: 'var(--color-white)',
               opacity: 0.92,
-              lineHeight: 1.6,
+              lineHeight: 1.5,
               margin: 0,
               textAlign: 'center',
               transform: 'translateZ(90px)',
@@ -222,6 +281,38 @@ const item = {
 
 export function Section4Why() {
   const t = useTranslations('s4')
+  const [isPhone, setIsPhone] = useState(false)
+  const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
+
+  useEffect(() => {
+    const checkSize = () => setIsPhone(window.innerWidth < 768)
+    checkSize()
+    window.addEventListener('resize', checkSize)
+    return () => window.removeEventListener('resize', checkSize)
+  }, [])
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('.flip-card-wrapper')) {
+        setActiveCardIndex(null)
+      }
+    }
+
+    const handleFocusChange = () => {
+      const active = document.activeElement as HTMLElement
+      if (!active?.closest('.flip-card-wrapper')) {
+        setActiveCardIndex(null)
+      }
+    }
+
+    document.addEventListener('click', handleOutsideClick)
+    document.addEventListener('focusin', handleFocusChange)
+    return () => {
+      document.removeEventListener('click', handleOutsideClick)
+      document.removeEventListener('focusin', handleFocusChange)
+    }
+  }, [])
 
   return (
     <section className="promise" aria-labelledby="promise-heading">
@@ -231,7 +322,7 @@ export function Section4Why() {
         enterDelay={0.5}
       />
 
-      <div className="promise__inner">
+      <div className="promise__inner" style={{ transform: isPhone ? 'translateY(7%)' : 'none', transition: 'transform 0.3s ease' }}>
         {t('eyebrow') ? (
           <>
             <p className="promise__eyebrow">{t('title')}</p>
@@ -255,6 +346,9 @@ export function Section4Why() {
               hook={t('pillar1.body')}
               label={t('pillar1.backTitle')}
               description={t('pillar1.backBody')}
+              isPhone={isPhone}
+              isFlipped={activeCardIndex === 0}
+              onToggle={() => setActiveCardIndex(activeCardIndex === 0 ? null : 0)}
             />
           </motion.div>
 
@@ -265,6 +359,9 @@ export function Section4Why() {
               hook={t('pillar2.body')}
               label={t('pillar2.backTitle')}
               description={t('pillar2.backBody')}
+              isPhone={isPhone}
+              isFlipped={activeCardIndex === 1}
+              onToggle={() => setActiveCardIndex(activeCardIndex === 1 ? null : 1)}
             />
           </motion.div>
 
@@ -275,6 +372,9 @@ export function Section4Why() {
               hook={t('pillar3.body')}
               label={t('pillar3.backTitle')}
               description={t('pillar3.backBody')}
+              isPhone={isPhone}
+              isFlipped={activeCardIndex === 2}
+              onToggle={() => setActiveCardIndex(activeCardIndex === 2 ? null : 2)}
             />
           </motion.div>
         </motion.div>
@@ -282,7 +382,7 @@ export function Section4Why() {
 
       {/* Cangrejo — criatura de la esquina */}
       <Crab
-        style={{ position: 'absolute', bottom: '3%', right: '10%', zIndex: 5 }}
+        style={{ position: 'absolute', bottom: '3%', right: isPhone ? '25%' : '10%', zIndex: 5 }}
         enterDelay={1.0}
       />
     </section>
