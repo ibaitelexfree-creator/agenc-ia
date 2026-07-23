@@ -445,9 +445,9 @@ export function Section1Hero() {
               style={{
                 position: 'absolute',
                 left: isTabletLandscape 
-                  ? `calc(${aspect.left}px + 4.5vw)` 
+                  ? `calc(${aspect.left}px + 2.25vw)` 
                   : isTabletPortrait 
-                  ? `calc(${aspect.left}px + 3vw)` 
+                  ? `calc(${aspect.left}px + 1.5vw)` 
                   : `${aspect.left}px`,
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
