@@ -53,34 +53,34 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                             <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-6 block">
                                 {t('header_badge')}
                             </span>
-                            <h1 className="text-4xl md:text-[8rem] font-display text-foreground leading-[0.9] mb-12">
+                            <h1 className="text-4xl md:text-[8rem] font-display text-black leading-[0.9] mb-12 cursor-default">
                                 {t('header_title')} <br />
-                                <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
+                                <span className="italic font-light text-black">{t('header_highlight')}</span>
                             </h1>
                             <div className="w-24 h-px bg-accent/40" />
                         </header>
 
                         <div className="space-y-16">
-                            <div className="group space-y-4">
-                                <p className="text-xs uppercase tracking-[0.4em] text-foreground/45 font-bold group-hover:text-accent transition-colors duration-500">{t('location_label')}</p>
-                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-foreground/80 group-hover:text-foreground transition-colors duration-500">{t('location_val')}</p>
+                            <div className="space-y-4">
+                                <p className="text-xs uppercase tracking-[0.4em] text-accent font-bold">{t('location_label')}</p>
+                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-black/80">{t('location_val')}</p>
                             </div>
 
-                            <div className="group space-y-4">
-                                <p className="text-xs uppercase tracking-[0.4em] text-foreground/45 font-bold group-hover:text-accent transition-colors duration-500">{t('contact_label')}</p>
+                            <div className="space-y-4">
+                                <p className="text-xs uppercase tracking-[0.4em] text-accent font-bold">{t('contact_label')}</p>
                                 <div className="space-y-2">
-                                    <a href="mailto:info@getxobelaeskola.com" className="text-3xl font-display italic text-foreground/80 hover:text-accent transition-colors duration-500 tracking-wide block">
+                                    <a href="mailto:info@getxobelaeskola.com" className="text-3xl font-display italic text-black/80 hover:text-accent transition-colors duration-0 tracking-wide block">
                                         info@getxobelaeskola.com
                                     </a>
-                                    <a href="tel:+34944916632" className="text-3xl font-display italic text-foreground/80 hover:text-accent transition-colors duration-500 tracking-wider block">
+                                    <a href="tel:+34944916632" className="text-3xl font-display italic text-black/80 hover:text-accent transition-colors duration-0 tracking-wider block">
                                         (+34) 944 916 632
                                     </a>
                                 </div>
                             </div>
 
-                            <div className="group space-y-4">
-                                <p className="text-xs uppercase tracking-[0.4em] text-foreground/45 font-bold group-hover:text-accent transition-colors duration-500">{t('hours_label')}</p>
-                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-foreground/80 group-hover:text-foreground transition-colors duration-500 tracking-wide">{t('hours_val')}</p>
+                            <div className="space-y-4">
+                                <p className="text-xs uppercase tracking-[0.4em] text-accent font-bold">{t('hours_label')}</p>
+                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-black/80 tracking-wide">{t('hours_val')}</p>
                             </div>
                         </div>
 

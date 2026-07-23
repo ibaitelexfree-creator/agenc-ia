@@ -34,7 +34,7 @@
 | T-023 | Antigravity | Adjust layout spacing of the 5 interactive video cards in Hero | 2026-07-22 | completado |
 | T-024 | Antigravity | Move MEMBER ACCESS button to stairwell opening responsively (X: 84.94%, Y: 66.12%) | 2026-07-22 | completado |
 | T-025 | Antigravity | Synchronize button layout transition from Navbar to boat, scale text sizes, shift translateX, and inline French title | 2026-07-22 | completado |
-| T-026 | Antigravity | Fix invisible white text in ContactPage on white background | 2026-07-23 | completado |
+| T-026 | Antigravity | Fix contact page text visibility using explicit black values and orange headers | 2026-07-23 | completado |
 
 
 ## Bloqueos / Conflictos
