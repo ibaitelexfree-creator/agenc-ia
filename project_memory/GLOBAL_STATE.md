@@ -36,6 +36,30 @@
 | T-025 | Antigravity | Synchronize button layout transition from Navbar to boat, scale text sizes, shift translateX, and inline French title | 2026-07-22 | completado |
 | T-026 | Antigravity | Fix contact page text visibility using explicit black values and orange headers | 2026-07-23 | completado |
 | T-027 | Antigravity | Show About page pillars background images directly without hover interaction | 2026-07-23 | completado |
+| T-028 | Antigravity | Smooth layout jumps in Section3Path.tsx by animating header height/opacity instead of unmounting | 2026-07-23 | completado |
+| T-029 | Antigravity | Configure sequential exit (slide down + fade out) and 1s delayed header entrance in Section3Path.tsx | 2026-07-23 | completado |
+| T-030 | Antigravity | Implement deferred visual compact state, slow resorte curves, and bottom-to-top staggered header entrance in Section3Path.tsx | 2026-07-23 | completado |
+| T-031 | Antigravity | Replace CSS transitions with Framer Motion layout prop and spring physics on content container and Level buttons in Section3Path.tsx | 2026-07-23 | completado |
+| T-032 | Antigravity | Apply layout prop and unified spring transitions to header wrapper and inner text components in Section3Path.tsx to avoid gap jumping | 2026-07-23 | completado |
+| T-033 | Antigravity | Anchor section alignment to flex-start with paddingTop on mobile in Section3Path.tsx to prevent vertical centering recalculation jumps | 2026-07-23 | completado |
+| T-034 | Antigravity | Convert mobile translateY from percentage to fixed pixel offset (-100px) in Section3Path.tsx to stabilize layout during collapse | 2026-07-23 | completado |
+| T-035 | Antigravity | Revert section alignment to center, remove outer layout tracking, and apply positive fixed offset (+35px) in Section3Path.tsx | 2026-07-23 | completado |
+| T-036 | Antigravity | Apply layout prop and spring physics to Profile buttons container and button items in Section3Path.tsx to prevent overlap jumps | 2026-07-23 | completado |
+| T-037 | Antigravity | Lift FlipCard state to parent component, enforce mutual exclusivity, and add click-outside listener in Section4Why.tsx | 2026-07-23 | completado |
+| T-038 | Antigravity | Add focusin event listener to synchronize custom scroll canvas and side navigation indicators during tab navigation in useScrollEngineV2.ts | 2026-07-23 | completado |
+| T-039 | Antigravity | Force exact layout snap on all focusin events to prevent arbitrary browser focus shifts in useScrollEngineV2.ts | 2026-07-23 | completado |
+| T-040 | Antigravity | Identify focused section index relative to top-level .canvas-container children in useScrollEngineV2.ts to resolve off-by-one HTML query issues | 2026-07-23 | completado |
+| T-041 | Antigravity | Remove red focus box skip-link anchor from layout.tsx to optimize keyboard accessibility tab transitions | 2026-07-23 | completado |
+| T-042 | Antigravity | Convert language dropdown trigger to a focusable button in Navbar.tsx to allow keyboard Enter/Space expansion and Tab navigation | 2026-07-23 | completado |
+| T-043 | Antigravity | Remove isAtHero visibility block from Members Access login button in Navbar.tsx to make it focusable on desktop | 2026-07-23 | completado |
+| T-044 | Antigravity | Add click-outside and focus blur onBlur handlers to language dropdown container in Navbar.tsx to trigger auto-close | 2026-07-23 | completado |
+| T-045 | Antigravity | Configure focus transitions to snap layout instantly (duration 0) in useScrollEngineV2.ts to prevent browser-animation scroll feedback loops | 2026-07-23 | completado |
+| T-046 | Antigravity | Configure desktop header navigation links as key-toggleable (Enter/Space) dropdowns, implementing click-outside and onBlur tab-out closure in Navbar.tsx | 2026-07-23 | completado |
+| T-047 | Antigravity | Implement a deferred setTimeout window.scrollTo snap inside handleFocusIn in useScrollEngineV2.ts to completely override native post-focus browser scrolls | 2026-07-23 | completado |
+| T-048 | Antigravity | Remove opacity: 0 from hidden variants in Section2Identity.tsx GlowButton container to make it permanently focusable | 2026-07-23 | completado |
+| T-049 | Antigravity | Call blur() on document.activeElement in useScrollEngineV2.ts when transitioning to a different section to unlock scroll | 2026-07-23 | completado |
+| T-050 | Antigravity | Adjust responsive blobs for iPad Mini (isTabletLandscape and isTabletPortrait) applying 2% vertical offsets in Section1Hero.tsx | 2026-07-23 | completado |
+| T-051 | Antigravity | Fix Framer Motion layoutId waypoint bounce bug by using native CSS translate property in SailboatAccesoButton style | 2026-07-23 | completado |
 
 
 ## Bloqueos / Conflictos
