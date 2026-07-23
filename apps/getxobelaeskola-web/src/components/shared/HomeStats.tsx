@@ -43,7 +43,6 @@ function AnimatedCounter({ from, to, duration = 1500, suffix = '' }: AnimatedCou
 
                     animationRef.current = requestAnimationFrame(step);
                 } else {
-                    // Resetear al valor inicial al salir de vista (para animarse al subir/bajar de nuevo)
                     if (animationRef.current) {
                         cancelAnimationFrame(animationRef.current);
                         animationRef.current = null;
@@ -70,6 +69,39 @@ function AnimatedCounter({ from, to, duration = 1500, suffix = '' }: AnimatedCou
     return <span ref={elementRef}>{count}{suffix}</span>;
 }
 
+function StatItem({ to, suffix, label }: { to: number; suffix: string; label: string }) {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <div
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className="pt-6 first:pt-0 md:pt-0 md:px-4 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 select-none"
+            style={{
+                transform: isHovered ? 'scale(1.22)' : 'scale(1)',
+                zIndex: isHovered ? 20 : 1,
+            }}
+        >
+            <span
+                className="text-5xl md:text-6xl font-display font-bold mb-3 transition-colors duration-300"
+                style={{
+                    color: isHovered ? '#000000' : 'var(--accent, #E8593C)',
+                }}
+            >
+                <AnimatedCounter from={0} to={to} suffix={suffix} />
+            </span>
+            <span
+                className="text-[11px] uppercase tracking-[0.25em] font-black transition-colors duration-300"
+                style={{
+                    color: '#000000',
+                }}
+            >
+                {label}
+            </span>
+        </div>
+    );
+}
+
 export default function HomeStats() {
     const pathname = usePathname();
     const t = useTranslations('home.stats');
@@ -86,37 +118,16 @@ export default function HomeStats() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-accent/5 blur-[90px] rounded-full pointer-events-none" />
             
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto glass-card p-8 md:p-12 border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl shadow-xl shadow-black/10">
+                <div className="max-w-4xl mx-auto glass-card p-8 md:p-12 border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl shadow-xl shadow-black/10 transition-all duration-300 hover:bg-white/95">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 text-center divide-y md:divide-y-0 md:divide-x divide-sea-foam/10">
                         {/* Stat 1: 15+ Años de Pasión */}
-                        <div className="pt-6 first:pt-0 md:pt-0 md:px-4 flex flex-col items-center justify-center group">
-                            <span className="text-5xl md:text-6xl font-display text-accent font-bold mb-3 group-hover:text-white transition-colors duration-500">
-                                <AnimatedCounter from={0} to={15} suffix="+" />
-                            </span>
-                            <span className="text-[11px] uppercase tracking-[0.25em] text-sea-foam/60 font-black group-hover:text-accent transition-colors duration-500">
-                                {t('pasion')}
-                            </span>
-                        </div>
+                        <StatItem to={15} suffix="+" label={t('pasion')} />
 
                         {/* Stat 2: 7K+ Alumnos Formados */}
-                        <div className="pt-6 md:pt-0 md:px-4 flex flex-col items-center justify-center group">
-                            <span className="text-5xl md:text-6xl font-display text-accent font-bold mb-3 group-hover:text-white transition-colors duration-500">
-                                <AnimatedCounter from={0} to={7} suffix="K+" />
-                            </span>
-                            <span className="text-[11px] uppercase tracking-[0.25em] text-sea-foam/60 font-black group-hover:text-accent transition-colors duration-500">
-                                {t('alumnos')}
-                            </span>
-                        </div>
+                        <StatItem to={7} suffix="K+" label={t('alumnos')} />
 
                         {/* Stat 3: 30+ Barcos en Flota */}
-                        <div className="pt-6 md:pt-0 md:px-4 flex flex-col items-center justify-center group">
-                            <span className="text-5xl md:text-6xl font-display text-accent font-bold mb-3 group-hover:text-white transition-colors duration-500">
-                                <AnimatedCounter from={0} to={30} suffix="+" />
-                            </span>
-                            <span className="text-[11px] uppercase tracking-[0.25em] text-sea-foam/60 font-black group-hover:text-accent transition-colors duration-500">
-                                {t('flota')}
-                            </span>
-                        </div>
+                        <StatItem to={30} suffix="+" label={t('flota')} />
                     </div>
                 </div>
             </div>
