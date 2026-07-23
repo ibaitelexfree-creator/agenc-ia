@@ -141,7 +141,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
                     </header>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 border border-sea-foam/10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-sea-foam/10">
                         {[
                             {
                                 title: t('values.v1_title'),
@@ -164,28 +164,28 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         ].map((item, i) => (
                             <div 
                                 key={i} 
-                                className="group relative h-[480px] sm:h-[520px] md:h-[560px] lg:h-[600px] p-8 sm:p-12 lg:p-16 xl:p-20 flex flex-col justify-end overflow-hidden border-b lg:border-b-0 lg:border-r last:border-b-0 lg:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-500 active:bg-accent/10"
+                                className="group relative h-[480px] sm:h-[540px] md:h-[580px] lg:h-[600px] p-8 sm:p-12 md:p-14 lg:p-16 xl:p-20 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-500 active:bg-accent/10"
                             >
-                                {/* Background image */}
-                                <div className="absolute inset-0 z-0 opacity-75 lg:opacity-60 group-hover:opacity-90 group-active:opacity-90 scale-100 group-hover:scale-105 group-active:scale-105 transition-all duration-700">
+                                {/* Background image - Vibrant and zoomable across ALL devices including iPad Pro */}
+                                <div className="absolute inset-0 z-0 opacity-75 group-hover:opacity-95 group-active:opacity-95 scale-100 group-hover:scale-110 group-active:scale-110 transition-all duration-700">
                                     <Image
                                         src={item.bg as string}
                                         alt={item.title as string}
                                         fill
-                                        sizes="(max-width: 1024px) 100vw, 33vw"
-                                        className="object-cover grayscale-0 lg:grayscale lg:group-hover:grayscale-0 transition-all duration-700"
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover transition-all duration-700"
                                     />
                                 </div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/75 to-nautical-black/20 z-1" />
 
-                                <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-4 group-active:-translate-y-4 lg:group-hover:-translate-y-8">
-                                    <span className="text-4xl sm:text-5xl mb-6 sm:mb-10 lg:mb-12 block opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-500 origin-left inline-block">
+                                <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-4 group-active:-translate-y-4">
+                                    <span className="text-4xl sm:text-5xl mb-6 sm:mb-10 block opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-500 origin-left inline-block">
                                         {item.icon}
                                     </span>
-                                    <h3 className="text-2xl sm:text-3xl font-display text-sea-foam mb-4 sm:mb-6 lg:mb-8 group-hover:text-accent group-active:text-accent transition-colors">
+                                    <h3 className="text-2xl sm:text-3xl font-display text-sea-foam mb-4 sm:mb-6 group-hover:text-accent group-active:text-accent transition-colors">
                                         {item.title}
                                     </h3>
-                                    <p className="text-foreground/95 font-light text-sm sm:text-base leading-relaxed max-w-md lg:max-w-xs transition-colors">
+                                    <p className="text-foreground/95 font-light text-sm sm:text-base leading-relaxed max-w-sm md:max-w-xs transition-colors">
                                         {item.desc}
                                     </p>
                                 </div>
