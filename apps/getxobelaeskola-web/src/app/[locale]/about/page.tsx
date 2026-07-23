@@ -98,14 +98,15 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start">
                             <div>
                                 <h2 className="text-3xl md:text-4xl font-display text-sea-foam sticky top-32">
-                                    {t('heritage_title')}
+                                    {t('commitment_title')} <br />
+                                    <span className="italic text-accent/80">{t('commitment_highlight')}</span>
                                 </h2>
                             </div>
                             <div className="space-y-12 text-lg md:text-xl font-light text-foreground/80 leading-relaxed">
                                 <p className="first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:mr-4 first-letter:float-left">
-                                    {t('heritage_text1')}
+                                    {t('desc1')}
                                 </p>
-                                <p>{t('heritage_text2')}</p>
+                                <p>{t('desc2')}</p>
                             </div>
                         </div>
 
@@ -121,7 +122,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
                                 <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
-                                    {t('img_caption_1')}
+                                    EST. 1993 • GETXO
                                 </div>
                             </div>
                             <div className="relative h-[500px] group overflow-hidden md:mt-24">
@@ -134,7 +135,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
                                 <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
-                                    {t('img_caption_2')}
+                                    GETXO BELA ESKOLA
                                 </div>
                             </div>
                         </div>
