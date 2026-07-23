@@ -448,7 +448,11 @@ export function Section1Hero() {
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone ? 'translateX(-100px) scale(0.9)' : 'translateX(-100px)',
+                transform: isPhone
+                  ? 'translateX(-100px) scale(0.9)'
+                  : (isTabletLandscape || isTabletPortrait)
+                  ? 'translateX(-90px)'
+                  : 'translateX(-100px)',
                 transformOrigin: 'center center',
               }}
             >
