@@ -164,7 +164,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         ].map((item, i) => (
                             <div key={i} className="group relative h-[600px] p-20 flex flex-col justify-end overflow-hidden border-r last:border-r-0 border-sea-foam/10">
                                 {/* Hover background image */}
-                                <div className="absolute inset-0 z-0 scale-110 group-hover:scale-100 opacity-0 group-hover:opacity-40 transition-all duration-[1.5s]">
+                                <div className="absolute inset-0 z-0 opacity-60 scale-100 md:scale-110 md:group-hover:scale-100 md:opacity-40 md:group-hover:opacity-60 md:transition-all md:duration-[1.5s]">
                                     <Image
                                         src={item.bg as string}
                                         alt={item.title as string}
@@ -175,14 +175,14 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 </div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/80 to-transparent z-1" />
 
-                                <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-8">
-                                    <span className="text-5xl mb-12 block opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 origin-left grayscale group-hover:grayscale-0">
+                                <div className="relative z-10 md:transition-transform md:duration-700 md:group-hover:-translate-y-8">
+                                    <span className="text-5xl mb-12 block opacity-80 md:opacity-50 md:group-hover:opacity-100 md:group-hover:scale-125 md:transition-all md:duration-700 origin-left md:grayscale md:group-hover:grayscale-0">
                                         {item.icon}
                                     </span>
-                                    <h3 className="text-3xl font-display text-sea-foam mb-8 group-hover:text-accent transition-colors">
+                                    <h3 className="text-3xl font-display text-sea-foam mb-8 md:group-hover:text-accent md:transition-colors">
                                         {item.title}
                                     </h3>
-                                    <p className="text-foreground/60 font-light text-sm leading-relaxed max-w-xs group-hover:text-foreground/90 transition-colors">
+                                    <p className="text-foreground/80 md:text-foreground/60 font-light text-sm leading-relaxed max-w-xs md:group-hover:text-foreground/90 md:transition-colors">
                                         {item.desc}
                                     </p>
                                 </div>
