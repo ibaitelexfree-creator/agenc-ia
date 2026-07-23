@@ -7,6 +7,8 @@ import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverImage from '@/components/shared/HoverImage';
 import { getSeoAlternates } from '@/lib/seo';
 
+import AboutValuesSection from '@/components/about/AboutValuesSection';
+
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
     const title = isEu ? 'Gure Eskola' : 'Nuestra Escuela';
@@ -28,6 +30,27 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default async function AboutPage({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'about_page' });
+
+    const valuesItems = [
+        {
+            title: t('values.v1_title'),
+            desc: t('values.v1_desc'),
+            icon: "⚓",
+            bg: "/images/home-hero-sailing-action.webp"
+        },
+        {
+            title: t('values.v2_title'),
+            desc: t('values.v2_desc'),
+            icon: "⛵",
+            bg: "/images/course-raquero-students.webp"
+        },
+        {
+            title: t('values.v3_title'),
+            desc: t('values.v3_desc'),
+            icon: "🌊",
+            bg: "/images/home-cta-join.webp"
+        }
+    ];
 
     return (
         <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
@@ -58,72 +81,56 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                             </span>
                         </h1>
                         <div className="flex items-center gap-8 w-full max-w-4xl opacity-60 animate-fade-in" style={{ animationDelay: '1s' }}>
-                            <div className="h-px flex-grow bg-gradient-to-l from-sea-foam/30 to-transparent" />
-                            <p className="text-sm uppercase tracking-[0.4em] font-light whitespace-nowrap text-sea-foam">
-                                {t('header_suffix')}
-                            </p>
-                            <div className="h-px flex-grow bg-gradient-to-r from-sea-foam/30 to-transparent" />
+                            <div className="h-px bg-sea-foam/20 flex-1" />
+                            <div className="text-[10px] uppercase tracking-[0.5em] text-brass-gold font-mono whitespace-nowrap">
+                                43.3486° N, 3.0131° W • GETXO
+                            </div>
+                            <div className="h-px bg-sea-foam/20 flex-1" />
                         </div>
                     </div>
                 </div>
-
-                {/* Aesthetic Coordinates Decor */}
-                <div className="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2 text-[8px] tracking-[0.4em] text-sea-foam/35 uppercase font-light">
-                    <span>43° 20&apos; 40&quot; N</span>
-                    <span>2° 59&apos; 14&quot; W</span>
-                </div>
             </section>
 
-            {/* 2. Heritage & Story Section */}
-            <section className="py-24 md:py-48 relative overflow-hidden">
-                <div className="container mx-auto px-6">
-                    <StaggeredEntrance type="slide" className="grid lg:grid-cols-12 gap-12 items-center">
-                        {/* Decorative Quote Mark */}
-                        <div className="lg:col-span-1 hidden lg:block self-start pt-12">
-                            <span className="font-display text-9xl text-accent/10 italic leading-none">&quot;</span>
-                        </div>
-
-                        <div className="lg:col-span-5 space-y-12 relative">
-                            <div className="space-y-6">
-                                <h2 className="text-3xl md:text-5xl lg:text-7xl font-display leading-tight tracking-tight text-sea-foam">
-                                    {t('commitment_title')} <br />
-                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[16px]">
-                                        {t('commitment_highlight')}
-                                    </span>
+            {/* 2. Heritage / Story Section */}
+            <section className="py-32 md:py-64 relative overflow-hidden">
+                <div className="container mx-auto px-6 max-w-5xl">
+                    <StaggeredEntrance className="space-y-24">
+                        <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start">
+                            <div>
+                                <h2 className="text-3xl md:text-4xl font-display text-sea-foam sticky top-32">
+                                    {t('heritage_title')}
                                 </h2>
                             </div>
-
-                            <div className="space-y-10">
-                                <p className="text-foreground/80 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
-                                    {t('desc1')}
+                            <div className="space-y-12 text-lg md:text-xl font-light text-foreground/80 leading-relaxed">
+                                <p className="first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:mr-4 first-letter:float-left">
+                                    {t('heritage_text1')}
                                 </p>
-                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-4">
-                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
-                                        {t('desc2')}
-                                    </p>
-                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
-                                        {t('desc3')}
-                                    </p>
-                                </div>
+                                <p>{t('heritage_text2')}</p>
                             </div>
                         </div>
 
-                        <div className="lg:col-span-6 lg:pl-12 mt-24 lg:mt-0">
-                            <div className="relative aspect-[3/4] group">
-                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
+                        {/* Visual Asset Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16">
+                            <div className="relative h-[500px] group overflow-hidden">
                                 <HoverImage
-                                    src="/images/course-raquero-students.webp"
-                                    alt="Sea Experience"
-                                    fill
-                                    sizes="(max-width: 1024px) 100vw, 50vw"
-                                    containerClassName="h-full shadow-2xl"
-                                    imageClassName="object-cover scale-110 group-hover:scale-105"
+                                    src="/images/about-hero-heritage.webp"
+                                    alt="Historical Getxo"
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 />
-                                {/* Image Badge */}
-                                <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-sea-foam/10 shadow-2xl rotate-[-90deg]">
-                                    <span className="text-sm uppercase tracking-[0.5em] text-accent font-bold">
-                                        EST. 1993
-                                    </span>
+                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
+                                <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
+                                    {t('img_caption_1')}
+                                </div>
+                            </div>
+                            <div className="relative h-[500px] group overflow-hidden md:mt-24">
+                                <HoverImage
+                                    src="/images/home-hero-sailing-action.webp"
+                                    alt="Modern Fleet"
+                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
+                                <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
+                                    {t('img_caption_2')}
                                 </div>
                             </div>
                         </div>
@@ -141,57 +148,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         <div className="w-32 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
                     </header>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-sea-foam/10">
-                        {[
-                            {
-                                title: t('values.v1_title'),
-                                desc: t('values.v1_desc'),
-                                icon: "⚓",
-                                bg: "/images/home-hero-sailing-action.webp"
-                            },
-                            {
-                                title: t('values.v2_title'),
-                                desc: t('values.v2_desc'),
-                                icon: "⛵",
-                                bg: "/images/course-raquero-students.webp"
-                            },
-                            {
-                                title: t('values.v3_title'),
-                                desc: t('values.v3_desc'),
-                                icon: "🌊",
-                                bg: "/images/home-cta-join.webp"
-                            }
-                        ].map((item, i) => (
-                            <div 
-                                key={i} 
-                                className="group relative h-[600px] p-12 sm:p-16 md:p-14 lg:p-20 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10"
-                            >
-                                {/* Background image */}
-                                <div className="absolute inset-0 z-0 opacity-60 group-hover:opacity-80 group-active:opacity-80 scale-110 group-hover:scale-100 group-active:scale-100 transition-all duration-[1.5s] ease-out">
-                                    <Image
-                                        src={item.bg as string}
-                                        alt={item.title as string}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                        className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 transition-all duration-700"
-                                    />
-                                </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/80 to-transparent z-1" />
-
-                                <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-8 group-active:-translate-y-8">
-                                    <span className="text-5xl mb-12 block opacity-80 group-hover:opacity-100 group-active:opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-700 origin-left inline-block grayscale group-hover:grayscale-0 group-active:grayscale-0">
-                                        {item.icon}
-                                    </span>
-                                    <h3 className="text-3xl font-display text-sea-foam mb-8 group-hover:text-accent group-active:text-accent transition-colors duration-700">
-                                        {item.title}
-                                    </h3>
-                                    <p className="text-foreground/70 font-light text-sm leading-relaxed max-w-xs group-hover:text-foreground/90 group-active:text-foreground/90 transition-colors duration-700">
-                                        {item.desc}
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    <AboutValuesSection items={valuesItems} />
                 </div>
             </section>
 
