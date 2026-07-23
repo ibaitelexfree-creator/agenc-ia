@@ -81,61 +81,72 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                             </span>
                         </h1>
                         <div className="flex items-center gap-8 w-full max-w-4xl opacity-60 animate-fade-in" style={{ animationDelay: '1s' }}>
-                            <div className="h-px bg-sea-foam/20 flex-1" />
-                            <div className="text-[10px] uppercase tracking-[0.5em] text-brass-gold font-mono whitespace-nowrap">
-                                43.3486° N, 3.0131° W • GETXO
-                            </div>
-                            <div className="h-px bg-sea-foam/20 flex-1" />
+                            <div className="h-px flex-grow bg-gradient-to-l from-sea-foam/30 to-transparent" />
+                            <p className="text-sm uppercase tracking-[0.4em] font-light whitespace-nowrap text-sea-foam">
+                                {t('header_suffix')}
+                            </p>
+                            <div className="h-px flex-grow bg-gradient-to-r from-sea-foam/30 to-transparent" />
                         </div>
                     </div>
                 </div>
+
+                {/* Aesthetic Coordinates Decor */}
+                <div className="absolute bottom-12 right-12 hidden lg:flex flex-col items-end gap-2 text-[8px] tracking-[0.4em] text-sea-foam/35 uppercase font-light">
+                    <span>43° 20&apos; 40&quot; N</span>
+                    <span>2° 59&apos; 14&quot; W</span>
+                </div>
             </section>
 
-            {/* 2. Heritage / Story Section */}
-            <section className="py-32 md:py-64 relative overflow-hidden">
-                <div className="container mx-auto px-6 max-w-5xl">
-                    <StaggeredEntrance className="space-y-24">
-                        <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start">
-                            <div>
-                                <h2 className="text-3xl md:text-4xl font-display text-sea-foam sticky top-32">
+            {/* 2. Heritage & Story Section */}
+            <section className="py-24 md:py-48 relative overflow-hidden">
+                <div className="container mx-auto px-6">
+                    <StaggeredEntrance className="grid lg:grid-cols-12 gap-12 items-center">
+                        {/* Decorative Quote Mark */}
+                        <div className="lg:col-span-1 hidden lg:block self-start pt-12">
+                            <span className="font-display text-9xl text-accent/10 italic leading-none">&quot;</span>
+                        </div>
+
+                        <div className="lg:col-span-5 space-y-12 relative">
+                            <div className="space-y-6">
+                                <h2 className="text-3xl md:text-5xl lg:text-7xl font-display leading-tight tracking-tight text-sea-foam">
                                     {t('commitment_title')} <br />
-                                    <span className="italic text-accent/80">{t('commitment_highlight')}</span>
+                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[16px]">
+                                        {t('commitment_highlight')}
+                                    </span>
                                 </h2>
                             </div>
-                            <div className="space-y-12 text-lg md:text-xl font-light text-foreground/80 leading-relaxed">
-                                <p className="first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:mr-4 first-letter:float-left">
+
+                            <div className="space-y-10">
+                                <p className="text-foreground/80 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
                                     {t('desc1')}
                                 </p>
-                                <p>{t('desc2')}</p>
+                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-4">
+                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
+                                        {t('desc2')}
+                                    </p>
+                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
+                                        {t('desc3')}
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Visual Asset Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-16">
-                            <div className="relative h-[500px] group overflow-hidden">
+                        <div className="lg:col-span-6 lg:pl-12 mt-24 lg:mt-0">
+                            <div className="relative aspect-[3/4] group">
+                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
                                 <HoverImage
-                                    src="/images/about-hero-heritage.webp"
-                                    alt="Historical Getxo"
+                                    src="/images/course-raquero-students.webp"
+                                    alt="Sea Experience"
                                     fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                    sizes="(max-width: 1024px) 100vw, 50vw"
+                                    containerClassName="h-full shadow-2xl"
+                                    imageClassName="object-cover scale-110 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
-                                <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
-                                    EST. 1993 • GETXO
-                                </div>
-                            </div>
-                            <div className="relative h-[500px] group overflow-hidden md:mt-24">
-                                <HoverImage
-                                    src="/images/home-hero-sailing-action.webp"
-                                    alt="Modern Fleet"
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
-                                <div className="absolute bottom-8 left-8 text-xs font-mono tracking-widest text-sea-foam/60 uppercase">
-                                    GETXO BELA ESKOLA
+                                {/* Image Badge */}
+                                <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-sea-foam/10 shadow-2xl rotate-[-90deg]">
+                                    <span className="text-sm uppercase tracking-[0.5em] text-accent font-bold">
+                                        EST. 1993
+                                    </span>
                                 </div>
                             </div>
                         </div>
