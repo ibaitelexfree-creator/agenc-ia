@@ -53,7 +53,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                             <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-6 block">
                                 {t('header_badge')}
                             </span>
-                            <h1 className="text-4xl md:text-[8rem] font-display text-white leading-[0.9] mb-12">
+                            <h1 className="text-4xl md:text-[8rem] font-display text-black leading-[0.9] mb-12">
                                 {t('header_title')} <br />
                                 <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
                             </h1>
@@ -63,16 +63,16 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                         <div className="space-y-16">
                             <div className="group space-y-4">
                                 <p className="text-xs uppercase tracking-[0.4em] text-foreground/20 font-bold group-hover:text-accent transition-colors duration-500">{t('location_label')}</p>
-                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-white/80 group-hover:text-white transition-colors duration-500">{t('location_val')}</p>
+                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-black/80 group-hover:text-black transition-colors duration-500">{t('location_val')}</p>
                             </div>
 
                             <div className="group space-y-4">
                                 <p className="text-xs uppercase tracking-[0.4em] text-foreground/20 font-bold group-hover:text-accent transition-colors duration-500">{t('contact_label')}</p>
                                 <div className="space-y-2">
-                                    <a href="mailto:info@getxobelaeskola.com" className="text-3xl font-display italic text-white/80 hover:text-accent transition-colors duration-500 tracking-wide block">
+                                    <a href="mailto:info@getxobelaeskola.com" className="text-3xl font-display italic text-black/80 hover:text-accent transition-colors duration-500 tracking-wide block">
                                         info@getxobelaeskola.com
                                     </a>
-                                    <a href="tel:+34944916632" className="text-3xl font-display italic text-white/80 hover:text-accent transition-colors duration-500 tracking-wider block">
+                                    <a href="tel:+34944916632" className="text-3xl font-display italic text-black/80 hover:text-accent transition-colors duration-500 tracking-wider block">
                                         (+34) 944 916 632
                                     </a>
                                 </div>
@@ -80,14 +80,14 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
 
                             <div className="group space-y-4">
                                 <p className="text-xs uppercase tracking-[0.4em] text-foreground/20 font-bold group-hover:text-accent transition-colors duration-500">{t('hours_label')}</p>
-                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-white/80 group-hover:text-white transition-colors duration-500 tracking-wide">{t('hours_val')}</p>
+                                <p className="text-3xl font-display italic leading-tight whitespace-pre-line text-black/80 group-hover:text-black transition-colors duration-500 tracking-wide">{t('hours_val')}</p>
                             </div>
                         </div>
 
                         {/* Social Links or Extra Decor */}
-                        <div className="mt-24 pt-24 border-t border-white/5 flex gap-12 text-xs uppercase tracking-[0.3em] font-light">
-                            <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-white transition-colors">Instagram</a>
-                            <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-white transition-colors">Facebook</a>
+                        <div className="mt-24 pt-24 border-t border-black/10 flex gap-12 text-xs uppercase tracking-[0.3em] font-light">
+                            <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-black transition-colors">Instagram</a>
+                            <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-foreground/40 hover:text-black transition-colors">Facebook</a>
                         </div>
                     </div>
 
