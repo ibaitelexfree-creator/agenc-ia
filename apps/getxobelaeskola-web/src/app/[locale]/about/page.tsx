@@ -162,27 +162,30 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 bg: "/images/home-cta-join.webp"
                             }
                         ].map((item, i) => (
-                            <div key={i} className="group relative h-[600px] p-20 flex flex-col justify-end overflow-hidden border-r last:border-r-0 border-sea-foam/10">
+                            <div 
+                                key={i} 
+                                className="group relative h-[480px] sm:h-[540px] md:h-[600px] p-8 sm:p-12 md:p-20 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-500 active:bg-accent/10"
+                            >
                                 {/* Background image */}
-                                <div className="absolute inset-0 z-0 opacity-60 scale-105 group-hover:scale-100 group-hover:opacity-75 transition-all duration-[1.5s]">
+                                <div className="absolute inset-0 z-0 opacity-70 group-hover:opacity-85 group-active:opacity-90 scale-100 group-hover:scale-105 group-active:scale-105 transition-all duration-700">
                                     <Image
                                         src={item.bg as string}
                                         alt={item.title as string}
                                         fill
                                         sizes="(max-width: 768px) 100vw, 33vw"
-                                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                                        className="object-cover grayscale-0 md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
                                     />
                                 </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/80 to-transparent z-1" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/70 to-nautical-black/20 z-1" />
 
-                                <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-4 md:group-hover:-translate-y-8">
-                                    <span className="text-5xl mb-12 block opacity-100 group-hover:scale-125 transition-all duration-700 origin-left">
+                                <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-3 group-active:-translate-y-3 md:group-hover:-translate-y-8">
+                                    <span className="text-4xl sm:text-5xl mb-6 sm:mb-10 md:mb-12 block opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-500 origin-left inline-block">
                                         {item.icon}
                                     </span>
-                                    <h3 className="text-3xl font-display text-sea-foam mb-8 group-hover:text-accent transition-colors">
+                                    <h3 className="text-2xl sm:text-3xl font-display text-sea-foam mb-4 sm:mb-6 md:mb-8 group-hover:text-accent group-active:text-accent transition-colors">
                                         {item.title}
                                     </h3>
-                                    <p className="text-foreground/90 font-light text-sm leading-relaxed max-w-xs transition-colors">
+                                    <p className="text-foreground/95 sm:text-foreground/90 font-light text-sm sm:text-base leading-relaxed max-w-sm md:max-w-xs transition-colors">
                                         {item.desc}
                                     </p>
                                 </div>
