@@ -214,7 +214,7 @@ export function Section3Adapts() {
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                Experiencia
+                {t('experience_label')}
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button
@@ -232,7 +232,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  ☁️ Calma
+                  {t('calm_label')}
                 </button>
                 <button
                   onClick={() => setExperience('action')}
@@ -249,7 +249,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  💨 Acción
+                  {t('action_label')}
                 </button>
               </div>
             </div>
@@ -259,7 +259,7 @@ export function Section3Adapts() {
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                El escenario
+                {t('setting_label')}
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button
@@ -277,7 +277,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  🌊 Abra interior
+                  {t('inner_abra_label')}
                 </button>
                 <button
                   onClick={() => setEnvironment('outer')}
@@ -294,7 +294,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  🌊🌊 Abra exterior
+                  {t('outer_abra_label')}
                 </button>
               </div>
             </div>
@@ -304,7 +304,7 @@ export function Section3Adapts() {
           <Card3D intensity={5}>
             <div style={{ padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                Embarcación
+                {t('boat_label')}
               </span>
               <div style={{ display: 'flex', gap: '0.5rem' }}>
                 <button
@@ -322,7 +322,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  ⛵ Pequeño
+                  {t('small_label')}
                 </button>
                 <button
                   onClick={() => setBoat('big')}
@@ -339,7 +339,7 @@ export function Section3Adapts() {
                     transition: 'all 0.3s ease',
                   }}
                 >
-                  🚢 Crucero
+                  {t('cruise_label')}
                 </button>
               </div>
             </div>

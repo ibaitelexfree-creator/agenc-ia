@@ -1248,7 +1248,7 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Bela Nabigazio Kluba | Getxon",
+    "title": "Bela Nabigazio Kluba Getxon",
     "subtitle": "Nabigatu, ikasi eta partekatu",
     "cta": "Egin zaitez bazkide",
     "scroll_hint": "Jarraitu nabigatzera",
@@ -1755,6 +1755,15 @@
     "combo_action_int_big": "Adrenalina taldean, haize zakarra barneko Abran.",
     "combo_action_ext_small": "Erronka hutsa: itsaso zabala, velero bizia, benetako sentsazioak.",
     "combo_action_ext_big": "Esperientzia osoa: itsaso zabala, haize indartsua, zure taldea.",
+    "experience_label": "Esperientzia",
+    "calm_label": "☁️ Lasaitasuna",
+    "action_label": "💨 Ekintza",
+    "setting_label": "Eszenatokia",
+    "inner_abra_label": "🌊 Barne Abra",
+    "outer_abra_label": "🌊🌊 Kanpo Abra",
+    "boat_label": "Ontzia",
+    "small_label": "⛵ Txikia",
+    "cruise_label": "🚢 Kruzeroa",
     "card4": {
       "badge": "Bela modernoa ✦",
       "body": "Gaur egungo eguraldi-iragarpenek baldintzak zehatz-mehatz aurreikustea ahalbidetzen dute. Nahi duzunean ateratzen zara, bilatzen duzunarekin. Bela kontzientea, eskuragarria eta zure neurrikoa da orain."
