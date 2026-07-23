@@ -98,53 +98,53 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             </section>
 
             {/* 2. Heritage & Story Section */}
-            <section className="py-24 md:py-48 relative overflow-hidden">
-                <div className="container mx-auto px-6">
-                    <StaggeredEntrance className="grid lg:grid-cols-12 gap-12 items-center">
+            <section className="py-16 md:py-32 relative overflow-hidden">
+                <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+                    <StaggeredEntrance className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         {/* Decorative Quote Mark */}
                         <div className="lg:col-span-1 hidden lg:block self-start pt-12">
-                            <span className="font-display text-9xl text-accent/10 italic leading-none">&quot;</span>
+                            <span className="font-display text-8xl xl:text-9xl text-accent/10 italic leading-none">&quot;</span>
                         </div>
 
-                        <div className="lg:col-span-5 space-y-12 relative">
-                            <div className="space-y-6">
-                                <h2 className="text-3xl md:text-5xl lg:text-7xl font-display leading-tight tracking-tight text-sea-foam">
+                        <div className="lg:col-span-5 space-y-8 md:space-y-12 relative">
+                            <div className="space-y-4 md:space-y-6">
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display leading-tight tracking-tight text-sea-foam">
                                     {t('commitment_title')} <br />
-                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[16px]">
+                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[12px]">
                                         {t('commitment_highlight')}
                                     </span>
                                 </h2>
                             </div>
 
-                            <div className="space-y-10">
-                                <p className="text-foreground/80 font-light text-2xl leading-relaxed first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-4 first-letter:mt-2">
+                            <div className="space-y-6 md:space-y-8">
+                                <p className="text-foreground/80 font-light text-lg sm:text-xl md:text-2xl leading-relaxed first-letter:text-5xl sm:first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-3 sm:first-letter:mr-4 first-letter:mt-1">
                                     {t('desc1')}
                                 </p>
-                                <div className="p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-4">
-                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
+                                <div className="p-5 sm:p-6 md:p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-3 sm:space-y-4">
+                                    <p className="text-foreground/70 font-light text-base sm:text-lg leading-relaxed italic">
                                         {t('desc2')}
                                     </p>
-                                    <p className="text-foreground/70 font-light text-lg leading-relaxed italic">
+                                    <p className="text-foreground/70 font-light text-base sm:text-lg leading-relaxed italic">
                                         {t('desc3')}
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="lg:col-span-6 lg:pl-12 mt-24 lg:mt-0">
-                            <div className="relative aspect-[3/4] group">
-                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
+                        <div className="lg:col-span-6 lg:pl-6 xl:pl-12 mt-12 lg:mt-0">
+                            <div className="relative aspect-[3/4] max-w-lg mx-auto lg:max-w-none group px-4 sm:px-0">
+                                <div className="absolute -top-3 -right-3 sm:-top-6 sm:-right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700 pointer-events-none" />
                                 <HoverImage
                                     src="/images/course-raquero-students.webp"
                                     alt="Sea Experience"
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 50vw"
                                     containerClassName="h-full shadow-2xl"
-                                    imageClassName="object-cover scale-110 group-hover:scale-105"
+                                    imageClassName="object-cover scale-105 group-hover:scale-100"
                                 />
                                 {/* Image Badge */}
-                                <div className="absolute top-12 left-0 -translate-x-1/2 bg-nautical-deep px-8 py-6 border border-sea-foam/10 shadow-2xl rotate-[-90deg]">
-                                    <span className="text-sm uppercase tracking-[0.5em] text-accent font-bold">
+                                <div className="absolute top-8 left-4 sm:top-12 sm:left-0 sm:-translate-x-1/2 bg-nautical-deep px-5 py-3 sm:px-8 sm:py-6 border border-sea-foam/10 shadow-2xl sm:rotate-[-90deg]">
+                                    <span className="text-xs sm:text-sm uppercase tracking-[0.3em] sm:tracking-[0.5em] text-accent font-bold">
                                         EST. 1993
                                     </span>
                                 </div>
