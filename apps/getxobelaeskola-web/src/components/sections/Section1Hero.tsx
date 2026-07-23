@@ -444,15 +444,15 @@ export function Section1Hero() {
             <div
               style={{
                 position: 'absolute',
-                left: `${aspect.left}px`,
+                left: isTabletLandscape 
+                  ? `calc(${aspect.left}px + 4.5vw)` 
+                  : isTabletPortrait 
+                  ? `calc(${aspect.left}px + 3vw)` 
+                  : `${aspect.left}px`,
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone
-                  ? 'translateX(-100px) scale(0.9)'
-                  : (isTabletLandscape || isTabletPortrait)
-                  ? 'translateX(-90px)'
-                  : 'translateX(-100px)',
+                transform: isPhone ? 'translateX(-100px) scale(0.9)' : 'translateX(-100px)',
                 transformOrigin: 'center center',
               }}
             >
@@ -786,8 +786,6 @@ function SailboatAccesoButton() {
     <>
       {showButton && (
         <motion.div
-          layoutId="acceso-button-wrapper"
-          transition={{ type: 'spring', stiffness: 40, damping: 18 }}
           style={{
             position: 'absolute',
             left: '85.23%',
