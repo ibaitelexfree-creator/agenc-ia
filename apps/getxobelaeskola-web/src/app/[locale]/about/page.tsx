@@ -115,6 +115,8 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 <HoverImage
                                     src="/images/about-hero-heritage.webp"
                                     alt="Historical Getxo"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />
@@ -126,6 +128,8 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                 <HoverImage
                                     src="/images/home-hero-sailing-action.webp"
                                     alt="Modern Fleet"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-transparent to-transparent" />

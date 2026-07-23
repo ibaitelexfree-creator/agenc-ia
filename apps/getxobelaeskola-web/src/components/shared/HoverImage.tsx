@@ -16,6 +16,8 @@ export default function HoverImage({
     containerClassName = '', 
     ...props 
 }: HoverImageProps) {
+    const isFill = props.fill ?? (!props.width && !props.height);
+
     return (
         <motion.div
             whileHover={{ scale: 1.05 }}
@@ -23,6 +25,8 @@ export default function HoverImage({
             className={`overflow-hidden relative ${containerClassName}`}
         >
             <Image
+                fill={isFill}
+                sizes={props.sizes || "(max-width: 768px) 100vw, 50vw"}
                 {...props}
                 className={`transition-all duration-[1.2s] ease-out ${imageClassName}`}
             />
