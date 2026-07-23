@@ -164,28 +164,28 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         ].map((item, i) => (
                             <div 
                                 key={i} 
-                                className="group relative h-[480px] sm:h-[540px] md:h-[580px] lg:h-[600px] p-8 sm:p-12 md:p-14 lg:p-16 xl:p-20 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-500 active:bg-accent/10"
+                                className="group relative h-[600px] p-12 sm:p-16 md:p-14 lg:p-20 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10"
                             >
-                                {/* Background image - Vibrant and zoomable across ALL devices including iPad Pro */}
-                                <div className="absolute inset-0 z-0 opacity-75 group-hover:opacity-95 group-active:opacity-95 scale-100 group-hover:scale-110 group-active:scale-110 transition-all duration-700">
+                                {/* Background image */}
+                                <div className="absolute inset-0 z-0 opacity-60 group-hover:opacity-80 group-active:opacity-80 scale-110 group-hover:scale-100 group-active:scale-100 transition-all duration-[1.5s] ease-out">
                                     <Image
                                         src={item.bg as string}
                                         alt={item.title as string}
                                         fill
                                         sizes="(max-width: 768px) 100vw, 33vw"
-                                        className="object-cover transition-all duration-700"
+                                        className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 transition-all duration-700"
                                     />
                                 </div>
-                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/75 to-nautical-black/20 z-1" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/80 to-transparent z-1" />
 
-                                <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-4 group-active:-translate-y-4">
-                                    <span className="text-4xl sm:text-5xl mb-6 sm:mb-10 block opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-500 origin-left inline-block">
+                                <div className="relative z-10 transition-transform duration-700 group-hover:-translate-y-8 group-active:-translate-y-8">
+                                    <span className="text-5xl mb-12 block opacity-80 group-hover:opacity-100 group-active:opacity-100 group-hover:scale-125 group-active:scale-125 transition-all duration-700 origin-left inline-block grayscale group-hover:grayscale-0 group-active:grayscale-0">
                                         {item.icon}
                                     </span>
-                                    <h3 className="text-2xl sm:text-3xl font-display text-sea-foam mb-4 sm:mb-6 group-hover:text-accent group-active:text-accent transition-colors">
+                                    <h3 className="text-3xl font-display text-sea-foam mb-8 group-hover:text-accent group-active:text-accent transition-colors duration-700">
                                         {item.title}
                                     </h3>
-                                    <p className="text-foreground/95 font-light text-sm sm:text-base leading-relaxed max-w-sm md:max-w-xs transition-colors">
+                                    <p className="text-foreground/70 font-light text-sm leading-relaxed max-w-xs group-hover:text-foreground/90 group-active:text-foreground/90 transition-colors duration-700">
                                         {item.desc}
                                     </p>
                                 </div>
