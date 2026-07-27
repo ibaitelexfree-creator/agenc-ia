@@ -34,17 +34,17 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                         whileInView={{ scale: 1.0 }}
                         viewport={{ once: false, amount: 0.15 }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
-                        className="absolute inset-0 z-0 opacity-80 group-hover:opacity-100 group-active:opacity-100 transition-all duration-700 ease-out"
+                        className="absolute inset-0 z-0 opacity-90 md:opacity-75 group-hover:opacity-100 group-active:opacity-100 transition-all duration-700 ease-out"
                     >
                         <Image
                             src={item.bg}
                             alt={item.title}
                             fill
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover saturate-[0.45] brightness-90 group-hover:saturate-100 group-active:saturate-100 group-hover:brightness-105 group-active:brightness-105 group-hover:scale-105 group-active:scale-105 transition-all duration-700 ease-out"
+                            className="object-cover saturate-[0.65] brightness-95 md:saturate-[0.45] md:brightness-90 group-hover:saturate-100 group-active:saturate-100 group-hover:brightness-105 group-active:brightness-105 group-hover:scale-105 group-active:scale-105 transition-all duration-700 ease-out"
                         />
                     </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/80 to-transparent z-1 opacity-90 group-hover:opacity-70 group-active:opacity-70 transition-opacity duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/90 via-nautical-black/40 to-transparent z-1 opacity-80 group-hover:opacity-50 group-active:opacity-50 transition-opacity duration-700 pointer-events-none" />
 
                     <motion.div 
                         initial={{ y: 20, opacity: 0.8 }}
