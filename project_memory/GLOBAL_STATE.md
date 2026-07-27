@@ -60,9 +60,8 @@
 | T-049 | Antigravity | Call blur() on document.activeElement in useScrollEngineV2.ts when transitioning to a different section to unlock scroll | 2026-07-23 | completado |
 | T-050 | Antigravity | Adjust responsive blobs for iPad Mini (isTabletLandscape and isTabletPortrait) applying 2% vertical offsets in Section1Hero.tsx | 2026-07-23 | completado |
 | T-051 | Antigravity | Fix Framer Motion layoutId waypoint bounce bug by using native CSS translate property in SailboatAccesoButton style | 2026-07-23 | completado |
-| T-052 | Antigravity | Update AboutValuesSection image saturation, vibrant hover state, and touch responsiveness across all devices | 2026-07-27 | completado |
-| T-053 | Antigravity | Lighten background gradient overlay and boost mobile saturation for iPhone 15 visibility | 2026-07-27 | completado |
-| T-054 | Antigravity | Standardize universal card layout and touch responsiveness for all mobile phone models | 2026-07-27 | completado |
+| T-052 | Antigravity | Revert AboutValuesSection back to original layout and styling per user request | 2026-07-27 | completado |
+
 
 
 
