@@ -141,7 +141,7 @@ export function Section2Adapts() {
           viewport={{ once: false, margin: '-30px' }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '0.75rem',
           }}
         >

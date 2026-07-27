@@ -628,14 +628,13 @@ export function Section1Hero() {
                   width: '100%',
                 }}
               >
-                {/* Fila superior: 3 blobs ligeramente desplazados a la derecha para dejar espacio al widget de accesibilidad de la izquierda */}
+                {/* Fila superior: 3 blobs centrados */}
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
                     gap: '10px',
                     width: '100%',
-                    transform: 'translateX(18px)', // Desplazamiento a la derecha
                   }}
                 >
                   {CARDS.slice(0, 3).map((card, idx) => (
