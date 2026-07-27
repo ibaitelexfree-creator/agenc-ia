@@ -807,14 +807,15 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: '23px 50px',
+              padding: locale === 'eu' ? 'clamp(8px, 1.1vw, 18px) clamp(15px, 2.2vw, 38px)' : 'clamp(10px, 1.4vw, 23px) clamp(20px, 3vw, 50px)',
               display: 'inline-block'
             }}
           >
             <motion.div
-              className={`flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center ${
-                locale === 'eu' ? 'text-[19px]' : 'text-[23px]'
-              }`}
+              style={{
+                fontSize: locale === 'eu' ? 'clamp(11px, 1.25vw, 19px)' : 'clamp(13px, 1.5vw, 23px)'
+              }}
+              className="flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center"
               animate={{
                 color: ['#ffffff', '#ff0000', '#ffffff'],
                 textShadow: [
