@@ -259,7 +259,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     >
       {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
       <motion.div
-        className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
+        className="relative w-14 h-14 min-[380px]:w-16 min-[380px]:h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
@@ -461,9 +461,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* ข้อความกำกับ — เพิ่มความคมชัด (Text Shadow + Font Weight) ชัดเจน 100% */}
-      <div className="text-center max-w-[150px] sm:max-w-[180px] md:max-w-[200px]">
+      <div className="text-center max-w-[95px] min-[380px]:max-w-[120px] sm:max-w-[180px] md:max-w-[200px]">
         <motion.p
-          className="font-extrabold tracking-[0.05em] text-xs sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
+          className="font-extrabold tracking-[0.03em] text-[10px] min-[380px]:text-xs sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] leading-tight"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -472,7 +472,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[11px] sm:text-xs md:text-sm font-medium text-white/95 mt-[2px] drop-shadow-[0_1px_5px_rgba(0,0,0,0.9)]"
+            className="text-[9px] min-[380px]:text-[11px] sm:text-xs md:text-sm font-medium text-white/95 mt-[1px] drop-shadow-[0_1px_5px_rgba(0,0,0,0.9)] leading-tight"
             animate={{ opacity: isHovered ? 1 : 0.85, y: isHovered ? -1 : 0 }}
           >
             {subtitle}

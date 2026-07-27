@@ -496,14 +496,14 @@ export function Section1Hero() {
           position: 'relative',
           zIndex: 10,
           textAlign: 'left',
-          padding: '0 clamp(1.5rem, 5vw, 4rem)',
+          padding: '0 clamp(1rem, 4vw, 4rem)',
           width: '100%',
           maxWidth: 'min(1400px, 90vw)',
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isPhone ? '-120px' : '-60px', // Pull the container up on mobile
-          top: isPhone ? '-30px' : '0px',
+          marginTop: isPhone ? '-90px' : '-60px', // Slightly higher position
+          top: isPhone ? '15px' : '0px',
         }}
       >
         {/* Eyebrow — ubicación */}
@@ -511,104 +511,105 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: '0.75rem',
+            marginBottom: isPhone ? '0.2rem' : '0.75rem',
+            marginTop: isPhone ? '4px' : '0px',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize="0.95rem" />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={isPhone ? '0.78rem' : '0.95rem'} />
         </div>
  
-          {/* Logo / Nombre de la escuela */}
-          <div style={{ marginBottom: '1rem' }}>
-            <LogoGBE />
-          </div>
+        {/* Logo / Nombre de la escuela */}
+        <div style={{ marginBottom: isPhone ? '0.3rem' : '1rem' }}>
+          <LogoGBE isPhone={isPhone} />
+        </div>
   
-          {/* Título principal */}
-          <h1
+        {/* Título principal */}
+        <h1
+          style={{
+            fontSize: isPhone ? 'clamp(1.3rem, 5.6vw, 2.1rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontWeight: 700,
+            lineHeight: isPhone ? 1.05 : 1.12,
+            color: 'var(--white)',
+            marginBottom: isPhone ? '0.3rem' : '0.85rem',
+            textAlign: 'left',
+          }}
+        >
+          {t('title').split('|').map((part, index) => {
+            return (
+              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+                <AnimatedText
+                  text={part.trim()}
+                  effect="falling"
+                  delay={0.6 + index * 0.45}
+                />
+              </span>
+            );
+          })}
+        </h1>
+  
+        {/* Subtítulo */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: isPhone ? '8px' : '16px',
+            maxWidth: '710px',
+            margin: isPhone ? '0 0 0.4rem' : '0 0 1.25rem',
+            textAlign: 'left',
+          }}
+        >
+          {/* Línea vertical color granate del logotipo */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
             style={{
-              fontSize: 'clamp(2rem, 4.2vw, 3.8rem)',
-              fontWeight: 700,
-              lineHeight: 1.12,
-              color: 'var(--white)',
-              marginBottom: '0.85rem',
-              textAlign: 'left',
+              width: isPhone ? '3px' : '4px',
+              backgroundColor: '#A91D22', // Granate del logo
+              transformOrigin: 'top',
+              flexShrink: 0,
             }}
-          >
-            {t('title').split('|').map((part, index) => {
-              return (
-                <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
-                  <AnimatedText
-                    text={part.trim()}
-                    effect="falling"
-                    delay={0.6 + index * 0.45}
-                  />
-                </span>
-              );
-            })}
-          </h1>
-  
-          {/* Subtítulo */}
+          />
           <div
             style={{
+              fontSize: isPhone ? 'clamp(0.75rem, 3.1vw, 0.92rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontWeight: 400,
+              lineHeight: isPhone ? 1.18 : 1.35,
+              color: 'rgba(255,255,255,0.92)',
               display: 'flex',
-              alignItems: 'stretch',
-              gap: '16px',
-              maxWidth: '710px',
-              margin: '0 0 1.25rem',
-              textAlign: 'left',
+              alignItems: 'center',
             }}
           >
-            {/* Línea vertical color granate del logotipo */}
-            <motion.div
-              initial={{ scaleY: 0, opacity: 0 }}
-              animate={{ scaleY: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
-              style={{
-                width: '4px',
-                backgroundColor: '#A91D22', // Granate del logo
-                transformOrigin: 'top',
-                flexShrink: 0,
-              }}
+            <AnimatedText
+              text={t('subtitle')}
+              effect="falling"
+              delay={1.5}
             />
-            <div
-              style={{
-                fontSize: 'clamp(1rem, 1.8vw, 1.25rem)',
-                fontWeight: 400,
-                lineHeight: 1.35,
-                color: 'rgba(255,255,255,0.92)',
-                display: 'flex',
-                alignItems: 'center',
-              }}
-            >
-              <AnimatedText
-                text={t('subtitle')}
-                effect="falling"
-                delay={1.5}
-              />
-            </div>
           </div>
+        </div>
   
-          {/* CTA con atracción magnética */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-          >
-            <GlowButton href="#" color="garnet" size="lg">
-              {t('cta')}
-            </GlowButton>
-          </motion.div>
+        {/* CTA con atracción magnética */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+        >
+          <GlowButton href="#" color="garnet" size={isPhone ? "md" : "lg"}>
+            {t('cta')}
+          </GlowButton>
         </motion.div>
+      </motion.div>
 
       {/* Los 5 blobs/videos interactivos */}
       <div
         style={{
           position: 'absolute',
-          bottom: isTabletPortrait ? 'calc(20px + 10vh)' : isTabletLandscape ? 'calc(20px - 1vh)' : '20px',
+          bottom: isPhone ? '6px' : isTabletPortrait ? 'calc(20px + 10vh)' : isTabletLandscape ? 'calc(20px - 1vh)' : '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
-          padding: '0 20px',
+          padding: isPhone ? '0 6px' : '0 20px',
           zIndex: 15,
         }}
       >
@@ -624,7 +625,7 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '2px',
                   width: '100%',
                 }}
               >
@@ -633,7 +634,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '10px',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
@@ -646,7 +647,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '10px',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
@@ -701,18 +702,18 @@ export function Section1Hero() {
 }
 
 // ── Componente interno: logo GBE (Reducido ~18% conservando estilo e identidad) ───────────────────────────────
-function LogoGBE() {
+function LogoGBE({ isPhone }: { isPhone?: boolean }) {
   return (
     <div
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: '10px',
+        gap: isPhone ? '6px' : '10px',
       }}
     >
       <motion.svg 
-        width="33" 
-        height="33" 
+        width={isPhone ? "24" : "33"} 
+        height={isPhone ? "24" : "33"} 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
@@ -729,7 +730,7 @@ function LogoGBE() {
         effect="falling"
         delay={0.35}
         style={{
-          fontSize: '1.18rem',
+          fontSize: isPhone ? '0.92rem' : '1.18rem',
           fontWeight: 700,
           letterSpacing: '0.08em',
           textTransform: 'uppercase',
