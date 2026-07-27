@@ -61,6 +61,7 @@
 | T-050 | Antigravity | Adjust responsive blobs for iPad Mini (isTabletLandscape and isTabletPortrait) applying 2% vertical offsets in Section1Hero.tsx | 2026-07-23 | completado |
 | T-051 | Antigravity | Fix Framer Motion layoutId waypoint bounce bug by using native CSS translate property in SailboatAccesoButton style | 2026-07-23 | completado |
 | T-052 | Antigravity | Revert AboutValuesSection back to original layout and styling per user request | 2026-07-27 | completado |
+| T-053 | Antigravity | Reduce 5 video blob cards to equal smaller size on tablet screens (768px-1023px) to prevent covering MEMBERS ACCESS text | 2026-07-27 | completado |
 
 
 

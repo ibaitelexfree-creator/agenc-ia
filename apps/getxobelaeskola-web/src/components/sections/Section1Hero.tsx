@@ -604,7 +604,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isPhone ? '6px' : isTabletPortrait ? 'calc(20px + 10vh)' : isTabletLandscape ? 'calc(20px - 1vh)' : '20px',
+          bottom: isPhone ? '6px' : isTabletPortrait ? '16px' : isTabletLandscape ? '12px' : '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -667,12 +667,12 @@ export function Section1Hero() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   gap: isTabletLandscape 
-                    ? 'clamp(6px, 1.8vw, 20px)' 
+                    ? 'clamp(6px, 1.5vw, 18px)' 
                     : isTabletPortrait 
-                    ? 'clamp(10px, 2.5vw, 32px)' 
+                    ? 'clamp(8px, 2vw, 24px)' 
                     : 'clamp(14px, 3.2vw, 42px)',
                   width: '100%',
-                  transform: isTabletLandscape ? 'scale(0.90)' : 'none',
+                  transform: (isTabletLandscape || isTabletPortrait) ? 'scale(0.88)' : 'none',
                   transformOrigin: 'bottom center',
                 }}
               >
