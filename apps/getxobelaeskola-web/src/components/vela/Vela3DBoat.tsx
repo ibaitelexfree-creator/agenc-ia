@@ -134,22 +134,25 @@ export default function Vela3DBoat() {
     // Movimiento vertical suave (sube y baja como en el agua)
     groupRef.current.position.y = Math.sin(time * 0.5) * 0.03;
 
-    // Escala dinámica según el scroll: 
-    // - Section 1 (0.00 -> 0.15): 2.0x -> 1.0x
-    // - Section 3 (0.32 -> 0.46): 1.0x -> 2.0x (se hace más grande al ir a la derecha)
-    // - Transición (0.46 -> 0.56): 2.0x -> 1.0x (se hace más pequeño rápido al ir de perfil al lado izquierdo)
+    // Escala dinámicaตามขนาดหน้าจอ (320px ถึง 1920px) และ scroll progress:
+    const screenWidth = state.size.width;
+    // Factor de escala según ancho de pantalla: 320px (0.65x) -> 768px (0.85x) -> 1200px+ (1.0x) -> 1920px (1.1x)
+    const responsiveScaleFactor = Math.min(1.1, Math.max(0.65, screenWidth / 1200));
+
     const progress = useVelaScrollStore.getState().progress;
-    let targetScale = 1.0;
+    let baseScale = 0.95;
     if (progress < 0.15) {
       const t = progress / 0.15;
-      targetScale = THREE.MathUtils.lerp(2.0, 1.0, t);
+      baseScale = THREE.MathUtils.lerp(1.25, 0.95, t);
     } else if (progress >= 0.32 && progress <= 0.46) {
       const t = (progress - 0.32) / (0.46 - 0.32);
-      targetScale = THREE.MathUtils.lerp(1.0, 2.0, t);
+      baseScale = THREE.MathUtils.lerp(0.95, 1.25, t);
     } else if (progress > 0.46 && progress <= 0.56) {
       const t = (progress - 0.46) / (0.56 - 0.46);
-      targetScale = THREE.MathUtils.lerp(2.0, 1.0, t);
+      baseScale = THREE.MathUtils.lerp(1.25, 0.95, t);
     }
+
+    const targetScale = baseScale * responsiveScaleFactor;
 
     // Aplicar escala suavizada
     const currentScale = groupRef.current.scale.x;
