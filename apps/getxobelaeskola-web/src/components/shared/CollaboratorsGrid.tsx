@@ -14,9 +14,11 @@ interface Collaborator {
 
 export default function CollaboratorsGrid() {
     const [searchQuery, setSearchQuery] = useState('');
-    const [isHovered, setIsHovered] = useState(false);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const trackRef = useRef<HTMLDivElement>(null);
     const animFrameRef = useRef<number | null>(null);
+    const currentOffsetRef = useRef<number>(0);
+    const targetOffsetRef = useRef<number>(0);
+    const isHoveredRef = useRef<boolean>(false);
 
     // Filter collaborators by search query
     const filteredCollaborators = useMemo(() => {
@@ -30,7 +32,7 @@ export default function CollaboratorsGrid() {
 
     const isSearching = searchQuery.trim().length > 0;
 
-    // Triple array buffer for seamless infinite marquee loop
+    // Triple array buffer for seamless infinite loop
     const displayList = useMemo(() => {
         if (isSearching || filteredCollaborators.length === 0) {
             return filteredCollaborators;
@@ -38,46 +40,43 @@ export default function CollaboratorsGrid() {
         return [...filteredCollaborators, ...filteredCollaborators, ...filteredCollaborators];
     }, [filteredCollaborators, isSearching]);
 
-    // Initial scroll positioning to middle set
+    // Continuous GPU-accelerated spring-lerp transform loop
     useEffect(() => {
-        const container = scrollContainerRef.current;
-        if (!container || isSearching) return;
-
-        const timer = setTimeout(() => {
-            if (container.scrollWidth > 0) {
-                const singleSetWidth = container.scrollWidth / 3;
-                if (container.scrollLeft < 10 && singleSetWidth > 100) {
-                    container.scrollLeft = singleSetWidth;
-                }
-            }
-        }, 50);
-
-        return () => clearTimeout(timer);
-    }, [isSearching, displayList]);
-
-    // Slow auto-scroll loop (Moves right-to-left continuously, PAUSES ON HOVER)
-    useEffect(() => {
-        const container = scrollContainerRef.current;
-        if (!container || isSearching || isHovered) {
+        if (isSearching || filteredCollaborators.length === 0) {
             if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+            if (trackRef.current) trackRef.current.style.transform = 'none';
             return;
         }
 
         let lastTime: number | null = null;
-        const speed = 28; // pixels per second
+        const speed = 32; // base pixels per second for auto movement
 
         const step = (time: number) => {
-            if (lastTime !== null && container) {
-                const delta = (time - lastTime) / 1000;
-                container.scrollLeft += speed * delta;
+            if (lastTime !== null && trackRef.current) {
+                const delta = Math.min((time - lastTime) / 1000, 0.1);
 
-                const singleSetWidth = container.scrollWidth / 3;
-                if (singleSetWidth > 200) {
-                    // Seamless wrap when reaching end of second dataset
-                    if (container.scrollLeft >= singleSetWidth * 2) {
-                        container.scrollLeft -= singleSetWidth;
+                // Auto-advance target offset when not hovered
+                if (!isHoveredRef.current) {
+                    targetOffsetRef.current += speed * delta;
+                }
+
+                // Smooth spring-lerp interpolation to target position
+                const diff = targetOffsetRef.current - currentOffsetRef.current;
+                currentOffsetRef.current += diff * Math.min(delta * 7.5, 0.25);
+
+                // Seamless infinite loop wrap
+                const singleSetWidth = trackRef.current.scrollWidth / 3;
+                if (singleSetWidth > 50) {
+                    if (targetOffsetRef.current >= singleSetWidth) {
+                        targetOffsetRef.current -= singleSetWidth;
+                        currentOffsetRef.current -= singleSetWidth;
+                    } else if (targetOffsetRef.current < 0) {
+                        targetOffsetRef.current += singleSetWidth;
+                        currentOffsetRef.current += singleSetWidth;
                     }
                 }
+
+                trackRef.current.style.transform = `translate3d(-${currentOffsetRef.current}px, 0, 0)`;
             }
             lastTime = time;
             animFrameRef.current = requestAnimationFrame(step);
@@ -90,23 +89,15 @@ export default function CollaboratorsGrid() {
                 cancelAnimationFrame(animFrameRef.current);
             }
         };
-    }, [isSearching, isHovered, displayList]);
+    }, [isSearching, filteredCollaborators]);
 
-    // Manual scroll handlers for left / right buttons
+    // Manual navigation buttons (Smooth spring transition to target offset)
     const handleScrollLeft = useCallback(() => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
-        const singleSetWidth = container.scrollWidth / 3;
-        if (singleSetWidth > 200 && container.scrollLeft < singleSetWidth / 2) {
-            container.scrollLeft += singleSetWidth;
-        }
-        container.scrollBy({ left: -320, behavior: 'smooth' });
+        targetOffsetRef.current -= 340;
     }, []);
 
     const handleScrollRight = useCallback(() => {
-        const container = scrollContainerRef.current;
-        if (!container) return;
-        container.scrollBy({ left: 320, behavior: 'smooth' });
+        targetOffsetRef.current += 340;
     }, []);
 
     return (
@@ -146,11 +137,7 @@ export default function CollaboratorsGrid() {
             </div>
 
             {/* Carousel Section with Side Navigation Arrows */}
-            <div
-                className="flex items-center gap-3 sm:gap-4 w-full"
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-            >
+            <div className="flex items-center gap-3 sm:gap-4 w-full">
                 {/* Left Arrow Button */}
                 {!isSearching && (
                     <button
@@ -164,7 +151,11 @@ export default function CollaboratorsGrid() {
                 )}
 
                 {/* Carousel Container Wrapper with edge gradient masks */}
-                <div className="relative flex-1 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-md p-4 sm:p-6 border border-white/20 shadow-2xl shadow-black/20">
+                <div
+                    className="relative flex-1 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-md p-4 sm:p-6 border border-white/20 shadow-2xl shadow-black/20"
+                    onMouseEnter={() => { isHoveredRef.current = true; }}
+                    onMouseLeave={() => { isHoveredRef.current = false; }}
+                >
                     {/* Left & Right Edge Fade Gradients */}
                     {!isSearching && (
                         <>
@@ -179,36 +170,35 @@ export default function CollaboratorsGrid() {
                             No se encontraron colaboradores que coincidan con &quot;<span className="text-accent font-semibold">{searchQuery}</span>&quot;
                         </div>
                     ) : (
-                        /* Scrollable track */
-                        <div
-                            ref={scrollContainerRef}
-                            className={`flex gap-4 sm:gap-6 items-center ${
-                                isSearching
-                                    ? 'flex-wrap justify-center overflow-y-auto max-h-[350px] p-2'
-                                    : 'overflow-x-auto scrollbar-none py-2 px-4'
-                            }`}
-                            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                        >
-                            {displayList.map((collab, index) => (
-                                <div
-                                    key={`${collab.id}-${index}`}
-                                    className="flex-shrink-0 group flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-white hover:bg-sea-foam/5 border border-neutral-100 hover:border-accent/40 shadow-sm hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300 w-36 sm:w-44 select-none cursor-pointer"
-                                    title={collab.name}
-                                >
-                                    <div className="relative w-full h-16 sm:h-20 flex items-center justify-center">
-                                        <Image
-                                            src={collab.svgFile}
-                                            alt={collab.name}
-                                            width={160}
-                                            height={80}
-                                            className="object-contain max-h-full w-auto transition-all duration-300 group-hover:scale-110"
-                                        />
+                        /* Marquee Track Container */
+                        <div className="overflow-hidden w-full">
+                            <div
+                                ref={trackRef}
+                                className={`flex gap-4 sm:gap-6 items-center w-max py-2 px-4 ${
+                                    isSearching ? 'flex-wrap justify-center !w-full max-h-[350px] overflow-y-auto' : ''
+                                }`}
+                            >
+                                {displayList.map((collab, index) => (
+                                    <div
+                                        key={`${collab.id}-${index}`}
+                                        className="flex-shrink-0 group flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-white hover:bg-sea-foam/5 border border-neutral-100 hover:border-accent/40 shadow-sm hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300 w-36 sm:w-44 select-none cursor-pointer"
+                                        title={collab.name}
+                                    >
+                                        <div className="relative w-full h-16 sm:h-20 flex items-center justify-center">
+                                            <Image
+                                                src={collab.svgFile}
+                                                alt={collab.name}
+                                                width={160}
+                                                height={80}
+                                                className="object-contain max-h-full w-auto transition-all duration-300 group-hover:scale-110"
+                                            />
+                                        </div>
+                                        <span className="text-[10px] text-neutral-400 group-hover:text-nautical-deep font-semibold tracking-tight mt-2 truncate max-w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                            {collab.name}
+                                        </span>
                                     </div>
-                                    <span className="text-[10px] text-neutral-400 group-hover:text-nautical-deep font-semibold tracking-tight mt-2 truncate max-w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        {collab.name}
-                                    </span>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -228,6 +218,8 @@ export default function CollaboratorsGrid() {
         </div>
     );
 }
+
+
 
 
 
