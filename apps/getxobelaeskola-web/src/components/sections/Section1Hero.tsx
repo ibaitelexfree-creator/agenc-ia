@@ -263,7 +263,10 @@ export function Section1Hero() {
       style={{
         gridArea: 's1',
         position: 'relative',
-        width: '100vw',
+        width: '100%',
+        maxWidth: '1920px',
+        minWidth: '320px',
+        margin: '0 auto',
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',

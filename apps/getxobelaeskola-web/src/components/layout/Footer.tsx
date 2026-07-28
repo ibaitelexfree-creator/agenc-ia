@@ -115,14 +115,14 @@ export default async function Footer({ locale }: { locale: string }) {
             <HomeStats />
             {!isSubscribed && <Newsletter locale={locale} />}
 
-            <div className="py-24 container mx-auto px-6 flex flex-col items-center">
+            <div className="py-24 container max-w-[1920px] min-w-[320px] mx-auto px-4 sm:px-6 flex flex-col items-center overflow-hidden">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center gap-6 mb-12 group">
-                    <div className="flex flex-col items-center">
-                        <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none">
+                    <div className="flex flex-col items-center text-center">
+                        <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none break-words">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">Escuela Náutica Oficial</span>
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3 break-words">Escuela Náutica Oficial</span>
                     </div>
                 </div>
 
@@ -152,7 +152,7 @@ export default async function Footer({ locale }: { locale: string }) {
                             <span>Contacto</span>
                         </div>
                         <span className="text-sea-foam/60 font-medium">+34 944 000 000</span>
-                        <span className="text-sea-foam/60 font-medium">info@getxobelaeskola.com</span>
+                        <span className="text-sea-foam/60 font-medium break-all">info@getxobelaeskola.com</span>
                     </div>
                 </div>
 
