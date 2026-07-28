@@ -94,12 +94,37 @@ create policy "blog_images_admin_update" on storage.objects
     and exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.rol = 'admin')
   );
 
-create policy "blog_images_admin_delete" on storage.objects
-  for delete
-  using (
-    bucket_id = 'blog-images'
-    and exists (select 1 from public.profiles where profiles.id = auth.uid() and profiles.rol = 'admin')
-  );
+-- 5. Seed Data (Cargar los 3 artículos iniciales si no existen)
+insert into public.blog_posts (slug, titulo_es, titulo_eu, contenido_es, contenido_eu, image_url, published)
+values 
+(
+  'como-leer-una-carta-nautica-en-5-pasos',
+  'Cómo leer una carta náutica en 5 pasos',
+  'Nola irakurri itsas karta bat 5 urratsetan',
+  'Las cartas náuticas son el mapa de carreteras del marino. En esta guía práctica te enseñamos a interpretar la escala de latitudes y longitudes, a leer los números de sonda que indican el relieve submarino, a reconocer la simbología oficial de faros, boyas e instalaciones portuarias, y a trazar rumbos verdaderos corregidos con la declinación magnética para una travesía 100% segura.',
+  'Itsas kartak itsasoan zehar nabigatzeko ezinbesteko tresnak dira. Pauso hauetan ikasiko duzu koordenatuak identifikatzen, sakonera neurtzen duten sondak irakurtzen, ikurrak eta itsasargien argi-karakteristikak ezagutzen, eta segurtasunez portura iristeko bideak marrazten.',
+  '/images/home-hero-sailing-action.webp',
+  true
+),
+(
+  'tacticas-de-regata-domina-las-salidas-con-viento-fuerte',
+  'Tácticas de regata: Domina las salidas con viento fuerte',
+  'Estropada taktikak: Irteerak haize indartsuarekin dominatu',
+  'La línea de salida es donde se ganan y pierden la mayoría de las regatas, especialmente cuando el anemómetro sube de los 20 nudos. En este artículo detallamos la técnica para mantener el barco en stand-by (parado con control), la forma óptima de cazar velas para arrancar en el último segundo y cómo distribuir el peso de la tripulación en la banda para mantener el barco plano.',
+  'Haize indartsuarekin estropada baten irteera kontrolatzea funtsezkoa da. Zure J80 ontziaren bela-trimatzea doitzen ikasiko dugu, baita taldekide bakoitzaren pisua banatzen ere, irteerako momentuan abiadura maximoa lortzeko.',
+  '/images/course-detail-header-sailing.webp',
+  true
+),
+(
+  'los-mejores-rincones-para-fondear-en-el-abra-de-getxo',
+  'Los mejores rincones para fondear en el Abra de Getxo',
+  'Getxoko Abrako ainguratzeko txokorik onenak',
+  'Fondease en el Abra de Getxo es una experiencia maravillosa si sabes dónde hacerlo. Te revelamos las mejores coordenadas al resguardo del viento de componente Norte y Noroeste, los detalles sobre el fondo de arena para asegurar el agarre del ancla (tenedero), y las precauciones necesarias según la carrera de marea de ese día.',
+  'Getxoko Abra inguruan kala zoragarriak eta hondartza babestuak daude ainguratzeko. Marea-taulak egiaztatzea gomendatzen da, baita hondar-motak aztertzea ere aingura ondo finka dadin.',
+  '/images/course-raquero-students.webp',
+  true
+)
+on conflict (slug) do nothing;
 ```
 
 ---

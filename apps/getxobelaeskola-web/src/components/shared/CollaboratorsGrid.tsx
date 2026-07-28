@@ -14,6 +14,7 @@ interface Collaborator {
 
 export default function CollaboratorsGrid() {
     const [searchQuery, setSearchQuery] = useState('');
+    const [isHovered, setIsHovered] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const animFrameRef = useRef<number | null>(null);
 
@@ -27,10 +28,9 @@ export default function CollaboratorsGrid() {
         );
     }, [searchQuery]);
 
-    // For infinite loop effect when no search query is active
     const isSearching = searchQuery.trim().length > 0;
 
-    // Triple dataset for infinite seamless scrolling
+    // Triple array buffer for seamless infinite marquee loop
     const displayList = useMemo(() => {
         if (isSearching || filteredCollaborators.length === 0) {
             return filteredCollaborators;
@@ -38,16 +38,15 @@ export default function CollaboratorsGrid() {
         return [...filteredCollaborators, ...filteredCollaborators, ...filteredCollaborators];
     }, [filteredCollaborators, isSearching]);
 
-    // Set initial scroll position to middle set on mount / data change
+    // Initial scroll positioning to middle set
     useEffect(() => {
         const container = scrollContainerRef.current;
         if (!container || isSearching) return;
 
-        // Small delay to allow initial DOM layout rendering
         const timer = setTimeout(() => {
             if (container.scrollWidth > 0) {
                 const singleSetWidth = container.scrollWidth / 3;
-                if (container.scrollLeft === 0) {
+                if (container.scrollLeft < 10 && singleSetWidth > 100) {
                     container.scrollLeft = singleSetWidth;
                 }
             }
@@ -56,29 +55,27 @@ export default function CollaboratorsGrid() {
         return () => clearTimeout(timer);
     }, [isSearching, displayList]);
 
-    // Continuous smooth auto-scroll loop animation
+    // Slow auto-scroll loop (Moves right-to-left continuously, PAUSES ON HOVER)
     useEffect(() => {
         const container = scrollContainerRef.current;
-        if (!container || isSearching) {
+        if (!container || isSearching || isHovered) {
             if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
             return;
         }
 
         let lastTime: number | null = null;
-        const speed = 30; // pixels per second for ultra smooth movement
+        const speed = 28; // pixels per second
 
         const step = (time: number) => {
-            if (lastTime !== null) {
+            if (lastTime !== null && container) {
                 const delta = (time - lastTime) / 1000;
                 container.scrollLeft += speed * delta;
 
                 const singleSetWidth = container.scrollWidth / 3;
-                if (singleSetWidth > 0) {
-                    // Wrap smoothly without visual jump
+                if (singleSetWidth > 200) {
+                    // Seamless wrap when reaching end of second dataset
                     if (container.scrollLeft >= singleSetWidth * 2) {
                         container.scrollLeft -= singleSetWidth;
-                    } else if (container.scrollLeft <= 10) {
-                        container.scrollLeft += singleSetWidth;
                     }
                 }
             }
@@ -93,17 +90,23 @@ export default function CollaboratorsGrid() {
                 cancelAnimationFrame(animFrameRef.current);
             }
         };
-    }, [isSearching, displayList]);
+    }, [isSearching, isHovered, displayList]);
 
     // Manual scroll handlers for left / right buttons
     const handleScrollLeft = useCallback(() => {
-        if (!scrollContainerRef.current) return;
-        scrollContainerRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+        const container = scrollContainerRef.current;
+        if (!container) return;
+        const singleSetWidth = container.scrollWidth / 3;
+        if (singleSetWidth > 200 && container.scrollLeft < singleSetWidth / 2) {
+            container.scrollLeft += singleSetWidth;
+        }
+        container.scrollBy({ left: -320, behavior: 'smooth' });
     }, []);
 
     const handleScrollRight = useCallback(() => {
-        if (!scrollContainerRef.current) return;
-        scrollContainerRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+        const container = scrollContainerRef.current;
+        if (!container) return;
+        container.scrollBy({ left: 320, behavior: 'smooth' });
     }, []);
 
     return (
@@ -143,16 +146,20 @@ export default function CollaboratorsGrid() {
             </div>
 
             {/* Carousel Section with Side Navigation Arrows */}
-            <div className="flex items-center gap-2 sm:gap-4 w-full">
+            <div
+                className="flex items-center gap-3 sm:gap-4 w-full"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            >
                 {/* Left Arrow Button */}
                 {!isSearching && (
                     <button
                         onClick={handleScrollLeft}
-                        className="flex-shrink-0 p-2.5 sm:p-3 rounded-full bg-sea-foam/10 border border-sea-foam/20 text-sea-foam hover:text-accent hover:border-accent/40 hover:bg-accent/15 active:scale-95 transition-all shadow-md hover:shadow-accent/10 z-20 cursor-pointer"
+                        className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                         aria-label="Desplazar a la izquierda"
                         title="Anterior"
                     >
-                        <ChevronLeft className="w-5 h-5" />
+                        <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                     </button>
                 )}
 
@@ -194,7 +201,7 @@ export default function CollaboratorsGrid() {
                                             alt={collab.name}
                                             width={160}
                                             height={80}
-                                            className="object-contain max-h-full w-auto filter grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-110"
+                                            className="object-contain max-h-full w-auto transition-all duration-300 group-hover:scale-110"
                                         />
                                     </div>
                                     <span className="text-[10px] text-neutral-400 group-hover:text-nautical-deep font-semibold tracking-tight mt-2 truncate max-w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -210,16 +217,18 @@ export default function CollaboratorsGrid() {
                 {!isSearching && (
                     <button
                         onClick={handleScrollRight}
-                        className="flex-shrink-0 p-2.5 sm:p-3 rounded-full bg-sea-foam/10 border border-sea-foam/20 text-sea-foam hover:text-accent hover:border-accent/40 hover:bg-accent/15 active:scale-95 transition-all shadow-md hover:shadow-accent/10 z-20 cursor-pointer"
+                        className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                         aria-label="Desplazar a la derecha"
                         title="Siguiente"
                     >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                     </button>
                 )}
             </div>
         </div>
     );
 }
+
+
 
 

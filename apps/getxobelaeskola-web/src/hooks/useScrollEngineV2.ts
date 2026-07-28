@@ -298,6 +298,13 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         if (scrollY > maxScroll + 5 && dir === -1) return
       }
 
+      // Allow smooth transition to maxScroll / normal page flow when scrolling down from last section
+      if (currentIndexRef.current === SECTION_PROGRESS.length - 1 && dir === 1) {
+        if (scrollY >= maxScroll - 10) return
+        animateScroll(maxScroll)
+        return
+      }
+
       e.preventDefault()
 
       const isNewGesture = !isWheelScrollingRef.current
