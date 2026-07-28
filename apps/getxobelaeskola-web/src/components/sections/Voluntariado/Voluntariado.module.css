@@ -293,8 +293,17 @@
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
+  .hero-vol {
+    padding: 60px 20px 20px;
+  }
   .vol-hero-title {
     font-size: clamp(34px, 6vw, 48px);
+  }
+  .areas-section {
+    padding: 60px 20px;
+  }
+  .section-title {
+    margin-bottom: 32px;
   }
   .areas-grid {
     grid-template-columns: 1fr;
@@ -309,6 +318,19 @@
 }
 
 @media (max-width: 480px) {
+  .hero-vol {
+    padding: 48px 16px 16px;
+  }
+  .areas-section {
+    padding: 40px 16px;
+  }
+  .section-title {
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+  .area-card {
+    padding: 24px 20px;
+  }
   .valores-grid {
     grid-template-columns: 1fr;
   }
@@ -317,5 +339,58 @@
   }
   .texto-intro {
     font-size: 16px;
+  }
+}
+
+/* LANDSCAPE ORIENTATION (แนวนอน): Move content up & compact spacing to fit title + card cleanly */
+@media (orientation: landscape) and (max-height: 600px) {
+  .hero-vol {
+    padding: 36px 20px 12px;
+  }
+  .vol-label {
+    margin-bottom: 10px;
+  }
+  .vol-hero-title {
+    font-size: clamp(26px, 5.5vw, 36px);
+    margin-bottom: 16px;
+  }
+  .vol-divider {
+    margin-bottom: 14px;
+  }
+  .vol-subtitle {
+    font-size: 16px;
+  }
+  .wave-container {
+    margin-top: 16px;
+  }
+  .areas-section {
+    padding: 32px 20px 40px;
+  }
+  .section-title {
+    margin-bottom: 20px;
+    font-size: clamp(22px, 4vw, 28px);
+  }
+  .areas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .area-card {
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+  .area-emoji {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  .area-titulo {
+    font-size: 18px;
+  }
+  .area-subtitulo {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+  .area-desc {
+    font-size: 13.5px;
+    line-height: 1.45;
   }
 }
