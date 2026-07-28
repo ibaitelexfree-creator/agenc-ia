@@ -48,13 +48,13 @@ export default function ClubSociasPage() {
     return (
         <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Hero */}
-            <section className="relative pt-48 pb-32 overflow-hidden bg-nautical-deep">
+            <section className="relative pt-24 sm:pt-28 md:pt-32 lg:pt-36 pb-20 md:pb-28 overflow-hidden bg-nautical-deep">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                 <div className="container mx-auto px-6 relative z-10 text-center">
-                    <header className="max-w-4xl mx-auto space-y-6">
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-gold/10 border border-brass-gold/20 text-brass-gold text-xs font-black tracking-widest uppercase mb-4 animate-fade-in-up">
+                    <header className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brass-gold/10 border border-brass-gold/20 text-brass-gold text-xs font-black tracking-widest uppercase mb-2 md:mb-4 animate-fade-in-up">
                             <Sparkles className="w-3.5 h-3.5" />
                             {t('title')}
                         </span>
@@ -62,7 +62,7 @@ export default function ClubSociasPage() {
                             {t('hero_title_part1')} <br />
                             <span className="italic font-light text-accent/90">{t('hero_title_part2')}</span>
                         </h1>
-                        <p className="max-w-2xl mx-auto text-foreground/70 font-light text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-8 md:pl-12 mt-12 text-left md:text-center">
+                        <p className="max-w-2xl mx-auto text-foreground/70 font-light text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-8 md:pl-12 mt-6 md:mt-8 text-left md:text-center">
                             {t('subtitle')} {t('description2')}
                         </p>
                     </header>

@@ -32,11 +32,11 @@ export default function CourseFilters({ categories, locale }: CourseFiltersProps
     };
 
     return (
-        <div className="relative mb-20 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+        <div className="relative mb-10 md:mb-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
             {/* Gradient Mask for horizontal scroll */}
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-nautical-deep to-transparent z-10 pointer-events-none" />
 
-            <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar scroll-smooth">
+            <div className="flex flex-wrap lg:flex-nowrap lg:overflow-x-auto pb-4 gap-3 sm:gap-4 no-scrollbar scroll-smooth">
                 <button
                     onClick={() => handleCategoryChange(null)}
                     className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${!activeCategory
