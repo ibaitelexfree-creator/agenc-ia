@@ -84,66 +84,66 @@ export default function ContactForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(debouncedSubmit)} className="space-y-8 animate-fade-in">
-            <StaggeredEntrance type="slide" staggerDelay={0.08} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                        <label htmlFor="nombre" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('name')}</label>
+        <form onSubmit={handleSubmit(debouncedSubmit)} className="space-y-5 sm:space-y-6 md:space-y-8 animate-fade-in w-full">
+            <StaggeredEntrance type="slide" staggerDelay={0.08} className="space-y-5 sm:space-y-6 md:space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    <div className="space-y-1.5 sm:space-y-2">
+                        <label htmlFor="nombre" className="text-2xs sm:text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('name')}</label>
                         <input
                             id="nombre"
                             {...register('nombre')}
-                            className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('name_placeholder')}
                         />
-                        {errors.nombre && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.nombre.message}</p>}
+                        {errors.nombre && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.nombre.message}</p>}
                     </div>
-                    <div className="space-y-2">
-                        <label htmlFor="email" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('email')}</label>
+                    <div className="space-y-1.5 sm:space-y-2">
+                        <label htmlFor="email" className="text-2xs sm:text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('email')}</label>
                         <input
                             id="email"
                             {...register('email')}
-                            className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('email_placeholder')}
                         />
-                        {errors.email && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.email.message}</p>}
+                        {errors.email && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.email.message}</p>}
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                        <label htmlFor="telefono" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('phone')}</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    <div className="space-y-1.5 sm:space-y-2">
+                        <label htmlFor="telefono" className="text-2xs sm:text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('phone')}</label>
                         <input
                             id="telefono"
                             {...register('telefono')}
-                            className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors"
+                            className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm"
                             placeholder={t('phone_placeholder')}
                         />
                     </div>
-                    <div className="space-y-2">
-                        <label htmlFor="asunto" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('subject')}</label>
+                    <div className="space-y-1.5 sm:space-y-2">
+                        <label htmlFor="asunto" className="text-2xs sm:text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('subject')}</label>
                         <input
                             id="asunto"
                             {...register('asunto')}
-                            className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors`}
+                            className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('subject_placeholder')}
                         />
-                        {errors.asunto && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.asunto.message}</p>}
+                        {errors.asunto && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.asunto.message}</p>}
                     </div>
                 </div>
 
-                <div className="space-y-2">
-                    <label htmlFor="mensaje" className="text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('message')}</label>
+                <div className="space-y-1.5 sm:space-y-2">
+                    <label htmlFor="mensaje" className="text-2xs sm:text-xs uppercase tracking-widest text-accent font-semibold ml-1">{t('message')}</label>
                     <textarea
                         id="mensaje"
                         {...register('mensaje')}
-                        rows={5}
-                        className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-4 text-sea-foam font-light transition-colors resize-none`}
+                        rows={4}
+                        className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors resize-none rounded-t-sm`}
                         placeholder={t('message_placeholder')}
                     />
-                    {errors.mensaje && <p className="text-xs text-red-500 uppercase tracking-tighter">{errors.mensaje.message}</p>}
+                    {errors.mensaje && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.mensaje.message}</p>}
                 </div>
 
-                {error && <p className="text-2xs text-red-500">{error}</p>}
+                {error && <p className="text-2xs sm:text-xs text-red-500">{error}</p>}
 
                 <motion.button
                     type="submit"

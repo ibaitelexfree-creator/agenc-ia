@@ -115,20 +115,20 @@ export default async function Footer({ locale }: { locale: string }) {
             <HomeStats />
             {!isSubscribed && <Newsletter locale={locale} />}
 
-            <div className="py-24 container max-w-[1920px] min-w-[320px] mx-auto px-4 sm:px-6 flex flex-col items-center overflow-hidden">
+            <div className="py-12 sm:py-16 md:py-24 container max-w-[1920px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center overflow-hidden">
                 {/* Logo Section */}
-                <div className="flex flex-col items-center gap-6 mb-12 group">
+                <div className="flex flex-col items-center gap-4 sm:gap-6 mb-8 sm:mb-12 group">
                     <div className="flex flex-col items-center text-center">
-                        <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none break-words">
+                        <span className="font-display text-2xl sm:text-4xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none break-words">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3 break-words">Escuela Náutica Oficial</span>
+                        <span className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.4em] sm:tracking-[0.6em] text-sea-foam/30 font-black mt-2 sm:mt-3 break-words">Escuela Náutica Oficial</span>
                     </div>
                 </div>
 
                 {/* Horario, Contacto y Ubicación Column */}
-                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+                <div className="flex flex-col md:flex-row justify-center gap-6 sm:gap-8 md:gap-16 text-center md:text-left mb-8 sm:mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-6 sm:py-8 w-full max-w-3xl">
+                    <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black">
                             <Clock className="w-3.5 h-3.5" />
                             <span>Horario</span>
@@ -137,7 +137,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <span className="text-sea-foam/60 font-medium">09:00 — 20:00</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+                    <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black">
                             <MapPin className="w-3.5 h-3.5" />
                             <span>Ubicación</span>
@@ -146,7 +146,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <span className="text-sea-foam/60 font-medium">48990 Getxo, Vizcaya</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+                    <div className="flex flex-col items-center md:items-start gap-1.5 sm:gap-2 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black">
                             <Phone className="w-3.5 h-3.5" />
                             <span>Contacto</span>

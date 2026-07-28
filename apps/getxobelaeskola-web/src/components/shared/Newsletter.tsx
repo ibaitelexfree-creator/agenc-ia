@@ -36,32 +36,32 @@ export default function Newsletter({ locale }: { locale: string }) {
     };
 
     return (
-        <section className="py-16 relative overflow-hidden bg-nautical-deep selection:bg-accent selection:text-nautical-black">
+        <section className="py-10 sm:py-12 md:py-16 relative overflow-hidden bg-nautical-deep selection:bg-accent selection:text-nautical-black">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/5 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[240px] h-[240px] bg-brass-gold/5 blur-[70px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-3xl mx-auto glass-card p-6 md:p-10 text-center border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl overflow-hidden relative">
-                    <header className="mb-8 relative z-10">
-                        <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="container max-w-[1920px] mx-auto px-4 sm:px-6 relative z-10">
+                <div className="max-w-3xl mx-auto glass-card p-5 sm:p-8 md:p-10 text-center border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl overflow-hidden relative">
+                    <header className="mb-6 sm:mb-8 relative z-10">
+                        <div className="flex items-center justify-center gap-3 mb-3 sm:mb-4">
                             <div className="w-6 h-[1px] bg-accent/30" />
-                            <span className="text-accent uppercase tracking-[0.4em] text-[9px] font-black">
+                            <span className="text-accent uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[9px] font-black">
                                 {t('eyebrow')}
                             </span>
                             <div className="w-6 h-[1px] bg-accent/30" />
                         </div>
 
-                        <h2 className="text-2xl md:text-3xl font-display text-sea-foam mb-4 tracking-tight">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-display text-sea-foam mb-3 sm:mb-4 tracking-tight">
                             {t('title')}
                         </h2>
-                        <p className="text-sea-foam/60 font-light text-sm md:text-base max-w-xl mx-auto leading-relaxed italic">
+                        <p className="text-sea-foam/60 font-light text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed italic">
                             {t('subtitle')}
                         </p>
                     </header>
 
                     <form onSubmit={handleSubmit} className="max-w-lg mx-auto relative z-10">
-                        <div className="flex flex-col sm:flex-row gap-3 p-1.5 bg-sea-foam/[0.03] border border-sea-foam/10 rounded-xl focus-within:border-accent/40 transition-premium backdrop-blur-md">
+                        <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 p-1.5 bg-sea-foam/[0.03] border border-sea-foam/10 rounded-xl focus-within:border-accent/40 transition-premium backdrop-blur-md">
                             <input
                                 type="email"
                                 value={email}
@@ -69,12 +69,12 @@ export default function Newsletter({ locale }: { locale: string }) {
                                 placeholder={t('email_placeholder')}
                                 required
                                 aria-label={t('email_aria_label')}
-                                className="flex-grow bg-transparent px-4 py-2 text-sea-foam text-sm placeholder:text-sea-foam/40 focus:outline-none font-sans"
+                                className="flex-grow bg-transparent px-3.5 sm:px-4 py-2 text-sea-foam text-xs sm:text-sm placeholder:text-sea-foam/40 focus:outline-none font-sans"
                             />
                             <button
                                 type="submit"
                                 disabled={status === 'loading'}
-                                className="bg-nautical-blue px-6 py-2.5 text-white text-[10px] uppercase tracking-[0.2em] font-black hover:bg-white hover:text-nautical-blue transition-premium disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-nautical-blue/10 rounded-lg"
+                                className="w-full sm:w-auto bg-nautical-blue px-5 sm:px-6 py-2.5 text-white text-[10px] uppercase tracking-[0.2em] font-black hover:bg-white hover:text-nautical-blue transition-premium disabled:opacity-50 disabled:cursor-not-allowed shadow-xl shadow-nautical-blue/10 rounded-lg"
                             >
                                 {status === 'loading' ? '...' : t('button')}
                             </button>
