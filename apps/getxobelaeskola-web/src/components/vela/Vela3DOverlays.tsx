@@ -42,11 +42,11 @@ function HeroOverlay() {
   const t = useTranslations('que_es_la_vela');
 
   return (
-    <Overlay id="hero" className="px-6 md:px-12">
+    <Overlay id="hero" className="px-4 sm:px-6 md:px-12 items-center">
       <div className="max-w-6xl mx-auto w-full">
-        <div className="w-full md:max-w-[45%] text-center md:text-left">
+        <div className="w-full sm:max-w-xl md:max-w-[48%] text-left">
           {/* Eyebrow */}
-          <p className="text-[#86868B] text-xs uppercase tracking-[0.25em] mb-4 md:mb-8 font-sans">
+          <p className="text-[#86868B] font-medium text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-3 sm:mb-5 font-sans">
             {t('hero_eyebrow')}
           </p>
 
@@ -54,34 +54,34 @@ function HeroOverlay() {
           <h1 className="font-bold leading-none mb-0 text-[#1D1D1F]"
               style={{
                 fontFamily: 'var(--font-dm-serif)',
-                fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+                fontSize: 'clamp(2.2rem, 7vw, 5.5rem)',
               }}>
             {t('hero_line1')}
           </h1>
 
           {/* Línea divisora */}
-          <div className="h-px bg-[#1D1D1F] my-4 mx-auto md:mx-0"
-               style={{ width: 'clamp(150px, 30vw, 400px)' }} />
+          <div className="h-px bg-[#1D1D1F] my-3 sm:my-4 mx-0"
+               style={{ width: 'clamp(120px, 25vw, 360px)' }} />
 
           {/* H1 Línea 2 — con "vela" en azul */}
           <h1 className="font-bold leading-none text-[#0071E3]"
               style={{
                 fontFamily: 'var(--font-dm-serif)',
-                fontSize: 'clamp(2.5rem, 8vw, 6rem)',
+                fontSize: 'clamp(2.2rem, 7vw, 5.5rem)',
               }}>
             {t('hero_line2')}
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-6 md:mt-10 text-[#86868B] max-w-xl leading-relaxed text-sm md:text-base font-sans">
+          <p className="mt-4 sm:mt-6 md:mt-8 text-[#86868B] max-w-xl leading-relaxed text-xs sm:text-sm md:text-base font-medium font-sans">
             {t('hero_subtitle')}
           </p>
 
           {/* CTA */}
-          <div className="mt-8 md:mt-10 pointer-events-auto">
+          <div className="mt-6 sm:mt-8 pointer-events-auto">
             <a href="#post-3d"
                className="inline-flex items-center gap-2 border border-[#0071E3] text-[#0071E3]
-                          px-6 md:px-8 py-2.5 md:py-3 rounded-full text-xs md:text-sm font-medium
+                          px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium
                           hover:bg-[#0071E3] hover:text-white transition-all duration-300 font-sans">
               {t('hero_discover')} →
             </a>
@@ -111,30 +111,29 @@ function FilosofiaOverlay() {
   ];
 
   return (
-    <Overlay id="filosofia" className="px-6 md:px-12 items-start py-8 md:py-16 overflow-y-auto pointer-events-auto">
-      <div className="max-w-6xl mx-auto w-full">
-        <div className="w-full md:max-w-[42%] pointer-events-auto">
+    <Overlay id="filosofia" className="px-4 sm:px-6 md:px-12 items-center py-8 sm:py-12 md:py-16 overflow-y-auto pointer-events-auto">
+      <div className="max-w-6xl mx-auto w-full pt-4 sm:pt-8 md:pt-0">
+        <div className="w-full sm:max-w-md md:max-w-[46%] max-h-[85vh] overflow-y-auto pointer-events-auto bg-white/90 md:bg-white/80 backdrop-blur-xl p-5 sm:p-7 md:p-8 rounded-3xl border border-white/60 shadow-xl">
           {/* Section Header */}
-          <div className="mb-6 md:mb-8">
-            <p className="text-[#86868B] text-xs uppercase tracking-[0.25em] mb-2 md:mb-4 font-sans">
+          <div className="mb-5 sm:mb-7">
+            <p className="text-[#0071E3] font-semibold text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-2 font-sans">
               {t('philosophy_eyebrow')}
             </p>
             <h2 className="text-[#1D1D1F] leading-tight font-bold"
                 style={{
                   fontFamily: 'var(--font-dm-serif)',
-                  fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+                  fontSize: 'clamp(1.5rem, 3.8vw, 2.6rem)',
                 }}>
               {t('philosophy_title')}
             </h2>
-            <p className="mt-2 text-[#86868B] text-xs md:text-sm leading-relaxed font-sans">
+            <p className="mt-2 text-[#2C2C2E] text-xs sm:text-sm md:text-base leading-relaxed font-medium font-sans">
               {t('philosophy_subtitle')}
             </p>
           </div>
 
           {/* Cards en columna */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-3 sm:gap-3.5">
             {cards.map((card) => {
-              // Cada card tiene su propio fade-in basado en scroll progress
               const cardOpacity = progress >= card.triggerAt
                 ? Math.min(1, (progress - card.triggerAt) / 0.02)
                 : 0;
@@ -145,20 +144,20 @@ function FilosofiaOverlay() {
               return (
                 <div
                   key={card.id}
-                  className="rounded-2xl p-4 md:p-6 border border-[#E8E8ED]"
+                  className="rounded-2xl p-4 sm:p-5 border border-[#D2D2D7]/60 shadow-sm"
                   style={{
                     opacity: cardOpacity,
                     transform: `translateY(${cardTranslateY}px)`,
-                    background: 'rgba(255, 255, 255, 0.85)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(16px)',
+                    WebkitBackdropFilter: 'blur(16px)',
                     transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
                   }}
                 >
-                  <h3 className="text-[#1D1D1F] text-sm md:text-base font-semibold mb-1 font-sans">
+                  <h3 className="text-[#1D1D1F] text-xs sm:text-sm md:text-base font-bold mb-1 font-sans">
                     {card.title}
                   </h3>
-                  <p className="text-[#86868B] text-[11px] md:text-xs leading-relaxed font-sans">
+                  <p className="text-[#3A3A3C] text-[11px] sm:text-xs md:text-sm leading-relaxed font-normal font-sans">
                     {card.text}
                   </p>
                 </div>
@@ -186,19 +185,19 @@ function NarrativaOverlay() {
   ];
 
   return (
-    <Overlay id="narrativa" className="px-6 md:px-12 items-start py-8 md:py-16 overflow-y-auto pointer-events-auto">
-      <div className="max-w-6xl mx-auto w-full flex justify-end">
-        <div className="w-full md:max-w-[48%] pointer-events-auto bg-white/60 md:bg-transparent p-4 md:p-0 rounded-2xl backdrop-blur-sm md:backdrop-blur-none">
+    <Overlay id="narrativa" className="px-4 sm:px-6 md:px-12 items-center py-8 sm:py-12 md:py-16 overflow-y-auto pointer-events-auto">
+      <div className="max-w-6xl mx-auto w-full flex justify-end pt-4 sm:pt-8 md:pt-0">
+        <div className="w-full sm:max-w-xl md:max-w-[48%] pointer-events-auto bg-white/90 md:bg-white/80 p-5 sm:p-7 md:p-8 rounded-3xl backdrop-blur-xl border border-white/60 shadow-xl max-h-[85vh] overflow-y-auto">
           {/* Eyebrow */}
-          <p className="text-[#86868B] text-xs uppercase tracking-[0.25em] mb-4 font-sans">
+          <p className="text-[#0071E3] font-semibold text-[11px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-2 sm:mb-4 font-sans">
             {t('history_eyebrow')}
           </p>
 
           {/* Gradient line decorativa */}
-          <div className="w-full md:w-px h-0.5 md:h-16 bg-gradient-to-r md:bg-gradient-to-b from-[#0071E3] to-transparent mb-6 md:mb-8" />
+          <div className="w-full md:w-px h-0.5 md:h-16 bg-gradient-to-r md:bg-gradient-to-b from-[#0071E3] to-transparent mb-4 sm:mb-6 md:mb-8" />
 
           {/* Párrafos con stagger basado en scroll */}
-          <div className="flex flex-col gap-5 md:gap-8">
+          <div className="flex flex-col gap-3 sm:gap-5 md:gap-8">
             {paragraphs.map((para) => {
               const paraOpacity = progress >= para.triggerAt
                 ? Math.min(1, (progress - para.triggerAt) / 0.025)
@@ -207,7 +206,6 @@ function NarrativaOverlay() {
                 ? Math.max(0, 25 * (1 - (progress - para.triggerAt) / 0.025))
                 : 25;
 
-              // Renderizar texto con highlight
               const renderText = () => {
                 if (!para.highlight) return para.text;
                 const parts = para.text.split(para.highlight);
@@ -215,7 +213,7 @@ function NarrativaOverlay() {
                 return (
                   <>
                     {parts[0]}
-                    <span className="text-[#0071E3] font-medium">{para.highlight}</span>
+                    <span className="text-[#0071E3] font-semibold">{para.highlight}</span>
                     {parts.slice(1).join(para.highlight)}
                   </>
                 );
@@ -224,7 +222,7 @@ function NarrativaOverlay() {
               return (
                 <p
                   key={para.id}
-                  className="text-[#1D1D1F] leading-relaxed text-xs md:text-[1.05rem]"
+                  className="text-[#1D1D1F] leading-relaxed text-xs sm:text-sm md:text-[1.05rem] font-normal"
                   style={{
                     fontFamily: 'var(--font-inter)',
                     opacity: paraOpacity,
@@ -250,16 +248,16 @@ function BeautyOverlay() {
   const t = useTranslations('que_es_la_vela');
 
   return (
-    <Overlay id="beauty" className="items-end justify-center pb-20 md:pb-24 px-6">
+    <Overlay id="beauty" className="items-end justify-center pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6">
       <div className="text-center">
         <motion.div
           animate={{ y: [0, -4, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
-          className="inline-flex items-center gap-2 px-6 py-2 rounded-full
-                     border border-[#E8E8ED] text-[#86868B] text-[10px] md:text-xs uppercase tracking-[0.2em]"
+          className="inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full
+                     border border-[#E8E8ED] text-[#86868B] text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em]"
           style={{
             fontFamily: 'var(--font-inter)',
-            background: 'rgba(255, 255, 255, 0.65)',
+            background: 'rgba(255, 255, 255, 0.75)',
             backdropFilter: 'blur(12px)',
           }}
         >
@@ -277,10 +275,8 @@ function CierreOverlay() {
   const t = useTranslations('que_es_la_vela');
   const progress = useVelaScrollStore((s) => s.progress);
 
-  // Normalizar el progreso de la sección Cierre (0.89 a 1.00)
   const tLocal = Math.max(0, Math.min(1, (progress - 0.89) / 0.11));
 
-  // Dividir el texto en 3 líneas balanceadas
   const text = t('hero_subtitle');
   const words = text.split(' ');
   const third = Math.ceil(words.length / 3);
@@ -291,37 +287,29 @@ function CierreOverlay() {
   ];
 
   return (
-    <Overlay id="cierre" className="justify-center px-6">
-      <div className="max-w-3xl mx-auto text-center flex flex-col items-center translate-y-20 md:translate-y-28">
-        <h2 className="text-[#1D1D1F] leading-tight font-bold mb-6 flex flex-col items-center"
+    <Overlay id="cierre" className="justify-center px-4 sm:px-6">
+      <div className="max-w-3xl mx-auto text-center flex flex-col items-center translate-y-12 sm:translate-y-20 md:translate-y-28">
+        <h2 className="text-[#1D1D1F] leading-tight font-bold mb-4 sm:mb-6 flex flex-col items-center"
             style={{
               fontFamily: 'var(--font-dm-serif)',
-              fontSize: 'clamp(1.5rem, 4.2vw, 3.2rem)',
+              fontSize: 'clamp(1.35rem, 3.8vw, 3rem)',
             }}>
           {lines.map((lineText, idx) => {
-            // Cada línea tiene su propio rango de aparición, retrasado para que el velero ya esté arriba (enclavado)
-            // Línea 0: 0.40 -> 0.60
-            // Línea 1: 0.60 -> 0.80
-            // Línea 2: 0.80 -> 1.00
             const start = 0.40 + idx * 0.20;
             const end = start + 0.20;
-            
             const lineProgress = Math.max(0, Math.min(1, (tLocal - start) / (end - start)));
-            
-            // Efecto de suavizado cúbico
             const smooth = lineProgress * lineProgress * (3 - 2 * lineProgress);
-            
-            const translateY = (1 - smooth) * 100; // Va de 100% (abajo) a 0%
+            const translateY = (1 - smooth) * 100;
             const opacity = smooth;
 
             return (
-              <div key={idx} className="overflow-hidden py-1 w-full flex justify-center">
+              <div key={idx} className="overflow-hidden py-0.5 sm:py-1 w-full flex justify-center">
                 <span
                   style={{
                     display: 'block',
                     transform: `translateY(${translateY}%)`,
                     opacity: opacity,
-                    transition: 'none', // Sincronizado exactamente con el scroll
+                    transition: 'none',
                   }}
                 >
                   {lineText}

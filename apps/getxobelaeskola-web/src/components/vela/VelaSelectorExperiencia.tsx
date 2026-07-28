@@ -55,7 +55,7 @@ export default function VelaSelectorExperiencia() {
   const data = MODOS[modo];
 
   return (
-    <section className="bg-white py-32 px-6">
+    <section className="bg-white py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div className="max-w-4xl mx-auto">
 
         {/* Header */}
@@ -64,16 +64,16 @@ export default function VelaSelectorExperiencia() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <p className="text-[#86868B] text-xs uppercase tracking-[0.25em] mb-4 font-sans">
+          <p className="text-[#86868B] text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em] mb-3 sm:mb-4 font-sans">
             {t("selector_eyebrow")}
           </p>
           <h2
             className="text-[#1D1D1F] leading-tight font-bold"
             style={{
               fontFamily: "var(--font-dm-serif)",
-              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontSize: "clamp(1.75rem, 4vw, 3rem)",
             }}
           >
             {t("selector_title")}
@@ -86,14 +86,14 @@ export default function VelaSelectorExperiencia() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="flex justify-center mb-8 sm:mb-12"
         >
           <div className="flex bg-[#F5F5F7] rounded-full p-1 border border-[#E8E8ED]">
             {(["calma", "accion"] as Modo[]).map((m) => (
               <button
                 key={m}
                 onClick={() => setModo(m)}
-                className="relative px-8 py-3 rounded-full text-sm font-medium transition-colors duration-200 outline-none"
+                className="relative px-4 sm:px-8 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-medium transition-colors duration-200 outline-none"
                 style={{
                   fontFamily: "var(--font-inter)",
                   color: modo === m ? "#FFFFFF" : "#86868B",
@@ -124,7 +124,7 @@ export default function VelaSelectorExperiencia() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.98 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="rounded-3xl p-12 md:p-16 border border-[#E8E8ED]"
+            className="rounded-3xl p-6 sm:p-10 md:p-16 border border-[#E8E8ED]"
             style={{ backgroundColor: data.bg }}
           >
             {/* Big Emoji */}
@@ -132,14 +132,14 @@ export default function VelaSelectorExperiencia() {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
-              className="text-6xl mb-8"
+              className="text-4xl sm:text-6xl mb-6 sm:mb-8"
             >
               {data.emoji}
             </motion.div>
 
             {/* Title */}
             <h3
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4"
               style={{ fontFamily: "var(--font-dm-serif)", color: data.textColor }}
             >
               {data.titulo}
@@ -147,18 +147,18 @@ export default function VelaSelectorExperiencia() {
 
             {/* Description */}
             <p
-              className="text-lg leading-relaxed mb-10 max-w-lg font-sans"
+              className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-10 max-w-lg font-sans"
               style={{ color: data.subtextColor }}
             >
               {data.descripcion}
             </p>
 
             {/* Tags */}
-            <div className="flex flex-wrap gap-2 mb-10">
+            <div className="flex flex-wrap gap-2 mb-6 sm:mb-10">
               {data.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-1.5 rounded-full text-xs font-medium border font-sans"
+                  className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium border font-sans"
                   style={{
                     color: data.textColor,
                     borderColor:
@@ -175,7 +175,7 @@ export default function VelaSelectorExperiencia() {
             {/* CTA Link */}
             <Link
               href={`/${locale}/courses`}
-              className="inline-flex items-center gap-2 font-medium text-sm font-sans"
+              className="inline-flex items-center gap-2 font-medium text-xs sm:text-sm font-sans"
               style={{
                 color: data.accentColor,
                 textDecoration: "underline",

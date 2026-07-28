@@ -83,7 +83,7 @@ function Section2Video() {
 
   return (
     <div
-      className="absolute top-20 bottom-0 left-0 right-0 pointer-events-none overflow-hidden"
+      className="absolute inset-0 pointer-events-none overflow-hidden"
       style={{ opacity, transition: 'none', zIndex: 0 }}
     >
       <video
