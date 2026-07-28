@@ -33,25 +33,33 @@ export function Seagull({ style, enterDelay = 0, direction = 'left' }: SeagullPr
           aria-hidden="true"
         >
           {/* Ala izquierda */}
-          <motion.path
-            d="M40 20 C30 15 15 10 0 18"
-            stroke="white"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-            animate={{ d: ['M40 20 C30 15 15 10 0 18', 'M40 20 C30 12 15 6 0 14'] }}
+          <motion.g
+            animate={{ rotateZ: [15, -25], scaleY: [1, 0.6] }}
             transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-          />
+            style={{ transformOrigin: '40px 20px' }}
+          >
+            <path
+              d="M40 20 C30 15 15 10 0 18"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </motion.g>
           {/* Ala derecha */}
-          <motion.path
-            d="M40 20 C50 15 65 10 80 18"
-            stroke="white"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            fill="none"
-            animate={{ d: ['M40 20 C50 15 65 10 80 18', 'M40 20 C50 12 65 6 80 14'] }}
+          <motion.g
+            animate={{ rotateZ: [-15, 25], scaleY: [1, 0.6] }}
             transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-          />
+            style={{ transformOrigin: '40px 20px' }}
+          >
+            <path
+              d="M40 20 C50 15 65 10 80 18"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </motion.g>
           {/* Cuerpo */}
           <ellipse cx="40" cy="22" rx="5" ry="3" fill="white" opacity="0.9" />
           {/* Pico */}

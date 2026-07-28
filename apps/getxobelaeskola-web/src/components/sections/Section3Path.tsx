@@ -150,7 +150,6 @@ export function Section3Path() {
       >
         {/* Header */}
         <motion.div
-          layout
           animate={{
             height: isVisualCompact ? 0 : 'auto',
             opacity: isVisualCompact ? 0 : 1,
@@ -166,7 +165,6 @@ export function Section3Path() {
         >
           <div style={{ textAlign: 'center' }}>
             <motion.div
-              layout
               animate={{
                 opacity: isVisualCompact ? 0 : 1,
                 y: isVisualCompact ? -15 : 0
@@ -182,7 +180,6 @@ export function Section3Path() {
               <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />
             </motion.div>
             <motion.h2
-              layout
               animate={{
                 opacity: isVisualCompact ? 0 : 1,
                 y: isVisualCompact ? -15 : 0
@@ -203,7 +200,6 @@ export function Section3Path() {
               {t('title')}
             </motion.h2>
             <motion.p
-              layout
               animate={{
                 opacity: isVisualCompact ? 0 : 1,
                 y: isVisualCompact ? -15 : 0
@@ -225,7 +221,6 @@ export function Section3Path() {
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: (isPhone && isVisualCompact) ? '0.6rem' : '1.5rem' }}>
           {(['basic', 'mid'] as Level[]).map((level) => (
             <motion.button
-              layout
               key={level}
               onClick={() => handleLevelClick(level)}
               whileHover={{ scale: 1.04 }}
@@ -266,7 +261,6 @@ export function Section3Path() {
         <AnimatePresence>
           {selectedLevel && (
             <motion.div
-              layout
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
@@ -280,7 +274,6 @@ export function Section3Path() {
             >
               {(['youth', 'adult'] as Profile[]).map((profile) => (
                 <motion.button
-                  layout
                   key={profile}
                   onClick={() => handleProfileClick(profile)}
                   whileHover={{ scale: 1.03 }}
@@ -374,9 +367,9 @@ export function Section3Path() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Criatura — estrella de mar esquina inferior izquierda */}
+      {/* Criatura — estrella de mar elevada para evitar solapamiento con el botón de accesibilidad */}
       <Starfish
-        style={{ position: 'absolute', bottom: '5%', left: '3%', zIndex: 5 }}
+        style={{ position: 'absolute', bottom: 'clamp(140px, 22vh, 190px)', left: '8%', zIndex: 5 }}
         enterDelay={1.0}
       />
     </section>

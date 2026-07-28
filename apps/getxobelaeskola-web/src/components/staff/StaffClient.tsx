@@ -831,7 +831,8 @@ export default function StaffClient({
                             ...(isAdmin ? [
                                 { id: 'bi', label: 'BUSINESS INTEL' },
                                 { id: 'explorer', label: 'DATA X-RAY' }
-                            ] : [])
+                            ] : []),
+                            { id: 'blog', label: 'BLOG' }
                         ].map(tab => (
                             <button
                                 key={tab.id}
@@ -1049,6 +1050,22 @@ export default function StaffClient({
 
                 {activeTab === 'explorer' && (
                     <DataExplorerTab />
+                )}
+
+                {activeTab === 'blog' && (
+                    <div className="p-12 text-center glass-panel border border-white/10 rounded-sm space-y-6 animate-premium-in">
+                        <span className="text-4xl">📝</span>
+                        <h2 className="font-display text-3xl italic text-white">Gestión de Blog y Noticias</h2>
+                        <p className="text-white/60 text-sm max-w-md mx-auto">
+                            Accede al panel dedicado para crear, editar y administrar las entradas del blog y recursos multimedia.
+                        </p>
+                        <a
+                            href={`/${locale}/admin/blog`}
+                            className="inline-block px-8 py-4 bg-accent text-nautical-black font-black uppercase text-3xs tracking-[0.2em] rounded-sm hover:bg-white transition-all shadow-lg shadow-accent/20"
+                        >
+                            Ir a la gestión del Blog →
+                        </a>
+                    </div>
                 )}
 
                 {activeTab === 'bi' && (

@@ -43,28 +43,27 @@ export function Jellyfish({ style, enterDelay = 0, size = 'medium', color = '#4A
           />
           {/* Gradiente interno */}
           <ellipse cx="20" cy="22" rx="8" ry="5" fill="white" opacity="0.25" />
-          {/* Tentáculos — 5 líneas onduladas */}
+          {/* Tentáculos — 5 líneas onduladas (Animadas con CSS en lugar de Path Morphing) */}
           {[12, 18, 27, 36, 43].map((x, i) => (
-            <motion.path
+            <motion.g
               key={i}
-              d={`M${x} 42 Q${x - 3} 52 ${x + 2} 60 Q${x - 2} 68 ${x + 1} 75`}
-              stroke={color}
-              strokeWidth="1.5"
-              fill="none"
-              opacity="0.5"
-              animate={{
-                d: [
-                  `M${x} 42 Q${x - 3} 52 ${x + 2} 60 Q${x - 2} 68 ${x + 1} 75`,
-                  `M${x} 42 Q${x + 3} 50 ${x - 2} 60 Q${x + 2} 68 ${x - 1} 75`,
-                ],
-              }}
+              animate={{ skewX: [-10, 10] }}
               transition={{
                 duration: 1.5 + i * 0.2,
                 repeat: Infinity,
                 repeatType: 'reverse',
                 ease: 'easeInOut',
               }}
-            />
+              style={{ transformOrigin: `${x}px 42px` }}
+            >
+              <path
+                d={`M${x} 42 Q${x - 3} 52 ${x + 2} 60 Q${x - 2} 68 ${x + 1} 75`}
+                stroke={color}
+                strokeWidth="1.5"
+                fill="none"
+                opacity="0.5"
+              />
+            </motion.g>
           ))}
         </svg>
       </motion.div>

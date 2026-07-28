@@ -385,6 +385,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             clipPath={`url(#${clipId}-full)`}
             fill={`url(#${clipId}-gradient)`}
             pointerEvents="none"
+            initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.3 }}
           />

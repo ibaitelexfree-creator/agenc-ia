@@ -42,8 +42,16 @@ export function useWaterPhysics({
   const preset = INTENSITY_PRESETS[intensity];
   const phaseSeed = useRef(Math.random() * 1000).current;
 
-  const frontPathD = useMotionValue('');
-  const backPathD = useMotionValue('');
+  const initialBaseline = (height || 64) * (1 - FILL_LEVEL_IDLE);
+  const initialWidth = (width || 220) + 40;
+  const initialFrontSegments = Math.max(22, Math.round(initialWidth / 10));
+  const initialBackSegments = Math.max(16, Math.round(initialWidth / 14));
+
+  const initialFrontPath = generateWavePath(initialWidth, initialFrontSegments, initialBaseline, preset.frontAmplitudes, preset.frontFrequencies, preset.frontSpeeds, 0, phaseSeed, 0, 0);
+  const initialBackPath = generateWavePath(initialWidth, initialBackSegments, initialBaseline - 5, preset.backAmplitudes, preset.backFrequencies, preset.backSpeeds, 0, phaseSeed + 41, 0, 0);
+
+  const frontPathD = useMotionValue(initialFrontPath);
+  const backPathD = useMotionValue(initialBackPath);
   const elapsed = useRef(0);
 
   const targetFill = useTransform(influence, [0, 1], [FILL_LEVEL_IDLE, FILL_LEVEL_MAX]);

@@ -26,15 +26,15 @@ export function Section2Identity() {
   const activeScroll = scrollCtx ? scrollCtx.scrollYProgress : localScroll
 
   // Rangos específicos del Scroll Context V2
-  // Si estamos usando ScrollContext (V2), la sección 2 se activa de 0.125 a 0.25 (1/8 del scroll total de 800vh)
   const startScrollVal = scrollCtx ? 0.125 : 0.1
   const endScrollVal = scrollCtx ? 0.25 : 0.6
 
-  // Efecto 1: Grayscale a Color en el fondo (1 = gris, 0 = color)
-  const grayscaleVal = useTransform(
+  // Efecto 1: En lugar de animar `filter: grayscale`, usaremos una capa oscura que se desvanece
+  // para revelar el color, lo cual es miles de veces más rápido en la GPU y evita crashes.
+  const colorRevealOpacity = useTransform(
     activeScroll,
-    [startScrollVal, (startScrollVal + endScrollVal) / 2, endScrollVal],
-    ['grayscale(100%) contrast(1.1)', 'grayscale(50%) contrast(1.05)', 'grayscale(0%) contrast(1)']
+    [startScrollVal, endScrollVal],
+    [0, 1] // de 0 (gris/oscuro) a 1 (color completo)
   )
 
   // Efecto 2: Zoom sutil (Ken Burns)
@@ -44,14 +44,12 @@ export function Section2Identity() {
     [1.08, 1.0]
   )
 
-  // Efecto 3: Opacidad del gradiente del amanecer
-  const gradientOpacity = useTransform(
+  // Efecto 3: Opacidad del gradiente del amanecer (en lugar de animar el string del gradiente)
+  const gradientOverlayOpacity = useTransform(
     activeScroll,
     [startScrollVal, endScrollVal],
     [0.75, 0.45]
   )
-
-  const gradientBackground = useMotionTemplate`radial-gradient(circle at center, rgba(0, 27, 58, 0.2) 0%, rgba(0, 27, 58, ${gradientOpacity}) 100%)`
 
   // Variantes para reveal de texto
   const lineVariants = {
@@ -77,8 +75,17 @@ export function Section2Identity() {
     })
   }
 
-  // Generamos polvo de estrellas/partículas mágicas flotando
-  const particles = Array.from({ length: 6 })
+  // Generamos partículas mágicas flotando (DETERMINISTAS para evitar hydration mismatch)
+  const particles = Array.from({ length: 6 }).map((_, i) => ({
+    id: i,
+    size: 3 + (i % 3) * 2,
+    opacity: 0.2 + (i % 3) * 0.1,
+    left: 10 + i * 14,
+    top: 15 + (i % 2 === 0 ? i * 8 : i * -5 + 40),
+    yAnim: [0, -30 - (i * 10), 0],
+    xAnim: [0, (i % 2 === 0 ? 15 : -15), 0],
+    duration: 10 + i,
+  }))
 
   return (
     <section
@@ -95,14 +102,14 @@ export function Section2Identity() {
         backgroundColor: 'var(--gbe-navy-900)',
       }}
     >
-      {/* Fondo cinematográfico reactivo al scroll */}
+      {/* Fondo cinematográfico base (Gris/Desaturado por defecto usando CSS estático) */}
       <motion.div
         style={{
           position: 'absolute',
           inset: 0,
-          filter: grayscaleVal,
           scale: scaleVal,
           zIndex: 1,
+          filter: 'grayscale(100%) contrast(1.1)', // Capa base gris
         }}
       >
         <Image
@@ -115,14 +122,36 @@ export function Section2Identity() {
         />
       </motion.div>
 
+      {/* Capa de Color (Se revela con el scroll para mejor rendimiento que animar filter) */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          scale: scaleVal,
+          zIndex: 2,
+          opacity: colorRevealOpacity,
+        }}
+      >
+        <Image
+          src="/images/course-detail-header-sailing.webp"
+          alt=""
+          fill
+          quality={85}
+          priority
+          style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
+          aria-hidden="true"
+        />
+      </motion.div>
+
       {/* Capas de gradientes para contraste y profundidad */}
       <motion.div
         style={{
           position: 'absolute',
           inset: 0,
-          background: gradientBackground,
-          zIndex: 2,
+          background: 'radial-gradient(circle at center, rgba(0, 27, 58, 0.2) 0%, rgba(0, 27, 58, 1) 100%)',
+          zIndex: 3,
           pointerEvents: 'none',
+          opacity: gradientOverlayOpacity, // Animamos la opacidad del div en lugar del string del gradiente
         }}
       />
       <div
@@ -130,34 +159,34 @@ export function Section2Identity() {
           position: 'absolute',
           inset: 0,
           background: 'linear-gradient(to bottom, rgba(0, 27, 58, 0.3) 0%, rgba(0, 27, 58, 0.7) 100%)',
-          zIndex: 2,
+          zIndex: 3,
           pointerEvents: 'none',
         }}
       />
 
       {/* Partículas de luz dorada flotando con movimiento infinito */}
-      {particles.map((_, i) => (
+      {particles.map((p) => (
         <motion.div
-          key={i}
+          key={p.id}
           style={{
             position: 'absolute',
-            width: `${Math.random() * 6 + 3}px`,
-            height: `${Math.random() * 6 + 3}px`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
             borderRadius: '50%',
             backgroundColor: 'var(--gbe-gold)',
             filter: 'blur(1px)',
-            opacity: Math.random() * 0.4 + 0.2,
-            left: `${Math.random() * 80 + 10}%`,
-            top: `${Math.random() * 80 + 10}%`,
-            zIndex: 3,
+            opacity: p.opacity,
+            left: `${p.left}%`,
+            top: `${p.top}%`,
+            zIndex: 4,
             pointerEvents: 'none',
           }}
           animate={{
-            y: [0, Math.random() * -60 - 20, 0],
-            x: [0, Math.random() * 40 - 20, 0],
+            y: p.yAnim,
+            x: p.xAnim,
           }}
           transition={{
-            duration: Math.random() * 10 + 10,
+            duration: p.duration,
             repeat: Infinity,
             ease: 'easeInOut',
           }}
@@ -247,7 +276,7 @@ export function Section2Identity() {
           <motion.span
             animate={{ rotate: 360 }}
             transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-            style={{ color: 'var(--gbe-gold)', fontSize: '1.2rem', display: 'inline-block', filter: 'drop-shadow(0 0 4px var(--gbe-gold))' }}
+            style={{ color: 'var(--gbe-gold)', fontSize: '1.2rem', display: 'inline-block', textShadow: '0 0 4px var(--gbe-gold)' }}
           >
             ✦
           </motion.span>

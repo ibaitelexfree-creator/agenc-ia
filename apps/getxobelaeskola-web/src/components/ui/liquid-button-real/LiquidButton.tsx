@@ -146,34 +146,40 @@ export function LiquidButton({
     >
       <WaterFilters influence={influence} filterId={filterId} />
 
-      <motion.svg
-        className="pointer-events-none absolute top-0 bottom-0 left-[-20px] w-[calc(100%+40px)] h-full"
-        style={{ transform: groupTransform, filter: `url(#${filterId})` }}
-        viewBox={`0 0 ${dimensions.width + 40} ${dimensions.height}`}
-        preserveAspectRatio="none"
-      >
-        <defs>
-          <linearGradient
-            id={`grad-back-${rawUid}`}
-            gradientUnits="userSpaceOnUse"
-            x1="0" y1="0" x2="0" y2={dimensions.height}
+      {(() => {
+        const safeWidth = (dimensions.width || 220) + 40;
+        const safeHeight = dimensions.height || 64;
+        return (
+          <motion.svg
+            className="pointer-events-none absolute top-0 bottom-0 left-[-20px] w-[calc(100%+40px)] h-full"
+            style={{ transform: groupTransform, filter: `url(#${filterId})` }}
+            viewBox={`0 0 ${safeWidth} ${safeHeight}`}
+            preserveAspectRatio="none"
           >
-            <stop offset="0%" stopColor={waterColor} stopOpacity="0.60" />
-            <stop offset="100%" stopColor={waterColorDeep} stopOpacity="0.75" />
-          </linearGradient>
-          <linearGradient
-            id={`grad-front-${rawUid}`}
-            gradientUnits="userSpaceOnUse"
-            x1="0" y1="0" x2="0" y2={dimensions.height}
-          >
-            <stop offset="0%" stopColor={waterColor} stopOpacity="0.99" />
-            <stop offset="100%" stopColor={waterColorDeep} stopOpacity="0.90" />
-          </linearGradient>
-        </defs>
+            <defs>
+              <linearGradient
+                id={`grad-back-${rawUid}`}
+                gradientUnits="userSpaceOnUse"
+                x1="0" y1="0" x2="0" y2={safeHeight}
+              >
+                <stop offset="0%" stopColor={waterColor} stopOpacity="0.60" />
+                <stop offset="100%" stopColor={waterColorDeep} stopOpacity="0.75" />
+              </linearGradient>
+              <linearGradient
+                id={`grad-front-${rawUid}`}
+                gradientUnits="userSpaceOnUse"
+                x1="0" y1="0" x2="0" y2={safeHeight}
+              >
+                <stop offset="0%" stopColor={waterColor} stopOpacity="0.99" />
+                <stop offset="100%" stopColor={waterColorDeep} stopOpacity="0.90" />
+              </linearGradient>
+            </defs>
 
-        <motion.path style={{ d: backPathD }} fill={`url(#grad-back-${rawUid})`} />
-        <motion.path style={{ d: frontPathD }} fill={`url(#grad-front-${rawUid})`} />
-      </motion.svg>
+            <motion.path style={{ d: backPathD }} fill={`url(#grad-back-${rawUid})`} />
+            <motion.path style={{ d: frontPathD }} fill={`url(#grad-front-${rawUid})`} />
+          </motion.svg>
+        );
+      })()}
 
       {ripples.map((r) => (
         <motion.span

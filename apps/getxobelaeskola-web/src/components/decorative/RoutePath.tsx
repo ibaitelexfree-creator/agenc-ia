@@ -31,6 +31,7 @@ export function RoutePath({ progress = 0 }: { progress?: number }) {
         strokeLinecap="round"
         strokeDasharray="8 6"
         fill="none"
+        initial={{ pathLength: 0 }}
         animate={{ pathLength: progress }}
         transition={{ duration: 1.0, ease: 'easeInOut' }}
       />
@@ -47,12 +48,12 @@ export function RoutePath({ progress = 0 }: { progress?: number }) {
           cx={point.cx}
           cy={point.cy}
           r="5"
-          fill="var(--ocean-light)"
+          fill="#4AAFE8"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ 
             scale: progress >= point.activeAt ? 1.3 : 1.0, 
             opacity: progress >= point.activeAt ? 1.0 : 0.4,
-            fill: progress >= point.activeAt ? 'var(--ocean-bright)' : 'var(--ocean-light)'
+            fill: progress >= point.activeAt ? '#0A7EC8' : '#4AAFE8'
           }}
           transition={{ duration: 0.5 }}
         />

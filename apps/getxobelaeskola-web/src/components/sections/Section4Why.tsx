@@ -250,21 +250,21 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
 
 const CoinIcon = () => (
   <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
-    <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
-    <path d="M24 14v20M29 18.5c0-2.5-2.5-4.5-5.5-4.5S18 15.7 18 18.2c0 5 11 3.4 11 8.4 0 2.6-2.7 4.4-6 4.4s-6-1.9-6-4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="24" cy="24" r="18" stroke="currentColor" strokeWidth="2"/>
+    <path d="M24 14v20M29 18.5c0-2.5-2.5-4.5-5.5-4.5S18 15.7 18 18.2c0 5 11 3.4 11 8.4 0 2.6-2.7 4.4-6 4.4s-6-1.9-6-4.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 )
 
 const HandsIcon = () => (
   <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
-    <path d="M6 24l8-8 8 4 6-4 8 6-6 6-8-4-6 4-10-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-    <path d="M14 28l6 6 6-4M28 26l4 4-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 24l8-8 8 4 6-4 8 6-6 6-8-4-6 4-10-4z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"/>
+    <path d="M14 28l6 6 6-4M28 26l4 4-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
 const CompassIcon = () => (
   <svg viewBox="0 0 48 48" width="40" height="40" fill="none">
-    <circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/>
+    <circle cx="24" cy="24" r="18" stroke="currentColor" strokeWidth="2"/>
     <path d="M30 18l-8 6-4 8 8-6 4-8z" fill="currentColor"/>
   </svg>
 )

@@ -138,10 +138,10 @@ export function FullScreenWaves() {
   const [width, setWidth] = useState(1200);
   const height = 140;
 
-  const path1 = useMotionValue('');
-  const path2 = useMotionValue('');
-  const path3 = useMotionValue('');
-  const path4 = useMotionValue('');
+  const path1 = useMotionValue('M 0 140 L 0 140 L 1200 140 L 1200 140 Z');
+  const path2 = useMotionValue('M 0 140 L 0 140 L 1200 140 L 1200 140 Z');
+  const path3 = useMotionValue('M 0 140 L 0 140 L 1200 140 L 1200 140 Z');
+  const path4 = useMotionValue('M 0 140 L 0 140 L 1200 140 L 1200 140 Z');
 
   // Partículas de explosión en Canvas
   const particlesRef = useRef<any[]>([]);

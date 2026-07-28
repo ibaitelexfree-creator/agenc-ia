@@ -44,16 +44,20 @@ export function Seahorse({ style, enterDelay = 0, color = '#4AAFE8' }: SeahorseP
           <path d="M25 5 L32 3" stroke={color} strokeWidth="2" strokeLinecap="round" />
           {/* Ojo */}
           <circle cx="22" cy="5" r="1.5" fill="white" />
-          {/* Aletas animadas */}
-          <motion.path
-            d="M14 22 C8 20 6 24 10 25"
-            stroke={color}
-            strokeWidth="1.5"
-            fill="none"
-            opacity="0.7"
-            animate={{ d: ['M14 22 C8 20 6 24 10 25', 'M14 22 C9 18 5 22 8 26'] }}
-            transition={{ duration: 0.3, repeat: Infinity, repeatType: 'reverse' }}
-          />
+          {/* Aletas animadas - Transformación CSS en lugar de morphing de path para evitar crashes */}
+          <motion.g
+            animate={{ rotateZ: [-10, 15], scaleY: [0.9, 1.1] }}
+            transition={{ duration: 0.15, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+            style={{ transformOrigin: '14px 22px' }}
+          >
+            <path
+              d="M14 22 C8 20 6 24 10 25"
+              stroke={color}
+              strokeWidth="1.5"
+              fill="none"
+              opacity="0.7"
+            />
+          </motion.g>
           {/* Cola cola */}
           <path
             d="M15 60 C8 60 5 65 10 65 C15 65 18 62 15 60"

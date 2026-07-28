@@ -459,8 +459,8 @@ function WaveSVG3D({ opacity, experience }: { opacity: number; experience: Exper
         height: '100%',
         flexShrink: 0,
       }}
-      animate={{ rotateX: [0, 1.5, 0, -1.5, 0] }}
-      transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      animate={{ rotateX: [0, 1.5, 0, -1.5, 0], y: [0, -5, 0] }}
+      transition={{ duration: speed, repeat: Infinity, ease: 'easeInOut' }}
     >
       <svg
         viewBox="0 0 1440 120"
@@ -469,31 +469,13 @@ function WaveSVG3D({ opacity, experience }: { opacity: number; experience: Exper
         style={{ width: '100%', height: '100%' }}
         preserveAspectRatio="none"
       >
-        <motion.path
+        <path
           d="M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z"
           fill={`rgba(11, 61, 99, ${opacity})`}
-          animate={{
-            d: [
-              "M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z",
-              experience === 'calm'
-                ? "M0 70 C200 90 400 50 580 75 C760 100 940 60 1120 75 C1280 90 1400 60 1440 70 L1440 120 L0 120 Z"
-                : "M0 50 C200 110 400 30 580 90 C760 130 940 40 1120 95 C1280 115 1400 45 1440 80 L1440 120 L0 120 Z"
-            ]
-          }}
-          transition={{ duration: speed, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
         />
-        <motion.path
+        <path
           d="M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z"
           fill={`rgba(44, 110, 155, ${opacity * 0.7})`}
-          animate={{
-            d: [
-              "M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z",
-              experience === 'calm'
-                ? "M0 65 C220 90 440 40 620 60 C800 90 980 50 1160 65 C1320 80 1410 55 1440 60 L1440 120 L0 120 Z"
-                : "M0 80 C220 120 440 20 620 85 C800 125 980 30 1160 85 C1320 105 1410 40 1440 70 L1440 120 L0 120 Z"
-            ]
-          }}
-          transition={{ duration: speed * 1.3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut', delay: 0.2 }}
         />
       </svg>
     </motion.div>

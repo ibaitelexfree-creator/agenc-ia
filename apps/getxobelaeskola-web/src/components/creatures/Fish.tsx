@@ -60,13 +60,17 @@ export function Fish({
           {/* Cuerpo del pez */}
           <ellipse cx="28" cy="17" rx="22" ry="12" fill={color} opacity="0.85" />
           {/* Cola */}
-          <motion.path
-            d="M50 17 L60 8 L60 26 Z"
-            fill={color}
-            opacity="0.7"
-            animate={{ d: ['M50 17 L60 8 L60 26 Z', 'M52 17 L60 10 L60 24 Z'] }}
+          <motion.g
+            animate={{ scaleX: [1, 0.7], rotateZ: [-10, 10] }}
             transition={{ duration: 0.4, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-          />
+            style={{ transformOrigin: '50px 17px' }}
+          >
+            <path
+              d="M50 17 L60 8 L60 26 Z"
+              fill={color}
+              opacity="0.7"
+            />
+          </motion.g>
           {/* Ojo */}
           <circle cx="14" cy="14" r="3" fill="white" />
           <circle cx="14" cy="14" r="1.5" fill="#0D2137" />

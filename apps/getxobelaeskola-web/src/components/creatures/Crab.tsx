@@ -43,34 +43,36 @@ export function Crab({ style, enterDelay = 0, color = '#E8593C' }: CrabProps) {
           <circle cx="26" cy="21" r="1.5" fill="#0D2137" />
           <circle cx="38" cy="21" r="1.5" fill="#0D2137" />
           {/* Patas (3 por lado) */}
-          {[18, 24, 30].map((x, i) => (
-            <motion.line
-              key={`left-${i}`}
-              x1={x}
-              y1="30"
-              x2={x - 8}
-              y2="42"
-              stroke={color}
-              strokeWidth="2"
-              strokeLinecap="round"
-              animate={{ y1: [30, 28, 30], y2: [42, 40, 42] }}
-              transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.15, repeatType: 'reverse' }}
-            />
-          ))}
-          {[36, 42, 48].map((x, i) => (
-            <motion.line
-              key={`right-${i}`}
-              x1={x}
-              y1="30"
-              x2={x + 8}
-              y2="42"
-              stroke={color}
-              strokeWidth="2"
-              strokeLinecap="round"
-              animate={{ y1: [30, 28, 30], y2: [42, 40, 42] }}
-              transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.15 + 0.2, repeatType: 'reverse' }}
-            />
-          ))}
+          <motion.g
+            animate={{ rotate: [-3, 3, -3] }}
+            transition={{ duration: 0.6, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ transformOrigin: '32px 30px' }}
+          >
+            {[18, 24, 30].map((x, i) => (
+              <line
+                key={`left-${i}`}
+                x1={x}
+                y1="30"
+                x2={x - 8}
+                y2="42"
+                stroke={color}
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            ))}
+            {[36, 42, 48].map((x, i) => (
+              <line
+                key={`right-${i}`}
+                x1={x}
+                y1="30"
+                x2={x + 8}
+                y2="42"
+                stroke={color}
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            ))}
+          </motion.g>
         </svg>
       </motion.div>
     </motion.div>

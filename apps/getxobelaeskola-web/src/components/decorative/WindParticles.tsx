@@ -37,8 +37,8 @@ export function WindParticles() {
     setParticles(generateParticles())
   }, [])
 
-  // No renderizar si el usuario prefiere sin movimiento
-  if (prefersReducedMotion) return null
+  // No renderizar si no hay partículas o si el usuario prefiere sin movimiento
+  if (particles.length === 0 || prefersReducedMotion) return null
 
   return (
     <div
