@@ -147,7 +147,7 @@ export default function CollaboratorsGrid() {
 
             {/* Carousel Section with Side Navigation Arrows */}
             <div
-                className="flex items-center gap-1.5 sm:gap-4 w-full"
+                className="flex items-center gap-3 sm:gap-4 w-full"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
@@ -155,21 +155,21 @@ export default function CollaboratorsGrid() {
                 {!isSearching && (
                     <button
                         onClick={handleScrollLeft}
-                        className="flex-shrink-0 p-2 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
+                        className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                         aria-label="Desplazar a la izquierda"
                         title="Anterior"
                     >
-                        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+                        <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                     </button>
                 )}
 
                 {/* Carousel Container Wrapper with edge gradient masks */}
-                <div className="relative flex-1 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-md p-3 sm:p-6 border border-white/20 shadow-2xl shadow-black/20">
+                <div className="relative flex-1 overflow-hidden rounded-2xl bg-white/95 backdrop-blur-md p-4 sm:p-6 border border-white/20 shadow-2xl shadow-black/20">
                     {/* Left & Right Edge Fade Gradients */}
                     {!isSearching && (
                         <>
-                            <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-16 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-                            <div className="absolute right-0 top-0 bottom-0 w-6 sm:w-16 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                            <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
+                            <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
                         </>
                     )}
 
@@ -182,20 +182,20 @@ export default function CollaboratorsGrid() {
                         /* Scrollable track */
                         <div
                             ref={scrollContainerRef}
-                            className={`flex gap-3 sm:gap-6 items-center ${
+                            className={`flex gap-4 sm:gap-6 items-center ${
                                 isSearching
                                     ? 'flex-wrap justify-center overflow-y-auto max-h-[350px] p-2'
-                                    : 'overflow-x-auto scrollbar-none py-2 px-2 sm:px-4'
+                                    : 'overflow-x-auto scrollbar-none py-2 px-4'
                             }`}
                             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         >
                             {displayList.map((collab, index) => (
                                 <div
                                     key={`${collab.id}-${index}`}
-                                    className="flex-shrink-0 group flex flex-col items-center justify-center p-2.5 sm:p-4 rounded-xl bg-white hover:bg-sea-foam/5 border border-neutral-100 hover:border-accent/40 shadow-sm hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300 w-32 sm:w-44 select-none cursor-pointer"
+                                    className="flex-shrink-0 group flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl bg-white hover:bg-sea-foam/5 border border-neutral-100 hover:border-accent/40 shadow-sm hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1 transition-all duration-300 w-36 sm:w-44 select-none cursor-pointer"
                                     title={collab.name}
                                 >
-                                    <div className="relative w-full h-14 sm:h-20 flex items-center justify-center">
+                                    <div className="relative w-full h-16 sm:h-20 flex items-center justify-center">
                                         <Image
                                             src={collab.svgFile}
                                             alt={collab.name}
@@ -217,11 +217,11 @@ export default function CollaboratorsGrid() {
                 {!isSearching && (
                     <button
                         onClick={handleScrollRight}
-                        className="flex-shrink-0 p-2 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
+                        className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
                         aria-label="Desplazar a la derecha"
                         title="Siguiente"
                     >
-                        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+                        <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                     </button>
                 )}
             </div>

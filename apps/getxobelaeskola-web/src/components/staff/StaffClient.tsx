@@ -16,6 +16,7 @@ const SessionsTab = dynamic(() => import('./SessionsTab'), { ssr: false });
 const AcademyStaffTab = dynamic(() => import('./AcademyStaffTab'), { ssr: false });
 const FinancialReportsClient = dynamic(() => import('./FinancialReportsClient'), { ssr: false });
 const BITab = dynamic(() => import('./BITab'), { ssr: false });
+const BlogTab = dynamic(() => import('./BlogTab'), { ssr: false });
 import DataExplorerTab from './DataExplorerTab';
 
 import AccessibleModal from '../shared/AccessibleModal';
@@ -1053,19 +1054,7 @@ export default function StaffClient({
                 )}
 
                 {activeTab === 'blog' && (
-                    <div className="p-12 text-center glass-panel border border-white/10 rounded-sm space-y-6 animate-premium-in">
-                        <span className="text-4xl">📝</span>
-                        <h2 className="font-display text-3xl italic text-white">Gestión de Blog y Noticias</h2>
-                        <p className="text-white/60 text-sm max-w-md mx-auto">
-                            Accede al panel dedicado para crear, editar y administrar las entradas del blog y recursos multimedia.
-                        </p>
-                        <a
-                            href={`/${locale}/admin/blog`}
-                            className="inline-block px-8 py-4 bg-accent text-nautical-black font-black uppercase text-3xs tracking-[0.2em] rounded-sm hover:bg-white transition-all shadow-lg shadow-accent/20"
-                        >
-                            Ir a la gestión del Blog →
-                        </a>
-                    </div>
+                    <BlogTab locale={locale} />
                 )}
 
                 {activeTab === 'bi' && (
