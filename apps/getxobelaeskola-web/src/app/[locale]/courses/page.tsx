@@ -115,21 +115,21 @@ export default async function CoursesPage({
     return (
         <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Header Section */}
-            <section className="relative pt-48 pb-32 overflow-hidden">
+            <section className="relative pt-36 sm:pt-40 md:pt-44 lg:pt-48 xl:pt-52 pb-8 md:pb-12 lg:pb-16 overflow-hidden">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
                 <div className="container mx-auto px-6 relative z-10 text-center md:text-left">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-[clamp(2.5rem,6vw,6.5rem)] font-display leading-[0.95] text-sea-foam mb-12 animate-reveal relative">
+                        <h1 className="text-[clamp(2rem,4.5vw,5rem)] font-display leading-[0.95] text-sea-foam mb-4 sm:mb-6 animate-reveal relative">
                             {t('header_title')} <br />
                             <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-12 mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/60 font-light text-base sm:text-lg md:text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-4 sm:pl-6 md:pl-8 mt-4 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('header_desc')}
                         </p>
                     </header>
