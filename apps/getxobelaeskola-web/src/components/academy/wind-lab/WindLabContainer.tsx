@@ -55,10 +55,14 @@ export const WindLabContainer = () => {
             const seaOffscreen = seaCanvasRef.current.transferControlToOffscreen();
             const particleOffscreen = particleCanvasRef.current.transferControlToOffscreen();
 
-            seaOffscreen.width = seaCanvasRef.current.clientWidth;
-            seaOffscreen.height = seaCanvasRef.current.clientHeight;
-            particleOffscreen.width = particleCanvasRef.current.clientWidth;
-            particleOffscreen.height = particleCanvasRef.current.clientHeight;
+            // Get initial dimensions (we only read this once)
+            const width = seaCanvasRef.current.clientWidth;
+            const height = seaCanvasRef.current.clientHeight;
+
+            seaOffscreen.width = width;
+            seaOffscreen.height = height;
+            particleOffscreen.width = width;
+            particleOffscreen.height = height;
 
             worker.postMessage({
                 type: 'INIT',
@@ -74,6 +78,24 @@ export const WindLabContainer = () => {
                     setSimState(e.data.payload.state);
                     setSimPhysics(e.data.payload.physics);
                 }
+            };
+
+            const resizeObserver = new ResizeObserver((entries) => {
+                if (!entries.length || !workerRef.current) return;
+                const { width, height } = entries[0].contentRect;
+                workerRef.current.postMessage({
+                    type: 'RESIZE',
+                    payload: { width, height }
+                });
+            });
+            
+            // Assuming the parent div is what resizes
+            if (seaCanvasRef.current.parentElement) {
+                resizeObserver.observe(seaCanvasRef.current.parentElement);
+            }
+
+            return () => {
+                resizeObserver.disconnect();
             };
         } catch (err) {
             console.warn("WindLab: Worker init skipped", err);

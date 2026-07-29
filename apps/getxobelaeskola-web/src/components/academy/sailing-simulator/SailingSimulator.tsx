@@ -190,14 +190,12 @@ export const SailingSimulator: React.FC<SailingSimulatorProps> = ({ onStateUpdat
         window.addEventListener('click', handleUserInteraction);
 
         // 10. Resize Observer
-        const resizeObserver = new ResizeObserver(() => {
-            if (!containerRef.current) return;
+        const resizeObserver = new ResizeObserver((entries) => {
+            if (!entries.length) return;
+            const { width, height } = entries[0].contentRect;
             worker.postMessage({
                 type: 'RESIZE',
-                payload: {
-                    width: containerRef.current.clientWidth,
-                    height: containerRef.current.clientHeight
-                }
+                payload: { width, height }
             });
         });
         resizeObserver.observe(containerRef.current);
