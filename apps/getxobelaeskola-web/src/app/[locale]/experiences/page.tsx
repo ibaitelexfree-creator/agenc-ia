@@ -146,20 +146,20 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
             />
 
             {/* Cinematic Header */}
-            <section className="relative pt-48 pb-32 overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-8 overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
                 <div className="container mx-auto px-6 relative z-10">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-4 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-display leading-[0.9] text-sea-foam mb-12 animate-reveal relative z-20">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-display leading-[0.95] text-sea-foam mb-6 animate-reveal relative z-20">
                             {t('title_prefix')} <br />
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-xl leading-relaxed border-l border-sea-foam/10 pl-12 mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/60 font-light text-base md:text-lg leading-relaxed border-l border-sea-foam/10 pl-6 md:pl-8 mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>

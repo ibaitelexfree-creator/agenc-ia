@@ -67,11 +67,11 @@ export default function ExperiencesClient({
     }
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8">
             {/* Premium Control Bar */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-sea-foam/10">
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 pb-6 border-b border-sea-foam/10">
                 {/* Search */}
-                <div className="relative w-full md:w-96 group">
+                <div className="relative w-full lg:w-80 shrink-0 group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-sea-foam/40 group-focus-within:text-accent transition-colors" />
                     <input
                         type="text"
@@ -91,16 +91,18 @@ export default function ExperiencesClient({
                 </div>
 
                 {/* Filters */}
-                <div className="flex items-center gap-4 overflow-x-auto pb-2 md:pb-0 no-scrollbar w-full md:w-auto justify-start md:justify-end">
-                    <div className="flex items-center gap-2 px-4 py-1.5 bg-sea-foam/[0.02] backdrop-blur-xl border border-sea-foam/10 rounded-full shrink-0">
-                        <Filter className="w-3.5 h-3.5 text-accent" />
-                        <span className="text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 mr-2 border-r border-sea-foam/10 pr-4 hidden sm:inline">Filtrar</span>
-                        <div className="flex gap-1">
+                <div className="w-full lg:w-auto flex items-center lg:ml-auto lg:mr-6 xl:mr-12">
+                    <div className="w-full flex flex-wrap sm:flex-nowrap items-center gap-2 p-2 bg-sea-foam/[0.02] backdrop-blur-xl border border-sea-foam/10 rounded-2xl sm:rounded-full">
+                        <div className="flex items-center gap-2 px-3 py-1.5 shrink-0">
+                            <Filter className="w-3.5 h-3.5 text-accent" />
+                            <span className="text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 border-r border-sea-foam/10 pr-3">Filtrar</span>
+                        </div>
+                        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 w-full sm:w-auto">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] font-black transition-all duration-500 whitespace-nowrap ${selectedCategory === cat
+                                    className={`px-3.5 sm:px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] font-black transition-all duration-500 whitespace-nowrap ${selectedCategory === cat
                                             ? 'bg-accent text-nautical-black shadow-lg shadow-accent/20 scale-105'
                                             : 'text-sea-foam/40 hover:text-sea-foam hover:bg-sea-foam/[0.05]'
                                         }`}
