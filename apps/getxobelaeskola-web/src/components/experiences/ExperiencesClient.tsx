@@ -69,7 +69,7 @@ export default function ExperiencesClient({
     return (
         <div className="space-y-8">
             {/* Premium Control Bar */}
-            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 pb-6 border-b border-sea-foam/10">
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-sea-foam/10 max-w-full">
                 {/* Search */}
                 <div className="relative w-full lg:w-80 shrink-0 group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-sea-foam/40 group-focus-within:text-accent transition-colors" />
@@ -78,7 +78,7 @@ export default function ExperiencesClient({
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder={locale === 'eu' ? 'Bilatu esperientziak...' : locale === 'en' ? 'Search experiences...' : 'Buscar experiencias...'}
-                        className="w-full bg-sea-foam/[0.02] border border-sea-foam/10 rounded-full py-3 pl-12 pr-12 text-sm text-sea-foam placeholder:text-sea-foam/30 focus:outline-none focus:border-accent/50 focus:bg-sea-foam/[0.05] transition-all"
+                        className="w-full bg-sea-foam/[0.02] border border-sea-foam/10 rounded-full py-2.5 sm:py-3 pl-11 sm:pl-12 pr-10 sm:pr-12 text-xs sm:text-sm text-sea-foam placeholder:text-sea-foam/30 focus:outline-none focus:border-accent/50 focus:bg-sea-foam/[0.05] transition-all"
                     />
                     {searchQuery && (
                         <button
@@ -91,18 +91,18 @@ export default function ExperiencesClient({
                 </div>
 
                 {/* Filters */}
-                <div className="w-full lg:w-auto flex items-center lg:ml-auto lg:mr-6 xl:mr-12">
-                    <div className="w-full flex flex-wrap sm:flex-nowrap items-center gap-2 p-2 bg-sea-foam/[0.02] backdrop-blur-xl border border-sea-foam/10 rounded-2xl sm:rounded-full">
-                        <div className="flex items-center gap-2 px-3 py-1.5 shrink-0">
+                <div className="w-full lg:w-auto flex items-center lg:ml-auto lg:mr-6 xl:mr-12 max-w-full overflow-hidden">
+                    <div className="w-full flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-sea-foam/[0.02] backdrop-blur-xl border border-sea-foam/10 rounded-2xl sm:rounded-full max-w-full overflow-x-auto no-scrollbar">
+                        <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 shrink-0">
                             <Filter className="w-3.5 h-3.5 text-accent" />
-                            <span className="text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 border-r border-sea-foam/10 pr-3">Filtrar</span>
+                            <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 border-r border-sea-foam/10 pr-2.5 sm:pr-3">Filtrar</span>
                         </div>
-                        <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 w-full sm:w-auto">
+                        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 overflow-x-auto no-scrollbar py-0.5">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-3.5 sm:px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] font-black transition-all duration-500 whitespace-nowrap ${selectedCategory === cat
+                                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.1em] sm:tracking-[0.15em] font-black transition-all duration-500 whitespace-nowrap shrink-0 ${selectedCategory === cat
                                             ? 'bg-accent text-nautical-black shadow-lg shadow-accent/20 scale-105'
                                             : 'text-sea-foam/40 hover:text-sea-foam hover:bg-sea-foam/[0.05]'
                                         }`}
