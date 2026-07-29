@@ -1096,7 +1096,8 @@
       "card4_val": "Getxo",
       "card4_lbl": "Port d'Algorta",
       "body1": "Nos Udalekus sont des semaines d'été conçues pour que les enfants vivent la mer de manière intense, amusante et sécurisée. La base du camp est la navigation quotidienne, adaptée à chaque âge et niveau, combinée à des activités aquatiques comme le paddle surf, le Big SUP ou le kayak, et à des dynamiques de groupe qui renforcent le travail d'équipe et les amitiés.",
-      "body2": "Lorsque la météo ne permet pas de naviguer, des alternatives telles que des jeux coopératifs, des ateliers ou de la théorie pratique sont organisées. Chaque vendredi, nous clôturons la semaine avec un goûter partagé — un moment privilégié pour célébrer ce qui a été vécu."
+      "body2": "Lorsque la météo ne permet pas de naviguer, des alternatives telles que des jeux coopératifs, des ateliers ou de la théorie pratique sont organisées. Chaque vendredi, nous clôturons la semaine avec un goûter partagé — un moment privilégié pour célébrer ce qui a été vécu.",
+      "eyrefbrow": "informations pratiques"
     },
     "cta": {
       "eyebrow": "été {year}",
@@ -1750,5 +1751,36 @@
       "note": "Nous répondons en moins de 24h · Sans engagement",
       "sent": "Message reçu ! Nous vous contacterons bientôt."
     }
+  },
+  "nautical_converter": {
+    "eyebrow": "Utility",
+    "title": "Nautical Converter",
+    "subtitle": "Precision tool for converting between maritime and standard units.",
+    "input": "Input Value",
+    "result": "Result",
+    "history": "Recent Conversions",
+    "clear_history": "Clear History",
+    "no_history": "No history yet",
+    "convert_btn": "Convert",
+    "swap": "Swap",
+    "output": "Output",
+    "speed": "Speed",
+    "distance": "Distance",
+    "depth": "Depth",
+    "temperature": "Temp",
+    "pressure": "Pressure",
+    "knots": "Knots",
+    "kmh": "km/h",
+    "ms": "m/s",
+    "meters": "Meters",
+    "feet": "Feet",
+    "nautical_miles": "Nautical Miles",
+    "km": "Kilometers",
+    "fathoms": "Fathoms",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "hpa": "hPa",
+    "mb": "Millibars",
+    "inhg": "inHg"
   }
 }

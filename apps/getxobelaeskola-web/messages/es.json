@@ -1578,7 +1578,8 @@
       "card4_val": "Getxo",
       "card4_lbl": "Puerto de Algorta",
       "body1": "Nuestros Udalekus son semanas de verano pensadas para que niñas y niños vivan la mar de forma intensa, divertida y segura. La base del campamento es la navegación diaria, adaptada a cada edad y nivel, combinada con actividades acuáticas como paddle surf, Big SUP o piragua, y dinámicas de grupo que fortalecen el trabajo en equipo y las amistades.",
-      "body2": "Cuando la meteorología no permite salir a navegar, se organizan alternativas como juegos cooperativos, talleres o teoría práctica. Cada viernes cerramos la semana con una merendola compartida — un momento especial para celebrar lo vivido."
+      "body2": "Cuando la meteorología no permite salir a navegar, se organizan alternativas como juegos cooperativos, talleres o teoría práctica. Cada viernes cerramos la semana con una merendola compartida — un momento especial para celebrar lo vivido.",
+      "eyrefbrow": "información práctica"
     },
     "cta": {
       "eyebrow": "verano {year}",
@@ -2234,5 +2235,36 @@
       "note": "Respondemos en menos de 24h · Sin compromiso",
       "sent": "¡Mensaje recibido! Nos ponemos en contacto pronto."
     }
+  },
+  "nautical_converter": {
+    "eyebrow": "Utility",
+    "title": "Nautical Converter",
+    "subtitle": "Precision tool for converting between maritime and standard units.",
+    "input": "Input Value",
+    "result": "Result",
+    "history": "Recent Conversions",
+    "clear_history": "Clear History",
+    "no_history": "No history yet",
+    "convert_btn": "Convert",
+    "swap": "Swap",
+    "output": "Output",
+    "speed": "Speed",
+    "distance": "Distance",
+    "depth": "Depth",
+    "temperature": "Temp",
+    "pressure": "Pressure",
+    "knots": "Knots",
+    "kmh": "km/h",
+    "ms": "m/s",
+    "meters": "Meters",
+    "feet": "Feet",
+    "nautical_miles": "Nautical Miles",
+    "km": "Kilometers",
+    "fathoms": "Fathoms",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "hpa": "hPa",
+    "mb": "Millibars",
+    "inhg": "inHg"
   }
 }

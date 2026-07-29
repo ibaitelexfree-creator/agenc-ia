@@ -20,6 +20,16 @@
 | T-009 | Jules | Optimize Dashboard Stats API | 2026-02-23 | completado |
 | T-010 | Antigravity | Create HostingerAgent (Agent #10 Master Plan) | 2026-04-03 | completado |
 | T-011 | Antigravity | Redesign "Why sail with us?" cream journal layout | 2026-07-06 | completado |
+| T-052 | Antigravity | Redesign Collaborators section into interactive auto-scrolling carousel with search & manual navigation arrows | 2026-07-28 | completado |
+| T-053 | Antigravity | Fix scroll wheel locking at last section in useScrollEngineV2.ts & fix Collaborators carousel hover pause and arrow buttons | 2026-07-28 | completado |
+| T-054 | Antigravity | Fix auto-scroll startup trap in CollaboratorsGrid to ensure immediate movement upon load | 2026-07-28 | completado |
+| T-055 | Antigravity | Remove container hover pause state blocking continuous auto-scroll loop in CollaboratorsGrid | 2026-07-28 | completado |
+| T-056 | Antigravity | Rebuild CollaboratorsGrid marquee track with hardware-accelerated translate3d transforms for bulletproof continuous scrolling | 2026-07-28 | completado |
+| T-057 | Antigravity | Implement smooth spring lerp physics for arrow clicks in CollaboratorsGrid to eliminate instant teleports | 2026-07-28 | completado |
+
+
+
+
 | T-012 | Antigravity | Redesign "What is Getxo Bela Eskola?" book configurator | 2026-07-07 | completado |
 | T-013 | Antigravity | Revert Section1Hero back to original blob-card layout | 2026-07-07 | completado |
 | T-014 | Antigravity | Revert Section3Adapts back to original stats and config layout | 2026-07-07 | completado |

@@ -1518,7 +1518,8 @@
       "card4_val": "Getxo",
       "card4_lbl": "Port of Algorta",
       "body1": "Our Udalekus are summer weeks designed for children to live the sea in an intense, fun, and safe way. The core of the camp is daily sailing, adapted to each age and level, combined with water activities like paddle surfing, Big SUP or kayaking, and group dynamics that strengthen teamwork and friendships.",
-      "body2": "When the weather doesn't allow sailing, we organize alternatives like cooperative games, workshops, or practical theory. Every Friday we close the week with a shared snack time — a special moment to celebrate what we have lived."
+      "body2": "When the weather doesn't allow sailing, we organize alternatives like cooperative games, workshops, or practical theory. Every Friday we close the week with a shared snack time — a special moment to celebrate what we have lived.",
+      "eyrefbrow": "practical information"
     },
     "cta": {
       "eyebrow": "summer {year}",
@@ -2174,5 +2175,36 @@
       "note": "We reply in less than 24h · Without obligation",
       "sent": "Message received! We will contact you soon."
     }
+  },
+  "nautical_converter": {
+    "eyebrow": "Utility",
+    "title": "Nautical Converter",
+    "subtitle": "Precision tool for converting between maritime and standard units.",
+    "input": "Input Value",
+    "result": "Result",
+    "history": "Recent Conversions",
+    "clear_history": "Clear History",
+    "no_history": "No history yet",
+    "convert_btn": "Convert",
+    "swap": "Swap",
+    "output": "Output",
+    "speed": "Speed",
+    "distance": "Distance",
+    "depth": "Depth",
+    "temperature": "Temp",
+    "pressure": "Pressure",
+    "knots": "Knots",
+    "kmh": "km/h",
+    "ms": "m/s",
+    "meters": "Meters",
+    "feet": "Feet",
+    "nautical_miles": "Nautical Miles",
+    "km": "Kilometers",
+    "fathoms": "Fathoms",
+    "celsius": "Celsius",
+    "fahrenheit": "Fahrenheit",
+    "hpa": "hPa",
+    "mb": "Millibars",
+    "inhg": "inHg"
   }
 }
