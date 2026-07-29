@@ -1,131 +1,111 @@
-import { getTranslations } from 'next-intl/server';
-import { Metadata } from 'next';
+import React from 'react';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
-    const isEu = locale === 'eu';
-    const isEn = locale === 'en';
-    const isFr = locale === 'fr';
+export const metadata = {
+  title: 'Declaración de Accesibilidad | Getxo Bela Eskola',
+  description: 'Declaración de accesibilidad del sitio web de Getxo Bela Eskola.',
+};
 
-    let title = 'Declaración de Accesibilidad | Getxo Bela Eskola';
-    let description = 'Declaración de accesibilidad web de Getxo Bela Eskola de conformidad con la normativa del Kit Digital y el RD 1112/2018.';
+export default function DeclaracionAccesibilidadPage() {
+  return (
+    <main className="min-h-screen bg-white text-black py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto bg-gray-50 p-8 md:p-12 rounded-2xl border border-gray-200 shadow-xl">
+        <h1 className="text-3xl md:text-5xl font-display font-bold text-black mb-10 pb-4 border-b border-gray-300">
+          Declaración de Accesibilidad
+        </h1>
+        
+        <div className="space-y-6 text-base md:text-lg leading-relaxed text-black">
+          <p>
+            La entidad <strong className="text-red-600 font-bold">Club Deportivo Pakea Munduari Itzulia</strong> se ha comprometido a hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018, de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público.
+          </p>
 
-    if (isEu) {
-        title = 'Irisgarritasun Adierazpena | Getxo Bela Eskola';
-        description = 'Getxo Bela Eskolako web irisgarritasun adierazpena Digital Kit-aren eta RD 1112/2018 araudiaren arabera.';
-    } else if (isEn) {
-        title = 'Accessibility Statement | Getxo Bela Eskola';
-        description = 'Accessibility statement for Getxo Bela Eskola website according to Kit Digital requirements and RD 1112/2018.';
-    } else if (isFr) {
-        title = 'Déclaration d\'Accessibilité | Getxo Bela Eskola';
-        description = 'Déclaration d\'accessibilité du site web de Getxo Bela Eskola conformément au Kit Digital et au RD 1112/2018.';
-    }
+          <p>
+            La presente declaración de accesibilidad se aplica al sitio web{' '}
+            <a href="https://getxobelaeskola.cloud/" className="text-red-600 hover:text-red-800 font-bold underline transition-colors">
+              https://getxobelaeskola.cloud/
+            </a>
+          </p>
 
-    return { title, description };
-}
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-black mt-12 mb-4">Situación de cumplimiento</h2>
+          <p>
+            Este sitio web es <strong className="text-black font-bold">parcialmente conforme</strong> con el RD 1112/2018 debido a las excepciones y a la falta de conformidad de los aspectos que se indican a continuación.
+          </p>
 
-export default async function DeclaracionAccesibilidadPage({ params: { locale } }: { params: { locale: string } }) {
-    const isEu = locale === 'eu';
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-black mt-12 mb-4">Contenido no accesible</h2>
+          <p>El contenido que se recoge a continuación no es accesible por lo siguiente:</p>
+          
+          <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="text-xl font-bold text-red-600 mb-4">1. Falta de conformidad con el RD 1112/2018</h3>
+            <ul className="list-disc pl-5 space-y-3 text-black">
+              <li>Existen logotipos e imágenes con texto alternativo incorrecto o confuso e imágenes complejas sin descripción textual <span className="text-gray-600 text-sm font-medium">[requisito número 9.1.1.1 Contenido no textual, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen listas creadas de forma incorrecta (sin etiqueta de lista), tablas con celdas etiquetadas incorrectamente y etiquetas invisibles en elementos de formularios <span className="text-gray-600 text-sm font-medium">[requisito número 9.1.3.1 Información y relaciones, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen tablas no adaptadas a tamaños de pantalla pequeños y campos de formulario que no se visualizan correctamente en tamaños de pantalla pequeños <span className="text-gray-600 text-sm font-medium">[requisito número 9.1.4.10 Reajuste de texto, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existe texto que al cambiar los espacios y alturas de línea no se visualiza correctamente <span className="text-gray-600 text-sm font-medium">[requisito número 9.1.4.12 Espaciado de texto, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen elementos que no son accesibles por teclado, como por ejemplo enlaces a redes sociales, el editor de textos para comentarios, elementos para ordenar resultados de búsqueda, la paginación de los resultados de búsqueda o las flechas de calendario <span className="text-gray-600 text-sm font-medium">[requisito número 9.2.1.1 Teclado, de UNE-EN 301549:2022]</span>.</li>
+              <li>Hay elementos que no reciben el foco y por tanto no se puede interactuar con ellos mediante el teclado <span className="text-gray-600 text-sm font-medium">[requisito número 9.2.4.3 Orden del foco, de UNE-EN 301549:2022]</span>.</li>
+              <li>Hay enlaces en los que no se identifica correctamente su función (tienen una descripción inadecuada, un texto demasiado genérico, un title inadecuado…) <span className="text-gray-600 text-sm font-medium">[requisito número 9.2.4.4 Propósito de los enlaces, de UNE-EN 301549:2022]</span>.</li>
+              <li>Hay encabezados con texto repetido y/o poco descriptivo <span className="text-gray-600 text-sm font-medium">[requisito número 9.2.4.6 Encabezados y etiquetas, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen imágenes, infografías, textos de enlaces o botones, texto de titulares y contenido que no están traducidos a otros idiomas <span className="text-gray-600 text-sm font-medium">[requisito número 9.3.1.2 Idioma de las partes, de UNE-EN 301549:2022]</span>.</li>
+              <li>En alguna página se está usando el mismo icono para diferentes propósitos, lo cual genera confusión <span className="text-gray-600 text-sm font-medium">[requisito número 9.3.2.4 Identificación coherente, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen mensajes de error poco descriptivos, o mensajes de error que no están agrupados en un único mensaje así como falta de sugerencias en formulario para rellenar los campos correctamente <span className="text-gray-600 text-sm font-medium">[requisito número 9.3.3.1 Identificación de errores, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen formularios con campos obligatorios donde no se informa al usuario de ello, así como campos donde falta un ejemplo textual del formato del campo <span className="text-gray-600 text-sm font-medium">[requisito número 9.3.3.2 Etiquetas e instrucciones, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen campos de formularios donde se informa del error cuando se introduce un valor incorrecto pero no se informa de una sugerencia para su corrección <span className="text-gray-600 text-sm font-medium">[requisito número 9.3.3.3 Sugerencias ante errores, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen páginas con errores de sintaxis y por tanto algún producto de apoyo puede no interpretar correctamente el contenido (IDs de página duplicados, etiquetas sin cerrar, construcción incorrecta de etiquetas…) <span className="text-gray-600 text-sm font-medium">[requisito número 9.4.1.1 Procesamiento, de UNE-EN 301549:2022]</span>.</li>
+              <li>Existen páginas en las que los productos de apoyo no van a poder obtener información, interactuar y estar al corriente del estado de los controles de interfaz de usuario que no podrán ser leídos por lectores de pantalla en el momento en el que aparecen <span className="text-gray-600 text-sm font-medium">[requisito número 9.4.1.2 Nombre, función, valor de UNE-EN 301549:2022]</span>.</li>
+              <li>Podrían existir fallos puntuales de edición en alguna página web.</li>
+            </ul>
 
-    return (
-        <main className="min-h-screen pt-48 pb-24 px-6 relative bg-nautical-black">
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+            <h3 className="text-xl font-bold text-red-600 mt-8 mb-4">2. Carga desproporcionada</h3>
+            <ul className="list-disc pl-5 space-y-2 text-black">
+              <li>No aplica.</li>
+            </ul>
 
-            <div className="container mx-auto max-w-4xl">
-                <header className="mb-16">
-                    <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-6 block">
-                        Getxo Bela Eskola
-                    </span>
-                    <h1 className="text-4xl md:text-6xl font-display text-white mb-8 italic">
-                        {isEu ? 'Irisgarritasun Adierazpena' : 'Declaración de Accesibilidad'}
-                    </h1>
-                    <div className="w-24 h-px bg-accent/40" />
-                </header>
+            <h3 className="text-xl font-bold text-red-600 mt-8 mb-4">3. El contenido no entra dentro del ámbito de la legislación aplicable</h3>
+            <ul className="list-disc pl-5 space-y-2 text-black">
+              <li>Podrían existir archivos ofimáticos en PDF u otros formatos publicados antes del 20 de septiembre de 2018 que no cumplan en su totalidad todos los requisitos de accesibilidad. Aunque se ha procurado que la mayoría de ellos sí lo cumplan.</li>
+            </ul>
+          </div>
 
-                <div className="prose prose-invert max-w-none text-foreground/80 font-light leading-loose space-y-10">
-                    <section className="bg-white/5 p-8 rounded-sm border border-white/10">
-                        <p className="text-foreground/80 leading-relaxed">
-                            {isEu
-                                ? 'Getxo Bela Eskola (getxobelaeskola.com) bere webgunea irisgarri egiteko konpromisoa hartu du, 1112/2018 Errege Dekretuaren arabera, sektore publikoko webguneen eta gailu mugikorretarako aplikazioen irisgarritasunari buruzkoa, eta Kit Digitalaren baldintzak betez.'
-                                : 'Getxo Bela Eskola (getxobelaeskola.com) se ha comprometido a hacer accesible su sitio web de conformidad con el Real Decreto 1112/2018, de 7 de septiembre, sobre accesibilidad de los sitios web y aplicaciones para dispositivos móviles del sector público, así como con los requerimientos del programa Kit Digital.'}
-                        </p>
-                    </section>
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-black mt-12 mb-4">Preparación de la presente declaración de accesibilidad</h2>
+          <p>La presente declaración fue preparada el <strong className="text-black">29/07/2026</strong>.</p>
+          <p>El método empleado para preparar la declaración ha sido una autoevaluación llevada a cabo por la propia entidad.</p>
+          <p>Última revisión de la declaración: <strong className="text-black">29/07/2026</strong>.</p>
 
-                    <div>
-                        <h2 className="text-2xl font-display text-white mb-4">
-                            {isEu ? '1. Betetze egoera' : '1. Situación de cumplimiento'}
-                        </h2>
-                        <p>
-                            {isEu
-                                ? 'Webgune hau WCAG 2.1 AA mailarekin partially compliant (partzialki ados) dago, jarraian zerrendatzen diren desbideratzeen ondorioz.'
-                                : 'Este sitio web es parcialmente conforme con el nivel AA de las Pautas de Accesibilidad para el Contenido Web (WCAG 2.1) debido a las excepciones y a la falta de conformidad de los aspectos detallados a continuación.'}
-                        </p>
-                    </div>
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-black mt-12 mb-4">Observaciones y datos de contacto</h2>
+          <p>Puede realizar comunicaciones sobre requisitos de accesibilidad (artículo 10.2.a) del RD 1112/2018) como por ejemplo:</p>
+          <ul className="list-disc pl-5 space-y-2 text-black">
+            <li>Informar sobre cualquier posible incumplimiento por parte de este sitio web.</li>
+            <li>Transmitir otras dificultades de acceso al contenido.</li>
+            <li>Formular cualquier otra consulta o sugerencia de mejora relativa a la accesibilidad del sitio web.</li>
+          </ul>
+          <p>
+            Puede hacerlo a través de nuestra página de{' '}
+            <a href="/contacto" className="text-red-600 hover:text-red-800 font-bold underline transition-colors">
+              contacto
+            </a>.
+          </p>
 
-                    <div>
-                        <h2 className="text-2xl font-display text-white mb-4">
-                            {isEu ? '2. Irisgarria ez den edukia' : '2. Contenido no accesible'}
-                        </h2>
-                        <p>
-                            {isEu
-                                ? 'Beheko edukiak ez daude irisgarri arrazoi hauengatik:'
-                                : 'El contenido que se recoge a continuación puede no ser totalmente accesible por los siguientes motivos:'}
-                        </p>
-                        <ul className="list-disc pl-6 space-y-2 mt-4">
-                            <li>
-                                {isEu
-                                    ? 'Errege Dekretuaren 1112/2018 araudiaren araberako salbuespen teknikoak edo hirugarrenen plataformetako osagai batzuk.'
-                                    : 'Falta de conformidad con el RD 1112/2018 en algunos elementos de plataformas o widgets de terceros integrados.'}
-                            </li>
-                            <li>
-                                {isEu
-                                    ? 'Karga neurrigabea izatea irisgarritasuna lortzeko kode zaharren batzuetan.'
-                                    : 'Carga desproporcionada en algunos documentos PDF o archivos descargables antiguos.'}
-                            </li>
-                        </ul>
-                    </div>
+          <p className="mt-6">
+            Puede presentar una queja relativa al cumplimiento de los requisitos del RD 1112/2018 o una Solicitud de Información accesible relativa a:
+          </p>
+          <ul className="list-disc pl-5 space-y-2 text-black">
+            <li>Contenidos que están excluidos del ámbito de aplicación del RD 1112/2018 según lo establecido por el artículo 3, apartado 4.</li>
+            <li>Contenidos que están exentos del cumplimiento de los requisitos de accesibilidad por imponer una carga desproporcionada.</li>
+          </ul>
+          <p>
+            En la Solicitud de información accesible, se debe concretar, con toda claridad, los hechos, razones y petición que permitan constatar que se trata de una solicitud razonable y legítima.
+          </p>
 
-                    <div>
-                        <h2 className="text-2xl font-display text-white mb-4">
-                            {isEu ? '3. Irisgarritasun tresna' : '3. Herramienta de Accesibilidad'}
-                        </h2>
-                        <p>
-                            {isEu
-                                ? 'Webgune honek EqualWeb irisgarritasun-botoia integratuta dauka. Pantailaren beheko ezkerraldean dagoen ikono urdinaren bidez kontrastea, letra-tamaina, irakurlea eta bestelako laguntza-tresnak konfigura ditzakezu.'
-                                : 'Este sitio web dispone del widget de accesibilidad EqualWeb integrado. A través del icono flotante accesible en la esquina inferior izquierda, los usuarios pueden adaptar el contraste, tamaño de tipografía, lectura asistida y otras funciones personalizadas.'}
-                        </p>
-                    </div>
-
-                    <div>
-                        <h2 className="text-2xl font-display text-white mb-4">
-                            {isEu ? '4. Komunikazioa eta harremanetarako datuak' : '4. Observaciones y datos de contacto'}
-                        </h2>
-                        <p>
-                            {isEu
-                                ? 'Irisgarritasun-baldintzei buruzko komunikazioak egiteko (adibidez: jakinarazpenak, salaketak edo informazioa eskatzeko) bide honetatik egin dezakezu:'
-                                : 'Puedes realizar comunicaciones sobre requisitos de accesibilidad (incidencias, informar de posibles incumplimientos o solicitar información) a través de:'}
-                        </p>
-                        <ul className="list-disc pl-6 space-y-2 mt-4">
-                            <li>
-                                <strong>Email:</strong> <a href="mailto:info@getxobelaeskola.com" className="text-accent hover:underline">info@getxobelaeskola.com</a>
-                            </li>
-                            <li>
-                                <strong>{isEu ? 'Helbidea:' : 'Dirección:'}</strong> Muelle Arriluzea s/n, 48990 Getxo, Vizcaya
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h2 className="text-2xl font-display text-white mb-4">
-                            {isEu ? '5. Adierazpen honen prestakuntza' : '5. Preparación de la presente declaración de accesibilidad'}
-                        </h2>
-                        <p>
-                            {isEu
-                                ? 'Adierazpen hau 2026ko uztailaren 21ean prestatu zen. Ebaluazio-metodoa erakundeak berak egindako autoebaluazioa eta EqualWeb irisgarritasun-sistema erabiliz egin da.'
-                                : 'La presente declaración fue preparada el 21 de julio de 2026. El método empleado para preparar la declaración ha sido una autoevaluación realizada por la propia entidad junto con las auditorías automáticas de la herramienta EqualWeb.'}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </main>
-    );
+          <h2 className="text-2xl md:text-3xl font-display font-bold text-black mt-12 mb-4">Contenido opcional</h2>
+          <p>Este sitio web aplica los requisitos de la Norma UNE-EN 301549:2022 considerando las excepciones del RD 1112/2018.</p>
+          <p>La última revisión de la accesibilidad se ha realizado el <strong className="text-black">29/07/2026</strong>.</p>
+          <p>
+            El sitio web está optimizado para los navegadores actuales (las últimas versiones vigentes de FireFox, Safari, Opera, Edge y Google Chrome). La resolución web mínima recomendada es de 1280×1024.
+          </p>
+          <p>
+            El sitio web está diseñado para su visualización <em className="text-black font-semibold">Responsive</em>, con lo que se visualiza de forma óptima en dispositivos tablet y móviles. En estos dispositivos está optimizado para su visualización en las últimas versiones vigentes de Chrome for mobile, Firefox for mobile, Safari mobile, y navegadores nativos.
+          </p>
+        </div>
+      </div>
+    </main>
+  );
 }
