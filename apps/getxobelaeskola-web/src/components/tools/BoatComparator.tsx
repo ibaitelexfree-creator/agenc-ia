@@ -104,8 +104,10 @@ export default function BoatComparator() {
             return (
                 <div
                     key={boat.id}
-                    className={`border rounded-lg p-6 flex flex-col transition-all cursor-pointer ${
-                        isSelected ? 'border-blue-600 bg-blue-50 ring-2 ring-blue-500 ring-opacity-50' : 'border-gray-200 bg-white hover:border-blue-300'
+                    className={`relative rounded-xl p-6 flex flex-col transition-all duration-300 cursor-pointer shadow-xl bg-[#0B1B3D] border-2 ${
+                        isSelected 
+                          ? 'border-[#F4D03F] ring-4 ring-[#F4D03F]/40 shadow-2xl scale-[1.02] bg-[#0E2442]' 
+                          : 'border-[#D4AF37] hover:border-[#F4D03F] hover:shadow-2xl hover:-translate-y-1'
                     } ${isDisabled ? 'opacity-50 cursor-not-allowed' : ''}`}
                     onClick={() => !isDisabled && toggleSelection(boat.id)}
                     role="button"
@@ -119,19 +121,25 @@ export default function BoatComparator() {
                     aria-pressed={isSelected}
                     aria-disabled={isDisabled}
                 >
-                    <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-xl font-bold text-gray-900">{boat.name}</h3>
-                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${isSelected ? 'border-blue-600 bg-blue-600' : 'border-gray-300'}`}>
+                    {/* Decorative Book Cover Inner Border */}
+                    <div className="absolute inset-2 border border-[#D4AF37]/40 rounded-lg pointer-events-none" />
+
+                    <div className="flex justify-between items-start mb-4 relative z-10">
+                        <h3 className="text-xl font-bold text-[#F4D03F] tracking-wide">{boat.name}</h3>
+                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${isSelected ? 'border-[#F4D03F] bg-[#F4D03F]' : 'border-[#D4AF37]/60'}`}>
                             {isSelected && (
-                                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg className="w-4 h-4 text-[#0B1B3D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                 </svg>
                             )}
                         </div>
                     </div>
-                    <p className="text-sm text-gray-500 mb-2 font-medium">{boat.type}</p>
-                    <p className="text-sm text-gray-600 mb-4 flex-grow">{boat.description}</p>
-                    <div className="text-xs text-gray-400 mt-auto">Click para comparar</div>
+                    <p className="text-xs text-[#E5C158]/90 mb-3 font-semibold tracking-wider uppercase relative z-10">{boat.type}</p>
+                    <p className="text-sm text-[#F3E5AB] mb-4 flex-grow leading-relaxed relative z-10">{boat.description}</p>
+                    <div className="text-xs text-[#D4AF37] font-semibold mt-auto tracking-wide flex items-center gap-1 relative z-10">
+                        <span>Click para comparar</span>
+                        <span className="text-sm">→</span>
+                    </div>
                 </div>
             );
         })}
