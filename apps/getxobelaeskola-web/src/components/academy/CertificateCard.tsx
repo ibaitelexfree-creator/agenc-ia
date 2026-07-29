@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { Download, Loader2, Award } from 'lucide-react';
-import { generateCertificatePDF } from '@/lib/certificates/pdfGenerator';
+// import { generateCertificatePDF } from '@/lib/certificates/pdfGenerator';
 
 interface CertificateProps {
     certificate: any;
@@ -36,6 +36,8 @@ export default function CertificateCard({ certificate, studentName, locale }: Ce
                 'merit': 'merit',
                 'excellence': 'excellence'
             };
+
+            const { generateCertificatePDF } = await import('@/lib/certificates/pdfGenerator');
 
             await generateCertificatePDF({
                 studentName: studentName || 'Estudiante',
