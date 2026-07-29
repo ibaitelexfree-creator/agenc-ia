@@ -6,12 +6,9 @@ import '@/styles/tokens.css';
 import dynamic from 'next/dynamic';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
-const AcademyFeedbackProvider = dynamic(() => import('@/components/academy/AcademyFeedbackProvider'), { ssr: false });
-const PushNotificationInitializer = dynamic(() => import('@/components/academy/notifications/PushNotificationInitializer'), { ssr: false });
 import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import FooterWrapper from '@/components/layout/FooterWrapper';
 const ScrollUpButton = dynamic(() => import('@/components/shared/ScrollToTop'), { ssr: false });
-const OfflineSyncProvider = dynamic(() => import('@/components/offline/OfflineSyncProvider'), { ssr: false });
 import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
@@ -48,16 +45,13 @@ export default async function LocaleLayout({
       <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=5" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/home/parallax/cloud_sun_mini.webp" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp?v=3" fetchPriority="high" />
+      <link rel="preload" as="image" href="/images/home/parallax/cloud_sun_mini.webp?v=3" fetchPriority="high" />
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
-          <AcademyFeedbackProvider>
-            <FramerProvider>
-              <PushNotificationInitializer />
-              <OfflineSyncProvider />
-              <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-[320px] mx-auto overflow-x-clip">
-                <Navbar locale={locale} />
+          <FramerProvider>
+            <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-[320px] mx-auto overflow-x-clip">
+              <Navbar locale={locale} />
                 <ConditionalLayout>
                   {children}
                 </ConditionalLayout>
@@ -74,7 +68,6 @@ export default async function LocaleLayout({
               <SpeedInsights />
               <AccessibilityScript />
             </FramerProvider>
-          </AcademyFeedbackProvider>
         </NextIntlClientProvider>
       </body>
     </html>

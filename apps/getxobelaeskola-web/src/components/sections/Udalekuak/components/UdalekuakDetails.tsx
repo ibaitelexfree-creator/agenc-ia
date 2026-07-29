@@ -29,7 +29,7 @@ export default function UdalekuakDetails() {
           className={styles.sectionHeader}
         >
           <p className={styles.detailLabel} style={{ textTransform: 'uppercase', letterSpacing: '0.25em', marginBottom: '0.5rem' }}>
-            {t('eyrefbrow') || t('eyebrow')}
+            {t('eyebrow')}
           </p>
           <h2 className={styles.sectionTitle} style={{ color: 'var(--color-ocean)' }}>
             {t('title')}

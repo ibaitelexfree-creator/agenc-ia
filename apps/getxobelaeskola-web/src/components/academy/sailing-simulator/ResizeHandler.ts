@@ -2,13 +2,11 @@ import { WebGLRenderer, PerspectiveCamera } from 'three';
 
 export class ResizeHandler {
     static handleResize(
-        container: HTMLElement,
+        width: number,
+        height: number,
         renderer: WebGLRenderer,
         camera: PerspectiveCamera
     ) {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
 
@@ -20,8 +18,10 @@ export class ResizeHandler {
         renderer: WebGLRenderer,
         camera: PerspectiveCamera
     ): () => void {
-        const resizeObserver = new ResizeObserver(() => {
-            this.handleResize(container, renderer, camera);
+        const resizeObserver = new ResizeObserver((entries) => {
+            if (!entries.length) return;
+            const { width, height } = entries[0].contentRect;
+            this.handleResize(width, height, renderer, camera);
         });
 
         resizeObserver.observe(container);

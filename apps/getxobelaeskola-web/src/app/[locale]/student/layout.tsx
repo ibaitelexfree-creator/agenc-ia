@@ -1,5 +1,10 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
+import dynamic from 'next/dynamic';
+
+const AcademyFeedbackProvider = dynamic(() => import('@/components/academy/AcademyFeedbackProvider'), { ssr: false });
+const PushNotificationInitializer = dynamic(() => import('@/components/academy/notifications/PushNotificationInitializer'), { ssr: false });
+const OfflineSyncProvider = dynamic(() => import('@/components/offline/OfflineSyncProvider'), { ssr: false });
 
 export default async function StudentLayout({
     children,
@@ -24,5 +29,11 @@ export default async function StudentLayout({
         }
     }
 
-    return <>{children}</>;
+    return (
+        <AcademyFeedbackProvider>
+            <PushNotificationInitializer />
+            <OfflineSyncProvider />
+            {children}
+        </AcademyFeedbackProvider>
+    );
 }

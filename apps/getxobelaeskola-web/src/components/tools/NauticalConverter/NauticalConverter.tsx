@@ -35,7 +35,7 @@ interface HistoryItem {
 }
 
 export default function NauticalConverter() {
-    const t = useTranslations('tools.converter');
+    const t = useTranslations('nautical_converter');
 
     const [activeTab, setActiveTab] = useState<ConversionType>('speed');
     const [inputValue, setInputValue] = useState<string>('');

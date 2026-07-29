@@ -25,17 +25,31 @@ export function useMagneticField(
     if (disabled) return;
     if (typeof window === 'undefined') return;
 
-    function handlePointerMove(e: PointerEvent) {
+    // Cache bounds
+    const boundsRef = { left: 0, top: 0, width: 0, height: 0 };
+    const updateBounds = () => {
       const el = targetRef.current;
       if (!el) return;
-
-      // Recalcular SIEMPRE el rect: nunca cachearlo. El scroll puede haber
-      // movido el botón desde el último evento sin disparar un resize.
       const rect = el.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = e.clientX - cx;
-      const dy = e.clientY - cy;
+      boundsRef.left = rect.left + window.scrollX;
+      boundsRef.top = rect.top + window.scrollY;
+      boundsRef.width = rect.width;
+      boundsRef.height = rect.height;
+    };
+
+    const resizeObserver = new ResizeObserver(updateBounds);
+    if (targetRef.current) resizeObserver.observe(targetRef.current);
+    window.addEventListener('resize', updateBounds, { passive: true });
+    updateBounds();
+
+    function handlePointerMove(e: PointerEvent) {
+      const el = targetRef.current;
+      if (!el || !boundsRef.width) return;
+
+      const cx = boundsRef.left + boundsRef.width / 2;
+      const cy = boundsRef.top + boundsRef.height / 2;
+      const dx = e.pageX - cx;
+      const dy = e.pageY - cy;
       const distance = Math.hypot(dx, dy);
 
       if (distance < radius) {
@@ -51,7 +65,11 @@ export function useMagneticField(
     }
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    return () => window.removeEventListener('pointermove', handlePointerMove);
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('resize', updateBounds);
+      resizeObserver.disconnect();
+    };
   }, [targetRef, radius, disabled, rawInfluence, rawPullX, rawPullY]);
 
   return { pullX, pullY, influence };

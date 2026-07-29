@@ -41,6 +41,20 @@ export default function CollaboratorsGrid() {
     }, [filteredCollaborators, isSearching]);
 
     // Continuous GPU-accelerated spring-lerp transform loop
+    const singleSetWidthRef = useRef<number>(0);
+
+    useEffect(() => {
+        if (!trackRef.current) return;
+        const resizeObserver = new ResizeObserver(() => {
+            if (trackRef.current) {
+                singleSetWidthRef.current = trackRef.current.scrollWidth / 3;
+            }
+        });
+        resizeObserver.observe(trackRef.current);
+        
+        return () => resizeObserver.disconnect();
+    }, [filteredCollaborators]);
+
     useEffect(() => {
         if (isSearching || filteredCollaborators.length === 0) {
             if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
@@ -65,7 +79,7 @@ export default function CollaboratorsGrid() {
                 currentOffsetRef.current += diff * Math.min(delta * 7.5, 0.25);
 
                 // Seamless infinite loop wrap
-                const singleSetWidth = trackRef.current.scrollWidth / 3;
+                const singleSetWidth = singleSetWidthRef.current;
                 if (singleSetWidth > 50) {
                     if (targetOffsetRef.current >= singleSetWidth) {
                         targetOffsetRef.current -= singleSetWidth;
