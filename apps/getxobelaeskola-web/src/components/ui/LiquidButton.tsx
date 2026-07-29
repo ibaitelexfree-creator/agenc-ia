@@ -26,11 +26,28 @@ export function LiquidButton({
   const [btnWidth, setBtnWidth] = useState(240)
   const [btnHeight, setBtnHeight] = useState(60)
 
+  const boundsRef = useRef({ left: 0, top: 0, width: 0, height: 0 })
   useEffect(() => {
     const btn = buttonRef.current
-    if (btn) {
-      setBtnWidth(btn.offsetWidth)
-      setBtnHeight(btn.offsetHeight)
+    if (!btn) return
+    const updateBounds = () => {
+      const rect = btn.getBoundingClientRect()
+      boundsRef.current = {
+        left: rect.left + window.scrollX,
+        top: rect.top + window.scrollY,
+        width: rect.width,
+        height: rect.height
+      }
+      setBtnWidth(rect.width)
+      setBtnHeight(rect.height)
+    }
+    const ro = new ResizeObserver(updateBounds)
+    ro.observe(btn)
+    window.addEventListener('resize', updateBounds, { passive: true })
+    updateBounds()
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', updateBounds)
     }
   }, [])
 
@@ -172,12 +189,11 @@ export function LiquidButton({
   )
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const btn = buttonRef.current
-    if (!btn) return
-    const rect = btn.getBoundingClientRect()
+    const bounds = boundsRef.current
+    if (bounds.width === 0) return
     
-    const x = (e.clientX - rect.left) / rect.width
-    const y = (e.clientY - rect.top) / rect.height
+    const x = (e.pageX - bounds.left) / bounds.width
+    const y = (e.pageY - bounds.top) / bounds.height
     
     mouseX.set(x)
     mouseY.set(y)
