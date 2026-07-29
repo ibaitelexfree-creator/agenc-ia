@@ -207,10 +207,10 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-black text-sea-foam/20 mb-12">
-                    <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium">{t('privacy')}</Link>
-                    <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium">{t('cookies')}</Link>
-                    <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium">{t('accessibility')}</Link>
+                <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-3 text-[9px] md:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/20 mb-12 text-center max-w-full px-4">
+                    <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium break-words">{t('privacy')}</Link>
+                    <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium break-words">{t('cookies')}</Link>
+                    <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium break-words">{t('accessibility')}</Link>
                 </div>
 
                 <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">

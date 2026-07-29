@@ -15,13 +15,13 @@ export default async function PrivacyPage({ params: { locale } }: { params: { lo
     const t = await getTranslations({ locale, namespace: 'legal' });
 
     return (
-        <main className="min-h-screen bg-white text-black py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+        <main className="min-h-screen bg-white text-black pt-28 sm:pt-32 md:pt-36 pb-16 sm:pb-20 md:pb-24 px-4 sm:px-6 lg:px-8">
             <div className="container mx-auto max-w-4xl">
                 <header className="mb-8 md:mb-10">
-                    <span className="text-red-600 uppercase tracking-[0.3em] sm:tracking-[0.5em] text-xs sm:text-sm font-bold mb-3 block">
+                    <span className="text-red-600 uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.5em] text-xs sm:text-sm md:text-base font-bold mb-3 block break-words">
                         Getxo Getxo Bela Eskola
                     </span>
-                    <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-black mb-6 italic">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-black mb-6 italic leading-tight break-words">
                         {t('privacy_title')}
                     </h1>
                     <div className="w-24 h-px bg-red-600/40" />
