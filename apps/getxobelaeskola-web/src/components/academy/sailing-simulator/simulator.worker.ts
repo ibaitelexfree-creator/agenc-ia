@@ -36,7 +36,8 @@ import { ScoringManager } from './ScoringManager';
 import { WindEffectManager } from './WindEffectManager';
 import { FloatingTextManager } from './FloatingTextManager';
 import * as turf from '@turf/turf';
-import waterGeometryData from '../../../data/geospatial/water-geometry.json';
+
+let waterGeometryData: any = null;
 
 // Mapping simulator context to real world for geofencing
 const REAL_WORLD_CENTER = { lat: 43.3485, lng: -3.0185 }; // Getxo Port area
@@ -44,13 +45,13 @@ const LAT_SCALE = 1 / 111320; // 1 meter approx
 const LNG_SCALE = 1 / 81000;  // 1 meter approx at 43 deg lat
 
 function checkWaterCollision(pos: Vector3): boolean {
+    if (!waterGeometryData) return true;
     const lat = REAL_WORLD_CENTER.lat - (pos.z * LAT_SCALE);
     const lng = REAL_WORLD_CENTER.lng + (pos.x * LNG_SCALE);
     const point = turf.point([lng, lat]);
 
-    const collection = waterGeometryData as any;
-    if (collection.features) {
-        return collection.features.some((f: any) => turf.booleanPointInPolygon(point, f));
+    if (waterGeometryData.features) {
+        return waterGeometryData.features.some((f: any) => turf.booleanPointInPolygon(point, f));
     }
     return true; // Default to water if data structure is unexpected
 }
@@ -101,6 +102,11 @@ function init(canvas: OffscreenCanvas, width: number, height: number, pixelRatio
     scene = context.scene;
     camera = context.camera;
     renderer = context.renderer;
+
+    fetch('/data/geospatial/water-geometry.json')
+        .then(res => res.json())
+        .then(data => { waterGeometryData = data; })
+        .catch(err => console.error('Error loading water geometry:', err));
 
     environment = new EnvironmentManager(scene);
     wind = new WindManager(Math.PI / 4, 12);
