@@ -1,7 +1,5 @@
 import * as turf from '@turf/turf';
 import RBush from 'rbush';
-import waterGeometryData from '@/data/geospatial/water-geometry.json';
-
 // Define types for our spatial index
 interface GeoJSONFeature {
     type: 'Feature';
@@ -24,22 +22,27 @@ interface SpatialItem {
 // We use a global variable so the index persists across API calls in a serverless environment (like Vercel)
 // as long as the container is warm.
 let spatialIndex: any | null = null; // Use any to bypass strict type check for now, RBush<SpatialItem>
+let isInitializing = false;
 
 export function _resetSpatialIndex() {
     spatialIndex = null;
+    isInitializing = false;
 }
 
 /**
  * Loads the water polygon data from the GeoJSON file and builds the spatial index.
  * This function should be called once at startup or lazily when needed.
  */
-function initializeSpatialIndex() {
-    if (spatialIndex) return;
+async function initializeSpatialIndex() {
+    if (spatialIndex || isInitializing) return;
+    isInitializing = true;
 
     try {
+        // Dynamic import so it splits into a separate chunk and doesn't bloat the initial load JS
+        const { default: waterGeometryData } = await import('@/data/geospatial/water-geometry.json');
         const geojson = waterGeometryData as any;
 
-        spatialIndex = new RBush();
+        const newIndex = new RBush();
         const items: SpatialItem[] = [];
 
         // Support for FeatureCollection
@@ -83,13 +86,16 @@ function initializeSpatialIndex() {
             }
         }
 
-        spatialIndex.load(items);
+        newIndex.load(items);
+        spatialIndex = newIndex;
         console.log(`Spatial index initialized with ${items.length} water polygons.`);
 
     } catch (error) {
         console.error('Error initializing spatial index:', error);
         // Ensure index is not null to prevent repeated failures
         spatialIndex = new RBush();
+    } finally {
+        isInitializing = false;
     }
 }
 

@@ -34,8 +34,20 @@ export function useMagneticCursor<T extends HTMLElement>(
     const el = ref.current
     if (!el) return
 
+    let cachedRect: DOMRect | null = null
+    let lastRectUpdate = 0
+
+    const updateRect = () => {
+      const now = performance.now()
+      if (!cachedRect || now - lastRectUpdate > 200) {
+        cachedRect = el.getBoundingClientRect()
+        lastRectUpdate = now
+      }
+      return cachedRect
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect()
+      const rect = updateRect()
       const centerX = rect.left + rect.width / 2
       const centerY = rect.top + rect.height / 2
       const dx = e.clientX - centerX
@@ -56,11 +68,20 @@ export function useMagneticCursor<T extends HTMLElement>(
       magnetY.set(0)
     }
 
-    window.addEventListener('mousemove', handleMouseMove)
-    el.addEventListener('mouseleave', handleMouseLeave)
+    // Update rect on scroll or resize just in case
+    const handleScrollResize = () => {
+      lastRectUpdate = 0 // Force update next time
+    }
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    window.addEventListener('scroll', handleScrollResize, { passive: true })
+    window.addEventListener('resize', handleScrollResize, { passive: true })
+    el.addEventListener('mouseleave', handleMouseLeave, { passive: true })
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('scroll', handleScrollResize)
+      window.removeEventListener('resize', handleScrollResize)
       el.removeEventListener('mouseleave', handleMouseLeave)
     }
   }, [ref, magnetX, magnetY, strength, radius])

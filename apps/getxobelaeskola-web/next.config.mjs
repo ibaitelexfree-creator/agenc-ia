@@ -6,6 +6,7 @@ const isCapacitor = process.env.IS_CAPACITOR === 'true';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    productionBrowserSourceMaps: true,
     trailingSlash: true,
     images: {
         unoptimized: isCapacitor,

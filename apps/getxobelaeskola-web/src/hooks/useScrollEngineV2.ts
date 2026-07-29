@@ -88,12 +88,21 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     //   S6: plateau 0.96–1.00  → midpoint 0.98
     const SECTION_PROGRESS = [0.04, 0.20, 0.36, 0.52, 0.68, 0.84, 0.98]
 
+    let cachedMaxScroll: number | null = null
     const getMaxScroll = () => {
+      if (cachedMaxScroll !== null) return cachedMaxScroll
+      
       const c = containerRef.current
-      return c
+      cachedMaxScroll = c
         ? c.offsetHeight - window.innerHeight
         : document.documentElement.scrollHeight - window.innerHeight
+      return cachedMaxScroll
     }
+    
+    const handleResizeForScroll = () => {
+      cachedMaxScroll = null
+    }
+    window.addEventListener('resize', handleResizeForScroll, { passive: true })
 
     // Instant snap — used for Tab navigation only.
     // We lock isAnimating, jump the scroll position, then re-assert after 200ms
@@ -423,6 +432,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       document.body.style.overflow = ''
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
+      window.removeEventListener('resize', handleResizeForScroll)
     }
   }, [])
 
