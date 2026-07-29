@@ -150,7 +150,7 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <header className="max-w-4xl">
                         <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-4 block animate-fade-in-up">
                             {t('header_eyebrow')}
@@ -168,7 +168,7 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
 
             {/* Experiences Grid */}
             <section className="pb-48 relative">
-                <div className="container mx-auto px-6 relative z-10">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <ExperiencesClient experiences={experiences} locale={locale} />
                 </div>
 

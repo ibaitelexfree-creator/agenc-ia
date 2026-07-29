@@ -118,7 +118,7 @@ export default function ExperiencesClient({
             {/* Results count message */}
             <div className="flex items-center gap-4">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent" />
-                <span className="text-[10px] uppercase tracking-[0.4em] text-sea-foam/40 font-medium">
+                <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.4em] text-sea-foam/40 font-medium text-center">
                     {filteredExperiences.length} {locale === 'eu' ? 'esperientzia' : locale === 'en' ? 'experiences' : 'experiencias'} {locale === 'eu' ? 'aurkitu dira' : 'encontradas'}
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent" />
@@ -129,7 +129,7 @@ export default function ExperiencesClient({
                 <StaggeredEntrance
                     type="recombine"
                     staggerDelay={0.15}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12"
                 >
                     {filteredExperiences.map((exp) => (
                         <div key={exp.id} className="h-full">

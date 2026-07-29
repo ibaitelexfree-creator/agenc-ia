@@ -62,6 +62,7 @@
 | T-051 | Antigravity | Fix Framer Motion layoutId waypoint bounce bug by using native CSS translate property in SailboatAccesoButton style | 2026-07-23 | completado |
 | T-052 | Antigravity | Revert AboutValuesSection back to original layout and styling per user request | 2026-07-27 | completado |
 | T-053 | Antigravity | Reduce 5 video blob cards to equal smaller size on tablet screens (768px-1023px) to prevent covering MEMBERS ACCESS text | 2026-07-27 | completado |
+| T-054 | Antigravity | Fix experience cards (Birthday BigSub, etc.) visibility & fluid animation scaling down to 192px mobile screen width | 2026-07-29 | completado |
 
 
 

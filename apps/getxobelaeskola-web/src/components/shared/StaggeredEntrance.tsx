@@ -128,7 +128,7 @@ export default function StaggeredEntrance({
             initial="hidden"
             animate={inView ? undefined : "show"}
             whileInView={inView ? "show" : undefined}
-            viewport={inView ? { once: false, amount: 0.15 } : undefined}
+            viewport={inView ? { once: false, amount: 0.001 } : undefined}
             className={className}
         >
             {animatedChildren}
