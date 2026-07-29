@@ -2,7 +2,7 @@
 'use client'
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 
 interface BoatParallaxCardProps {
@@ -41,8 +41,6 @@ export function BoatParallaxCard({
   const waveX = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { stiffness: 90, damping: 15 })
 
   const boundsRef = useRef({ left: 0, top: 0, width: 0, height: 0 })
-
-  import { useEffect } from 'react'
   useEffect(() => {
     const el = containerRef.current
     if (!el) return

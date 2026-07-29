@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useMagicMotion } from "@/lib/useMagicMotion";
 
@@ -15,10 +15,10 @@ export default function MagneticCTA({ href, children }: MagneticCTAProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
+  const springY = useSpring(y, { stiffness: 150, damping: 15 });
   const boundsRef = useRef({ left: 0, top: 0, width: 0, height: 0 });
 
   // Cache bounds on mount and resize
-  import { useEffect } from "react";
   useEffect(() => {
     if (!ref.current) return;
     const updateBounds = () => {

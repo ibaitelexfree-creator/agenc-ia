@@ -185,11 +185,10 @@ export function LiquidButton({
         <motion.span
           key={r.id}
           className="pointer-events-none absolute rounded-full border border-white/50"
-          style={{ left: r.x, top: r.y, x: '-50%', y: '-50%' }}
-          initial={{ width: 0, height: 0, opacity: 0.6 }}
+          style={{ left: r.x, top: r.y, x: '-50%', y: '-50%', width: RIPPLE_MAX_RADIUS_PX * 2, height: RIPPLE_MAX_RADIUS_PX * 2 }}
+          initial={{ scale: 0, opacity: 0.6 }}
           animate={{
-            width: RIPPLE_MAX_RADIUS_PX * 2,
-            height: RIPPLE_MAX_RADIUS_PX * 2,
+            scale: 1,
             opacity: 0,
           }}
           transition={{ duration: RIPPLE_DURATION_MS / 1000, ease: [0.19, 1, 0.22, 1] }}

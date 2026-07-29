@@ -109,10 +109,11 @@ export default function BoatMastery({ data }: BoatMasteryProps) {
                                 </div>
                                 <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
                                     <motion.div
-                                        initial={{ width: 0 }}
-                                        animate={{ width: `${boat.progress}%` }}
+                                        initial={{ scaleX: 0 }}
+                                        animate={{ scaleX: boat.progress / 100 }}
                                         transition={{ duration: 1, delay: 0.5 + (index * 0.1) }}
-                                        className={`h-full rounded-full ${boat.level === 'Maestro' ? 'bg-gradient-to-r from-yellow-600 to-yellow-400' :
+                                        style={{ originX: 0 }}
+                                        className={`h-full w-full rounded-full ${boat.level === 'Maestro' ? 'bg-gradient-to-r from-yellow-600 to-yellow-400' :
                                             boat.level === 'Avanzado' ? 'bg-gradient-to-r from-blue-600 to-blue-400' :
                                                 'bg-gradient-to-r from-white/20 to-white/40'
                                             }`}
