@@ -40,15 +40,15 @@ export const TideChart: React.FC<TideChartProps> = ({ currentTime }) => {
     const currentY = height - (currentTide.height / maxLevel) * height;
 
     return (
-        <div className="w-full bg-slate-900/80 rounded-xl p-6 border border-slate-700/50 backdrop-blur-sm shadow-xl">
-            <div className="flex justify-between items-end mb-6">
+        <div className="w-full bg-slate-900/80 rounded-xl p-3.5 sm:p-6 border border-slate-700/50 backdrop-blur-sm shadow-xl">
+            <div className="flex justify-between items-end mb-4 sm:mb-6 gap-2">
                 <div>
-                    <h3 className="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-1">Marea Actual (Bilbao)</h3>
-                    <div className="flex items-baseline gap-2">
-                        <span className="text-3xl font-black text-white font-mono tracking-tight">
+                    <h3 className="text-slate-400 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-1">Marea Actual (Bilbao)</h3>
+                    <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                        <span className="text-2xl sm:text-3xl font-black text-white font-mono tracking-tight">
                             {currentTide.height.toFixed(2)}m
                         </span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                        <span className={`text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full ${
                             currentTide.phase === 'rising'
                                 ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
                                 : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
@@ -57,9 +57,9 @@ export const TideChart: React.FC<TideChartProps> = ({ currentTime }) => {
                         </span>
                     </div>
                 </div>
-                <div className="text-right">
-                    <div className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-1">Hora Simulación</div>
-                    <div className="text-xl font-mono text-white tracking-tight">
+                <div className="text-right shrink-0">
+                    <div className="text-slate-500 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest mb-1">Hora Simulación</div>
+                    <div className="text-lg sm:text-xl font-mono text-white tracking-tight">
                         {currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </div>
                 </div>
@@ -141,7 +141,7 @@ export const TideChart: React.FC<TideChartProps> = ({ currentTime }) => {
                 </svg>
 
                 {/* X-Axis Labels */}
-                <div className="flex justify-between mt-2 text-[10px] text-slate-500 font-mono px-0.5">
+                <div className="flex justify-between mt-2 text-[9px] sm:text-[10px] text-slate-500 font-mono px-0.5">
                     <span>00:00</span>
                     <span>06:00</span>
                     <span>12:00</span>
