@@ -64,7 +64,7 @@ export const TideLabContainer: React.FC = () => {
     // Note: getTideLevel is called inside TideChart, no need to pass it here unless we want to display it somewhere else.
 
     return (
-        <div className="flex flex-col min-h-[calc(100vh-64px)] lg:h-[calc(100vh-80px)] gap-4 p-3 sm:p-4 lg:p-6 bg-slate-950 overflow-y-auto lg:overflow-hidden">
+        <div className="flex flex-col pt-28 sm:pt-32 lg:pt-28 pb-4 sm:pb-6 px-3 sm:px-4 lg:px-6 min-h-screen lg:h-screen gap-4 bg-slate-950 overflow-y-auto lg:overflow-hidden box-border">
             <header className="flex flex-col gap-1 shrink-0">
                 <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
                     Lab de Mareas: Abra de Bilbao
