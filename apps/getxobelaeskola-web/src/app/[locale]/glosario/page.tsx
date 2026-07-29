@@ -122,8 +122,7 @@ export default function GlossaryPage({ params: { locale } }: { params: { locale:
 
                 {/* Results Count */}
                 <div className="text-sea-foam/50 text-sm mb-6 font-mono">
-                    {filteredTerms.length} {t('no_results').replace('No se encontraron', '').replace('para tu búsqueda', '').trim()}
-                    {filteredTerms.length === 1 ? 'término' : 'términos'}
+                    {filteredTerms.length} {filteredTerms.length === 1 ? 'término' : 'términos'}
                 </div>
 
                 {/* Terms Grid */}
