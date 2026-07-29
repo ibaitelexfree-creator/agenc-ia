@@ -10,7 +10,7 @@ import {
     ShoppingBag, BookOpen, Heart, Briefcase, Clock, MapPin,
     Instagram, Facebook, Youtube, User as UserIcon, Search, ShoppingCart
 } from 'lucide-react';
-import { createClient } from '@/lib/supabase/client';
+// Supabase dynamically imported below to avoid blocking main bundle
 import { apiUrl } from '@/lib/api';
 import dynamic from 'next/dynamic';
 import { User } from '@supabase/supabase-js';
@@ -96,9 +96,11 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     };
 
     useEffect(() => {
-        const supabase = createClient();
         (async () => {
             try {
+                // Dynamically import Supabase to split it into a separate chunk
+                const { createClient } = await import('@/lib/supabase/client');
+                const supabase = createClient();
                 const { data: { user: authUser } } = await supabase.auth.getUser();
                 if (authUser) {
                     const res = await fetch(apiUrl(`/api/profile?user_id=${authUser.id}`));
@@ -125,6 +127,7 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     }, [loading]);
 
     const handleLogout = async () => {
+        const { createClient } = await import('@/lib/supabase/client');
         const supabase = createClient();
         await supabase.auth.signOut();
         setUser(null);

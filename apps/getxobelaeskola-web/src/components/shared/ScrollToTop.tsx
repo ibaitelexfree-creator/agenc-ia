@@ -7,23 +7,8 @@ export default function ScrollToTop() {
     const [isVisible, setIsVisible] = useState(false);
     const pathname = usePathname();
 
-    // 1. Force scroll to top on mount/navigation
-    useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
-
-        const resetScroll = () => {
-            window.scrollTo({ top: 0, behavior: 'instant' });
-        };
-
-        // Aggressive reset for slow browsers
-        const timer = setTimeout(resetScroll, 0);
-        const timer2 = setTimeout(resetScroll, 50);
-
-        return () => {
-            clearTimeout(timer);
-            clearTimeout(timer2);
-        };
-    }, [pathname]);
+    // Removed manual scroll-to-top on mount to prevent massive layout reflows (433ms).
+    // Next.js handles route transition scrolling natively.
 
     // 2. Show button on scroll
     useEffect(() => {
