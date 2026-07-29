@@ -132,7 +132,7 @@ export function Section1Hero() {
   useEffect(() => {
     let isMounted = true
     const assets = [
-      { url: '/images/home/parallax/tierra.webp?v=3', setLoaded: setTierraLoaded },
+      { url: '/images/home/parallax/tierra.webp?v=5', setLoaded: setTierraLoaded },
       { url: '/images/home/parallax/cielo%20extendido%20v2.webp?v=3', setLoaded: setNubesLoaded },
       { url: '/images/home/parallax/velero.webp?v=3', setLoaded: setBarcoLoaded },
     ]
@@ -355,7 +355,7 @@ export function Section1Hero() {
           }}
         >
           <img
-            src="/images/home/parallax/tierra.webp?v=3"
+            src="/images/home/parallax/tierra.webp?v=5"
             alt="Costa y mar del Abra de Getxo"
             fetchPriority="high"
             onLoad={() => setTierraLoaded(true)}

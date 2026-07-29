@@ -116,181 +116,180 @@ export default function WeatherPremium({ refreshInterval = 600000, showFleetMoni
                 )}
             </AnimatePresence>
 
-            <div className={`grid grid-cols-1 ${showFleetMonitor ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-4 lg:gap-6`}>
-                {/* WIND GAUGE - PREMIUM */}
+            {/* STACKED HORIZONTAL ROWS LAYOUT */}
+            <div className="space-y-4">
+                {/* FILA 1: VIENTO HOY */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden group shadow-2xl transition-all"
+                    className="glass-card border border-black/10 rounded-sm p-5 shadow-sm relative overflow-hidden group"
                 >
-                    <div className="absolute top-0 right-0 p-4 opacity-[0.05] pointer-events-none group-hover:scale-125 transition-transform duration-1000">
-                        <Wind size={120} />
+                    <div className="absolute top-0 right-0 p-2 opacity-5 pointer-events-none group-hover:scale-110 transition-transform">
+                        <Wind size={80} className="text-black" />
                     </div>
-
-                    <header className="flex justify-between items-center mb-6">
+                    <header className="flex justify-between items-center mb-3">
                         <div>
-                            <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-1">Viento Hoy</span>
-                            <h4 className="text-black/40 text-[9px] uppercase tracking-widest flex items-center gap-2">
+                            <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block">Viento Hoy</span>
+                            <h4 className="text-black/60 text-[9px] uppercase tracking-widest flex items-center gap-1.5 mt-0.5 font-bold">
                                 <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                                 {weather.station}
                             </h4>
                         </div>
-                        <button onClick={fetchData} disabled={isRefreshing}>
-                            <RefreshCw size={14} className={`text-black/20 hover:text-accent transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
+                        <button onClick={fetchData} disabled={isRefreshing} className="p-1 hover:bg-black/5 rounded-full transition-colors">
+                            <RefreshCw size={14} className={`text-black/40 hover:text-accent transition-colors ${isRefreshing ? 'animate-spin' : ''}`} />
                         </button>
                     </header>
 
-                    <div className="flex flex-col items-center justify-center py-4">
-                        <div className="relative w-40 h-40">
-                            <svg className="w-full h-full transform -rotate-90">
-                                <circle cx="80" cy="80" r="74" fill="transparent" stroke="currentColor" strokeWidth="4" className="text-black/5" />
-                                <motion.circle
-                                    cx="80"
-                                    cy="80"
-                                    r="74"
-                                    fill="transparent"
-                                    stroke="currentColor"
-                                    strokeWidth="8"
-                                    strokeDasharray={465}
-                                    initial={{ strokeDashoffset: 465 }}
-                                    animate={{ strokeDashoffset: 465 - (465 * Math.min(weather.knots, 40)) / 40 }}
-                                    className="text-accent drop-shadow-[0_0_8px_rgba(var(--accent-rgb),0.5)] transition-all duration-1000"
-                                />
-                            </svg>
-                            <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <span className="text-6xl font-display text-black italic tracking-tighter transition-all group-hover:scale-110">{weather.knots}</span>
-                                <span className="text-xs uppercase tracking-[0.3em] text-accent font-black">NUDOS</span>
+                    <div className="flex items-center justify-between gap-4 py-1">
+                        <div className="flex items-center gap-4">
+                            <div className="relative w-20 h-20 shrink-0">
+                                <svg className="w-full h-full transform -rotate-90">
+                                    <circle cx="40" cy="40" r="35" fill="transparent" stroke="currentColor" strokeWidth="3" className="text-black/10" />
+                                    <motion.circle
+                                        cx="40"
+                                        cy="40"
+                                        r="35"
+                                        fill="transparent"
+                                        stroke="currentColor"
+                                        strokeWidth="5"
+                                        strokeDasharray={220}
+                                        initial={{ strokeDashoffset: 220 }}
+                                        animate={{ strokeDashoffset: 220 - (220 * Math.min(weather.knots, 40)) / 40 }}
+                                        className="text-accent transition-all duration-1000"
+                                    />
+                                </svg>
+                                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span className="text-2xl font-display text-black italic tracking-tighter font-bold">{weather.knots}</span>
+                                    <span className="text-[8px] uppercase tracking-widest text-accent font-black">NUDOS</span>
+                                </div>
+                            </div>
+                            <div>
+                                <p className="text-lg text-black font-display italic font-bold">{weather.kmh} <span className="text-black/60 text-xs font-normal">km/h</span></p>
+                                <p className="text-[10px] text-black/60 font-mono mt-0.5">Estación Getxo</p>
                             </div>
                         </div>
-                        <div className="mt-6 text-center space-y-1">
-                            <p className="text-lg text-black font-display italic">{weather.kmh} <span className="text-black/40 text-xs">km/h</span></p>
-                            <div className="flex items-center gap-4 py-2 px-6 bg-black/5 rounded-full border border-black/5">
-                                <span className="flex items-center gap-1.5 text-brass-gold text-[10px] font-black uppercase tracking-widest border-r border-black/10 pr-4">
-                                    <Navigation size={10} style={{ transform: `rotate(${weather.direction}deg)` }} />
-                                    {weather.direction}°
-                                </span>
-                                <span className="flex items-center gap-1.5 text-sea-foam text-[10px] font-black uppercase tracking-widest pl-2">
-                                    <Thermometer size={10} />
-                                    {weather.temp}°C
-                                </span>
-                            </div>
+
+                        <div className="flex flex-col gap-1.5 items-end border-l border-black/10 pl-4">
+                            <span className="flex items-center gap-1.5 text-brass-gold text-[10px] font-black uppercase tracking-widest">
+                                <Navigation size={12} style={{ transform: `rotate(${weather.direction}deg)` }} />
+                                {weather.direction}°
+                            </span>
+                            <span className="flex items-center gap-1.5 text-emerald-600 text-[10px] font-black uppercase tracking-widest">
+                                <Thermometer size={12} />
+                                {weather.temp}°C
+                            </span>
                         </div>
                     </div>
                 </motion.div>
 
-                {/* MONITOR FLOTA */}
+                {/* FILA 2: MONITOR FLOTA */}
                 {showFleetMonitor && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col justify-between transition-all"
+                        className="glass-card border border-black/10 rounded-sm p-5 shadow-sm relative overflow-hidden group"
                     >
-                        <div className="absolute top-0 right-0 p-4 opacity-[0.03] pointer-events-none">
-                            <LifeBuoy size={100} />
+                        <div className="absolute top-0 right-0 p-2 opacity-5 pointer-events-none">
+                            <LifeBuoy size={80} className="text-black" />
                         </div>
-
-                        <header className="mb-8">
-                            <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block mb-4">Monitor Flota</span>
-                            <p className="text-black/40 text-xs leading-relaxed max-w-[180px]">Estado operacional de embarcaciones en tiempo real.</p>
+                        <header className="flex justify-between items-center mb-3">
+                            <div>
+                                <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block">Monitor Flota</span>
+                                <p className="text-black/60 text-[9px] font-medium">Estado operacional en tiempo real</p>
+                            </div>
+                            <Link href="/staff/activity" className="text-[9px] uppercase tracking-widest text-accent font-black hover:underline underline-offset-4">
+                                Gestionar →
+                            </Link>
                         </header>
 
-                        <div className="grid grid-cols-1 gap-4">
-                            <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent shadow-glow">
-                                        <Anchor size={14} />
+                        <div className="grid grid-cols-3 gap-2">
+                            <div className="flex items-center justify-between p-2 bg-black/5 border border-black/10 rounded-sm">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                                        <Anchor size={11} />
                                     </div>
-                                    <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">En Agua</span>
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-black/70">Agua</span>
                                 </div>
-                                <span className="text-2xl font-display text-black italic">{fleet.agua}</span>
+                                <span className="text-base font-display text-black italic font-bold">{fleet.agua}</span>
                             </div>
-                            <div className="flex items-center justify-between p-4 bg-black/5 border border-black/10 rounded-sm hover:translate-x-1 transition-transform group">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-8 h-8 rounded-full bg-brass-gold/10 flex items-center justify-center text-brass-gold">
-                                        <RefreshCw size={14} />
-                                    </div>
-                                    <span className="text-xs uppercase tracking-widest font-bold text-black/60 group-hover:text-black">Retorno</span>
-                                </div>
-                                <span className="text-2xl font-display text-black italic">{fleet.retorno}</span>
-                            </div>
-                            <div className="flex items-center justify-between p-4 bg-black/5 border border-accent/30 rounded-sm hover:translate-x-1 transition-transform group shadow-[0_0_15px_rgba(var(--accent-rgb),0.1)]">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent animate-pulse">
-                                        <Gauge size={14} />
-                                    </div>
-                                    <span className="text-xs uppercase tracking-widest font-black text-accent drop-shadow-sm">Pendientes</span>
-                                </div>
-                                <span className="text-2xl font-display text-accent italic shadow-glow">{fleet.pendiente}</span>
-                            </div>
-                        </div>
 
-                        <div className="mt-8 flex gap-2">
-                            <Link href="/staff/activity" className="text-[9px] uppercase tracking-widest text-accent font-black hover:underline underline-offset-4">
-                                Gestionar Operaciones →
-                            </Link>
+                            <div className="flex items-center justify-between p-2 bg-black/5 border border-black/10 rounded-sm">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-5 h-5 rounded-full bg-brass-gold/10 flex items-center justify-center text-brass-gold">
+                                        <RefreshCw size={11} />
+                                    </div>
+                                    <span className="text-[9px] uppercase tracking-wider font-bold text-black/70">Retorno</span>
+                                </div>
+                                <span className="text-base font-display text-black italic font-bold">{fleet.retorno}</span>
+                            </div>
+
+                            <div className="flex items-center justify-between p-2 bg-black/5 border border-accent/40 rounded-sm">
+                                <div className="flex items-center gap-2">
+                                    <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center text-accent animate-pulse">
+                                        <Gauge size={11} />
+                                    </div>
+                                    <span className="text-[9px] uppercase tracking-wider font-black text-accent">Pend.</span>
+                                </div>
+                                <span className="text-base font-display text-accent italic font-bold">{fleet.pendiente}</span>
+                            </div>
                         </div>
                     </motion.div>
                 )}
 
-                {/* RADAR & WINDGURU */}
+                {/* FILA 3: NOTA METEOROLÓGICA Y RADAR */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="bg-white border border-black/10 rounded-sm p-8 relative overflow-hidden flex flex-col transition-all"
+                    className="glass-card border border-black/10 rounded-sm p-5 shadow-sm relative overflow-hidden group"
                 >
-                    <div className="absolute bottom-0 right-0 p-4 opacity-[0.05] pointer-events-none">
-                        <Map size={120} />
+                    <div className="absolute bottom-0 right-0 p-2 opacity-5 pointer-events-none">
+                        <Map size={80} className="text-black" />
                     </div>
+                    <header className="mb-2">
+                        <span className="text-accent uppercase tracking-[0.3em] text-[10px] font-black block">Nota Meteorológica</span>
+                    </header>
 
-                    <div className="space-y-8 h-full flex flex-col">
-                        <section>
-                            <h3 className="text-black/40 uppercase tracking-[0.3em] text-[10px] font-black mb-6">Nota Meteorológica</h3>
-                            <div className="bg-black/5 border border-black/10 p-6 rounded-sm relative">
-                                <div className="absolute top-4 right-4 animate-pulse">
-                                    <div className="w-2 h-2 rounded-full bg-sea-foam/40" />
-                                </div>
-                                <p className="text-[10px] font-black uppercase text-accent mb-3 tracking-widest">
-                                    {alerts && alerts.length > 0 ? 'AVISOS ACTIVOS' : 'CONDICIONES ACTUALES'}
-                                </p>
-                                <ul className="space-y-2">
-                                    {alerts && alerts.length > 0 ? (
-                                        alerts.map((alert: any, i: number) => (
-                                            <li key={i} className="text-xs text-red-400 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-red-400 rounded-full" />
-                                                {alert.level?.toUpperCase()}: {alert.phenomenon || 'Meteorología adversa'}
-                                            </li>
-                                        ))
-                                    ) : (
-                                        <>
-                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
-                                                Viento: {weather.knots} kts ({weather.station})
-                                            </li>
-                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
-                                                Rafagas: {weather.gusts || 0} kts
-                                            </li>
-                                            <li className="text-xs text-black/50 font-mono tracking-tight flex items-center gap-2">
-                                                <div className="w-1 h-1 bg-black/10 rounded-full" />
-                                                Temp: {weather.temp}°C
-                                            </li>
-                                        </>
-                                    )}
-                                </ul>
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <div className="bg-black/5 border border-black/10 p-2.5 rounded-sm flex-1">
+                            <p className="text-[9px] font-black uppercase text-accent mb-1 tracking-widest">
+                                {alerts && alerts.length > 0 ? 'AVISOS ACTIVOS' : 'CONDICIONES ACTUALES'}
+                            </p>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1">
+                                {alerts && alerts.length > 0 ? (
+                                    alerts.map((alert: any, i: number) => (
+                                        <span key={i} className="text-[10px] text-red-600 font-mono tracking-tight flex items-center gap-1.5 font-bold">
+                                            <span className="w-1 h-1 bg-red-600 rounded-full" />
+                                            {alert.level?.toUpperCase()}: {alert.phenomenon || 'Meteorología adversa'}
+                                        </span>
+                                    ))
+                                ) : (
+                                    <>
+                                        <span className="text-[10px] text-black/80 font-mono tracking-tight flex items-center gap-1.5">
+                                            <span className="w-1 h-1 bg-accent/80 rounded-full" />
+                                            Viento: {weather.knots} kts ({weather.station})
+                                        </span>
+                                        <span className="text-[10px] text-black/80 font-mono tracking-tight flex items-center gap-1.5">
+                                            <span className="w-1 h-1 bg-accent/80 rounded-full" />
+                                            Rafagas: {weather.gusts || 0} kts
+                                        </span>
+                                        <span className="text-[10px] text-black/80 font-mono tracking-tight flex items-center gap-1.5">
+                                            <span className="w-1 h-1 bg-accent/80 rounded-full" />
+                                            Temp: {weather.temp}°C
+                                        </span>
+                                    </>
+                                )}
                             </div>
-                        </section>
-
-                        <div className="mt-auto pt-6 border-t border-black/10">
-                            <button className="w-full flex items-center justify-between p-4 bg-sea-foam/10 border border-sea-foam/30 rounded-sm group hover:bg-sea-foam/20 transition-all">
-                                <div className="flex items-center gap-4">
-                                    <Map className="text-sea-foam group-hover:scale-110 transition-transform" size={18} />
-                                    <span className="text-xs uppercase tracking-widest font-black text-sea-foam">Radar Marítimo</span>
-                                </div>
-                                <Navigation size={14} className="text-sea-foam rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                            </button>
                         </div>
+
+                        <button className="flex items-center justify-between gap-3 p-2.5 bg-emerald-500/10 border border-emerald-500/30 rounded-sm group hover:bg-emerald-500/20 transition-all shrink-0">
+                            <div className="flex items-center gap-2">
+                                <Map className="text-emerald-700 group-hover:scale-110 transition-transform" size={14} />
+                                <span className="text-[10px] uppercase tracking-widest font-black text-emerald-700 whitespace-nowrap">Radar Marítimo</span>
+                            </div>
+                            <Navigation size={12} className="text-emerald-700 rotate-45 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                        </button>
                     </div>
                 </motion.div>
             </div>

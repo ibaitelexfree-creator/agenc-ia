@@ -11,7 +11,7 @@ export const siteUrl = rawUrl.includes('getxobelaeskola.cloud') && !rawUrl.inclu
  */
 export function getSeoAlternates(path: string, locale: string) {
     const cleanPath = path.startsWith('/') ? path.substring(1) : path;
-    const suffix = cleanPath ? `/${cleanPath}` : '';
+    const suffix = cleanPath ? `/${cleanPath}/` : '/';
     
     return {
         canonical: `${siteUrl}/${locale}${suffix}`,

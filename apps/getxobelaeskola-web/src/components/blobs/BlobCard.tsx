@@ -53,19 +53,28 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [])
 
-  // Staggered video loading to optimize initial bandwidth usage on mount
+  // Lazy-load videos using IntersectionObserver to save bandwidth on initial load
   useEffect(() => {
     if (!pageLoaded) return
     
-    // Auto-load videos in sequence: Card 0 starts preloading at 1000ms, Card 1 at 2200ms, Card 2 at 3400ms, etc.
-    const staggerLoadDelay = 1000 + (index * 1200)
+    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
+    if (!card) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setLoadVideo(true)
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin: '300px' } // Preload when 300px near viewport
+    )
     
-    const timer = setTimeout(() => {
-      setLoadVideo(true)
-    }, staggerLoadDelay)
-    
-    return () => clearTimeout(timer)
-  }, [pageLoaded, index])
+    observer.observe(card)
+    return () => observer.disconnect()
+  }, [pageLoaded, title])
 
   // Check if the video is already cached/loaded when loadVideo triggers
   useEffect(() => {

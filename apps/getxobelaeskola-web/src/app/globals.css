@@ -718,56 +718,7 @@ a:hover {
   color: rgba(26, 26, 26, 0.4) !important;
 }
 
-/* Ensure weather widget's dark cards retain white/light text and buttons */
-.admin-theme-override .weather-widget-dark,
-.admin-theme-override .weather-widget-dark * {
-  color: #FFFFFF !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-accent {
-  color: var(--accent) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-brass-gold {
-  color: var(--brass-gold) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-sea-foam {
-  color: var(--sea-foam) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-red-500,
-.admin-theme-override .weather-widget-dark .text-red-400 {
-  color: #EF4444 !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-white\/60 {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-white\/50 {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-white\/40 {
-  color: rgba(255, 255, 255, 0.4) !important;
-}
-
-.admin-theme-override .weather-widget-dark .text-white\/20 {
-  color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.admin-theme-override .weather-widget-dark button,
-.admin-theme-override .weather-widget-dark .btn {
-  color: #FFFFFF !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-.admin-theme-override .weather-widget-dark button:hover,
-.admin-theme-override .weather-widget-dark .btn:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
+/* Removed CSS override that forced weather-widget-dark text to white */
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
