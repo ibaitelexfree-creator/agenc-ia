@@ -59,7 +59,7 @@ const nextConfig = {
         ];
     },
     webpack: (config, { isServer }) => {
-        if (!isServer) {
+        if (!isServer && config.optimization.splitChunks && typeof config.optimization.splitChunks === 'object') {
             config.optimization.splitChunks.cacheGroups = {
                 ...config.optimization.splitChunks.cacheGroups,
                 framerMotion: {
