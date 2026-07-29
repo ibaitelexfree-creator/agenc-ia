@@ -53,29 +53,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [])
 
-  // Lazy-load videos using IntersectionObserver to save bandwidth on initial load
-  useEffect(() => {
-    if (!pageLoaded) return
-    
-    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
-    if (!card) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setLoadVideo(true)
-            observer.disconnect()
-          }
-        })
-      },
-      { rootMargin: '300px' } // Preload when 300px near viewport
-    )
-    
-    observer.observe(card)
-    return () => observer.disconnect()
-  }, [pageLoaded, title])
-
   // Check if the video is already cached/loaded when loadVideo triggers
   useEffect(() => {
     if (loadVideo && videoRef.current) {
@@ -84,6 +61,47 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       }
     }
   }, [loadVideo])
+
+  // Resolve which video format to use (avoid double downloads from <source> tags)
+  const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  useEffect(() => {
+    const v = document.createElement('video')
+    const canPlayWebm = v.canPlayType('video/webm; codecs="vp8, vorbis"') !== ''
+    if (canPlayWebm && videoSrc.endsWith('.webm')) {
+      setVideoUrl(videoSrc)
+    } else {
+      setVideoUrl(videoSrc.replace('.webm', '.mp4'))
+    }
+  }, [videoSrc])
+
+  // Lazy-load videos using IntersectionObserver to save bandwidth on initial load
+  useEffect(() => {
+    if (!pageLoaded || !videoUrl) return
+    
+    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
+    if (!card) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Si está en el Hero (scrollY < 100), retrasamos la carga de vídeos para no robar ancho de banda al LCP
+            const isInitialViewport = window.scrollY < 100;
+            const delay = isInitialViewport ? 1000 + (index * 250) : 0;
+            
+            setTimeout(() => {
+              setLoadVideo(true)
+            }, delay);
+            observer.disconnect()
+          }
+        })
+      },
+      { rootMargin: '100px' } // Preload when 100px near viewport
+    )
+    
+    observer.observe(card)
+    return () => observer.disconnect()
+  }, [pageLoaded, title, videoUrl, index])
 
   // Staggered reveal timeline per card based on its index with random gaps between 400ms and 800ms
   useEffect(() => {
@@ -356,7 +374,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           {/* Video recortado */}
           <g clipPath={`url(#${clipId})`}>
             <foreignObject x="0" y="0" width="100" height="100">
-              {loadVideo && (
+              {loadVideo && videoUrl && (
                 <video
                   ref={videoRef}
                   loop
@@ -371,14 +389,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     transition: 'opacity 0.4s',
                   }}
                 >
-                  {videoSrc.endsWith('.webm') ? (
-                    <>
-                      <source src={videoSrc} type="video/webm" />
-                      <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-                    </>
-                  ) : (
-                    <source src={videoSrc} type="video/mp4" />
-                  )}
+                  <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
                   <track kind="captions" src="data:text/vtt," label="No captions" default />
                 </video>
               )}
