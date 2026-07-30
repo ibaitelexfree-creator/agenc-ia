@@ -10,6 +10,7 @@ interface AccessibleModalProps {
     title: string;
     children: React.ReactNode;
     maxWidth?: string;
+    theme?: 'dark' | 'light';
 }
 
 /**
@@ -21,7 +22,8 @@ export default function AccessibleModal({
     onClose,
     title,
     children,
-    maxWidth = 'max-w-2xl'
+    maxWidth = 'max-w-2xl',
+    theme = 'dark'
 }: AccessibleModalProps) {
     const t = useTranslations('nav');
     const modalRef = useFocusTrap(isOpen);
@@ -46,6 +48,8 @@ export default function AccessibleModal({
 
     if (!isOpen || !mounted) return null;
 
+    const isLight = theme === 'light';
+
     const modalContent = (
         <div
             className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6"
@@ -63,17 +67,17 @@ export default function AccessibleModal({
             {/* Content */}
             <div
                 ref={modalRef}
-                className={`relative w-full ${maxWidth} bg-nautical-deep border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-premium-in`}
+                className={`relative w-full ${maxWidth} ${isLight ? 'bg-white text-slate-900 border border-slate-200' : 'bg-nautical-deep border border-white/10'} rounded-2xl shadow-2xl overflow-hidden animate-premium-in`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/5 bg-white/5">
-                    <h2 id="modal-title" className="text-xl font-display italic text-white">
+                <div className={`flex items-center justify-between p-6 border-b ${isLight ? 'border-slate-200 bg-slate-50' : 'border-white/5 bg-white/5'}`}>
+                    <h2 id="modal-title" className={`text-xl font-display italic ${isLight ? 'text-slate-900 font-bold' : 'text-white'}`}>
                         {title}
                     </h2>
                     <button
                         onClick={onClose}
                         aria-label={t('close')}
-                        className="p-2 hover:bg-white/10 rounded-full transition-all text-white/40 hover:text-white"
+                        className={`p-2 rounded-full transition-all ${isLight ? 'hover:bg-slate-200 text-slate-500 hover:text-slate-900' : 'hover:bg-white/10 text-white/40 hover:text-white'}`}
                     >
                         <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

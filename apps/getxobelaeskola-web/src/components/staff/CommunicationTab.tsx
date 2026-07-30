@@ -448,22 +448,23 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                 onClose={() => setViewingMsg(null)}
                 title={viewingMsg?.title || 'Detalle del Correo'}
                 maxWidth="max-w-3xl"
+                theme="light"
             >
                 {viewingMsg && (
-                    <div className="space-y-8 animate-premium-in">
+                    <div className="space-y-8 animate-premium-in text-slate-900">
                         {/* Header Status & Dates */}
-                        <div className="flex flex-wrap items-center justify-between gap-4 p-6 bg-white/5 border border-white/10 rounded-sm">
+                        <div className="flex flex-wrap items-center justify-between gap-4 p-6 bg-slate-50 border border-slate-200 rounded-sm">
                             <div className="space-y-1">
-                                <span className="text-3xs uppercase tracking-[0.3em] text-white/40 block font-bold">Estado del Envío</span>
+                                <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 block font-bold">Estado del Envío</span>
                                 <div className="flex items-center gap-3">
                                     {viewingMsg.status === 'scheduled' || (!!viewingMsg.scheduled_for && new Date(viewingMsg.scheduled_for) > new Date() && viewingMsg.status !== 'sent') ? (
-                                        <span className="px-3 py-1 bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
-                                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
+                                        <span className="px-3 py-1 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
                                             Programado para Envío Automático
                                         </span>
                                     ) : (
-                                        <span className="px-3 py-1 bg-green-500/20 border border-green-500/40 text-green-400 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
-                                            <span className="w-2 h-2 rounded-full bg-green-400" />
+                                        <span className="px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-600" />
                                             Enviado a Destinatarios
                                         </span>
                                     )}
@@ -471,55 +472,55 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             </div>
 
                             <div className="text-right font-mono text-2xs space-y-1">
-                                <p className="text-white/40">Fecha de Creación: <span className="text-white"><ClientDate date={viewingMsg.created_at} format="full" /></span></p>
+                                <p className="text-slate-600">Fecha de Creación: <span className="text-slate-900 font-bold"><ClientDate date={viewingMsg.created_at} format="full" /></span></p>
                                 {viewingMsg.scheduled_for && (
-                                    <p className="text-amber-300">Fecha Programada: <span className="font-bold"><ClientDate date={viewingMsg.scheduled_for} format="full" /></span></p>
+                                    <p className="text-amber-700">Fecha Programada: <span className="font-bold"><ClientDate date={viewingMsg.scheduled_for} format="full" /></span></p>
                                 )}
                                 {viewingMsg.sent_at && (
-                                    <p className="text-green-400">Fecha de Envío: <span className="font-bold"><ClientDate date={viewingMsg.sent_at} format="full" /></span></p>
+                                    <p className="text-emerald-700">Fecha de Envío: <span className="font-bold"><ClientDate date={viewingMsg.sent_at} format="full" /></span></p>
                                 )}
                             </div>
                         </div>
 
                         {/* Audience / Reach & Metrics Summary */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-white/40 block font-bold mb-2">Destinatarios Totales</span>
-                                <span className="text-3xl font-display italic text-white">{viewingMsg.recipients_count ?? 0}</span>
-                                <span className="text-[10px] text-white/30 block mt-1">Alumnos / Clientes en Lista</span>
+                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Destinatarios Totales</span>
+                                <span className="text-3xl font-display italic text-slate-900 font-bold">{viewingMsg.recipients_count ?? 0}</span>
+                                <span className="text-[10px] text-slate-500 block mt-1">Alumnos / Clientes en Lista</span>
                             </div>
-                            <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-white/40 block font-bold mb-2">Entregados con Éxito</span>
-                                <span className="text-3xl font-display italic text-green-400">
+                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Entregados con Éxito</span>
+                                <span className="text-3xl font-display italic text-emerald-600 font-bold">
                                     {viewingMsg.delivered_count ?? (viewingMsg.status === 'sent' ? (viewingMsg.recipients_count ?? 0) : 0)}
                                 </span>
-                                <span className="text-[10px] text-green-400/60 block mt-1">Llegaron a la bandeja correctamente</span>
+                                <span className="text-[10px] text-emerald-700 block mt-1 font-semibold">Llegaron a la bandeja correctamente</span>
                             </div>
-                            <div className="p-6 bg-white/5 border border-white/10 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-white/40 block font-bold mb-2">Tasa de Efectividad</span>
-                                <span className="text-3xl font-display italic text-accent">
+                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Tasa de Efectividad</span>
+                                <span className="text-3xl font-display italic text-red-600 font-bold">
                                     {viewingMsg.recipients_count ? Math.round(((viewingMsg.delivered_count ?? viewingMsg.recipients_count) / viewingMsg.recipients_count) * 100) : 100}%
                                 </span>
-                                <span className="text-[10px] text-accent/60 block mt-1">Confirmaciones recibidas</span>
+                                <span className="text-[10px] text-red-700 block mt-1 font-semibold">Confirmaciones recibidas</span>
                             </div>
                         </div>
 
                         {/* Message Subject and Body */}
-                        <div className="space-y-4 bg-white/5 border border-white/10 p-8 rounded-sm">
-                            <div className="border-b border-white/10 pb-4">
-                                <span className="text-3xs uppercase tracking-[0.3em] text-accent font-bold block mb-1">Asunto</span>
-                                <h3 className="text-2xl font-display text-white italic">{viewingMsg.title}</h3>
+                        <div className="space-y-4 bg-slate-50 border border-slate-200 p-8 rounded-sm">
+                            <div className="border-b border-slate-200 pb-4">
+                                <span className="text-3xs uppercase tracking-[0.3em] text-red-600 font-bold block mb-1">Asunto</span>
+                                <h3 className="text-2xl font-display text-slate-900 italic font-bold">{viewingMsg.title}</h3>
                             </div>
                             <div className="pt-2">
-                                <span className="text-3xs uppercase tracking-[0.3em] text-white/30 font-bold block mb-3">Cuerpo del Mensaje</span>
-                                <div className="text-sm text-white/80 font-mono italic leading-relaxed whitespace-pre-wrap max-h-96 overflow-y-auto custom-scrollbar p-4 bg-black/20 border border-white/5 rounded-xs">
+                                <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 font-bold block mb-3">Cuerpo del Mensaje</span>
+                                <div className="text-sm text-slate-900 font-mono italic leading-relaxed whitespace-pre-wrap max-h-96 overflow-y-auto custom-scrollbar p-4 bg-white border border-slate-300 rounded-xs shadow-inner">
                                     {viewingMsg.content}
                                 </div>
                             </div>
                         </div>
 
                         {/* Actions in Modal */}
-                        <div className="flex justify-end items-center gap-4 pt-4 border-t border-white/10">
+                        <div className="flex justify-end items-center gap-4 pt-4 border-t border-slate-200">
                             {(viewingMsg.status === 'scheduled' || (!!viewingMsg.scheduled_for && new Date(viewingMsg.scheduled_for) > new Date() && viewingMsg.status !== 'sent')) && (
                                 <button
                                     onClick={() => {
@@ -527,14 +528,14 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                         setViewingMsg(null);
                                         handleOpenEdit(target);
                                     }}
-                                    className="px-6 py-4 bg-accent text-nautical-black text-xs uppercase tracking-widest font-black hover:bg-white transition-all shadow-lg"
+                                    className="px-6 py-4 bg-red-600 text-white text-xs uppercase tracking-widest font-black hover:bg-red-700 transition-all shadow-lg"
                                 >
                                     ✏️ Editar este mensaje programado
                                 </button>
                             )}
                             <button
                                 onClick={() => setViewingMsg(null)}
-                                className="px-6 py-4 border border-white/20 text-white/70 hover:text-white text-xs uppercase tracking-widest font-bold transition-all"
+                                className="px-6 py-4 border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs uppercase tracking-widest font-bold transition-all rounded-xs"
                             >
                                 Cerrar
                             </button>
