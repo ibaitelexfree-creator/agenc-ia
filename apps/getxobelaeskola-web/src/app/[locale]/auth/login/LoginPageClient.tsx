@@ -15,15 +15,6 @@ function LoginPageContent({ locale }: { locale: string }) {
     const returnTo = searchParams.get('returnTo');
     const router = useRouter();
     const [checking, setChecking] = useState(true);
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const check = () => setIsMobile(window.innerWidth < 1024);
-        check();
-        window.addEventListener('resize', check);
-        return () => window.removeEventListener('resize', check);
-    }, []);
-
     // Auto-redirect if already authenticated
     useEffect(() => {
         const supabase = createClient();
@@ -42,12 +33,6 @@ function LoginPageContent({ locale }: { locale: string }) {
         });
     }, [locale, router, returnTo]);
 
-    // Render nothing while we decide if we need to redirect
-    // BUT we should render the form as soon as possible if we want 100 speed
-    // So let's only hide if we are CERTAIN we are redirecting.
-    // However, to avoid flash of content, we can use a simpler approach.
-    // For 100 speed, we render the page immediately and the useEffect handles the "already logged in" edge case.
-
     // If we are still checking for a session, show a loading state instead of the login form
     if (checking) {
         return (
@@ -63,23 +48,21 @@ function LoginPageContent({ locale }: { locale: string }) {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-brass-gold/5 blur-[120px] rounded-full pointer-events-none" />
 
-            {/* Desktop: Two Column Layout */}
-            {!isMobile && (
-                <div className="hidden lg:block absolute inset-y-0 left-0 w-1/2 overflow-hidden">
-                    <img
-                        src="/images/login-page-captain.jpeg"
-                        alt="Capitán"
-                        className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-nautical-black via-transparent to-nautical-black" />
-                    <div className="absolute bottom-20 left-16 z-10">
-                        <h2 className="text-5xl font-display mb-3 italic text-sea-foam">{t('hero_text')}</h2>
-                        <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
-                    </div>
+            {/* Background Captain Image (Overlaid on small screens, left side on desktop) */}
+            <div className="absolute inset-0 lg:w-1/2 overflow-hidden pointer-events-none">
+                <img
+                    src="/images/login-page-captain.jpeg"
+                    alt="Capitán"
+                    className="absolute inset-0 w-full h-full object-cover opacity-25 sm:opacity-30 grayscale"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/80 via-nautical-black/50 to-nautical-black lg:bg-gradient-to-r lg:from-nautical-black lg:via-transparent lg:to-nautical-black" />
+                <div className="absolute top-6 left-6 lg:top-auto lg:bottom-20 lg:left-16 z-10 opacity-80 lg:opacity-100">
+                    <h2 className="text-xl sm:text-2xl lg:text-5xl font-display mb-1 lg:mb-3 italic text-sea-foam">{t('hero_text')}</h2>
+                    <p className="text-accent uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
-            )}
+            </div>
 
-            {/* Content — Full on mobile, right half on desktop */}
+            {/* Content — Overlaid over background on mobile, right half on desktop */}
             <div className="flex-1 flex items-center justify-center px-6 py-12 lg:ml-[50%] relative z-10">
                 <div className="w-full max-w-sm">
                     {/* Brand Header */}
