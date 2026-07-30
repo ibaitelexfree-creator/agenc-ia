@@ -11,7 +11,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta property="og:title" content="Getxo Bela Eskola" />
                 <meta property="og:description" content="Aprende a navegar en el Cantábrico." />
                 <meta property="og:type" content="website" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
             </head>
             <body>{children}</body>
         </html>

@@ -21,6 +21,8 @@ export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
   width: 'device-width',
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   viewportFit: 'cover',
 };
 
