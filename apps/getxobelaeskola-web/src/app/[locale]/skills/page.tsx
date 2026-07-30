@@ -40,39 +40,39 @@ const IntroView = ({ onStart }: { onStart: () => void }) => (
 
         <div className="max-w-3xl w-full bg-white/5 backdrop-blur-xl rounded-3xl border border-white/10 p-12 text-center relative z-10 shadow-2xl animate-in zoom-in-95 duration-500">
             <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_40px_rgba(37,99,235,0.4)]">
-                <span className="text-5xl">⚓</span>
+                <span className="text-5xl text-black">⚓</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl font-display italic text-white mb-6">
-                Examen <span className="text-blue-500">PER</span>
+            <h1 className="text-5xl md:text-6xl font-display italic text-black mb-6">
+                Examen <span className="text-black">PER</span>
             </h1>
 
-            <p className="text-xl text-slate-300 mb-10 leading-relaxed max-w-2xl mx-auto">
-                Simulacro oficial del examen de <strong className="text-white">Patrón de Embarcaciones de Recreo</strong>.
+            <p className="text-xl text-black mb-10 leading-relaxed max-w-2xl mx-auto">
+                Simulacro oficial del examen de <strong className="text-black">Patrón de Embarcaciones de Recreo</strong>.
                 Pon a prueba tus conocimientos con el temario completo de la DGMM.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="text-3xl mb-2">⏱️</div>
-                    <div className="font-bold text-white text-lg">90 Minutos</div>
-                    <div className="text-sm text-slate-400">Tiempo límite</div>
+                    <div className="text-3xl mb-2 text-black">⏱️</div>
+                    <div className="font-bold text-black text-lg">90 Minutos</div>
+                    <div className="text-sm text-black">Tiempo límite</div>
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="text-3xl mb-2">📝</div>
-                    <div className="font-bold text-white text-lg">60 Preguntas</div>
-                    <div className="text-sm text-slate-400">Test multirespuesta</div>
+                    <div className="text-3xl mb-2 text-black">📝</div>
+                    <div className="font-bold text-black text-lg">60 Preguntas</div>
+                    <div className="text-sm text-black">Test multirespuesta</div>
                 </div>
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="text-3xl mb-2">📊</div>
-                    <div className="font-bold text-white text-lg">Por Bloques</div>
-                    <div className="text-sm text-slate-400">Análisis temático</div>
+                    <div className="text-3xl mb-2 text-black">📊</div>
+                    <div className="font-bold text-black text-lg">Por Bloques</div>
+                    <div className="text-sm text-black">Análisis temático</div>
                 </div>
             </div>
 
             <button
                 onClick={onStart}
-                className="w-full md:w-auto px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg uppercase tracking-widest shadow-lg shadow-blue-600/20 transition-all hover:scale-105 active:scale-95"
+                className="w-full md:w-auto px-12 py-5 bg-blue-600 hover:bg-blue-500 text-black rounded-2xl font-black text-lg uppercase tracking-widest shadow-lg shadow-blue-600/20 transition-all hover:scale-105 active:scale-95"
             >
                 Comenzar Examen
             </button>
