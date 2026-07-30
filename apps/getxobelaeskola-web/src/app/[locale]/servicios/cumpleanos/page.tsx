@@ -33,7 +33,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default function CumpleanosPage() {
     return (
-        <main className="min-h-screen bg-[#FAFAFA] text-[#0D2B45] selection:bg-[#EF6351] selection:text-white pt-20">
+        <main className="min-h-screen bg-[#FAFAFA] text-[#0D2B45] selection:bg-[#EF6351] selection:text-white">
             <CelebraTuDia />
         </main>
     );
