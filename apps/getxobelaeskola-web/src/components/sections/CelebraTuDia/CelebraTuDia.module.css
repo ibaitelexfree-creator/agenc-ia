@@ -135,6 +135,28 @@
   cursor: pointer;
 }
 
+@media (max-width: 1024px) {
+  .jumpingGirl {
+    right: 8%;
+    width: 90px;
+    height: 90px;
+    bottom: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .jumpingGirl {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    width: 75px;
+    height: 75px;
+    margin-top: var(--space-sm);
+    z-index: 6;
+  }
+}
+
+
 /* ── SCENA PANORAMICA ────────────────────────── */
 .panoramicScene {
   position: relative;
