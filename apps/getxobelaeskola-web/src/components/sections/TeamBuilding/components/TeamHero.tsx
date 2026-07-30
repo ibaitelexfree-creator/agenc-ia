@@ -29,7 +29,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
   ];
 
   return (
-    <section className="relative min-h-[90vh] flex flex-col justify-center bg-white py-12 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden select-none">
+    <section className="relative min-h-[85vh] flex flex-col justify-center bg-white pt-4 pb-12 md:pt-6 md:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Headings & Copy */}
@@ -47,7 +47,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             variants={stagger} 
             initial="hidden" 
             animate="visible"
-            className="mb-8"
+            className="mb-6"
           >
             {heroLines.map((line, i) => (
               <motion.span
@@ -64,7 +64,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.9, duration: 0.7 }}
-            className="text-lg md:text-xl text-gray-600 max-w-xl mb-10 leading-relaxed font-sans"
+            className="text-lg md:text-xl text-gray-600 max-w-xl mb-6 md:mb-8 leading-relaxed font-sans"
           >
             {t('description')}
           </motion.p>
@@ -121,7 +121,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
       </div>
 
       {/* Stat pills container below */}
-      <div className="max-w-7xl mx-auto w-full mt-16 md:mt-24">
+      <div className="max-w-7xl mx-auto w-full mt-8 md:mt-12">
         <motion.div 
           variants={stagger}
           initial="hidden"
