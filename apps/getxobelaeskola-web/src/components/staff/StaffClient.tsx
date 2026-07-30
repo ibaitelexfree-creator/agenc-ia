@@ -16,7 +16,6 @@ const SessionsTab = dynamic(() => import('./SessionsTab'), { ssr: false });
 const AcademyStaffTab = dynamic(() => import('./AcademyStaffTab'), { ssr: false });
 const FinancialReportsClient = dynamic(() => import('./FinancialReportsClient'), { ssr: false });
 const BITab = dynamic(() => import('./BITab'), { ssr: false });
-const BlogTab = dynamic(() => import('./BlogTab'), { ssr: false });
 import DataExplorerTab from './DataExplorerTab';
 
 import AccessibleModal from '../shared/AccessibleModal';
@@ -386,6 +385,14 @@ export default function StaffClient({
     // Fetch Newsletters
     const fetchNewsletters = useCallback(async () => {
         try {
+            const nowIso = new Date().toISOString();
+            // Automatically publish any scheduled newsletter whose scheduled time has passed
+            await supabase
+                .from('newsletters')
+                .update({ status: 'sent', sent_at: nowIso })
+                .eq('status', 'scheduled')
+                .lte('scheduled_for', nowIso);
+
             const { data, error } = await supabase
                 .from('newsletters')
                 .select('*')
@@ -832,8 +839,7 @@ export default function StaffClient({
                             ...(isAdmin ? [
                                 { id: 'bi', label: 'BUSINESS INTEL' },
                                 { id: 'explorer', label: 'DATA X-RAY' }
-                            ] : []),
-                            { id: 'blog', label: 'BLOG' }
+                            ] : [])
                         ].map(tab => (
                             <button
                                 key={tab.id}
@@ -1053,10 +1059,6 @@ export default function StaffClient({
                     <DataExplorerTab />
                 )}
 
-                {activeTab === 'blog' && (
-                    <BlogTab locale={locale} />
-                )}
-
                 {activeTab === 'bi' && (
                     <BITab />
                 )}
@@ -1140,6 +1142,7 @@ export default function StaffClient({
                         newsletters={newsletters}
                         onSendMessage={handleSendNewsletter}
                         isSending={isSendingNewsletter}
+                        onRefreshNewsletters={fetchNewsletters}
                     />
                 )}
 

@@ -385,6 +385,14 @@ export default function StaffClient({
     // Fetch Newsletters
     const fetchNewsletters = useCallback(async () => {
         try {
+            const nowIso = new Date().toISOString();
+            // Automatically publish any scheduled newsletter whose scheduled time has passed
+            await supabase
+                .from('newsletters')
+                .update({ status: 'sent', sent_at: nowIso })
+                .eq('status', 'scheduled')
+                .lte('scheduled_for', nowIso);
+
             const { data, error } = await supabase
                 .from('newsletters')
                 .select('*')
@@ -1134,6 +1142,7 @@ export default function StaffClient({
                         newsletters={newsletters}
                         onSendMessage={handleSendNewsletter}
                         isSending={isSendingNewsletter}
+                        onRefreshNewsletters={fetchNewsletters}
                     />
                 )}
 
