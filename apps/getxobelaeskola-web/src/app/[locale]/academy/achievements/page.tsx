@@ -1,8 +1,8 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
 import BadgeGrid from "@/components/academy/gamification/BadgeGrid";
 import { useGamification } from "@/hooks/useGamification";
 
