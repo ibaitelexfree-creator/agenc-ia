@@ -23,8 +23,9 @@
 /* ── HERO SECTION ────────────────────────────── */
 .heroSection {
   position: relative;
+  width: 100%;
   height: 100vh;
-  min-height: 600px;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,18 +36,72 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 📱 Extra Small Screens (320px - 480px) */
+@media (max-width: 480px) {
+  .heroVideo, .heroVideoReverse {
+    /* Scale video down proportionately on narrow screens so video text Udalekuak resizes down gracefully */
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-position: center 38%;
+    transform: scale(1.3);
+  }
+}
+
+/* 📱 Small - Medium Mobile (481px - 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+  .heroVideo, .heroVideoReverse {
+    object-fit: cover;
+    object-position: center 40%;
+    transform: scale(1.18);
+  }
+}
+
+/* 💻 Tablets & Laptops (641px - 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .heroVideo, .heroVideoReverse {
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.08);
+  }
+}
+
+/* 💻 Large Desktop (1025px - 1920px+) */
+@media (min-width: 1025px) {
+  .heroVideo, .heroVideoReverse {
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.0);
+  }
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
   z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 61, 107, 0.15) 0%,
+    rgba(10, 61, 107, 0.05) 50%,
+    rgba(10, 61, 107, 0.35) 100%
+  );
+  pointer-events: none;
 }
 
 .heroContent {
@@ -54,34 +109,33 @@
   z-index: 10;
   text-align: center;
   color: var(--color-white);
-  padding: 0 1.5rem;
-  max-width: 800px;
+  padding: 0 1rem;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .heroEyebrow {
-  font-size: 1.25rem;
+  font-size: clamp(0.875rem, 2.5vw, 1.25rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.4em;
+  letter-spacing: clamp(0.15em, 0.4em, 0.4em);
   color: var(--color-sun);
-  margin-bottom: 1rem;
-}
-
-.heroTitle {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 10vw, 7.5rem);
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .heroSubtitle {
   font-family: var(--font-accent);
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 3rem);
   color: #000000;
   margin-bottom: 2rem;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
+  padding: 0 0.5rem;
 }
 
 .heroCta {

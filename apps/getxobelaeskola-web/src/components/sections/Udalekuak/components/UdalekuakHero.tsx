@@ -91,7 +91,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           muted
           playsInline
           onEnded={() => setLoopDirection('forward')}
-          className={styles.heroVideo}
+          className={`${styles.heroVideo} ${styles.heroVideoReverse}`}
           style={{
             position: 'absolute',
             inset: 0,
@@ -125,7 +125,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           animate={introEnded ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
           className={styles.heroSubtitle}
-          style={{ marginTop: '400px' }}
+          style={{ marginTop: 'clamp(200px, 45vh, 440px)' }}
         >
           {t('subtitle')}
         </motion.p>
