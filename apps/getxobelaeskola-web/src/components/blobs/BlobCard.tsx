@@ -74,34 +74,19 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [videoSrc])
 
-  // Lazy-load videos using IntersectionObserver to save bandwidth on initial load
+  // Lazy-load videos based on interaction (hover on desktop, inView on mobile) to save bandwidth
   useEffect(() => {
-    if (!pageLoaded || !videoUrl) return
-    
-    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
-    if (!card) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Si está en el Hero (scrollY < 100), retrasamos la carga de vídeos para no robar ancho de banda al LCP
-            const isInitialViewport = window.scrollY < 100;
-            const delay = isInitialViewport ? 1000 + (index * 250) : 0;
-            
-            setTimeout(() => {
-              setLoadVideo(true)
-            }, delay);
-            observer.disconnect()
-          }
-        })
-      },
-      { rootMargin: '100px' } // Preload when 100px near viewport
-    )
-    
-    observer.observe(card)
-    return () => observer.disconnect()
-  }, [pageLoaded, title, videoUrl, index])
+    const isMobile = window.innerWidth < 1280
+    if (isMobile) {
+      if (inView) {
+        setLoadVideo(true)
+      }
+    } else {
+      if (isHovered) {
+        setLoadVideo(true)
+      }
+    }
+  }, [isHovered, inView])
 
   // Quick staggered reveal timeline (no pageLoaded dependency to fix LCP)
   useEffect(() => {
@@ -371,6 +356,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               {loadVideo && videoUrl && (
                 <video
                   ref={videoRef}
+                  preload="none"
                   loop
                   muted
                   playsInline
