@@ -71,11 +71,13 @@
   z-index: 2;             /* sobre el canvas */
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   min-height: 85vh;
-  padding: var(--space-xl) var(--space-lg);
-  max-width: 880px;
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -121,6 +123,7 @@
   color: var(--color-sail);
   line-height: 1.1;
   margin: 0 0 var(--space-sm) 0;
+  text-align: center;
 }
 
 .hero-eq__subtitle-body {
@@ -128,8 +131,9 @@
   font-size: var(--text-body);
   color: var(--color-fog);
   line-height: 1.7;
-  max-width: 480px;
-  margin: 0;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .hero-eq__scroll {
@@ -186,9 +190,10 @@
 
 /* ── TEAM CARDS ───────────────────────────────────────────── */
 .team-cards-section {
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
   background: var(--color-deep);
   text-align: center;
+  width: 100%;
 }
 
 .section-eyebrow--light {
@@ -211,9 +216,10 @@
 
 .team-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: var(--space-md);
-  max-width: 1000px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -395,13 +401,15 @@
 
 /* ── CALENDAR ─────────────────────────────────────────────── */
 .calendar-section {
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
   background: var(--color-hull);
   text-align: center;
+  width: 100%;
 }
 
 .cal-card {
-  max-width: 420px;
+  max-width: 520px;
+  width: 100%;
   margin: 0 auto;
   background: var(--color-deep);
   border-radius: 24px;
@@ -519,13 +527,15 @@
 
 /* ── LOGBOOK ──────────────────────────────────────────────── */
 .logbook-section {
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
   background: var(--color-deep);
   text-align: center;
+  width: 100%;
 }
 
 .logbook {
-  max-width: 680px;
+  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   background: var(--color-hull);
   border-radius: 20px;
@@ -656,10 +666,12 @@
   grid-template-columns: 1fr 24px 1fr;
   align-items: center;
   min-height: 70vh;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-xl) var(--space-md);
   background: var(--color-hull);
   gap: var(--space-md);
+  max-width: 1200px;
   width: 100%;
+  margin: 0 auto;
 }
 
 .cta-final__left {
