@@ -9,13 +9,13 @@ import Footer from '@/components/layout/Footer';
 import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import FooterWrapper from '@/components/layout/FooterWrapper';
 const ScrollUpButton = dynamic(() => import('@/components/shared/ScrollToTop'), { ssr: false });
+import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
-import { FramerProvider } from '@/components/providers/FramerProvider';
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import AccessibilityScript from '@/components/shared/AccessibilityScript';
+const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false });
+const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false });
+const AccessibilityScript = dynamic(() => import('@/components/shared/AccessibilityScript'), { ssr: false });
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -37,6 +37,16 @@ export default async function LocaleLayout({
 }) {
   const messages = await getMessages({ locale });
 
+  // Comprobar la sesión en el servidor para el Navbar y así evitar cargar el chunk de Supabase en el cliente
+  const { createClient } = await import('@/lib/supabase/server');
+  const supabase = createClient();
+  const { data: { user: authUser } } = await supabase.auth.getUser();
+  let initialUser = null;
+  
+  if (authUser) {
+      const { data: profile } = await supabase.from('profiles').select('rol, status_socio').eq('id', authUser.id).single();
+      initialUser = profile ? { ...authUser, ...profile } : authUser;
+  }
 
   return (
     <html lang={locale} className={`${cormorantGaramond.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
@@ -51,7 +61,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <FramerProvider>
             <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-[320px] mx-auto overflow-x-clip">
-              <Navbar locale={locale} />
+              <Navbar locale={locale} initialUser={initialUser} />
                 <ConditionalLayout>
                   {children}
                 </ConditionalLayout>

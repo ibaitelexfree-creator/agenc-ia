@@ -11,7 +11,7 @@ import {
     Instagram, Facebook, Youtube, User as UserIcon, Search, ShoppingCart
 } from 'lucide-react';
 // Supabase dynamically imported below to avoid blocking main bundle
-import { apiUrl } from '@/lib/api';
+// Supabase dynamically imported below for logout action
 import dynamic from 'next/dynamic';
 import { User } from '@supabase/supabase-js';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -71,7 +71,7 @@ const localizedLabels: Record<string, Record<string, string>> = {
     language_selector: { es: 'Cambiar Idioma', eu: 'Hizkuntza aldatu', en: 'Change Language', fr: 'Changer de langue' }
 };
 
-export default function Navbar({ locale: propLocale }: { locale?: string }) {
+export default function Navbar({ locale: propLocale, initialUser = null }: { locale?: string, initialUser?: any }) {
     const params = useParams();
     const router = useRouter();
     const pathname = usePathname();
@@ -88,36 +88,12 @@ export default function Navbar({ locale: propLocale }: { locale?: string }) {
     const isAcademy = pathname?.includes('/academy');
     const isAuth = pathname?.includes('/auth/');
 
-    const [user, setUser] = useState<AuthUser | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<AuthUser | null>(initialUser);
+    const [loading, setLoading] = useState(false); // Auth is already resolved from server
 
     const getLabel = (key: string) => {
         return localizedLabels[key]?.[locale] || key;
     };
-
-    useEffect(() => {
-        (async () => {
-            try {
-                // Dynamically import Supabase to split it into a separate chunk
-                const { createClient } = await import('@/lib/supabase/client');
-                const supabase = createClient();
-                const { data: { user: authUser } } = await supabase.auth.getUser();
-                if (authUser) {
-                    const res = await fetch(apiUrl(`/api/profile?user_id=${authUser.id}`));
-                    if (res.ok) {
-                        const profile = await res.json();
-                        setUser({ ...authUser, ...profile } as AuthUser);
-                    } else {
-                        setUser(authUser as unknown as AuthUser);
-                    }
-                }
-            } catch {
-                // Silently handle auth errors
-            } finally {
-                setLoading(false);
-            }
-        })();
-    }, []);
 
     useEffect(() => {
         if (!loading) {
