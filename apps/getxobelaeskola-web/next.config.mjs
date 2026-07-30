@@ -1,7 +1,9 @@
 import createNextIntlPlugin from 'next-intl/plugin';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createRequire } from 'module';
 
+const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -65,12 +67,6 @@ const nextConfig = {
         ];
     },
     webpack: (config, { isServer }) => {
-        config.resolve.alias = {
-            ...config.resolve.alias,
-            react: path.resolve(__dirname, 'node_modules/react'),
-            'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-        };
-
         if (!isServer && config.optimization.splitChunks && typeof config.optimization.splitChunks === 'object') {
             config.optimization.splitChunks.cacheGroups = {
                 ...config.optimization.splitChunks.cacheGroups,
