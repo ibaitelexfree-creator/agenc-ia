@@ -59,7 +59,8 @@ export function Section1Hero() {
 
   const [mounted, setMounted] = useState(false)
 
-  const allHeroAssetsLoaded = tierraLoaded && nubesLoaded && barcoLoaded
+  // El LCP (el velero y el texto del hero) solo debe esperar a que cargue el barco
+  const allHeroAssetsLoaded = barcoLoaded
 
   useEffect(() => {
     setMounted(true)
@@ -332,6 +333,9 @@ export function Section1Hero() {
 
       {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: tierraLoaded ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -376,6 +380,9 @@ export function Section1Hero() {
 
       {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) - CARGA 2º */}
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: nubesLoaded ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
         style={{
           position: 'absolute',
           inset: 0,
