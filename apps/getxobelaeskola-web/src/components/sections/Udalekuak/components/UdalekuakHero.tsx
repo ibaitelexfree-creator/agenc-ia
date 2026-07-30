@@ -125,7 +125,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           animate={introEnded ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
           className={styles.heroSubtitle}
-          style={{ marginTop: 'clamp(200px, 45vh, 440px)' }}
+          style={{ marginTop: 'clamp(180px, 35vh, 320px)' }}
         >
           {t('subtitle')}
         </motion.p>
