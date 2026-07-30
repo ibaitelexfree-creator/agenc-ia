@@ -221,6 +221,14 @@
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .team-cards-grid {
+    grid-template-columns: minmax(260px, 340px);
+    justify-content: center;
+  }
 }
 
 /* ── Wrapper que tiene la perspectiva ─────────────────────── */
