@@ -1,4 +1,9 @@
 import createNextIntlPlugin from 'next-intl/plugin';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
@@ -17,6 +22,7 @@ const nextConfig = {
             { protocol: 'https', hostname: '**.supabase.co' },
             { protocol: 'https', hostname: 'getxobelaeskola.cloud' },
             { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+            { protocol: 'https', hostname: 'modern.getxobelaeskola.cloud' },
         ],
     },
     eslint: { ignoreDuringBuilds: true },
@@ -59,6 +65,12 @@ const nextConfig = {
         ];
     },
     webpack: (config, { isServer }) => {
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            react: path.resolve(__dirname, 'node_modules/react'),
+            'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+        };
+
         if (!isServer && config.optimization.splitChunks && typeof config.optimization.splitChunks === 'object') {
             config.optimization.splitChunks.cacheGroups = {
                 ...config.optimization.splitChunks.cacheGroups,
@@ -81,4 +93,3 @@ const nextConfig = {
 };
 
 export default withNextIntl(nextConfig);
-

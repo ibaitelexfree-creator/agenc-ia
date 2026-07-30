@@ -194,11 +194,6 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
 
             {/* MARKETING AUTOMATION PANEL */}
             <div className="glass-panel p-12 border-l-4 border-accent relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-10">
-                    <svg className="w-24 h-24 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
                 <div className="relative z-10 space-y-6">
                     <div className="flex flex-col lg:flex-row justify-between lg:items-start gap-6">
                         <div className="space-y-2">
@@ -211,9 +206,12 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         <button
                             onClick={handleRunMarketing}
                             disabled={isProcessingMarketing}
-                            className="px-8 py-4 bg-white/5 border border-accent/30 text-accent text-[10px] uppercase tracking-[0.3em] font-black hover:bg-accent hover:text-nautical-black transition-all disabled:opacity-50 self-start shrink-0"
+                            className="group px-6 py-4 bg-white/5 border border-accent/30 text-accent text-[10px] uppercase tracking-[0.3em] font-black hover:bg-accent hover:text-nautical-black transition-all disabled:opacity-50 self-start shrink-0 flex items-center gap-3"
                         >
-                            {isProcessingMarketing ? 'PROCESANDO...' : 'EJECUTAR MANUALMENTE'}
+                            <span>{isProcessingMarketing ? 'PROCESANDO...' : 'EJECUTAR MANUALMENTE'}</span>
+                            <svg className="w-4 h-4 text-accent group-hover:text-nautical-black transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
                         </button>
                     </div>
 
