@@ -129,42 +129,20 @@ export function Section1Hero() {
     }
   }, [])
 
-  // Precargar en paralelo las 3 imágenes clave (tierra, cielo y barco)
+  const tierraRef = useRef<HTMLImageElement>(null)
+  const nubesRef = useRef<HTMLImageElement>(null)
+  const boatRef = useRef<HTMLImageElement>(null)
+
+  // Comprobar si las imágenes ya están en caché y cargadas en el montaje
   useEffect(() => {
-    let isMounted = true
-    const assets = [
-      { url: '/images/home/parallax/tierra.webp?v=5', setLoaded: setTierraLoaded },
-      { url: '/images/home/parallax/cielo%20extendido%20v2.webp?v=3', setLoaded: setNubesLoaded },
-      { url: '/images/home/parallax/velero.webp?v=3', setLoaded: setBarcoLoaded },
-    ]
-
-    assets.forEach(({ url, setLoaded }) => {
-      const img = new window.Image()
-      img.src = url
-      if (img.complete && img.naturalWidth !== 0) {
-        if (isMounted) setLoaded(true)
-      } else {
-        img.onload = () => {
-          if (isMounted) setLoaded(true)
-        }
-        img.onerror = () => {
-          if (isMounted) setLoaded(true)
-        }
-      }
-    })
-
-    // Temporizador de seguridad (5s máx) por si hay problemas extremos de red
-    const fallbackTimer = setTimeout(() => {
-      if (isMounted) {
-        setTierraLoaded(true)
-        setNubesLoaded(true)
-        setBarcoLoaded(true)
-      }
-    }, 5000)
-
-    return () => {
-      isMounted = false
-      clearTimeout(fallbackTimer)
+    if (tierraRef.current && tierraRef.current.complete) {
+      setTierraLoaded(true)
+    }
+    if (nubesRef.current && nubesRef.current.complete) {
+      setNubesLoaded(true)
+    }
+    if (boatRef.current && boatRef.current.complete) {
+      setBarcoLoaded(true)
     }
   }, [])
 
@@ -359,6 +337,7 @@ export function Section1Hero() {
           }}
         >
           <img
+            ref={tierraRef}
             src="/images/home/parallax/tierra.webp?v=5"
             alt="Costa y mar del Abra de Getxo"
             fetchPriority="high"
@@ -405,6 +384,7 @@ export function Section1Hero() {
           }}
         >
           <img
+            ref={nubesRef}
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
             alt="Cielo Abra de Getxo"
             fetchPriority="high"
@@ -467,6 +447,7 @@ export function Section1Hero() {
               }}
             >
               <img
+                ref={boatRef}
                 src="/images/home/parallax/velero.webp?v=3"
                 alt="Velero navegando en Getxo"
                 fetchPriority="high"
