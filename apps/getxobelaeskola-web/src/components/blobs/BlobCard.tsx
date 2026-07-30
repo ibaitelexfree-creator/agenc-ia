@@ -103,17 +103,11 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     return () => observer.disconnect()
   }, [pageLoaded, title, videoUrl, index])
 
-  // Staggered reveal timeline per card based on its index with random gaps between 400ms and 800ms
+  // Quick staggered reveal timeline (no pageLoaded dependency to fix LCP)
   useEffect(() => {
-    if (!pageLoaded) return
-
-    // Calculate cumulative delay using a deterministic pseudo-random gap [400, 800] per step
-    let cumulativeDelay = 600; // Base buffer after page load
+    let cumulativeDelay = 100; // Fast base buffer
     for (let i = 1; i <= index; i++) {
-      // Deterministic hash based on step i to get consistent gaps on client renders
-      const hash = Math.sin(i * 9876.54) * 10000;
-      const randGap = (hash - Math.floor(hash)) * 400 + 400; // Random value in [400, 800]
-      cumulativeDelay += randGap;
+      cumulativeDelay += 150; // Fast stagger per card
     }
 
     const timer = setTimeout(() => {
@@ -121,7 +115,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }, cumulativeDelay)
 
     return () => clearTimeout(timer)
-  }, [pageLoaded, index])
+  }, [index])
 
   // Trigger the reveal as soon as the staggered time slot has arrived (no video block)
   useEffect(() => {

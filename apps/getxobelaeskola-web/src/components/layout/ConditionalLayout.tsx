@@ -2,13 +2,15 @@
 import { usePathname } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 
+import dynamic from 'next/dynamic';
 import AcademyControls from '@/components/layout/AcademyControls';
 import MobileBottomNav from '@/components/layout/MobileBottomNav';
-import NotificationContainer from '@/components/academy/notifications/NotificationContainer';
-import RealtimeNotifications from '@/components/academy/notifications/RealtimeNotifications';
-import SmartNotificationManager from '@/components/academy/notifications/SmartNotificationManager';
-import SafetyMonitor from '@/components/academy/notifications/SafetyMonitor';
-import ActivityTracker from '@/components/academy/ActivityTracker';
+
+const NotificationContainer = dynamic(() => import('@/components/academy/notifications/NotificationContainer'), { ssr: false });
+const RealtimeNotifications = dynamic(() => import('@/components/academy/notifications/RealtimeNotifications'), { ssr: false });
+const SmartNotificationManager = dynamic(() => import('@/components/academy/notifications/SmartNotificationManager'), { ssr: false });
+const SafetyMonitor = dynamic(() => import('@/components/academy/notifications/SafetyMonitor'), { ssr: false });
+const ActivityTracker = dynamic(() => import('@/components/academy/ActivityTracker'), { ssr: false });
 
 interface ConditionalLayoutProps {
     children: ReactNode;
