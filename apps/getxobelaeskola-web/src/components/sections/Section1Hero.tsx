@@ -390,19 +390,33 @@ export function Section1Hero() {
                 transformOrigin: 'center center',
               }}
             >
-              <img
-                ref={boatRef}
-                src="/images/home/parallax/velero.webp?v=3"
-                alt="Velero navegando en Getxo"
-                fetchPriority="high"
-                onLoad={() => setBarcoLoaded(true)}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center',
-                }}
-              />
+              <picture>
+                {/* AVIF Sources */}
+                <source
+                  type="image/avif"
+                  srcSet="/images/home/parallax/velero_mobile.avif?v=1 768w, /images/home/parallax/velero_desktop.avif?v=1 1920w"
+                  sizes="(max-width: 768px) 768px, 1920px"
+                />
+                {/* WebP Sources */}
+                <source
+                  type="image/webp"
+                  srcSet="/images/home/parallax/velero_mobile.webp?v=1 768w, /images/home/parallax/velero_desktop.webp?v=1 1920w"
+                  sizes="(max-width: 768px) 768px, 1920px"
+                />
+                <img
+                  ref={boatRef}
+                  src="/images/home/parallax/velero_desktop.webp?v=1"
+                  alt="Velero navegando en Getxo"
+                  fetchPriority="high"
+                  onLoad={() => setBarcoLoaded(true)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
+              </picture>
               <SailboatAccesoButton />
             </div>
           )}

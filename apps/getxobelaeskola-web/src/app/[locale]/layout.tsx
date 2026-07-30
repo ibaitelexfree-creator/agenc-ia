@@ -54,7 +54,13 @@ export default async function LocaleLayout({
       {/* Preload critical above-the-fold hero images early in the document head */}
       <link rel="preload" as="image" href="/images/home/parallax/tierra.webp?v=5" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" fetchPriority="high" />
-      <link rel="preload" as="image" href="/images/home/parallax/velero.webp?v=3" fetchPriority="high" />
+      <link
+        rel="preload"
+        as="image"
+        imageSrcSet="/images/home/parallax/velero_mobile.avif?v=1 768w, /images/home/parallax/velero_desktop.avif?v=1 1920w"
+        imageSizes="(max-width: 768px) 768px, 1920px"
+        fetchPriority="high"
+      />
       <link rel="preload" as="image" href="/images/home/parallax/cloud_only_mini.webp?v=3" fetchPriority="high" />
       <link rel="preload" as="image" href="/images/home/parallax/cloud_sun_mini.webp?v=3" fetchPriority="high" />
       <body suppressHydrationWarning>
