@@ -99,19 +99,15 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
           animate={isInView ? 'visible' : 'hidden'}
         >
           <span className={styles.heroTitleLetters}>
-            {titleText.split(' ').map((word: string, wIndex: number) => (
-              <span key={wIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap', margin: '0 0.25em' }}>
-                {word.split('').map((char: string, cIndex: number) => (
-                  <motion.span
-                    key={cIndex}
-                    className={styles.heroTitleLetter}
-                    variants={VARIANTS.letter}
-                    whileHover={prefersReducedMotion ? {} : { scale: 1.15, rotate: [0, -5, 5, 0], color: '#1B8FCF' }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
-              </span>
+            {letters.map((char: string, i: number) => (
+              <motion.span
+                key={i}
+                className={styles.heroTitleLetter}
+                variants={VARIANTS.letter}
+                whileHover={prefersReducedMotion ? {} : { scale: 1.15, rotate: [0, -5, 5, 0], color: '#1B8FCF' }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
             ))}
           </span>
         </motion.h1>
