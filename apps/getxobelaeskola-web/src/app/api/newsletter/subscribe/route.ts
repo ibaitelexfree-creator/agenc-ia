@@ -1,5 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
+import { resend, DEFAULT_FROM_EMAIL } from '@/lib/resend';
+import { newsletterWelcomeTemplate } from '@/lib/email-templates';
 
 export async function POST(request: Request) {
     try {
@@ -26,6 +28,27 @@ export async function POST(request: Request) {
 
             console.error('Newsletter sub error:', error);
             return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+        }
+
+        // Send welcome email asynchronously via Resend
+        if (resend) {
+            const emailHtml = newsletterWelcomeTemplate(locale as any, email);
+            const subjects: Record<string, string> = {
+                es: '¡Bienvenido a bordo de Getxo Bela Eskola! ⛵',
+                eu: 'Ongi etorri Getxo Bela Eskolara! ⛵',
+                en: 'Welcome aboard Getxo Bela Eskola! ⛵',
+                fr: 'Bienvenue à bord de Getxo Bela Eskola ! ⛵'
+            };
+            const subject = subjects[locale] || subjects.es;
+
+            resend.emails.send({
+                from: DEFAULT_FROM_EMAIL,
+                to: [email],
+                subject,
+                html: emailHtml
+            }).catch(err => {
+                console.error('Failed to send newsletter welcome email:', err);
+            });
         }
 
         return NextResponse.json({ success: true });

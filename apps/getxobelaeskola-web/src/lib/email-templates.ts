@@ -473,3 +473,251 @@ export const internalOrderNotificationTemplate = (type: 'rental' | 'course' | 'm
     <a href="${BASE_URL}/es/staff" class="button" style="background-color: ${DARK_NAVY};">ABRIR PANEL ADMINISTRATIVO</a>
   </div>
 `, 'es');
+
+export const newsletterWelcomeTemplate = (locale: EmailLocale = 'es', email: string = '') => {
+  const currentLocale = (['es', 'eu', 'en', 'fr'].includes(locale) ? locale : 'es') as EmailLocale;
+
+  const contentByLocale = {
+    es: {
+      title: '¡Bienvenido a bordo de Getxo Bela Eskola!',
+      preheader: 'Ya formas parte de la tripulación de Getxo Bela Eskola. Cursos de vela, titulaciones náuticas y salidas a la bahía de El Abra te esperan.',
+      welcomeName: '¡Bienvenido a bordo!',
+      welcomeSub: 'Ongi etorri ontzira!',
+      intro: 'Gracias por unirte a nuestra tripulación. Ya formas parte de la comunidad de <strong>Getxo Bela Eskola</strong>. A partir de ahora serás el primero en enterarte de:',
+      item1: 'Cursos para todos los niveles y disciplinas',
+      item2: 'Eventos y novedades de la escuela',
+      item3: 'Alquiler de embarcaciones y salidas',
+      item4: 'Promociones y descuentos',
+      cta: 'EXPLORAR TODAS LAS OPCIONES',
+      footerReason: 'Recibes este correo porque te suscribiste a la newsletter de Getxo Bela Eskola a través de',
+      footerRights: 'Getxo Bela Eskola. Todos los derechos reservados.',
+      unsubscribe: 'Darse de baja de la newsletter'
+    },
+    eu: {
+      title: 'Ongi etorri Getxo Bela Eskolara!',
+      preheader: 'Dagoeneko Getxo Bela Eskolako ontzian zaude. Bela ikastaroak, itsas titulazioak eta El Abra golkora irteerak zaituztegu zai.',
+      welcomeName: 'Ongi etorri ontzira!',
+      welcomeSub: 'Ongi etorri ontziratuta!',
+      intro: 'Eskerrik asko gure eskifaira batzeagatik. Dagoeneko <strong>Getxo Bela Eskola</strong> komunitatearen parte zara. Hemendik aurrera lehenengoa izango zara honako hauen berri izaten:',
+      item1: 'Ikastaroak maila eta diziplina guztietarako',
+      item2: 'Eskolako gertaerak eta berrikuntzak',
+      item3: 'Ontzien alokairua eta irteerak',
+      item4: 'Promozioak eta deskontuak',
+      cta: 'ARAKATU AUKERA GUZTIAK',
+      footerReason: 'Mezu hau jaso duzu Getxo Bela Eskolako newsletter-ean izena eman duzulako helbide honetan:',
+      footerRights: 'Getxo Bela Eskola. Eskubide guztiak erreserbatuta.',
+      unsubscribe: 'Newsletter-eko harpidetza kendu'
+    },
+    en: {
+      title: 'Welcome aboard Getxo Bela Eskola!',
+      preheader: 'You are now part of the Getxo Bela Eskola crew. Sailing courses, nautical licenses and trips to the El Abra bay await you.',
+      welcomeName: 'Welcome aboard!',
+      welcomeSub: 'Ongi etorri ontzira!',
+      intro: 'Thank you for joining our crew. You are now part of the <strong>Getxo Bela Eskola</strong> community. From now on, you will be the first to know about:',
+      item1: 'Courses for all levels and disciplines',
+      item2: 'School events and news',
+      item3: 'Boat rentals and trips',
+      item4: 'Promotions and discounts',
+      cta: 'EXPLORE ALL OPTIONS',
+      footerReason: 'You are receiving this email because you subscribed to the Getxo Bela Eskola newsletter via',
+      footerRights: 'Getxo Bela Eskola. All rights reserved.',
+      unsubscribe: 'Unsubscribe from newsletter'
+    },
+    fr: {
+      title: 'Bienvenue à bord de Getxo Bela Eskola !',
+      preheader: 'Vous faites désormais partie de l\'équipage de Getxo Bela Eskola. Cours de voile, permis nautiques et sorties dans la baie d\'El Abra vous attendent.',
+      welcomeName: 'Bienvenue à bord !',
+      welcomeSub: 'Ongi etorri ontzira!',
+      intro: 'Merci de rejoindre notre équipage. Vous faites désormais partie de la communauté de <strong>Getxo Bela Eskola</strong>. À partir de maintenant, vous serez le premier informé de :',
+      item1: 'Cours pour tous les niveaux et disciplines',
+      item2: 'Événements et actualités de l\'école',
+      item3: 'Location de bateaux et sorties',
+      item4: 'Promotions et réductions',
+      cta: 'EXPLORER TOUTES LES OPTIONS',
+      footerReason: 'Vous recevez cet e-mail parce que vous vous êtes abonné à la newsletter de Getxo Bela Eskola via',
+      footerRights: 'Getxo Bela Eskola. Tous droits réservés.',
+      unsubscribe: 'Se désabonner de la newsletter'
+    }
+  };
+
+  const t = contentByLocale[currentLocale];
+  const encodedEmail = encodeURIComponent(email);
+  const unsubscribeUrl = `${BASE_URL}/${currentLocale}/newsletter/unsubscribe?email=${encodedEmail}`;
+
+  return `<!DOCTYPE html>
+<html lang="${currentLocale}" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>${t.title}</title>
+<!--[if mso]>
+<noscript>
+<xml>
+<o:OfficeDocumentSettings>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+</noscript>
+<![endif]-->
+<style>
+  body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+  body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; background-color: #F7FAFC; }
+
+  @media screen and (max-width: 600px) {
+    .email-container { width: 100% !important; max-width: 100% !important; }
+    .fluid-padding { padding-left: 20px !important; padding-right: 20px !important; }
+    .stack-column { display: block !important; width: 100% !important; }
+    .cta-button { width: 100% !important; text-align: center !important; }
+    .headline { font-size: 24px !important; line-height: 30px !important; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .bg-body { background-color: #F7FAFC !important; }
+    .bg-card { background-color: #FFFFFF !important; }
+    .text-main { color: #1A1A1A !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#F7FAFC;">
+
+  <!-- Preheader -->
+  <div style="display:none; max-height:0px; overflow:hidden; mso-hide:all;">
+    ${t.preheader}
+  </div>
+  <div style="display:none; max-height:0px; overflow:hidden; mso-hide:all;">
+    &#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;&#8199;&zwnj;&nbsp;
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="bg-body" style="background-color:#F7FAFC;">
+    <tr>
+      <td align="center" style="padding: 32px 16px;">
+
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="email-container bg-card" style="width:600px; max-width:600px; background-color:#FFFFFF; border-radius:8px; overflow:hidden; border:1px solid #E2E8F0;">
+
+          <!-- ===== HEADER ===== -->
+          <tr>
+            <td align="center" style="background-color:#F7FAFC; padding: 28px 24px; border-bottom:1px solid #E2E8F0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="font-family: Georgia, 'Times New Roman', serif; font-size: 24px; letter-spacing: 1px; color:#154FA3;">
+                    GETXO <span style="color:#E63900;">BELA</span> ESKOLA
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top:6px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 11px; letter-spacing: 2px; color:#4A5568;">
+                    ESCUELA NÁUTICA OFICIAL &bull; GETXO
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== HERO / CUERPO PRINCIPAL ===== -->
+          <tr>
+            <td class="fluid-padding" style="padding: 40px 40px 24px 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="font-family: Georgia, 'Times New Roman', serif; font-size: 28px; line-height: 34px; color:#1A1A1A;" class="headline">
+                    ${t.welcomeName}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 6px; font-family: Georgia, 'Times New Roman', serif; font-size: 15px; font-style: italic; color:#4A5568;">
+                    ${t.welcomeSub}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" style="padding-top: 24px; font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 15px; line-height: 24px; color:#1A1A1A;">
+                    ${t.intro}
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 16px;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="font-family:'Helvetica Neue', Arial, sans-serif; font-size:15px; line-height:26px; color:#1A1A1A;">
+                      <tr>
+                        <td width="24" valign="top" style="color:#E63900; font-weight:bold;">&#9875;</td>
+                        <td valign="top">${t.item1}</td>
+                      </tr>
+                      <tr>
+                        <td width="24" valign="top" style="color:#E63900; font-weight:bold;">&#9875;</td>
+                        <td valign="top">${t.item2}</td>
+                      </tr>
+                      <tr>
+                        <td width="24" valign="top" style="color:#E63900; font-weight:bold;">&#9875;</td>
+                        <td valign="top">${t.item3}</td>
+                      </tr>
+                      <tr>
+                        <td width="24" valign="top" style="color:#E63900; font-weight:bold;">&#9875;</td>
+                        <td valign="top">${t.item4}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== CTA ===== -->
+          <tr>
+            <td align="center" class="fluid-padding" style="padding: 8px 40px 36px 40px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" class="cta-button" style="border-radius:4px; background-color:#E63900;">
+                    <a href="${BASE_URL}/${currentLocale}" target="_blank" style="display:inline-block; padding: 16px 32px; font-family:'Helvetica Neue', Arial, sans-serif; font-size:14px; font-weight:bold; letter-spacing:0.5px; color:#FFFFFF; text-decoration:none; border-radius:4px;">
+                      ${t.cta}
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== DATOS RÁPIDOS DE CONTACTO ===== -->
+          <tr>
+            <td class="fluid-padding" style="padding: 0 40px 36px 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #E2E8F0; border-bottom:1px solid #E2E8F0;">
+                <tr>
+                  <td align="center" style="padding: 24px 0; font-family:'Helvetica Neue', Arial, sans-serif; font-size:13px; line-height:22px; color:#4A5568;">
+                    <strong style="color:#1A1A1A;">Muelle Arriluzea, s/n</strong> &mdash; 48990 Getxo, Vizcaya<br>
+                    <a href="mailto:info@getxobelaeskola.com" style="color:#154FA3; text-decoration:none;">info@getxobelaeskola.com</a> &nbsp;|&nbsp; (+34) 944 916 632
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ===== FOOTER LEGAL ===== -->
+          <tr>
+            <td align="center" style="background-color:#F7FAFC; padding: 28px 40px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="center" style="font-family:'Helvetica Neue', Arial, sans-serif; font-size:11px; line-height:18px; color:#4A5568;">
+                    ${t.footerReason} <a href="${BASE_URL}/${currentLocale}" style="color:#154FA3; text-decoration:underline;">getxobelaeskola.com</a>.
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 14px; font-family:'Helvetica Neue', Arial, sans-serif; font-size:12px; color:#4A5568;">
+                    &copy; ${new Date().getFullYear()} ${t.footerRights}
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center" style="padding-top: 12px; font-family:'Helvetica Neue', Arial, sans-serif; font-size:12px;">
+                    <a href="${unsubscribeUrl}" style="color:#E63900; text-decoration:underline; font-weight:bold;">${t.unsubscribe}</a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>`;
+};
+
