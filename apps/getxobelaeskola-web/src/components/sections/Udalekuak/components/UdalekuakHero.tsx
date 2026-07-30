@@ -144,19 +144,6 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           </button>
         </motion.div>
       </div>
-
-      {/* SCROLL INDICATOR */}
-      <motion.div
-        className={styles.scrollIndicator}
-        animate={prefersReducedMotion ? {} : { y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-        onClick={onCtaClick}
-      >
-        <span className={styles.scrollText}>{t('scroll')}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-          <path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </motion.div>
     </section>
   );
 }
