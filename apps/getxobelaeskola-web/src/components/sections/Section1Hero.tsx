@@ -253,62 +253,6 @@ export function Section1Hero() {
         justifyContent: 'center',
       }}
     >
-      {/* Overlay de carga inicial de pantalla completa: Oculta absolutamente todo hasta que las 3 imágenes estén listas */}
-      <AnimatePresence>
-        {!allHeroAssetsLoaded && (
-          <motion.div
-            key="hero-loader-overlay"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              zIndex: 99999,
-              backgroundColor: '#0d2137',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1.25rem',
-            }}
-          >
-            <div style={{ position: 'relative', width: '64px', height: '64px' }}>
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: '50%',
-                  border: '2px solid rgba(255, 255, 255, 0.1)',
-                }}
-              />
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  borderRadius: '50%',
-                  borderTop: '2px solid #2EC4B6',
-                  borderRight: '2px solid transparent',
-                }}
-              />
-            </div>
-            <span
-              style={{
-                color: 'rgba(255, 255, 255, 0.85)',
-                fontSize: '0.875rem',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                fontWeight: 600,
-              }}
-            >
-              Cargando travesía...
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -482,7 +426,7 @@ export function Section1Hero() {
       <motion.div
         variants={containerVariants}
         initial="hidden"
-        animate={allHeroAssetsLoaded ? 'visible' : 'hidden'}
+        animate={mounted ? 'visible' : 'hidden'}
         style={{
           position: 'relative',
           zIndex: 10,
@@ -605,7 +549,7 @@ export function Section1Hero() {
         }}
       >
         <AnimatePresence>
-          {allHeroAssetsLoaded && (
+          {mounted && (
             isPhone ? (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
