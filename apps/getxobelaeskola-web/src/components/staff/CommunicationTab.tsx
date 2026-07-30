@@ -554,35 +554,35 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
             >
                 {editingMsg && (
                     <div className="space-y-6 animate-premium-in">
-                        <div className="p-4 bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-mono rounded-xs">
+                        <div className="p-4 bg-red-500/10 border-l-4 border-red-500 text-red-300 text-xs font-mono rounded-xs">
                             💡 Puedes corregir el título, redactar cambios en el contenido o reprogramar la fecha y hora de entrega.
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-3xs uppercase tracking-[0.3em] text-white/40 font-bold">Asunto del Correo</label>
+                            <label className="text-xs uppercase tracking-[0.2em] text-red-400 font-black">Asunto del Correo</label>
                             <input
                                 value={editTitle}
                                 onChange={e => setEditTitle(e.target.value)}
-                                className="w-full bg-white/5 border border-white/10 p-5 text-white font-display italic outline-none focus:border-accent text-lg"
+                                className="w-full bg-white text-slate-900 placeholder-slate-400 border-2 border-slate-300 p-5 font-sans font-bold text-base outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 rounded-sm shadow-sm"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-3xs uppercase tracking-[0.3em] text-white/40 font-bold">Contenido del Mensaje</label>
+                            <label className="text-xs uppercase tracking-[0.2em] text-red-400 font-black">Contenido del Mensaje</label>
                             <textarea
                                 value={editContent}
                                 onChange={e => setEditContent(e.target.value)}
-                                className="w-full h-64 bg-white/5 border border-white/10 p-5 text-white font-mono italic outline-none focus:border-accent resize-none custom-scrollbar text-sm"
+                                className="w-full h-64 bg-white text-slate-900 placeholder-slate-400 border-2 border-slate-300 p-5 font-sans font-semibold text-sm outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 resize-none custom-scrollbar rounded-sm shadow-sm"
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-3xs uppercase tracking-[0.3em] text-white/40 font-bold">Programar Envío (Fecha y Hora)</label>
+                            <label className="text-xs uppercase tracking-[0.2em] text-red-400 font-black">Programar Envío (Fecha y Hora)</label>
                             <input
                                 type="datetime-local"
                                 value={editScheduledFor}
                                 onChange={e => setEditScheduledFor(e.target.value)}
-                                className="w-full bg-white/5 border border-white/10 p-5 text-white font-mono text-xs outline-none focus:border-accent"
+                                className="w-full bg-white text-slate-900 border-2 border-slate-300 p-5 font-mono text-sm font-bold outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 rounded-sm shadow-sm [color-scheme:light]"
                             />
                         </div>
 
@@ -590,7 +590,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             <button
                                 onClick={() => handleSaveEdit(false)}
                                 disabled={isSavingEdit}
-                                className="flex-1 py-5 bg-accent text-nautical-black text-2xs uppercase tracking-[0.3em] font-black hover:bg-white transition-all shadow-xl shadow-accent/20 disabled:opacity-50"
+                                className="flex-1 py-5 bg-red-600 hover:bg-red-700 text-white text-xs uppercase tracking-[0.2em] font-black transition-all shadow-xl shadow-red-600/20 disabled:opacity-50 rounded-xs"
                             >
                                 {isSavingEdit ? 'GUARDANDO...' : '💾 GUARDAR CAMBIOS'}
                             </button>
@@ -601,13 +601,13 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                     }
                                 }}
                                 disabled={isSavingEdit}
-                                className="px-6 py-5 bg-green-500/20 border border-green-500/40 text-green-400 text-2xs uppercase tracking-[0.2em] font-black hover:bg-green-500 hover:text-nautical-black transition-all disabled:opacity-50"
+                                className="px-6 py-5 bg-green-600 hover:bg-green-700 text-white text-xs uppercase tracking-[0.15em] font-black transition-all disabled:opacity-50 rounded-xs shadow-lg"
                             >
                                 🚀 ENVIAR AHORA
                             </button>
                             <button
                                 onClick={() => setEditingMsg(null)}
-                                className="px-6 py-5 border border-white/10 text-white/40 hover:text-white text-2xs uppercase font-bold tracking-widest transition-all"
+                                className="px-6 py-5 bg-slate-800 hover:bg-slate-700 text-white text-xs uppercase font-bold tracking-widest transition-all rounded-xs border border-white/10"
                             >
                                 Descartar
                             </button>
