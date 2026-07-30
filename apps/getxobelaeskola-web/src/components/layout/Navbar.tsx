@@ -103,12 +103,19 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
     }, [loading]);
 
     const handleLogout = async () => {
-        const { createClient } = await import('@/lib/supabase/client');
-        const supabase = createClient();
-        await supabase.auth.signOut();
-        setUser(null);
-        setIsMenuOpen(false);
-        router.push(`/${locale}`);
+        try {
+            const res = await fetch(`/api/auth/logout?locale=${locale}`, {
+                method: 'POST',
+            });
+            if (res.ok) {
+                setUser(null);
+                setIsMenuOpen(false);
+                router.push(`/${locale}`);
+                router.refresh();
+            }
+        } catch (err) {
+            console.error('Logout failed:', err);
+        }
     };
 
     const handleLanguageSwitch = (langCode: string) => {

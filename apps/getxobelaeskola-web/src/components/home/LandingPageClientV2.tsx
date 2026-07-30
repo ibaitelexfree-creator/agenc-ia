@@ -10,7 +10,6 @@ import { useOceanGradient } from '@/hooks/useOceanGradient'
 import { SectionTransitionOverlay } from '@/components/layout/SectionTransitionOverlay'
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 import { ReducedMotionCanvas } from '@/components/layout/ReducedMotionCanvas'
-import { LandingSidebar } from '@/components/layout/LandingSidebar'
 import dynamic from 'next/dynamic'
 
 const Section2Identity = dynamic(() => import('@/components/sections/Section2Identity').then(mod => mod.Section2Identity), { ssr: true })
@@ -98,7 +97,6 @@ export function LandingPageClientV2() {
   if (prefersReducedMotion) {
     return (
       <div>
-        <LandingSidebar />
         <ReducedMotionCanvas>
           <Section1Hero />
           <Section2Identity />
@@ -118,7 +116,6 @@ export function LandingPageClientV2() {
     <ScrollEngineV2>
       <OceanGradientActivator />
       {/* Elementos fijos en pantalla (no se mueven con el canvas) */}
-      <LandingSidebar />
       <WindParticles />
       <SectionTransitionOverlay />
       <WhatsAppFloatingButton />
