@@ -75,10 +75,7 @@
 | T-054 | Antigravity | Fix experience cards (Birthday BigSub, etc.) visibility & fluid animation scaling down to 192px mobile screen width | 2026-07-29 | completado |
 | T-055 | Antigravity | Make experiences page responsive across all screen sizes without overflow | 2026-07-29 | completado |
 | T-056 | Antigravity | Adjust TideLabContainer top padding (pt-28 sm:pt-32 lg:pt-28) to prevent logo overlapping 'Hora Local' text on MAPA DE VECTORES | 2026-07-29 | completado |
-
-
-
-
+| T-057 | Antigravity | Optimize home bundle (remove Supabase client) and implement progressive loading in Hero to optimize LCP | 2026-07-30 | completado |
 
 
 ## Bloqueos / Conflictos
