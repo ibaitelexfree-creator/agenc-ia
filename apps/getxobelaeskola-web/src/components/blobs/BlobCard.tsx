@@ -123,6 +123,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     const video = videoRef.current
     if (!video) return
     if (loadVideo) {
+      video.playbackRate = 1.5
       video.play().catch(() => {})
     }
   }, [loadVideo, videoReady])

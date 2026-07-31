@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import {
     Gauge,
     Ruler,
@@ -175,20 +176,20 @@ export default function NauticalConverter() {
     ];
 
     return (
-        <div className="w-full max-w-4xl mx-auto bg-nautical-deep/50 backdrop-blur-xl rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-            {/* Header */}
-            <div className="bg-nautical-deep p-6 border-b border-white/10 flex items-center gap-4">
-                <div className="p-3 bg-accent/10 rounded-xl text-accent">
-                    <ArrowRightLeft className="w-6 h-6" />
+        <div className="w-full max-w-full md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto bg-slate-950/90 backdrop-blur-2xl rounded-2xl md:rounded-3xl border-2 border-amber-400 overflow-hidden shadow-2xl shadow-amber-500/10">
+            {/* 1. Tool Header */}
+            <div className="bg-slate-900/90 p-3 sm:p-4 lg:p-5 border-b border-amber-400/30 flex items-center gap-3 sm:gap-4">
+                <div className="p-2 sm:p-2.5 bg-amber-400/15 rounded-xl border border-amber-400/30 text-amber-400 shrink-0">
+                    <ArrowRightLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
-                <div>
-                    <h2 className="text-2xl font-display italic text-white">{t('title')}</h2>
-                    <p className="text-white/40 text-sm font-light tracking-wide">{t('subtitle')}</p>
+                <div className="min-w-0 flex-1">
+                    <h2 className="text-base sm:text-lg lg:text-xl font-display italic font-bold text-amber-400 tracking-tight truncate">{t('title')}</h2>
+                    <p className="text-slate-300 font-medium text-[11px] sm:text-xs mt-0.5 line-clamp-1">{t('subtitle')}</p>
                 </div>
             </div>
 
-            {/* Tabs */}
-            <div className="flex border-b border-white/10 overflow-x-auto scrollbar-hide">
+            {/* 2. Category Navigation Tabs */}
+            <div className="flex border-b border-amber-400/20 bg-slate-900/50 overflow-x-auto scrollbar-hide p-1 gap-1 sm:gap-1.5">
                 {tabs.map((tab) => {
                     const Icon = tab.icon;
                     const isActive = activeTab === tab.id;
@@ -200,39 +201,41 @@ export default function NauticalConverter() {
                                 setInputValue('');
                                 setResult(null);
                             }}
-                            className={`flex-1 flex items-center justify-center gap-2 py-4 px-6 text-sm uppercase tracking-widest font-black transition-all whitespace-nowrap
+                            className={`flex-1 min-w-[90px] sm:min-w-[110px] flex items-center justify-center gap-1.5 py-2 px-2.5 sm:px-4 rounded-lg text-[10px] sm:text-xs uppercase tracking-wider font-extrabold transition-all whitespace-nowrap
                                 ${isActive
-                                    ? 'bg-white/5 text-accent border-b-2 border-accent'
-                                    : 'text-white/30 hover:text-white hover:bg-white/5'}`}
+                                    ? 'bg-amber-400 text-slate-950 shadow-md font-black'
+                                    : 'text-slate-300 hover:text-white hover:bg-slate-800/60'}`}
                         >
-                            <Icon className="w-4 h-4" />
-                            {tab.label}
+                            <Icon className={`w-3.5 h-3.5 shrink-0 ${isActive ? 'text-slate-950' : 'text-amber-400'}`} />
+                            <span className="truncate">{tab.label}</span>
                         </button>
                     );
                 })}
             </div>
 
-            {/* Main Content */}
-            <div className="p-6 md:p-8 grid md:grid-cols-2 gap-8">
-                {/* Converter Panel */}
-                <div className="space-y-8">
-                    {/* Input Group */}
-                    <div className="space-y-4">
-                        <label className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40">{t('input')}</label>
-                        <div className="flex gap-4">
+            {/* 3. Main Calculator Area & History */}
+            <div className="p-3.5 sm:p-5 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-stretch">
+                {/* Calculator Interactive Form */}
+                <div className="lg:col-span-7 xl:col-span-7 space-y-3.5 sm:space-y-4 flex flex-col justify-between">
+                    {/* Input Field & Unit Select */}
+                    <div className="space-y-1.5">
+                        <label className="text-[11px] uppercase tracking-widest font-black text-amber-400 flex items-center gap-1.5">
+                            <span>1.</span> {t('input')}
+                        </label>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5">
                             <input
                                 type="number"
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
                                 placeholder="0.00"
-                                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-2xl font-mono text-white placeholder-white/10 focus:outline-none focus:border-accent/50 transition-colors"
+                                className="flex-1 min-w-0 w-full bg-white border-2 border-amber-400 rounded-xl px-3 sm:px-3.5 py-2 sm:py-2.5 text-lg sm:text-xl font-mono font-extrabold text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all shadow-inner"
                             />
-                            <div className="w-1/3 min-w-[120px]">
+                            <div className="w-full sm:w-2/5 min-w-[110px]">
                                 {activeTab === 'speed' && (
                                     <select
                                         value={speedInput}
                                         onChange={(e) => setSpeedInput(e.target.value as SpeedUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="knots">{t('knots')}</option>
                                         <option value="kmh">{t('kmh')}</option>
@@ -243,7 +246,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={distInput}
                                         onChange={(e) => setDistInput(e.target.value as DistanceUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="nautical_miles">{t('nautical_miles')}</option>
                                         <option value="km">{t('km')}</option>
@@ -256,7 +259,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={tempInput}
                                         onChange={(e) => setTempInput(e.target.value as TemperatureUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="celsius">{t('celsius')}</option>
                                         <option value="fahrenheit">{t('fahrenheit')}</option>
@@ -266,7 +269,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={pressInput}
                                         onChange={(e) => setPressInput(e.target.value as PressureUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="hpa">{t('hpa')}</option>
                                         <option value="mb">{t('mb')}</option>
@@ -277,32 +280,35 @@ export default function NauticalConverter() {
                         </div>
                     </div>
 
-                    {/* Swap Button */}
-                    <div className="flex justify-center">
+                    {/* Quick Unit Swap Action */}
+                    <div className="flex justify-center py-0.5">
                         <button
                             onClick={handleSwap}
-                            className="p-2 bg-white/5 rounded-full text-white/40 hover:text-accent hover:bg-white/10 transition-all active:scale-95"
+                            className="p-1.5 sm:p-2 bg-amber-400 text-slate-950 border-2 border-amber-300 rounded-full hover:bg-amber-300 transition-all active:scale-90 shadow-md flex items-center gap-1.5 group"
                             title={t('swap')}
                         >
-                            <ArrowRightLeft className="w-4 h-4 rotate-90" />
+                            <ArrowRightLeft className="w-3.5 h-3.5 rotate-90 group-hover:rotate-[270deg] transition-transform duration-300" />
+                            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-wider pr-1">{t('swap')}</span>
                         </button>
                     </div>
 
-                    {/* Output Group */}
-                    <div className="space-y-4">
-                        <label className="text-[10px] uppercase tracking-[0.2em] font-black text-white/40">{t('output')}</label>
-                        <div className="flex gap-4">
-                            <div className="flex-1 bg-nautical-black/50 border border-white/10 rounded-xl px-4 py-3 flex items-center">
-                                <span className={`text-2xl font-mono ${result !== null ? 'text-accent' : 'text-white/10'}`}>
+                    {/* Output Converted Result Display */}
+                    <div className="space-y-1.5">
+                        <label className="text-[11px] uppercase tracking-widest font-black text-amber-400 flex items-center gap-1.5">
+                            <span>2.</span> {t('output')}
+                        </label>
+                        <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5">
+                            <div className="flex-1 min-w-0 w-full bg-white border-2 border-amber-400 rounded-xl px-3.5 py-2 sm:py-2.5 flex items-center shadow-inner overflow-hidden min-h-[40px]">
+                                <span className={`text-lg sm:text-xl font-mono font-black truncate ${result !== null ? 'text-slate-950' : 'text-slate-400'}`}>
                                     {result !== null ? result.toLocaleString('en-US', { maximumFractionDigits: 4 }) : '---'}
                                 </span>
                             </div>
-                            <div className="w-1/3 min-w-[120px]">
+                            <div className="w-full sm:w-2/5 min-w-[110px]">
                                 {activeTab === 'speed' && (
                                     <select
                                         value={speedOutput}
                                         onChange={(e) => setSpeedOutput(e.target.value as SpeedUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="knots">{t('knots')}</option>
                                         <option value="kmh">{t('kmh')}</option>
@@ -313,7 +319,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={distOutput}
                                         onChange={(e) => setDistOutput(e.target.value as DistanceUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="nautical_miles">{t('nautical_miles')}</option>
                                         <option value="km">{t('km')}</option>
@@ -326,7 +332,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={tempOutput}
                                         onChange={(e) => setTempOutput(e.target.value as TemperatureUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="celsius">{t('celsius')}</option>
                                         <option value="fahrenheit">{t('fahrenheit')}</option>
@@ -336,7 +342,7 @@ export default function NauticalConverter() {
                                     <select
                                         value={pressOutput}
                                         onChange={(e) => setPressOutput(e.target.value as PressureUnit)}
-                                        className="w-full h-full bg-nautical-black border border-white/10 rounded-xl px-3 text-sm text-white focus:outline-none focus:border-accent/50"
+                                        className="w-full h-10 sm:h-full bg-white border-2 border-amber-400 rounded-xl px-2.5 text-xs font-black text-slate-950 focus:outline-none focus:ring-2 focus:ring-amber-400/30 transition-all cursor-pointer truncate"
                                     >
                                         <option value="hpa">{t('hpa')}</option>
                                         <option value="mb">{t('mb')}</option>
@@ -347,57 +353,67 @@ export default function NauticalConverter() {
                         </div>
                     </div>
 
+                    {/* Convert Action Button */}
                     <button
                         onClick={handleConvert}
                         disabled={!inputValue}
-                        className="w-full py-4 bg-accent hover:bg-accent/90 disabled:opacity-50 disabled:cursor-not-allowed text-nautical-black font-black uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-accent/20 active:scale-[0.98]"
+                        className="w-full py-3 sm:py-3.5 bg-amber-400 hover:bg-amber-300 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-black uppercase tracking-widest text-xs rounded-xl transition-all shadow-xl shadow-amber-400/20 active:scale-[0.98] border-2 border-amber-300 flex items-center justify-center gap-2 mt-2"
                     >
-                        {t('convert_btn')}
+                        <span>{t('convert_btn')}</span>
                     </button>
                 </div>
 
-                {/* History Panel */}
-                <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col h-full min-h-[300px]">
-                    <div className="flex justify-between items-center mb-6">
-                        <div className="flex items-center gap-2 text-white/60">
+                {/* Recent Conversions History Log */}
+                <div className="lg:col-span-5 xl:col-span-5 bg-slate-900/80 rounded-xl p-3.5 sm:p-5 border border-amber-400/20 flex flex-col h-full max-h-[300px] sm:max-h-[360px] min-h-[220px] sm:min-h-[280px] overflow-hidden">
+                    <div className="flex justify-between items-center pb-2.5 border-b border-slate-800 shrink-0">
+                        <div className="flex items-center gap-1.5 text-amber-400">
                             <History className="w-4 h-4" />
-                            <span className="text-xs uppercase tracking-widest font-bold">{t('history')}</span>
+                            <span className="text-[11px] uppercase tracking-widest font-black text-white">{t('history')}</span>
                         </div>
                         {history.length > 0 && (
                             <button
                                 onClick={clearHistory}
-                                className="text-white/20 hover:text-red-400 transition-colors p-2"
+                                className="text-slate-400 hover:text-red-400 transition-colors p-1 rounded hover:bg-slate-800"
                                 title={t('clear_history')}
                             >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="w-3.5 h-3.5" />
                             </button>
                         )}
                     </div>
 
-                    <div className="flex-1 overflow-y-auto space-y-3 custom-scrollbar">
+                    <div className="flex-1 overflow-y-auto space-y-2 custom-scrollbar pt-2.5 pr-1">
                         {history.length === 0 ? (
-                            <div className="h-full flex flex-col items-center justify-center text-white/20 gap-3">
-                                <History className="w-8 h-8 opacity-50" />
-                                <span className="text-sm font-light italic">{t('no_history')}</span>
+                            <div className="h-full flex flex-col items-center justify-center text-slate-400 gap-2 py-3 my-auto">
+                                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl overflow-hidden border-2 border-amber-400/50 shadow-lg shadow-amber-500/20 relative group shrink-0">
+                                    <Image
+                                        src="/images/nautical_history_empty.jpg"
+                                        alt="Nautical History Empty"
+                                        fill
+                                        sizes="(max-width: 768px) 96px, 128px"
+                                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                                </div>
+                                <span className="text-[11px] sm:text-xs font-bold text-slate-300 tracking-wide text-center">{t('no_history')}</span>
                             </div>
                         ) : (
                             history.map((item) => (
-                                <div key={item.id} className="bg-nautical-black/40 rounded-lg p-3 border border-white/5 hover:border-white/10 transition-colors group">
+                                <div key={item.id} className="bg-white rounded-lg p-2.5 border border-amber-400/30 hover:border-amber-400 transition-colors shadow-sm">
                                     <div className="flex justify-between items-start mb-1">
-                                        <span className="text-[10px] uppercase text-white/30 font-bold tracking-wider">{t(item.type)}</span>
-                                        <span className="text-[10px] text-white/20 font-mono">
+                                        <span className="text-[9px] uppercase text-amber-600 font-extrabold tracking-wider bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">{t(item.type)}</span>
+                                        <span className="text-[9px] text-slate-500 font-mono font-semibold">
                                             {new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                         </span>
                                     </div>
-                                    <div className="flex items-center justify-between font-mono text-sm">
-                                        <div className="text-white/70">
-                                            <span className="font-bold text-white">{item.inputValue.toLocaleString()}</span>
-                                            <span className="text-xs ml-1">{item.inputUnit}</span>
+                                    <div className="flex items-center justify-between font-mono text-xs pt-0.5">
+                                        <div className="text-slate-950 truncate max-w-[40%]">
+                                            <span className="font-black text-xs sm:text-sm">{item.inputValue.toLocaleString()}</span>
+                                            <span className="text-[9px] sm:text-[10px] ml-1 font-bold text-slate-600">{item.inputUnit}</span>
                                         </div>
-                                        <ArrowRightLeft className="w-3 h-3 text-white/20" />
-                                        <div className="text-accent text-right">
-                                            <span className="font-bold">{item.outputValue.toLocaleString(undefined, { maximumFractionDigits: 4 })}</span>
-                                            <span className="text-xs ml-1">{item.outputUnit}</span>
+                                        <ArrowRightLeft className="w-3 h-3 text-amber-500 shrink-0 mx-1" />
+                                        <div className="text-slate-950 text-right truncate max-w-[40%]">
+                                            <span className="font-black text-xs sm:text-sm text-amber-600">{item.outputValue.toLocaleString(undefined, { maximumFractionDigits: 4 })}</span>
+                                            <span className="text-[9px] sm:text-[10px] ml-1 font-bold text-slate-600">{item.outputUnit}</span>
                                         </div>
                                     </div>
                                 </div>

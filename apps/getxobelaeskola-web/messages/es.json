@@ -37,6 +37,13 @@
     "all_rentals": "Todos los alquileres",
     "glossary": "Glosario"
   },
+  "tools": {
+    "title": "Herramientas Náuticas",
+    "converter": {
+      "title": "Conversor Náutico",
+      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
+    }
+  },
   "glossary": {
     "title": "Glosario Náutico",
     "subtitle": "Diccionario completo de términos marineros",

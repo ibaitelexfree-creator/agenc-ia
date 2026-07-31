@@ -35,6 +35,13 @@
     "all_courses": "Tous les cours",
     "all_rentals": "Toutes les locations"
   },
+  "tools": {
+    "title": "Outils Nautiques",
+    "converter": {
+      "title": "Convertisseur Nautique",
+      "subtitle": "Outil de précision pour convertir entre les unités maritimes et standard."
+    }
+  },
   "glossary": {
     "title": "Glossaire Nautique",
     "subtitle": "Dictionnaire complet des termes de la voile",
