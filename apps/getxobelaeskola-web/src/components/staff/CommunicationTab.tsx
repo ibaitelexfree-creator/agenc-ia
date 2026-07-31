@@ -17,7 +17,9 @@ export interface Newsletter {
     recipients_count?: number;
     delivered_count?: number;
     failed_count?: number;
+    delivery_logs?: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }>;
 }
+
 
 interface CommunicationTabProps {
     newsletters: Newsletter[];
@@ -229,6 +231,39 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                     )}
                 </div>
             </div>
+
+            {/* MANUAL NEWSLETTER DISPATCH PANEL */}
+            <div className="glass-panel p-8 border-l-4 border-emerald-500 relative overflow-hidden">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+                    <div>
+                        <h3 className="text-xl font-display text-white italic">Procesador Manual de Boletines Pendientes</h3>
+                        <p className="text-xs text-white/40 font-mono mt-1">
+                            Fuerza el envío inmediato de cualquier comunicado en estado &quot;Programado&quot; a la lista de suscriptores sin esperar a la tarea cron diaria.
+                        </p>
+                    </div>
+                    <button
+                        onClick={async () => {
+                            if (!confirm('¿Deseas procesar y enviar ahora todos los boletines pendientes a los suscriptores?')) return;
+                            try {
+                                const res = await fetch(apiUrl('/api/cron/process-newsletters'), { method: 'POST' });
+                                const data = await res.json();
+                                if (res.ok) {
+                                    alert(`✅ Envíos procesados. Enviados con éxito: ${data.totalSent || 0}, Fallidos: ${data.totalFailed || 0}`);
+                                    if (onRefreshNewsletters) onRefreshNewsletters();
+                                } else {
+                                    alert(`Error: ${data.error || 'Error al procesar boletines'}`);
+                                }
+                            } catch (e) {
+                                alert('Error de conexión al procesar boletines.');
+                            }
+                        }}
+                        className="px-6 py-4 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] uppercase tracking-[0.3em] font-black transition-all shrink-0 rounded-xs shadow-lg"
+                    >
+                        🚀 PROCESAR ENVÍOS PENDIENTES AHORA
+                    </button>
+                </div>
+            </div>
+
 
             {/* CAMPAIGN MANAGEMENT UI */}
             <CampaignManager />
@@ -513,11 +548,51 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             </div>
                             <div className="pt-2">
                                 <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 font-bold block mb-3">Cuerpo del Mensaje</span>
-                                <div className="text-sm text-slate-900 font-mono italic leading-relaxed whitespace-pre-wrap max-h-96 overflow-y-auto custom-scrollbar p-4 bg-white border border-slate-300 rounded-xs shadow-inner">
+                                <div className="text-sm text-slate-900 font-mono italic leading-relaxed whitespace-pre-wrap max-h-64 overflow-y-auto custom-scrollbar p-4 bg-white border border-slate-300 rounded-xs shadow-inner">
                                     {viewingMsg.content}
                                 </div>
                             </div>
                         </div>
+
+                        {/* Detailed Delivery Logs by Recipient */}
+                        {viewingMsg.delivery_logs && viewingMsg.delivery_logs.length > 0 && (
+                            <div className="space-y-3 bg-slate-50 border border-slate-200 p-6 rounded-sm">
+                                <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 font-bold block">Desglose de Entregas por Destinatario ({viewingMsg.delivery_logs.length})</span>
+                                <div className="max-h-60 overflow-y-auto custom-scrollbar border border-slate-200 rounded-xs bg-white">
+                                    <table className="w-full text-xs text-left font-mono">
+                                        <thead className="bg-slate-100 text-slate-600 uppercase text-[9px] tracking-wider border-b border-slate-200 sticky top-0">
+                                            <tr>
+                                                <th className="p-3">Destinatario</th>
+                                                <th className="p-3">Estado</th>
+                                                <th className="p-3">Fecha/Hora</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-100">
+                                            {viewingMsg.delivery_logs.map((log, idx) => (
+                                                <tr key={idx} className="hover:bg-slate-50">
+                                                    <td className="p-3 font-semibold text-slate-800">{log.email}</td>
+                                                    <td className="p-3">
+                                                        {log.status === 'delivered' ? (
+                                                            <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-xs text-[10px]">
+                                                                ENTREGADO
+                                                            </span>
+                                                        ) : (
+                                                            <span className="px-2 py-0.5 bg-red-100 text-red-800 font-bold rounded-xs text-[10px]" title={log.error}>
+                                                                FALLIDO {log.error ? `(${log.error})` : ''}
+                                                            </span>
+                                                        )}
+                                                    </td>
+                                                    <td className="p-3 text-slate-500 text-[11px]">
+                                                        <ClientDate date={log.timestamp} format="short" />
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        )}
+
 
                         {/* Actions in Modal */}
                         <div className="flex justify-end items-center gap-4 pt-4 border-t border-slate-200">
