@@ -1,4 +1,4 @@
-// API Endpoint: Newsletter Subscription & Automatic Welcome Email Dispatch via Resend (Verified Automated Deploy)
+// API Endpoint: Newsletter Subscription & Automatic Welcome Email Dispatch via Resend (Live Deployment Build Test)
 import { NextResponse } from 'next/server';
 import { resend, DEFAULT_FROM_EMAIL } from '@/lib/resend';
 import { createAdminClient } from '@/lib/supabase/admin';
