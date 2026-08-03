@@ -62,7 +62,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         alt="Maritime Heritage"
                         fill
                         priority
-                        className="object-cover opacity-60 animate-slow-zoom-out object-[center_60%] sm:object-[center_55%]"
+                        className="object-cover opacity-65 animate-slow-zoom-out object-[center_50%] sm:object-[center_45%]"
                         sizes="100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/80 via-transparent to-nautical-black/90 pointer-events-none" />
