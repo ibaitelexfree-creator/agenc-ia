@@ -54,7 +54,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             icon: "🌊",
             bg: "/images/about-optimist.jpg",
             objectFit: "cover",
-            objectPosition: "center 45%"
+            objectPosition: "center top"
         }
     ];
 
