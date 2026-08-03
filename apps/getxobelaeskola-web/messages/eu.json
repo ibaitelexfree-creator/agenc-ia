@@ -37,13 +37,6 @@
     "all_rentals": "Alokairua guztiak",
     "glossary": "Glosarioa"
   },
-  "tools": {
-    "title": "Nautika Tresnak",
-    "converter": {
-      "title": "Nautika Bihurtzailea",
-      "subtitle": "Itsas eta unitate estandarren artean bihurtzeko doitasun-tresna."
-    }
-  },
   "glossary": {
     "title": "Nautika Glosarioa",
     "subtitle": "Itsas terminoen hiztegi osoa",

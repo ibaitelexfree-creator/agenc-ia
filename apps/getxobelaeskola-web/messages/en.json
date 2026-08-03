@@ -37,13 +37,6 @@
     "all_rentals": "All Rentals",
     "glossary": "Glossary"
   },
-  "tools": {
-    "title": "Nautical Tools",
-    "converter": {
-      "title": "Nautical Converter",
-      "subtitle": "Precision tool for converting between maritime and standard units."
-    }
-  },
   "glossary": {
     "title": "Nautical Glossary",
     "subtitle": "Complete dictionary of sailing terms",
