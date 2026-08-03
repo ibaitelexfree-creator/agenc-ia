@@ -11,6 +11,11 @@ interface ValueItem {
     bg: string;
     objectPosition?: string;
     objectFit?: 'cover' | 'contain';
+    brightness?: string;
+    hoverBrightness?: string;
+    saturate?: string;
+    hoverSaturate?: string;
+    opacity?: string;
 }
 
 interface AboutValuesSectionProps {
@@ -35,7 +40,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                         whileInView={{ scale: 1.0 }}
                         viewport={{ once: false }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
-                        className="absolute inset-0 z-0 opacity-90 group-hover:opacity-100 group-active:opacity-100 transition-all duration-700 ease-out"
+                        className={`absolute inset-0 z-0 ${item.opacity || 'opacity-65'} group-hover:opacity-95 group-active:opacity-95 transition-all duration-700 ease-out`}
                     >
                         <Image
                             src={item.bg}
@@ -43,10 +48,10 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
                             style={{ objectPosition: item.objectPosition || 'center' }}
-                            className={`${item.objectFit === 'contain' ? 'object-contain' : 'object-cover'} grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.22] contrast-[1.12] brightness-[1.03] group-hover:scale-105 transition-all duration-700`}
+                            className={`${item.objectFit === 'contain' ? 'object-contain' : 'object-cover'} grayscale-[80%] ${item.brightness || 'brightness-[0.9]'} group-hover:grayscale-0 ${item.hoverSaturate || 'group-hover:saturate-[1.05]'} ${item.hoverBrightness || 'group-hover:brightness-[1.05]'} group-hover:scale-105 transition-all duration-700`}
                         />
                     </motion.div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/40 to-transparent z-1 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-nautical-black/80 via-nautical-black/30 to-transparent z-1 pointer-events-none" />
 
                     <motion.div 
                         initial={{ y: 20, opacity: 0.8 }}
@@ -55,13 +60,13 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                         transition={{ duration: 0.6, delay: i * 0.15 + 0.2 }}
                         className="relative z-10 transition-transform duration-700 group-hover:-translate-y-4 md:group-hover:-translate-y-6 group-active:-translate-y-4"
                     >
-                        <span className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-8 md:mb-10 block opacity-90 group-hover:opacity-100 group-active:opacity-100 group-hover:scale-115 group-active:scale-115 transition-all duration-700 origin-left inline-block grayscale group-hover:grayscale-0 group-active:grayscale-0 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        <span className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-8 md:mb-10 block opacity-90 group-hover:opacity-100 group-active:opacity-100 group-hover:scale-115 group-active:scale-115 transition-all duration-700 origin-left inline-block drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                             {item.icon}
                         </span>
                         <h3 className="text-xl sm:text-2xl lg:text-3xl font-display text-sea-foam mb-3 sm:mb-6 group-hover:text-accent group-active:text-accent transition-colors duration-700 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] font-bold">
                             {item.title}
                         </h3>
-                        <p className="text-foreground/90 font-medium text-xs sm:text-sm leading-relaxed max-w-xs group-hover:text-white transition-colors duration-700 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                        <p className="text-black font-semibold text-xs sm:text-sm leading-relaxed max-w-xs transition-colors duration-700 drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
                             {item.desc}
                         </p>
                     </motion.div>
