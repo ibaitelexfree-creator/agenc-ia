@@ -63,10 +63,10 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                         <span className="text-3xl sm:text-4xl lg:text-5xl mb-4 sm:mb-8 md:mb-10 block opacity-90 group-hover:opacity-100 group-active:opacity-100 group-hover:scale-115 group-active:scale-115 transition-all duration-700 origin-left inline-block drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                             {item.icon}
                         </span>
-                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-display text-sea-foam mb-3 sm:mb-6 group-hover:text-accent group-active:text-accent transition-colors duration-700 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] font-bold">
+                        <h3 className="text-xl sm:text-2xl lg:text-3xl font-display text-orange-500 mb-3 sm:mb-6 transition-colors duration-700 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] font-bold">
                             {item.title}
                         </h3>
-                        <p className="text-black font-semibold text-xs sm:text-sm leading-relaxed max-w-xs transition-colors duration-700 drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]">
+                        <p className="text-white font-medium text-xs sm:text-sm leading-relaxed max-w-xs transition-colors duration-700 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)] [text-shadow:_0_0_8px_rgba(234,179,8,0.6),_0_1px_2px_rgba(0,0,0,0.9)]">
                             {item.desc}
                         </p>
                     </motion.div>
