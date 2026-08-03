@@ -37,7 +37,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             desc: t('values.v1_desc'),
             icon: "⚓",
             bg: "/images/about-facilities-j80.webp",
-            objectPosition: "center"
+            objectPosition: "center 5%"
         },
         {
             title: t('values.v2_title'),
