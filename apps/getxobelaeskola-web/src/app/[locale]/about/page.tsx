@@ -36,20 +36,22 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             title: t('values.v1_title'),
             desc: t('values.v1_desc'),
             icon: "⚓",
-            bg: "/images/about-facilities-j80.webp",
+            bg: "/images/about-patio.jpg",
+            objectFit: "cover",
             objectPosition: "center 50%"
         },
         {
             title: t('values.v2_title'),
             desc: t('values.v2_desc'),
             icon: "⛵",
-            bg: "/images/course-raquero-students.webp"
+            bg: "/images/about-own-pontoon.webp",
+            objectPosition: "center 20%"
         },
         {
             title: t('values.v3_title'),
             desc: t('values.v3_desc'),
             icon: "🌊",
-            bg: "/images/home-cta-join.webp"
+            bg: "/images/about-optimist.jpg"
         }
     ];
 

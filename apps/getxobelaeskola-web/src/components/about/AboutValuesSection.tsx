@@ -10,6 +10,7 @@ interface ValueItem {
     icon: string;
     bg: string;
     objectPosition?: string;
+    objectFit?: 'cover' | 'contain';
 }
 
 interface AboutValuesSectionProps {
@@ -26,7 +27,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.25 }}
                     transition={{ duration: 0.8, delay: i * 0.15, ease: [0.215, 0.61, 0.355, 1] }}
-                    className="group relative min-h-[460px] sm:min-h-[580px] lg:min-h-[680px] p-6 sm:p-10 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10"
+                    className="group relative min-h-[460px] sm:min-h-[580px] lg:min-h-[680px] p-6 sm:p-10 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10 bg-nautical-black/50"
                 >
                     {/* Background image with subtle scroll scale */}
                     <motion.div 
@@ -42,7 +43,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
                             style={{ objectPosition: item.objectPosition || 'center' }}
-                            className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.22] contrast-[1.12] brightness-[1.03] group-hover:scale-105 transition-all duration-700"
+                            className={`${item.objectFit === 'contain' ? 'object-contain' : 'object-cover'} grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.22] contrast-[1.12] brightness-[1.03] group-hover:scale-105 transition-all duration-700`}
                         />
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/40 to-transparent z-1 pointer-events-none" />
