@@ -38,7 +38,12 @@ export default function ExperiencesClient({
     const [searchQuery, setSearchQuery] = useState('');
 
     const filteredExperiences = useMemo(() => {
-        return experiences.filter(exp => {
+        return experiences.map(exp => {
+            if (exp.slug === 'cumpleanos-bigsub' || exp.nombre?.toLowerCase().includes('bigsub')) {
+                return { ...exp, imagen_url: '/images/experiences/birthday-bigsub.webp' };
+            }
+            return exp;
+        }).filter(exp => {
             const matchesCategory = selectedCategory === 'all' || exp.categoria === selectedCategory;
 
             const name = (locale === 'eu' ? exp.nombre_eu : locale === 'en' ? exp.nombre_en : exp.nombre) || exp.nombre;
