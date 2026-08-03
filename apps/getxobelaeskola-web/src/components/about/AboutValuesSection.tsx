@@ -30,8 +30,8 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                 >
                     {/* Background image with subtle scroll scale */}
                     <motion.div 
-                        initial={{ scale: 1.1 }}
-                        whileInView={{ scale: 1.0 }}
+                        initial={{ scale: 0.95 }}
+                        whileInView={{ scale: 0.90 }}
                         viewport={{ once: false }}
                         transition={{ duration: 1.2, ease: "easeOut" }}
                         className="absolute inset-0 z-0 opacity-90 group-hover:opacity-100 group-active:opacity-100 transition-all duration-700 ease-out"
@@ -42,7 +42,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
                             style={{ objectPosition: item.objectPosition || 'center' }}
-                            className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.18] contrast-[1.08] group-hover:scale-105 transition-all duration-700"
+                            className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.18] contrast-[1.08] transition-all duration-700"
                         />
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/40 to-transparent z-1 pointer-events-none" />
