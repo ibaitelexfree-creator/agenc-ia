@@ -62,30 +62,30 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         alt="Maritime Heritage"
                         fill
                         priority
-                        className="object-cover opacity-80 scale-90 sm:scale-90 animate-slow-zoom object-[center_35%]"
+                        className="object-cover opacity-85 object-[center_90%] sm:object-[center_82%] animate-slow-zoom grayscale-[20%] sepia-[10%] saturate-[1.05] contrast-[1.02] brightness-[0.98] blur-[0.3px] transition-all duration-1000"
                         sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/80 via-transparent to-nautical-black/90 pointer-events-none" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/60 via-transparent to-nautical-black/75 pointer-events-none" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.25)_100%)] pointer-events-none" />
                 </div>
 
                 <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center">
                     <div className="flex flex-col items-center">
-                        <span className="inline-block text-accent uppercase tracking-[clamp(0.2em,1.2vw,0.8em)] text-xs sm:text-sm font-bold mb-6 sm:mb-10 opacity-80 animate-fade-in-up">
+                        <span className="inline-block text-accent uppercase tracking-[clamp(0.2em,1.2vw,0.8em)] text-xs sm:text-sm font-bold mb-6 sm:mb-10 opacity-90 animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-[clamp(2.5rem,8.5vw,9.5rem)] font-display text-sea-foam leading-[0.95] md:leading-[0.9] mb-8 sm:mb-12 drop-shadow-sm animate-reveal relative max-w-6xl">
+                        <h1 className="text-[clamp(2.5rem,8.5vw,9.5rem)] font-display text-black font-bold leading-[0.95] md:leading-[0.9] mb-8 sm:mb-12 animate-reveal relative max-w-6xl">
                             {t('header_title')} <br />
-                            <span className="italic font-light text-brass-gold/90">
+                            <span className="italic font-bold text-black">
                                 {t('header_highlight')}
                             </span>
                         </h1>
-                        <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-3 sm:gap-6 md:gap-8 w-full max-w-4xl opacity-60 animate-fade-in px-2" style={{ animationDelay: '1s' }}>
-                            <div className="hidden sm:block h-px flex-grow bg-gradient-to-l from-sea-foam/30 to-transparent" />
-                            <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.4em] font-light text-center sm:text-left text-sea-foam">
+                        <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-3 sm:gap-6 md:gap-8 w-full max-w-4xl opacity-95 animate-fade-in px-2" style={{ animationDelay: '1s' }}>
+                            <div className="hidden sm:block h-px flex-grow bg-gradient-to-l from-black/40 to-transparent" />
+                            <p className="text-sm sm:text-base md:text-lg uppercase tracking-[0.25em] sm:tracking-[0.45em] font-extrabold text-center sm:text-left text-black">
                                 {t('header_suffix')}
                             </p>
-                            <div className="hidden sm:block h-px flex-grow bg-gradient-to-r from-sea-foam/30 to-transparent" />
+                            <div className="hidden sm:block h-px flex-grow bg-gradient-to-r from-black/40 to-transparent" />
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
                                     containerClassName="h-full shadow-2xl"
-                                    imageClassName="object-cover scale-105 group-hover:scale-100"
+                                    imageClassName="object-cover object-center"
                                 />
                                 {/* Image Badge - anchored relatively and cleanly positioned on all screens */}
                                 <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:-left-4 lg:-left-6 bg-nautical-deep/95 backdrop-blur-md px-4 py-2.5 sm:px-6 sm:py-4 border border-sea-foam/15 shadow-2xl z-20 transition-transform duration-300">
