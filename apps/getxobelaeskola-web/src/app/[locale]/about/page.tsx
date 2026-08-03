@@ -36,7 +36,8 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             title: t('values.v1_title'),
             desc: t('values.v1_desc'),
             icon: "⚓",
-            bg: "/images/home-hero-sailing-action.webp"
+            bg: "/images/about-facilities-j80.webp",
+            objectPosition: "center"
         },
         {
             title: t('values.v2_title'),
