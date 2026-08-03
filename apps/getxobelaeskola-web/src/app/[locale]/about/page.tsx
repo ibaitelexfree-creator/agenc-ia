@@ -44,14 +44,17 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             title: t('values.v2_title'),
             desc: t('values.v2_desc'),
             icon: "⛵",
-            bg: "/images/about-own-pontoon.webp",
-            objectPosition: "center 20%"
+            bg: "/images/about-own-pontoon.jpg",
+            objectFit: "cover",
+            objectPosition: "center 50%"
         },
         {
             title: t('values.v3_title'),
             desc: t('values.v3_desc'),
             icon: "🌊",
-            bg: "/images/about-optimist.jpg"
+            bg: "/images/about-optimist.jpg",
+            objectFit: "cover",
+            objectPosition: "center 45%"
         }
     ];
 
