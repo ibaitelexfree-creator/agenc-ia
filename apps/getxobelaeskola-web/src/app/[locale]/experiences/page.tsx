@@ -83,7 +83,7 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     descripcion_fr: item.descripcion_fr || item.descripcion,
                     categoria: item.categoria || 'evento',
                     precio: item.precio_base || item.precio_hora,
-                    imagen_url: item.imagen_url || '/images/home-hero-sailing-action.webp',
+                    imagen_url: item.imagen_url || (item.slug?.includes('cumplean') || item.nombre?.toLowerCase().includes('cumplea') ? '/images/IMG_20241016_114549.jpg' : '/images/home-hero-sailing-action.webp'),
                     duracion: item.duracion_minutos ? `${item.duracion_minutos} min` : null,
                     activo: true,
                 }));
@@ -102,7 +102,11 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                 descripcion_fr: item.descripcion_fr || item.descripcion_es,
                 categoria: item.tipo || 'evento',
                 precio: item.precio,
-                imagen_url: item.imagen_url || '/images/home-hero-sailing-action.webp',
+                imagen_url: item.slug === 'cumpleanos-navegacion'
+                    ? '/images/IMG_20241016_114549.jpg'
+                    : item.slug === 'cumpleanos-bigsub'
+                    ? '/images/experiences/birthday-bigsub.jpg'
+                    : (item.imagen_url || '/images/home-hero-sailing-action.webp'),
                 duracion: item.duracion_h ? `${item.duracion_h}h` : null,
                 min_participantes: item.min_participantes || item.edad_minima, // Fallback to age or pax if needed
                 activo: true,

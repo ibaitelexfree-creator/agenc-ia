@@ -55,8 +55,16 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                      src={experience.imagen_url || '/images/home-hero-sailing-action.webp'}
                     alt={getName()}
                     fill
-                    className="object-cover transition-transform duration-[3s] group-hover:scale-110 saturate-[0.8] group-hover:saturate-100"
+                    className={`object-cover transition-transform duration-[3s] group-hover:scale-110 ${
+                        (experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549'))
+                            ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
+                            : 'saturate-[0.8] group-hover:saturate-100'
+                    }`}
                 />
+                {/* Soft warm golden natural tone overlay for Birthday Sailing photo only */}
+                {(experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549')) && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-orange-500/10 to-transparent pointer-events-none" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* Price Tag */}
