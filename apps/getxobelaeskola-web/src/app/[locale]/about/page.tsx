@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
-import HoverImage from '@/components/shared/HoverImage';
+import HoverVideoOrImage from '@/components/shared/HoverVideoOrImage';
 import { getSeoAlternates } from '@/lib/seo';
 
 import AboutValuesSection from '@/components/about/AboutValuesSection';
@@ -98,53 +98,52 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             </section>
 
             {/* 2. Heritage & Story Section */}
-            <section className="py-12 sm:py-20 md:py-32 relative overflow-hidden">
+            <section className="py-10 sm:py-16 md:py-24 relative overflow-hidden flex items-center min-h-[85vh] lg:min-h-screen">
                 <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-                    <StaggeredEntrance className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    <StaggeredEntrance className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
                         {/* Decorative Quote Mark */}
-                        <div className="lg:col-span-1 hidden lg:block self-start pt-12">
-                            <span className="font-display text-8xl xl:text-9xl text-accent/10 italic leading-none">&quot;</span>
+                        <div className="lg:col-span-1 hidden lg:block self-start pt-4">
+                            <span className="font-display text-7xl xl:text-8xl text-accent/10 italic leading-none">&quot;</span>
                         </div>
 
-                        <div className="lg:col-span-5 space-y-6 sm:space-y-8 md:space-y-12 relative">
-                            <div className="space-y-4 md:space-y-6">
-                                <h2 className="text-[clamp(1.75rem,4vw,3.5rem)] font-display leading-tight tracking-tight text-sea-foam">
+                        <div className="lg:col-span-5 space-y-4 sm:space-y-5 relative">
+                            <div className="space-y-2 md:space-y-3">
+                                <h2 className="text-[clamp(1.5rem,3vw,2.75rem)] font-display leading-tight tracking-tight text-sea-foam">
                                     {t('commitment_title')} <br />
-                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[8px] sm:underline-offset-[12px]">
+                                    <span className="italic font-light text-accent/80 underline decoration-sea-foam/10 underline-offset-[6px]">
                                         {t('commitment_highlight')}
                                     </span>
                                 </h2>
                             </div>
 
-                            <div className="space-y-5 sm:space-y-6 md:space-y-8">
-                                <p className="text-foreground/80 font-light text-base sm:text-lg md:text-xl leading-relaxed first-letter:text-4xl sm:first-letter:text-5xl md:first-letter:text-6xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-3 sm:first-letter:mr-4 first-letter:mt-1">
+                            <div className="space-y-3 sm:space-y-4">
+                                <p className="text-foreground/80 font-light text-sm sm:text-base md:text-lg leading-relaxed first-letter:text-3xl sm:first-letter:text-4xl first-letter:font-display first-letter:text-accent first-letter:float-left first-letter:mr-3 first-letter:mt-0.5">
                                     {t('desc1')}
                                 </p>
-                                <div className="p-4 sm:p-6 md:p-8 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-3 sm:space-y-4">
-                                    <p className="text-foreground/70 font-light text-sm sm:text-base md:text-lg leading-relaxed italic">
+                                <div className="p-3 sm:p-4 border-l-2 border-brass-gold/20 bg-sea-foam/[0.02] backdrop-blur-sm space-y-2">
+                                    <p className="text-foreground/70 font-light text-xs sm:text-sm md:text-base leading-relaxed italic">
                                         {t('desc2')}
                                     </p>
-                                    <p className="text-foreground/70 font-light text-sm sm:text-base md:text-lg leading-relaxed italic">
+                                    <p className="text-foreground/70 font-light text-xs sm:text-sm md:text-base leading-relaxed italic">
                                         {t('desc3')}
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="lg:col-span-6 lg:pl-4 xl:pl-8 mt-8 lg:mt-0">
-                            <div className="relative aspect-[3/4] max-w-md sm:max-w-lg mx-auto lg:max-w-none group">
-                                <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-full h-full border border-sea-foam/10 group-hover:-top-1 group-hover:-right-1 transition-all duration-700 pointer-events-none" />
-                                <HoverImage
-                                    src="/images/course-raquero-students.webp"
+                        <div className="lg:col-span-6 lg:pl-4 xl:pl-6 mt-6 lg:mt-0">
+                            <div className="relative aspect-[4/3] lg:aspect-[16/11] max-w-md sm:max-w-lg mx-auto lg:max-w-none group border border-sea-foam/20 shadow-2xl overflow-hidden">
+                                <HoverVideoOrImage
+                                    src="/images/womes-8139.jpg"
                                     alt="Sea Experience"
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 40vw"
-                                    containerClassName="h-full shadow-2xl"
-                                    imageClassName="object-cover object-center"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
+                                    containerClassName="w-full h-full relative"
+                                    imageClassName="object-cover object-[5%_20%] w-full h-full"
                                 />
                                 {/* Image Badge - anchored relatively and cleanly positioned on all screens */}
-                                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:-left-4 lg:-left-6 bg-nautical-deep/95 backdrop-blur-md px-4 py-2.5 sm:px-6 sm:py-4 border border-sea-foam/15 shadow-2xl z-20 transition-transform duration-300">
-                                    <span className="text-[10px] sm:text-xs md:text-sm uppercase tracking-[0.3em] sm:tracking-[0.4em] text-accent font-bold whitespace-nowrap">
+                                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-nautical-deep/95 backdrop-blur-md px-3 py-2 border border-sea-foam/15 shadow-2xl z-20 transition-transform duration-300">
+                                    <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-accent font-bold whitespace-nowrap">
                                         EST. 1993
                                     </span>
                                 </div>
