@@ -267,6 +267,15 @@ a:hover {
   }
 }
 
+@keyframes slow-zoom-out {
+  0% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes reveal {
   from {
     clip-path: inset(100% 0 0 0);
@@ -279,6 +288,10 @@ a:hover {
 
 .animate-slow-zoom {
   animation: slow-zoom 20s infinite alternate linear;
+}
+
+.animate-slow-zoom-out {
+  animation: slow-zoom-out 18s ease-out forwards;
 }
 
 .animate-reveal {
