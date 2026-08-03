@@ -72,13 +72,13 @@ const nextConfig = {
                 ...config.optimization.splitChunks.cacheGroups,
                 framerMotion: {
                     test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-                    name: 'framer-motion',
+                    name: 'vendor-chunks/framer-motion',
                     chunks: 'all',
                     priority: 40,
                 },
                 three: {
                     test: /[\\/]node_modules[\\/]three[\\/]/,
-                    name: 'three',
+                    name: 'vendor-chunks/three',
                     chunks: 'all',
                     priority: 40,
                 },

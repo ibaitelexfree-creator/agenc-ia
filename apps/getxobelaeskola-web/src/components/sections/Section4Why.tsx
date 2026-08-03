@@ -280,9 +280,29 @@ const item = {
 }
 
 export function Section4Why() {
-  const t = useTranslations('s4')
+  const tHome = useTranslations('home.features')
   const [isPhone, setIsPhone] = useState(false)
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
+
+  const t = (key: string) => {
+    switch (key) {
+      case 'title': return tHome('title') || 'Por qué elegirnos'
+      case 'eyebrow': return ''
+      case 'pillar1.title': return tHome('cert_title') || 'Certificación Oficial'
+      case 'pillar1.body': return tHome('cert_desc') || 'Titulaciones reconocidas para navegar en cualquier mar.'
+      case 'pillar1.backTitle': return 'Calidad Garantizada'
+      case 'pillar1.backBody': return 'Acreditación oficial por la federación de vela.'
+      case 'pillar2.title': return tHome('staff_title') || 'Instructores Expertos'
+      case 'pillar2.body': return tHome('staff_desc') || 'Aprende de navegantes con miles de millas de experiencia.'
+      case 'pillar2.backTitle': return 'Equipo Cualificado'
+      case 'pillar2.backBody': return 'Profesionales apasionados dedicados a tu seguridad y aprendizaje.'
+      case 'pillar3.title': return tHome('comm_title') || 'Comunidad Activa'
+      case 'pillar3.body': return tHome('comm_desc') || 'Únete a un club de apasionados por la vela y el Cantábrico.'
+      case 'pillar3.backTitle': return 'Ambiente Cercano'
+      case 'pillar3.backBody': return 'Eventos, salidas grupales y actividades durante todo el año.'
+      default: return key
+    }
+  }
 
   useEffect(() => {
     const checkSize = () => setIsPhone(window.innerWidth < 768)
