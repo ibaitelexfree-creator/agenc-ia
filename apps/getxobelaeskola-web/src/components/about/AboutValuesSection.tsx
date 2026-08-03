@@ -42,7 +42,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
                             style={{ objectPosition: item.objectPosition || 'center' }}
-                            className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.18] contrast-[1.08] group-hover:scale-105 transition-all duration-700"
+                            className="object-cover grayscale group-hover:grayscale-0 group-active:grayscale-0 saturate-[1.22] contrast-[1.12] brightness-[1.03] group-hover:scale-105 transition-all duration-700"
                         />
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-nautical-black via-nautical-black/40 to-transparent z-1 pointer-events-none" />
