@@ -160,12 +160,12 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             </section>
 
             {/* 3. The Pillars (Values) Section */}
-            <section className="py-20 sm:py-28 md:py-40 relative bg-sea-foam/[0.01]">
+            <section className="py-8 sm:py-12 md:py-14 relative bg-sea-foam/[0.01]">
                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none" />
                 <div className="container mx-auto px-4 sm:px-6 relative max-w-7xl">
-                    <header className="mb-16 sm:mb-24 text-center max-w-4xl mx-auto space-y-4 sm:space-y-6">
+                    <header className="mb-6 sm:mb-8 text-center max-w-4xl mx-auto space-y-2 sm:space-y-3">
                         <span className="text-accent uppercase tracking-[0.4em] sm:tracking-[0.6em] text-xs sm:text-sm font-bold">Nuestra Esencia</span>
-                        <h2 className="text-[clamp(2.25rem,5vw,5rem)] font-display text-sea-foam leading-tight">{t('define_title')}</h2>
+                        <h2 className="text-[clamp(1.75rem,4vw,3.5rem)] font-display text-sea-foam leading-tight">{t('define_title')}</h2>
                         <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
                     </header>
 

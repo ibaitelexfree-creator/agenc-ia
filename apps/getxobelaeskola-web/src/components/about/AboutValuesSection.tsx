@@ -32,7 +32,7 @@ export default function AboutValuesSection({ items }: AboutValuesSectionProps) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: false, amount: 0.25 }}
                     transition={{ duration: 0.8, delay: i * 0.15, ease: [0.215, 0.61, 0.355, 1] }}
-                    className="group relative min-h-[460px] sm:min-h-[580px] lg:min-h-[680px] p-6 sm:p-10 md:p-10 lg:p-14 xl:p-16 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10 bg-nautical-black/50"
+                    className="group relative min-h-[320px] sm:min-h-[400px] lg:min-h-[460px] p-5 sm:p-6 md:p-6 lg:p-8 xl:p-10 flex flex-col justify-end overflow-hidden border-b md:border-b-0 md:border-r last:border-b-0 md:last:border-r-0 border-sea-foam/10 cursor-pointer touch-manipulation transition-all duration-700 active:bg-accent/10 bg-nautical-black/50"
                 >
                     {/* Background image with subtle scroll scale */}
                     <motion.div 
