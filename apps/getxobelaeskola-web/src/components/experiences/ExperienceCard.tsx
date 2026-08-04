@@ -72,7 +72,7 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                         (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? { objectPosition: '50% 35%' }
                             : experience.imagen_url?.includes('windsurf-mooring')
-                            ? { objectPosition: '35% 50%' }
+                            ? { objectPosition: '12% 50%' }
                             : undefined
                     }
                 />
