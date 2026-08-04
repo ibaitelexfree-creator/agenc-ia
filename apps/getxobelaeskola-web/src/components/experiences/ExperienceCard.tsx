@@ -52,21 +52,25 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
             {/* Image Section - More cinematic Ratio */}
             <div className="relative aspect-[16/10] min-h-[140px] sm:min-h-0 overflow-hidden">
                 <NauticalImage
-                     src={experience.imagen_url || '/images/home-hero-sailing-action.webp'}
+                    src={
+                        (experience.slug === 'sailboat-mooring' || (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring')))
+                            ? '/images/experiences/sailboat-mooring.jpg'
+                            : experience.imagen_url || '/images/home-hero-sailing-action.webp'
+                    }
                     alt={getName()}
                     fill
                     className={`object-cover transition-transform duration-[3s] group-hover:scale-110 ${
                         (experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549'))
                             ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
                             : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
-                            ? 'saturate-[1.35] contrast-[1.1] brightness-[1.06] hue-rotate-[-5deg]'
+                            ? 'saturate-[1.7] contrast-[1.18] brightness-[1.1] hue-rotate-[-8deg]'
                             : experience.imagen_url?.includes('windsurf-mooring')
                             ? 'brightness-[1.03] saturate-[1.12] sepia-[0.08] contrast-[1.02]'
                             : 'saturate-[0.8] group-hover:saturate-100'
                     }`}
                     style={
                         (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
-                            ? { objectPosition: '50% 40%' }
+                            ? { objectPosition: '50% 35%' }
                             : experience.imagen_url?.includes('windsurf-mooring')
                             ? { objectPosition: '35% 50%' }
                             : undefined
@@ -80,15 +84,21 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                 {experience.imagen_url?.includes('windsurf-mooring') && (
                     <div className="absolute inset-0 bg-gradient-to-t from-amber-950/20 via-amber-500/10 to-sky-300/10 mix-blend-soft-light pointer-events-none" />
                 )}
-                {/* Vibrant cyan & sky blue enhancement layer for BigSub photo */}
+                {/* Extra Vibrant Sky Blue & Tropical Ocean enhancement layers for BigSub photo */}
                 {(experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub')) && (
-                    <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-cyan-500/15 to-teal-600/20 mix-blend-color-dodge pointer-events-none" />
+                    <>
+                        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/35 via-cyan-400/25 to-teal-500/35 mix-blend-overlay pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyan-600/30 via-transparent to-sky-400/30 mix-blend-color-dodge pointer-events-none" />
+                    </>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                 {/* Price Tag */}
                 <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-8 text-right z-20">
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.3em] text-white/40 block mb-0.5 sm:mb-1">{t('from')}</span>
+                    {/* Price Label: custom for Sailboat Mooring */}
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.15em] sm:tracking-[0.3em] text-white/40 block mb-0.5 sm:mb-1">
+                        { (experience.slug === 'sailboat-mooring' || (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring')) ) ? 'Registration:' : t('from') }
+                    </span>
                     <span className="text-2xl sm:text-3xl md:text-4xl font-display text-white italic drop-shadow-lg">
                         {experience.precio}<span className="text-base sm:text-xl text-brass-gold ml-0.5 sm:ml-1">€</span>
                     </span>
