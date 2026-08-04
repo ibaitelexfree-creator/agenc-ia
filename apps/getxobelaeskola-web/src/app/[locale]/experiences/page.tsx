@@ -83,7 +83,9 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     descripcion_fr: item.descripcion_fr || item.descripcion,
                     categoria: item.categoria || 'evento',
                     precio: item.precio_base || item.precio_hora,
-                    imagen_url: (item.slug === 'sailboat-mooring' || item.nombre?.toLowerCase().includes('sailboat mooring') || item.nombre_en?.toLowerCase().includes('sailboat mooring'))
+                    imagen_url: (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre?.toLowerCase().includes('bono windsurf') || item.nombre?.toLowerCase().includes('windsurf voucher') || item.nombre_en?.toLowerCase().includes('windsurf voucher'))
+                        ? '/images/experiences/windsurf-voucher.jpg'
+                        : (item.slug === 'sailboat-mooring' || item.nombre?.toLowerCase().includes('sailboat mooring') || item.nombre_en?.toLowerCase().includes('sailboat mooring'))
                         ? '/images/experiences/sailboat-mooring.jpg'
                         : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre?.toLowerCase().includes('canoe') || item.nombre?.toLowerCase().includes('piragua') || item.nombre?.toLowerCase().includes('atraque'))
                         ? '/images/about-patio.jpg'
@@ -110,6 +112,8 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     ? '/images/IMG_20241016_114549.jpg'
                     : item.slug === 'cumpleanos-bigsub'
                     ? '/images/experiences/birthday-bigsub.jpg'
+                    : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_en?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
+                    ? '/images/experiences/windsurf-voucher.jpg'
                     : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
                     ? '/images/experiences/windsurf-mooring.jpg'
                     : (item.slug === 'sailboat-mooring' || item.slug?.includes('sailboat') || item.nombre_es?.toLowerCase().includes('velero') || item.nombre_es?.toLowerCase().includes('sailboat') || item.nombre_en?.toLowerCase().includes('sailboat'))

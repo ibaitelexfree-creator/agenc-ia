@@ -72,6 +72,8 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
                             : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? 'saturate-[1.7] contrast-[1.18] brightness-[1.1] hue-rotate-[-8deg]'
+                            : experience.imagen_url?.includes('windsurf-voucher')
+                            ? 'brightness-[1.05] saturate-[1.25] sepia-[0.18] hue-rotate-[-5deg] contrast-[1.05]'
                             : experience.imagen_url?.includes('windsurf-mooring')
                             ? 'brightness-[1.03] saturate-[1.12] sepia-[0.08] contrast-[1.02]'
                             : (experience.slug === 'sailboat-mooring' || experience.slug === 'sailboat-mooring-service')
@@ -86,6 +88,13 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             : undefined
                     }
                 />
+                {/* Warm golden sunset light overlay for Windsurf Voucher */}
+                {experience.imagen_url?.includes('windsurf-voucher') && (
+                    <>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-amber-600/30 via-orange-500/20 to-amber-300/15 mix-blend-color-dodge pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-amber-950/40 via-amber-600/15 to-rose-500/10 mix-blend-soft-light pointer-events-none" />
+                    </>
+                )}
                 {/* Soft warm golden natural tone overlay for Birthday Sailing photo only */}
                 {(experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549')) && (
                     <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-orange-500/10 to-transparent pointer-events-none" />
