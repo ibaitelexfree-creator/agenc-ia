@@ -34,6 +34,10 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
     };
 
     const getDescription = () => {
+        // Custom description for Sailboat Mooring
+        if (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring')) {
+            return 'Monthly mooring spot for sailboat. Registration: €50.';
+        }
         if (locale === 'eu') return experience.descripcion_eu || experience.descripcion;
         if (locale === 'en') return experience.descripcion_en || experience.descripcion;
         return experience.descripcion;
@@ -53,7 +57,11 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
             <div className="relative aspect-[16/10] min-h-[140px] sm:min-h-0 overflow-hidden">
                 <NauticalImage
                     src={
-                        (experience.slug === 'sailboat-mooring' || (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring')))
+                        (
+                            experience.slug === 'sailboat-mooring' ||
+                            experience.slug === 'sailboat-mooring-service' ||
+                            (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring'))
+                        )
                             ? '/images/experiences/sailboat-mooring.jpg'
                             : experience.imagen_url || '/images/home-hero-sailing-action.webp'
                     }
@@ -66,6 +74,8 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             ? 'saturate-[1.7] contrast-[1.18] brightness-[1.1] hue-rotate-[-8deg]'
                             : experience.imagen_url?.includes('windsurf-mooring')
                             ? 'brightness-[1.03] saturate-[1.12] sepia-[0.08] contrast-[1.02]'
+                            : (experience.slug === 'sailboat-mooring' || experience.slug === 'sailboat-mooring-service')
+                            ? 'brightness-[1.2] saturate-[1.05] sepia-[0.08] hue-rotate-[10deg]'
                             : 'saturate-[0.8] group-hover:saturate-100'
                     }`}
                     style={
