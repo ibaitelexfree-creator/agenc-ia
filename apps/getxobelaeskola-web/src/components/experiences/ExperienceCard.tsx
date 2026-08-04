@@ -58,12 +58,23 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                     className={`object-cover transition-transform duration-[3s] group-hover:scale-110 ${
                         (experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549'))
                             ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
+                            : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
+                            ? 'saturate-[1.35] contrast-[1.1] brightness-[1.06] hue-rotate-[-5deg]'
                             : 'saturate-[0.8] group-hover:saturate-100'
                     }`}
+                    style={
+                        (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
+                            ? { objectPosition: '50% 40%' }
+                            : undefined
+                    }
                 />
                 {/* Soft warm golden natural tone overlay for Birthday Sailing photo only */}
                 {(experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549')) && (
                     <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-orange-500/10 to-transparent pointer-events-none" />
+                )}
+                {/* Vibrant cyan & sky blue enhancement layer for BigSub photo */}
+                {(experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub')) && (
+                    <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-cyan-500/15 to-teal-600/20 mix-blend-color-dodge pointer-events-none" />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
