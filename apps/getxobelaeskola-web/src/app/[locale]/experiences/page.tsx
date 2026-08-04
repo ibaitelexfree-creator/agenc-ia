@@ -108,6 +108,8 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     ? '/images/IMG_20241016_114549.jpg'
                     : item.slug === 'cumpleanos-bigsub'
                     ? '/images/experiences/birthday-bigsub.jpg'
+                    : (item.slug?.includes('windsurf') || item.slug?.includes('atraque-windsurf') || item.nombre_es?.toLowerCase().includes('windsurf mooring') || item.nombre_es?.toLowerCase().includes('atraque-windsurf'))
+                    ? '/images/experiences/windsurf-mooring.jpg'
                     : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre_es?.toLowerCase().includes('canoe') || item.nombre_es?.toLowerCase().includes('piragua') || item.nombre_es?.toLowerCase().includes('atraque'))
                     ? '/images/about-patio.jpg'
                     : (item.imagen_url || '/images/home-hero-sailing-action.webp'),

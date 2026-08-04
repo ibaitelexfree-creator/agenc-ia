@@ -60,17 +60,25 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
                             : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? 'saturate-[1.35] contrast-[1.1] brightness-[1.06] hue-rotate-[-5deg]'
+                            : experience.imagen_url?.includes('windsurf-mooring')
+                            ? 'brightness-[1.03] saturate-[1.12] sepia-[0.08] contrast-[1.02]'
                             : 'saturate-[0.8] group-hover:saturate-100'
                     }`}
                     style={
                         (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? { objectPosition: '50% 40%' }
+                            : experience.imagen_url?.includes('windsurf-mooring')
+                            ? { objectPosition: '35% 50%' }
                             : undefined
                     }
                 />
                 {/* Soft warm golden natural tone overlay for Birthday Sailing photo only */}
                 {(experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549')) && (
                     <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-orange-500/10 to-transparent pointer-events-none" />
+                )}
+                {/* Soft warm natural tone overlay for Windsurf Mooring photo */}
+                {experience.imagen_url?.includes('windsurf-mooring') && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-950/20 via-amber-500/10 to-sky-300/10 mix-blend-soft-light pointer-events-none" />
                 )}
                 {/* Vibrant cyan & sky blue enhancement layer for BigSub photo */}
                 {(experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub')) && (
