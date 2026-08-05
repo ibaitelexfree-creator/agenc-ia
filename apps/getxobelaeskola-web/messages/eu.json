@@ -1030,6 +1030,52 @@
       "speed": "Abiadura"
     }
   },
+  "tools": {
+    "index": {
+      "eyebrow": "Nautika Tresnak",
+      "title": "Zubi Digitala",
+      "description": "Navigaziorako, plangintzarako eta segurtasunerako tresna funtsezkoen bilduma.",
+      "converter": {
+        "title": "Nautika Bihurtzailea",
+        "description": "Unitate bihurtzaile profesionala abiadura, distantzia, sakonera eta presiorako.",
+        "cta": "Bihurtzailea Ireki"
+      },
+      "plotter": {
+        "title": "Kartografia Plotterra",
+        "description": "Entrenatu zure nabigazio trebetasunak plotter interaktiboarekin.",
+        "cta": "Plotterra Ireki"
+      }
+    },
+    "nautical_converter": {
+      "eyebrow": "Erabilgarritasuna",
+      "title": "Nautika Bihurtzailea",
+      "description": "Zehaztasunezko tresna itsas zein oinarrizko unitateak bihurtzeko.",
+      "input": "Sarrera Balioa",
+      "result": "Emaitza",
+      "history": "Azken Bihurketak",
+      "clear_history": "Historia Garbitu",
+      "speed": "Abiadura",
+      "distance": "Distantzia",
+      "depth": "Sakonera",
+      "temperature": "Tenperatura",
+      "pressure": "Presioa",
+      "units": {
+        "knots": "Nudoak",
+        "kmh": "km/h",
+        "ms": "m/s",
+        "meters": "Metroak",
+        "feet": "Oinak",
+        "nautical_miles": "Itsas Milia",
+        "km": "Kiloetroak",
+        "fathoms": "Bratzak",
+        "celsius": "Celsius",
+        "fahrenheit": "Fahrenheit",
+        "hpa": "hPa",
+        "mb": "Milibarrak",
+        "inhg": "inHg"
+      }
+    }
+  },
   "validation": {
     "name_short": "Izena laburregia da",
     "last_name_short": "Abizenak laburregiak dira",
