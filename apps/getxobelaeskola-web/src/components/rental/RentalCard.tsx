@@ -37,6 +37,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
         if (n.includes('j80')) src = '/images/J80.webp';
         else if (n.includes('raquero')) src = '/images/course-raquero-students.webp';
         else if (n.includes('optimist') || n.includes('laser')) src = '/images/courses/CursodeVelaLigera.webp';
+        else if (service.slug.includes('kayak-1') || service.slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (service.categoria === 'windsurf') src = '/images/courses/PerfeccionamientoVela.webp';
@@ -56,6 +57,8 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
         return '1-4';
     };
 
+    const imgSrc = getImgSrc();
+
     return (
         <motion.div 
             whileHover={{ y: -8 }}
@@ -71,12 +74,12 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
             {/* Image Header with Clip Path */}
             <div className="relative h-[300px] w-full overflow-hidden">
                 <NauticalImage
-                    src={getImgSrc()}
+                    src={imgSrc}
                     category={service.categoria as any}
                     alt={name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 contrast-[1.1]"
+                    className="object-cover object-center transition-transform duration-[2s] ease-out group-hover:scale-105 contrast-[1.1]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
