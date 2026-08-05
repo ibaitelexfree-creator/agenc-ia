@@ -17,7 +17,7 @@ const CATEGORY_FALLBACKS: Record<NauticalCategory, string> = {
     veleros: '/images/J80.webp',
     kayak: '/images/home-hero-sailing-action.webp',
     paddle: '/images/home-hero-sailing-action.webp',
-    windsurf: '/images/courses/PerfeccionamientoVela.webp',
+    windsurf: '/images/experiences/windsurf-mooring.jpg',
     piragua: '/images/home-hero-sailing-action.webp',
     academy: '/images/courses/CursodeVelaLigera.webp',
     general: '/images/home-hero-sailing-action.webp'
