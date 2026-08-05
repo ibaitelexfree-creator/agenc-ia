@@ -18,10 +18,11 @@ interface RentalCardProps {
         imagen_url: string;
     };
     locale: string;
+    index?: number;
     onBook: (serviceId: string, optionIndex?: number) => void;
 }
 
-export default function RentalCard({ service, locale, onBook }: RentalCardProps) {
+export default function RentalCard({ service, locale, index, onBook }: RentalCardProps) {
     const t = useTranslations('rental_page');
     const tData = useTranslations('rentals_data');
     const hasTranslation = tData.has(service.slug);
@@ -37,7 +38,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
         if (n.includes('j80')) src = '/images/J80.webp';
         else if (n.includes('raquero')) src = '/images/course-raquero-students.webp';
         else if (n.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (n.includes('laser')) src = '/images/courses/CursodeVelaLigera.webp';
+        else if (n.includes('laser')) src = '/images/alquiler-laser.webp';
         else if (service.slug.includes('kayak-1') || service.slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (service.slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
 
@@ -73,7 +74,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
         >
             {/* Design Decor - Nautical Numbers */}
             <div className="absolute top-4 right-6 text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
-                {service.categoria.substring(0, 2).toUpperCase()}
+                {index !== undefined ? String(index).padStart(2, '0') : service.categoria.substring(0, 2).toUpperCase()}
             </div>
 
             {/* Image Header with Clip Path */}
@@ -87,10 +88,23 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
                         (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
                             ? 'object-[center_85%] contrast-[1.1]'
-                            : (service.nombre_es.toLowerCase().includes('optimist') ? 'object-[center_45%]' : 'object-center contrast-[1.1]')
+                            : (service.nombre_es.toLowerCase().includes('optimist') 
+                                ? 'object-[center_45%]' 
+                                : (service.nombre_es.toLowerCase().includes('laser')
+                                    ? 'object-center contrast-[1.1]'
+                                    : 'object-center contrast-[1.1]'))
                     }`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
+
+                {/* Float Number & Category Badge */}
+                <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-nautical-black/80 backdrop-blur-md px-3 py-1.5 rounded-sm border border-sea-foam/10">
+                    {index !== undefined && (
+                        <span className="text-xs font-mono font-bold text-accent">
+                            #{index}
+                        </span>
+                    )}
+                </div>
 
                 {/* Float Category Label */}
                 <div className="absolute bottom-6 left-8 z-20 flex items-center gap-2">
@@ -106,7 +120,7 @@ export default function RentalCard({ service, locale, onBook }: RentalCardProps)
                 <div className="mb-8">
                     <div className="flex justify-between items-start mb-4">
                         <h3 className="text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
-                            {name}
+                            {index !== undefined ? `${index}. ` : ''}{name}
                         </h3>
                     </div>
 
