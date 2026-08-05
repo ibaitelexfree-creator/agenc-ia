@@ -35,10 +35,10 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const n = service.nombre_es.toLowerCase();
         let src = service.imagen_url;
 
-        if (n.includes('j80')) src = '/images/J80.webp';
-        else if (n.includes('raquero')) src = '/images/course-raquero-students.webp';
-        else if (n.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (n.includes('laser')) src = '/images/alquiler-laser.webp';
+        if (n.includes('j80') || service.slug.includes('j80')) src = '/images/J80.webp';
+        else if (n.includes('raquero') || service.slug.includes('raquero')) src = '/images/course-raquero-students.webp';
+        else if (n.includes('optimist') || service.slug.includes('optimist')) src = '/images/rental-optimist.webp';
+        else if (n.includes('laser') || service.slug.includes('laser')) src = '/images/alquiler-laser.webp';
         else if (service.slug.includes('kayak-1') || service.slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (service.slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
 
@@ -89,7 +89,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                         (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
                             ? 'object-[center_85%] contrast-[1.1]'
                             : (service.nombre_es.toLowerCase().includes('optimist') 
-                                ? 'object-[center_45%]' 
+                                ? 'object-[center_0%] scale-110 translate-y-[35px]' 
                                 : (service.nombre_es.toLowerCase().includes('laser')
                                     ? 'object-center contrast-[1.1]'
                                     : 'object-center contrast-[1.1]'))

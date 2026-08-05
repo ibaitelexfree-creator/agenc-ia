@@ -96,12 +96,26 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 const indexA = priorityOrder.indexOf(a.slug);
                 const indexB = priorityOrder.indexOf(b.slug);
 
-                // If slug not in list, put at the end
                 const posA = indexA === -1 ? 999 : indexA;
                 const posB = indexB === -1 ? 999 : indexB;
 
                 return posA - posB;
             });
+        }
+
+        if (!services || services.length === 0) {
+            services = [
+                { id: '1', slug: 'alquiler-kayak-1', nombre: 'Kayak (1 Persona)', nombre_es: 'Kayak (1 Persona)', nombre_eu: 'Kayaka (Pertsona 1)', descripcion: 'Kayak individual', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'kayak' },
+                { id: '2', slug: 'alquiler-kayak-2', nombre: 'Kayak (2 Personas)', nombre_es: 'Kayak (2 Personas)', nombre_eu: 'Kayaka (2 Pertsona)', descripcion: 'Kayak doble', imagen_url: '/images/kayak-1-person.webp', precio_base: 25, activo: true, categoria: 'kayak' },
+                { id: '3', slug: 'alquiler-paddlesurf', nombre: 'Paddle Surf', nombre_es: 'Paddle Surf', nombre_eu: 'Paddle Surf', descripcion: 'Tabla de Stand Up Paddle', imagen_url: '/images/paddle-surf.webp', precio_base: 15, activo: true, categoria: 'paddlesurf' },
+                { id: '4', slug: 'alquiler-piragua-1', nombre: 'Piragua (1 Persona)', nombre_es: 'Piragua (1 Persona)', nombre_eu: 'Piragua (Pertsona 1)', descripcion: 'Piragua individual', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'piragua' },
+                { id: '5', slug: 'alquiler-piragua-2', nombre: 'Piragua (2 Personas)', nombre_es: 'Piragua (2 Personas)', nombre_eu: 'Piragua (2 Pertsona)', descripcion: 'Piragua doble', imagen_url: '/images/kayak-1-person.webp', precio_base: 25, activo: true, categoria: 'piragua' },
+                { id: '6', slug: 'alquiler-windsurf', nombre: 'Windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf', descripcion: 'Equipo de Windsurf', imagen_url: '/images/experiences/windsurf-mooring.jpg', precio_base: 30, activo: true, categoria: 'windsurf' },
+                { id: '7', slug: 'alquiler-optimist', nombre: 'Optimist', nombre_es: 'Optimist', nombre_eu: 'Optimist', descripcion: 'Vela ligera infantil', imagen_url: '/images/rental-optimist.webp', precio_base: 20, activo: true, categoria: 'veleros' },
+                { id: '8', slug: 'alquiler-laser', nombre: 'Laser', nombre_es: 'Laser', nombre_eu: 'Laser', descripcion: 'Embarcación de vela ligera tipo Laser', imagen_url: '/images/alquiler-laser.webp', precio_base: 35, activo: true, categoria: 'veleros' },
+                { id: '9', slug: 'alquiler-j80', nombre: 'Veleros J80', nombre_es: 'Veleros J80', nombre_eu: 'J80 Belaontziak', descripcion: 'Crucero J80', imagen_url: '/images/J80.webp', precio_base: 60, activo: true, categoria: 'veleros' },
+                { id: '10', slug: 'alquiler-raquero', nombre: 'Raquero / Omega', nombre_es: 'Raquero / Omega', nombre_eu: 'Raquero / Omega', descripcion: 'Vela ligera colectiva', imagen_url: '/images/course-raquero-students.webp', precio_base: 50, activo: true, categoria: 'veleros' }
+            ];
         }
     } catch (err) {
         console.error('Network error fetching services:', err);

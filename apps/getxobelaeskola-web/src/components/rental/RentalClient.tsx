@@ -328,7 +328,7 @@ export default function RentalClient({
                 className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
             >
                 <AnimatePresence mode="popLayout">
-                    {filteredServices.map(service => (
+                    {filteredServices.map((service, index) => (
                         <motion.div
                             key={service.id}
                             layout
@@ -340,6 +340,7 @@ export default function RentalClient({
                             <RentalCard
                                 service={service}
                                 locale={locale}
+                                index={index + 1}
                                 onBook={(id) => setBookingService(id)}
                             />
                         </motion.div>
