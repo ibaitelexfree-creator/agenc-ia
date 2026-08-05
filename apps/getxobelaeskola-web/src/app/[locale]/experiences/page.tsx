@@ -110,8 +110,10 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                 precio: item.precio,
                 imagen_url: item.slug === 'cumpleanos-navegacion'
                     ? '/images/IMG_20241016_114549.jpg'
-                    : item.slug === 'cumpleanos-bigsub'
+                    : (item.slug === 'cumpleanos-bigsub' || item.nombre_es?.toLowerCase().includes('bigsup') || item.nombre_en?.toLowerCase().includes('bigsup'))
                     ? '/images/experiences/birthday-bigsub.jpg'
+                    : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
+                    ? '/images/experiences/birthday-space-rental.jpg'
                     : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_en?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
                     ? '/images/experiences/windsurf-voucher.jpg'
                     : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
