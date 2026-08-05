@@ -58,20 +58,37 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                 <NauticalImage
                     src={
                         (
-                            experience.slug === 'sailboat-mooring' ||
-                            experience.slug === 'sailboat-mooring-service' ||
-                            (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring'))
+                            experience.slug === 'navigation-voucher' ||
+                            experience.slug === 'bono-navegacion' ||
+                            experience.imagen_url?.includes('navigation-voucher') ||
+                            (experience.nombre && (experience.nombre.toLowerCase().includes('navigation voucher') || experience.nombre.toLowerCase().includes('bono navegación') || experience.nombre.toLowerCase().includes('bono navegacion')))
                         )
+                            ? '/images/experiences/navigation-voucher.jpg'
+                            : (
+                                experience.slug === 'light-sailing-voucher' ||
+                                experience.slug === 'bono-vela-ligera' ||
+                                (experience.nombre && experience.nombre.toLowerCase().includes('light sailing voucher'))
+                            )
+                            ? '/images/experiences/light-sailing-voucher.jpg'
+                            : (
+                                experience.slug === 'sailboat-mooring' ||
+                                experience.slug === 'sailboat-mooring-service' ||
+                                (experience.nombre && experience.nombre.toLowerCase().includes('sailboat mooring'))
+                            )
                             ? '/images/experiences/sailboat-mooring.jpg'
                             : experience.imagen_url || '/images/home-hero-sailing-action.webp'
                     }
                     alt={getName()}
                     fill
                     className={`object-cover transition-transform duration-[3s] group-hover:scale-110 ${
-                        (experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549'))
+                        (experience.slug === 'navigation-voucher' || experience.slug === 'bono-navegacion' || experience.imagen_url?.includes('navigation-voucher'))
+                            ? 'brightness-[1.03] saturate-[1.15] sepia-[0.10] contrast-[1.03]'
+                            : (experience.slug === 'cumpleanos-navegacion' || experience.imagen_url?.includes('IMG_20241016_114549'))
                             ? 'brightness-[1.02] sepia-[0.12] saturate-[1.1]'
                             : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? 'saturate-[1.7] contrast-[1.18] brightness-[1.1] hue-rotate-[-8deg]'
+                            : (experience.slug === 'bono-vela-ligera' || experience.slug === 'light-sailing-voucher' || experience.imagen_url?.includes('light-sailing-voucher'))
+                            ? 'brightness-[1.04] saturate-[1.12] sepia-[0.10] contrast-[1.03] hue-rotate-[-2deg]'
                             : experience.imagen_url?.includes('windsurf-voucher')
                             ? 'brightness-[1.05] saturate-[1.25] sepia-[0.18] hue-rotate-[-5deg] contrast-[1.05]'
                             : experience.imagen_url?.includes('windsurf-mooring')
@@ -88,6 +105,14 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             : undefined
                     }
                 />
+                {/* Soft natural warm relaxed tone overlay for Navigation Voucher */}
+                {(experience.slug === 'navigation-voucher' || experience.slug === 'bono-navegacion' || experience.imagen_url?.includes('navigation-voucher')) && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-900/20 via-amber-500/10 to-orange-100/10 mix-blend-soft-light pointer-events-none" />
+                )}
+                {/* Soft natural warm tone overlay for Light Sailing Voucher */}
+                {(experience.slug === 'bono-vela-ligera' || experience.slug === 'light-sailing-voucher' || experience.imagen_url?.includes('light-sailing-voucher')) && (
+                    <div className="absolute inset-0 bg-gradient-to-t from-amber-900/25 via-amber-500/10 to-orange-200/10 mix-blend-soft-light pointer-events-none" />
+                )}
                 {/* Warm golden sunset light overlay for Windsurf Voucher */}
                 {experience.imagen_url?.includes('windsurf-voucher') && (
                     <>

@@ -83,7 +83,9 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     descripcion_fr: item.descripcion_fr || item.descripcion,
                     categoria: item.categoria || 'evento',
                     precio: item.precio_base || item.precio_hora,
-                    imagen_url: (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre?.toLowerCase().includes('bono windsurf') || item.nombre?.toLowerCase().includes('windsurf voucher') || item.nombre_en?.toLowerCase().includes('windsurf voucher'))
+                    imagen_url: (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre?.toLowerCase().includes('bono navegacion') || item.nombre?.toLowerCase().includes('navigation voucher') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
+                        ? '/images/experiences/navigation-voucher.jpg'
+                        : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre?.toLowerCase().includes('bono windsurf') || item.nombre?.toLowerCase().includes('windsurf voucher') || item.nombre_en?.toLowerCase().includes('windsurf voucher'))
                         ? '/images/experiences/windsurf-voucher.jpg'
                         : (item.slug === 'sailboat-mooring' || item.nombre?.toLowerCase().includes('sailboat mooring') || item.nombre_en?.toLowerCase().includes('sailboat mooring'))
                         ? '/images/experiences/sailboat-mooring.jpg'
@@ -114,6 +116,8 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                     ? '/images/experiences/birthday-bigsub.jpg'
                     : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
                     ? '/images/experiences/birthday-space-rental.jpg'
+                    : (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre_es?.toLowerCase().includes('bono navegación') || item.nombre_es?.toLowerCase().includes('bono navegacion') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
+                    ? '/images/experiences/navigation-voucher.jpg'
                     : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_en?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
                     ? '/images/experiences/windsurf-voucher.jpg'
                     : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
