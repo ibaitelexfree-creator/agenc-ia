@@ -8,7 +8,7 @@ const supabase = createClient(url, serviceRole);
 async function run() {
   const { data, error } = await supabase
     .from('servicios_alquiler')
-    .update({ imagen_url: '/images/rental-j80.webp' })
+    .update({ imagen_url: '/images/J80.jpg' })
     .eq('slug', 'alquiler-j80')
     .select();
   console.log('Update result:', data, 'Error:', error);

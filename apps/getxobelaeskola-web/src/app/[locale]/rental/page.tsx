@@ -113,7 +113,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 { id: '6', slug: 'alquiler-windsurf', nombre: 'Windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf', descripcion: 'Equipo de Windsurf', imagen_url: '/images/experiences/windsurf-mooring.jpg', precio_base: 30, activo: true, categoria: 'windsurf' },
                 { id: '7', slug: 'alquiler-optimist', nombre: 'Optimist', nombre_es: 'Optimist', nombre_eu: 'Optimist', descripcion: 'Vela ligera infantil', imagen_url: '/images/rental-optimist.webp', precio_base: 20, activo: true, categoria: 'veleros' },
                 { id: '8', slug: 'alquiler-laser', nombre: 'Laser', nombre_es: 'Laser', nombre_eu: 'Laser', descripcion: 'Embarcación de vela ligera tipo Laser', imagen_url: '/images/alquiler-laser.webp', precio_base: 35, activo: true, categoria: 'veleros' },
-                { id: '9', slug: 'alquiler-j80', nombre: 'Veleros J80', nombre_es: 'Veleros J80', nombre_eu: 'J80 Belaontziak', descripcion: 'Crucero J80', imagen_url: '/images/J80.webp', precio_base: 60, activo: true, categoria: 'veleros' },
+                { id: '9', slug: 'alquiler-j80', nombre: 'Veleros J80', nombre_es: 'Veleros J80', nombre_eu: 'J80 Belaontziak', descripcion: 'Crucero J80', imagen_url: '/images/J80.jpg', precio_base: 60, activo: true, categoria: 'veleros' },
                 { id: '10', slug: 'alquiler-raquero', nombre: 'Raquero / Omega', nombre_es: 'Raquero / Omega', nombre_eu: 'Raquero / Omega', descripcion: 'Vela ligera colectiva', imagen_url: '/images/course-raquero-students.webp', precio_base: 50, activo: true, categoria: 'veleros' }
             ];
         }

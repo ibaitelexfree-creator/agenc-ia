@@ -35,7 +35,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const n = service.nombre_es.toLowerCase();
         let src = service.imagen_url;
 
-        if (n.includes('j80') || service.slug.includes('j80')) src = '/images/J80.webp';
+        if (n.includes('j80') || service.slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('raquero') || service.slug.includes('raquero')) src = '/images/course-raquero-students.webp';
         else if (n.includes('optimist') || service.slug.includes('optimist')) src = '/images/rental-optimist.webp';
         else if (n.includes('laser') || service.slug.includes('laser')) src = '/images/alquiler-laser.webp';
@@ -45,7 +45,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (service.categoria === 'windsurf' || n.includes('windsurf')) src = '/images/experiences/windsurf-mooring.jpg';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
-            else src = '/images/J80.webp';
+            else src = '/images/J80.jpg';
         }
         if (service.categoria === 'windsurf' || n.includes('windsurf')) {
             src = '/images/experiences/windsurf-mooring.jpg';
@@ -86,15 +86,20 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
-                        (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
-                            ? 'object-[center_85%] contrast-[1.1]'
-                            : (service.nombre_es.toLowerCase().includes('optimist') 
-                                ? 'object-[center_0%] scale-110 translate-y-[35px]' 
-                                : (service.nombre_es.toLowerCase().includes('laser')
-                                    ? 'object-center contrast-[1.1]'
-                                    : 'object-center contrast-[1.1]'))
+                        (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                            ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                            : (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
+                                ? 'object-[center_85%] contrast-[1.1]'
+                                : (service.nombre_es.toLowerCase().includes('optimist') 
+                                    ? 'object-[center_0%] scale-110 translate-y-[35px]' 
+                                    : (service.nombre_es.toLowerCase().includes('laser')
+                                        ? 'object-center contrast-[1.1]'
+                                        : 'object-center contrast-[1.1]'))
                     }`}
                 />
+                {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
                 {/* Float Number & Category Badge */}
