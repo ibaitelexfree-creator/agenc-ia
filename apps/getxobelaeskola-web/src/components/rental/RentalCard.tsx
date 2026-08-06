@@ -36,7 +36,9 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const slug = (service.slug || '').toLowerCase();
         let src = service.imagen_url;
 
-        if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
+        if (slug.includes('transeunte-8m') || slug.includes('transient-mooring-8m') || n.includes('transient mooring (< 8m)') || n.includes('transeúnte (< 8m)') || n.includes('transeunte (< 8m)')) {
+            src = '/images/transient-mooring-8m.jpg';
+        } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
