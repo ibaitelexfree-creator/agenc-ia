@@ -30,13 +30,17 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         ? tData(service.slug)
         : (locale === 'es' ? service.nombre_es : (locale === 'eu' ? service.nombre_eu : service.nombre_es)) || service.nombre_es;
 
+    const isWindsurfMooring = service.slug.includes('atraque-windsurf') || service.slug.includes('windsurf-board-mooring') || (service.nombre_es || '').toLowerCase().includes('windsurf board mooring') || ((service.nombre_es || '').toLowerCase().includes('atraque') && (service.nombre_es || '').toLowerCase().includes('windsurf'));
+
     // Determine image source with fallbacks
     const getImgSrc = () => {
         const n = (service.nombre_es || '').toLowerCase();
         const slug = (service.slug || '').toLowerCase();
         let src = service.imagen_url;
 
-        if (slug.includes('transeunte-8m') || slug.includes('transient-mooring-8m') || n.includes('transient mooring (< 8m)') || n.includes('transeúnte (< 8m)') || n.includes('transeunte (< 8m)')) {
+        if (isWindsurfMooring) {
+            src = '/images/experiences/windsurf-board-mooring.jpg';
+        } else if (slug.includes('transeunte-8m') || slug.includes('transient-mooring-8m') || n.includes('transient mooring (< 8m)') || n.includes('transeúnte (< 8m)') || n.includes('transeunte (< 8m)')) {
             src = '/images/transient-mooring-8m.jpg';
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
@@ -46,14 +50,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
+        else if (slug === 'alquiler-windsurf' || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
+            src = service.imagen_url || '/images/experiences/windsurf-mooring.jpg';
+        }
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
-            if (service.categoria === 'windsurf' || n.includes('windsurf')) src = '/images/experiences/windsurf-mooring.jpg';
+            if (isWindsurfMooring) src = '/images/experiences/windsurf-board-mooring.jpg';
+            else if (service.categoria === 'windsurf') src = '/images/experiences/windsurf-mooring.jpg';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
             else src = '/images/J80.jpg';
-        }
-        if (service.categoria === 'windsurf' || n.includes('windsurf')) {
-            src = '/images/experiences/windsurf-mooring.jpg';
         }
         return src;
     };
@@ -69,6 +74,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     };
 
     const imgSrc = getImgSrc();
+    const isWindsurfRental = service.slug === 'alquiler-windsurf' || (service.categoria === 'windsurf' && !isWindsurfMooring);
     const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
 
     return (
@@ -98,13 +104,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                 ? 'object-center saturate-[1.65] brightness-[1.12] contrast-[1.15] hue-rotate-[-12deg]'
                                 : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                     ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                                    : (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
+                                    : isWindsurfMooring
                                         ? 'object-[center_85%] contrast-[1.1]'
-                                        : (service.nombre_es.toLowerCase().includes('optimist') 
-                                            ? 'object-[center_0%] scale-110 translate-y-[35px]' 
-                                            : (service.nombre_es.toLowerCase().includes('laser')
-                                                ? 'object-center contrast-[1.1]'
-                                                : 'object-center contrast-[1.1]'))
+                                        : isWindsurfRental
+                                            ? 'object-[center_85%] scale-110 contrast-[1.15]'
+                                            : (service.nombre_es.toLowerCase().includes('optimist') 
+                                                ? 'object-[center_0%] scale-110 translate-y-[35px]' 
+                                                : (service.nombre_es.toLowerCase().includes('laser')
+                                                    ? 'object-center contrast-[1.1]'
+                                                    : 'object-center contrast-[1.1]'))
                     }`}
                 />
                 {isCanoeMooring && (
