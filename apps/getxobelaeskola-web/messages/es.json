@@ -2264,7 +2264,14 @@
     "celsius": "Celsius",
     "fahrenheit": "Fahrenheit",
     "hpa": "hPa",
-    "mb": "Millibars",
+    "mb": "Milibares",
     "inhg": "inHg"
+  },
+  "tools": {
+    "title": "Utilidades Náuticas",
+    "converter": {
+      "title": "Conversor Náutico",
+      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
+    }
   }
 }

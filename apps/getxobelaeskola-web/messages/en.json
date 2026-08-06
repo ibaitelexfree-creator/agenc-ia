@@ -2206,5 +2206,12 @@
     "hpa": "hPa",
     "mb": "Millibars",
     "inhg": "inHg"
+  },
+  "tools": {
+    "title": "Nautical Utilities",
+    "converter": {
+      "title": "Nautical Converter",
+      "subtitle": "Precision tool for converting between maritime and standard units."
+    }
   }
 }

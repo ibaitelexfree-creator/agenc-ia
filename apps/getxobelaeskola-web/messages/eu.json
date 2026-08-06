@@ -2258,5 +2258,12 @@
     "hpa": "hPa",
     "mb": "Millibars",
     "inhg": "inHg"
+  },
+  "tools": {
+    "title": "Tresna Nautikoak",
+    "converter": {
+      "title": "Bihurtzaile Nautikoa",
+      "subtitle": "Unitate nautiko eta estandarren artean bihurtzeko zehaztasunezko tresna."
+    }
   }
 }
