@@ -32,15 +32,18 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
 
     // Determine image source with fallbacks
     const getImgSrc = () => {
-        const n = service.nombre_es.toLowerCase();
+        const n = (service.nombre_es || '').toLowerCase();
+        const slug = (service.slug || '').toLowerCase();
         let src = service.imagen_url;
 
-        if (n.includes('j80') || service.slug.includes('j80')) src = '/images/J80.jpg';
-        else if (n.includes('raquero') || service.slug.includes('raquero')) src = '/images/course-raquero-students.webp';
-        else if (n.includes('optimist') || service.slug.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (n.includes('laser') || service.slug.includes('laser')) src = '/images/alquiler-laser.webp';
-        else if (service.slug.includes('kayak-1') || service.slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
-        else if (service.slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
+        if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
+            src = '/images/canoe-mooring.jpg';
+        } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
+        else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
+        else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
+        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
+        else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
+        else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (service.categoria === 'windsurf' || n.includes('windsurf')) src = '/images/experiences/windsurf-mooring.jpg';
@@ -64,6 +67,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     };
 
     const imgSrc = getImgSrc();
+    const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
 
     return (
         <motion.div 
@@ -86,17 +90,32 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
-                        (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
-                            ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                            : (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
-                                ? 'object-[center_85%] contrast-[1.1]'
-                                : (service.nombre_es.toLowerCase().includes('optimist') 
-                                    ? 'object-[center_0%] scale-110 translate-y-[35px]' 
-                                    : (service.nombre_es.toLowerCase().includes('laser')
-                                        ? 'object-center contrast-[1.1]'
-                                        : 'object-center contrast-[1.1]'))
+                        isCanoeMooring
+                            ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
+                            : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                ? 'object-center saturate-[1.65] brightness-[1.12] contrast-[1.15] hue-rotate-[-12deg]'
+                                : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                    ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                    : (service.categoria === 'windsurf' || service.nombre_es.toLowerCase().includes('windsurf'))
+                                        ? 'object-[center_85%] contrast-[1.1]'
+                                        : (service.nombre_es.toLowerCase().includes('optimist') 
+                                            ? 'object-[center_0%] scale-110 translate-y-[35px]' 
+                                            : (service.nombre_es.toLowerCase().includes('laser')
+                                                ? 'object-center contrast-[1.1]'
+                                                : 'object-center contrast-[1.1]'))
                     }`}
                 />
+                {isCanoeMooring && (
+                    <>
+                        {/* Vibrant Turquoise / Azure Sea Boost */}
+                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/35 via-sky-500/20 to-teal-400/25 mix-blend-color-dodge pointer-events-none z-10" />
+                        {/* Warm Sunlit Glow Accent */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-amber-400/15 via-transparent to-amber-600/20 mix-blend-overlay pointer-events-none z-10" />
+                    </>
+                )}
+                {(service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero')) && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/35 via-blue-500/25 to-sky-400/30 mix-blend-color-dodge pointer-events-none z-10" />
+                )}
                 {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
                 )}
