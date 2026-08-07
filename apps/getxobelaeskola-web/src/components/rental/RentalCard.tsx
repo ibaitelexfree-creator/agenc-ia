@@ -103,7 +103,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
                         isTransientLt8m
-                            ? 'object-center saturate-[1.28] brightness-[1.08] contrast-[1.12]'
+                            ? 'object-center'
                             : isTransientGt8m
                                 ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
                                 : isCanoeMooring
@@ -123,9 +123,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                              : 'object-center contrast-[1.1]'))
                     }`}
                 />
-                {isTransientLt8m && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/12 via-sky-400/8 to-orange-400/10 mix-blend-overlay pointer-events-none z-10" />
-                )}
+
                 {(isCanoeMooring || isTransientGt8m) && (
                     <>
                         {/* Vibrant Turquoise / Azure Sea Boost */}
