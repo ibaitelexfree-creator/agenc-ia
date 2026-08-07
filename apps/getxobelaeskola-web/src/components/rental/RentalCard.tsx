@@ -52,13 +52,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
-        else if (slug === 'alquiler-windsurf' || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
-            src = service.imagen_url || '/images/experiences/windsurf-mooring.jpg';
+        else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
+            src = service.imagen_url || '/images/alquiler-windsurf-pro.jpg';
         }
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (isWindsurfMooring) src = '/images/experiences/windsurf-board-mooring.jpg';
-            else if (service.categoria === 'windsurf') src = '/images/experiences/windsurf-mooring.jpg';
+            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/alquiler-windsurf-pro.jpg';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
             else src = '/images/J80.jpg';
         }
@@ -71,12 +71,12 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         if (s.includes('j80')) return '6';
         if (s.includes('raquero')) return '8';
         if (s.includes('kayak-2') || s.includes('piragua-2')) return '2';
-        if (s.includes('kayak-1') || s.includes('piragua-1') || s.includes('optimist') || s.includes('laser')) return '1';
+        if (s.includes('kayak-1') || s.includes('piragua-1') || s.includes('optimist') || s.includes('laser') || s.includes('windsurf')) return '1';
         return '1-4';
     };
 
     const imgSrc = getImgSrc();
-    const isWindsurfRental = service.slug === 'alquiler-windsurf' || (service.categoria === 'windsurf' && !isWindsurfMooring);
+    const isWindsurfRental = (service.slug.includes('windsurf') || service.categoria === 'windsurf') && !isWindsurfMooring;
     const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
     const isTransientGt8m = service.slug.includes('gt8m') || service.slug.includes('8m-plus') || service.slug.includes('transeunte-gt8m') || (service.nombre_es || '').toLowerCase().includes('> 8m') || (service.nombre_es || '').toLowerCase().includes('>8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (> 8m)');
 
@@ -93,7 +93,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             </div>
 
             {/* Image Header with Clip Path */}
-            <div className="relative h-[300px] w-full overflow-hidden">
+            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[380px]' : 'h-[300px]'}`}>
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
@@ -112,7 +112,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                         : isWindsurfMooring
                                             ? 'object-[center_85%] contrast-[1.1]'
                                             : isWindsurfRental
-                                                ? 'object-[center_85%] scale-110 contrast-[1.15]'
+                                                ? 'object-[50%_38%] scale-100 contrast-[1.12] brightness-[1.05]'
                                                 : (service.nombre_es.toLowerCase().includes('optimist') 
                                                     ? 'object-[center_0%] scale-110 translate-y-[35px]' 
                                                     : (service.nombre_es.toLowerCase().includes('laser')
