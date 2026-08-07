@@ -49,7 +49,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
+        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser-new.jpg';
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
         else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
@@ -79,6 +79,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     const isWindsurfRental = (service.slug.includes('windsurf') || service.categoria === 'windsurf') && !isWindsurfMooring;
     const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
     const isTransientGt8m = service.slug.includes('gt8m') || service.slug.includes('8m-plus') || service.slug.includes('transeunte-gt8m') || (service.nombre_es || '').toLowerCase().includes('> 8m') || (service.nombre_es || '').toLowerCase().includes('>8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (> 8m)');
+    const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
 
     return (
         <motion.div 
@@ -101,25 +102,30 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
-                        isTransientGt8m
-                            ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
-                            : isCanoeMooring
-                                ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                    ? 'object-center saturate-[1.65] brightness-[1.12] contrast-[1.15] hue-rotate-[-12deg]'
-                                    : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
-                                        ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                                        : isWindsurfMooring
-                                            ? 'object-[center_85%] contrast-[1.1]'
-                                            : isWindsurfRental
-                                                ? 'object-[50%_38%] scale-100 contrast-[1.12] brightness-[1.05]'
-                                                : (service.nombre_es.toLowerCase().includes('optimist') 
-                                                    ? 'object-[center_0%] scale-110 translate-y-[35px]' 
-                                                    : (service.nombre_es.toLowerCase().includes('laser')
-                                                        ? 'object-center contrast-[1.1]'
-                                                        : 'object-center contrast-[1.1]'))
+                        isTransientLt8m
+                            ? 'object-center saturate-[1.28] brightness-[1.08] contrast-[1.12]'
+                            : isTransientGt8m
+                                ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
+                                : isCanoeMooring
+                                    ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
+                                    : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                        ? 'object-center saturate-[1.65] brightness-[1.12] contrast-[1.15] hue-rotate-[-12deg]'
+                                        : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                            ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                            : isWindsurfMooring
+                                                ? 'object-[center_85%] contrast-[1.1]'
+                                                : isWindsurfRental
+                                                    ? 'object-[50%_38%] scale-100 contrast-[1.12] brightness-[1.05]'
+                                                    : (service.nombre_es.toLowerCase().includes('optimist') 
+                                                        ? 'object-[center_0%] scale-110 translate-y-[35px]' 
+                                                        : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
+                                                             ? 'object-contain bg-nautical-deep/80 p-2 scale-95 transition-transform group-hover:scale-100'
+                                                             : 'object-center contrast-[1.1]'))
                     }`}
                 />
+                {isTransientLt8m && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/12 via-sky-400/8 to-orange-400/10 mix-blend-overlay pointer-events-none z-10" />
+                )}
                 {(isCanoeMooring || isTransientGt8m) && (
                     <>
                         {/* Vibrant Turquoise / Azure Sea Boost */}
