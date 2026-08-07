@@ -49,7 +49,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
+        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser-16.jpg';
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
         else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
