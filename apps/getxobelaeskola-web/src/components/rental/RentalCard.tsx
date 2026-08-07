@@ -120,7 +120,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                     : (service.nombre_es.toLowerCase().includes('optimist') 
                                                         ? 'object-[center_0%] scale-110 translate-y-[35px]' 
                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                             ? (service.precio_base >= 45 || service.slug.includes('16') || service.slug.includes('pro') ? 'object-center scale-105 -translate-y-[18px] saturate-[1.32] brightness-[1.08] contrast-[1.15]' : 'object-center contrast-[1.1]')
+                                                             ? (service.precio_base >= 45 || service.slug.includes('16') || service.slug.includes('pro') ? 'object-center scale-105 -translate-y-[18px] saturate-[1.32] brightness-[1.08] contrast-[1.15]' : 'object-center scale-105 -translate-y-[25px] contrast-[1.1]')
                                                              : 'object-center contrast-[1.1]'))
                     }`}
                 />
