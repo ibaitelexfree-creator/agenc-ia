@@ -47,6 +47,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
+        else if (n.includes('420') || slug.includes('420')) src = '/images/420.jpg';
         else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
         else if (slug.includes('laser-pro') || slug.includes('laser-16') || ((n.includes('laser') || slug.includes('laser')) && service.precio_base >= 45)) src = '/images/alquiler-laser-16.jpg';
@@ -117,11 +118,12 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                 ? 'object-[center_85%] contrast-[1.1]'
                                                 : isWindsurfRental
                                                     ? 'object-[50%_38%] scale-100 contrast-[1.12] brightness-[1.05]'
-                                                    : (service.nombre_es.toLowerCase().includes('optimist') 
-                                                        ? 'object-[center_0%] scale-110 translate-y-[35px]' 
-                                                        : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                             ? (service.precio_base >= 45 || service.slug.includes('16') || service.slug.includes('pro') ? 'object-center scale-105 -translate-y-[18px] saturate-[1.32] brightness-[1.08] contrast-[1.15]' : 'object-center scale-105 -translate-y-[25px] contrast-[1.1]')
-                                                             : 'object-center contrast-[1.1]'))
+                                                    : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
+                                                        ? 'object-center scale-100 contrast-[1.1]'
+                                                        : (service.nombre_es.toLowerCase().includes('optimist') 
+                                                            ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
+                                                                 ? (service.precio_base >= 45 || service.slug.includes('pro') ? 'object-center scale-105 -translate-y-[30px] saturate-[1.55] brightness-[1.14] contrast-[1.2]' : 'object-center scale-105 -translate-y-[30px] saturate-[1.55] brightness-[1.14] contrast-[1.2]')
+                                                                 : 'object-center contrast-[1.1]')))
                     }`}
                 />
 
@@ -138,6 +140,9 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 )}
                 {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
+                )}
+                {(service.slug.includes('laser') || service.nombre_es.toLowerCase().includes('laser')) && (
+                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-sky-400/15 to-blue-500/15 mix-blend-color-dodge pointer-events-none z-10" />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
