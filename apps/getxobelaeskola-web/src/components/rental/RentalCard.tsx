@@ -48,7 +48,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('420') || slug.includes('420')) src = '/images/420.jpg';
-        else if (n.includes('raquero') || slug.includes('raquero')) src = '/images/alquiler-raquero.jpg';
+        else if (n.includes('raquero') || slug.includes('raquero')) src = service.imagen_url || '/images/alquiler-raquero.jpg';
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
         else if (slug.includes('laser-pro') || slug.includes('laser-16') || ((n.includes('laser') || slug.includes('laser')) && service.precio_base >= 45)) src = '/images/alquiler-laser-16.jpg';
         else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
@@ -110,8 +110,8 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                 ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
                                 : isCanoeMooring
                                     ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                    : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                        ? 'object-center saturate-[1.65] brightness-[1.12] contrast-[1.15] hue-rotate-[-12deg]'
+                                     : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                         ? 'object-[center_65%] object-cover scale-100'
                                         : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                             ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
                                             : isWindsurfMooring
@@ -135,9 +135,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                         <div className="absolute inset-0 bg-gradient-to-b from-amber-400/15 via-transparent to-amber-600/20 mix-blend-overlay pointer-events-none z-10" />
                     </>
                 )}
-                {(service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero')) && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/35 via-blue-500/25 to-sky-400/30 mix-blend-color-dodge pointer-events-none z-10" />
-                )}
+                {/* Removed overlay for raquero */}
                 {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
                 )}
