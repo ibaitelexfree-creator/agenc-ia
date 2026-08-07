@@ -36,6 +36,9 @@
     "all_rentals": "Toutes les locations"
   },
   "glossary": {
+    "all": "Tous",
+    "view_in_module": "Voir dans le module",
+    "showing_results": "Affichage des résultats",
     "title": "Glossaire Nautique",
     "subtitle": "Dictionnaire complet des termes de la voile",
     "description": "Dictionnaire complet des termes de la voile",
@@ -1782,5 +1785,6 @@
     "hpa": "hPa",
     "mb": "Millibars",
     "inhg": "inHg"
-  }
+  },
+  "tools": "Outils"
 }

@@ -38,6 +38,9 @@
     "glossary": "Glossary"
   },
   "glossary": {
+    "all": "All",
+    "view_in_module": "View in module",
+    "showing_results": "Showing results",
     "title": "Nautical Glossary",
     "subtitle": "Complete dictionary of sailing terms",
     "description": "Complete dictionary of sailing terms",

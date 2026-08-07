@@ -38,6 +38,9 @@
     "glossary": "Glosario"
   },
   "glossary": {
+    "all": "Todos",
+    "view_in_module": "Ver en módulo",
+    "showing_results": "Mostrando resultados",
     "title": "Glosario Náutico",
     "subtitle": "Diccionario completo de términos marineros",
     "description": "Diccionario completo de términos marineros",

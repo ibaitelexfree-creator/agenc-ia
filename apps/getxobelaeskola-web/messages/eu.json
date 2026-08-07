@@ -38,6 +38,9 @@
     "glossary": "Glosarioa"
   },
   "glossary": {
+    "all": "Guztiak",
+    "view_in_module": "Moduluan ikusi",
+    "showing_results": "Emaitzak erakusten",
     "title": "Nautika Glosarioa",
     "subtitle": "Itsas terminoen hiztegi osoa",
     "description": "Itsas terminoen hiztegi osoa",
