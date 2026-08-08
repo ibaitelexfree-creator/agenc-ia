@@ -55,12 +55,12 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
         else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
-            src = service.imagen_url || '/images/alquiler-windsurf-pro.jpg';
+            src = '/images/courses/PerfeccionamientoVela.webp';
         }
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (isWindsurfMooring) src = '/images/experiences/windsurf-board-mooring.jpg';
-            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/alquiler-windsurf-pro.jpg';
+            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/courses/PerfeccionamientoVela.webp';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
             else src = '/images/J80.jpg';
         }
@@ -117,13 +117,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                             : isWindsurfMooring
                                                 ? 'object-[center_85%] contrast-[1.1]'
                                                 : isWindsurfRental
-                                                    ? 'object-[50%_38%] scale-100 contrast-[1.12] brightness-[1.05]'
+                                                    ? 'object-[50%_75%] scale-[1.08] translate-y-[15px] contrast-[1.08] brightness-[1.05]'
                                                     : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
                                                         ? 'object-center scale-100 contrast-[1.1]'
                                                         : (service.nombre_es.toLowerCase().includes('optimist') 
                                                             ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                                 ? (service.precio_base >= 45 || service.slug.includes('pro') ? 'object-center scale-105 -translate-y-[30px] saturate-[1.55] brightness-[1.14] contrast-[1.2]' : 'object-center scale-105 -translate-y-[30px] saturate-[1.55] brightness-[1.14] contrast-[1.2]')
-                                                                 : 'object-center contrast-[1.1]')))
+                                                             ? 'object-[center_35%] scale-[1.02] contrast-[1.08] brightness-[1.05]'
+                                                             : 'object-center contrast-[1.1]')))
                     }`}
                 />
 
