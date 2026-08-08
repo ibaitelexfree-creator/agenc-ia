@@ -38,7 +38,11 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const slug = (service.slug || '').toLowerCase();
         let src = service.imagen_url;
 
-        if (slug.includes('bigsub') || n.includes('bigsub') || n.includes('bigsup')) {
+        const isDinghyVoucher = slug.includes('dinghy-sailing-voucher') || slug.includes('bono-vela-ligera') || n.includes('dinghy sailing voucher') || n.includes('bono vela ligera');
+
+        if (isDinghyVoucher) {
+            src = '/images/dinghy-sailing-voucher.jpg';
+        } else if (slug.includes('bigsub') || n.includes('bigsub') || n.includes('bigsup')) {
             src = '/images/rental-bigsub.jpg';
         } else if (isWindsurfMooring) {
             src = '/images/experiences/windsurf-board-mooring.jpg';
