@@ -52,13 +52,19 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             src = '/images/transient-mooring-8m.jpg';
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
-        } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
+        } else if (n.includes('j80') || slug.includes('j80')) {
+            if (n.includes('sin patrón') || n.includes('sin patron') || n.includes('without skipper') || slug.includes('sin-patron') || slug.includes('without-skipper')) {
+                src = '/images/alquiler-j80-sin-patron.jpg';
+            } else {
+                src = '/images/J80.jpg';
+            }
+        }
         else if (n.includes('420') || slug.includes('420')) src = (service.precio_base <= 50 || slug.includes('double')) ? '/images/420-previous.jpg' : '/images/420.jpg';
-        else if (n.includes('raquero') || slug.includes('raquero')) {
-            if (service.precio_base === 140 || n.includes('without skipper') || slug.includes('without-skipper')) {
+        else if (n.includes('raquero') || slug.includes('raquero') || n.includes('omega') || slug.includes('omega')) {
+            if (service.precio_base === 140 || n.includes('without skipper') || slug.includes('without-skipper') || n.includes('sin patrón') || n.includes('sin patron')) {
                 src = '/images/alquiler-raquero-without-skipper.jpg';
             } else {
-                src = service.imagen_url || '/images/alquiler-raquero.jpg';
+                src = '/images/alquiler-raquero-omega.jpg';
             }
         }
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
