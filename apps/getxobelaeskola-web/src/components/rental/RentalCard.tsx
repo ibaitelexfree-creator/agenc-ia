@@ -38,7 +38,9 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const slug = (service.slug || '').toLowerCase();
         let src = service.imagen_url;
 
-        if (isWindsurfMooring) {
+        if (slug.includes('bigsub') || n.includes('bigsub') || n.includes('bigsup')) {
+            src = '/images/rental-bigsub.jpg';
+        } else if (isWindsurfMooring) {
             src = '/images/experiences/windsurf-board-mooring.jpg';
         } else if (slug.includes('transeunte-gt8m') || slug.includes('transient-mooring-gt8m') || slug.includes('transient-mooring-8m-plus') || n.includes('transient mooring (> 8m)') || n.includes('transeúnte (> 8m)') || n.includes('transeunte (> 8m)') || n.includes('> 8m') || n.includes('>8m')) {
             src = '/images/transient-mooring-gt8m.jpg';
@@ -82,6 +84,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
     const isTransientGt8m = service.slug.includes('gt8m') || service.slug.includes('8m-plus') || service.slug.includes('transeunte-gt8m') || (service.nombre_es || '').toLowerCase().includes('> 8m') || (service.nombre_es || '').toLowerCase().includes('>8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (> 8m)');
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
+    const isBigsub = service.slug.includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsup');
 
     return (
         <motion.div 
@@ -104,26 +107,28 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
-                        isTransientLt8m
-                            ? 'object-center'
-                            : isTransientGt8m
-                                ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
-                                : isCanoeMooring
-                                    ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                     : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                         ? 'object-[center_65%] object-cover scale-100'
-                                        : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
-                                            ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                                            : isWindsurfMooring
-                                                ? 'object-[center_85%] contrast-[1.1]'
-                                                 : isWindsurfRental
-                                                    ? 'object-center -translate-y-[40px] scale-[1.12] contrast-[1.05] brightness-[1.02]'
-                                                    : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
-                                                        ? 'object-center scale-100 contrast-[1.1]'
-                                                        : (service.nombre_es.toLowerCase().includes('optimist') 
-                                                            ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                             ? 'object-[center_35%] scale-[1.02] contrast-[1.08] brightness-[1.05]'
-                                                             : 'object-center contrast-[1.1]')))
+                        isBigsub
+                            ? 'object-[center_60%] scale-100'
+                            : isTransientLt8m
+                                ? 'object-center'
+                                : isTransientGt8m
+                                    ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
+                                    : isCanoeMooring
+                                        ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
+                                         : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                             ? 'object-[center_65%] object-cover scale-100'
+                                            : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                                ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                : isWindsurfMooring
+                                                    ? 'object-[center_85%] contrast-[1.1]'
+                                                     : isWindsurfRental
+                                                        ? 'object-center -translate-y-[40px] scale-[1.12] contrast-[1.05] brightness-[1.02]'
+                                                        : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
+                                                            ? 'object-center scale-100 contrast-[1.1]'
+                                                            : (service.nombre_es.toLowerCase().includes('optimist') 
+                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
+                                                                 ? 'object-[center_35%] scale-[1.02] contrast-[1.08] brightness-[1.05]'
+                                                                 : 'object-center contrast-[1.1]')))
                     }`}
                 />
 
