@@ -47,7 +47,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
-        else if (n.includes('420') || slug.includes('420')) src = '/images/420.jpg';
+        else if (n.includes('420') || slug.includes('420')) src = (service.precio_base <= 50 || slug.includes('double')) ? '/images/420-previous.jpg' : '/images/420.jpg';
         else if (n.includes('raquero') || slug.includes('raquero')) src = service.imagen_url || '/images/alquiler-raquero.jpg';
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
         else if (slug.includes('laser-pro') || slug.includes('laser-16') || ((n.includes('laser') || slug.includes('laser')) && service.precio_base >= 45)) src = '/images/alquiler-laser-16.jpg';
