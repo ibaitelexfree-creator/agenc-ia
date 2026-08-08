@@ -1786,5 +1786,12 @@
     "mb": "Millibars",
     "inhg": "inHg"
   },
-  "tools": "Outils"
+  "tools": {
+    "title": "Outils Nautiques",
+    "nautical_converter": "Convertisseur Nautique",
+    "converter": {
+      "title": "Convertisseur Nautique",
+      "subtitle": "Outil de précision pour convertir entre les unités maritimes et standard."
+    }
+  }
 }

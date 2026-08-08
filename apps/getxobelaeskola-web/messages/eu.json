@@ -2264,6 +2264,7 @@
   },
   "tools": {
     "title": "Tresna Nautikoak",
+    "nautical_converter": "Bihurtzaile Nautikoa",
     "converter": {
       "title": "Bihurtzaile Nautikoa",
       "subtitle": "Unitate nautiko eta estandarren artean bihurtzeko zehaztasunezko tresna."

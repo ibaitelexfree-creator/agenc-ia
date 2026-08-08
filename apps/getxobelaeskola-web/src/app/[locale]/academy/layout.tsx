@@ -4,6 +4,10 @@ const Chatbot = dynamic(() => import('@/components/academy/Chatbot'), {
     ssr: false
 });
 
+export function generateStaticParams() {
+    return ['es', 'eu', 'en', 'fr'].map(locale => ({ locale }));
+}
+
 export default function AcademyLayout({
     children,
     params: { locale }

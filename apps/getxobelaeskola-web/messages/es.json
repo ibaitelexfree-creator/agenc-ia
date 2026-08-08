@@ -2272,6 +2272,7 @@
   },
   "tools": {
     "title": "Utilidades Náuticas",
+    "nautical_converter": "Conversor Náutico",
     "converter": {
       "title": "Conversor Náutico",
       "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."

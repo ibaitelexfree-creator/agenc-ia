@@ -50,7 +50,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) src = '/images/J80.jpg';
         else if (n.includes('420') || slug.includes('420')) src = (service.precio_base <= 50 || slug.includes('double')) ? '/images/420-previous.jpg' : '/images/420.jpg';
-        else if (n.includes('raquero') || slug.includes('raquero')) src = service.imagen_url || '/images/alquiler-raquero.jpg';
+        else if (n.includes('raquero') || slug.includes('raquero')) {
+            if (service.precio_base === 140 || n.includes('without skipper') || slug.includes('without-skipper')) {
+                src = '/images/alquiler-raquero-without-skipper.jpg';
+            } else {
+                src = service.imagen_url || '/images/alquiler-raquero.jpg';
+            }
+        }
         else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
         else if (slug.includes('laser-pro') || slug.includes('laser-16') || ((n.includes('laser') || slug.includes('laser')) && service.precio_base >= 45)) src = '/images/alquiler-laser-16.jpg';
         else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
@@ -115,9 +121,11 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                     ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
                                     : isCanoeMooring
                                         ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                         : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                             ? 'object-[center_65%] object-cover scale-100'
-                                            : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                          : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                              ? (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper'))
+                                                  ? 'object-[center_65%] object-cover scale-105 saturate-[1.45] brightness-[1.15] contrast-[1.18]'
+                                                  : 'object-[center_65%] object-cover scale-100'
+                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%] contrast-[1.1]'
@@ -140,7 +148,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                         <div className="absolute inset-0 bg-gradient-to-b from-amber-400/15 via-transparent to-amber-600/20 mix-blend-overlay pointer-events-none z-10" />
                     </>
                 )}
-                {/* Removed overlay for raquero */}
+                {/* Vibrant ocean overlay for Raquero without skipper */}
+                {(service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero')) && (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper')) && (
+                    <>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/25 via-sky-400/20 to-teal-400/20 mix-blend-color-dodge pointer-events-none z-10" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-sky-300/10 via-transparent to-cyan-600/15 mix-blend-overlay pointer-events-none z-10" />
+                    </>
+                )}
                 {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
                 )}

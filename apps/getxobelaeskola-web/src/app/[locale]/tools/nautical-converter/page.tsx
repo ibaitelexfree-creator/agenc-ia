@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl';
 import NauticalConverter from '@/components/tools/NauticalConverter/NauticalConverter';
 
 export default function Page() {
-  const t = useTranslations('tools.nautical_converter');
+  const t = useTranslations('nautical_converter');
 
   return (
     <div className="min-h-screen bg-black pt-32 pb-12 px-4 relative overflow-hidden">
