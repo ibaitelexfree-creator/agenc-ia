@@ -55,12 +55,12 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
         else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
         else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
-            src = '/images/courses/PerfeccionamientoVela.webp';
+            src = '/images/windsurf-rental-6.jpg';
         }
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (isWindsurfMooring) src = '/images/experiences/windsurf-board-mooring.jpg';
-            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/courses/PerfeccionamientoVela.webp';
+            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/windsurf-rental-6.jpg';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
             else src = '/images/J80.jpg';
         }
@@ -116,8 +116,8 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                             ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
                                             : isWindsurfMooring
                                                 ? 'object-[center_85%] contrast-[1.1]'
-                                                : isWindsurfRental
-                                                    ? 'object-[50%_75%] scale-[1.08] translate-y-[15px] contrast-[1.08] brightness-[1.05]'
+                                                 : isWindsurfRental
+                                                    ? 'object-center -translate-y-[40px] scale-[1.12] contrast-[1.05] brightness-[1.02]'
                                                     : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
                                                         ? 'object-center scale-100 contrast-[1.1]'
                                                         : (service.nombre_es.toLowerCase().includes('optimist') 
