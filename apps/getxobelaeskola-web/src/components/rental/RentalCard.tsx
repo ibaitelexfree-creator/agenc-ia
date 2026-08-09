@@ -36,7 +36,21 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     const getImgSrc = () => {
         const n = (service.nombre_es || '').toLowerCase();
         const slug = (service.slug || '').toLowerCase();
-        let src = service.imagen_url;
+        const dbImg = service.imagen_url;
+
+        // ✅ Priority 1: Use DB image if it's valid and specific (not a placeholder)
+        const hasValidDbImage = dbImg
+            && dbImg.startsWith('/images/')
+            && !dbImg.includes('placeholder')
+            && !dbImg.includes('rental-category')
+            && !dbImg.includes('home-hero');
+
+        if (hasValidDbImage) {
+            return dbImg;
+        }
+
+        // ✅ Priority 2: Fallback — pattern matching only when DB image is missing/invalid
+        let src = dbImg;
 
         const isDinghyVoucher = slug.includes('dinghy-sailing-voucher') || slug.includes('bono-vela-ligera') || n.includes('dinghy sailing voucher') || n.includes('bono vela ligera');
 
@@ -53,32 +67,26 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
         } else if (n.includes('j80') || slug.includes('j80')) {
-            if (n.includes('sin patrón') || n.includes('sin patron') || n.includes('without skipper') || slug.includes('sin-patron') || slug.includes('without-skipper')) {
-                src = '/images/alquiler-j80-sin-patron.jpg';
-            } else {
-                src = '/images/j80-con-patron.jpg';
-            }
-        }
-        else if (n.includes('420') || slug.includes('420')) src = (service.precio_base <= 50 || slug.includes('double')) ? '/images/420-previous.jpg' : '/images/420.jpg';
-        else if (n.includes('raquero') || slug.includes('raquero') || n.includes('omega') || slug.includes('omega')) {
-            if (service.precio_base === 140 || n.includes('without skipper') || slug.includes('without-skipper') || n.includes('sin patrón') || n.includes('sin patron')) {
-                src = '/images/alquiler-raquero-without-skipper.jpg';
-            } else {
-                src = '/images/alquiler-raquero-omega.jpg';
-            }
-        }
-        else if (n.includes('optimist') || slug.includes('optimist')) src = '/images/rental-optimist.webp';
-        else if (slug.includes('laser-pro') || slug.includes('laser-16') || ((n.includes('laser') || slug.includes('laser')) && service.precio_base >= 45)) src = '/images/alquiler-laser-16.jpg';
-        else if (n.includes('laser') || slug.includes('laser')) src = '/images/alquiler-laser.webp';
-        else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) src = '/images/kayak-1-person.webp';
-        else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) src = '/images/paddle-surf.webp';
-        else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
-            src = '/images/windsurf-rental-6.jpg';
+            src = '/images/J80.jpg';
+        } else if (n.includes('420') || slug.includes('420')) {
+            src = '/images/420.jpg';
+        } else if (n.includes('raquero') || slug.includes('raquero')) {
+            src = '/images/course-raquero-students.webp';
+        } else if (n.includes('optimist') || slug.includes('optimist')) {
+            src = '/images/rental-optimist.webp';
+        } else if (n.includes('laser') || slug.includes('laser')) {
+            src = '/images/alquiler-laser.webp';
+        } else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) {
+            src = '/images/kayak-1-person.webp';
+        } else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) {
+            src = '/images/paddle-surf.webp';
+        } else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
+            src = '/images/alquiler-windsurf-pro.jpg';
         }
 
         if (!src || src.includes('placeholder') || src.includes('rental-category')) {
             if (isWindsurfMooring) src = '/images/experiences/windsurf-board-mooring.jpg';
-            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/windsurf-rental-6.jpg';
+            else if (service.categoria === 'windsurf' || slug.includes('windsurf')) src = '/images/alquiler-windsurf-pro.jpg';
             else if (service.categoria === 'paddlesurf' || service.categoria === 'kayak' || service.categoria === 'piragua') src = '/images/paddle-surf.webp';
             else src = '/images/J80.jpg';
         }
@@ -136,11 +144,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                   ? 'object-[center_65%] object-cover scale-105 saturate-[1.45] brightness-[1.15] contrast-[1.18]'
                                                   : 'object-[center_65%] object-cover scale-100'
                                              : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
-                                                ? 'object-[50%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
+                                                    ? 'object-[50%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                    : 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%] contrast-[1.1]'
                                                      : isWindsurfRental
-                                                        ? 'object-center -translate-y-[40px] scale-[1.12] contrast-[1.05] brightness-[1.02]'
+                                                        ? 'object-[center_65%] scale-[1.12] contrast-[1.05] brightness-[1.02]'
                                                         : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
                                                             ? 'object-center scale-100 contrast-[1.1]'
                                                             : (service.nombre_es.toLowerCase().includes('optimist') 
