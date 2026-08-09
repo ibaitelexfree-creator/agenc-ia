@@ -56,7 +56,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             if (n.includes('sin patrón') || n.includes('sin patron') || n.includes('without skipper') || slug.includes('sin-patron') || slug.includes('without-skipper')) {
                 src = '/images/alquiler-j80-sin-patron.jpg';
             } else {
-                src = '/images/J80.jpg';
+                src = '/images/j80-con-patron.jpg';
             }
         }
         else if (n.includes('420') || slug.includes('420')) src = (service.precio_base <= 50 || slug.includes('double')) ? '/images/420-previous.jpg' : '/images/420.jpg';
@@ -136,7 +136,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                   ? 'object-[center_65%] object-cover scale-105 saturate-[1.45] brightness-[1.15] contrast-[1.18]'
                                                   : 'object-[center_65%] object-cover scale-100'
                                              : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
-                                                ? 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                ? 'object-[50%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%] contrast-[1.1]'
                                                      : isWindsurfRental
