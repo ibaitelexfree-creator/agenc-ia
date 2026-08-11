@@ -20,9 +20,9 @@ interface Product {
 
 export default function TiendaPage() {
     const products: Product[] = [
-        {
+            {
             id: '1',
-            name: "Sudadera Regata Oficial",
+            name: "01. Sudadera Regata Oficial",
             price: 49,
             category: "Ropa Técnica",
             image: "/images/sudadera-regata-j80.jpg",
@@ -31,7 +31,7 @@ export default function TiendaPage() {
         },
         {
             id: '2',
-            name: "Gorra Getxo Bela Pro",
+            name: "02. Gorra Getxo Bela Pro",
             price: 18,
             category: "Accesorios",
             image: "/images/course-detail-header-sailing.webp",
@@ -40,16 +40,16 @@ export default function TiendaPage() {
         },
         {
             id: '3',
-            name: "Bono Bautismo de Vela (2h)",
+            name: "03. Bono Bautismo de Vela (2h)",
             price: 65,
             category: "Bonos Regalo",
-            image: "/images/course-raquero-students.webp",
+            image: "/images/bono-bautismo-j80.jpg",
             description: "Regala una experiencia inolvidable. 2 horas de navegación tutorizada a bordo de un velero J80 para una persona.",
             rating: 5
         },
         {
             id: '4',
-            name: "Bono Alquiler Kayak (10h)",
+            name: "04. Bono Alquiler Kayak (10h)",
             price: 90,
             category: "Bonos Regalo",
             image: "/images/home-cta-join.webp",
@@ -58,7 +58,7 @@ export default function TiendaPage() {
         },
         {
             id: '5',
-            name: "Chubasquero Cortavientos",
+            name: "05. Chubasquero Cortavientos",
             price: 85,
             category: "Ropa Técnica",
             image: "/images/courses/IniciacionJ80.webp",
@@ -67,12 +67,48 @@ export default function TiendaPage() {
         },
         {
             id: '6',
-            name: "Bolsa Estanca Getxo Bela (20L)",
+            name: "06. Bolsa Estanca Getxo Bela (20L)",
             price: 25,
             category: "Accesorios",
             image: "/images/courses/PerfeccionamientoVela.webp",
             description: "Petate estanco de alta resistencia para proteger tu ropa, móvil y cámaras de salpicaduras y caídas al agua.",
             rating: 5
+        },
+        {
+            id: '7',
+            name: "07. Guantes de Navegación Pro",
+            price: 29,
+            category: "Accesorios",
+            image: "/images/sudadera-regata-j80.jpg",
+            description: "Guantes ergonómicos antideslizantes para cabo y maniobras de vela. Refuerzo en palmas y dedos.",
+            rating: 5
+        },
+        {
+            id: '8',
+            name: "08. Chaleco Salvavidas Deportivo",
+            price: 75,
+            category: "Ropa Técnica",
+            image: "/images/course-detail-header-sailing.webp",
+            description: "Chaleco de flotabilidad homologado 50N, diseño compacto para máxima libertad de movimiento al navegar.",
+            rating: 5
+        },
+        {
+            id: '9',
+            name: "09. Licencia de Navegación (Teórico+Práctico)",
+            price: 120,
+            category: "Bonos Regalo",
+            image: "/images/course-raquero-students.webp",
+            description: "Bono de formación completa para obtener el Titulín en un solo día sin examen. Incluye material.",
+            rating: 5
+        },
+        {
+            id: '10',
+            name: "10. Toalla Microfibra Getxo Bela",
+            price: 22,
+            category: "Accesorios",
+            image: "/images/home-cta-join.webp",
+            description: "Toalla náutica ultraligera y de secado superrápido con funda de transporte compacta.",
+            rating: 4
         }
     ];
 
@@ -87,7 +123,7 @@ export default function TiendaPage() {
                     <header className="max-w-4xl mx-auto space-y-6">
                         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-black tracking-widest uppercase mb-4 animate-fade-in-up">
                             <ShoppingBag className="w-3.5 h-3.5" />
-                            Tienda Oficial
+                            Tienda Oficial • 10 Productos
                         </span>
                         <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
                             Equipamiento y <br />
@@ -104,7 +140,7 @@ export default function TiendaPage() {
             <section className="py-24 relative">
                 <div className="container mx-auto px-6">
                     <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                        {products.map((product) => (
+                        {products.map((product, index) => (
                             <motion.div
                                 key={product.id}
                                 {...hoverLift}
@@ -122,7 +158,12 @@ export default function TiendaPage() {
                                     {/* Dark overlay */}
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors duration-500" />
 
-                                    {/* Action CTA Overlay - Hidden initially, fades in on hover (Mana Fish Style) */}
+                                    {/* Number Badge */}
+                                    <div className="absolute top-4 right-4 bg-accent text-nautical-black font-mono font-black text-xs px-2.5 py-1 rounded-full shadow-md z-10">
+                                        #{String(index + 1).padStart(2, '0')}
+                                    </div>
+
+                                    {/* Action CTA Overlay - Hidden initially, fades in on hover */}
                                     <motion.div 
                                         initial={{ opacity: 0 }}
                                         whileHover={{ opacity: 1 }}
@@ -138,14 +179,9 @@ export default function TiendaPage() {
                                         </button>
                                     </motion.div>
 
-                                    {/* Top Accents */}
+                                    {/* Category Accent */}
                                     <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-widest text-accent font-black">
                                         {product.category}
-                                    </div>
-                                    <div className="absolute top-4 right-4 flex gap-2">
-                                        <button className="w-8 h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/40 hover:text-red-500 transition-colors">
-                                            <Heart className="w-3.5 h-3.5" />
-                                        </button>
                                     </div>
                                 </div>
 
@@ -153,7 +189,7 @@ export default function TiendaPage() {
                                 <div className="p-8 flex flex-col flex-grow justify-between gap-6">
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
-                                            <span className="text-[9px] uppercase tracking-widest text-sea-foam/40 font-black">Getxo Bela</span>
+                                            <span className="text-[9px] uppercase tracking-widest text-sea-foam/40 font-black">Getxo Bela • Item {index + 1}</span>
                                             <span className="text-xl font-display text-accent italic">
                                                 {product.price}<span className="text-sea-foam text-xs ml-0.5">€</span>
                                             </span>
