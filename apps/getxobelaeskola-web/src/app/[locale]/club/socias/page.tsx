@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Sparkles, Anchor, Shield, Star, Award, ChevronRight, Users, Gift } from 'lucide-react';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverImage from '@/components/shared/HoverImage';
@@ -74,15 +75,13 @@ export default function ClubSociasPage() {
                 <div className="container mx-auto px-6">
                     <StaggeredEntrance type="slide" className="grid lg:grid-cols-12 gap-16 items-center">
                         <div className="lg:col-span-6">
-                            <div className="relative aspect-[4/3] group">
-                                <div className="absolute -top-6 -right-6 w-full h-full border border-sea-foam/10 group-hover:-top-2 group-hover:-right-2 transition-all duration-700" />
-                                <HoverImage
-                                    src="/images/home-hero-sailing-action.webp"
-                                    alt="Sailing action"
+                            <div className="relative aspect-[3/2] w-full border-2 border-sea-foam/30 overflow-hidden shadow-2xl group bg-nautical-deep">
+                                <Image
+                                    src="/images/socias-angharad-wa0084.webp"
+                                    alt="Socias Sailing action"
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 50vw"
-                                    containerClassName="h-full shadow-2xl"
-                                    imageClassName="object-cover scale-110 group-hover:scale-105"
+                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                                 />
                             </div>
                         </div>
