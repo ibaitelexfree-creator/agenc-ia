@@ -28,7 +28,7 @@ export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
   // Reduced motion or Mobile view: render simple vertical timeline
   if (shouldReduce) {
     return (
-      <section className="bg-white py-16 px-6 max-w-4xl mx-auto select-none">
+      <section className="bg-white py-16 px-6 max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-serif text-[#0A1628] mb-2">
             {t('title')}
@@ -76,7 +76,7 @@ export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
           style={{ height: '400vh' }}
         >
           <div 
-            className="w-full overflow-hidden bg-white select-none"
+            className="w-full overflow-hidden bg-white"
             style={{ position: 'sticky', top: 0, height: '100vh' }}
           >
             
@@ -165,7 +165,7 @@ export default function JornadaTimeline({ sectionRef }: JornadaTimelineProps) {
       </div>
 
       {/* Mobile view (automatic fallback for smaller screens) */}
-      <div className="block md:hidden bg-white py-16 px-6 select-none">
+      <div className="block md:hidden bg-white py-16 px-6">
         <div className="text-center mb-10">
           <h2 className="text-2xl font-serif text-[#0A1628] mb-1">
             {t('title')}

@@ -88,7 +88,7 @@ export default function TiendaPage() {
             name: "08. Chaleco Salvavidas Deportivo",
             price: 75,
             category: "Ropa Técnica",
-            image: "/images/course-detail-header-sailing.webp",
+            image: "",
             description: "Chaleco de flotabilidad homologado 50N, diseño compacto para máxima libertad de movimiento al navegar.",
             rating: 5
         },

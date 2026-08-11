@@ -89,7 +89,7 @@ export default function SplitSection() {
             {/* LEFT PANEL: Office (Tierra) */}
             <motion.div
               style={{ width: leftWidth, opacity: leftOpacity, overflow: 'hidden' }}
-              className="relative h-full bg-[#F7F8FA] flex flex-col justify-center select-none border-r border-gray-200"
+              className="relative h-full bg-[#F7F8FA] flex flex-col justify-center border-r border-gray-200"
             >
               <div style={{ width: '50vw' }} className="px-12 lg:px-24 flex flex-col justify-center">
                 <div className="max-w-md">
@@ -124,11 +124,11 @@ export default function SplitSection() {
                   src="/images/home-hero-sailing-action.webp"
                   alt="Sea background Abra"
                   fill
-                  className="object-cover opacity-35 brightness-75 select-none"
+                  className="object-cover opacity-35 brightness-75"
                 />
               </motion.div>
 
-              <div className="relative max-w-lg px-12 lg:px-24 z-10 select-none">
+              <div className="relative max-w-lg px-12 lg:px-24 z-10">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeIndex}

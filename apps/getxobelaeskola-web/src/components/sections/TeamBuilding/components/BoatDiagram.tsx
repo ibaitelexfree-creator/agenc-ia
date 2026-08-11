@@ -11,7 +11,7 @@ export default function BoatDiagram() {
   const [activePoint, setActivePoint] = useState<BoatPointConfig | null>(null);
 
   return (
-    <section className="bg-[#F7F8FA] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-y border-gray-100 select-none">
+    <section className="bg-[#F7F8FA] py-16 md:py-24 px-4 sm:px-6 lg:px-8 border-y border-gray-100">
       <div className="max-w-7xl mx-auto text-center">
         <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#005F8A] mb-4 block">
           {t('eyebrow')}

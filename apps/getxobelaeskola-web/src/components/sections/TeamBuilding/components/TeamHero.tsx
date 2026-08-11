@@ -29,7 +29,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
   ];
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col justify-center bg-white pt-4 pb-12 md:pt-6 md:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden select-none">
+    <section className="relative min-h-[85vh] flex flex-col justify-center bg-white pt-4 pb-12 md:pt-6 md:pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Headings & Copy */}

@@ -10,7 +10,7 @@ export default function AprendizajeMap() {
   const t = useTranslations('team_building.aprendizaje');
 
   return (
-    <section className="bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 select-none overflow-hidden">
+    <section className="bg-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#005F8A] mb-4 block">
@@ -100,7 +100,7 @@ export default function AprendizajeMap() {
           {/* Top subtle wave texture */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-sky-950/20 to-transparent pointer-events-none" />
           
-          <span className="absolute top-2 left-6 text-[8rem] font-serif text-[#B8D4E8] opacity-10 pointer-events-none select-none">
+          <span className="absolute top-2 left-6 text-[8rem] font-serif text-[#B8D4E8] opacity-10 pointer-events-none">
             “
           </span>
           <p className="relative text-lg md:text-2xl font-serif text-[#B8D4E8] leading-relaxed max-w-3xl mx-auto z-10 mb-6 italic">

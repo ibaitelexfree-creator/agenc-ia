@@ -54,7 +54,7 @@ export default function DetallesCTA() {
   };
 
   return (
-    <section className="bg-[#0A1628] text-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 select-none relative overflow-hidden">
+    <section className="bg-[#0A1628] text-white py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       
       {/* Decorative Wave Divider inside Navy block */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-0">
