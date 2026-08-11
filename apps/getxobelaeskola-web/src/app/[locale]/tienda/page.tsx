@@ -25,7 +25,7 @@ export default function TiendaPage() {
             name: "Sudadera Regata Oficial",
             price: 49,
             category: "Ropa Técnica",
-            image: "/images/home-hero-sailing-action.webp",
+            image: "/images/sudadera-regata-j80.jpg",
             description: "Sudadera térmica e impermeable de alta calidad bordada con el emblema de la escuela. Protección óptima en el mar.",
             rating: 5
         },
