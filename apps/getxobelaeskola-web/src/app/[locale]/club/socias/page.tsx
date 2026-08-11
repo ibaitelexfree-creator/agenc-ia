@@ -113,17 +113,22 @@ export default function ClubSociasPage() {
                             <m.div
                                 key={i}
                                 {...hoverLift}
-                                className="bg-sea-foam/[0.02] border border-sea-foam/10 p-10 rounded-2xl flex flex-col gap-6 backdrop-blur-sm shadow-md cursor-pointer hover:border-accent/30 transition-colors"
+                                className="relative group h-full bg-gradient-to-b from-amber-500/[0.08] to-amber-500/[0.03] border border-amber-500/35 hover:border-amber-400/70 p-8 md:p-10 rounded-2xl flex flex-col justify-between gap-6 backdrop-blur-md shadow-lg shadow-black/20 hover:shadow-amber-500/10 transition-all duration-300 overflow-hidden"
                             >
-                                <div className="w-16 h-16 rounded-2xl bg-sea-foam/[0.05] border border-sea-foam/10 flex items-center justify-center shadow-lg shadow-black/5">
-                                    {benefit.icon}
+                                {/* Decorative ambient background glow */}
+                                <div className="absolute -top-16 -right-16 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl group-hover:bg-amber-400/20 transition-all duration-500 pointer-events-none" />
+                                
+                                <div className="space-y-6">
+                                    <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shadow-lg shadow-amber-500/5 group-hover:border-amber-400/50 group-hover:bg-amber-500/15 transition-all">
+                                        {benefit.icon}
+                                    </div>
+                                    <h3 className="text-xl font-display text-sea-foam group-hover:text-amber-300 transition-colors">
+                                        {benefit.title}
+                                    </h3>
+                                    <p className="text-sea-foam/75 text-sm font-light leading-relaxed">
+                                        {benefit.desc}
+                                    </p>
                                 </div>
-                                <h3 className="text-xl font-display text-sea-foam group-hover:text-accent">
-                                    {benefit.title}
-                                </h3>
-                                <p className="text-sea-foam/60 text-sm font-light leading-relaxed">
-                                    {benefit.desc}
-                                </p>
                             </m.div>
                         ))}
                     </StaggeredEntrance>
