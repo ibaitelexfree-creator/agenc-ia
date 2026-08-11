@@ -34,7 +34,7 @@ export default function TiendaPage() {
             name: "02. Gorra Getxo Bela Pro",
             price: 18,
             category: "Accesorios",
-            image: "/images/course-detail-header-sailing.webp",
+            image: "",
             description: "Gorra transpirable con sujeción antiviento para navegación. Ajustable y con protección solar UPF 50+.",
             rating: 4
         },
@@ -70,7 +70,7 @@ export default function TiendaPage() {
             name: "06. Bolsa Estanca Getxo Bela (20L)",
             price: 25,
             category: "Accesorios",
-            image: "/images/courses/PerfeccionamientoVela.webp",
+            image: "",
             description: "Petate estanco de alta resistencia para proteger tu ropa, móvil y cámaras de salpicaduras y caídas al agua.",
             rating: 5
         },
@@ -79,7 +79,7 @@ export default function TiendaPage() {
             name: "07. Guantes de Navegación Pro",
             price: 29,
             category: "Accesorios",
-            image: "/images/sudadera-regata-j80.jpg",
+            image: "/images/guantes-navegacion-pro.jpg",
             description: "Guantes ergonómicos antideslizantes para cabo y maniobras de vela. Refuerzo en palmas y dedos.",
             rating: 5
         },
