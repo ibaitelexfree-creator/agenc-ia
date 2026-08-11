@@ -52,7 +52,7 @@ export default function TiendaPage() {
             name: "04. Bono Alquiler Kayak (10h)",
             price: 90,
             category: "Bonos Regalo",
-            image: "/images/home-cta-join.webp",
+            image: "/images/chubasquero-atardecer.jpg",
             description: "Tarjeta de abonado multisesión para alquiler de kayak individual. Válido durante toda la temporada.",
             rating: 4
         },
