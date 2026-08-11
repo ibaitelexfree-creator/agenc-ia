@@ -61,7 +61,7 @@ export default function TiendaPage() {
             name: "05. Chubasquero Cortavientos",
             price: 85,
             category: "Ropa Técnica",
-            image: "/images/chubasquero-atardecer.jpg",
+            image: "",
             description: "Chaqueta impermeable ligera, diseñada especialmente para regatas. Costuras selladas y puños elásticos.",
             rating: 5
         },
@@ -147,14 +147,25 @@ export default function TiendaPage() {
                                 className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm flex flex-col h-full shadow-lg"
                             >
                                 {/* Image Box with CTA Overlay */}
-                                <div className="relative aspect-[4/3] overflow-hidden bg-nautical-deep">
-                                    <Image
-                                        src={product.image}
-                                        alt={product.name}
-                                        fill
-                                        sizes="(max-width: 768px) 100vw, 33vw"
-                                        className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
-                                    />
+                                <div className="relative aspect-[4/3] overflow-hidden bg-black flex items-center justify-center">
+                                    {product.image ? (
+                                        <Image
+                                            src={product.image}
+                                            alt={product.name}
+                                            fill
+                                            sizes="(max-width: 768px) 100vw, 33vw"
+                                            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
+                                        />
+                                    ) : (
+                                        <div className="absolute inset-0 bg-black flex flex-col items-center justify-center p-6 text-center border-b border-sea-foam/10">
+                                            <div className="w-12 h-12 rounded-full bg-sea-foam/5 border border-sea-foam/10 flex items-center justify-center mb-2">
+                                                <ShoppingBag className="w-6 h-6 text-accent/60" />
+                                            </div>
+                                            <span className="text-[10px] uppercase tracking-widest text-sea-foam/30 font-black">
+                                                Getxo Bela • Black Edition
+                                            </span>
+                                        </div>
+                                    )}
                                     {/* Dark overlay */}
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors duration-500" />
 
