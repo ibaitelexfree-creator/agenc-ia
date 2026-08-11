@@ -61,7 +61,7 @@ export default function TiendaPage() {
             name: "05. Chubasquero Cortavientos",
             price: 85,
             category: "Ropa Técnica",
-            image: "/images/courses/IniciacionJ80.webp",
+            image: "/images/chubasquero-atardecer.jpg",
             description: "Chaqueta impermeable ligera, diseñada especialmente para regatas. Costuras selladas y puños elásticos.",
             rating: 5
         },
