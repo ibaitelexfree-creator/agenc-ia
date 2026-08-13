@@ -10,9 +10,11 @@ export const ClientDate = ({ date, format = 'date' }: { date: string | Date | nu
     try {
         const d = new Date(date);
         if (isNaN(d.getTime())) return <span className="opacity-40">--:--</span>;
-        if (format === 'time') return <span suppressHydrationWarning>{d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>;
-        if (format === 'short') return <span suppressHydrationWarning>{d.toLocaleDateString([], { day: '2-digit', month: '2-digit' })} {d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>;
-        return <span suppressHydrationWarning>{d.toLocaleDateString()}</span>;
+        const timeZone = 'Europe/Madrid';
+        if (format === 'time') return <span suppressHydrationWarning>{d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone })}</span>;
+        if (format === 'short') return <span suppressHydrationWarning>{d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', timeZone })} {d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone })}</span>;
+        if (format === 'full') return <span suppressHydrationWarning>{d.toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone })} {d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', timeZone })}</span>;
+        return <span suppressHydrationWarning>{d.toLocaleDateString('es-ES', { timeZone })}</span>;
     } catch { return <span className="opacity-40">--:--</span>; }
 };
 

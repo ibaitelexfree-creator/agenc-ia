@@ -20,7 +20,54 @@ export interface Newsletter {
     delivery_logs?: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }>;
 }
 
-function CountdownBadge({ targetDate, className = '', theme = 'dark' }: { targetDate?: string; className?: string; theme?: 'dark' | 'light' }) {
+function spainLocalToIso(datetimeLocalStr?: string): string | undefined {
+    if (!datetimeLocalStr) return undefined;
+    const [datePart, timePart] = datetimeLocalStr.split('T');
+    if (!datePart || !timePart) return new Date(datetimeLocalStr).toISOString();
+
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hours, minutes] = timePart.split(':').map(Number);
+
+    const utcGuess = new Date(Date.UTC(year, month - 1, day, hours, minutes));
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Europe/Madrid',
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false
+    });
+
+    const parts = formatter.formatToParts(utcGuess);
+    const m: Record<string, number> = {};
+    parts.forEach(p => { if (p.type !== 'literal') m[p.type] = Number(p.value); });
+
+    const madridHours = m.hour === 24 ? 0 : m.hour;
+    const madridDate = new Date(Date.UTC(m.year, m.month - 1, m.day, madridHours, m.minute, m.second));
+    const offsetMs = madridDate.getTime() - utcGuess.getTime();
+
+    const finalUtc = new Date(utcGuess.getTime() - offsetMs);
+    return finalUtc.toISOString();
+}
+
+function isoToSpainDatetimeLocal(isoStr?: string): string {
+    if (!isoStr) return '';
+    const d = new Date(isoStr);
+    if (isNaN(d.getTime())) return '';
+
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Europe/Madrid',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+    });
+
+    const formatted = formatter.format(d);
+    return formatted.replace(', ', 'T').replace(' ', 'T');
+}
+
+function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }: { targetDate?: string; className?: string; theme?: 'dark' | 'light'; onClick?: () => void }) {
     const [now, setNow] = React.useState(() => Date.now());
 
     React.useEffect(() => {
@@ -34,7 +81,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark' }: { target
     const diff = new Date(targetDate).getTime() - now;
     if (diff <= 0) {
         return (
-            <span className={`px-2.5 py-1 text-2xs font-mono font-bold rounded-xs animate-pulse flex items-center gap-1.5 ${theme === 'light' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-amber-500/30 text-amber-300 border border-amber-500/50'} ${className}`}>
+            <span 
+                onClick={onClick}
+                className={`px-2.5 py-1 text-2xs font-mono font-bold rounded-xs animate-pulse flex items-center gap-1.5 ${onClick ? 'cursor-pointer hover:scale-105 transition-all' : ''} ${theme === 'light' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-amber-500/30 text-amber-300 border border-amber-500/50'} ${className}`}
+                title={onClick ? '📅 Haz clic para editar la fecha y hora de programación' : undefined}
+            >
                 ⏳ Enviando ahora...
             </span>
         );
@@ -51,11 +102,17 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark' }: { target
     parts.push(`${minutes.toString().padStart(2, '0')}m`);
     parts.push(`${seconds.toString().padStart(2, '0')}s`);
 
-    const titleTooltip = `Tiempo restante: ${days > 0 ? `${days} días, ` : ''}${hours}h ${minutes}m ${seconds}s`;
+    const titleTooltip = onClick 
+        ? '📅 Haz clic para editar la fecha y hora de programación'
+        : `Tiempo restante: ${days > 0 ? `${days} días, ` : ''}${hours}h ${minutes}m ${seconds}s`;
 
     if (theme === 'light') {
         return (
-            <span className={`px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-xs ${className}`} title={titleTooltip}>
+            <span 
+                onClick={onClick}
+                className={`px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-xs ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-500 transition-all' : ''} ${className}`} 
+                title={titleTooltip}
+            >
                 <span className="animate-pulse">⏳</span>
                 <span>Faltan: <strong className="font-extrabold text-amber-950">{parts.join(' ')}</strong></span>
             </span>
@@ -63,7 +120,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark' }: { target
     }
 
     return (
-        <span className={`px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-sm ${className}`} title={titleTooltip}>
+        <span 
+            onClick={onClick}
+            className={`px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-sm ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-300 transition-all' : ''} ${className}`} 
+            title={titleTooltip}
+        >
             <span className="animate-pulse">⏳</span>
             <span>Faltan: <strong className="font-extrabold text-amber-200">{parts.join(' ')}</strong></span>
         </span>
@@ -113,7 +174,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                 msg.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                 msg.content.toLowerCase().includes(searchQuery.toLowerCase());
             
-            const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for) > new Date() && msg.status !== 'sent');
+            const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for).getTime() > Date.now() && msg.status !== 'sent');
             const isSent = msg.status === 'sent' || (!isScheduled && msg.status !== 'cancelled');
 
             if (statusFilter === 'sent') return matchesSearch && isSent;
@@ -130,7 +191,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
         await onSendMessage({
             title,
             content,
-            scheduled_for: scheduledFor || undefined
+            scheduled_for: spainLocalToIso(scheduledFor)
         });
         setTitle('');
         setContent('');
@@ -142,14 +203,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
         setEditingMsg(msg);
         setEditTitle(msg.title);
         setEditContent(msg.content);
-        // Format ISO date to datetime-local input string (YYYY-MM-DDTHH:mm)
-        if (msg.scheduled_for) {
-            const d = new Date(msg.scheduled_for);
-            const localIso = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-            setEditScheduledFor(localIso);
-        } else {
-            setEditScheduledFor('');
-        }
+        setEditScheduledFor(isoToSpainDatetimeLocal(msg.scheduled_for));
     };
 
     const handleSaveEdit = async (sendNow: boolean = false) => {
@@ -168,7 +222,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                     id: editingMsg.id,
                     title: editTitle,
                     content: editContent,
-                    scheduled_for: editScheduledFor || null,
+                    scheduled_for: spainLocalToIso(editScheduledFor) || null,
                     send_now: sendNow
                 })
             });
@@ -424,7 +478,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                     {/* NEWSLETTER LIST CARDS */}
                     <div className="space-y-6">
                         {filteredNewsletters.length > 0 ? filteredNewsletters.map((msg) => {
-                            const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for) > new Date() && msg.status !== 'sent');
+                            const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for).getTime() > Date.now() && msg.status !== 'sent');
                             const recipientsCount = (msg.recipients_count && msg.recipients_count > 0) ? msg.recipients_count : subscribersCount;
                             const deliveredCount = msg.delivered_count ?? (msg.status === 'sent' ? Math.max(0, recipientsCount) : 0);
                             const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 100;
@@ -442,9 +496,13 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                     {msg.title}
                                                 </h4>
                                                 {isScheduled ? (
-                                                    <span className="px-2.5 py-0.5 bg-amber-500/20 border border-amber-500/40 text-amber-400 text-[9px] uppercase tracking-widest font-bold rounded-xs flex items-center gap-1.5">
+                                                    <span 
+                                                        onClick={(e) => { e.stopPropagation(); handleOpenEdit(msg); }}
+                                                        className="px-2.5 py-0.5 bg-amber-500/20 hover:bg-amber-500/40 border border-amber-500/40 hover:border-amber-400 text-amber-400 text-[9px] uppercase tracking-widest font-bold rounded-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
+                                                        title="📅 Haz clic para editar la fecha y hora de programación"
+                                                    >
                                                         <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-                                                        Programado
+                                                        Programado ✏️
                                                     </span>
                                                 ) : (
                                                     <span className="px-2.5 py-0.5 bg-green-500/20 border border-green-500/40 text-green-400 text-[9px] uppercase tracking-widest font-bold rounded-xs">
@@ -457,7 +515,11 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                         {/* Action buttons */}
                                         <div className="flex flex-wrap items-center gap-2 shrink-0">
                                             {isScheduled && (
-                                                <CountdownBadge targetDate={msg.scheduled_for} theme="dark" />
+                                                <CountdownBadge 
+                                                    targetDate={msg.scheduled_for} 
+                                                    theme="dark" 
+                                                    onClick={() => handleOpenEdit(msg)} 
+                                                />
                                             )}
                                             {isScheduled && (
                                                 <button
@@ -502,11 +564,16 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                         </div>
 
                                         {isScheduled ? (
-                                            <div className="flex items-center gap-2 text-red-400 font-bold bg-red-500/10 border border-red-500/30 px-3 py-1 rounded-xs shadow-sm">
+                                            <div 
+                                                onClick={(e) => { e.stopPropagation(); handleOpenEdit(msg); }}
+                                                className="flex items-center gap-2 text-red-400 font-bold bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 hover:border-red-400 px-3 py-1 rounded-xs shadow-sm cursor-pointer transition-all hover:scale-105"
+                                                title="📅 Haz clic para editar la fecha y hora de programación"
+                                            >
                                                 <span>⏰ PROGRAMADO PARA:</span>
                                                 <span className="underline decoration-red-400/50">
                                                     <ClientDate date={msg.scheduled_for || msg.created_at} format="short" />
                                                 </span>
+                                                <span className="text-[10px] text-amber-300 font-extrabold ml-1 bg-amber-500/20 px-1.5 py-0.5 rounded-xs border border-amber-500/40">✏️ Editar</span>
                                             </div>
                                         ) : (
                                             <div className="flex flex-wrap items-center gap-3 text-white/60">
@@ -547,13 +614,21 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             <div className="space-y-1">
                                 <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 block font-bold">Estado del Envío</span>
                                 <div className="flex flex-wrap items-center gap-3">
-                                    {viewingMsg.status === 'scheduled' || (!!viewingMsg.scheduled_for && new Date(viewingMsg.scheduled_for) > new Date() && viewingMsg.status !== 'sent') ? (
+                                    {viewingMsg.status === 'scheduled' || (!!viewingMsg.scheduled_for && new Date(viewingMsg.scheduled_for).getTime() > Date.now() && viewingMsg.status !== 'sent') ? (
                                         <>
-                                            <span className="px-3 py-1 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
+                                            <span 
+                                                onClick={() => { const target = viewingMsg; setViewingMsg(null); handleOpenEdit(target); }}
+                                                className="px-3 py-1 bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2 cursor-pointer transition-all hover:scale-105"
+                                                title="📅 Haz clic para editar la fecha y hora"
+                                            >
                                                 <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
-                                                Programado para Envío Automático
+                                                Programado para Envío Automático ✏️
                                             </span>
-                                            <CountdownBadge targetDate={viewingMsg.scheduled_for} theme="light" />
+                                            <CountdownBadge 
+                                                targetDate={viewingMsg.scheduled_for} 
+                                                theme="light" 
+                                                onClick={() => { const target = viewingMsg; setViewingMsg(null); handleOpenEdit(target); }} 
+                                            />
                                         </>
                                     ) : (
                                         <span className="px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
