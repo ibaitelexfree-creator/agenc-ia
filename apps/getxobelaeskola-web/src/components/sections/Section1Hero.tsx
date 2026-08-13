@@ -271,6 +271,7 @@ export function Section1Hero() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: isPhone ? '70px' : '0px',
       }}
     >
       {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
@@ -471,7 +472,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? '-45px' : '-80px',
+          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? '10px' : '-80px',
           top: isLandscape ? '0px' : isPhone ? '0px' : '0px',
           transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
           transformOrigin: 'left center',
