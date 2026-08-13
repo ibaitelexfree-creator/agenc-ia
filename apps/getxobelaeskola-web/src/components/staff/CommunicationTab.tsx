@@ -110,11 +110,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
         return (
             <span 
                 onClick={onClick}
-                className={`px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-xs ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-500 transition-all' : ''} ${className}`} 
+                className={`px-2.5 py-1 bg-amber-400 text-nautical-black border border-amber-500 text-2xs font-mono font-black rounded-xs flex items-center gap-1.5 shadow-xs ${onClick ? 'cursor-pointer hover:scale-105 hover:bg-amber-300 transition-all' : ''} ${className}`} 
                 title={titleTooltip}
             >
                 <span className="animate-pulse">⏳</span>
-                <span>Faltan: <strong className="font-extrabold text-amber-950">{parts.join(' ')}</strong></span>
+                <span>Faltan: <strong className="font-black text-nautical-black">{parts.join(' ')}</strong></span>
             </span>
         );
     }
@@ -122,11 +122,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
     return (
         <span 
             onClick={onClick}
-            className={`px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-sm ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-300 transition-all' : ''} ${className}`} 
+            className={`px-2.5 py-1 bg-amber-400 text-nautical-black border border-amber-500 text-2xs font-mono font-black rounded-xs flex items-center gap-1.5 shadow-sm ${onClick ? 'cursor-pointer hover:scale-105 hover:bg-amber-300 transition-all' : ''} ${className}`} 
             title={titleTooltip}
         >
             <span className="animate-pulse">⏳</span>
-            <span>Faltan: <strong className="font-extrabold text-amber-200">{parts.join(' ')}</strong></span>
+            <span>Faltan: <strong className="font-black text-nautical-black">{parts.join(' ')}</strong></span>
         </span>
     );
 }
@@ -498,10 +498,10 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                 {isScheduled ? (
                                                     <span 
                                                         onClick={(e) => { e.stopPropagation(); handleOpenEdit(msg); }}
-                                                        className="px-2.5 py-0.5 bg-amber-500/20 hover:bg-amber-500/40 border border-amber-500/40 hover:border-amber-400 text-amber-400 text-[9px] uppercase tracking-widest font-bold rounded-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
+                                                        className="px-2.5 py-0.5 bg-amber-400 hover:bg-amber-300 border border-amber-500 text-nautical-black text-[9px] uppercase tracking-widest font-black rounded-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
                                                         title="📅 Haz clic para editar la fecha y hora de programación"
                                                     >
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-nautical-black animate-ping" />
                                                         Programado ✏️
                                                     </span>
                                                 ) : (
