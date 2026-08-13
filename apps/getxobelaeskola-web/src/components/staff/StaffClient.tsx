@@ -839,7 +839,7 @@ export default function StaffClient({
                             { id: 'financials', label: 'INGRESOS' },
                             { id: 'courses', label: t('tabs.courses') },
                             { id: 'academia', label: 'ACADEMIA' },
-                            { id: 'blog', label: 'BLOG' },
+                            { id: 'blog', label: t('tabs.blog') },
                             { id: 'catalog', label: 'CATÁLOGO' },
                             { id: 'fleet', label: 'FLOTA' },
                             { id: 'sessions', label: 'SESIONES' },
