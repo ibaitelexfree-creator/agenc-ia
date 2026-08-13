@@ -173,6 +173,7 @@ export default function StaffClient({
 
     // Communication State
     const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
+    const [subscribersCount, setSubscribersCount] = useState<number>(0);
     const [isSendingNewsletter, setIsSendingNewsletter] = useState(false);
 
     // Notion Integration State
@@ -382,7 +383,7 @@ export default function StaffClient({
         }
     }, [initialRentals, paginatedRentals.length]);
 
-    // Fetch Newsletters
+    // Fetch Newsletters & Subscribers Count
     const fetchNewsletters = useCallback(async () => {
         try {
             const nowIso = new Date().toISOString();
@@ -392,6 +393,13 @@ export default function StaffClient({
                 .update({ status: 'sent', sent_at: nowIso })
                 .eq('status', 'scheduled')
                 .lte('scheduled_for', nowIso);
+
+            // Fetch total active subscribers count from newsletter_subscriptions
+            const { count: subCount } = await supabase
+                .from('newsletter_subscriptions')
+                .select('*', { count: 'exact', head: true });
+
+            if (subCount !== null) setSubscribersCount(subCount);
 
             const { data, error } = await supabase
                 .from('newsletters')
@@ -1140,6 +1148,7 @@ export default function StaffClient({
                 {activeTab === 'communication' && (
                     <CommunicationTab
                         newsletters={newsletters}
+                        subscribersCount={subscribersCount}
                         onSendMessage={handleSendNewsletter}
                         isSending={isSendingNewsletter}
                         onRefreshNewsletters={fetchNewsletters}

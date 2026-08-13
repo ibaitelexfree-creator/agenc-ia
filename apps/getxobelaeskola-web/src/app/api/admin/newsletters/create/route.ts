@@ -13,6 +13,13 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Título y contenido son obligatorios' }, { status: 400 });
         }
 
+        // Fetch active subscriber count from newsletter_subscriptions table in Supabase
+        const { count: subscriberCount } = await supabaseAdmin
+            .from('newsletter_subscriptions')
+            .select('*', { count: 'exact', head: true });
+
+        const actualRecipients = subscriberCount ?? 0;
+
         const { data, error } = await supabaseAdmin
             .from('newsletters')
             .insert({
@@ -21,7 +28,9 @@ export async function POST(request: Request) {
                 scheduled_for: scheduled_for || null,
                 status: status || (scheduled_for ? 'scheduled' : 'sent'),
                 created_by: profile?.id,
-                sent_at: scheduled_for ? null : new Date().toISOString()
+                sent_at: scheduled_for ? null : new Date().toISOString(),
+                recipients_count: actualRecipients,
+                delivered_count: (scheduled_for ? 0 : actualRecipients)
             })
             .select()
             .single();

@@ -20,15 +20,66 @@ export interface Newsletter {
     delivery_logs?: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }>;
 }
 
+function CountdownBadge({ targetDate, className = '', theme = 'dark' }: { targetDate?: string; className?: string; theme?: 'dark' | 'light' }) {
+    const [now, setNow] = React.useState(() => Date.now());
+
+    React.useEffect(() => {
+        if (!targetDate) return;
+        const interval = setInterval(() => setNow(Date.now()), 1000);
+        return () => clearInterval(interval);
+    }, [targetDate]);
+
+    if (!targetDate) return null;
+
+    const diff = new Date(targetDate).getTime() - now;
+    if (diff <= 0) {
+        return (
+            <span className={`px-2.5 py-1 text-2xs font-mono font-bold rounded-xs animate-pulse flex items-center gap-1.5 ${theme === 'light' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-amber-500/30 text-amber-300 border border-amber-500/50'} ${className}`}>
+                ⏳ Enviando ahora...
+            </span>
+        );
+    }
+
+    const seconds = Math.floor((diff / 1000) % 60);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const parts = [];
+    if (days > 0) parts.push(`${days}d`);
+    parts.push(`${hours.toString().padStart(2, '0')}h`);
+    parts.push(`${minutes.toString().padStart(2, '0')}m`);
+    parts.push(`${seconds.toString().padStart(2, '0')}s`);
+
+    const titleTooltip = `Tiempo restante: ${days > 0 ? `${days} días, ` : ''}${hours}h ${minutes}m ${seconds}s`;
+
+    if (theme === 'light') {
+        return (
+            <span className={`px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-xs ${className}`} title={titleTooltip}>
+                <span className="animate-pulse">⏳</span>
+                <span>Faltan: <strong className="font-extrabold text-amber-950">{parts.join(' ')}</strong></span>
+            </span>
+        );
+    }
+
+    return (
+        <span className={`px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-sm ${className}`} title={titleTooltip}>
+            <span className="animate-pulse">⏳</span>
+            <span>Faltan: <strong className="font-extrabold text-amber-200">{parts.join(' ')}</strong></span>
+        </span>
+    );
+}
+
 
 interface CommunicationTabProps {
     newsletters: Newsletter[];
     onSendMessage: (data: { title: string, content: string, scheduled_for?: string }) => Promise<void>;
     isSending: boolean;
     onRefreshNewsletters?: () => void;
+    subscribersCount?: number;
 }
 
-export default function CommunicationTab({ newsletters = [], onSendMessage, isSending, onRefreshNewsletters }: CommunicationTabProps) {
+export default function CommunicationTab({ newsletters = [], onSendMessage, isSending, onRefreshNewsletters, subscribersCount = 0 }: CommunicationTabProps) {
     const t = useTranslations('staff_panel');
     
     // New Message Form State
@@ -374,7 +425,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                     <div className="space-y-6">
                         {filteredNewsletters.length > 0 ? filteredNewsletters.map((msg) => {
                             const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for) > new Date() && msg.status !== 'sent');
-                            const recipientsCount = msg.recipients_count ?? 0;
+                            const recipientsCount = (msg.recipients_count && msg.recipients_count > 0) ? msg.recipients_count : subscribersCount;
                             const deliveredCount = msg.delivered_count ?? (msg.status === 'sent' ? Math.max(0, recipientsCount) : 0);
                             const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 100;
 
@@ -384,9 +435,9 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                     className={`p-8 border rounded-sm transition-all group relative ${isScheduled ? 'border-amber-500/30 bg-amber-500/5 hover:bg-amber-500/10' : 'border-white/5 hover:bg-white/5'}`}
                                 >
                                     {/* Card Header */}
-                                    <div className="flex justify-between items-start mb-4 gap-4">
+                                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
                                         <div className="space-y-1 flex-1 cursor-pointer" onClick={() => setViewingMsg(msg)}>
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex flex-wrap items-center gap-3">
                                                 <h4 className="text-lg font-display text-white italic group-hover:text-accent transition-colors">
                                                     {msg.title}
                                                 </h4>
@@ -404,7 +455,10 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                         </div>
 
                                         {/* Action buttons */}
-                                        <div className="flex items-center gap-2 shrink-0">
+                                        <div className="flex flex-wrap items-center gap-2 shrink-0">
+                                            {isScheduled && (
+                                                <CountdownBadge targetDate={msg.scheduled_for} theme="dark" />
+                                            )}
                                             {isScheduled && (
                                                 <button
                                                     onClick={() => handleOpenEdit(msg)}
@@ -460,9 +514,10 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                     <span>✅ ENVIADO:</span>
                                                     <span><ClientDate date={msg.sent_at || msg.created_at} format="short" /></span>
                                                 </div>
-                                                <span className="text-green-400/80 font-mono text-[9px]">
-                                                    ({deliveredCount}/{recipientsCount} entregados - {deliveryRate}%)
-                                                </span>
+                                                <div className="flex items-center gap-2 px-3.5 py-1.5 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-xs font-bold rounded-xs shadow-sm">
+                                                    <span>📊 {deliveredCount}/{recipientsCount} entregados</span>
+                                                    <span className="text-accent font-black">({deliveryRate}%)</span>
+                                                </div>
                                             </div>
                                         )}
                                     </div>
@@ -491,12 +546,15 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         <div className="flex flex-wrap items-center justify-between gap-4 p-6 bg-slate-50 border border-slate-200 rounded-sm">
                             <div className="space-y-1">
                                 <span className="text-3xs uppercase tracking-[0.3em] text-slate-500 block font-bold">Estado del Envío</span>
-                                <div className="flex items-center gap-3">
+                                <div className="flex flex-wrap items-center gap-3">
                                     {viewingMsg.status === 'scheduled' || (!!viewingMsg.scheduled_for && new Date(viewingMsg.scheduled_for) > new Date() && viewingMsg.status !== 'sent') ? (
-                                        <span className="px-3 py-1 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
-                                            <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
-                                            Programado para Envío Automático
-                                        </span>
+                                        <>
+                                            <span className="px-3 py-1 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+                                                Programado para Envío Automático
+                                            </span>
+                                            <CountdownBadge targetDate={viewingMsg.scheduled_for} theme="light" />
+                                        </>
                                     ) : (
                                         <span className="px-3 py-1 bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-bold uppercase tracking-wider rounded-xs flex items-center gap-2">
                                             <span className="w-2 h-2 rounded-full bg-emerald-600" />
@@ -518,27 +576,35 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         </div>
 
                         {/* Audience / Reach & Metrics Summary */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Destinatarios Totales</span>
-                                <span className="text-3xl font-display italic text-slate-900 font-bold">{viewingMsg.recipients_count ?? 0}</span>
-                                <span className="text-[10px] text-slate-500 block mt-1">Alumnos / Clientes en Lista</span>
-                            </div>
-                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Entregados con Éxito</span>
-                                <span className="text-3xl font-display italic text-emerald-600 font-bold">
-                                    {viewingMsg.delivered_count ?? (viewingMsg.status === 'sent' ? (viewingMsg.recipients_count ?? 0) : 0)}
-                                </span>
-                                <span className="text-[10px] text-emerald-700 block mt-1 font-semibold">Llegaron a la bandeja correctamente</span>
-                            </div>
-                            <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
-                                <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Tasa de Efectividad</span>
-                                <span className="text-3xl font-display italic text-red-600 font-bold">
-                                    {viewingMsg.recipients_count ? Math.round(((viewingMsg.delivered_count ?? viewingMsg.recipients_count) / viewingMsg.recipients_count) * 100) : 100}%
-                                </span>
-                                <span className="text-[10px] text-red-700 block mt-1 font-semibold">Confirmaciones recibidas</span>
-                            </div>
-                        </div>
+                        {(() => {
+                            const viewingRecipientsCount = (viewingMsg.recipients_count && viewingMsg.recipients_count > 0) ? viewingMsg.recipients_count : subscribersCount;
+                            const viewingDeliveredCount = viewingMsg.delivered_count ?? (viewingMsg.status === 'sent' ? viewingRecipientsCount : 0);
+                            const viewingDeliveryRate = viewingRecipientsCount > 0 ? Math.round((viewingDeliveredCount / viewingRecipientsCount) * 100) : 100;
+
+                            return (
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                        <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Destinatarios Totales</span>
+                                        <span className="text-3xl font-display italic text-slate-900 font-bold">{viewingRecipientsCount}</span>
+                                        <span className="text-[10px] text-slate-500 block mt-1">Alumnos / Clientes en Lista (newsletter_subscriptions)</span>
+                                    </div>
+                                    <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                        <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Entregados con Éxito</span>
+                                        <span className="text-3xl font-display italic text-emerald-600 font-bold">
+                                            {viewingDeliveredCount}
+                                        </span>
+                                        <span className="text-[10px] text-emerald-700 block mt-1 font-semibold">Llegaron a la bandeja correctamente</span>
+                                    </div>
+                                    <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
+                                        <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Tasa de Efectividad</span>
+                                        <span className="text-3xl font-display italic text-red-600 font-bold">
+                                            {viewingDeliveryRate}%
+                                        </span>
+                                        <span className="text-[10px] text-red-700 block mt-1 font-semibold">Confirmaciones recibidas</span>
+                                    </div>
+                                </div>
+                            );
+                        })()}
 
                         {/* Message Subject and Body */}
                         <div className="space-y-4 bg-slate-50 border border-slate-200 p-8 rounded-sm">
