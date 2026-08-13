@@ -67,6 +67,7 @@ const nextConfig = {
         ];
     },
     webpack: (config, { isServer }) => {
+        config.infrastructureLogging = { level: 'error' };
         if (!isServer && config.optimization.splitChunks && typeof config.optimization.splitChunks === 'object') {
             config.optimization.splitChunks.cacheGroups = {
                 ...config.optimization.splitChunks.cacheGroups,
