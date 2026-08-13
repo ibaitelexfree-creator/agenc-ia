@@ -573,7 +573,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                 <span className="underline decoration-red-400/50">
                                                     <ClientDate date={msg.scheduled_for || msg.created_at} format="short" />
                                                 </span>
-                                                <span className="text-[10px] text-amber-300 font-extrabold ml-1 bg-amber-500/20 px-1.5 py-0.5 rounded-xs border border-amber-500/40">✏️ Editar</span>
+                                                <span className="text-[10px] text-white font-black ml-1 bg-white/20 hover:bg-white/30 px-1.5 py-0.5 rounded-xs border border-white/30 transition-colors">✏️ Editar</span>
                                             </div>
                                         ) : (
                                             <div className="flex flex-wrap items-center gap-3 text-white/60">
