@@ -70,22 +70,27 @@ export function Section1Hero() {
       const w = window.innerWidth
       const h = window.innerHeight
       const landscapeMode = w > h
+      
+      // Effective layout width/height accounting for high DPR mobile viewports
+      const effW = Math.min(w, h)
+      const effH = Math.max(w, h)
+      
       const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
       
       setIsMobile(w < 1280)
       setIsTabletPortrait(isTabletSize && !landscapeMode)
       setIsTabletLandscape(isTabletSize && landscapeMode)
-      setIsPhone(w < 768 && !landscapeMode) // strictly portrait phone
+      setIsPhone(effW < 768 && !landscapeMode) // portrait phone including high-res 1179x2556
       setIsLandscape(landscapeMode) // MUST be true for ANY landscape orientation (w > h)
 
-      // Precise responsive dynamic scaling for all heights (320px to 1920px) and aspect ratios
+      // Precise responsive dynamic scaling for all heights (320px to 2556px) and aspect ratios
       if (landscapeMode) {
         if (h < 500) {
           setViewportScale(Math.max(0.48, h / 620))
         } else if (h < 750) {
           setViewportScale(Math.max(0.65, h / 780))
-        } else if (h < 1000) {
-          setViewportScale(Math.max(0.82, h / 950))
+        } else if (h < 1200) {
+          setViewportScale(Math.max(0.72, h / 1100))
         } else {
           setViewportScale(1)
         }
@@ -475,7 +480,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-200px, -24vh, -145px)' : '-140px',
+          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-110px, -14vh, -60px)' : '-140px',
           top: '0px',
           transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
           transformOrigin: 'left center',
@@ -579,7 +584,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '12px' : isPhone ? 'calc(clamp(90px, 14vh, 120px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
+          bottom: isLandscape ? '12px' : isPhone ? 'calc(clamp(20px, 4vh, 45px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -621,9 +626,9 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '2px',
+                  gap: '4px',
                   width: '100%',
-                  transform: 'scale(0.88)',
+                  transform: 'scale(clamp(0.72, 85vw / 400, 0.95))',
                   transformOrigin: 'bottom center',
                   marginBottom: '0px',
                 }}
