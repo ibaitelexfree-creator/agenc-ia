@@ -1,5 +1,6 @@
 import { requireInstructor } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
+import { processScheduledNewsletters } from '@/app/api/cron/process-newsletters/route';
 
 export async function POST(request: Request) {
     try {
@@ -13,12 +14,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Título y contenido son obligatorios' }, { status: 400 });
         }
 
-        // Fetch active subscriber count from newsletter_subscriptions table in Supabase
-        const { count: subscriberCount } = await supabaseAdmin
-            .from('newsletter_subscriptions')
-            .select('*', { count: 'exact', head: true });
-
-        const actualRecipients = subscriberCount ?? 0;
+        const isScheduled = !!scheduled_for && new Date(scheduled_for).getTime() > Date.now();
 
         const { data, error } = await supabaseAdmin
             .from('newsletters')
@@ -26,14 +22,18 @@ export async function POST(request: Request) {
                 title,
                 content,
                 scheduled_for: scheduled_for || null,
-                status: status || (scheduled_for ? 'scheduled' : 'sent'),
-                created_by: profile?.id,
-                sent_at: scheduled_for ? null : new Date().toISOString()
+                status: isScheduled ? 'scheduled' : 'scheduled', // insert as scheduled so processScheduledNewsletters handles sending & logging
+                created_by: profile?.id
             })
             .select()
             .single();
 
         if (error) throw error;
+
+        // If not scheduled for future, process and send immediately right now!
+        if (!isScheduled) {
+            await processScheduledNewsletters();
+        }
 
         return NextResponse.json({ success: true, newsletter: data });
     } catch (error: unknown) {
