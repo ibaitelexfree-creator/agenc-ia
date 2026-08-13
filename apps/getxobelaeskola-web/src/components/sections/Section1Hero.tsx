@@ -617,10 +617,11 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '4px',
+                  gap: '6px',
                   width: '100%',
-                  transform: 'scale(0.96)',
+                  transform: 'scale(1.02)',
                   transformOrigin: 'bottom center',
+                  marginBottom: '15px',
                 }}
               >
                 {/* Fila superior: 3 blobs centrados */}
