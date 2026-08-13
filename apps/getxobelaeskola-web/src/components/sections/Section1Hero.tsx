@@ -471,8 +471,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-120px * ${viewportScale})` : isPhone ? '-90px' : '-60px',
-          top: isLandscape ? '0px' : isPhone ? '15px' : '0px',
+          marginTop: isLandscape ? `calc(-140px * ${viewportScale})` : isPhone ? '-150px' : '-80px',
+          top: isLandscape ? '0px' : isPhone ? '-20px' : '0px',
           transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
           transformOrigin: 'left center',
         }}
@@ -482,26 +482,26 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.2rem' : '0.75rem',
-            marginTop: (isPhone || isLandscape) ? '4px' : '0px',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.75rem',
+            marginTop: (isPhone || isLandscape) ? '0px' : '0px',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.78rem' : '0.95rem'} />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.75rem' : '0.95rem'} />
         </div>
  
         {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.3rem' : '1rem' }}>
+        <div style={{ marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.2rem' : '1rem' }}>
           <LogoGBE isPhone={isPhone || isLandscape} />
         </div>
   
         {/* Título principal */}
         <h1
           style={{
-            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.3rem, 5.6vw, 2.1rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.2rem, 5.2vw, 1.9rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
             fontWeight: 700,
-            lineHeight: (isPhone || isLandscape) ? 1.05 : 1.12,
+            lineHeight: (isPhone || isLandscape) ? 1.08 : 1.12,
             color: 'var(--white)',
-            marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.3rem' : '0.85rem',
+            marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.25rem' : '0.85rem',
             textAlign: 'left',
           }}
         >
@@ -575,12 +575,12 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '4px' : isPhone ? '6px' : isTabletPortrait ? '16px' : '20px',
+          bottom: isLandscape ? '12px' : isPhone ? '24px' : isTabletPortrait ? '32px' : '40px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
-          padding: (isPhone || isLandscape) ? '0 6px' : '0 20px',
+          padding: (isPhone || isLandscape) ? '0 4px' : '0 16px',
           zIndex: 15,
         }}
       >
@@ -599,7 +599,7 @@ export function Section1Hero() {
                   justifyContent: 'center',
                   gap: 'clamp(4px, 1.2vw, 16px)',
                   width: '100%',
-                  transform: `scale(${viewportScale * 0.85})`,
+                  transform: `scale(${Math.min(viewportScale * 0.98, 0.98)})`,
                   transformOrigin: 'bottom center',
                 }}
               >
@@ -617,8 +617,10 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '2px',
+                  gap: '4px',
                   width: '100%',
+                  transform: 'scale(0.96)',
+                  transformOrigin: 'bottom center',
                 }}
               >
                 {/* Fila superior: 3 blobs centrados */}
@@ -626,7 +628,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '4px',
+                    gap: '8px',
                     width: '100%',
                   }}
                 >
@@ -634,12 +636,12 @@ export function Section1Hero() {
                     <BlobCard key={card.title} {...card} index={idx} />
                   ))}
                 </div>
-                {/* Fila inferior: 2 blobs centrados olímpicamente */}
+                {/* Fila inferior: 2 blobs centrados */}
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '4px',
+                    gap: '8px',
                     width: '100%',
                   }}
                 >
@@ -662,9 +664,9 @@ export function Section1Hero() {
                     ? 'clamp(6px, 1.5vw, 18px)' 
                     : isTabletPortrait 
                     ? 'clamp(8px, 2vw, 24px)' 
-                    : 'clamp(14px, 3.2vw, 42px)',
+                    : 'clamp(12px, 3vw, 38px)',
                   width: '100%',
-                  transform: (isTabletLandscape || isTabletPortrait) ? 'scale(0.88)' : 'none',
+                  transform: (isTabletLandscape || isTabletPortrait) ? 'scale(0.92)' : 'none',
                   transformOrigin: 'bottom center',
                 }}
               >

@@ -265,7 +265,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     >
       {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
       <motion.div
-        className="relative w-14 h-14 min-[380px]:w-16 min-[380px]:h-16 sm:w-20 sm:h-20 md:w-[96px] md:h-[96px] lg:w-36 lg:h-36"
+        className="relative w-12 h-12 min-[360px]:w-14 min-[360px]:h-14 min-[410px]:w-16 min-[410px]:h-16 sm:w-20 sm:h-20 md:w-[96px] md:h-[96px] lg:w-36 lg:h-36"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
