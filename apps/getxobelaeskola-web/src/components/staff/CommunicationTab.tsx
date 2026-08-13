@@ -67,6 +67,11 @@ function isoToSpainDatetimeLocal(isoStr?: string): string {
     return formatted.replace(', ', 'T').replace(' ', 'T');
 }
 
+function getSpainNowDatetimeLocal(addMinutes: number = 30): string {
+    const d = new Date(Date.now() + addMinutes * 60 * 1000);
+    return isoToSpainDatetimeLocal(d.toISOString());
+}
+
 function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }: { targetDate?: string; className?: string; theme?: 'dark' | 'light'; onClick?: () => void }) {
     const [now, setNow] = React.useState(() => Date.now());
 
@@ -401,7 +406,17 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-3xs uppercase tracking-[0.3em] text-white/30 font-bold">{t('communication.schedule')}</label>
+                            <div className="flex justify-between items-center">
+                                <label className="text-3xs uppercase tracking-[0.3em] text-white/30 font-bold">{t('communication.schedule')}</label>
+                                <button
+                                    type="button"
+                                    onClick={() => setScheduledFor(getSpainNowDatetimeLocal(30))}
+                                    className="text-[10px] text-accent hover:underline font-mono uppercase font-bold"
+                                    title="Sugerir hora oficial de España (Madrid) en +30 min"
+                                >
+                                    🇪🇸 Usar Hora España (+30m)
+                                </button>
+                            </div>
                             <input
                                 type="datetime-local"
                                 value={scheduledFor}
@@ -410,7 +425,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             />
                             {scheduledFor && (
                                 <p className="text-[10px] text-accent font-mono">
-                                    ⏱️ El mensaje quedará programado y podrás editarlo o enviarlo en cualquier momento antes de la fecha.
+                                    ⏱️ El mensaje quedará programado en horario peninsular (España / Madrid) y podrás editarlo antes de la fecha.
                                 </p>
                             )}
                         </div>
