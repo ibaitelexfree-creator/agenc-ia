@@ -472,9 +472,9 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-80px',
+          marginTop: isLandscape ? `calc(-110px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-80px',
           top: '0px',
-          transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
+          transform: isLandscape ? `scale(${Math.max(0.68, viewportScale * 0.76)})` : 'none',
           transformOrigin: 'left center',
         }}
       >
@@ -598,9 +598,9 @@ export function Section1Hero() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 'clamp(6px, 1.2vw, 16px)',
+                  gap: 'clamp(4px, 1vw, 14px)',
                   width: '100%',
-                  transform: `scale(${Math.min(viewportScale * 0.88, 0.90)})`,
+                  transform: `scale(${Math.min(viewportScale * 0.76, 0.78)})`,
                   transformOrigin: 'bottom center',
                 }}
               >
