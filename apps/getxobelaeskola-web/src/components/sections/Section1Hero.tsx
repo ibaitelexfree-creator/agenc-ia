@@ -56,6 +56,8 @@ export function Section1Hero() {
   const [isTabletPortrait, setIsTabletPortrait] = useState(false)
   const [isTabletLandscape, setIsTabletLandscape] = useState(false)
   const [isPhone, setIsPhone] = useState(false)
+  const [isLandscape, setIsLandscape] = useState(false)
+  const [viewportScale, setViewportScale] = useState(1)
 
   const [mounted, setMounted] = useState(false)
 
@@ -67,11 +69,29 @@ export function Section1Hero() {
     const checkMobile = () => {
       const w = window.innerWidth
       const h = window.innerHeight
+      const landscapeMode = w > h
       const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
-      setIsMobile(w < 1280) // 1280px matches the xl layout breakpoint
-      setIsTabletPortrait(isTabletSize && h > w)
-      setIsTabletLandscape(isTabletSize && w >= h)
-      setIsPhone(w < 768)   // 768px covers mobile and small phone sizes
+      
+      setIsMobile(w < 1280)
+      setIsTabletPortrait(isTabletSize && !landscapeMode)
+      setIsTabletLandscape(isTabletSize && landscapeMode)
+      setIsPhone(w < 768 && !landscapeMode) // strictly portrait phone
+      setIsLandscape(landscapeMode) // MUST be true for ANY landscape orientation (w > h)
+
+      // Precise responsive dynamic scaling for all heights (320px to 1920px) and aspect ratios
+      if (landscapeMode) {
+        if (h < 500) {
+          setViewportScale(Math.max(0.48, h / 620))
+        } else if (h < 750) {
+          setViewportScale(Math.max(0.65, h / 780))
+        } else if (h < 1000) {
+          setViewportScale(Math.max(0.82, h / 950))
+        } else {
+          setViewportScale(1)
+        }
+      } else {
+        setViewportScale(1)
+      }
     }
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
@@ -451,8 +471,10 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isPhone ? '-90px' : '-60px', // Slightly higher position
-          top: isPhone ? '15px' : '0px',
+          marginTop: isLandscape ? `calc(-120px * ${viewportScale})` : isPhone ? '-90px' : '-60px',
+          top: isLandscape ? '0px' : isPhone ? '15px' : '0px',
+          transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
+          transformOrigin: 'left center',
         }}
       >
         {/* Eyebrow — ubicación */}
@@ -460,26 +482,26 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: isPhone ? '0.2rem' : '0.75rem',
-            marginTop: isPhone ? '4px' : '0px',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.2rem' : '0.75rem',
+            marginTop: (isPhone || isLandscape) ? '4px' : '0px',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={isPhone ? '0.78rem' : '0.95rem'} />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.78rem' : '0.95rem'} />
         </div>
  
         {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: isPhone ? '0.3rem' : '1rem' }}>
-          <LogoGBE isPhone={isPhone} />
+        <div style={{ marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.3rem' : '1rem' }}>
+          <LogoGBE isPhone={isPhone || isLandscape} />
         </div>
   
         {/* Título principal */}
         <h1
           style={{
-            fontSize: isPhone ? 'clamp(1.3rem, 5.6vw, 2.1rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.3rem, 5.6vw, 2.1rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
             fontWeight: 700,
-            lineHeight: isPhone ? 1.05 : 1.12,
+            lineHeight: (isPhone || isLandscape) ? 1.05 : 1.12,
             color: 'var(--white)',
-            marginBottom: isPhone ? '0.3rem' : '0.85rem',
+            marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.3rem' : '0.85rem',
             textAlign: 'left',
           }}
         >
@@ -501,9 +523,9 @@ export function Section1Hero() {
           style={{
             display: 'flex',
             alignItems: 'stretch',
-            gap: isPhone ? '8px' : '16px',
+            gap: (isPhone || isLandscape) ? '8px' : '16px',
             maxWidth: '710px',
-            margin: isPhone ? '0 0 0.4rem' : '0 0 1.25rem',
+            margin: isLandscape ? '0 0 0.2rem' : isPhone ? '0 0 0.4rem' : '0 0 1.25rem',
             textAlign: 'left',
           }}
         >
@@ -513,7 +535,7 @@ export function Section1Hero() {
             animate={{ scaleY: 1, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
             style={{
-              width: isPhone ? '3px' : '4px',
+              width: (isPhone || isLandscape) ? '3px' : '4px',
               backgroundColor: '#A91D22', // Granate del logo
               transformOrigin: 'top',
               flexShrink: 0,
@@ -521,9 +543,9 @@ export function Section1Hero() {
           />
           <div
             style={{
-              fontSize: isPhone ? 'clamp(0.75rem, 3.1vw, 0.92rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.75rem, 3.1vw, 0.92rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
               fontWeight: 400,
-              lineHeight: isPhone ? 1.18 : 1.35,
+              lineHeight: (isPhone || isLandscape) ? 1.18 : 1.35,
               color: 'rgba(255,255,255,0.92)',
               display: 'flex',
               alignItems: 'center',
@@ -543,7 +565,7 @@ export function Section1Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
         >
-          <GlowButton href="#" color="garnet" size={isPhone ? "md" : "lg"}>
+          <GlowButton href="#" color="garnet" size={(isPhone || isLandscape) ? "md" : "lg"}>
             {t('cta')}
           </GlowButton>
         </motion.div>
@@ -553,18 +575,39 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isPhone ? '6px' : isTabletPortrait ? '16px' : isTabletLandscape ? '12px' : '20px',
+          bottom: isLandscape ? '4px' : isPhone ? '6px' : isTabletPortrait ? '16px' : '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
-          padding: isPhone ? '0 6px' : '0 20px',
+          padding: (isPhone || isLandscape) ? '0 6px' : '0 20px',
           zIndex: 15,
         }}
       >
         <AnimatePresence>
           {mounted && (
-            isPhone ? (
+            isLandscape ? (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 'clamp(4px, 1.2vw, 16px)',
+                  width: '100%',
+                  transform: `scale(${viewportScale * 0.85})`,
+                  transformOrigin: 'bottom center',
+                }}
+              >
+                {CARDS.map((card, idx) => (
+                  <BlobCard key={card.title} {...card} index={idx} />
+                ))}
+              </motion.div>
+            ) : isPhone ? (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -657,15 +700,17 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: isPhone ? '6px' : '10px',
+        gap: isPhone ? '8px' : '10px',
+        maxWidth: '100%',
       }}
     >
       <motion.svg 
-        width={isPhone ? "24" : "33"} 
-        height={isPhone ? "24" : "33"} 
+        width={isPhone ? "22" : "33"} 
+        height={isPhone ? "22" : "33"} 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
+        style={{ flexShrink: 0 }}
         initial={{ y: -60, opacity: 0, scale: 0.5 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
@@ -674,18 +719,21 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
         <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
       </motion.svg>
-      <AnimatedText
-        text="Getxo Bela Eskola"
-        effect="falling"
-        delay={0.35}
-        style={{
-          fontSize: isPhone ? '0.92rem' : '1.18rem',
-          fontWeight: 700,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-          color: 'white',
-        }}
-      />
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <AnimatedText
+          text="Getxo Bela Eskola"
+          effect="falling"
+          delay={0.35}
+          style={{
+            fontSize: isPhone ? '0.88rem' : '1.18rem',
+            fontWeight: 700,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            color: 'white',
+            whiteSpace: 'nowrap',
+          }}
+        />
+      </div>
     </div>
   )
 }
