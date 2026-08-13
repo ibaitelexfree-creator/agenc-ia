@@ -367,8 +367,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     objectFit: 'cover',
                     opacity: videoReady ? 1 : 0,
                     transition: 'opacity 0.4s',
-                    borderRadius: '50%',
-                    WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                   }}
                 >
                   <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
