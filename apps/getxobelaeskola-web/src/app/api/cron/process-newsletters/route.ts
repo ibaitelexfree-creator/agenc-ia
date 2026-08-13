@@ -120,14 +120,10 @@ export async function processScheduledNewsletters() {
             }
         }
 
-        // Update Newsletter status and metrics in DB
+        // Update Newsletter status in DB
         const updatePayload = {
             status: 'sent',
-            sent_at: new Date().toISOString(),
-            recipients_count: totalSubscribers,
-            delivered_count: deliveredCount,
-            failed_count: failedCount,
-            delivery_logs: deliveryLogs
+            sent_at: new Date().toISOString()
         };
 
         await (supabase as any)
