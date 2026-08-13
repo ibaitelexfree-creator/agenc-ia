@@ -205,7 +205,7 @@ export function Section1Hero() {
   const layer3Y = useTransform(
     activeScroll,
     scrollCtx ? [0, 0.20, 1] : [0, 1],
-    scrollCtx ? ['0%', '35%', '35%'] : ['0%', '35%']
+    scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
   )
 
   const CARDS = [
@@ -286,7 +286,8 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 2,
-          scale: 1.015,
+          scale: isPhone ? 1.14922 : 1.015,
+          x: isPhone ? '-2vw' : '0px',
         }}
       >
         <motion.div
@@ -334,6 +335,8 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 1,
+          scale: isPhone ? 1.133 : 1.0,
+          x: isPhone ? '-2vw' : '0px',
         }}
       >
         <motion.div
@@ -385,9 +388,9 @@ export function Section1Hero() {
         <motion.div
           style={{ width: '100%', height: '100%', position: 'relative' }}
           animate={{
-            y: [0, -35, 0, 35, 0],
-            x: [0, 6, 0, -6, 0],
-            rotate: [0, 0.8, 0, -0.8, 0],
+            y: [0, 18, 0, -18, 0],
+            x: [0, -5, 0, 5, 0],
+            rotate: [0, 0.5, 0, -0.5, 0],
           }}
           transition={{
             duration: 12,
@@ -407,7 +410,7 @@ export function Section1Hero() {
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone ? 'translateX(-100px) scale(0.68)' : isTabletPortrait ? 'translateX(-100px) scale(0.82)' : 'translateX(-100px)',
+                transform: isPhone ? 'translateX(calc(-100px - 32vw)) translateY(6vh) scale(0.8539)' : isTabletPortrait ? 'translateX(-100px) scale(0.82)' : 'translateX(-100px)',
                 transformOrigin: 'center center',
               }}
             >
@@ -472,7 +475,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-140px',
+          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-200px, -24vh, -145px)' : '-140px',
           top: '0px',
           transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
           transformOrigin: 'left center',
@@ -576,7 +579,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '12px' : isPhone ? 'calc(clamp(8px, 2.5vh, 20px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
+          bottom: isLandscape ? '12px' : isPhone ? 'calc(clamp(90px, 14vh, 120px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -685,10 +688,10 @@ export function Section1Hero() {
       <Seagull
         style={{
           position: 'absolute',
-          top: '15%',
-          right: isPhone ? '10%' : '-10%', // 20% más a la izquierda (de -10% a 10%)
+          top: isPhone ? '12%' : '15%',
+          right: isPhone ? '43%' : '-10%',
           zIndex: 2, // Detrás del barco (zIndex 3) y delante del cielo (zIndex 1)
-          transform: isPhone ? 'scale(0.8)' : 'none', // 20% más pequeña
+          transform: isPhone ? 'scale(0.8)' : 'none',
         }}
         enterDelay={1.5}
         direction="left"
