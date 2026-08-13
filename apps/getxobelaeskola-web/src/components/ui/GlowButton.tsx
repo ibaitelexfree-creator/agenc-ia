@@ -11,7 +11,7 @@ type GlowButtonProps = {
   onClick?: () => void
   children: React.ReactNode
   color?: 'coral' | 'ocean' | 'garnet'
-  size?: 'md' | 'lg' | 'xl' | 'xxl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
   external?: boolean
 }
 
@@ -41,8 +41,8 @@ export function GlowButton({
       ? 'rgba(169, 29, 34, 0.5)'
       : 'rgba(10, 126, 200, 0.5)'
 
-  const padding = size === 'xxl' ? '1.3rem 4rem' : size === 'xl' ? '1.1rem 3.5rem' : size === 'lg' ? '1rem 3rem' : '0.85rem 2.5rem'
-  const fontSize = size === 'xxl' ? '1.35rem' : size === 'xl' ? '1.2rem' : size === 'lg' ? '1.1rem' : '1rem'
+  const padding = size === 'xxl' ? '1.3rem 4rem' : size === 'xl' ? '1.1rem 3.5rem' : size === 'lg' ? '1rem 3rem' : size === 'sm' ? '0.5rem 1.4rem' : '0.85rem 2.5rem'
+  const fontSize = size === 'xxl' ? '1.35rem' : size === 'xl' ? '1.2rem' : size === 'lg' ? '1.1rem' : size === 'sm' ? '0.85rem' : '1rem'
 
   return (
     <motion.a

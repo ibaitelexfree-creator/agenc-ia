@@ -472,7 +472,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-80px',
+          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-140px',
           top: '0px',
           transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
           transformOrigin: 'left center',
@@ -566,7 +566,7 @@ export function Section1Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
         >
-          <GlowButton href="#" color="garnet" size={(isPhone || isLandscape) ? "sm" : "lg"}>
+          <GlowButton href="#" color="garnet" size="sm">
             {t('cta')}
           </GlowButton>
         </motion.div>

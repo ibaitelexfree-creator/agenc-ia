@@ -260,6 +260,9 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
                     <div className="flex items-center gap-5">
+                        <a href="https://wa.me/34944916632" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
+                            <Phone className="w-4.5 h-4.5" />
+                        </a>
                         <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#ff5c97] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,92,151,0.3)]" title="Instagram">
                             <Instagram className="w-4.5 h-4.5" />
                         </a>
@@ -533,9 +536,9 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     ) : user ? (
                         <div className="hidden xl:flex gap-8 items-center">
                             {user.status_socio === 'activo' && (
-                                <div className="flex items-center gap-2.5 px-5 py-2 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-premium hover:border-brass-gold/60 group/member">
-                                    <Sparkles className="w-3.5 h-3.5 text-brass-gold transition-premium group-hover:rotate-45" />
-                                    <span className="text-brass-gold text-[9px] font-black uppercase tracking-[0.3em]">
+                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_10px_rgba(197,160,89,0.1)] transition-premium hover:border-brass-gold/60 group/member">
+                                    <Sparkles className="w-3 h-3 text-brass-gold transition-premium group-hover:rotate-45" />
+                                    <span className="text-brass-gold text-[8px] font-black uppercase tracking-[0.2em]">
                                         MEMBER
                                     </span>
                                 </div>
