@@ -1759,6 +1759,7 @@
     "eyebrow": "Utility",
     "title": "Nautical Converter",
     "subtitle": "Precision tool for converting between maritime and standard units.",
+    "description": "Precision tool for converting between maritime and standard units.",
     "input": "Input Value",
     "result": "Result",
     "history": "Recent Conversions",

@@ -265,7 +265,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     >
       {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
       <motion.div
-        className="relative w-16 h-16 min-[360px]:w-20 min-[360px]:h-20 min-[410px]:w-24 min-[410px]:h-24 sm:w-28 sm:h-28 md:w-[110px] md:h-[110px] lg:w-36 lg:h-36"
+        className="relative w-14 h-14 min-[360px]:w-16 min-[360px]:h-16 min-[410px]:w-20 min-[410px]:h-20 sm:w-24 sm:h-24 md:w-[105px] md:h-[105px] lg:w-36 lg:h-36"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
@@ -464,9 +464,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* ข้อความกำกับ — เพิ่มความคมชัด (Text Shadow + Font Weight) ชัดเจน 100% */}
-      <div className="text-center max-w-[110px] min-[360px]:max-w-[125px] min-[410px]:max-w-[140px] sm:max-w-[160px] md:max-w-[170px] lg:max-w-[200px]">
+      <div className="text-center max-w-[95px] min-[360px]:max-w-[110px] min-[410px]:max-w-[130px] sm:max-w-[150px] md:max-w-[165px] lg:max-w-[200px] z-20 pointer-events-none">
         <motion.p
-          className="font-extrabold tracking-[0.03em] text-xs min-[360px]:text-sm sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] leading-tight"
+          className="font-extrabold tracking-[0.02em] text-[10px] min-[360px]:text-[11px] sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-tight bg-black/40 sm:bg-transparent px-1 py-0.5 rounded"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -475,7 +475,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[10px] min-[360px]:text-xs sm:text-xs md:text-sm lg:text-sm font-medium text-white/95 mt-[2px] drop-shadow-[0_1px_5px_rgba(0,0,0,0.9)] leading-tight"
+            className="text-[8px] min-[360px]:text-[10px] sm:text-xs md:text-sm lg:text-sm font-medium text-white/95 mt-[2px] drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)] leading-tight bg-black/30 sm:bg-transparent px-1 rounded"
             animate={{ opacity: isHovered ? 1 : 0.85, y: isHovered ? -1 : 0 }}
           >
             {subtitle}

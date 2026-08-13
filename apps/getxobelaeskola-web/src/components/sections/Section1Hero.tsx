@@ -471,8 +471,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-140px * ${viewportScale})` : isPhone ? '-210px' : '-80px',
-          top: isLandscape ? '0px' : isPhone ? '-30px' : '0px',
+          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? '-45px' : '-80px',
+          top: isLandscape ? '0px' : isPhone ? '0px' : '0px',
           transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
           transformOrigin: 'left center',
         }}
@@ -482,8 +482,8 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
-            marginTop: (isPhone || isLandscape) ? '0px' : '0px',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.2rem' : '0.75rem',
+            marginTop: isPhone ? '0px' : '0px',
           }}
         >
           <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.72rem' : '0.95rem'} />
@@ -617,11 +617,11 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '6px',
+                  gap: '2px',
                   width: '100%',
-                  transform: 'scale(1.02)',
+                  transform: 'scale(0.88)',
                   transformOrigin: 'bottom center',
-                  marginBottom: '15px',
+                  marginBottom: '0px',
                 }}
               >
                 {/* Fila superior: 3 blobs centrados */}
@@ -629,7 +629,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '8px',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
@@ -642,7 +642,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: '8px',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
@@ -797,6 +797,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
+          className="scale-75 sm:scale-90 md:scale-100"
         >
           <Link
             href={`/${locale}/auth/login`}
