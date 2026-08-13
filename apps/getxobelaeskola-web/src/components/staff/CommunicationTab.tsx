@@ -83,7 +83,7 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
         return (
             <span 
                 onClick={onClick}
-                className={`px-2.5 py-1 text-2xs font-mono font-bold rounded-xs animate-pulse flex items-center gap-1.5 ${onClick ? 'cursor-pointer hover:scale-105 transition-all' : ''} ${theme === 'light' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-amber-500/30 text-amber-300 border border-amber-500/50'} ${className}`}
+                className={`px-2.5 py-1 text-2xs font-mono font-black rounded-xs animate-pulse flex items-center gap-1.5 ${onClick ? 'cursor-pointer hover:scale-105 transition-all' : ''} bg-amber-400 text-nautical-black border border-amber-500 ${className}`}
                 title={onClick ? '📅 Haz clic para editar la fecha y hora de programación' : undefined}
             >
                 ⏳ Enviando ahora...
