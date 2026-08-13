@@ -243,7 +243,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       ref={cardRef}
       id={`blob-card-${title.replace(/\s/g, '')}`}
       href={href}
-      className="relative flex flex-col landscape:flex-row items-center gap-1.5 landscape:gap-3 group cursor-pointer shrink-0"
+      className="relative flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       variants={{
@@ -464,7 +464,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* ข้อความกำกับ — เพิ่มความคมชัด (Text Shadow + Font Weight) ชัดเจน 100% */}
-      <div className="text-center landscape:text-left max-w-[95px] min-[360px]:max-w-[110px] min-[410px]:max-w-[130px] sm:max-w-[150px] md:max-w-[165px] lg:max-w-[200px] z-20 pointer-events-none">
+      <div className="text-center max-w-[95px] min-[360px]:max-w-[110px] min-[410px]:max-w-[130px] sm:max-w-[150px] md:max-w-[165px] lg:max-w-[200px] z-20 pointer-events-none">
         <motion.p
           className="font-extrabold tracking-[0.02em] text-[10px] min-[360px]:text-[11px] sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-tight bg-black/40 sm:bg-transparent px-1 py-0.5 rounded"
           style={{ color: '#ffffff' }}
