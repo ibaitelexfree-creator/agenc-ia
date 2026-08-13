@@ -130,57 +130,37 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     alt={name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
+                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.3] brightness-[1.06] contrast-[1.08] ${
                         isBigsub
                             ? 'object-[center_60%] scale-100'
                             : isTransientLt8m
                                 ? 'object-center'
                                 : isTransientGt8m
-                                    ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
+                                    ? 'object-[52%_85%] scale-[1.38]'
                                     : isCanoeMooring
-                                        ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                          : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                              ? (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper'))
-                                                  ? 'object-[center_65%] object-cover scale-105 saturate-[1.45] brightness-[1.15] contrast-[1.18]'
-                                                  : 'object-[center_65%] object-cover scale-100'
-                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                        ? 'object-[45%_42%] scale-[1.35]'
+                                        : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                            ? 'object-[center_65%] scale-100'
+                                            : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
-                                                    ? 'object-[50%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                                                    : 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                    ? 'object-[50%_center]'
+                                                    : 'object-[35%_center]'
                                                 : isWindsurfMooring
-                                                    ? 'object-[center_85%] contrast-[1.1]'
-                                                     : isWindsurfRental
-                                                        ? 'object-[center_65%] scale-[1.12] contrast-[1.05] brightness-[1.02]'
-                                                        : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
-                                                            ? 'object-center scale-100 contrast-[1.1]'
-                                                            : (service.nombre_es.toLowerCase().includes('optimist') 
-                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                                 ? 'object-[center_35%] scale-[1.02] contrast-[1.08] brightness-[1.05]'
-                                                                 : 'object-center contrast-[1.1]')))
+                                                    ? 'object-[center_85%]'
+                                                    : isWindsurfRental
+                                                        ? 'object-[center_65%] scale-[1.12]'
+                                                        : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
+                                                            ? 'object-center scale-100'
+                                                            : service.nombre_es.toLowerCase().includes('optimist')
+                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'
+                                                                : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
+                                                                    ? 'object-[center_35%] scale-[1.02]'
+                                                                    : 'object-center'
                     }`}
                 />
 
-                {(isCanoeMooring || isTransientGt8m) && (
-                    <>
-                        {/* Vibrant Turquoise / Azure Sea Boost */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/35 via-sky-500/20 to-teal-400/25 mix-blend-color-dodge pointer-events-none z-10" />
-                        {/* Warm Sunlit Glow Accent */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-amber-400/15 via-transparent to-amber-600/20 mix-blend-overlay pointer-events-none z-10" />
-                    </>
-                )}
-                {/* Vibrant ocean overlay for Raquero without skipper */}
-                {(service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero')) && (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper')) && (
-                    <>
-                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/25 via-sky-400/20 to-teal-400/20 mix-blend-color-dodge pointer-events-none z-10" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-sky-300/10 via-transparent to-cyan-600/15 mix-blend-overlay pointer-events-none z-10" />
-                    </>
-                )}
-                {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
-                )}
-                {(service.slug.includes('laser') || service.nombre_es.toLowerCase().includes('laser')) && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-sky-400/15 to-blue-500/15 mix-blend-color-dodge pointer-events-none z-10" />
-                )}
+                {/* Global warm-natural overlay for all images */}
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-300/10 via-transparent to-amber-500/8 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
                 {/* Float Number & Category Badge */}
