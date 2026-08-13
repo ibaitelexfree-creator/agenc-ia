@@ -746,7 +746,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
 // ── Componente interno: botón de Acceso flotando en el velero ─────────────────
 function SailboatAccesoButton() {
   const locale = useLocale()
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(true)
 
   // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
   const labels: Record<string, { top: string; bottom: string }> = {
@@ -759,23 +759,11 @@ function SailboatAccesoButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY < 200)
+      setShowButton(window.scrollY < 250)
     }
 
-    if ((window as any).__navbarAuthLoaded) {
-      setShowButton(window.scrollY < 200)
-      window.addEventListener('scroll', handleScroll, { passive: true })
-    } else {
-      const handler = () => {
-        setShowButton(window.scrollY < 200)
-        window.addEventListener('scroll', handleScroll, { passive: true })
-      }
-      window.addEventListener('auth-loaded', handler)
-      return () => {
-        window.removeEventListener('auth-loaded', handler)
-        window.removeEventListener('scroll', handleScroll)
-      }
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -814,7 +802,7 @@ function SailboatAccesoButton() {
           >
             <motion.div
               style={{
-                fontSize: locale === 'eu' ? 'clamp(11px, 1.25vw, 19px)' : 'clamp(13px, 1.5vw, 23px)'
+                fontSize: locale === 'eu' ? 'clamp(12px, 1.4vw, 20px)' : 'clamp(14px, 1.7vw, 24px)'
               }}
               className="flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center"
               animate={{
