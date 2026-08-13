@@ -11,7 +11,7 @@ import InteractiveBigSUP from './components/InteractiveBigSUP';
 import CateringCards from './components/CateringCards';
 import ClosingBalloons from './components/ClosingBalloons';
 
-const ScenaPanoramica = dynamic(() => import('./components/ScenaPanoramica'), { ssr: false });
+import ScenaPanoramica from './components/ScenaPanoramica';
 const HorizontalTimeline = dynamic(() => import('./components/HorizontalTimeline'), { ssr: false });
 const ChillOutSection = dynamic(() => import('./components/ChillOutSection'), { ssr: false });
 

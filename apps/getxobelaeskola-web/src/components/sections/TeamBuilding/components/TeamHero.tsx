@@ -33,7 +33,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Headings & Copy */}
-        <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
+        <div className="lg:col-span-6 flex flex-col items-start text-left z-10">
           <motion.span 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +100,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
         </div>
 
         {/* Right Column: Dynamic floating yacht image */}
-        <div className="lg:col-span-5 relative flex justify-center w-full h-[320px] sm:h-[450px]">
+        <div className="lg:col-span-6 relative flex justify-center w-full h-[380px] sm:h-[500px] lg:h-[580px]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -108,11 +108,11 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             className="w-full h-full relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100"
           >
             <Image
-              src="/images/home-hero-sailing-action.webp"
+              src="/images/team-building-j80-hero-20201129.jpg"
               alt="J80 sailboat under sail"
               fill
               priority
-              sizes="(max-w-768px) 100vw, 40vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />

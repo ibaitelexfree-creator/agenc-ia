@@ -81,7 +81,7 @@ export default function ClubSociasPage() {
                                     alt="Socias Sailing action"
                                     fill
                                     sizes="(max-width: 1024px) 100vw, 50vw"
-                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                                    className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 contrast-[1.04] saturate-[1.02] sepia-[0.08] hue-rotate-[-3deg]"
                                 />
                             </div>
                         </div>
