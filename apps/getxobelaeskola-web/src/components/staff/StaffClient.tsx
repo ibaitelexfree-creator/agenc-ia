@@ -387,14 +387,6 @@ export default function StaffClient({
     // Fetch Newsletters & Subscribers Count
     const fetchNewsletters = useCallback(async () => {
         try {
-            const nowIso = new Date().toISOString();
-            // Automatically publish any scheduled newsletter whose scheduled time has passed
-            await supabase
-                .from('newsletters')
-                .update({ status: 'sent', sent_at: nowIso })
-                .eq('status', 'scheduled')
-                .lte('scheduled_for', nowIso);
-
             // Fetch total active subscribers count from newsletter_subscriptions
             const { count: subCount } = await supabase
                 .from('newsletter_subscriptions')
