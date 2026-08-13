@@ -74,13 +74,11 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [videoSrc])
 
-  // Lazy-load videos based on interaction (hover on desktop, inView on mobile) to save bandwidth
+  // Lazy-load videos based on interaction (always load on mobile/tablet when in view, or hover on desktop)
   useEffect(() => {
     const isMobile = window.innerWidth < 1280
     if (isMobile) {
-      if (inView) {
-        setLoadVideo(true)
-      }
+      setLoadVideo(true)
     } else {
       if (isHovered) {
         setLoadVideo(true)

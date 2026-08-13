@@ -118,12 +118,12 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__title"
             style={{
               fontFamily: 'var(--font-display-promise)',
-              fontSize: isPhone ? '1.15rem' : 'var(--fs-card-title-front)',
+              fontSize: 'var(--fs-card-title-front)',
               color: 'var(--color-navy-900)',
               margin: '0 0 4px',
               fontWeight: 600,
               transform: 'translateZ(90px)',
-              textAlign: 'left',
+              textAlign: isPhone ? 'left' : 'center',
             }}
           >
             {title}
@@ -132,12 +132,12 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__hook"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.78rem' : 'var(--fs-hook)',
+              fontSize: 'var(--fs-hook)',
               color: 'var(--color-ink-soft)',
               lineHeight: 1.4,
               margin: isPhone ? '0' : '0 0 16px',
               transform: 'translateZ(90px)',
-              textAlign: 'left',
+              textAlign: isPhone ? 'left' : 'center',
             }}
           >
             {hook}
@@ -204,8 +204,8 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: isPhone ? 'center' : 'flex-start',
-            padding: isPhone ? '16px' : '28px 20px 20px',
+            justifyContent: 'center',
+            padding: isPhone ? '16px' : '24px 20px',
             background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
             transform: 'rotateY(180deg)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
@@ -217,11 +217,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__label"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.75rem' : 'var(--fs-eyebrow)',
+              fontSize: 'var(--fs-eyebrow)',
               fontWeight: 700,
               letterSpacing: '0.1em',
               color: 'var(--color-gold)',
-              margin: isPhone ? '0 0 6px' : '0 0 12px',
+              margin: '0 0 8px',
               transform: 'translateZ(90px)',
             }}
           >
@@ -231,7 +231,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__desc"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.78rem' : 'var(--fs-body)',
+              fontSize: 'var(--fs-body)',
               color: 'var(--color-white)',
               opacity: 0.92,
               lineHeight: 1.5,
