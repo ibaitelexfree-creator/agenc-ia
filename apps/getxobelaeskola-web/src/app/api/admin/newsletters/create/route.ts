@@ -28,8 +28,7 @@ export async function POST(request: Request) {
                 scheduled_for: scheduled_for || null,
                 status: status || (scheduled_for ? 'scheduled' : 'sent'),
                 created_by: profile?.id,
-                sent_at: scheduled_for ? null : new Date().toISOString(),
-                recipients_count: actualRecipients
+                sent_at: scheduled_for ? null : new Date().toISOString()
             })
             .select()
             .single();
