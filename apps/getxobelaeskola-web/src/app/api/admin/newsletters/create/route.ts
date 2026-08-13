@@ -29,8 +29,7 @@ export async function POST(request: Request) {
                 status: status || (scheduled_for ? 'scheduled' : 'sent'),
                 created_by: profile?.id,
                 sent_at: scheduled_for ? null : new Date().toISOString(),
-                recipients_count: actualRecipients,
-                delivered_count: (scheduled_for ? 0 : actualRecipients)
+                recipients_count: actualRecipients
             })
             .select()
             .single();
