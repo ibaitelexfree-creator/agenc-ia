@@ -472,7 +472,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? '-75px' : '-80px',
+          marginTop: isLandscape ? `calc(-70px * ${viewportScale})` : isPhone ? 'clamp(-90px, -12vh, -35px)' : '-80px',
           top: '0px',
           transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
           transformOrigin: 'left center',
