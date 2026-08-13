@@ -83,38 +83,80 @@ export default function ScenaPanoramica() {
 
         {/* 2. HILLS LAYER (Parallax mid) */}
         <motion.div className={styles.parallaxLayer} style={{ x: hillsX }}>
-          <svg viewBox="0 0 1600 550" className={styles.svgIcon} preserveAspectRatio="none">
+          <svg viewBox="0 0 1600 550" className={styles.svgIcon} preserveAspectRatio="xMidYMid slice">
             {/* Mountains of Getxo Abra */}
             <path d="M 0,420 Q 300,320 600,400 T 1200,380 T 1600,410 L 1600,550 L 0,550 Z" fill="#93C5FD" opacity="0.4" />
             <path d="M 0,440 Q 400,370 800,430 T 1600,420 L 1600,550 L 0,550 Z" fill="#60A5FA" opacity="0.3" />
           </svg>
         </motion.div>
 
-        {/* 3. SEA LAYER (Parallax bottom) */}
+        {/* 3. SEA LAYER (Parallax bottom & animated waves) */}
         <motion.div className={styles.parallaxLayer} style={{ x: seaX }}>
-          <svg viewBox="0 0 1600 550" className={styles.svgIcon} preserveAspectRatio="none">
-            {/* Sea */}
-            <path d="M 0,450 C 400,430 800,470 1200,440 C 1400,425 1500,450 1600,440 L 1600,550 L 0,550 Z" fill="#1B8FCF" />
+          <svg viewBox="0 0 1600 550" className={styles.svgIcon} preserveAspectRatio="xMidYMid slice">
+            {/* Back Wave (dusk blue tint) */}
+            <motion.path
+              fill="#187EB8"
+              opacity="0.7"
+              animate={prefersReducedMotion ? {} : {
+                d: [
+                  "M 0,440 C 350,420 750,460 1150,430 C 1400,415 1500,445 1600,430 L 1600,550 L 0,550 Z",
+                  "M 0,430 C 400,450 800,420 1200,450 C 1450,435 1520,420 1600,440 L 1600,550 L 0,550 Z",
+                  "M 0,440 C 350,420 750,460 1150,430 C 1400,415 1500,445 1600,430 L 1600,550 L 0,550 Z"
+                ]
+              }}
+              transition={prefersReducedMotion ? {} : { duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            {/* Main Sea Wave */}
+            <motion.path
+              fill="#1B8FCF"
+              animate={prefersReducedMotion ? {} : {
+                d: [
+                  "M 0,450 C 400,430 800,470 1200,440 C 1400,425 1500,450 1600,440 L 1600,550 L 0,550 Z",
+                  "M 0,460 C 350,480 750,430 1150,460 C 1350,445 1550,430 1600,450 L 1600,550 L 0,550 Z",
+                  "M 0,445 C 450,425 850,460 1250,435 C 1450,420 1520,455 1600,435 L 1600,550 L 0,550 Z",
+                  "M 0,450 C 400,430 800,470 1200,440 C 1400,425 1500,450 1600,440 L 1600,550 L 0,550 Z"
+                ]
+              }}
+              transition={prefersReducedMotion ? {} : { duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            {/* Wave Crest Highlights / Foam */}
+            <motion.path
+              stroke="#BAE6FD"
+              strokeWidth="3"
+              fill="none"
+              opacity="0.8"
+              animate={prefersReducedMotion ? {} : {
+                d: [
+                  "M 0,452 C 400,432 800,472 1200,442 C 1400,427 1500,452 1600,442",
+                  "M 0,462 C 350,482 750,432 1150,462 C 1350,447 1550,432 1600,452",
+                  "M 0,447 C 450,427 850,467 1250,437 C 1450,422 1520,457 1600,437",
+                  "M 0,452 C 400,432 800,472 1200,442 C 1400,427 1500,452 1600,442"
+                ]
+              }}
+              transition={prefersReducedMotion ? {} : { duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+            />
           </svg>
         </motion.div>
 
         {/* 4. SCENE CHARACTERS & OBJECTS INLINE SVG CANVAS */}
-        <svg viewBox="0 0 1600 550" className={`${styles.parallaxLayer} ${styles.parallaxLayerInteractive} ${styles.svgIcon}`} preserveAspectRatio="xMidYMid meet">
+        <svg viewBox="0 0 1600 550" className={`${styles.parallaxLayer} ${styles.parallaxLayerInteractive} ${styles.svgIcon}`} preserveAspectRatio="xMidYMid slice">
           
-          {/* CHARACTER 3: Waving boat (J80 style) - translates slowly across */}
+          {/* CHARACTER 3: Waving boat (J80 style) - translates across and bobs gracefully on sea water */}
           <motion.g
             animate={prefersReducedMotion ? {} : {
               x: [-200, 1800],
-              y: [0, -6, 4, 0]
+              y: [0, -5, 3, -2, 0],
+              rotate: [-4, 3, -3, 2, -4]
             }}
             transition={prefersReducedMotion ? {} : {
               x: { duration: 24, repeat: Infinity, ease: 'linear' },
-              y: { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+              y: { duration: 3.6, repeat: Infinity, ease: 'easeInOut' },
+              rotate: { duration: 3.6, repeat: Infinity, ease: 'easeInOut' }
             }}
           >
             {/* Sailing Boat */}
-            <g transform="translate(0, 310) scale(1.1)">
-              {/* Hull */}
+            <g transform="translate(0, 395) scale(1.1)">
+              {/* Hull submerged slightly into water line */}
               <path d="M 10,60 L 90,60 L 110,40 L 0,40 Z" fill="#FAFAFA" stroke="#0D2B45" strokeWidth="2.5" />
               <path d="M 20,40 L 40,10 L 40,40 Z" fill="#EF6351" stroke="#0D2B45" strokeWidth="2" /> {/* Sail */}
               <path d="M 43,40 L 75,2 L 43,2 Z" fill="#FFD166" stroke="#0D2B45" strokeWidth="2" /> {/* Big Sail */}
