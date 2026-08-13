@@ -597,9 +597,9 @@ export function Section1Hero() {
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 'clamp(4px, 1.2vw, 16px)',
+                  gap: 'clamp(4px, 1vw, 12px)',
                   width: '100%',
-                  transform: `scale(${Math.min(viewportScale * 0.98, 0.98)})`,
+                  transform: `scale(${Math.min(viewportScale * 0.72, 0.78)})`,
                   transformOrigin: 'bottom center',
                 }}
               >
