@@ -131,8 +131,8 @@ export function Section3Adapts() {
           flex: 1,
           position: 'relative',
           padding: isPhone 
-            ? '6rem 1rem 1rem' 
-            : 'clamp(2.5rem, 7vh, 4.5rem) clamp(1.5rem, 6vw, 5rem) clamp(1.5rem, 4vh, 3.5rem)',
+            ? 'clamp(3.5rem, 10vh, 5.5rem) 1rem 1rem' 
+            : 'clamp(1.5rem, 5vh, 4rem) clamp(1.5rem, 6vw, 5rem) clamp(1rem, 3vh, 3rem)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
@@ -175,15 +175,15 @@ export function Section3Adapts() {
         </div>
 
         {/* Header con Subtítulo Dinámico */}
-        <div style={{ marginBottom: '2rem', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        <div style={{ marginBottom: 'clamp(0.6rem, 2vh, 1.8rem)', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" hideLineOnMobile={true} />
           <h2
             style={{
-              fontSize: 'clamp(1.6rem, 3.5vw, 2.5rem)',
+              fontSize: 'clamp(1.3rem, 3vw, 2.3rem)',
               fontWeight: 700,
               color: 'var(--gbe-navy-900)',
               lineHeight: 1.15,
-              marginBottom: '0.6rem',
+              marginBottom: '0.4rem',
               fontFamily: 'var(--gbe-font-display)',
             }}
           >
@@ -198,10 +198,10 @@ export function Section3Adapts() {
               transition={{ duration: 0.3 }}
               style={{
                 color: 'var(--gbe-text-muted)',
-                fontSize: 'clamp(0.9rem, 1.8vw, 1.05rem)',
-                lineHeight: 1.5,
+                fontSize: 'clamp(0.8rem, 1.5vw, 1rem)',
+                lineHeight: 1.4,
                 fontWeight: 300,
-                minHeight: '2.5rem',
+                minHeight: '2rem',
                 maxWidth: '700px',
                 margin: '0 auto',
               }}

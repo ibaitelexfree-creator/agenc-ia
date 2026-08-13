@@ -808,6 +808,7 @@ a:hover {
   position: relative;
   width: 100vw;
   height: 100vh;
+  min-height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -852,22 +853,34 @@ a:hover {
   .promise__grid { 
     grid-template-columns: 1fr;
     gap: 16px;
-    max-height: calc(100vh - 160px);
+    max-height: calc(100vh - 120px);
     overflow-y: auto;
     padding: 8px;
   }
   .promise {
-    padding: 32px 16px;
+    padding: 20px 16px;
   }
   .promise__title {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-height: 500px) and (orientation: landscape) {
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-height: calc(100vh - 80px);
+    gap: 10px;
+  }
   .flip-card-wrapper {
-    width: 80vw !important;
-    max-width: 80vw !important;
+    width: 28vw !important;
+    height: 140px !important;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .flip-card-wrapper {
+    width: 85vw !important;
+    max-width: 320px !important;
     margin: 0 auto !important;
   }
 }

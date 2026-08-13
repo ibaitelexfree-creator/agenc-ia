@@ -197,28 +197,29 @@ export function Section2Identity() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-100px' }}
+        viewport={{ once: false, margin: '-50px' }}
         transition={{ staggerChildren: 0.15 }}
         style={{
           position: 'relative',
           zIndex: 10,
           textAlign: 'center',
           maxWidth: '850px',
-          padding: '0 clamp(1.5rem, 5vw, 4rem)',
+          padding: '0 clamp(1rem, 4vw, 3rem)',
           color: 'var(--gbe-white)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         {/* Título de la sección con Shimmer en el logo e historia */}
         <h2
           style={{
-            fontSize: 'clamp(2rem, 5vw, 4rem)',
+            fontSize: 'clamp(1.5rem, 4vw, 3.8rem)',
             fontWeight: 700,
             lineHeight: 1.15,
             color: 'var(--gbe-white)',
-            marginBottom: '2rem',
+            marginBottom: 'clamp(0.5rem, 2.5vh, 1.8rem)',
             fontFamily: 'var(--gbe-font-display)',
             display: 'flex',
             flexDirection: 'column',
@@ -267,16 +268,16 @@ export function Section2Identity() {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1.5rem',
-            width: '180px',
-            marginBottom: '2.5rem',
+            gap: '1rem',
+            width: '140px',
+            marginBottom: 'clamp(0.8rem, 2vh, 1.8rem)',
           }}
         >
           <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, var(--gbe-gold-soft), transparent)' }} />
           <motion.span
             animate={{ rotate: 360 }}
             transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-            style={{ color: 'var(--gbe-gold)', fontSize: '1.2rem', display: 'inline-block', textShadow: '0 0 4px var(--gbe-gold)' }}
+            style={{ color: 'var(--gbe-gold)', fontSize: '1rem', display: 'inline-block', textShadow: '0 0 4px var(--gbe-gold)' }}
           >
             ✦
           </motion.span>
@@ -284,12 +285,12 @@ export function Section2Identity() {
         </motion.div>
 
         {/* Frases de valores y comunidad */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1.5vh, 1.2rem)', marginBottom: 'clamp(1rem, 3vh, 2.2rem)' }}>
           <motion.p
             variants={lineVariants}
             style={{
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.45rem)',
-              lineHeight: 1.6,
+              fontSize: 'clamp(0.85rem, 2.2vw, 1.35rem)',
+              lineHeight: 1.45,
               fontWeight: 300,
               maxWidth: '720px',
               color: 'rgba(255, 255, 255, 0.9)',
@@ -311,8 +312,8 @@ export function Section2Identity() {
           <motion.p
             variants={lineVariants}
             style={{
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.45rem)',
-              lineHeight: 1.6,
+              fontSize: 'clamp(0.85rem, 2.2vw, 1.35rem)',
+              lineHeight: 1.45,
               fontWeight: 300,
               maxWidth: '720px',
               color: 'rgba(255, 255, 255, 0.9)',

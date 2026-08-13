@@ -27,9 +27,9 @@
 .subheading {
   text-align: center;
   font-family: var(--gbe-font-display);
-  font-size: clamp(20px, 2.4vw, 28px);
+  font-size: clamp(16px, 2.4vw, 28px);
   color: var(--gbe-navy-900);
-  margin: 64px 0 32px;
+  margin: clamp(16px, 4vh, 48px) 0 clamp(16px, 3vh, 32px);
 }
 
 .headerGrid {
