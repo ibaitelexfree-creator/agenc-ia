@@ -471,8 +471,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? `calc(-140px * ${viewportScale})` : isPhone ? '-150px' : '-80px',
-          top: isLandscape ? '0px' : isPhone ? '-20px' : '0px',
+          marginTop: isLandscape ? `calc(-140px * ${viewportScale})` : isPhone ? '-210px' : '-80px',
+          top: isLandscape ? '0px' : isPhone ? '-30px' : '0px',
           transform: isLandscape ? `scale(${viewportScale * 0.88})` : 'none',
           transformOrigin: 'left center',
         }}
@@ -482,26 +482,26 @@ export function Section1Hero() {
           style={{
             display: 'inline-flex',
             justifyContent: 'flex-start',
-            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.75rem',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
             marginTop: (isPhone || isLandscape) ? '0px' : '0px',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.75rem' : '0.95rem'} />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.72rem' : '0.95rem'} />
         </div>
  
         {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.2rem' : '1rem' }}>
+        <div style={{ marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.15rem' : '1rem' }}>
           <LogoGBE isPhone={isPhone || isLandscape} />
         </div>
   
         {/* Título principal */}
         <h1
           style={{
-            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.2rem, 5.2vw, 1.9rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.15rem, 4.8vw, 1.75rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
             fontWeight: 700,
             lineHeight: (isPhone || isLandscape) ? 1.08 : 1.12,
             color: 'var(--white)',
-            marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.25rem' : '0.85rem',
+            marginBottom: isLandscape ? '0.15rem' : isPhone ? '0.2rem' : '0.85rem',
             textAlign: 'left',
           }}
         >
@@ -525,7 +525,7 @@ export function Section1Hero() {
             alignItems: 'stretch',
             gap: (isPhone || isLandscape) ? '8px' : '16px',
             maxWidth: '710px',
-            margin: isLandscape ? '0 0 0.2rem' : isPhone ? '0 0 0.4rem' : '0 0 1.25rem',
+            margin: isLandscape ? '0 0 0.2rem' : isPhone ? '0 0 0.3rem' : '0 0 1.25rem',
             textAlign: 'left',
           }}
         >
@@ -543,7 +543,7 @@ export function Section1Hero() {
           />
           <div
             style={{
-              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.75rem, 3.1vw, 0.92rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.72rem, 2.9vw, 0.88rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
               fontWeight: 400,
               lineHeight: (isPhone || isLandscape) ? 1.18 : 1.35,
               color: 'rgba(255,255,255,0.92)',
@@ -565,7 +565,7 @@ export function Section1Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
         >
-          <GlowButton href="#" color="garnet" size={(isPhone || isLandscape) ? "md" : "lg"}>
+          <GlowButton href="#" color="garnet" size={(isPhone || isLandscape) ? "sm" : "lg"}>
             {t('cta')}
           </GlowButton>
         </motion.div>
@@ -575,7 +575,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '16px' : isPhone ? 'calc(clamp(50px, 12vh, 110px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
+          bottom: isLandscape ? '16px' : isPhone ? 'calc(clamp(15px, 4vh, 35px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
