@@ -14,6 +14,7 @@ const CoursesTab = dynamic(() => import('./CoursesTab'), { ssr: false });
 const BoatsTab = dynamic(() => import('./BoatsTab'), { ssr: false });
 const SessionsTab = dynamic(() => import('./SessionsTab'), { ssr: false });
 const AcademyStaffTab = dynamic(() => import('./AcademyStaffTab'), { ssr: false });
+const BlogTab = dynamic(() => import('./BlogTab'), { ssr: false });
 const FinancialReportsClient = dynamic(() => import('./FinancialReportsClient'), { ssr: false });
 const BITab = dynamic(() => import('./BITab'), { ssr: false });
 import DataExplorerTab from './DataExplorerTab';
@@ -118,7 +119,7 @@ export default function StaffClient({
 }: StaffClientProps) {
     const t = useTranslations('staff_panel');
     const searchParams = useSearchParams();
-    const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'explorer'>('overview');
+    const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'blog' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'explorer'>('overview');
     const [financialsViewMode, setFinancialsViewMode] = useState<'today' | 'month' | 'year' | undefined>('year');
 
     // Sync tab from URL
@@ -838,7 +839,7 @@ export default function StaffClient({
                             { id: 'financials', label: 'INGRESOS' },
                             { id: 'courses', label: t('tabs.courses') },
                             { id: 'academia', label: 'ACADEMIA' },
-
+                            { id: 'blog', label: t('tabs.blog') },
                             { id: 'catalog', label: 'CATÁLOGO' },
                             { id: 'fleet', label: 'FLOTA' },
                             { id: 'sessions', label: 'SESIONES' },
@@ -1127,6 +1128,11 @@ export default function StaffClient({
                         setSelectedStudent={setSelectedStudent}
                         locale={locale}
                     />
+                )}
+
+                {/* TAB CONTENT: BLOG & NOTICIAS */}
+                {activeTab === 'blog' && (
+                    <BlogTab locale={locale} />
                 )}
 
                 {/* TAB CONTENT: CATALOG */}
