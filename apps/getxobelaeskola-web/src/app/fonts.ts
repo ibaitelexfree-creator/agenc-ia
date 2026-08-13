@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Outfit, JetBrains_Mono } from 'next/font/google';
+import  { Cormorant_Garamond, Outfit, JetBrains_Mono } from 'next/font/google';
 
 export const cormorantGaramond = Cormorant_Garamond({
     subsets: ['latin'],
