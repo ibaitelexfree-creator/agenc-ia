@@ -170,20 +170,20 @@ export function PremiumDatePicker({
                     setIsOpen(!isOpen);
                     setViewMode('days');
                 }}
-                className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm cursor-pointer select-none transition-all`}
+                className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-slate-900 focus:border-accent outline-none text-sm cursor-pointer select-none transition-all`}
             />
             {isOpen && (
-                <div className="absolute z-[999] mt-2 left-0 w-80 bg-nautical-black border border-white/10 p-4 shadow-2xl rounded-sm">
+                <div className="absolute z-[999] mt-2 left-0 w-80 bg-white border border-black/10 p-4 shadow-2xl rounded-sm">
                     <div className="flex justify-between items-center mb-4">
                         <button
                             type="button"
                             onClick={handlePrev}
-                            className="p-2 text-sea-foam/60 hover:text-sea-foam transition-colors"
+                            className="p-2 text-slate-500 hover:text-slate-900 transition-colors"
                         >
                             ◀
                         </button>
                         
-                        <div className="font-bold text-sm text-sea-foam select-none flex gap-1">
+                        <div className="font-bold text-sm text-slate-900 select-none flex gap-1">
                             {viewMode === 'days' && (
                                 <>
                                     <button
@@ -225,7 +225,7 @@ export function PremiumDatePicker({
                         <button
                             type="button"
                             onClick={handleNext}
-                            className="p-2 text-sea-foam/60 hover:text-sea-foam transition-colors"
+                            className="p-2 text-slate-500 hover:text-slate-900 transition-colors"
                         >
                             ▶
                         </button>
@@ -233,7 +233,7 @@ export function PremiumDatePicker({
 
                     {viewMode === 'days' && (
                         <div>
-                            <div className="grid grid-cols-7 gap-1 text-center text-3xs font-bold uppercase tracking-widest text-sea-foam/40 mb-2">
+                            <div className="grid grid-cols-7 gap-1 text-center text-3xs font-bold uppercase tracking-widest text-slate-400 mb-2">
                                 {weekDays.map(d => <div key={d}>{d}</div>)}
                             </div>
                             
@@ -251,7 +251,7 @@ export function PremiumDatePicker({
                                             key={date.toISOString()}
                                             type="button"
                                             onClick={() => handleSelectDay(date)}
-                                            className={`py-2 text-xs transition-colors rounded-sm ${isSelected ? 'bg-accent text-nautical-black font-bold' : 'text-sea-foam hover:bg-white/5'}`}
+                                            className={`py-2 text-xs transition-colors rounded-sm ${isSelected ? 'bg-accent text-slate-900 font-bold' : 'text-slate-700 hover:bg-black/5'}`}
                                         >
                                             {date.getDate()}
                                         </button>
@@ -268,7 +268,7 @@ export function PremiumDatePicker({
                                     key={i}
                                     type="button"
                                     onClick={() => handleSelectMonth(i)}
-                                    className={`py-3 text-xs transition-colors rounded-sm ${currentMonth === i ? 'bg-accent text-nautical-black font-bold' : 'text-sea-foam hover:bg-white/5'}`}
+                                    className={`py-3 text-xs transition-colors rounded-sm ${currentMonth === i ? 'bg-accent text-slate-900 font-bold' : 'text-slate-700 hover:bg-black/5'}`}
                                 >
                                     {getMonthName(i)}
                                 </button>
@@ -286,7 +286,7 @@ export function PremiumDatePicker({
                                         key={year}
                                         type="button"
                                         onClick={() => handleSelectYear(year)}
-                                        className={`py-3 text-xs transition-colors rounded-sm ${isCurrent ? 'bg-accent text-nautical-black font-bold' : 'text-sea-foam hover:bg-white/5'}`}
+                                        className={`py-3 text-xs transition-colors rounded-sm ${isCurrent ? 'bg-accent text-slate-900 font-bold' : 'text-slate-700 hover:bg-black/5'}`}
                                     >
                                         {year}
                                     </button>
@@ -431,9 +431,9 @@ export default function RegistrationFormFields({
                         onChange={(e) => handleInputChange(name, e.target.value)}
                         className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer`}
                     >
-                        <option value="" className="bg-nautical-black text-sea-foam">{t('select_option')}</option>
+                        <option value="" className="bg-white text-slate-900">{t('select_option')}</option>
                         {options.map((opt) => (
-                            <option key={opt} value={opt} className="bg-nautical-black text-sea-foam">{opt}</option>
+                            <option key={opt} value={opt} className="bg-white text-slate-900">{opt}</option>
                         ))}
                     </select>
                 ) : type === 'checkbox' ? (
@@ -446,7 +446,7 @@ export default function RegistrationFormFields({
                             onChange={(e) => handleInputChange(name, e.target.checked)}
                             className="w-5 h-5 accent-accent"
                         />
-                        <span className="text-sm text-sea-foam/80">{placeholder}</span>
+                        <span className="text-sm text-slate-700 font-medium">{placeholder}</span>
                     </label>
                 ) : (
                     <input
@@ -459,14 +459,14 @@ export default function RegistrationFormFields({
                         value={formData[name] || ''}
                         onChange={(e) => handleInputChange(name, e.target.value)}
                         max={maxDate}
-                        className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all`}
+                        className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-slate-900 focus:border-accent outline-none text-sm transition-all`}
                     />
                 )}
-                {error && <p className="text-red-400 text-xs mt-1">⚠️ {error}</p>}
+                {error && <p className="text-red-500 text-xs mt-1">⚠️ {error}</p>}
                 {isBirthDate && isMinor && (
                     <div className="p-3 border border-red-500/30 bg-red-500/5 text-red-500 rounded-sm space-y-1 mt-2">
                         <p className="text-xs font-bold">⚠️ {t('underage_detected')}</p>
-                        <p className="text-[10px] text-red-400 font-medium">
+                        <p className="text-[10px] text-red-500 font-medium">
                             {t('tutor_required_notice')}
                         </p>
                     </div>
@@ -502,9 +502,9 @@ export default function RegistrationFormFields({
                     placeholder={placeholder}
                     value={val}
                     onChange={(e) => handleNestedChange(parent, name, e.target.value)}
-                    className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all`}
+                    className={`w-full bg-black/[0.02] border ${error ? 'border-red-500/50' : 'border-black/10'} p-4 text-slate-900 focus:border-accent outline-none text-sm transition-all`}
                 />
-                {error && <p className="text-red-400 text-xs mt-1">⚠️ {error}</p>}
+                {error && <p className="text-red-500 text-xs mt-1">⚠️ {error}</p>}
             </div>
         );
     };
@@ -513,7 +513,7 @@ export default function RegistrationFormFields({
         return (
             <div className="grid md:grid-cols-2 gap-6 p-6 border border-black/5 bg-black/[0.02] rounded-sm">
                 <div className="col-span-full border-b border-black/5 pb-2">
-                    <h4 className="text-xs uppercase tracking-widest text-sea-foam font-bold">
+                    <h4 className="text-xs uppercase tracking-widest text-slate-900 font-bold">
                         {prefix ? `${t('student_data_prefix')} ${prefix}` : t('student_data')}
                     </h4>
                 </div>
@@ -542,17 +542,17 @@ export default function RegistrationFormFields({
                                 required
                                 value={formData.countryCode || 'ES'}
                                 onChange={(e) => handleInputChange('countryCode', e.target.value)}
-                                className="w-full bg-black/[0.02] border border-black/10 p-4 text-sea-foam focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer"
+                                className="w-full bg-black/[0.02] border border-black/10 p-4 text-slate-900 focus:border-accent outline-none text-sm transition-all appearance-none cursor-pointer"
                             >
-                                <option value="ES" className="bg-nautical-black">España (Spain)</option>
-                                <option value="FR" className="bg-nautical-black">France</option>
-                                <option value="GB" className="bg-nautical-black">United Kingdom</option>
-                                <option value="DE" className="bg-nautical-black">Deutschland (Germany)</option>
-                                <option value="IT" className="bg-nautical-black">Italia (Italy)</option>
-                                <option value="PT" className="bg-nautical-black">Portugal</option>
-                                <option value="AD" className="bg-nautical-black">Andorra</option>
-                                <option value="US" className="bg-nautical-black">United States</option>
-                                <option value="OTHER" className="bg-nautical-black">Otro / Other</option>
+                                <option value="ES" className="bg-white text-slate-900">España (Spain)</option>
+                                <option value="FR" className="bg-white text-slate-900">France</option>
+                                <option value="GB" className="bg-white text-slate-900">United Kingdom</option>
+                                <option value="DE" className="bg-white text-slate-900">Deutschland (Germany)</option>
+                                <option value="IT" className="bg-white text-slate-900">Italia (Italy)</option>
+                                <option value="PT" className="bg-white text-slate-900">Portugal</option>
+                                <option value="AD" className="bg-white text-slate-900">Andorra</option>
+                                <option value="US" className="bg-white text-slate-900">United States</option>
+                                <option value="OTHER" className="bg-white text-slate-900">Otro / Other</option>
                             </select>
                         </div>
                         {renderInput(t('id_doc'), 'dni', 'text', t('id_placeholder_prefix'))}
@@ -573,7 +573,7 @@ export default function RegistrationFormFields({
         return (
             <div className="grid md:grid-cols-2 gap-6 p-6 border border-black/5 bg-black/[0.02] rounded-sm">
                 <div className="col-span-full border-b border-black/5 pb-2">
-                    <h4 className="text-xs uppercase tracking-widest text-sea-foam font-bold">{title}</h4>
+                    <h4 className="text-xs uppercase tracking-widest text-slate-900 font-bold">{title}</h4>
                 </div>
                 {renderNestedInput(parentName, t('name'), 'nombre', 'text', t('tutor_name_placeholder'), required)}
                 {renderNestedInput(parentName, t('surnames'), 'apellidos', 'text', t('surnames_placeholder_prefix'), required)}
@@ -588,8 +588,8 @@ export default function RegistrationFormFields({
         return (
             <div className="grid md:grid-cols-2 gap-6 p-6 border border-black/5 bg-black/[0.02] rounded-sm">
                 <div className="col-span-full border-b border-black/5 pb-2">
-                    <h4 className="text-xs uppercase tracking-widest text-sea-foam font-bold">{t('bank_data')}</h4>
-                    <p className="text-3xs text-sea-foam/50 mt-1 uppercase">{t('bank_data_required')}</p>
+                    <h4 className="text-xs uppercase tracking-widest text-slate-900 font-bold">{t('bank_data')}</h4>
+                    <p className="text-3xs text-slate-500 mt-1 uppercase">{t('bank_data_required')}</p>
                 </div>
                 {renderInput(t('iban'), 'iban', 'text', 'ES00 0000 0000 0000 0000 0000')}
                 {renderInput(t('titular'), 'titular_cuenta', 'text', t('titular_placeholder'))}
@@ -606,7 +606,7 @@ export default function RegistrationFormFields({
                         {t('payment_method_label')} <span className="text-red-500">*</span>
                     </label>
                     <div className="grid grid-cols-2 gap-4">
-                        <label className={`flex items-center gap-3 cursor-pointer p-4 border rounded-sm transition-all ${!isBank ? 'bg-accent/10 border-accent text-sea-foam' : 'bg-black/[0.02] border-black/10 text-sea-foam/60 hover:bg-black/5'}`}>
+                        <label className={`flex items-center gap-3 cursor-pointer p-4 border rounded-sm transition-all ${!isBank ? 'bg-accent/10 border-accent text-slate-900' : 'bg-black/[0.02] border-black/10 text-slate-700 hover:bg-black/5'}`}>
                             <input
                                 type="radio"
                                 name="payment_method"
@@ -617,7 +617,7 @@ export default function RegistrationFormFields({
                             />
                             <span className="text-sm font-bold">💳 {t('pay_with_card')}</span>
                         </label>
-                        <label className={`flex items-center gap-3 cursor-pointer p-4 border rounded-sm transition-all ${isBank ? 'bg-accent/10 border-accent text-sea-foam' : 'bg-black/[0.02] border-black/10 text-sea-foam/60 hover:bg-black/5'}`}>
+                        <label className={`flex items-center gap-3 cursor-pointer p-4 border rounded-sm transition-all ${isBank ? 'bg-accent/10 border-accent text-slate-900' : 'bg-black/[0.02] border-black/10 text-slate-700 hover:bg-black/5'}`}>
                             <input
                                 type="radio"
                                 name="payment_method"
@@ -709,7 +709,7 @@ export default function RegistrationFormFields({
                                         }}
                                         className="w-5 h-5 accent-accent"
                                     />
-                                    <span className="text-sm font-bold text-sea-foam/80">{labelText}</span>
+                                    <span className="text-sm font-bold text-slate-800">{labelText}</span>
                                 </label>
                             </div>
                         );
@@ -733,7 +733,7 @@ export default function RegistrationFormFields({
 
             return (
                 <div className="space-y-8">
-                    <p className="text-xs text-sea-foam/60">
+                    <p className="text-xs text-slate-600">
                         {t('camp_notice')}
                     </p>
                     
@@ -751,7 +751,7 @@ export default function RegistrationFormFields({
                                         onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
                                         className="w-5 h-5 accent-accent"
                                     />
-                                    <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second')}</span>
+                                    <span className="text-sm font-bold text-slate-800">{t('add_tutor_second')}</span>
                                 </label>
                             </div>
                             {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
@@ -760,7 +760,7 @@ export default function RegistrationFormFields({
 
                     <div className="grid md:grid-cols-2 gap-6 p-6 border border-black/5 bg-black/[0.02] rounded-sm">
                         <div className="col-span-full border-b border-black/5 pb-2">
-                            <h4 className="text-xs uppercase tracking-widest text-sea-foam font-bold">{t('comments_title')}</h4>
+                            <h4 className="text-xs uppercase tracking-widest text-slate-900 font-bold">{t('comments_title')}</h4>
                         </div>
                         {renderInput(t('week_label'), 'semana_solicitada', 'text', t('week_placeholder'), false)}
                         {renderInput(t('comments_label'), 'comentarios', 'text', t('comments_placeholder'), false)}
@@ -800,7 +800,7 @@ export default function RegistrationFormFields({
                                         onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
                                         className="w-5 h-5 accent-accent"
                                     />
-                                    <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second_training')}</span>
+                                    <span className="text-sm font-bold text-slate-800">{t('add_tutor_second_training')}</span>
                                 </label>
                             </div>
                             {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}
@@ -829,7 +829,7 @@ export default function RegistrationFormFields({
                                         onChange={(e) => handleInputChange('add_tutor_2', e.target.checked)}
                                         className="w-5 h-5 accent-accent"
                                     />
-                                    <span className="text-sm font-bold text-sea-foam/80">{t('add_tutor_second')}</span>
+                                    <span className="text-sm font-bold text-slate-800">{t('add_tutor_second')}</span>
                                 </label>
                             </div>
                             {formData.add_tutor_2 && renderTutorFields('tutor2', t('tutor_title_prefix') + ' Nº2', true)}

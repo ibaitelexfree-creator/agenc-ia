@@ -121,28 +121,28 @@ export default function MembershipPage({ params: { locale } }: { params: { local
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="w-full aspect-[4/5] sm:aspect-[2/1] bg-gradient-to-br from-[#1a2c42] to-[#0a1628] rounded-2xl border border-brass-gold/30 p-8 relative overflow-hidden shadow-2xl mb-8 group"
+                    className="w-full bg-gradient-to-br from-[#1a2c42] to-[#0a1628] rounded-2xl border border-brass-gold/30 p-7 sm:p-8 relative overflow-hidden shadow-2xl mb-8 group"
                 >
-                    <div className="absolute top-0 right-0 p-8 opacity-10 text-9xl group-hover:scale-110 transition-transform duration-1000">⚓</div>
+                    <div className="absolute top-0 right-0 p-6 opacity-10 text-7xl md:text-8xl group-hover:scale-110 transition-transform duration-1000">⚓</div>
                     <div className="absolute inset-0 bg-[url('/images/nautical-pattern.svg')] opacity-5" />
 
-                    <div className="relative z-10 h-full flex flex-col justify-between">
+                    <div className="relative z-10 flex flex-col sm:flex-row sm:items-end justify-between gap-6">
                         <div>
-                            <div className="px-3 py-1 rounded-full bg-brass-gold/20 border border-brass-gold/30 text-brass-gold text-[10px] uppercase tracking-widest font-black inline-block mb-4">
+                            <div className="px-3 py-1 rounded-full bg-brass-gold/20 border border-brass-gold/30 text-brass-gold text-[10px] uppercase tracking-widest font-black inline-block mb-3">
                                 Premium Access
                             </div>
-                            <h2 className="text-4xl font-display italic text-white leading-tight mb-2">
+                            <h2 className="text-3xl sm:text-4xl font-display italic text-white leading-tight mb-2">
                                 Hazte <span className="text-brass-gold">Socio</span>
                             </h2>
-                            <p className="text-white/60 text-sm max-w-xs">
+                            <p className="text-white/70 text-sm max-w-sm">
                                 Únete a la comunidad más exclusiva del Cantábrico y navega sin límites.
                             </p>
                         </div>
 
-                        <div className="mt-8">
-                            <div className="flex items-baseline gap-2">
-                                <span className="text-4xl font-black text-white">20€</span>
-                                <span className="text-white/40 text-sm">/ mes</span>
+                        <div className="pt-2 sm:pt-0 sm:text-right">
+                            <div className="flex items-baseline gap-1.5 sm:justify-end">
+                                <span className="text-3xl sm:text-4xl font-black text-white">20€</span>
+                                <span className="text-white/50 text-sm font-medium">/ mes</span>
                             </div>
                             <p className="text-xs text-brass-gold mt-1 uppercase tracking-wider font-bold">Sin permanencia</p>
                         </div>
@@ -151,22 +151,22 @@ export default function MembershipPage({ params: { locale } }: { params: { local
 
                 {/* Benefits List */}
                 <div className="space-y-6 mb-12">
-                    <h3 className="text-xs uppercase tracking-widest text-white/40 font-bold ml-1">Beneficios Incluidos</h3>
-                    <div className="grid grid-cols-1 gap-4">
+                    <h3 className="text-xs uppercase tracking-widest text-white/80 font-bold ml-1">Beneficios Incluidos</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {benefits.map((benefit, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.1 }}
-                                className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center gap-4"
+                                className="bg-[#fffdf0] border-2 border-yellow-400 p-6 rounded-xl aspect-square flex flex-col items-center justify-center text-center gap-3 shadow-lg shadow-yellow-500/10"
                             >
-                                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                                <div className="w-12 h-12 rounded-full bg-yellow-400/20 flex items-center justify-center shrink-0 border border-yellow-400/40">
                                     {benefit.icon}
                                 </div>
                                 <div>
-                                    <h4 className="text-sm font-bold text-white">{benefit.title}</h4>
-                                    <p className="text-xs text-white/50">{benefit.desc}</p>
+                                    <h4 className="text-sm font-bold text-nautical-black mb-1">{benefit.title}</h4>
+                                    <p className="text-xs text-slate-700 font-medium leading-snug">{benefit.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
@@ -174,7 +174,7 @@ export default function MembershipPage({ params: { locale } }: { params: { local
                 </div>
 
                 {/* CTA Action */}
-                <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-nautical-black via-nautical-black/95 to-transparent z-40">
+                <div className="mt-8 pb-12 w-full max-w-md mx-auto">
                     <button
                         onClick={handleSubscribeClick}
                         disabled={loading}
@@ -189,7 +189,7 @@ export default function MembershipPage({ params: { locale } }: { params: { local
                             </>
                         )}
                     </button>
-                    <p className="text-center text-[10px] text-white/20 mt-4 px-8">
+                    <p className="text-center text-[10px] text-white/40 mt-4 px-4">
                         El cobro se realizará de forma segura a través de Stripe. Puedes cancelar en cualquier momento.
                     </p>
                 </div>
