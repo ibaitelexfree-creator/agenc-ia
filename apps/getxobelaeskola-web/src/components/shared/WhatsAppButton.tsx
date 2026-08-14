@@ -15,8 +15,8 @@ export default function WhatsAppButton() {
             aria-label="Contactar por WhatsApp"
             style={{
                 position: 'fixed',
-                bottom: '78px',
-                right: '24px',
+                bottom: 'calc(59px + env(safe-area-inset-bottom, 0px))',
+                right: 'calc(24px + env(safe-area-inset-right, 0px))',
                 zIndex: 9999,
                 display: 'flex',
                 alignItems: 'center',
