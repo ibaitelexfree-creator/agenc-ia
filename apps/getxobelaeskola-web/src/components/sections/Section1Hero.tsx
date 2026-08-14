@@ -583,7 +583,7 @@ export function Section1Hero() {
           bottom: isLandscape 
             ? 'calc(15px + env(safe-area-inset-bottom, 0px))' 
             : isPhone 
-            ? 'calc(clamp(53px, 6.5vh, 73px) + env(safe-area-inset-bottom, 0px))' 
+            ? 'calc(clamp(34px, 4.5vh, 54px) + env(safe-area-inset-bottom, 0px))' 
             : 'calc(clamp(20px, 4vh, 55px) + env(safe-area-inset-bottom, 0px))',
           left: 'calc(50% - 38px)',
           transform: 'translateX(-50%)',
