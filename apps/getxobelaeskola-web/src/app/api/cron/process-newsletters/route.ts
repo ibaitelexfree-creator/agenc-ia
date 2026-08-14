@@ -139,7 +139,8 @@ export async function processScheduledNewsletters() {
             title: newsletter.title,
             recipients: totalSubscribers,
             delivered: deliveredCount,
-            failed: failedCount
+            failed: failedCount,
+            lastError: deliveryLogs.find(l => l.status === 'failed')?.error || null
         });
     }
 
