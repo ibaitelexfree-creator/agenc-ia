@@ -580,7 +580,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(40px, 6vh, 55px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '90px' : '55px',
+          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(95px, 12vh, 115px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '145px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -624,7 +624,7 @@ export function Section1Hero() {
                   alignItems: 'center',
                   gap: '4px',
                   width: '100%',
-                  transform: 'scale(clamp(0.72, 85vw / 400, 0.95))',
+                  transform: 'scale(clamp(0.65, 80vw / 400, 0.90))',
                   transformOrigin: 'bottom center',
                   marginBottom: '0px',
                 }}
