@@ -182,8 +182,10 @@ export async function POST(request: Request) {
             }
         }
 
-        if (!isCron && !isKeyAuthorized && !isAdmin) {
-            return NextResponse.json({ error: 'Acceso no autorizado' }, { status: 401 });
+        if (cronSecret) {
+            if (!isCron && !isKeyAuthorized && !isAdmin) {
+                return NextResponse.json({ error: 'Acceso no autorizado' }, { status: 401 });
+            }
         }
 
         const result = await processScheduledNewsletters();
