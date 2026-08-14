@@ -408,18 +408,16 @@ export function Section3Adapts() {
         </div>
 
         {/* Enlace global para "Leer más" */}
-        {!isPhone && (
-          <div style={{ alignSelf: 'center', margin: '0.4rem 0 1rem 0', position: 'relative', zIndex: 3 }}>
-            <Link
-              href={`/${locale}/courses`}
-              className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
-              style={{ textDecoration: 'none' }}
-            >
-              <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
-              {t('card4.badge')} →
-            </Link>
-          </div>
-        )}
+        <div style={{ alignSelf: 'center', margin: '0.4rem 0 0.8rem 0', position: 'relative', zIndex: 3 }}>
+          <Link
+            href={`/${locale}/courses`}
+            className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
+            style={{ textDecoration: 'none' }}
+          >
+            <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
+            {t('card4.badge')} →
+          </Link>
+        </div>
       </div>
 
       {/* Ola decorativa animada en la parte inferior */}

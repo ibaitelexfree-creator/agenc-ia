@@ -94,26 +94,24 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             transformStyle: 'preserve-3d',
           }}
         >
-          {!isPhone && (
-            <span
-              className="flip-card__icon"
-              style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '50%',
-                background: 'var(--color-gold-soft)',
-                color: 'var(--color-navy-900)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '20px',
-                transition: 'transform var(--flip-duration) var(--flip-easing)',
-                transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
-              }}
-            >
-              {icon}
-            </span>
-          )}
+          <span
+            className="flip-card__icon"
+            style={{
+              width: isPhone ? '36px' : '64px',
+              height: isPhone ? '36px' : '64px',
+              borderRadius: '50%',
+              background: 'var(--color-gold-soft)',
+              color: 'var(--color-navy-900)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: isPhone ? '6px' : '20px',
+              transition: 'transform var(--flip-duration) var(--flip-easing)',
+              transform: isRotated ? 'translateZ(90px) scale(1.08)' : 'translateZ(90px)',
+            }}
+          >
+            {icon}
+          </span>
           <h3
             className="flip-card__title"
             style={{
@@ -143,54 +141,20 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             {hook}
           </p>
 
-          {isPhone ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', transform: 'translateZ(90px)', marginTop: '4px' }}>
-              <span
-                className="flip-card__icon"
-                style={{
-                  width: '26px',
-                  height: '26px',
-                  borderRadius: '50%',
-                  background: 'var(--color-gold-soft)',
-                  color: 'var(--color-navy-900)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <div style={{ transform: 'scale(0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {icon}
-                </div>
-              </span>
-              <span
-                className="flip-card__cta"
-                style={{
-                  fontFamily: 'var(--font-body-promise)',
-                  fontSize: '0.75rem',
-                  fontWeight: 600,
-                  color: 'var(--color-gold)',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {t('cta')}
-              </span>
-            </div>
-          ) : (
-            <span
-              className="flip-card__cta"
-              style={{
-                fontFamily: 'var(--font-body-promise)',
-                fontSize: '0.8125rem',
-                fontWeight: 600,
-                color: 'var(--color-gold)',
-                letterSpacing: '0.02em',
-                transform: 'translateZ(90px)',
-              }}
-            >
-              {t('cta')}
-            </span>
-          )}
+          <span
+            className="flip-card__cta"
+            style={{
+              fontFamily: 'var(--font-body-promise)',
+              fontSize: isPhone ? '0.75rem' : '0.8125rem',
+              fontWeight: 600,
+              color: 'var(--color-gold)',
+              letterSpacing: '0.02em',
+              transform: 'translateZ(90px)',
+              marginTop: isPhone ? '4px' : '0',
+            }}
+          >
+            {t('cta')}
+          </span>
         </div>
 
         {/* Back Face */}
