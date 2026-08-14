@@ -581,7 +581,7 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(19px, 3vh, 39px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '69px' : '55px',
-          left: '50%',
+          left: 'calc(50% + 19px)',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
