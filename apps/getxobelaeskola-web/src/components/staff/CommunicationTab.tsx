@@ -495,8 +495,8 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         {filteredNewsletters.length > 0 ? filteredNewsletters.map((msg) => {
                             const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for).getTime() > Date.now() && msg.status !== 'sent');
                             const recipientsCount = (msg.recipients_count && msg.recipients_count > 0) ? msg.recipients_count : subscribersCount;
-                            const deliveredCount = msg.delivered_count ?? (msg.status === 'sent' ? Math.max(0, recipientsCount) : 0);
-                            const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 100;
+                            const deliveredCount = msg.delivered_count ?? 0;
+                            const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 0;
 
                             return (
                                 <div 
