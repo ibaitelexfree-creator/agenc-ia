@@ -93,7 +93,7 @@ export function Section2Identity() {
       style={{
         gridArea: 's2',
         position: 'relative',
-        width: '100vw',
+        width: '100%',
         height: '100vh',
         overflow: 'hidden',
         display: 'flex',

@@ -9,6 +9,7 @@ import Footer from '@/components/layout/Footer';
 import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import FooterWrapper from '@/components/layout/FooterWrapper';
 const ScrollUpButton = dynamic(() => import('@/components/shared/ScrollToTop'), { ssr: false });
+const WhatsAppButton = dynamic(() => import('@/components/shared/WhatsAppButton'), { ssr: false });
 import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Viewport } from 'next';
 import { Suspense } from 'react';
@@ -66,6 +67,7 @@ export default async function LocaleLayout({
                 </FooterWrapper>
               </div>
               <ScrollUpButton />
+              <WhatsAppButton />
 
               <Suspense fallback={null}>
                 <StatusToast />

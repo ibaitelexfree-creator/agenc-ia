@@ -11,7 +11,7 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
     <motion.div
       className="canvas-container"
       style={{
-        width: '100vw',
+        width: '100%',
         height: '800vh',
         position: 'absolute',
         top: 0,
@@ -22,7 +22,7 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
         backfaceVisibility: 'hidden',
         transformStyle: 'preserve-3d',
         display: 'grid',
-        gridTemplateColumns: '100vw',
+        gridTemplateColumns: '100%',
         gridTemplateRows: '100vh 100vh 100vh 100vh 100vh 100vh 100vh 100vh',
         gridTemplateAreas: `
           "s1"

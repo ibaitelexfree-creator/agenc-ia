@@ -107,7 +107,7 @@ export function Section3Path() {
       style={{
         gridArea: 's4',
         position: 'relative',
-        width: '100vw',
+        width: '100%',
         height: '100vh',
         overflow: 'hidden',
         backgroundColor: 'var(--foam)',

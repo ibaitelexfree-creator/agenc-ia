@@ -56,8 +56,8 @@ export default function ScrollToTop() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '60px',
-                height: '60px',
+                width: '44px',
+                height: '44px',
                 borderRadius: '50%',
                 backgroundColor: '#A91D22', // Rojo granate corporativo
                 boxShadow: '0 4px 16px rgba(169, 29, 34, 0.3)',
@@ -72,8 +72,8 @@ export default function ScrollToTop() {
             <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-25 group-hover:opacity-40" />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

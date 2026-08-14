@@ -350,27 +350,42 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
           {/* Video recortado */}
           <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
-              {loadVideo && videoUrl && (
-                <video
-                  ref={videoRef}
-                  preload="none"
-                  loop
-                  muted
-                  playsInline
-                  onLoadedData={() => setVideoReady(true)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: videoReady ? 1 : 0,
-                    transition: 'opacity 0.4s',
-                  }}
-                >
-                  <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
-                  <track kind="captions" src="data:text/vtt," label="No captions" default />
-                </video>
-              )}
+            <foreignObject x="0" y="0" width="100" height="100" style={{ overflow: 'hidden' }}>
+              <div 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  overflow: 'hidden', 
+                  position: 'relative',
+                  WebkitClipPath: `url(#${clipId})`,
+                  clipPath: `url(#${clipId})`,
+                  borderRadius: '50%'
+                }}
+              >
+                {loadVideo && videoUrl && (
+                  <video
+                    ref={videoRef}
+                    preload="none"
+                    loop
+                    muted
+                    playsInline
+                    onLoadedData={() => setVideoReady(true)}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: 'center',
+                      opacity: videoReady ? 1 : 0,
+                      transition: 'opacity 0.4s',
+                      WebkitTransform: 'translateZ(0)',
+                      transform: 'translateZ(0)',
+                    }}
+                  >
+                    <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
+                    <track kind="captions" src="data:text/vtt," label="No captions" default />
+                  </video>
+                )}
+              </div>
             </foreignObject>
           </g>
 

@@ -86,7 +86,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             flexDirection: 'column',
             alignItems: isPhone ? 'flex-start' : 'center',
             justifyContent: isPhone ? 'space-between' : 'center',
-            padding: isPhone ? '16px 20px' : '24px 20px',
+            padding: isPhone ? '12px 14px' : '24px 20px',
             backgroundColor: 'var(--color-white)',
             border: '1px solid var(--color-border)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
@@ -134,7 +134,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
               fontFamily: 'var(--font-body-promise)',
               fontSize: 'var(--fs-hook)',
               color: 'var(--color-ink-soft)',
-              lineHeight: 1.4,
+              lineHeight: 1.3,
               margin: isPhone ? '0' : '0 0 16px',
               transform: 'translateZ(90px)',
               textAlign: isPhone ? 'left' : 'center',
@@ -144,21 +144,22 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
           </p>
 
           {isPhone ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', transform: 'translateZ(90px)', marginTop: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', transform: 'translateZ(90px)', marginTop: '4px' }}>
               <span
                 className="flip-card__icon"
                 style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '26px',
+                  height: '26px',
                   borderRadius: '50%',
                   background: 'var(--color-gold-soft)',
                   color: 'var(--color-navy-900)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  flexShrink: 0,
                 }}
               >
-                <div style={{ transform: 'scale(0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ transform: 'scale(0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {icon}
                 </div>
               </span>
@@ -166,7 +167,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
                 className="flip-card__cta"
                 style={{
                   fontFamily: 'var(--font-body-promise)',
-                  fontSize: '0.8rem',
+                  fontSize: '0.75rem',
                   fontWeight: 600,
                   color: 'var(--color-gold)',
                   letterSpacing: '0.02em',
@@ -205,7 +206,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: isPhone ? '16px' : '24px 20px',
+            padding: isPhone ? '12px 14px' : '24px 20px',
             background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
             transform: 'rotateY(180deg)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
@@ -221,8 +222,9 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
               fontWeight: 700,
               letterSpacing: '0.1em',
               color: 'var(--color-gold)',
-              margin: '0 0 8px',
+              margin: '0 0 4px',
               transform: 'translateZ(90px)',
+              textAlign: 'center',
             }}
           >
             {label}
@@ -234,7 +236,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
               fontSize: 'var(--fs-body)',
               color: 'var(--color-white)',
               opacity: 0.92,
-              lineHeight: 1.5,
+              lineHeight: 1.35,
               margin: 0,
               textAlign: 'center',
               transform: 'translateZ(90px)',

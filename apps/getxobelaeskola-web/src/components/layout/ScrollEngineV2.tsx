@@ -20,7 +20,7 @@ export function ScrollEngineV2({ children }: { children: React.ReactNode }) {
             top: 0,
             left: 0,
             height: '100vh',
-            width: '100vw',
+            width: '100%',
             overflow: 'hidden',
           }}
         >

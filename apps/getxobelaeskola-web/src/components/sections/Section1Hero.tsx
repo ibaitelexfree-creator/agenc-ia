@@ -71,19 +71,15 @@ export function Section1Hero() {
       const h = window.innerHeight
       const landscapeMode = w > h
       
-      // Effective layout width/height accounting for high DPR mobile viewports
       const effW = Math.min(w, h)
-      const effH = Math.max(w, h)
-      
       const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
       
       setIsMobile(w < 1280)
       setIsTabletPortrait(isTabletSize && !landscapeMode)
       setIsTabletLandscape(isTabletSize && landscapeMode)
-      setIsPhone(effW < 768 && !landscapeMode) // portrait phone including high-res 1179x2556
-      setIsLandscape(landscapeMode) // MUST be true for ANY landscape orientation (w > h)
+      setIsPhone(effW < 768 && !landscapeMode)
+      setIsLandscape(landscapeMode)
 
-      // Precise responsive dynamic scaling for all heights (320px to 2556px) and aspect ratios
       if (landscapeMode) {
         if (h < 500) {
           setViewportScale(Math.max(0.48, h / 620))
@@ -584,7 +580,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '12px' : isPhone ? 'calc(clamp(20px, 4vh, 45px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
+          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(5px, 1.5vh, 15px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -670,13 +666,9 @@ export function Section1Hero() {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  gap: isTabletLandscape 
-                    ? 'clamp(6px, 1.5vw, 18px)' 
-                    : isTabletPortrait 
-                    ? 'clamp(8px, 2vw, 24px)' 
-                    : 'clamp(12px, 3vw, 38px)',
+                  gap: 'clamp(6px, 2vw, 38px)',
                   width: '100%',
-                  transform: (isTabletLandscape || isTabletPortrait) ? 'scale(0.92)' : 'none',
+                  transform: 'scale(clamp(0.78, 100% / 1100, 1))',
                   transformOrigin: 'bottom center',
                 }}
               >
