@@ -580,7 +580,7 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(5px, 1.5vh, 15px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '50px' : '55px',
+          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(40px, 6vh, 55px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '90px' : '55px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
