@@ -580,103 +580,41 @@ export function Section1Hero() {
       <div
         style={{
           position: 'absolute',
-          bottom: isLandscape ? '15px' : isPhone ? 'calc(clamp(19px, 3vh, 39px) + env(safe-area-inset-bottom, 0px))' : isTabletPortrait ? '69px' : '55px',
-          left: 'calc(50% - 19px)',
+          bottom: isLandscape 
+            ? 'calc(15px + env(safe-area-inset-bottom, 0px))' 
+            : 'calc(clamp(20px, 4vh, 50px) + env(safe-area-inset-bottom, 0px))',
+          left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
-          padding: (isPhone || isLandscape) ? '0 4px' : '0 16px',
+          padding: '0 clamp(4px, 2vw, 16px)',
           zIndex: 15,
         }}
       >
         <AnimatePresence>
           {mounted && (
-            isLandscape ? (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 'clamp(4px, 1vw, 12px)',
-                  width: '100%',
-                  transform: `scale(${Math.min(viewportScale * 0.70, 0.72)})`,
-                  transformOrigin: 'bottom center',
-                }}
-              >
-                {CARDS.map((card, idx) => (
-                  <BlobCard key={card.title} {...card} index={idx} />
-                ))}
-              </motion.div>
-            ) : isPhone ? (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '4px',
-                  width: '100%',
-                  transform: 'scale(clamp(0.65, 80vw / 400, 0.90))',
-                  transformOrigin: 'bottom center',
-                  marginBottom: '0px',
-                }}
-              >
-                {/* Fila superior: 3 blobs centrados */}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    width: '100%',
-                  }}
-                >
-                  {CARDS.slice(0, 3).map((card, idx) => (
-                    <BlobCard key={card.title} {...card} index={idx} />
-                  ))}
-                </div>
-                {/* Fila inferior: 2 blobs centrados */}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    width: '100%',
-                  }}
-                >
-                  {CARDS.slice(3, 5).map((card, idx) => (
-                    <BlobCard key={card.title} {...card} index={idx + 3} />
-                  ))}
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 'clamp(6px, 2vw, 38px)',
-                  width: '100%',
-                  transform: 'scale(clamp(0.78, 100% / 1100, 1))',
-                  transformOrigin: 'bottom center',
-                }}
-              >
-                {CARDS.map((card, idx) => (
-                  <BlobCard key={card.title} {...card} index={idx} />
-                ))}
-              </motion.div>
-            )
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'clamp(2px, 1.2vw, 24px)',
+                width: '100%',
+                transform: isLandscape 
+                  ? `scale(${Math.min(viewportScale * 0.70, 0.72)})`
+                  : 'scale(clamp(0.68, 96% / 680, 1))',
+                transformOrigin: 'bottom center',
+              }}
+            >
+              {CARDS.map((card, idx) => (
+                <BlobCard key={card.title} {...card} index={idx} />
+              ))}
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
