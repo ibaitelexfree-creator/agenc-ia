@@ -46,11 +46,17 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: clamp(20px, 3vh, 40px);
+  gap: 24px;
+  margin-bottom: clamp(16px, 2.5vh, 32px);
 }
 @media (max-width: 1024px) {
-  .grid { grid-template-columns: 1fr; gap: 20px; }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-height: 55vh;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
 }
 
 .ctaWrapper {
