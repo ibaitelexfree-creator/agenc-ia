@@ -122,17 +122,23 @@ export default function StaffClient({
     const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'blog' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'explorer'>('overview');
     const [financialsViewMode, setFinancialsViewMode] = useState<'today' | 'month' | 'year' | undefined>('year');
 
-    // Sync tab from URL
+    // Sync tab from URL or sessionStorage
     useEffect(() => {
         const tabParam = searchParams.get('tab');
+        const savedTab = typeof window !== 'undefined' ? sessionStorage.getItem('staff_activeTab') : null;
+        
         if (tabParam) {
             setActiveTab(tabParam as any);
+        } else if (savedTab) {
+            setActiveTab(savedTab as any);
         }
     }, [searchParams]);
 
-    // Scroll to top when tab changes
+    // Save tab to sessionStorage when it changes
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (typeof window !== 'undefined') {
+            sessionStorage.setItem('staff_activeTab', activeTab);
+        }
     }, [activeTab]);
 
     const [rentals, setRentals] = useState<Rental[]>(initialRentals || []);

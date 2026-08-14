@@ -17,6 +17,7 @@ const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { s
 const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false });
 const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false });
 const AccessibilityScript = dynamic(() => import('@/components/shared/AccessibilityScript'), { ssr: false });
+const ScrollManager = dynamic(() => import('@/components/shared/ScrollManager'), { ssr: false });
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -75,6 +76,7 @@ export default async function LocaleLayout({
               <Analytics />
               <SpeedInsights />
               <AccessibilityScript />
+              <ScrollManager />
             </FramerProvider>
         </NextIntlClientProvider>
       </body>

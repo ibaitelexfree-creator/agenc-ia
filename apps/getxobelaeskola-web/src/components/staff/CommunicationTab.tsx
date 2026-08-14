@@ -146,6 +146,25 @@ interface CommunicationTabProps {
 }
 
 export default function CommunicationTab({ newsletters = [], onSendMessage, isSending, onRefreshNewsletters, subscribersCount = 0 }: CommunicationTabProps) {
+    // Polling effect: if there are newsletters currently "sending" (scheduled but past the scheduled time),
+    // refresh the list every 15 seconds to catch the updated status from the cron job.
+    React.useEffect(() => {
+        if (!onRefreshNewsletters) return;
+        
+        const hasPendingNewsletters = newsletters.some(msg => {
+            if (msg.status !== 'scheduled') return false;
+            if (!msg.scheduled_for) return true; // Scheduled but no date means ASAP
+            return new Date(msg.scheduled_for).getTime() <= Date.now();
+        });
+
+        if (hasPendingNewsletters) {
+            const interval = setInterval(() => {
+                onRefreshNewsletters();
+            }, 15000);
+            return () => clearInterval(interval);
+        }
+    }, [newsletters, onRefreshNewsletters]);
+
     const t = useTranslations('staff_panel');
     
     // New Message Form State

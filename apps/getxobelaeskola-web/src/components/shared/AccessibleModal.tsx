@@ -34,6 +34,17 @@ export default function AccessibleModal({
         return () => setMounted(false);
     }, []);
 
+    // Cierre con la tecla Escape
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isOpen) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [isOpen, onClose]);
+
     // Bloquear scroll del body
     useEffect(() => {
         if (isOpen) {

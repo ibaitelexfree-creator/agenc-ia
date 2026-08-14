@@ -125,7 +125,9 @@ export async function processScheduledNewsletters() {
             status: 'sent',
             sent_at: new Date().toISOString(),
             recipients_count: totalSubscribers,
-            delivered_count: deliveredCount
+            delivered_count: deliveredCount,
+            failed_count: failedCount,
+            delivery_logs: deliveryLogs
         };
 
         await (supabase as any)
