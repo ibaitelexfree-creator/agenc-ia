@@ -668,8 +668,8 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         {/* Audience / Reach & Metrics Summary */}
                         {(() => {
                             const viewingRecipientsCount = (viewingMsg.recipients_count && viewingMsg.recipients_count > 0) ? viewingMsg.recipients_count : subscribersCount;
-                            const viewingDeliveredCount = viewingMsg.delivered_count ?? (viewingMsg.status === 'sent' ? viewingRecipientsCount : 0);
-                            const viewingDeliveryRate = viewingRecipientsCount > 0 ? Math.round((viewingDeliveredCount / viewingRecipientsCount) * 100) : 100;
+                            const viewingDeliveredCount = viewingMsg.delivered_count ?? 0;
+                            const viewingDeliveryRate = viewingRecipientsCount > 0 ? Math.round((viewingDeliveredCount / viewingRecipientsCount) * 100) : 0;
 
                             return (
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -687,10 +687,10 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                     </div>
                                     <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
                                         <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Tasa de Efectividad</span>
-                                        <span className="text-3xl font-display italic text-red-600 font-bold">
+                                        <span className="text-3xl font-display italic text-slate-900 font-bold">
                                             {viewingDeliveryRate}%
                                         </span>
-                                        <span className="text-[10px] text-red-700 block mt-1 font-semibold">Confirmaciones recibidas</span>
+                                        <span className="text-[10px] text-slate-500 block mt-1 font-semibold">Confirmaciones recibidas</span>
                                     </div>
                                 </div>
                             );
