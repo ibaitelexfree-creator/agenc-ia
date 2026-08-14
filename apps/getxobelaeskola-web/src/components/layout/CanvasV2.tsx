@@ -12,32 +12,14 @@ export function CanvasV2({ children }: { children: React.ReactNode }) {
       className="canvas-container"
       style={{
         width: '100%',
-        height: '800vh',
-        position: 'absolute',
-        top: 0,
-        left: 0,
         translateX: canvasX,
         translateY: canvasY,
         WebkitBackfaceVisibility: 'hidden',
         backfaceVisibility: 'hidden',
         transformStyle: 'preserve-3d',
-        display: 'grid',
-        gridTemplateColumns: '100%',
-        gridTemplateRows: '100vh 100vh 100vh 100vh 100vh 100vh 100vh 100vh',
-        gridTemplateAreas: `
-          "s1"
-          "s2"
-          "s3"
-          "s4"
-          "s5"
-          "reviews"
-          "blog"
-          "cta"
-        `,
       }}
     >
       {children}
-      <CTASection />
     </motion.div>
   )
 }

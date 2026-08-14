@@ -11,19 +11,10 @@ export function ScrollEngineV2({ children }: { children: React.ReactNode }) {
   return (
     <ScrollContext.Provider value={engine}>
       <div
+        className="scroll-engine-root"
         ref={engine.containerRef}
-        style={{ height: `${TOTAL_SCROLL_HEIGHT_VH}vh` }}
       >
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            height: '100vh',
-            width: '100%',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="scroll-engine-inner">
           {children}
         </div>
       </div>

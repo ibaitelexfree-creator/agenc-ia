@@ -172,7 +172,7 @@ export default function NoticiasClient({
                             onClick={() => setSelectedPost(post)}
                             className="flex flex-col bg-white border border-black/10 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group"
                         >
-                            <div className="relative aspect-[16/10] overflow-hidden bg-nautical-deep">
+                            <div className="relative aspect-square overflow-hidden bg-nautical-deep">
                                 <Image
                                     src={post.image}
                                     alt={post.title}

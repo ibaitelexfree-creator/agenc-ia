@@ -102,7 +102,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                             className="flex flex-col bg-sea-foam/[0.01] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm group/card cursor-pointer shadow-lg hover:shadow-black/10"
                         >
                             <Link href={`/${locale}/blog/noticias`} className="flex flex-col h-full">
-                                <div className="relative aspect-[16/10] overflow-hidden bg-nautical-deep">
+                                <div className="relative aspect-square overflow-hidden bg-nautical-deep">
                                     <Image
                                         src={post.image}
                                         alt={post.title}

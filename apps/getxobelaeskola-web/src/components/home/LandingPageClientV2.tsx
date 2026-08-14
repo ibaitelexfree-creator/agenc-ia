@@ -18,6 +18,9 @@ const ReviewsSection = dynamic(() => import('@/components/sections/Reviews/Revie
 const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection'), { ssr: true })
 const CTASection = dynamic(() => import('@/components/sections/CTASection').then(mod => mod.CTASection), { ssr: true })
 
+const HomeStatsSection = dynamic(() => import('@/components/sections/HomeStatsSection'), { ssr: true })
+const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: true })
+
 function OceanGradientActivator() {
   useOceanGradient()
   return null
@@ -35,8 +38,8 @@ export function LandingPageClientV2() {
           <Section3Adapts />
           <Section3Path />
           <Section4Why />
-          <ReviewsSection />
           <BlogSection />
+          <ReviewsSection />
           <CTASection />
         </ReducedMotionCanvas>
       </div>
@@ -57,8 +60,9 @@ export function LandingPageClientV2() {
         <Section3Adapts />
         <Section3Path />
         <Section4Why />
-        <ReviewsSection />
         <BlogSection />
+        <ReviewsSection />
+        <CTASection />
       </CanvasV2>
     </ScrollEngineV2>
   )

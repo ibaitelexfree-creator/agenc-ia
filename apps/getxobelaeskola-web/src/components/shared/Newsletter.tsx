@@ -36,13 +36,13 @@ export default function Newsletter({ locale }: { locale: string }) {
     };
 
     return (
-        <section className="py-16 relative overflow-hidden bg-nautical-deep selection:bg-accent selection:text-nautical-black">
+        <section className="py-2 relative overflow-hidden bg-nautical-deep selection:bg-accent selection:text-nautical-black">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/5 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[240px] h-[240px] bg-brass-gold/5 blur-[70px] rounded-full translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-3xl mx-auto glass-card p-6 md:p-10 text-center border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl overflow-hidden relative">
+                <div className="max-w-3xl mx-auto glass-card p-4 md:p-6 text-center border-sea-foam/10 bg-sea-foam/[0.01] rounded-2xl overflow-hidden relative">
                     <header className="mb-8 relative z-10">
                         <div className="flex items-center justify-center gap-3 mb-4">
                             <div className="w-6 h-[1px] bg-accent/30" />

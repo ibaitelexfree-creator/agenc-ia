@@ -30,28 +30,17 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
   // Canvas Y: each section occupies a 0.08-wide "plateau" in the yScrollPoints map.
   // The transition between sections is in the 0.08-wide "ramp" between plateaus.
-  const yScrollPoints = [0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.80, 0.88, 0.96, 1.0]
+  const yScrollPoints = [0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49, 0.56, 0.63, 0.70, 0.77, 0.84, 0.91, 0.98, 1.0]
   const rawCanvasY = useTransform(
     scrollYProgress,
     yScrollPoints,
-    [0, 0, -100, -100, -200, -200, -300, -300, -400, -400, -500, -500, -600, -600]
+    [0, 0, -100, -100, -200, -200, -300, -300, -400, -400, -500, -500, -600, -600, -700, -700]
   )
   const canvasY = useTransform(rawCanvasY, (v) => {
-    let pxShift = 0
-    if (v > -100) {
-      const t = -v / 100
-      pxShift = t * 30
-    } else if (v > -200) {
-      const t = -(v + 100) / 100
-      pxShift = 30 - t * 30
-    } else if (v >= -600 && v <= -500) {
-      const t = -(v + 500) / 100
-      pxShift = t * 32
-    } else if (v < -600) {
-      pxShift = 32
+    if (typeof window !== 'undefined' && window.innerWidth <= 900) {
+      return '0px'
     }
-    if (Math.abs(pxShift) < 0.01) return `${v}vh`
-    return `calc(${v}vh + ${pxShift}px)`
+    return `${v}vh`
   })
 
   const rawProw = useTransform(scrollYProgress, scrollPoints, prowValues)
@@ -78,15 +67,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
   const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    // Each section is fully stable at the MIDPOINT of its plateau in yScrollPoints:
-    //   S0: plateau 0.00–0.08  → midpoint 0.04
-    //   S1: plateau 0.16–0.24  → midpoint 0.20
-    //   S2: plateau 0.32–0.40  → midpoint 0.36
-    //   S3: plateau 0.48–0.56  → midpoint 0.52
-    //   S4: plateau 0.64–0.72  → midpoint 0.68
-    //   S5: plateau 0.80–0.88  → midpoint 0.84
-    //   S6: plateau 0.96–1.00  → midpoint 0.98
-    const SECTION_PROGRESS = [0.04, 0.20, 0.36, 0.52, 0.68, 0.84, 0.98]
+    const SECTION_PROGRESS = [0.035, 0.175, 0.315, 0.455, 0.595, 0.735, 0.875, 0.98]
 
     let cachedMaxScroll: number | null = null
     const getMaxScroll = () => {
@@ -324,7 +305,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         isWheelScrollingRef.current = false
       }, 400)
 
-      const forceTransition = currentIndexRef.current === 6 && dir === -1 && scrollY <= maxScroll - 2
+      const forceTransition = currentIndexRef.current === 8 && dir === -1 && scrollY <= maxScroll - 2
 
       if (!isNewGesture && !forceTransition) return
       if (Math.abs(e.deltaY) < 10) return
@@ -413,13 +394,14 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       currentIndexRef.current = closestIdx
     }
 
-    // Tab must be captured BEFORE the browser processes it
-    window.addEventListener('keydown', handleTab, { capture: true, passive: false })
-    window.addEventListener('wheel', handleWheel, { passive: false })
-    window.addEventListener('touchstart', handleTouchStart, { passive: true })
-    window.addEventListener('touchmove', handleTouchMove, { passive: false })
-    window.addEventListener('keydown', handleKeyDown)
-    window.addEventListener('scroll', handleScrollSync, { passive: true })
+    if (window.innerWidth > 900) {
+      window.addEventListener('keydown', handleTab, { capture: true, passive: false })
+      window.addEventListener('wheel', handleWheel, { passive: false })
+      window.addEventListener('touchstart', handleTouchStart, { passive: true })
+      window.addEventListener('touchmove', handleTouchMove, { passive: false })
+      window.addEventListener('keydown', handleKeyDown)
+      window.addEventListener('scroll', handleScrollSync, { passive: true })
+    }
 
     return () => {
       window.removeEventListener('keydown', handleTab, { capture: true })

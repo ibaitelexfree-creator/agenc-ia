@@ -728,7 +728,55 @@ a:hover {
   color: rgba(26, 26, 26, 0.4) !important;
 }
 
-/* Removed CSS override that forced weather-widget-dark text to white */
+.scroll-engine-root {
+  height: 800vh;
+}
+.scroll-engine-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 800vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100vh 100vh 100vh 100vh 100vh 100vh 100vh 100vh;
+  grid-template-areas:
+    "s1"
+    "s2"
+    "s3"
+    "s4"
+    "s5"
+    "blog"
+    "reviews"
+    "cta";
+}
+
+@media (max-width: 900px) {
+  .scroll-engine-root {
+    height: auto !important;
+  }
+  .scroll-engine-inner {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .canvas-container {
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+}
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
@@ -881,12 +929,12 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(16px, 4vh, 48px) 24px;
+  padding: clamp(32px, 6vh, 64px) 24px;
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
-  overflow: hidden;
+  height: auto !important;
+  min-height: auto !important;
+  overflow: visible !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -927,80 +975,74 @@ a:hover {
 }
 
 @media (max-width: 900px) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    padding: 48px 16px !important;
+  }
   .promise__grid { 
     grid-template-columns: 1fr;
-    gap: 16px;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-    padding: 8px;
-  }
-  .promise {
-    padding: 20px 16px;
+    gap: 24px;
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding: 8px 0;
   }
   .promise__title {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
   }
 }
 
-@media (max-height: 500px) and (orientation: landscape) {
+/* 📱 Mobile Landscape: Show 3 columns side-by-side with square cards */
+@media (max-width: 900px) and (orientation: landscape) {
   .promise {
     height: auto !important;
     min-height: 100vh !important;
     padding: 24px 16px !important;
   }
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr);
-    max-height: none !important;
-    overflow-y: visible !important;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
   }
   .flip-card-wrapper {
-    width: 28vw !important;
-    height: 140px !important;
-  }
-}
-
-/* 📱 Mobile Landscape / Small height screens fix for text overflow */
-@media (max-height: 600px) and (orientation: landscape) {
-  .promise {
+    width: 100% !important;
+    max-width: 240px !important;
     height: auto !important;
-    min-height: 100vh !important;
-    padding: 20px 16px !important;
-    overflow-y: auto !important;
-  }
-  .promise__inner {
-    transform: none !important;
-  }
-  .flip-card-wrapper {
-    height: auto !important;
-    min-height: 155px !important;
+    aspect-ratio: 1 / 1 !important;
   }
   .flip-card__face {
-    padding: 10px 12px !important;
+    padding: 12px 8px !important;
+  }
+  .flip-card__icon {
+    width: 36px !important;
+    height: 36px !important;
+    margin-bottom: 6px !important;
   }
   .flip-card__title {
-    font-size: 0.95rem !important;
+    font-size: 0.85rem !important;
     margin-bottom: 2px !important;
   }
   .flip-card__hook {
-    font-size: 0.75rem !important;
-    line-height: 1.25 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
     margin-bottom: 4px !important;
   }
   .flip-card__desc {
-    font-size: 0.75rem !important;
-    line-height: 1.25 !important;
+    font-size: 0.7rem !important;
+    line-height: 1.2 !important;
   }
   .flip-card__label {
-    font-size: 0.7rem !important;
-    margin-bottom: 4px !important;
+    font-size: 0.65rem !important;
+    margin-bottom: 2px !important;
   }
 }
 
+/* 📱 Mobile Portrait: Single column with responsive square card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
-    width: 85vw !important;
-    max-width: 320px !important;
+    width: min(72vw, 280px) !important;
+    height: min(72vw, 280px) !important;
+    aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
   }
 }
