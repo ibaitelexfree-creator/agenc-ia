@@ -520,7 +520,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                         Programado ✏️
                                                     </span>
                                                 ) : (
-                                                    <span className="px-2.5 py-0.5 bg-green-500/20 border border-green-500/40 text-green-400 text-[9px] uppercase tracking-widest font-bold rounded-xs">
+                                                    <span className="px-2.5 py-0.5 bg-emerald-400 border border-emerald-500 text-nautical-black text-[9px] uppercase tracking-widest font-black rounded-xs">
                                                         Enviado
                                                     </span>
                                                 )}
@@ -592,13 +592,13 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                             </div>
                                         ) : (
                                             <div className="flex flex-wrap items-center gap-3 text-white/60">
-                                                <div className="flex items-center gap-2 text-green-400 font-bold bg-green-500/10 border border-green-500/30 px-3 py-1 rounded-xs">
+                                                <div className="flex items-center gap-2 text-nautical-black font-black bg-emerald-400 border border-emerald-500 px-3 py-1 rounded-xs">
                                                     <span>✅ ENVIADO:</span>
                                                     <span><ClientDate date={msg.sent_at || msg.created_at} format="short" /></span>
                                                 </div>
-                                                <div className="flex items-center gap-2 px-3.5 py-1.5 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-xs font-bold rounded-xs shadow-sm">
+                                                <div className="flex items-center gap-2 px-3.5 py-1.5 bg-emerald-400 border border-emerald-500 text-nautical-black font-mono text-xs font-black rounded-xs shadow-sm">
                                                     <span>📊 {deliveredCount}/{recipientsCount} entregados</span>
-                                                    <span className="text-accent font-black">({deliveryRate}%)</span>
+                                                    <span className="text-nautical-black font-black">({deliveryRate}%)</span>
                                                 </div>
                                             </div>
                                         )}
