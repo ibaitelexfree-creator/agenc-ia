@@ -10,5 +10,5 @@ if (!resendApiKey && process.env.NODE_ENV === 'production') {
 
 export const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
-export const DEFAULT_FROM_EMAIL = process.env.DEFAULT_FROM_EMAIL || 'Getxo Bela Eskola <onboarding@resend.dev>';
+export const DEFAULT_FROM_EMAIL = process.env.DEFAULT_FROM_EMAIL || 'Getxo Bela Eskola <info@getxobelaeskola.com>';
 
