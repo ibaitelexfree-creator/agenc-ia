@@ -72,12 +72,12 @@ export function Section1Hero() {
       const landscapeMode = w > h
       
       const effW = Math.min(w, h)
-      const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
+      const isTabletSize = (effW >= 600 && effW <= 1024)
       
       setIsMobile(w < 1280)
       setIsTabletPortrait(isTabletSize && !landscapeMode)
       setIsTabletLandscape(isTabletSize && landscapeMode)
-      setIsPhone(effW < 768 && !landscapeMode)
+      setIsPhone(effW < 600 && !landscapeMode)
       setIsLandscape(landscapeMode)
 
       if (landscapeMode) {
