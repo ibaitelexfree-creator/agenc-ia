@@ -475,9 +475,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       </motion.div>
 
       {/* ข้อความกำกับ — เพิ่มความคมชัดด้วย Drop Shadow โดยไม่มีกรอบพื้นหลังสีดำ */}
-      <div className="text-center max-w-[95px] min-[360px]:max-w-[110px] min-[410px]:max-w-[130px] sm:max-w-[150px] md:max-w-[165px] lg:max-w-[200px] z-20 pointer-events-none">
+      <div className="text-center w-full max-w-[110px] min-[360px]:max-w-[125px] min-[410px]:max-w-[140px] sm:max-w-[170px] md:max-w-[190px] lg:max-w-[220px] z-20 pointer-events-none px-0.5">
         <motion.p
-          className="font-extrabold tracking-[0.02em] text-[10px] min-[360px]:text-[11px] sm:text-sm md:text-base lg:text-lg select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-tight"
+          className="font-extrabold tracking-[0.02em] text-[11px] min-[360px]:text-[12px] sm:text-sm md:text-[15px] lg:text-lg select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-snug text-white"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -486,8 +486,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[8px] min-[360px]:text-[10px] sm:text-xs md:text-sm lg:text-sm font-medium text-white/95 mt-[2px] drop-shadow-[0_1px_6px_rgba(0,0,0,0.95)] leading-tight"
-            animate={{ opacity: isHovered ? 1 : 0.85, y: isHovered ? -1 : 0 }}
+            className="text-[9px] min-[360px]:text-[11px] sm:text-xs md:text-[13px] lg:text-sm font-semibold text-white mt-[2px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.98)] leading-tight opacity-95"
+            animate={{ opacity: isHovered ? 1 : 0.95, y: isHovered ? -1 : 0 }}
           >
             {subtitle}
           </motion.p>

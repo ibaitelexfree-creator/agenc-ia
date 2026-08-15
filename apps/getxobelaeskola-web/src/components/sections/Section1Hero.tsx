@@ -588,7 +588,7 @@ export function Section1Hero() {
             ? 'calc(15px + env(safe-area-inset-bottom, 0px))' 
             : isPhone 
             ? 'calc(clamp(34px, 4.5vh, 54px) + env(safe-area-inset-bottom, 0px))' 
-            : 'calc(clamp(300px, 28vh, 380px) + env(safe-area-inset-bottom, 0px))',
+            : 'calc(clamp(120px, 14vh, 180px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
