@@ -197,10 +197,9 @@ export function Section3Path() {
                 mass: 1.2
               }}
               style={{
-                flex: '1 1 140px',
-                maxWidth: '220px',
-                minWidth: '130px',
-                padding: '0.85rem 1.2rem',
+                flex: '1 1 auto',
+                maxWidth: '240px',
+                padding: '0.85rem 1rem',
                 borderRadius: '14px',
                 border: selectedLevel === level
                   ? '2px solid var(--ocean-bright)'
@@ -214,7 +213,7 @@ export function Section3Path() {
                 boxShadow: selectedLevel === level
                   ? '0 4px 20px rgba(10, 126, 200, 0.3)'
                   : '0 2px 8px rgba(0,0,0,0.06)',
-                whiteSpace: 'nowrap',
+                textAlign: 'center',
               }}
             >
               {level === 'basic' ? `⚓ ${t('level_basic')}` : `🌊 ${t('level_mid')}`}
