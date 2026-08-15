@@ -634,7 +634,7 @@ export function Section1Hero() {
                   width: '100%',
                   transform: isPhone ? 'scale(clamp(0.68, 82vw / 400, 0.92))' : 'scale(1)',
                   transformOrigin: 'bottom center',
-                  marginTop: '190px',
+                  marginTop: '95px',
                   marginBottom: '10px',
                 }}
               >
