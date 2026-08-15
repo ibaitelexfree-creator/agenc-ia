@@ -588,7 +588,7 @@ export function Section1Hero() {
             ? 'calc(15px + env(safe-area-inset-bottom, 0px))' 
             : isPhone 
             ? 'calc(clamp(34px, 4.5vh, 54px) + env(safe-area-inset-bottom, 0px))' 
-            : 'calc(clamp(30px, 4vh, 60px) + env(safe-area-inset-bottom, 0px))',
+            : 'calc(clamp(120px, 14vh, 180px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -620,7 +620,7 @@ export function Section1Hero() {
                   <BlobCard key={card.title} {...card} index={idx} />
                 ))}
               </motion.div>
-            ) : isMobile ? (
+            ) : isPhone ? (
               <motion.div
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -630,11 +630,11 @@ export function Section1Hero() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  gap: '8px',
+                  gap: '4px',
                   width: '100%',
-                  transform: isPhone ? 'scale(clamp(0.68, 82vw / 400, 0.92))' : 'scale(1)',
+                  transform: 'scale(clamp(0.68, 82vw / 400, 0.92))',
                   transformOrigin: 'bottom center',
-                  marginBottom: '10px',
+                  marginBottom: '0px',
                 }}
               >
                 {/* แถวบน: 3 วีดีโอ */}
@@ -642,7 +642,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: 'clamp(8px, 3vw, 24px)',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
@@ -655,7 +655,7 @@ export function Section1Hero() {
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    gap: 'clamp(8px, 3vw, 24px)',
+                    gap: '4px',
                     width: '100%',
                   }}
                 >
