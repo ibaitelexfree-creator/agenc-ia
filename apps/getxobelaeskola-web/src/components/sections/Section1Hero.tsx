@@ -411,8 +411,12 @@ export function Section1Hero() {
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone ? 'translateX(calc(-100px - 32vw)) translateY(6vh) scale(0.8539)' : isTabletPortrait ? 'translateX(-100px) scale(0.82)' : 'translateX(-100px)',
-                transformOrigin: 'center center',
+                transform: isPhone 
+                  ? 'translateX(clamp(-80px, -15vw, -30px)) scale(clamp(0.85, 90vw / 400, 0.95))' 
+                  : isTabletPortrait 
+                  ? 'translateX(clamp(-90px, -8vw, -40px)) scale(0.90)' 
+                  : 'translateX(-50px)',
+                transformOrigin: 'top center',
               }}
             >
               <picture>
@@ -585,7 +589,7 @@ export function Section1Hero() {
             : isPhone 
             ? 'calc(clamp(34px, 4.5vh, 54px) + env(safe-area-inset-bottom, 0px))' 
             : 'calc(clamp(20px, 4vh, 55px) + env(safe-area-inset-bottom, 0px))',
-          left: 'calc(50% - 38px)',
+          left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',

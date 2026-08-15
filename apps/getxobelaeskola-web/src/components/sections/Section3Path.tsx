@@ -150,75 +150,40 @@ export function Section3Path() {
       >
         {/* Header */}
         <motion.div
-          animate={{
-            height: isVisualCompact ? 0 : 'auto',
-            opacity: isVisualCompact ? 0 : 1,
-            marginBottom: isVisualCompact ? 0 : '2rem',
-          }}
-          transition={{
-            type: 'spring',
-            stiffness: 90,
-            damping: 18,
-            mass: 1.2
-          }}
-          style={{ overflow: 'hidden' }}
+          style={{ marginBottom: '1.5rem', textAlign: 'center' }}
         >
           <div style={{ textAlign: 'center' }}>
-            <motion.div
-              animate={{
-                opacity: isVisualCompact ? 0 : 1,
-                y: isVisualCompact ? -15 : 0
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 90,
-                damping: 18,
-                delay: isVisualCompact ? 0 : 0.9
-              }}
-              style={{ display: 'inline-flex', justifyContent: 'center', marginBottom: '0.5rem' }}
-            >
+            <div style={{ display: 'inline-flex', justifyContent: 'center', marginBottom: '0.4rem' }}>
               <SectionEyebrow text={t('eyebrow')} color="var(--ocean-bright)" />
-            </motion.div>
-            <motion.h2
-              animate={{
-                opacity: isVisualCompact ? 0 : 1,
-                y: isVisualCompact ? -15 : 0
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 90,
-                damping: 18,
-                delay: isVisualCompact ? 0 : 0.6
-              }}
+            </div>
+            <h2
               style={{
-                fontSize: 'clamp(1.8rem, 4vw, 3rem)',
+                fontSize: 'clamp(1.4rem, 3.5vw, 2.8rem)',
                 fontWeight: 700,
                 color: 'var(--ocean-deep)',
+                lineHeight: 1.2,
                 marginBottom: '0.5rem',
+                wordBreak: 'break-word',
               }}
             >
               {t('title')}
-            </motion.h2>
-            <motion.p
-              animate={{
-                opacity: isVisualCompact ? 0 : 1,
-                y: isVisualCompact ? -15 : 0
+            </h2>
+            <p
+              style={{ 
+                color: 'var(--text-secondary)', 
+                fontSize: 'clamp(0.85rem, 1.8vw, 1.1rem)',
+                lineHeight: 1.4,
+                maxWidth: '560px',
+                margin: '0 auto',
               }}
-              transition={{
-                type: 'spring',
-                stiffness: 90,
-                damping: 18,
-                delay: isVisualCompact ? 0 : 0.3
-              }}
-              style={{ color: 'var(--text-secondary)', fontSize: '1rem' }}
             >
               {t('subtitle')}
-            </motion.p>
+            </p>
           </div>
         </motion.div>
 
         {/* PASO 1: Seleccionar nivel */}
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: (isPhone && isVisualCompact) ? '0.6rem' : '1.5rem' }}>
+        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1.25rem' }}>
           {(['basic', 'mid'] as Level[]).map((level) => (
             <motion.button
               key={level}
@@ -232,27 +197,27 @@ export function Section3Path() {
                 mass: 1.2
               }}
               style={{
-                flex: 1,
+                flex: '1 1 140px',
                 maxWidth: '220px',
-                padding: (isPhone && isVisualCompact) ? '0.5rem 1rem' : '1rem 1.5rem',
+                minWidth: '130px',
+                padding: '0.85rem 1.2rem',
                 borderRadius: '14px',
                 border: selectedLevel === level
                   ? '2px solid var(--ocean-bright)'
                   : '2px solid rgba(10, 126, 200, 0.2)',
                 backgroundColor: selectedLevel === level ? 'var(--ocean-bright)' : 'white',
                 color: selectedLevel === level ? 'white' : 'var(--ocean-deep)',
-                fontSize: (isPhone && isVisualCompact) ? '0.8rem' : '1rem',
+                fontSize: 'clamp(0.85rem, 2vw, 1rem)',
                 fontWeight: 600,
                 cursor: 'pointer',
                 fontFamily: 'inherit',
                 boxShadow: selectedLevel === level
                   ? '0 4px 20px rgba(10, 126, 200, 0.3)'
                   : '0 2px 8px rgba(0,0,0,0.06)',
+                whiteSpace: 'nowrap',
               }}
             >
-              {level === 'basic' 
-                ? ((isPhone && isVisualCompact) ? t('level_basic') : `⚓ ${t('level_basic')}`) 
-                : ((isPhone && isVisualCompact) ? t('level_mid') : `🌊 ${t('level_mid')}`)}
+              {level === 'basic' ? `⚓ ${t('level_basic')}` : `🌊 ${t('level_mid')}`}
             </motion.button>
           ))}
         </div>
