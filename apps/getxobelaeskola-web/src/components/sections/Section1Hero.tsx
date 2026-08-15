@@ -588,7 +588,7 @@ export function Section1Hero() {
             ? 'calc(15px + env(safe-area-inset-bottom, 0px))' 
             : isPhone 
             ? 'calc(clamp(34px, 4.5vh, 54px) + env(safe-area-inset-bottom, 0px))' 
-            : 'calc(clamp(210px, 20vh, 245px) + env(safe-area-inset-bottom, 0px))',
+            : 'calc(clamp(300px, 28vh, 380px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -677,7 +677,7 @@ export function Section1Hero() {
                   gap: 'clamp(6px, 2vw, 38px)',
                   width: '100%',
                   transform: 'scale(clamp(0.78, 100% / 1100, 1))',
-                  transformOrigin: 'bottom center',
+                  transformOrigin: 'center',
                 }}
               >
                 {CARDS.map((card, idx) => (
