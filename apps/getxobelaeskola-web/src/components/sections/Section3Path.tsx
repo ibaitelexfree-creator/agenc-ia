@@ -104,12 +104,12 @@ export function Section3Path() {
 
   return (
     <section
+      className="section-3-path"
       style={{
         gridArea: 's4',
         position: 'relative',
         width: '100%',
-        height: '100vh',
-        minHeight: '100dvh',
+        minHeight: '100vh',
         overflow: 'hidden',
         backgroundColor: 'var(--foam)',
         display: 'flex',

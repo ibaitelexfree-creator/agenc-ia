@@ -115,12 +115,12 @@ export function Section3Adapts() {
 
   return (
     <section
+      className="section-3-adapts"
       style={{
         gridArea: 's3',
         position: 'relative',
         width: '100%',
-        height: '100vh',
-        minHeight: '100dvh',
+        minHeight: '100vh',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',

@@ -1068,7 +1068,6 @@ a:hover {
     margin-bottom: 4px !important;
   }
 }
-
 /* 📱 Mobile Portrait: Single column with responsive card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
@@ -1322,7 +1321,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 599px) and (orientation: portrait) {
   .hero-video-blobs-container {
     bottom: calc(3.5vh + env(safe-area-inset-bottom, 0px)) !important;
   }
@@ -1351,5 +1350,160 @@ iframe[id*="equalweb"] {
   .hero-blobs-grid > *:nth-child(5) {
     flex: 0 0 calc(33.333% - 8px) !important;
     max-width: 76px !important;
+  }
+}
+
+/* ==========================================
+   🌊 SMALL LANDSCAPE & SHORT VIEWPORT RANGE SYSTEM
+   Triggered by aspect-ratio & max-height (NOT device names)
+   ========================================== */
+
+@media (orientation: landscape) and (max-height: 768px) {
+  .scroll-engine-root {
+    height: auto !important;
+  }
+  .scroll-engine-inner {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .canvas-container {
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+
+  /* Prevent vertical snapping locks in landscape short viewports */
+  .promise,
+  .section,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  .section-cta,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: clamp(24px, 5vh, 48px) !important;
+    padding-bottom: clamp(24px, 5vh, 48px) !important;
+  }
+
+  /* Compact flip cards & 3-column row for short landscape screens */
+  .promise {
+    padding: 12px 8px !important;
+  }
+  .promise__eyebrow {
+    font-size: 0.65rem !important;
+    margin-bottom: 2px !important;
+  }
+  .promise__title {
+    font-size: clamp(1rem, 4vh, 1.3rem) !important;
+    margin-bottom: clamp(6px, 1.5vh, 12px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(4px, 1.2vw, 10px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .flip-card-wrapper {
+    width: 100% !important;
+    max-width: clamp(100px, 42vh, 145px) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(4px, 1.2vh, 8px) clamp(4px, 1.2vw, 8px) !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  .flip-card__icon {
+    width: clamp(22px, 5vh, 32px) !important;
+    height: clamp(22px, 5vh, 32px) !important;
+    margin-bottom: clamp(2px, 0.8vh, 4px) !important;
+    flex-shrink: 0 !important;
+  }
+  .flip-card__icon svg {
+    width: 55% !important;
+    height: 55% !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.62rem, 2vh, 0.75rem) !important;
+    margin: 0 0 2px 0 !important;
+    line-height: 1.15 !important;
+    word-break: break-word !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.52rem, 1.6vh, 0.64rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 0 2px 0 !important;
+    opacity: 0.9 !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.52rem, 1.5vh, 0.62rem) !important;
+    margin-top: auto !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.52rem, 1.6vh, 0.65rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.48rem, 1.3vh, 0.58rem) !important;
+    margin-bottom: 2px !important;
+  }
+
+  /* Anchor hero text container in short landscape so text is positioned cleanly below top bar and video blobs never obscure text */
+  .hero-text-container {
+    margin-top: clamp(-40px, -4vh, 0px) !important;
+    top: 0px !important;
+    transform: scale(0.68) !important;
+    transform-origin: left top !important;
+  }
+
+  /* Shift video container lower towards bottom edge */
+  .hero-video-blobs-container {
+    bottom: calc(2px + env(safe-area-inset-bottom, 0px)) !important;
+    padding-bottom: 0px !important;
+  }
+
+  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) with scale adjustment to avoid text overlap */
+  .hero-blobs-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 6px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    transform: scale(0.60) !important;
+    transform-origin: center bottom !important;
+  }
+
+  .hero-blobs-grid > * {
+    flex: 0 1 auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) {
+  .hero-blobs-grid {
+    transform: scale(0.50) !important;
+  }
+
+  .hero-text-container {
+    margin-top: -15px !important;
+    transform: scale(0.60) !important;
+    transform-origin: left top !important;
   }
 }
