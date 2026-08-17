@@ -312,7 +312,7 @@ export function Section4Why() {
         enterDelay={0.5}
       />
 
-      <div className="promise__inner" style={{ transform: isPhone ? 'translateY(7%)' : 'none', transition: 'transform 0.3s ease' }}>
+      <div className="promise__inner">
         {t('eyebrow') ? (
           <>
             <p className="promise__eyebrow">{t('title')}</p>
