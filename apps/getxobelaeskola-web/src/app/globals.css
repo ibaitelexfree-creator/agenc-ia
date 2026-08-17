@@ -1270,7 +1270,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📱 Layout 3+2 for 5 Hero Video Blobs only on small screens (200px - 599px) on both iOS & Android */
+/* 📱 Layout for 5 Hero Video Blobs */
 .hero-blobs-grid {
   display: flex;
   flex-direction: row;
@@ -1281,6 +1281,14 @@ iframe[id*="equalweb"] {
   width: 100%;
   transform: scale(clamp(0.40, 100vw / 1280, 1));
   transform-origin: center bottom;
+}
+
+@media (min-width: 768px) and (max-width: 1366px) {
+  /* Reduce scale of video blobs on iPad/tablets to prevent text overlap */
+  .hero-blobs-grid {
+    transform: scale(0.68) !important;
+    transform-origin: center bottom !important;
+  }
 }
 
 @media (max-width: 599px) {
