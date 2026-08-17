@@ -34,9 +34,8 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
       aria-label={`${title}. ${isRotated ? description : hook}`}
       style={{
         position: 'relative',
-        width: isPhone ? 'min(80vw, 320px)' : 'var(--card-w)',
-        height: isPhone ? 'min(80vw, 320px)' : 'var(--card-h)',
-        aspectRatio: '1 / 1',
+        width: isPhone ? 'clamp(240px, 85vw, 340px)' : 'var(--card-w)',
+        height: isPhone ? 'clamp(190px, 28vh, 230px)' : 'var(--card-h)',
         margin: isPhone ? '0 auto' : '0',
         perspective: '1600px',
         cursor: 'pointer',
@@ -313,7 +312,7 @@ export function Section4Why() {
         enterDelay={0.5}
       />
 
-      <div className="promise__inner" style={{ transform: isPhone ? 'translateY(7%)' : 'none', transition: 'transform 0.3s ease' }}>
+      <div className="promise__inner">
         {t('eyebrow') ? (
           <>
             <p className="promise__eyebrow">{t('title')}</p>
