@@ -1013,6 +1013,7 @@ a:hover {
   .promise__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: clamp(6px, 1.5vw, 12px) !important;
+    width: 100% !important;
     max-width: 100% !important;
     align-items: center !important;
   }
@@ -1023,10 +1024,17 @@ a:hover {
   }
   .flip-card-wrapper {
     width: 100% !important;
-    max-width: clamp(110px, 35vh, 180px) !important;
-    height: auto !important;
+    max-width: clamp(100px, 42vh, 160px) !important;
+    height: 0 !important;
+    padding-bottom: 100% !important; /* Pure CSS cross-browser 1:1 square trick */
     aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
+  }
+  .flip-card__inner {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
   .flip-card__face {
     padding: clamp(6px, 1.2vh, 10px) clamp(6px, 1.2vw, 10px) !important;
