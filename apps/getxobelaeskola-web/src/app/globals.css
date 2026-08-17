@@ -1251,8 +1251,15 @@ iframe[id*="equalweb"] {
   pointer-events: auto !important;
 }
 
-/* Shift hero 5 video blobs up by 2cm (~75.6px) for specified tablet & desktop screen widths (768px - 3200px) */
-@media (min-width: 768px) and (max-width: 3200px) {
+/* Position adjustments for hero 5 video blobs */
+@media (min-width: 768px) and (max-width: 1366px) {
+  /* Shift down by 1.5 cm (~56.7px) specifically for iPad Mini, iPad Air, iPad Pro 11"/12.9"/13" */
+  .hero-video-blobs-container {
+    transform: translate(-50%, -18.9px) !important;
+  }
+}
+
+@media (min-width: 1367px) and (max-width: 3200px) {
   .hero-video-blobs-container {
     transform: translate(-50%, -75.6px) !important;
   }
