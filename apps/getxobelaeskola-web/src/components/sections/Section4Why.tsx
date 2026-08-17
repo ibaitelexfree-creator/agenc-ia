@@ -87,30 +87,28 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: isPhone ? '14px 12px' : '24px 20px',
+            padding: isPhone ? '16px 14px' : '24px 20px',
             backgroundColor: 'var(--color-white)',
             border: '1px solid var(--color-border)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
             transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
             transformStyle: 'preserve-3d',
-            opacity: isPhone && isRotated ? 0 : 1,
-            pointerEvents: isPhone && isRotated ? 'none' : 'auto',
           }}
         >
           <span
             className="flip-card__icon"
             style={{
-              width: isPhone ? '42px' : '64px',
-              height: isPhone ? '42px' : '64px',
+              width: isPhone ? '44px' : '64px',
+              height: isPhone ? '44px' : '64px',
               borderRadius: '50%',
-              background: 'var(--color-gold-soft)',
+              backgroundColor: 'var(--color-gold-soft)',
               color: 'var(--color-navy-900)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              marginBottom: isPhone ? '8px' : '20px',
+              marginBottom: isPhone ? '10px' : '20px',
               transition: 'transform var(--flip-duration) var(--flip-easing)',
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              transform: 'translateZ(90px)',
             }}
           >
             {icon}
@@ -119,11 +117,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__title"
             style={{
               fontFamily: 'var(--font-display-promise)',
-              fontSize: isPhone ? '0.85rem' : 'var(--fs-card-title-front)',
+              fontSize: isPhone ? '1rem' : 'var(--fs-card-title-front)',
               color: 'var(--color-navy-900)',
-              margin: '0 0 4px',
+              margin: '0 0 6px',
               fontWeight: 600,
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              transform: 'translateZ(90px)',
               textAlign: 'center',
             }}
           >
@@ -133,11 +131,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__hook"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.72rem' : 'var(--fs-hook)',
+              fontSize: isPhone ? '0.78rem' : 'var(--fs-hook)',
               color: 'var(--color-ink-soft)',
-              lineHeight: 1.3,
-              margin: '0 0 8px',
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              lineHeight: 1.35,
+              margin: '0 0 12px',
+              transform: 'translateZ(90px)',
               textAlign: 'center',
             }}
           >
@@ -148,11 +146,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__cta"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.72rem' : '0.8125rem',
+              fontSize: isPhone ? '0.75rem' : '0.8125rem',
               fontWeight: 600,
               color: 'var(--color-gold)',
               letterSpacing: '0.02em',
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              transform: 'translateZ(90px)',
               marginTop: 'auto',
             }}
           >
@@ -173,26 +171,24 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: isPhone ? '14px 12px' : '24px 20px',
+            padding: isPhone ? '16px 14px' : '24px 20px',
             background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
             transform: 'rotateY(180deg)',
             boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
             transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
             transformStyle: 'preserve-3d',
-            opacity: isPhone && !isRotated ? 0 : 1,
-            pointerEvents: isPhone && !isRotated ? 'none' : 'auto',
           }}
         >
           <span
             className="flip-card__label"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.72rem' : 'var(--fs-eyebrow)',
+              fontSize: isPhone ? '0.78rem' : 'var(--fs-eyebrow)',
               fontWeight: 700,
               letterSpacing: '0.1em',
               color: 'var(--color-gold)',
-              margin: '0 0 6px',
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              margin: '0 0 8px',
+              transform: 'translateZ(90px)',
               textAlign: 'center',
             }}
           >
@@ -202,13 +198,13 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             className="flip-card__desc"
             style={{
               fontFamily: 'var(--font-body-promise)',
-              fontSize: isPhone ? '0.78rem' : 'var(--fs-body)',
+              fontSize: isPhone ? '0.82rem' : 'var(--fs-body)',
               color: 'var(--color-white)',
               opacity: 0.92,
-              lineHeight: 1.35,
+              lineHeight: 1.4,
               margin: 0,
               textAlign: 'center',
-              transform: isPhone ? 'none' : 'translateZ(90px)',
+              transform: 'translateZ(90px)',
             }}
           >
             {description}

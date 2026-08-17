@@ -992,14 +992,15 @@ a:hover {
 
 @media (max-width: 639px) {
   .promise {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(24px, 4vh, 48px) 12px !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding: clamp(32px, 5vh, 56px) 16px !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(6px, 1.5vw, 14px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 }
 
