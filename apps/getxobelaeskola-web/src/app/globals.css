@@ -814,36 +814,36 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
-    --card-w: 260px;
-    --card-h: 260px;
-    --fs-card-title-front: 1.05rem;
-    --fs-hook: 0.75rem;
-    --fs-body: 0.78rem;
-    --fs-eyebrow: 0.7rem;
+    --card-w: 96px;
+    --card-h: 175px;
+    --fs-card-title-front: 0.72rem;
+    --fs-hook: 0.60rem;
+    --fs-body: 0.62rem;
+    --fs-eyebrow: 0.58rem;
   }
 }
 
 /* 📱 มือถือทั่วไป - มือถือมาตรฐาน (360px - 389px) */
 @media (min-width: 360px) and (max-width: 389px) {
   :root {
-    --card-w: 280px;
-    --card-h: 280px;
-    --fs-card-title-front: 1.1rem;
-    --fs-hook: 0.78rem;
-    --fs-body: 0.8rem;
-    --fs-eyebrow: 0.72rem;
+    --card-w: 108px;
+    --card-h: 185px;
+    --fs-card-title-front: 0.78rem;
+    --fs-hook: 0.64rem;
+    --fs-body: 0.66rem;
+    --fs-eyebrow: 0.60rem;
   }
 }
 
 /* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 767px) */
 @media (min-width: 390px) and (max-width: 767px) {
   :root {
-    --card-w: 300px;
-    --card-h: 300px;
-    --fs-card-title-front: 1.15rem;
-    --fs-hook: 0.8rem;
-    --fs-body: 0.82rem;
-    --fs-eyebrow: 0.75rem;
+    --card-w: 118px;
+    --card-h: 195px;
+    --fs-card-title-front: 0.82rem;
+    --fs-hook: 0.68rem;
+    --fs-body: 0.70rem;
+    --fs-eyebrow: 0.64rem;
   }
 }
 
@@ -1000,12 +1000,15 @@ a:hover {
   .promise {
     height: auto !important;
     min-height: auto !important;
-    padding: clamp(32px, 5vh, 56px) 12px clamp(40px, 6vh, 60px) !important;
+    padding: clamp(32px, 5vh, 56px) 8px clamp(40px, 6vh, 60px) !important;
     box-sizing: border-box;
   }
   .promise__grid {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(6px, 1.5vw, 12px) !important;
+    gap: clamp(4px, 1vw, 10px) !important;
+  }
+  .flip-card__face {
+    padding: 10px 6px !important;
   }
 }
 
