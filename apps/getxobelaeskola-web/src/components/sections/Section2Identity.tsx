@@ -90,11 +90,12 @@ export function Section2Identity() {
   return (
     <section
       ref={containerRef}
+      className="section-2-identity"
       style={{
         gridArea: 's2',
         position: 'relative',
         width: '100%',
-        height: '100vh',
+        minHeight: '100vh',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',

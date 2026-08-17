@@ -1286,7 +1286,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-@media (max-width: 599px) {
+@media (max-width: 599px) and (orientation: portrait) {
   .hero-video-blobs-container {
     bottom: calc(3.5vh + env(safe-area-inset-bottom, 0px)) !important;
   }
@@ -1315,5 +1315,99 @@ iframe[id*="equalweb"] {
   .hero-blobs-grid > *:nth-child(5) {
     flex: 0 0 calc(33.333% - 8px) !important;
     max-width: 76px !important;
+  }
+}
+
+/* ==========================================
+   🌊 SMALL LANDSCAPE & SHORT VIEWPORT RANGE SYSTEM
+   Triggered by aspect-ratio & max-height (NOT device names)
+   ========================================== */
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .scroll-engine-root {
+    height: auto !important;
+  }
+  .scroll-engine-inner {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .canvas-container {
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+
+  /* Prevent vertical snapping locks in landscape short viewports */
+  .promise,
+  .section,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  .section-cta,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    height: auto !important;
+    min-height: auto !important;
+    padding-top: clamp(24px, 5vh, 48px) !important;
+    padding-bottom: clamp(24px, 5vh, 48px) !important;
+  }
+
+  /* Compact flip cards for short landscape screens */
+  :root {
+    --card-w: clamp(200px, 26vw, 290px);
+    --card-h: clamp(160px, 45vh, 210px);
+    --gap: clamp(8px, 1.5vw, 16px);
+    --fs-card-title-front: 1rem;
+    --fs-hook: 0.72rem;
+    --fs-body: 0.75rem;
+    --fs-eyebrow: 0.68rem;
+  }
+
+  /* Anchor hero text container higher up in short landscape so blobs never overlap */
+  .hero-text-container {
+    margin-top: calc(-110px + 6vh) !important;
+    top: -15px !important;
+    transform: scale(0.72) !important;
+    transform-origin: left top !important;
+  }
+
+  /* Shift video container lower towards bottom edge */
+  .hero-video-blobs-container {
+    bottom: calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+    padding-bottom: 0px !important;
+  }
+
+  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) - restored full size */
+  .hero-blobs-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    transform: scale(0.75) !important; /* Restored full size (+15%) */
+    transform-origin: center bottom !important;
+  }
+
+  .hero-blobs-grid > * {
+    flex: 0 1 auto !important;
+    max-width: none !important;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 480px) {
+  .hero-blobs-grid {
+    transform: scale(0.60) !important; /* Restored full size (+15%) */
+  }
+
+  .hero-text-container {
+    margin-top: -125px !important;
+    transform: scale(0.65) !important;
+    transform-origin: left top !important;
   }
 }

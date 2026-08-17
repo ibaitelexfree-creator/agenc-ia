@@ -13,12 +13,12 @@ export function CTASection() {
 
   return (
     <div
+      className="section-cta"
       style={{
         gridArea: 'cta',
         position: 'relative',
         width: '100%',
-        height: '100vh',
-        minHeight: '100dvh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
