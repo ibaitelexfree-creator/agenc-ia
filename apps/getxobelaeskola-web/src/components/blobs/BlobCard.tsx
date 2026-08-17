@@ -351,7 +351,17 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
           {/* Video recortado */}
           <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100" style={{ overflow: 'hidden' }}>
+            <foreignObject
+              x="0"
+              y="0"
+              width="100"
+              height="100"
+              style={{
+                overflow: 'hidden',
+                WebkitClipPath: `url(#${clipId})`,
+                clipPath: `url(#${clipId})`,
+              }}
+            >
               <div 
                 style={{ 
                   width: '100%', 
@@ -361,7 +371,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                   WebkitClipPath: `url(#${clipId})`,
                   clipPath: `url(#${clipId})`,
                   WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                  maskImage: 'radial-gradient(white, black)',
                   transform: 'translateZ(0)',
+                  borderRadius: '50%',
                 }}
               >
                 {loadVideo && videoUrl && (
@@ -375,12 +387,17 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     onLoadedData={() => setVideoReady(true)}
                     onCanPlay={() => setVideoReady(true)}
                     style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
                       objectPosition: 'center',
                       opacity: videoReady ? 1 : 0,
                       transition: 'opacity 0.4s',
+                      WebkitClipPath: `url(#${clipId})`,
+                      clipPath: `url(#${clipId})`,
                       WebkitTransform: 'translateZ(0)',
                       transform: 'translateZ(0)',
                     }}
