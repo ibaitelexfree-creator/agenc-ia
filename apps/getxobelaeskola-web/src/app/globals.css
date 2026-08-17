@@ -1251,11 +1251,16 @@ iframe[id*="equalweb"] {
   pointer-events: auto !important;
 }
 
-/* Position adjustments for hero 5 video blobs */
+/* Position adjustments for hero 5 video blobs and hero text container */
 @media (min-width: 768px) and (max-width: 1366px) {
-  /* Shift down by 1.5 cm (~56.7px) specifically for iPad Mini, iPad Air, iPad Pro 11"/12.9"/13" */
+  /* Shift video blobs down by 1.5 cm (~56.7px) specifically for iPad Mini, iPad Air, iPad Pro 11"/12.9"/13" */
   .hero-video-blobs-container {
     transform: translate(-50%, -18.9px) !important;
+  }
+  
+  /* Shift hero text content (Title, Subtitle, CTA) UP by 2 cm (~75.6px) on iPad/tablets to prevent video overlap */
+  .hero-text-container {
+    transform: translateY(-75.6px) !important;
   }
 }
 

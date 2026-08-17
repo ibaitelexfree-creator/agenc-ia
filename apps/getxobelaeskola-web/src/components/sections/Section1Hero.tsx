@@ -470,6 +470,7 @@ export function Section1Hero() {
         variants={containerVariants}
         initial="hidden"
         animate={mounted ? 'visible' : 'hidden'}
+        className="hero-text-container"
         style={{
           position: 'relative',
           zIndex: 10,
