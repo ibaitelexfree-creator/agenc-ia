@@ -20,7 +20,7 @@
     height: auto !important; 
     min-height: auto !important;
     overflow: visible !important;
-    padding: 48px 16px !important; 
+    padding: clamp(48px, 8vh, 64px) 16px 40px !important; 
   }
 }
 

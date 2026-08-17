@@ -992,9 +992,10 @@ a:hover {
 
 @media (max-width: 639px) {
   .promise {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(32px, 5vh, 56px) 16px;
+    height: auto !important;
+    min-height: auto !important;
+    padding: clamp(36px, 6vh, 56px) 16px !important;
+    box-sizing: border-box;
   }
   .promise__grid {
     grid-template-columns: 1fr;
