@@ -120,9 +120,11 @@ export function Section3Adapts() {
         position: 'relative',
         width: '100%',
         height: '100vh',
+        minHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
+        boxSizing: 'border-box',
       }}
     >
       {/* 62% Inferior: Panel del configurador interactivo original con fondo de imagen reactivo */}

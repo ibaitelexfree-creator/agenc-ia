@@ -18,10 +18,12 @@ export function CTASection() {
         position: 'relative',
         width: '100%',
         height: '100vh',
+        minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
+        boxSizing: 'border-box',
       }}
     >
       <DramaticWind />

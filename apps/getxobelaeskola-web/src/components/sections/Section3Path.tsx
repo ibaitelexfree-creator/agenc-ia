@@ -109,11 +109,13 @@ export function Section3Path() {
         position: 'relative',
         width: '100%',
         height: '100vh',
+        minHeight: '100dvh',
         overflow: 'hidden',
         backgroundColor: 'var(--foam)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        boxSizing: 'border-box',
       }}
     >
       <RoutePath progress={pathProgress} />
