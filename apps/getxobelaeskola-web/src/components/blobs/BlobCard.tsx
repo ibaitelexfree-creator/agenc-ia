@@ -333,7 +333,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             />
           </motion.path>
 
-          {/* Imagen recortada */}
+          {/* Imagen / Video recortado dentro de SVG */}
           <g clipPath={`url(#${clipId})`}>
             <image
               href={imageSrc}
@@ -343,70 +343,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               height="100"
               preserveAspectRatio="xMidYMid slice"
               style={{
-                opacity: videoReady ? 0 : 1,
-                transition: 'opacity 0.4s',
                 clipPath: `url(#${clipId})`,
               }}
             />
-          </g>
-
-          {/* Video recortado */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject
-              x="0"
-              y="0"
-              width="100"
-              height="100"
-              style={{
-                overflow: 'hidden',
-                clipPath: `url(#${clipId})`,
-                WebkitClipPath: `url(#${clipId})`,
-              }}
-            >
-              <div 
-                xmlns="http://www.w3.org/1999/xhtml"
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  overflow: 'hidden', 
-                  position: 'relative',
-                  clipPath: `url(#${clipId})`,
-                  WebkitClipPath: `url(#${clipId})`,
-                  transform: 'translateZ(0)',
-                }}
-              >
-                {loadVideo && videoUrl && (
-                  <video
-                    ref={videoRef}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    onLoadedData={() => setVideoReady(true)}
-                    onCanPlay={() => setVideoReady(true)}
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: 'center',
-                      opacity: videoReady ? 1 : 0,
-                      transition: 'opacity 0.4s',
-                      clipPath: `url(#${clipId})`,
-                      WebkitClipPath: `url(#${clipId})`,
-                      WebkitTransform: 'translateZ(0)',
-                      transform: 'translateZ(0)',
-                    }}
-                  >
-                    <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
-                    <track kind="captions" src="data:text/vtt," label="No captions" default />
-                  </video>
-                )}
-              </div>
-            </foreignObject>
           </g>
 
           {/* Brillo al pasar el cursor */}
