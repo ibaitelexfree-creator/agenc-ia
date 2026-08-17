@@ -1003,81 +1003,6 @@ a:hover {
   }
 }
 
-/* 📱 Mobile Landscape: Show 3 columns side-by-side (1-2-3) with square aspect ratio & auto font sizing */
-@media (orientation: landscape) and (max-height: 768px) {
-  .promise {
-    height: auto !important;
-    min-height: 100vh !important;
-    padding: 16px 12px !important;
-  }
-  .promise__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: clamp(6px, 1.5vw, 12px) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    align-items: center !important;
-  }
-  .promise__item {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-  .flip-card-wrapper {
-    width: 100% !important;
-    max-width: clamp(100px, 42vh, 160px) !important;
-    height: 0 !important;
-    padding-bottom: 100% !important; /* Pure CSS cross-browser 1:1 square trick */
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 auto !important;
-  }
-  .flip-card__inner {
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-  }
-  .flip-card__face {
-    padding: clamp(6px, 1.2vh, 10px) clamp(6px, 1.2vw, 10px) !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-  }
-  .flip-card__icon {
-    width: clamp(24px, 5.5vh, 36px) !important;
-    height: clamp(24px, 5.5vh, 36px) !important;
-    margin-bottom: clamp(2px, 0.8vh, 4px) !important;
-    flex-shrink: 0 !important;
-  }
-  .flip-card__icon svg {
-    width: 55% !important;
-    height: 55% !important;
-  }
-  .flip-card__title {
-    font-size: clamp(0.68rem, 2vh, 0.82rem) !important;
-    margin: 0 0 2px 0 !important;
-    line-height: 1.15 !important;
-    word-break: break-word !important;
-  }
-  .flip-card__hook {
-    font-size: clamp(0.58rem, 1.6vh, 0.7rem) !important;
-    line-height: 1.15 !important;
-    margin: 0 0 2px 0 !important;
-    opacity: 0.9 !important;
-  }
-  .flip-card__cta {
-    font-size: clamp(0.58rem, 1.5vh, 0.68rem) !important;
-    margin-top: auto !important;
-  }
-  .flip-card__desc {
-    font-size: clamp(0.58rem, 1.6vh, 0.72rem) !important;
-    line-height: 1.15 !important;
-    margin: 0 !important;
-  }
-  .flip-card__label {
-    font-size: clamp(0.5rem, 1.3vh, 0.6rem) !important;
-    margin-bottom: 2px !important;
-  }
-}
-
 /* 📱 Mobile Portrait: Single column with responsive card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
@@ -1368,7 +1293,7 @@ iframe[id*="equalweb"] {
    Triggered by aspect-ratio & max-height (NOT device names)
    ========================================== */
 
-@media (orientation: landscape) and (max-height: 600px) {
+@media (orientation: landscape) and (max-height: 768px) {
   .scroll-engine-root {
     height: auto !important;
   }
