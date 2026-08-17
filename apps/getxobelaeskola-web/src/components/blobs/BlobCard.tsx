@@ -360,6 +360,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                 overflow: 'hidden',
                 WebkitClipPath: `url(#${clipId})`,
                 clipPath: `url(#${clipId})`,
+                pointerEvents: 'none',
               }}
             >
               <div 
@@ -370,10 +371,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                   position: 'relative',
                   WebkitClipPath: `url(#${clipId})`,
                   clipPath: `url(#${clipId})`,
-                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-                  maskImage: 'radial-gradient(white, black)',
+                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='${encodeURIComponent(d0)}' fill='black'/%3E%3C/svg%3E")`,
+                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='${encodeURIComponent(d0)}' fill='black'/%3E%3C/svg%3E")`,
+                  WebkitMaskSize: '100% 100%',
+                  maskSize: '100% 100%',
                   transform: 'translateZ(0)',
-                  borderRadius: '50%',
+                  borderRadius: '35%',
                 }}
               >
                 {loadVideo && videoUrl && (
