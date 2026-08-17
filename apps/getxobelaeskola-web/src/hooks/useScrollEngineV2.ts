@@ -37,9 +37,6 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     [0, 0, -100, -100, -200, -200, -300, -300, -400, -400, -500, -500, -600, -600, -700, -700]
   )
   const canvasY = useTransform(rawCanvasY, (v) => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 900) {
-      return '0px'
-    }
     return `${v}vh`
   })
 
