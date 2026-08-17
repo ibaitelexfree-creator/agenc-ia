@@ -814,36 +814,30 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
-    --card-w: 96px;
-    --card-h: 175px;
-    --fs-card-title-front: 0.72rem;
-    --fs-hook: 0.60rem;
-    --fs-body: 0.62rem;
-    --fs-eyebrow: 0.58rem;
+    --fs-card-title-front: 1.05rem;
+    --fs-hook: 0.75rem;
+    --fs-body: 0.78rem;
+    --fs-eyebrow: 0.7rem;
   }
 }
 
 /* 📱 มือถือทั่วไป - มือถือมาตรฐาน (360px - 389px) */
 @media (min-width: 360px) and (max-width: 389px) {
   :root {
-    --card-w: 108px;
-    --card-h: 185px;
-    --fs-card-title-front: 0.78rem;
-    --fs-hook: 0.64rem;
-    --fs-body: 0.66rem;
-    --fs-eyebrow: 0.60rem;
+    --fs-card-title-front: 1.1rem;
+    --fs-hook: 0.78rem;
+    --fs-body: 0.8rem;
+    --fs-eyebrow: 0.72rem;
   }
 }
 
 /* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 767px) */
 @media (min-width: 390px) and (max-width: 767px) {
   :root {
-    --card-w: 118px;
-    --card-h: 195px;
-    --fs-card-title-front: 0.82rem;
-    --fs-hook: 0.68rem;
-    --fs-body: 0.70rem;
-    --fs-eyebrow: 0.64rem;
+    --fs-card-title-front: 1.15rem;
+    --fs-hook: 0.8rem;
+    --fs-body: 0.82rem;
+    --fs-eyebrow: 0.75rem;
   }
 }
 
@@ -1000,15 +994,12 @@ a:hover {
   .promise {
     height: auto !important;
     min-height: auto !important;
-    padding: clamp(32px, 5vh, 56px) 8px clamp(40px, 6vh, 60px) !important;
+    padding: clamp(40px, 6vh, 64px) 16px clamp(48px, 8vh, 72px) !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(4px, 1vw, 10px) !important;
-  }
-  .flip-card__face {
-    padding: 10px 6px !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
@@ -1056,12 +1047,11 @@ a:hover {
   }
 }
 
-/* 📱 Mobile Portrait: Allow fluid sizing within 3 horizontal columns */
+/* 📱 Mobile Portrait: Single column with responsive card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
-    width: 100% !important;
-    max-width: var(--card-w) !important;
-    height: var(--card-h) !important;
+    width: clamp(240px, 85vw, 340px) !important;
+    height: clamp(190px, 28vh, 230px) !important;
     margin: 0 auto !important;
   }
 }
