@@ -344,7 +344,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               preserveAspectRatio="xMidYMid slice"
               style={{
                 opacity: videoReady ? 0 : 1,
-                transition: 'opacity 0.4s'
+                transition: 'opacity 0.4s',
+                clipPath: `url(#${clipId})`,
               }}
             />
           </g>
@@ -358,25 +359,20 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               height="100"
               style={{
                 overflow: 'hidden',
-                WebkitClipPath: `url(#${clipId})`,
                 clipPath: `url(#${clipId})`,
-                pointerEvents: 'none',
+                WebkitClipPath: `url(#${clipId})`,
               }}
             >
               <div 
+                xmlns="http://www.w3.org/1999/xhtml"
                 style={{ 
                   width: '100%', 
                   height: '100%', 
                   overflow: 'hidden', 
                   position: 'relative',
-                  WebkitClipPath: `url(#${clipId})`,
                   clipPath: `url(#${clipId})`,
-                  WebkitMaskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='${encodeURIComponent(d0)}' fill='black'/%3E%3C/svg%3E")`,
-                  maskImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='${encodeURIComponent(d0)}' fill='black'/%3E%3C/svg%3E")`,
-                  WebkitMaskSize: '100% 100%',
-                  maskSize: '100% 100%',
+                  WebkitClipPath: `url(#${clipId})`,
                   transform: 'translateZ(0)',
-                  borderRadius: '35%',
                 }}
               >
                 {loadVideo && videoUrl && (
@@ -399,8 +395,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                       objectPosition: 'center',
                       opacity: videoReady ? 1 : 0,
                       transition: 'opacity 0.4s',
-                      WebkitClipPath: `url(#${clipId})`,
                       clipPath: `url(#${clipId})`,
+                      WebkitClipPath: `url(#${clipId})`,
                       WebkitTransform: 'translateZ(0)',
                       transform: 'translateZ(0)',
                     }}
