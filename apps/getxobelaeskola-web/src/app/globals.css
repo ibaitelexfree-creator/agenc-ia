@@ -1254,6 +1254,6 @@ iframe[id*="equalweb"] {
 /* Shift hero 5 video blobs up by 2cm (~75.6px) for specified tablet & desktop screen widths (768px - 3200px) */
 @media (min-width: 768px) and (max-width: 3200px) {
   .hero-video-blobs-container {
-    margin-bottom: 75.6px !important;
+    transform: translate(-50%, -75.6px) !important;
   }
 }
