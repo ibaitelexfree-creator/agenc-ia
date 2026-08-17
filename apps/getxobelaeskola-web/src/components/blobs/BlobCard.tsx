@@ -66,7 +66,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
   useEffect(() => {
     const v = document.createElement('video')
-    const canPlayWebm = v.canPlayType('video/webm; codecs="vp8, vorbis"') !== ''
+    // Check general webm support without restrictive codec strings that fail on Android/mobile Chrome
+    const canPlayWebm = v.canPlayType('video/webm') !== ''
     if (canPlayWebm && videoSrc.endsWith('.webm')) {
       setVideoUrl(videoSrc)
     } else {
@@ -365,11 +366,13 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                 {loadVideo && videoUrl && (
                   <video
                     ref={videoRef}
-                    preload="none"
+                    autoPlay
                     loop
                     muted
                     playsInline
+                    preload="auto"
                     onLoadedData={() => setVideoReady(true)}
+                    onCanPlay={() => setVideoReady(true)}
                     style={{
                       width: '100%',
                       height: '100%',
