@@ -204,7 +204,7 @@ export function Section2Identity() {
           zIndex: 10,
           textAlign: 'center',
           maxWidth: '850px',
-          padding: '0 clamp(1rem, 4vw, 3rem)',
+          padding: 'clamp(2rem, 6vh, 4rem) clamp(1rem, 4vw, 3rem)',
           color: 'var(--gbe-white)',
           display: 'flex',
           flexDirection: 'column',

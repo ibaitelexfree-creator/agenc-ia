@@ -929,15 +929,16 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(32px, 6vh, 64px) 24px;
+  padding: clamp(40px, 8vh, 80px) 24px;
   position: relative;
   width: 100%;
-  height: auto !important;
-  min-height: auto !important;
-  overflow: visible !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .promise__inner {
@@ -976,20 +977,28 @@ a:hover {
 
 @media (max-width: 1023px) {
   .promise {
-    height: auto !important;
-    min-height: auto !important;
-    overflow: visible !important;
-    padding: 48px 16px !important;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(32px, 6vh, 60px) 16px;
   }
   .promise__grid { 
-    grid-template-columns: 1fr;
-    gap: 24px;
-    max-height: none !important;
-    overflow-y: visible !important;
-    padding: 8px 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 2vw, 24px);
   }
   .promise__title {
-    margin-bottom: 24px;
+    margin-bottom: clamp(12px, 2.5vh, 24px);
+  }
+}
+
+@media (max-width: 639px) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 48px 16px !important;
+  }
+  .promise__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
@@ -1251,22 +1260,10 @@ iframe[id*="equalweb"] {
   pointer-events: auto !important;
 }
 
-/* Position adjustments for hero 5 video blobs and hero text container */
-@media (min-width: 768px) and (max-width: 1366px) {
-  /* Shift video blobs down specifically for iPad Mini, iPad Air, iPad Pro */
-  .hero-video-blobs-container {
-    transform: translate(-50%, 35px) !important;
-  }
-  
-  /* Shift hero text content (Title, Subtitle, CTA) UP by 2 cm (~75.6px) on iPad/tablets to prevent video overlap */
-  .hero-text-container {
-    transform: translateY(-75.6px) !important;
-  }
-}
-
+/* Clean responsive adjustments for hero 5 video blobs and hero text container */
 @media (min-width: 1367px) and (max-width: 3200px) {
   .hero-video-blobs-container {
-    transform: translate(-50%, 0px) !important;
+    transform: translate(-50%, 0px);
   }
 }
 
