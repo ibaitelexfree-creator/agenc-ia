@@ -1250,3 +1250,10 @@ iframe[id*="equalweb"] {
 .interdeal-wrapper * {
   pointer-events: auto !important;
 }
+
+/* Shift hero 5 video blobs up by 2cm (~75.6px / ~2rem / 75.6px) for specified screen widths (768px - 1919px) */
+@media (min-width: 768px) and (max-width: 1919px) {
+  .hero-video-blobs-container {
+    margin-bottom: 75.6px !important;
+  }
+}

@@ -582,6 +582,7 @@ export function Section1Hero() {
 
       {/* Los 5 blobs/videos interactivos */}
       <div
+        className="hero-video-blobs-container"
         style={{
           position: 'absolute',
           bottom: 'calc(clamp(20px, 3vh, 50px) + env(safe-area-inset-bottom, 0px))',
