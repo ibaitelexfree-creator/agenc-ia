@@ -1267,6 +1267,17 @@ iframe[id*="equalweb"] {
   }
 }
 
+/* 🛡️ Safeguard: Prevent hero video blobs from overlapping text on height-constrained viewports */
+@media (max-height: 740px) and (min-width: 600px) {
+  .hero-blobs-grid {
+    transform: scale(clamp(0.45, 65vw / 1024, 0.70)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    margin-top: -15px !important;
+  }
+}
+
 /* 📱 Layout for 5 Hero Video Blobs */
 .hero-blobs-grid {
   display: flex;
@@ -1284,14 +1295,14 @@ iframe[id*="equalweb"] {
   /* Dynamic fluid scale for 1000px+ tablet/laptop screens */
   .hero-blobs-grid {
     gap: clamp(16px, 3vw, 48px);
-    transform: scale(clamp(0.68, 75vw / 1024, 0.88));
+    transform: scale(clamp(0.60, 70vw / 1024, 0.82));
     transform-origin: center bottom;
   }
 }
 
 @media (max-width: 599px) {
   .hero-video-blobs-container {
-    bottom: calc(5vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(3.5vh + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .hero-blobs-grid {
@@ -1299,9 +1310,9 @@ iframe[id*="equalweb"] {
     flex-wrap: wrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 10px 14px !important;
+    gap: 8px 12px !important;
     transform: none !important;
-    max-width: 300px !important;
+    max-width: 290px !important;
     margin: 0 auto !important;
   }
 
@@ -1310,13 +1321,13 @@ iframe[id*="equalweb"] {
   .hero-blobs-grid > *:nth-child(2),
   .hero-blobs-grid > *:nth-child(3) {
     flex: 0 0 calc(33.333% - 8px) !important;
-    max-width: 80px !important;
+    max-width: 76px !important;
   }
 
   /* Items 4, 5 in Row 2 */
   .hero-blobs-grid > *:nth-child(4),
   .hero-blobs-grid > *:nth-child(5) {
     flex: 0 0 calc(33.333% - 8px) !important;
-    max-width: 80px !important;
+    max-width: 76px !important;
   }
 }
