@@ -990,7 +990,7 @@ a:hover {
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 639px) and (orientation: portrait) {
   .promise {
     height: auto !important;
     min-height: auto !important;
@@ -1003,32 +1003,69 @@ a:hover {
   }
 }
 
-/* 📱 Mobile Landscape: Show 3 columns side-by-side */
-@media (max-width: 900px) and (orientation: landscape) {
+/* 📱 Mobile Landscape: Show 3 columns side-by-side (1-2-3) with square aspect ratio & auto font sizing */
+@media (orientation: landscape) and (max-height: 768px) {
   .promise {
     height: auto !important;
     min-height: 100vh !important;
-    padding: 24px 16px !important;
+    padding: 16px 12px !important;
   }
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 12px !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(6px, 1.5vw, 12px) !important;
+    max-width: 100% !important;
+    align-items: center !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .flip-card-wrapper {
+    width: 100% !important;
+    max-width: clamp(110px, 35vh, 180px) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(6px, 1.2vh, 10px) clamp(6px, 1.2vw, 10px) !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  .flip-card__icon {
+    width: clamp(24px, 5.5vh, 36px) !important;
+    height: clamp(24px, 5.5vh, 36px) !important;
+    margin-bottom: clamp(2px, 0.8vh, 4px) !important;
+    flex-shrink: 0 !important;
+  }
+  .flip-card__icon svg {
+    width: 55% !important;
+    height: 55% !important;
   }
   .flip-card__title {
-    font-size: 0.85rem !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(0.68rem, 2vh, 0.82rem) !important;
+    margin: 0 0 2px 0 !important;
+    line-height: 1.15 !important;
+    word-break: break-word !important;
   }
   .flip-card__hook {
-    font-size: 0.7rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 4px !important;
+    font-size: clamp(0.58rem, 1.6vh, 0.7rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 0 2px 0 !important;
+    opacity: 0.9 !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.58rem, 1.5vh, 0.68rem) !important;
+    margin-top: auto !important;
   }
   .flip-card__desc {
-    font-size: 0.7rem !important;
-    line-height: 1.2 !important;
+    font-size: clamp(0.58rem, 1.6vh, 0.72rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
   }
   .flip-card__label {
-    font-size: 0.65rem !important;
+    font-size: clamp(0.5rem, 1.3vh, 0.6rem) !important;
     margin-bottom: 2px !important;
   }
 }
@@ -1355,42 +1392,103 @@ iframe[id*="equalweb"] {
     padding-bottom: clamp(24px, 5vh, 48px) !important;
   }
 
-  /* Compact flip cards for short landscape screens */
-  :root {
-    --card-w: clamp(200px, 26vw, 290px);
-    --card-h: clamp(160px, 45vh, 210px);
-    --gap: clamp(8px, 1.5vw, 16px);
-    --fs-card-title-front: 1rem;
-    --fs-hook: 0.72rem;
-    --fs-body: 0.75rem;
-    --fs-eyebrow: 0.68rem;
+  /* Compact flip cards & 3-column row for short landscape screens */
+  .promise {
+    padding: 12px 8px !important;
+  }
+  .promise__eyebrow {
+    font-size: 0.65rem !important;
+    margin-bottom: 2px !important;
+  }
+  .promise__title {
+    font-size: clamp(1rem, 4vh, 1.3rem) !important;
+    margin-bottom: clamp(6px, 1.5vh, 12px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(4px, 1.2vw, 10px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-items: center !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .flip-card-wrapper {
+    width: 100% !important;
+    max-width: clamp(100px, 42vh, 145px) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(4px, 1.2vh, 8px) clamp(4px, 1.2vw, 8px) !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  .flip-card__icon {
+    width: clamp(22px, 5vh, 32px) !important;
+    height: clamp(22px, 5vh, 32px) !important;
+    margin-bottom: clamp(2px, 0.8vh, 4px) !important;
+    flex-shrink: 0 !important;
+  }
+  .flip-card__icon svg {
+    width: 55% !important;
+    height: 55% !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.62rem, 2vh, 0.75rem) !important;
+    margin: 0 0 2px 0 !important;
+    line-height: 1.15 !important;
+    word-break: break-word !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.52rem, 1.6vh, 0.64rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 0 2px 0 !important;
+    opacity: 0.9 !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.52rem, 1.5vh, 0.62rem) !important;
+    margin-top: auto !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.52rem, 1.6vh, 0.65rem) !important;
+    line-height: 1.15 !important;
+    margin: 0 !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.48rem, 1.3vh, 0.58rem) !important;
+    margin-bottom: 2px !important;
   }
 
-  /* Anchor hero text container higher up in short landscape so blobs never overlap */
+  /* Anchor hero text container in short landscape so text is positioned cleanly below top bar and video blobs never obscure text */
   .hero-text-container {
-    margin-top: calc(-110px + 6vh) !important;
-    top: -15px !important;
-    transform: scale(0.72) !important;
+    margin-top: clamp(-40px, -4vh, 0px) !important;
+    top: 0px !important;
+    transform: scale(0.68) !important;
     transform-origin: left top !important;
   }
 
   /* Shift video container lower towards bottom edge */
   .hero-video-blobs-container {
-    bottom: calc(4px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(2px + env(safe-area-inset-bottom, 0px)) !important;
     padding-bottom: 0px !important;
   }
 
-  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) - restored full size */
+  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) with scale adjustment to avoid text overlap */
   .hero-blobs-grid {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
     max-width: 100% !important;
     margin: 0 auto !important;
-    transform: scale(0.75) !important; /* Restored full size (+15%) */
+    transform: scale(0.60) !important;
     transform-origin: center bottom !important;
   }
 
@@ -1402,12 +1500,12 @@ iframe[id*="equalweb"] {
 
 @media (orientation: landscape) and (max-height: 480px) {
   .hero-blobs-grid {
-    transform: scale(0.60) !important; /* Restored full size (+15%) */
+    transform: scale(0.50) !important;
   }
 
   .hero-text-container {
-    margin-top: -125px !important;
-    transform: scale(0.65) !important;
+    margin-top: -15px !important;
+    transform: scale(0.60) !important;
     transform-origin: left top !important;
   }
 }

@@ -66,25 +66,8 @@ const nextConfig = {
             { source: '/:locale/admin', destination: '/:locale/staff', permanent: false }
         ];
     },
-    webpack: (config, { isServer }) => {
+    webpack: (config) => {
         config.infrastructureLogging = { level: 'error' };
-        if (!isServer && config.optimization.splitChunks && typeof config.optimization.splitChunks === 'object') {
-            config.optimization.splitChunks.cacheGroups = {
-                ...config.optimization.splitChunks.cacheGroups,
-                framerMotion: {
-                    test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-                    name: 'vendor-chunks/framer-motion',
-                    chunks: 'all',
-                    priority: 40,
-                },
-                three: {
-                    test: /[\\/]node_modules[\\/]three[\\/]/,
-                    name: 'vendor-chunks/three',
-                    chunks: 'all',
-                    priority: 40,
-                },
-            };
-        }
         return config;
     },
 };
