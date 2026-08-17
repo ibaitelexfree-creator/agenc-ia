@@ -1253,9 +1253,9 @@ iframe[id*="equalweb"] {
 
 /* Position adjustments for hero 5 video blobs and hero text container */
 @media (min-width: 768px) and (max-width: 1366px) {
-  /* Shift video blobs down by 1.5 cm (~56.7px) specifically for iPad Mini, iPad Air, iPad Pro 11"/12.9"/13" */
+  /* Shift video blobs down specifically for iPad Mini, iPad Air, iPad Pro */
   .hero-video-blobs-container {
-    transform: translate(-50%, -18.9px) !important;
+    transform: translate(-50%, 35px) !important;
   }
   
   /* Shift hero text content (Title, Subtitle, CTA) UP by 2 cm (~75.6px) on iPad/tablets to prevent video overlap */
@@ -1266,7 +1266,7 @@ iframe[id*="equalweb"] {
 
 @media (min-width: 1367px) and (max-width: 3200px) {
   .hero-video-blobs-container {
-    transform: translate(-50%, -75.6px) !important;
+    transform: translate(-50%, 0px) !important;
   }
 }
 
@@ -1277,17 +1277,17 @@ iframe[id*="equalweb"] {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(2px, 1.2vw, 36px);
+  gap: clamp(2px, 1.44vw, 43px);
   width: 100%;
-  transform: scale(clamp(0.40, 100vw / 1280, 1));
+  transform: scale(clamp(0.32, 80vw / 1280, 0.80));
   transform-origin: center bottom;
 }
 
 @media (min-width: 768px) and (max-width: 1366px) {
-  /* Reduce scale of video blobs on iPad/tablets to prevent text overlap and set gap between blobs to ~2cm (75.6px) */
+  /* Reduce scale of video blobs on iPad/tablets to prevent text overlap and set gap between blobs */
   .hero-blobs-grid {
-    gap: 75.6px !important;
-    transform: scale(0.68) !important;
+    gap: 72px !important;
+    transform: scale(0.544) !important;
     transform-origin: center bottom !important;
   }
 }
@@ -1298,9 +1298,9 @@ iframe[id*="equalweb"] {
     flex-wrap: wrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 8px 12px !important;
+    gap: 10px 14px !important;
     transform: none !important;
-    max-width: 340px !important;
+    max-width: 272px !important;
     margin: 0 auto !important;
   }
 
@@ -1309,13 +1309,13 @@ iframe[id*="equalweb"] {
   .hero-blobs-grid > *:nth-child(2),
   .hero-blobs-grid > *:nth-child(3) {
     flex: 0 0 calc(33.333% - 8px) !important;
-    max-width: 90px !important;
+    max-width: 72px !important;
   }
 
   /* Items 4, 5 in Row 2 */
   .hero-blobs-grid > *:nth-child(4),
   .hero-blobs-grid > *:nth-child(5) {
     flex: 0 0 calc(33.333% - 8px) !important;
-    max-width: 90px !important;
+    max-width: 72px !important;
   }
 }

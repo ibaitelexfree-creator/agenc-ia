@@ -586,7 +586,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(clamp(95px, 12vh, 140px) + env(safe-area-inset-bottom, 0px))',
+          bottom: 'calc(clamp(40px, 5vh, 59px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
