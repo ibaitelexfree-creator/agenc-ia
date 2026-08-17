@@ -34,9 +34,10 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
       aria-label={`${title}. ${isRotated ? description : hook}`}
       style={{
         position: 'relative',
-        width: isPhone ? 'clamp(240px, 85vw, 340px)' : 'var(--card-w)',
-        height: isPhone ? 'clamp(190px, 28vh, 230px)' : 'var(--card-h)',
-        margin: isPhone ? '0 auto' : '0',
+        width: '100%',
+        maxWidth: 'var(--card-w)',
+        height: isPhone ? 'clamp(180px, 32vh, 230px)' : 'var(--card-h)',
+        margin: '0 auto',
         perspective: '1600px',
         cursor: 'pointer',
         WebkitTapHighlightColor: 'transparent',
