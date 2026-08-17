@@ -360,7 +360,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                   position: 'relative',
                   WebkitClipPath: `url(#${clipId})`,
                   clipPath: `url(#${clipId})`,
-                  borderRadius: '50%'
+                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                  transform: 'translateZ(0)',
                 }}
               >
                 {loadVideo && videoUrl && (
