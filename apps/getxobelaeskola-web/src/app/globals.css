@@ -994,7 +994,7 @@ a:hover {
   .promise {
     height: auto !important;
     min-height: auto !important;
-    padding: clamp(40px, 6vh, 64px) 16px clamp(48px, 8vh, 72px) !important;
+    padding: clamp(15px, 2.5vh, 28px) 16px clamp(48px, 8vh, 72px) !important;
     box-sizing: border-box;
   }
   .promise__grid {
