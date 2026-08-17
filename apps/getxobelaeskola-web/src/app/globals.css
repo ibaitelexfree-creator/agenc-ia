@@ -1000,12 +1000,12 @@ a:hover {
   .promise {
     height: auto !important;
     min-height: auto !important;
-    padding: clamp(40px, 6vh, 64px) 16px clamp(48px, 8vh, 72px) !important;
+    padding: clamp(32px, 5vh, 56px) 12px clamp(40px, 6vh, 60px) !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: clamp(6px, 1.5vw, 12px) !important;
   }
 }
 
