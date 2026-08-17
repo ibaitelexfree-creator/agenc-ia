@@ -60,7 +60,7 @@
   width: 100%;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 639px) and (orientation: portrait) {
   .grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
