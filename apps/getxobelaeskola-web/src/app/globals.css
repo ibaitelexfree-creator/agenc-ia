@@ -814,6 +814,8 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
+    --card-w: 280px;
+    --card-h: 210px;
     --fs-card-title-front: 1.05rem;
     --fs-hook: 0.75rem;
     --fs-body: 0.78rem;
@@ -824,6 +826,8 @@ a:hover {
 /* 📱 มือถือทั่วไป - มือถือมาตรฐาน (360px - 389px) */
 @media (min-width: 360px) and (max-width: 389px) {
   :root {
+    --card-w: 300px;
+    --card-h: 220px;
     --fs-card-title-front: 1.1rem;
     --fs-hook: 0.78rem;
     --fs-body: 0.8rem;
@@ -834,6 +838,8 @@ a:hover {
 /* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 767px) */
 @media (min-width: 390px) and (max-width: 767px) {
   :root {
+    --card-w: 340px;
+    --card-h: 230px;
     --fs-card-title-front: 1.15rem;
     --fs-hook: 0.8rem;
     --fs-body: 0.82rem;
