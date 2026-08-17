@@ -60,7 +60,7 @@
   width: 100%;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 639px) {
   .grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
@@ -103,7 +103,7 @@
   color: var(--gbe-navy-900);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 639px) {
   .card {
     max-width: 310px;
     margin: 0 auto;

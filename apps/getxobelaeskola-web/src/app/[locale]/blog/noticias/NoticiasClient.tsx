@@ -90,18 +90,18 @@ export default function NoticiasClient({
 
     if (selectedPost) {
         return (
-            <main className="min-h-screen bg-[#F7FAFC] pt-28 pb-20 selection:bg-accent selection:text-[#1A1A1A]">
+            <main className="min-h-screen bg-[#F7FAFC] pt-20 pb-12 selection:bg-accent selection:text-[#1A1A1A]">
                 <div className="container mx-auto px-6 max-w-4xl">
                     <button
                         onClick={() => setSelectedPost(null)}
-                        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-8"
+                        className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-6"
                     >
-                        <ChevronLeft className="w-4 h-4" />
+                        <ChevronLeft className="w-3.5 h-3.5" />
                         <span>{isEu ? 'Itzuli' : isEn ? 'Back' : 'Volver al listado'}</span>
                     </button>
 
-                    <article className="glass-card p-6 md:p-12 rounded-3xl border-black/10 bg-white">
-                        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-8">
+                    <article className="glass-card p-5 md:p-8 rounded-3xl border-black/10 bg-white">
+                        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-6">
                             <Image
                                 src={selectedPost.image}
                                 alt={selectedPost.title}
@@ -110,22 +110,22 @@ export default function NoticiasClient({
                             />
                         </div>
 
-                        <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-[#1A1A1A]/40 font-bold mb-4">
+                        <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold mb-3">
                             <span className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4 text-accent" />
+                                <Calendar className="w-3.5 h-3.5 text-accent" />
                                 {new Date(selectedPost.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
                             </span>
                             <span className="flex items-center gap-1">
-                                <User className="w-4 h-4 text-accent" />
+                                <User className="w-3.5 h-3.5 text-accent" />
                                 {selectedPost.author}
                             </span>
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl font-display text-[#1A1A1A] leading-tight mb-8">
+                        <h1 className="text-2xl md:text-4xl font-display text-[#1A1A1A] leading-tight mb-6">
                             {selectedPost.title}
                         </h1>
 
-                        <div className="prose prose-lg max-w-none text-[#1A1A1A]/80 leading-relaxed font-light">
+                        <div className="prose prose-sm md:prose-base max-w-none text-[#1A1A1A]/80 leading-relaxed font-light">
                             <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
                         </div>
                     </article>
@@ -135,79 +135,79 @@ export default function NoticiasClient({
     }
 
     return (
-        <main className="min-h-screen bg-[#F7FAFC] pt-28 pb-20 selection:bg-accent selection:text-[#1A1A1A]">
-            <div className="container mx-auto px-6 max-w-6xl">
+        <main className="min-h-screen bg-[#F7FAFC] pt-16 pb-10 selection:bg-accent selection:text-[#1A1A1A]">
+            <div className="container mx-auto px-6 max-w-4xl">
                 {/* Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                    <span className="text-xs uppercase tracking-[0.3em] font-black text-accent block">
+                <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-accent block">
                         {isEu ? 'Getxo Bela Eskolako Aldizkaria' : isEn ? 'Journal' : 'Bitácora & Noticias'}
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-display text-[#1A1A1A] leading-tight">
+                    <h1 className="text-2xl md:text-3xl font-display text-[#1A1A1A] leading-tight">
                         {pageTitle}
                     </h1>
-                    <p className="text-[#1A1A1A]/60 text-sm leading-relaxed">
+                    <p className="text-[#1A1A1A]/60 text-[11px] leading-relaxed max-w-lg mx-auto">
                         {pageSubtitle}
                     </p>
                 </div>
 
                 {/* Search Bar */}
-                <div className="max-w-md mx-auto mb-12">
-                    <div className="relative flex items-center bg-white border border-black/10 rounded-full px-4 py-2.5 shadow-sm focus-within:border-accent transition-colors">
-                        <Search className="w-4 h-4 text-[#1A1A1A]/40 mr-3" />
+                <div className="max-w-sm mx-auto mb-6">
+                    <div className="relative flex items-center bg-white border border-black/10 rounded-full px-3 py-1 shadow-sm focus-within:border-accent transition-colors">
+                        <Search className="w-3 h-3 text-[#1A1A1A]/40 mr-2" />
                         <input
                             type="text"
                             placeholder={isEu ? 'Bilatu artikuluak...' : isEn ? 'Search posts...' : 'Buscar noticias o artículos...'}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="bg-transparent border-none outline-none text-sm text-[#1A1A1A] w-full focus:ring-0 placeholder:text-[#1A1A1A]/30"
+                            className="bg-transparent border-none outline-none text-[11px] text-[#1A1A1A] w-full focus:ring-0 placeholder:text-[#1A1A1A]/30"
                         />
                     </div>
                 </div>
 
                 {/* Posts List Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {filteredPosts.map((post) => (
                         <article
                             key={post.id}
                             onClick={() => setSelectedPost(post)}
-                            className="flex flex-col bg-white border border-black/10 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group"
+                            className="flex flex-col bg-white border border-black/10 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
                         >
-                            <div className="relative aspect-square overflow-hidden bg-nautical-deep">
+                            <div className="relative aspect-[16/9] overflow-hidden bg-nautical-deep">
                                 <Image
                                     src={post.image}
                                     alt={post.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 text-[8px] uppercase tracking-wider text-accent font-black">
-                                    <BookOpen className="w-2.5 h-2.5" />
+                                <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full flex items-center gap-1 text-[7px] uppercase tracking-wider text-accent font-black">
+                                    <BookOpen className="w-2 h-2" />
                                     <span>{isEu ? 'Koadernoa' : isEn ? 'Logbook' : 'Bitácora'}</span>
                                 </div>
                             </div>
 
-                            <div className="p-6 flex flex-col justify-between flex-grow gap-6">
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-4 text-[9px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
+                            <div className="p-3 flex flex-col justify-between flex-grow gap-3">
+                                <div className="space-y-1.5">
+                                    <div className="flex items-center gap-2 text-[7.5px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
                                         <span className="flex items-center gap-1">
-                                            <Calendar className="w-3 h-3 text-accent" />
+                                            <Calendar className="w-2.5 h-2.5 text-accent" />
                                             {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short' })}
                                         </span>
                                         <span className="flex items-center gap-1">
-                                            <User className="w-3 h-3 text-accent" />
+                                            <User className="w-2.5 h-2.5 text-accent" />
                                             {post.author}
                                         </span>
                                     </div>
 
-                                    <h3 className="text-lg font-display text-[#1A1A1A] leading-snug group-hover:text-accent transition-colors">
+                                    <h3 className="text-sm font-display text-[#1A1A1A] leading-snug group-hover:text-accent transition-colors line-clamp-2">
                                         {post.title}
                                     </h3>
 
-                                    <p className="text-[#1A1A1A]/60 text-xs leading-relaxed line-clamp-3">
+                                    <p className="text-[#1A1A1A]/60 text-[10px] leading-relaxed line-clamp-2">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
-                                <div className="flex items-center gap-1 text-[9px] uppercase tracking-widest text-accent font-black pt-4 border-t border-black/5">
+                                <div className="flex items-center gap-1 text-[7.5px] uppercase tracking-widest text-accent font-black pt-2.5 border-t border-black/5">
                                     <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : 'Leer publicación'}</span>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@ export default function NoticiasClient({
                 </div>
 
                 {filteredPosts.length === 0 && (
-                    <p className="text-center text-[#1A1A1A]/40 py-12 text-sm">
+                    <p className="text-center text-[#1A1A1A]/40 py-8 text-xs">
                         {isEu ? 'Ez da artikulurik aurkitu.' : isEn ? 'No posts found.' : 'No se encontraron artículos.'}
                     </p>
                 )}
