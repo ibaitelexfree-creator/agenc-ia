@@ -1290,6 +1290,10 @@ iframe[id*="equalweb"] {
 }
 
 @media (max-width: 599px) {
+  .hero-video-blobs-container {
+    bottom: calc(5vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
   .hero-blobs-grid {
     display: flex !important;
     flex-wrap: wrap !important;
