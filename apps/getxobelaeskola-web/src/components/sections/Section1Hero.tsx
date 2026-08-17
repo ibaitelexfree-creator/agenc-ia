@@ -268,11 +268,13 @@ export function Section1Hero() {
         minWidth: '320px',
         margin: '0 auto',
         height: '100vh',
+        minHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: '0px',
+        boxSizing: 'border-box',
       }}
     >
       {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
