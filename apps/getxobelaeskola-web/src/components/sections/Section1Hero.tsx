@@ -601,15 +601,9 @@ export function Section1Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="hero-blobs-grid"
               style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'nowrap',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 'clamp(2px, 1.2vw, 36px)',
                 width: '100%',
-                transform: 'scale(clamp(0.40, 100vw / 1280, 1))',
                 transformOrigin: 'center bottom',
               }}
             >

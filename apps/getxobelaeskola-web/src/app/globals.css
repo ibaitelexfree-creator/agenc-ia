@@ -1257,3 +1257,44 @@ iframe[id*="equalweb"] {
     transform: translate(-50%, -75.6px) !important;
   }
 }
+
+/* 📱 Layout 3+2 for 5 Hero Video Blobs only on small screens (200px - 599px) on both iOS & Android */
+.hero-blobs-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(2px, 1.2vw, 36px);
+  width: 100%;
+  transform: scale(clamp(0.40, 100vw / 1280, 1));
+  transform-origin: center bottom;
+}
+
+@media (max-width: 599px) {
+  .hero-blobs-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px 12px !important;
+    transform: none !important;
+    max-width: 340px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Items 1, 2, 3 in Row 1 */
+  .hero-blobs-grid > *:nth-child(1),
+  .hero-blobs-grid > *:nth-child(2),
+  .hero-blobs-grid > *:nth-child(3) {
+    flex: 0 0 calc(33.333% - 8px) !important;
+    max-width: 90px !important;
+  }
+
+  /* Items 4, 5 in Row 2 */
+  .hero-blobs-grid > *:nth-child(4),
+  .hero-blobs-grid > *:nth-child(5) {
+    flex: 0 0 calc(33.333% - 8px) !important;
+    max-width: 90px !important;
+  }
+}
