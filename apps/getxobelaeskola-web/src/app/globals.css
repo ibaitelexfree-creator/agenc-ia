@@ -1047,12 +1047,11 @@ a:hover {
   }
 }
 
-/* 📱 Mobile Portrait: Single column with responsive square card */
+/* 📱 Mobile Portrait: Single column with responsive card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
-    width: min(72vw, 280px) !important;
-    height: min(72vw, 280px) !important;
-    aspect-ratio: 1 / 1 !important;
+    width: clamp(240px, 85vw, 340px) !important;
+    height: clamp(190px, 28vh, 230px) !important;
     margin: 0 auto !important;
   }
 }
