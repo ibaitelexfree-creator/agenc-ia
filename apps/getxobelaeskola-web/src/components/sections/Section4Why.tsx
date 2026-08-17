@@ -34,10 +34,10 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
       aria-label={`${title}. ${isRotated ? description : hook}`}
       style={{
         position: 'relative',
-        width: '100%',
-        maxWidth: 'var(--card-w)',
-        height: isPhone ? 'clamp(180px, 32vh, 230px)' : 'var(--card-h)',
-        margin: '0 auto',
+        width: isPhone ? 'min(80vw, 320px)' : 'var(--card-w)',
+        height: isPhone ? 'min(80vw, 320px)' : 'var(--card-h)',
+        aspectRatio: '1 / 1',
+        margin: isPhone ? '0 auto' : '0',
         perspective: '1600px',
         cursor: 'pointer',
         WebkitTapHighlightColor: 'transparent',
@@ -313,7 +313,7 @@ export function Section4Why() {
         enterDelay={0.5}
       />
 
-      <div className="promise__inner">
+      <div className="promise__inner" style={{ transform: isPhone ? 'translateY(7%)' : 'none', transition: 'transform 0.3s ease' }}>
         {t('eyebrow') ? (
           <>
             <p className="promise__eyebrow">{t('title')}</p>

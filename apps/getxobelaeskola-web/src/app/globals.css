@@ -982,8 +982,8 @@ a:hover {
     padding: clamp(32px, 6vh, 60px) 16px;
   }
   .promise__grid { 
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(8px, 1.8vw, 20px) !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 2vw, 24px);
   }
   .promise__title {
     margin-bottom: clamp(12px, 2.5vh, 24px);
@@ -992,14 +992,14 @@ a:hover {
 
 @media (max-width: 639px) {
   .promise {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(24px, 4vh, 48px) 12px !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: clamp(36px, 6vh, 56px) 16px !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(6px, 1.5vw, 14px) !important;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -1047,12 +1047,12 @@ a:hover {
   }
 }
 
-/* 📱 Mobile Portrait: Maintain 3 columns with dynamic fluid card size */
+/* 📱 Mobile Portrait: Single column with responsive square card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
-    width: 100% !important;
-    max-width: 240px !important;
-    height: clamp(160px, 30vh, 220px) !important;
+    width: min(72vw, 280px) !important;
+    height: min(72vw, 280px) !important;
+    aspect-ratio: 1 / 1 !important;
     margin: 0 auto !important;
   }
 }
