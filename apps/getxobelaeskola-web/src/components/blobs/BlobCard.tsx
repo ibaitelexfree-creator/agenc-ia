@@ -272,6 +272,31 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
+        {/* HTML Video / Thumbnail Container with Cross-Browser CSS clip-path (Supports iPad WebKit) */}
+        <div 
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{
+            clipPath: `path('${d0}')`,
+            WebkitClipPath: `path('${d0}')`,
+          }}
+        >
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          >
+            <source src={videoSrc} type="video/webm" />
+            <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+          </video>
+        </div>
+
         {/* SVG Defs para clipPath */}
         <svg
           viewBox="0 0 100 100"
@@ -279,20 +304,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           style={{ overflow: 'visible' }}
         >
           <defs>
-            {/* Máscara al 90% para la imagen y el video */}
-            <clipPath id={clipId}>
-              <path
-                d={d0}
-                transform="translate(50 50) scale(0.90) translate(-50 -50)"
-              >
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
             {/* Máscara al 100% para el brillo del hover */}
             <clipPath id={`${clipId}-full`}>
               <path d={d0}>
@@ -332,29 +343,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               values={`${d0}; ${d1}; ${d2}; ${d0}`}
             />
           </motion.path>
-
-          {/* Imagen / Video recortado dentro de SVG */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
-              <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                >
-                  <source src={videoSrc} type="video/webm" />
-                  <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-                </video>
-              </div>
-            </foreignObject>
-          </g>
 
           {/* Brillo al pasar el cursor */}
           <motion.rect

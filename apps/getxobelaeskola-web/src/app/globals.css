@@ -1313,25 +1313,30 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📱 Layout for 5 Hero Video Blobs */
+/* 📱 Layout for 5 Hero Video Blobs - Always 1 single horizontal row on iPad/Tablets & Desktop */
 .hero-blobs-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(12px, 2.2vw, 48px);
+  gap: clamp(12px, 2.2vw, 40px);
   width: 100%;
-  transform: scale(clamp(0.40, 90vw / 1280, 1.0));
+  transform: scale(clamp(0.55, 85vw / 1024, 1.0));
   transform-origin: center bottom;
 }
 
 @media (min-width: 768px) and (max-width: 1366px) {
-  /* Dynamic fluid scale for 1000px+ tablet/laptop screens */
+  /* Dynamic fluid scale for iPad / iPad Pro / Tablets */
   .hero-blobs-grid {
-    gap: clamp(16px, 3vw, 48px);
-    transform: scale(clamp(0.60, 70vw / 1024, 0.82));
-    transform-origin: center bottom;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: clamp(12px, 2vw, 28px) !important;
+    transform: scale(clamp(0.65, 82vw / 1024, 0.88)) !important;
+    transform-origin: center bottom !important;
   }
 }
 
