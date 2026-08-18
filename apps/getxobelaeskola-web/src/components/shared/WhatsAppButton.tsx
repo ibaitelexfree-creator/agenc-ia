@@ -15,25 +15,26 @@ export default function WhatsAppButton() {
             aria-label="Contactar por WhatsApp"
             style={{
                 position: 'fixed',
-                bottom: 'calc(40px + env(safe-area-inset-bottom, 0px))',
-                right: 'calc(24px + env(safe-area-inset-right, 0px))',
+                bottom: 'calc(24px + env(safe-area-inset-bottom, 0px))',
+                right: 'calc(20px + env(safe-area-inset-right, 0px))',
                 zIndex: 9999,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '44px',
-                height: '44px',
+                width: '46px',
+                height: '46px',
                 borderRadius: '50%',
                 backgroundColor: '#25D366', // Green WhatsApp brand color
-                boxShadow: '0 4px 16px rgba(37, 211, 102, 0.4)',
+                boxShadow: '0 4px 14px rgba(37, 211, 102, 0.4)',
                 cursor: 'pointer',
                 border: 'none',
                 color: 'white',
-                transition: 'all 0.3s ease',
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)',
+                overflow: 'hidden',
             }}
-            className="hover:scale-110 active:scale-95 group whatsapp-button-floating"
+            className="whatsapp-button-floating hover:scale-105 active:scale-95 transition-transform duration-200"
         >
-            <div className="absolute inset-0 rounded-full border border-white/30 animate-ping opacity-25 group-hover:opacity-40" />
             <svg
                 width="24"
                 height="24"
