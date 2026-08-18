@@ -308,7 +308,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
           {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath */}
           <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
+            <foreignObject x="-10" y="-10" width="120" height="120">
               <div 
                 style={{ 
                   width: '100%', 
@@ -330,6 +330,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    transform: 'scale(1.15)',
+                    transformOrigin: 'center center',
                   }}
                 >
                   <source src={videoSrc} type="video/webm" />
