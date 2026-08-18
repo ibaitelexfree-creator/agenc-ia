@@ -75,17 +75,10 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [videoSrc])
 
-  // Lazy-load videos based on interaction (always load on mobile/tablet when in view, or hover on desktop)
+  // Load and auto-play videos on all screen sizes (desktop, tablet, mobile) automatically
   useEffect(() => {
-    const isMobile = window.innerWidth < 1280
-    if (isMobile) {
-      setLoadVideo(true)
-    } else {
-      if (isHovered) {
-        setLoadVideo(true)
-      }
-    }
-  }, [isHovered, inView])
+    setLoadVideo(true)
+  }, [])
 
   // Quick staggered reveal timeline (no pageLoaded dependency to fix LCP)
   useEffect(() => {
@@ -314,6 +307,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                   transformOrigin: 'center center',
                 }}
               >
+                {videoUrl && <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
                 <source src={videoSrc} type="video/webm" />
                 <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
               </video>
