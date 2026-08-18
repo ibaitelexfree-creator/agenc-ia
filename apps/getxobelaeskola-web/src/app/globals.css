@@ -1463,6 +1463,17 @@ iframe[id*="equalweb"] {
   }
 }
 
+.whatsapp-button-floating {
+  position: fixed !important;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px)) !important;
+  right: calc(24px + env(safe-area-inset-right, 0px)) !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 99999 !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+}
+
 /* 📱 Responsive WhatsApp Floating Button Rule: Hide on small mobile viewports, keep on medium/large screens (Tablets/Desktop) */
 @media (max-width: 767px), (max-height: 500px) and (orientation: landscape) {
   .whatsapp-button-floating {
