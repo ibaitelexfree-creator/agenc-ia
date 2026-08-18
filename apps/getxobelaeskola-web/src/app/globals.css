@@ -1339,17 +1339,16 @@ iframe[id*="equalweb"] {
 
   .hero-blobs-grid {
     display: flex !important;
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(2px, 1.2vw, 8px) !important;
-    width: 100% !important;
-    max-width: 100% !important;
+    gap: clamp(8px, 2.5vw, 14px) !important;
+    max-width: min(340px, 92vw) !important;
     margin: 0 auto !important;
   }
 
   .hero-blobs-grid > * {
-    flex: 0 0 auto !important;
+    flex: 0 1 auto !important;
   }
 }
 
