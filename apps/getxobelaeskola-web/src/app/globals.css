@@ -1485,25 +1485,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure section containers fill full viewport height without top/bottom whitespace */
 section {
   box-sizing: border-box;
-}
-
-/* Fit full viewport height for small/large mobile screens & tablets */
-.promise,
-.section-2-identity,
-.section-3-adapts,
-.section-3-path,
-.section-cta {
-  min-height: 100vh;
-  min-height: 100dvh;
-  box-sizing: border-box;
-}
-
-@media (max-width: 768px) {
-  .promise {
-    padding-top: clamp(20px, 4vh, 40px);
-    padding-bottom: clamp(20px, 4vh, 40px);
-  }
 }
