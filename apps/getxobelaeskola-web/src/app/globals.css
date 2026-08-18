@@ -1485,6 +1485,14 @@ body {
   box-sizing: border-box;
 }
 
+/* Ensure full-screen sections on home fill 100% viewport height dynamically on all screen sizes */
+.promise,
+.section-cta {
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+}
+
 section {
   box-sizing: border-box;
 }
