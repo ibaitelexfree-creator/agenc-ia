@@ -28,13 +28,30 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
   const canvasX = useTransform(scrollYProgress, () => '0vw')
 
-  // Canvas Y: each section occupies a 0.08-wide "plateau" in the yScrollPoints map.
-  // The transition between sections is in the 0.08-wide "ramp" between plateaus.
-  const yScrollPoints = [0, 0.07, 0.14, 0.21, 0.28, 0.35, 0.42, 0.49, 0.56, 0.63, 0.70, 0.77, 0.84, 0.91, 0.98, 1.0]
+  // SECTION_PROGRESS map matching the scroll stops for 8 sections
+  const yScrollPoints = [
+    0.00, 0.07, // Section 0 (Hero)
+    0.14, 0.21, // Section 1
+    0.28, 0.35, // Section 2
+    0.42, 0.49, // Section 3
+    0.56, 0.63, // Section 4
+    0.70, 0.77, // Section 5
+    0.84, 0.91, // Section 6
+    0.98, 1.00  // Section 7 (CTA)
+  ]
   const rawCanvasY = useTransform(
     scrollYProgress,
     yScrollPoints,
-    [0, 0, -100, -100, -200, -200, -300, -300, -400, -400, -500, -500, -600, -600, -700, -700]
+    [
+      0, 0,
+      -100, -100,
+      -200, -200,
+      -300, -300,
+      -400, -400,
+      -500, -500,
+      -600, -600,
+      -700, -700
+    ]
   )
   const canvasY = useTransform(rawCanvasY, (v) => {
     return `${v}vh`
@@ -64,7 +81,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
   const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const SECTION_PROGRESS = [0.035, 0.175, 0.315, 0.455, 0.595, 0.735, 0.875, 0.98]
+    const SECTION_PROGRESS = [0.035, 0.175, 0.315, 0.455, 0.595, 0.735, 0.875, 0.99]
 
     let cachedMaxScroll: number | null = null
     const getMaxScroll = () => {
@@ -109,9 +126,9 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       const startY = window.scrollY
       const diff = targetY - startY
       const startTime = performance.now()
-      const duration = 1800
+      const duration = 900
 
-      const ease = (t: number) => -(Math.cos(Math.PI * t) - 1) / 2
+      const ease = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
 
       const step = (now: number) => {
         const t = Math.min((now - startTime) / duration, 1)

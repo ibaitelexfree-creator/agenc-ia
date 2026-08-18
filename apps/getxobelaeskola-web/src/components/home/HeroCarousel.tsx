@@ -99,7 +99,7 @@ export default function HeroCarousel({ initialSlides }: HeroCarouselProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5, ease: 'easeOut' }}
-            className="relative h-screen w-full overflow-hidden bg-nautical-black z-0"
+            className="relative h-[100dvh] min-h-[600px] w-full overflow-hidden bg-nautical-black z-0"
         >
             {/* Ambient Background Noise Texture - High Performance CSS Pattern */}
             <div className="absolute inset-0 z-10 opacity-[0.05] pointer-events-none"

@@ -62,16 +62,17 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [loadVideo])
 
-  // Resolve which video format to use (avoid double downloads from <source> tags)
-  const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  // Resolve which video format to use (mp4 as reliable fallback or direct videoSrc)
+  const [videoUrl, setVideoUrl] = useState<string>(videoSrc)
   useEffect(() => {
-    const v = document.createElement('video')
-    // Check general webm support without restrictive codec strings that fail on Android/mobile Chrome
-    const canPlayWebm = v.canPlayType('video/webm') !== ''
-    if (canPlayWebm && videoSrc.endsWith('.webm')) {
-      setVideoUrl(videoSrc)
-    } else {
-      setVideoUrl(videoSrc.replace('.webm', '.mp4'))
+    if (typeof window !== 'undefined') {
+      const v = document.createElement('video')
+      const canPlayWebm = v.canPlayType('video/webm')
+      if (!canPlayWebm && videoSrc.endsWith('.webm')) {
+        setVideoUrl(videoSrc.replace('.webm', '.mp4'))
+      } else {
+        setVideoUrl(videoSrc)
+      }
     }
   }, [videoSrc])
 
@@ -294,11 +295,11 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 w-full h-full pointer-events-none select-none"
-          style={{ overflow: 'visible' }}
+          style={{ overflow: 'hidden', isolation: 'isolate' }}
         >
           <defs>
             {/* Morphing ClipPath locked 1:1 to the stroke path */}
-            <clipPath id={clipId}>
+            <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
               <path d={d0}>
                 <animate
                   attributeName="d"
@@ -314,11 +315,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* 🎥 LAYER 1: VIDEO (Clipped directly by the morphing d0 path so shape & movement match border 100%) */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="-5" y="-5" width="110" height="110">
+          {/* 🎥 LAYER 1: VIDEO (Exact morphing blob path clip matching border 100%) */}
+          <g clipPath={`url(#${clipId})`} style={{ WebkitClipPath: `url(#${clipId})`, isolation: 'isolate' } as React.CSSProperties}>
+            <foreignObject x="0" y="0" width="100" height="100" style={{ width: '100px', height: '100px', overflow: 'hidden' }}>
               <video
                 ref={videoRef}
+                src={videoUrl}
                 autoPlay
                 loop
                 muted
@@ -327,17 +329,16 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                 webkit-playsinline="true"
                 disablePictureInPicture
                 style={{
-                  width: '110px',
-                  height: '110px',
+                  width: '100px',
+                  height: '100px',
                   objectFit: 'cover',
                   display: 'block',
-                  transform: 'scale(1.1)',
-                  transformOrigin: 'center center',
+                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                  WebkitTransform: 'translateZ(0)',
                 }}
               >
-                {videoUrl && <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
-                <source src={videoSrc} type="video/webm" />
-                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+                <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
+                <source src={videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc} type="video/mp4" />
               </video>
             </foreignObject>
           </g>

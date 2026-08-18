@@ -47,6 +47,52 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+img,
+video,
+iframe,
+canvas,
+svg,
+object {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* iOS Safari Video Fullscreen, Border-Radius Clipping & Controls Fixes */
+video {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  object-fit: cover;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* Fix iOS Safari bug where video breaks out of rounded/circular frames (rounded-full / border-radius) */
+.overflow-hidden {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  isolation: isolate;
+}
+
+.video-container-rounded,
+.rounded-full,
+div[class*="rounded-full"] {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.rounded-full video,
+div[class*="rounded"] > video {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
 *:focus {
   outline: none;
 }
@@ -70,8 +116,11 @@ body {
   color: var(--sea-foam);
   font-family: var(--font-sans);
   font-size: 0.95rem;
-  scrollbar-gutter: stable;
+  scrollbar-gutter: auto;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-overflow-scrolling: touch;
   overflow-wrap: break-word;
   word-break: break-word;
