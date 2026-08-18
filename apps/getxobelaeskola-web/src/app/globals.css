@@ -1466,17 +1466,22 @@ iframe[id*="equalweb"] {
 }
 
 /* ==========================================================================
-   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM
+   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (PORTRAIT & LANDSCAPE 100% FIT)
    ========================================================================== */
 html,
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
+  width: 100dvw;
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 #main-content {
@@ -1485,7 +1490,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure full-screen sections on home fill 100% viewport height dynamically on all screen sizes */
+/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds */
 .promise,
 .section-cta,
 .section-2-identity,
@@ -1493,9 +1498,26 @@ body {
 .section-3-path,
 [class*="Blog_section"],
 [class*="Reviews_section"] {
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
   box-sizing: border-box;
+}
+
+/* Precise Edge Alignment in Landscape Orientation */
+@media (orientation: landscape) {
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    min-height: 100vh;
+    min-height: 100dvh;
+    box-sizing: border-box;
+  }
 }
 
 section {
