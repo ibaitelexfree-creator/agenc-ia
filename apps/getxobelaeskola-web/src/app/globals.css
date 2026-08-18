@@ -956,7 +956,6 @@ a:hover {
   margin: 0 auto;
   text-align: center;
   width: 100%;
-  transform: translateY(2.5%);
 }
 
 .promise__eyebrow {
@@ -1489,7 +1488,7 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds */
+/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds with proportional inner padding */
 .promise,
 .section-cta,
 .section-2-identity,
@@ -1501,7 +1500,12 @@ body {
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  padding-top: clamp(1.5rem, 4vh, 3.5rem);
+  padding-bottom: clamp(1.5rem, 4vh, 3.5rem);
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Precise Edge Alignment in Landscape Orientation */
@@ -1515,6 +1519,8 @@ body {
   [class*="Reviews_section"] {
     min-height: 100vh;
     min-height: 100dvh;
+    padding-top: clamp(1rem, 3vh, 2.5rem);
+    padding-bottom: clamp(1rem, 3vh, 2.5rem);
     box-sizing: border-box;
   }
 }
