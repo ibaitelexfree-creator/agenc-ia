@@ -279,15 +279,26 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           style={{ overflow: 'visible' }}
         >
           <defs>
-            <clipPath id={clipId} clipPathUnits="objectBoundingBox">
-              <path
-                d={d0}
-                transform="scale(0.01)"
-              />
+            <clipPath id={clipId}>
+              <path d={d0}>
+                <animate
+                  attributeName="d"
+                  dur="8s"
+                  repeatCount="indefinite"
+                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
+                />
+              </path>
             </clipPath>
             {/* Máscara al 100% para el brillo del hover */}
-            <clipPath id={`${clipId}-full`} clipPathUnits="objectBoundingBox">
-              <path d={d0} transform="scale(0.01)" />
+            <clipPath id={`${clipId}-full`}>
+              <path d={d0}>
+                <animate
+                  attributeName="d"
+                  dur="8s"
+                  repeatCount="indefinite"
+                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
+                />
+              </path>
             </clipPath>
             <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
@@ -296,32 +307,27 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           </defs>
 
           {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath */}
-          <foreignObject x="0" y="0" width="100" height="100" style={{ overflow: 'visible' }}>
-            <div 
-              style={{
-                width: '100%',
-                height: '100%',
-                clipPath: `url(#${clipId})`,
-                WebkitClipPath: `url(#${clipId})`,
-              }}
-            >
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              >
-                <source src={videoSrc} type="video/webm" />
-                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-              </video>
-            </div>
-          </foreignObject>
+          <g clipPath={`url(#${clipId})`}>
+            <foreignObject x="0" y="0" width="100" height="100">
+              <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                >
+                  <source src={videoSrc} type="video/webm" />
+                  <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+                </video>
+              </div>
+            </foreignObject>
+          </g>
 
           {/* Forma visible de fondo que respira e interactúa al hover */}
           <motion.path
