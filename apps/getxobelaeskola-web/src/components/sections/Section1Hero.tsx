@@ -276,7 +276,7 @@ export function Section1Hero() {
         boxSizing: 'border-box',
       }}
     >
-      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
+      {/* Capa 2: Costa, montaña y mar (sin balanceo de mar/montaña) - CARGA 1º */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: tierraLoaded ? 1 : 0 }}
@@ -292,18 +292,7 @@ export function Section1Hero() {
           x: isPhone ? '-2vw' : '0px',
         }}
       >
-        <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, 18, 0, -18, 0],
-            x: [0, -5, 0, 5, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           <img
             ref={tierraRef}
             src="/images/home/parallax/tierra.webp?v=5"
@@ -322,13 +311,13 @@ export function Section1Hero() {
               objectPosition: 'center',
             }}
           />
-        </motion.div>
+        </div>
       </motion.div>
 
-      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) - CARGA 2º */}
+      {/* Capa 1: Cielo y Video de Nubes (sin balanceo de mar) - CARGA 2º */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: nubesLoaded ? 1 : 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         style={{
           position: 'absolute',
@@ -341,18 +330,7 @@ export function Section1Hero() {
           x: isPhone ? '-2vw' : '0px',
         }}
       >
-        <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, 10, 0, -10, 0],
-            x: [0, -3, 0, 3, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
           <img
             ref={nubesRef}
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
@@ -373,7 +351,31 @@ export function Section1Hero() {
               transform: 'translateX(105px)',
             }}
           />
-        </motion.div>
+
+          {/* Video de nubes flotando en la parte superior */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            onCanPlay={() => setVideoLoaded(true)}
+            style={{
+              position: 'absolute',
+              top: '-10%',
+              left: 0,
+              width: '100%',
+              height: '52%',
+              objectFit: 'cover',
+              objectPosition: 'top center',
+              zIndex: 2,
+              opacity: 0.75,
+              mixBlendMode: 'screen',
+              pointerEvents: 'none',
+            }}
+          >
+            <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
+          </video>
+        </div>
       </motion.div>
 
       {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) - CARGA 3º */}

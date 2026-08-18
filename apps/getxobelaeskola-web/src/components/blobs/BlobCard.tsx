@@ -335,17 +335,25 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
           {/* Imagen / Video recortado dentro de SVG */}
           <g clipPath={`url(#${clipId})`}>
-            <image
-              href={imageSrc}
-              x="0"
-              y="0"
-              width="100"
-              height="100"
-              preserveAspectRatio="xMidYMid slice"
-              style={{
-                clipPath: `url(#${clipId})`,
-              }}
-            />
+            <foreignObject x="0" y="0" width="100" height="100">
+              <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                >
+                  <source src={videoSrc} type="video/webm" />
+                  <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+                </video>
+              </div>
+            </foreignObject>
           </g>
 
           {/* Brillo al pasar el cursor */}
