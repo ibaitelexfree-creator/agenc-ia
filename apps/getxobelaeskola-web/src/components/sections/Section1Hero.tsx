@@ -267,7 +267,6 @@ export function Section1Hero() {
         maxWidth: '1920px',
         minWidth: '320px',
         margin: '0 auto',
-        height: '100vh',
         minHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',

@@ -60,6 +60,10 @@ html,
 body {
   width: 100%;
   max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
   overflow-x: clip;
   position: relative;
   background-color: var(--nautical-deep);
@@ -798,12 +802,12 @@ a:hover {
   --fs-body: clamp(0.85rem, 0.8vw + 0.5rem, 0.95rem);
   --fs-hook: clamp(0.8rem, 0.7vw + 0.5rem, 0.9rem);
 
-  /* Card dimensions */
-  --card-w: clamp(280px, 28vw, 370px);
-  --card-h: clamp(220px, 24vh, 270px);
+  /* Card dimensions with smooth fluid scaling and proportional gap reductions (~15%) */
+  --card-w: clamp(240px, 24vw, 360px);
+  --card-h: clamp(190px, 20vh, 260px);
   --card-radius: 20px;
   --section-max-w: 1240px;
-  --gap: clamp(12px, 2vw, 28px);
+  --gap: clamp(10px, 1.7vw, 24px);
   --flip-duration: 1.2s;
   --flip-easing: cubic-bezier(0.65, 0, 0.35, 1);
 
@@ -814,6 +818,8 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
+    --card-w: clamp(200px, 80vw, 260px);
+    --card-h: clamp(160px, 22vh, 200px);
     --fs-card-title-front: 1.05rem;
     --fs-hook: 0.75rem;
     --fs-body: 0.78rem;
@@ -824,6 +830,8 @@ a:hover {
 /* 📱 มือถือทั่วไป - มือถือมาตรฐาน (360px - 389px) */
 @media (min-width: 360px) and (max-width: 389px) {
   :root {
+    --card-w: clamp(220px, 82vw, 280px);
+    --card-h: clamp(170px, 23vh, 210px);
     --fs-card-title-front: 1.1rem;
     --fs-hook: 0.78rem;
     --fs-body: 0.8rem;
@@ -834,6 +842,8 @@ a:hover {
 /* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 767px) */
 @media (min-width: 390px) and (max-width: 767px) {
   :root {
+    --card-w: clamp(240px, 85vw, 320px);
+    --card-h: clamp(180px, 24vh, 220px);
     --fs-card-title-front: 1.15rem;
     --fs-hook: 0.8rem;
     --fs-body: 0.82rem;
@@ -844,9 +854,9 @@ a:hover {
 /* 📲 Tablet เล็ก & iPad / Tablet (768px - 1023px) */
 @media (min-width: 768px) and (max-width: 1023px) {
   :root {
-    --card-w: clamp(220px, 28vw, 320px);
-    --card-h: clamp(230px, 28vw, 300px);
-    --gap: clamp(12px, 2vw, 24px);
+    --card-w: clamp(210px, 26vw, 300px);
+    --card-h: clamp(190px, 22vh, 240px);
+    --gap: clamp(10px, 1.5vw, 20px);
     --fs-card-title-front: clamp(1.05rem, 1.6vw, 1.25rem);
     --fs-hook: clamp(0.78rem, 1.1vw, 0.85rem);
     --fs-body: clamp(0.8rem, 1.1vw, 0.88rem);
@@ -856,9 +866,9 @@ a:hover {
 /* 📲 Tablet ใหญ่ & Laptop เล็ก (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   :root {
-    --card-w: 300px;
-    --card-h: 250px;
-    --gap: 20px;
+    --card-w: clamp(260px, 23vw, 320px);
+    --card-h: clamp(210px, 23vh, 250px);
+    --gap: 16px;
     --fs-card-title-front: 1.25rem;
     --fs-hook: 0.85rem;
     --fs-body: 0.88rem;
@@ -868,9 +878,9 @@ a:hover {
 /* 💻 Laptop Full HD & Desktop Full HD (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
   :root {
-    --card-w: 360px;
-    --card-h: 260px;
-    --gap: 24px;
+    --card-w: 340px;
+    --card-h: 250px;
+    --gap: 20px;
     --fs-card-title-front: 1.35rem;
     --fs-hook: 0.88rem;
     --fs-body: 0.92rem;
@@ -880,9 +890,9 @@ a:hover {
 /* 🖥️ 2K / QHD (2560px - 3839px) */
 @media (min-width: 2560px) and (max-width: 3839px) {
   :root {
-    --card-w: 420px;
-    --card-h: 300px;
-    --gap: 32px;
+    --card-w: 400px;
+    --card-h: 280px;
+    --gap: 28px;
     --fs-card-title-front: 1.55rem;
     --fs-hook: 1.05rem;
     --fs-body: 1.1rem;
@@ -893,9 +903,9 @@ a:hover {
 /* 🖥️ 4K (3840px+) */
 @media (min-width: 3840px) {
   :root {
-    --card-w: 520px;
-    --card-h: 360px;
-    --gap: 48px;
+    --card-w: 500px;
+    --card-h: 340px;
+    --gap: 40px;
     --fs-card-title-front: 1.95rem;
     --fs-hook: 1.3rem;
     --fs-body: 1.35rem;
@@ -906,17 +916,17 @@ a:hover {
 /* Height-based scaling to prevent overflow on smaller displays/zooms */
 @media (max-height: 850px) and (min-width: 768px) {
   :root {
-    --card-h: 230px;
-    --fs-card-title-front: 1.2rem;
-    --fs-hook: 0.82rem;
+    --card-h: 220px;
+    --fs-card-title-front: 1.15rem;
+    --fs-hook: 0.8rem;
   }
 }
 
 @media (max-height: 720px) and (min-width: 768px) {
   :root {
-    --card-h: 210px;
-    --fs-card-title-front: 1.1rem;
-    --fs-hook: 0.78rem;
+    --card-h: 200px;
+    --fs-card-title-front: 1.05rem;
+    --fs-hook: 0.76rem;
   }
 }
 
@@ -992,9 +1002,9 @@ a:hover {
 
 @media (max-width: 639px) and (orientation: portrait) {
   .promise {
-    height: auto !important;
-    min-height: auto !important;
-    padding: clamp(15px, 2.5vh, 28px) 16px clamp(48px, 8vh, 72px) !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding: clamp(24px, 4vh, 40px) 16px !important;
     box-sizing: border-box;
   }
   .promise__grid {
@@ -1363,7 +1373,7 @@ iframe[id*="equalweb"] {
    Triggered by aspect-ratio & max-height (NOT device names)
    ========================================== */
 
-@media (orientation: landscape) and (max-height: 768px) {
+@media (orientation: landscape) and (max-height: 500px) {
   .scroll-engine-root {
     height: auto !important;
   }
@@ -1397,75 +1407,17 @@ iframe[id*="equalweb"] {
 
   /* Compact flip cards & 3-column row for short landscape screens */
   .promise {
-    padding: 12px 8px !important;
+    padding: clamp(16px, 3vh, 32px) 12px !important;
   }
   .promise__eyebrow {
-    font-size: 0.65rem !important;
-    margin-bottom: 2px !important;
+    font-size: 0.7rem !important;
+    margin-bottom: 4px !important;
   }
   .promise__title {
-    font-size: clamp(1rem, 4vh, 1.3rem) !important;
-    margin-bottom: clamp(6px, 1.5vh, 12px) !important;
+    font-size: clamp(1.1rem, 3.5vh, 1.5rem) !important;
+    margin-bottom: clamp(8px, 2vh, 16px) !important;
   }
-  .promise__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: clamp(4px, 1.2vw, 10px) !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    align-items: center !important;
-  }
-  .promise__item {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-  .flip-card-wrapper {
-    width: 100% !important;
-    max-width: clamp(100px, 42vh, 145px) !important;
-    height: auto !important;
-    aspect-ratio: 1 / 1 !important;
-    margin: 0 auto !important;
-  }
-  .flip-card__face {
-    padding: clamp(4px, 1.2vh, 8px) clamp(4px, 1.2vw, 8px) !important;
-    justify-content: center !important;
-    overflow: hidden !important;
-  }
-  .flip-card__icon {
-    width: clamp(22px, 5vh, 32px) !important;
-    height: clamp(22px, 5vh, 32px) !important;
-    margin-bottom: clamp(2px, 0.8vh, 4px) !important;
-    flex-shrink: 0 !important;
-  }
-  .flip-card__icon svg {
-    width: 55% !important;
-    height: 55% !important;
-  }
-  .flip-card__title {
-    font-size: clamp(0.62rem, 2vh, 0.75rem) !important;
-    margin: 0 0 2px 0 !important;
-    line-height: 1.15 !important;
-    word-break: break-word !important;
-  }
-  .flip-card__hook {
-    font-size: clamp(0.52rem, 1.6vh, 0.64rem) !important;
-    line-height: 1.15 !important;
-    margin: 0 0 2px 0 !important;
-    opacity: 0.9 !important;
-  }
-  .flip-card__cta {
-    font-size: clamp(0.52rem, 1.5vh, 0.62rem) !important;
-    margin-top: auto !important;
-  }
-  .flip-card__desc {
-    font-size: clamp(0.52rem, 1.6vh, 0.65rem) !important;
-    line-height: 1.15 !important;
-    margin: 0 !important;
-  }
-  .flip-card__label {
-    font-size: clamp(0.48rem, 1.3vh, 0.58rem) !important;
-    margin-bottom: 2px !important;
-  }
+
 
   /* Anchor hero text container in short landscape so text is positioned cleanly below top bar and video blobs never obscure text */
   .hero-text-container {
@@ -1510,5 +1462,48 @@ iframe[id*="equalweb"] {
     margin-top: -15px !important;
     transform: scale(0.60) !important;
     transform-origin: left top !important;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM
+   ========================================================================== */
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#main-content {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure section containers fill full viewport height without top/bottom whitespace */
+section {
+  box-sizing: border-box;
+}
+
+/* Fit full viewport height for small/large mobile screens & tablets */
+.promise,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+.section-cta {
+  min-height: 100vh;
+  min-height: 100dvh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .promise {
+    padding-top: clamp(20px, 4vh, 40px);
+    padding-bottom: clamp(20px, 4vh, 40px);
   }
 }
