@@ -306,9 +306,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath */}
+          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath (Matched 1:1 with Border) */}
           <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="-10" y="-10" width="120" height="120">
+            <foreignObject x="0" y="0" width="100" height="100">
               <div 
                 style={{ 
                   width: '100%', 
@@ -330,8 +330,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    transform: 'scale(1.15)',
-                    transformOrigin: 'center center',
                   }}
                 >
                   <source src={videoSrc} type="video/webm" />
@@ -341,20 +339,21 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </foreignObject>
           </g>
 
-          {/* Forma visible de fondo que respira e interactúa al hover */}
+          {/* Forma visible de fondo / เส้นกรอบที่ขนาดตรงกับวิดีโอ 1:1 */}
           <motion.path
             d={d0}
             animate={{
-              scale: isHovered ? 1.06 : 1.0,
-              fill: isHovered ? `${color}44` : `${color}22`
+              scale: isHovered ? 1.05 : 1.0,
+              fill: isHovered ? `${color}33` : 'transparent'
             }}
             transition={{
               scale: { type: 'spring', stiffness: 300, damping: 20 },
               fill: { duration: 0.3 }
             }}
             stroke={color}
-            strokeWidth="0.8"
-            style={{ transformOrigin: 'center' }}
+            strokeWidth="1.5"
+            vectorEffect="non-scaling-stroke"
+            style={{ transformOrigin: '50px 50px' }}
           >
             <animate
               attributeName="d"
