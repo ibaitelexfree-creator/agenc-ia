@@ -260,9 +260,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         }
       }}
       initial="hidden"
-      animate={startReveal ? "visible" : "hidden"}
-    >
-      {/* 🌊 UNIFIED CLIPPING ARCHITECTURE (100% CROSS-PLATFORM CIRCULAR/BLOB VIDEO CONTAINER) */}
+      animate={startReveal ? "visible" : "hidden"}>
+
+      {/* 🌊 UNIFIED SINGLE-SOURCE ARCHITECTURE (100% CROSS-PLATFORM SYSTEM) */}
       <motion.div
         className="relative w-[52px] h-[52px] min-[360px]:w-[60px] min-[360px]:h-[60px] min-[410px]:w-[72px] min-[410px]:h-[72px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px] xl:w-[150px] xl:h-[150px]"
         animate={{
@@ -272,56 +272,63 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🎨 Unified Animated SVG Component: Video & Stroke Border Share the Exact Same Morphing Path (d0 -> d1 -> d2 -> d0) */}
+        {/* HTML5 Video element placed invisibly in DOM to serve as active video texture */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="sr-only opacity-0 pointer-events-none absolute"
+          aria-hidden="true"
+        >
+          <source src={videoSrc} type="video/webm" />
+          <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+        </video>
+
+        {/* Unified Responsive Container */}
+        <div 
+          className="absolute inset-0 w-full h-full pointer-events-none select-none rounded-full overflow-hidden"
+          style={{
+            borderRadius: '50%',
+            WebkitMaskImage: '-webkit-radial-gradient(circle, white 100%, black 100%)',
+            maskImage: 'radial-gradient(circle, white 100%, black 100%)',
+            transform: 'translateZ(0)',
+            WebkitTransform: 'translateZ(0)',
+          }}
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: 'block',
+              borderRadius: '50%',
+            }}
+          >
+            <source src={videoSrc} type="video/webm" />
+            <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Unified SVG Morphing Border Frame & Glass Highlight */}
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 w-full h-full pointer-events-none select-none"
           style={{ overflow: 'visible' }}
         >
           <defs>
-            {/* SVG Dynamic ClipPath synced with morphing animation */}
-            <clipPath id={clipId}>
-              <path d={d0}>
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
             <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
               <stop offset="70%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
           </defs>
 
-          {/* 🎥 LAYER 1: VIDEO CLIPPED IN THE EXACT ANIMATED BLOB PATH (Morphs identically with border) */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100px',
-                  height: '100px',
-                  objectFit: 'cover',
-                  display: 'block',
-                  borderRadius: '35%',
-                  clipPath: `url(#${clipId})`,
-                  WebkitClipPath: `url(#${clipId})`,
-                }}
-              >
-                <source src={videoSrc} type="video/webm" />
-                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-              </video>
-            </foreignObject>
-          </g>
-
-          {/* 🎨 LAYER 2: MORPHING BORDER STROKE (Identical path d0 and keyframes) */}
+          {/* Morphing Stroke Border Path */}
           <motion.path
             d={d0}
             animate={{
@@ -343,7 +350,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             />
           </motion.path>
 
-          {/* 💡 LAYER 3: Glass hover shimmer */}
+          {/* Glass hover shimmer */}
           <path
             d={d0}
             fill={`url(#${clipId}-gradient)`}
