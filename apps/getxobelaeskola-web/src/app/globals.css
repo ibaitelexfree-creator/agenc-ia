@@ -1425,9 +1425,9 @@ iframe[id*="equalweb"] {
     transform-origin: left top !important;
   }
 
-  /* Shift video container upper by ~15% towards top edge */
+  /* Shift video container down by 5% (from 15vh to 10vh) for balanced landscape spacing */
   .hero-video-blobs-container {
-    bottom: calc(15vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(10vh + env(safe-area-inset-bottom, 0px)) !important;
     padding-bottom: 0px !important;
   }
 
