@@ -299,26 +299,37 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* 🎥 Unified Layer 1: Video element strictly bounded inside SVG clipPath */}
-          <g clipPath={`url(#${clipId})`}>
+          {/* 🎥 Unified Layer 1: HTML Video clipped inside SVG path (Cross-platform Safari/WebKit fix) */}
+          <g clipPath={`url(#${clipId})`} style={{ clipPath: `url(#${clipId})`, WebkitClipPath: `url(#${clipId})` }}>
             <foreignObject x="0" y="0" width="100" height="100" style={{ width: '100px', height: '100px', overflow: 'hidden' }}>
-              <video
-                ref={videoRef}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100px',
-                  height: '100px',
-                  objectFit: 'cover',
-                  display: 'block',
-                  transform: 'translateZ(0)',
+              <div 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  clipPath: `url(#${clipId})`, 
+                  WebkitClipPath: `url(#${clipId})`,
+                  overflow: 'hidden' 
                 }}
               >
-                <source src={videoSrc} type="video/webm" />
-                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-              </video>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)',
+                  }}
+                >
+                  <source src={videoSrc} type="video/webm" />
+                  <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+                </video>
+              </div>
             </foreignObject>
           </g>
 
