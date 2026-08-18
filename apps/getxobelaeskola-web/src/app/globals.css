@@ -1487,7 +1487,12 @@ body {
 
 /* Ensure full-screen sections on home fill 100% viewport height dynamically on all screen sizes */
 .promise,
-.section-cta {
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
   min-height: 100vh;
   min-height: 100dvh;
   box-sizing: border-box;
