@@ -956,6 +956,7 @@ a:hover {
   margin: 0 auto;
   text-align: center;
   width: 100%;
+  transform: translateY(2.5%);
 }
 
 .promise__eyebrow {
