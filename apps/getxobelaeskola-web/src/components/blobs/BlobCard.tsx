@@ -262,9 +262,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       initial="hidden"
       animate={startReveal ? "visible" : "hidden"}
     >
-      {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
+      {/* El charco SVG (Responsive 1:1 scaling container) */}
       <motion.div
-        className="relative w-[45px] h-[45px] min-[360px]:w-[51px] min-[360px]:h-[51px] min-[410px]:w-[64px] min-[410px]:h-[64px] sm:w-[76px] sm:h-[76px] md:w-[84px] md:h-[84px] lg:w-[115px] lg:h-[115px]"
+        className="relative w-[52px] h-[52px] min-[360px]:w-[60px] min-[360px]:h-[60px] min-[410px]:w-[72px] min-[410px]:h-[72px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px] xl:w-[150px] xl:h-[150px]"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
@@ -272,54 +272,56 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* HTML Video / Thumbnail Container with Cross-Browser CSS clip-path (Supports iPad WebKit) */}
-        <div 
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{
-            clipPath: `path('${d0}')`,
-            WebkitClipPath: `path('${d0}')`,
-          }}
-        >
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-          >
-            <source src={videoSrc} type="video/webm" />
-            <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-          </video>
-        </div>
-
-        {/* SVG Defs para clipPath */}
+        {/* SVG ClipPath & Defs */}
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 w-full h-full"
           style={{ overflow: 'visible' }}
         >
           <defs>
+            <clipPath id={clipId} clipPathUnits="objectBoundingBox">
+              <path
+                d={d0}
+                transform="scale(0.01)"
+              />
+            </clipPath>
             {/* Máscara al 100% para el brillo del hover */}
-            <clipPath id={`${clipId}-full`}>
-              <path d={d0}>
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
+            <clipPath id={`${clipId}-full`} clipPathUnits="objectBoundingBox">
+              <path d={d0} transform="scale(0.01)" />
             </clipPath>
             <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
               <stop offset="70%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
           </defs>
+
+          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath */}
+          <foreignObject x="0" y="0" width="100" height="100" style={{ overflow: 'visible' }}>
+            <div 
+              style={{
+                width: '100%',
+                height: '100%',
+                clipPath: `url(#${clipId})`,
+                WebkitClipPath: `url(#${clipId})`,
+              }}
+            >
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              >
+                <source src={videoSrc} type="video/webm" />
+                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+              </video>
+            </div>
+          </foreignObject>
 
           {/* Forma visible de fondo que respira e interactúa al hover */}
           <motion.path
