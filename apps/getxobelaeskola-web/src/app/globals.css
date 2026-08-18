@@ -1016,10 +1016,9 @@ a:hover {
 /* 📱 Mobile Landscape: Match Section 4 FlipCards directly to BlogSection card dimensions */
 @media (max-width: 900px) and (orientation: landscape) {
   .promise {
-    height: auto !important;
     min-height: 100vh !important;
     min-height: 100dvh !important;
-    padding: clamp(32px, 6vh, 60px) 24px clamp(36px, 7vh, 64px) !important;
+    padding: clamp(24px, 4vh, 48px) 24px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1399,10 +1398,9 @@ iframe[id*="equalweb"] {
   .section-cta,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
-    height: auto !important;
-    min-height: auto !important;
-    padding-top: clamp(24px, 5vh, 48px) !important;
-    padding-bottom: clamp(24px, 5vh, 48px) !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    box-sizing: border-box !important;
   }
 
   /* Compact flip cards & 3-column row for short landscape screens */
