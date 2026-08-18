@@ -272,9 +272,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🎥 LAYER 1: VIDEO (Strictly clipped in circular boundary across WebKit/iOS, Chrome & Firefox) */}
+        {/* 🎥 LAYER 1: VIDEO (Strictly clipped in 1:1 exact frame boundary across WebKit/iOS, Chrome & Firefox) */}
         <div 
-          className="absolute inset-[3%] w-[94%] h-[94%] rounded-full overflow-hidden pointer-events-none select-none"
+          className="absolute inset-0 w-full h-full rounded-full overflow-hidden pointer-events-none select-none"
           style={{
             borderRadius: '50%',
             maskImage: '-webkit-radial-gradient(circle, white 100%, black 100%)',
