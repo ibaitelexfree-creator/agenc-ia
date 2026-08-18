@@ -16,21 +16,22 @@ export default function WhatsAppButton() {
             style={{
                 position: 'fixed',
                 bottom: 'calc(24px + env(safe-area-inset-bottom, 0px))',
-                right: 'calc(20px + env(safe-area-inset-right, 0px))',
+                right: 'calc(24px + env(safe-area-inset-right, 0px))',
                 zIndex: 9999,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '46px',
-                height: '46px',
+                width: '48px',
+                height: '48px',
                 borderRadius: '50%',
                 backgroundColor: '#25D366', // Green WhatsApp brand color
-                boxShadow: '0 4px 14px rgba(37, 211, 102, 0.4)',
+                boxShadow: '0 4px 16px rgba(37, 211, 102, 0.4)',
                 cursor: 'pointer',
                 border: 'none',
                 color: 'white',
-                transform: 'translateZ(0)',
-                WebkitTransform: 'translateZ(0)',
+                contain: 'layout paint style',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
                 overflow: 'hidden',
             }}
             className="whatsapp-button-floating hover:scale-105 active:scale-95 transition-transform duration-200"
