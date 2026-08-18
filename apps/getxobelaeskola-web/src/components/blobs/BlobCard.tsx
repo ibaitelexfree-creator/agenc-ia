@@ -272,11 +272,15 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🎨 SVG Stroke Border, Clip Mask & ForeignObject Video */}
+        {/* 🎨 Unified Animated Component: SVG Frame + Video + Mask locked 1:1 */}
         <svg
           viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          style={{ overflow: 'visible' }}
+          className="absolute inset-0 w-full h-full pointer-events-none select-none"
+          style={{ 
+            overflow: 'visible',
+            transform: 'translateZ(0)',
+            WebkitTransform: 'translateZ(0)',
+          }}
         >
           <defs>
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
@@ -295,9 +299,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* 🎥 Video Container embedded inside SVG clipPath - 100% exact alignment */}
+          {/* 🎥 Unified Layer 1: Video element strictly bounded inside SVG clipPath */}
           <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
+            <foreignObject x="0" y="0" width="100" height="100" style={{ width: '100px', height: '100px', overflow: 'hidden' }}>
               <video
                 ref={videoRef}
                 autoPlay
@@ -305,9 +309,11 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                 muted
                 playsInline
                 style={{
-                  width: '100%',
-                  height: '100%',
+                  width: '100px',
+                  height: '100px',
                   objectFit: 'cover',
+                  display: 'block',
+                  transform: 'translateZ(0)',
                 }}
               >
                 <source src={videoSrc} type="video/webm" />
@@ -316,7 +322,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </foreignObject>
           </g>
 
-          {/* เส้นกรอบสีที่ตรงกับรูปทรงและขนาดของวิดีโอ 100% */}
+          {/* 🎨 Unified Layer 2: Frame stroke rendered over the video boundary */}
           <path
             d={d0}
             fill={isHovered ? `${color}33` : 'none'}
@@ -333,7 +339,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             />
           </path>
 
-          {/* Brillo al pasar el cursor */}
+          {/* 💡 Unified Layer 3: Glass hover glow locked to the same SVG boundary */}
           <rect
             x="0"
             y="0"
