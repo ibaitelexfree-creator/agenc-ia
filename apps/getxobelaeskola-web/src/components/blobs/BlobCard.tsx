@@ -306,10 +306,20 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath */}
+          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath with iOS Safari WebKit mask fallback */}
           <g clipPath={`url(#${clipId})`}>
             <foreignObject x="0" y="0" width="100" height="100">
-              <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+              <div 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  overflow: 'hidden',
+                  borderRadius: '50%',
+                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                  transform: 'translateZ(0)',
+                  WebkitTransform: 'translateZ(0)',
+                }}
+              >
                 <video
                   ref={videoRef}
                   autoPlay
@@ -320,6 +330,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    borderRadius: '50%',
                   }}
                 >
                   <source src={videoSrc} type="video/webm" />
