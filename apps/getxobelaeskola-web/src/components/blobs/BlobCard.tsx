@@ -272,25 +272,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* SVG ClipPath & Defs */}
+        {/* 🎨 SVG Stroke Border, Clip Mask & ForeignObject Video */}
         <svg
           viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full"
+          className="absolute inset-0 w-full h-full pointer-events-none"
           style={{ overflow: 'visible' }}
         >
           <defs>
-            <clipPath id={clipId}>
-              <path d={d0}>
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
-            {/* Máscara al 100% para el brillo del hover */}
-            <clipPath id={`${clipId}-full`}>
+            <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
               <path d={d0}>
                 <animate
                   attributeName="d"
@@ -306,54 +295,35 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* HTML Video / Thumbnail Container clipped precisely by SVG ClipPath (Matched 1:1 with Border) */}
+          {/* 🎥 Video Container embedded inside SVG clipPath - 100% exact alignment */}
           <g clipPath={`url(#${clipId})`}>
             <foreignObject x="0" y="0" width="100" height="100">
-              <div 
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  overflow: 'hidden',
-                  clipPath: `url(#${clipId})`,
-                  WebkitClipPath: `url(#${clipId})`,
-                  transform: 'translateZ(0)',
-                  WebkitTransform: 'translateZ(0)',
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
                 }}
               >
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                >
-                  <source src={videoSrc} type="video/webm" />
-                  <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
-                </video>
-              </div>
+                <source src={videoSrc} type="video/webm" />
+                <source src={videoSrc.replace('.webm', '.mp4')} type="video/mp4" />
+              </video>
             </foreignObject>
           </g>
 
-          {/* Forma visible de fondo / เส้นกรอบที่ขนาดตรงกับวิดีโอ 1:1 */}
-          <motion.path
+          {/* เส้นกรอบสีที่ตรงกับรูปทรงและขนาดของวิดีโอ 100% */}
+          <path
             d={d0}
-            animate={{
-              scale: isHovered ? 1.05 : 1.0,
-              fill: isHovered ? `${color}33` : 'transparent'
-            }}
-            transition={{
-              scale: { type: 'spring', stiffness: 300, damping: 20 },
-              fill: { duration: 0.3 }
-            }}
+            fill={isHovered ? `${color}33` : 'none'}
             stroke={color}
-            strokeWidth="1.5"
+            strokeWidth="2.5"
             vectorEffect="non-scaling-stroke"
-            style={{ transformOrigin: '50px 50px' }}
+            style={{ transition: 'fill 0.3s ease' }}
           >
             <animate
               attributeName="d"
@@ -361,20 +331,20 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
               repeatCount="indefinite"
               values={`${d0}; ${d1}; ${d2}; ${d0}`}
             />
-          </motion.path>
+          </path>
 
           {/* Brillo al pasar el cursor */}
-          <motion.rect
+          <rect
             x="0"
             y="0"
             width="100"
             height="100"
-            clipPath={`url(#${clipId}-full)`}
+            clipPath={`url(#${clipId})`}
             fill={`url(#${clipId}-gradient)`}
-            pointerEvents="none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
+            style={{
+              opacity: isHovered ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+            }}
           />
         </svg>
 
