@@ -1474,8 +1474,8 @@ iframe[id*="equalweb"] {
   will-change: transform !important;
 }
 
-/* 📱 Responsive WhatsApp Floating Button Rule: Hide on small mobile viewports, keep on medium/large screens (Tablets/Desktop) */
-@media (max-width: 767px), (max-height: 500px) and (orientation: landscape) {
+/* 📱 Floating WhatsApp Button Rule: Hide on mobile (< 768px), show on tablet & desktop (>= 768px) */
+@media (max-width: 767px) {
   .whatsapp-button-floating {
     display: none !important;
   }
