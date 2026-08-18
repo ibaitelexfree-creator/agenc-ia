@@ -1425,23 +1425,23 @@ iframe[id*="equalweb"] {
     transform-origin: left top !important;
   }
 
-  /* Shift video container lower towards bottom edge */
+  /* Shift video container upper by ~15% towards top edge */
   .hero-video-blobs-container {
-    bottom: calc(2px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(15vh + env(safe-area-inset-bottom, 0px)) !important;
     padding-bottom: 0px !important;
   }
 
-  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) with scale adjustment to avoid text overlap */
+  /* 🎥 Force all 5 video blobs into single horizontal row (1 2 3 4 5) with +20% enlarged scale (0.60 -> 0.72) */
   .hero-blobs-grid {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: 6px !important;
+    gap: clamp(6px, 1.5vw, 12px) !important;
     max-width: 100% !important;
     margin: 0 auto !important;
-    transform: scale(0.60) !important;
+    transform: scale(0.72) !important;
     transform-origin: center bottom !important;
   }
 
@@ -1453,13 +1453,20 @@ iframe[id*="equalweb"] {
 
 @media (orientation: landscape) and (max-height: 480px) {
   .hero-blobs-grid {
-    transform: scale(0.50) !important;
+    transform: scale(0.68) !important;
   }
 
   .hero-text-container {
     margin-top: -15px !important;
     transform: scale(0.60) !important;
     transform-origin: left top !important;
+  }
+}
+
+/* 📱 Responsive WhatsApp Floating Button Rule: Hide on small mobile viewports, keep on medium/large screens (Tablets/Desktop) */
+@media (max-width: 767px), (max-height: 500px) and (orientation: landscape) {
+  .whatsapp-button-floating {
+    display: none !important;
   }
 }
 

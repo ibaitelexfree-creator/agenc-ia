@@ -31,7 +31,7 @@ export default function WhatsAppButton() {
                 color: 'white',
                 transition: 'all 0.3s ease',
             }}
-            className="hover:scale-110 active:scale-95 group"
+            className="hover:scale-110 active:scale-95 group whatsapp-button-floating"
         >
             <div className="absolute inset-0 rounded-full border border-white/30 animate-ping opacity-25 group-hover:opacity-40" />
             <svg
