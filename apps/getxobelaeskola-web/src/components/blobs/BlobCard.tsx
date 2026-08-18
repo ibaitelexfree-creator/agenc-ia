@@ -110,14 +110,39 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     mass: 1.2
   })
 
-  // Control de reproducción del video (play automatically once loaded/ready)
+  // Control de reproducción del video (play automatically once loaded/ready with iOS/Safari fallbacks)
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (loadVideo) {
-      video.play().catch(() => {})
+    
+    // Ensure video is muted for iOS autoplay policy
+    video.muted = true
+    video.defaultMuted = true
+
+    const playVideo = () => {
+      if (video) {
+        const promise = video.play()
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Fallback for strict iOS power saving mode
+          })
+        }
+      }
     }
-  }, [loadVideo, videoReady])
+
+    playVideo()
+
+    // Add event listeners for iOS touch interaction fallback
+    const handleTouch = () => {
+      playVideo()
+      window.removeEventListener('touchstart', handleTouch)
+    }
+    window.addEventListener('touchstart', handleTouch, { passive: true })
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouch)
+    }
+  }, [loadVideo, videoReady, videoUrl])
 
   // Intersection Observer para activar en mobile al estar al centro de la pantalla
   useEffect(() => {
@@ -298,6 +323,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
                 loop
                 muted
                 playsInline
+                // @ts-ignore
+                webkit-playsinline="true"
+                disablePictureInPicture
                 style={{
                   width: '110px',
                   height: '110px',
