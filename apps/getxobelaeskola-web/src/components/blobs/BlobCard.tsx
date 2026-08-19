@@ -98,6 +98,9 @@ function CanvasBlobVideo({ videoSrc, paths, color, isHovered }: { videoSrc: stri
           }
         }
       }
+      animationFrameId = requestAnimationFrame(render)
+    }
+
     animationFrameId = requestAnimationFrame(render)
 
     return () => {
