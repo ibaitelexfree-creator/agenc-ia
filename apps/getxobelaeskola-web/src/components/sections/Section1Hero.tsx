@@ -288,8 +288,6 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 1,
-          scale: 1.0,
-          x: '0px',
         }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -311,7 +309,7 @@ export function Section1Hero() {
             }}
           />
 
-          {/* Step 2: Video de nubes (ลอยนุ่มนวลเฉพาะท้องฟ้าเหนือทะเลและข้างภูเขาทั้งสองฝั่ง ไม่ให้ล้ำเข้าเรือ) */}
+          {/* Step 2: Video de nubes */}
           <motion.video
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
@@ -342,7 +340,7 @@ export function Section1Hero() {
         </div>
       </motion.div>
 
-      {/* Capa 2: Costa,ภูเขา และทะเล — Step 1: Solid initial paint พร้อมกันกับท้องฟ้า */}
+      {/* Capa 2: Costa,ภูเขา และทะเล — Step 1: Solid initial paint */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
@@ -353,8 +351,6 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 2,
-          scale: isPhone ? 1.15 : 1.08,
-          x: isPhone ? 'calc(-2vw + 6vw)' : '6vw',
         }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -367,12 +363,9 @@ export function Section1Hero() {
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-100px',
-              right: '-100px',
-              top: '-30px',
-              bottom: '-50px',
-              width: 'calc(100% + 200px)',
-              height: 'calc(100% + 80px)',
+              inset: 0,
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
             }}
@@ -411,19 +404,11 @@ export function Section1Hero() {
             <div
               style={{
                 position: 'absolute',
-                left: isTabletLandscape 
-                  ? `calc(${aspect.left}px + 2.25vw - 5vw)` 
-                  : isTabletPortrait 
-                  ? `calc(${aspect.left}px + 1.5vw - 5vw)` 
-                  : `calc(${aspect.left}px - 5vw)`,
+                left: `${aspect.left}px`,
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone 
-                  ? 'translateX(clamp(-80px, -15vw, -30px)) scale(clamp(0.85, 90vw / 400, 0.95))' 
-                  : isTabletPortrait 
-                  ? 'translateX(clamp(-90px, -8vw, -40px)) scale(0.90)' 
-                  : 'translateX(-50px)',
+                transform: 'translateX(0px)',
                 transformOrigin: 'top center',
               }}
             >
