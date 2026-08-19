@@ -277,11 +277,10 @@ export function Section1Hero() {
         backgroundColor: '#0D2137',
       }}
     >
-      {/* Capa 1: Cielo y Video de Nubes (Fondo) */}
+      {/* Capa 1: Cielo y Video de Nubes (Fondo) — Step 1: Solid initial paint */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -299,24 +298,27 @@ export function Section1Hero() {
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
             alt="Cielo Abra de Getxo"
             fetchPriority="high"
+            decoding="async"
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-112px',
-              right: '-112px',
+              left: '-20px',
+              right: '-20px',
               top: '-20px',
               bottom: '-20px',
-              width: 'calc(100% + 224px)',
+              width: 'calc(100% + 40px)',
               height: 'calc(100% + 40px)',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 1,
-              transform: 'translateX(105px)',
             }}
           />
 
-          {/* Video de nubes flotando en la parte superior (จำกัดความสูงไว้เฉพาะส่วนท้องฟ้า 35% ด้านบน) */}
-          <video
+          {/* Step 2: Video de nubes (ลอยนุ่มนวลเข้ามาสมทบ สีก้อนเมฆชัดเจนแต่คงความธรรมชาติ) */}
+          <motion.video
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.85 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             autoPlay
             loop
             muted
@@ -328,21 +330,22 @@ export function Section1Hero() {
               top: '0',
               left: 0,
               width: '100%',
-              height: '38%',
+              height: '45%',
               objectFit: 'cover',
               objectPosition: 'top center',
               zIndex: 2,
-              opacity: 0.65,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
             }}
           >
             <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
-          </video>
+          </motion.video>
         </div>
       </motion.div>
 
-      {/* Capa 2: Costa,ภูเขา และทะเล (อยู่ด้านหน้าของชั้นท้องฟ้า) */}
+      {/* Capa 2: Costa,ภูเขา และทะเล — Step 1: Solid initial paint พร้อมกันกับท้องฟ้า */}
       <motion.div
         initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
@@ -367,12 +370,12 @@ export function Section1Hero() {
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-10px',
-              right: '-15px',
-              top: '-10px',
+              left: '-20px',
+              right: '-20px',
+              top: '-20px',
               bottom: '-40px',
-              width: 'calc(100% + 25px)',
-              height: 'calc(100% + 50px)',
+              width: 'calc(100% + 40px)',
+              height: 'calc(100% + 60px)',
               objectFit: 'cover',
               objectPosition: 'center',
             }}
@@ -380,8 +383,11 @@ export function Section1Hero() {
         </div>
       </motion.div>
 
-      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) - CARGA 3º */}
+      {/* Capa 3: Velero — Step 3: ค่อยๆ เฟดเข้าประจำตำแหน่งที่ 0.5s และเริ่มโยกตัวนุ่มนวล */}
       <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
         style={{
           position: 'absolute',
           inset: 0,
