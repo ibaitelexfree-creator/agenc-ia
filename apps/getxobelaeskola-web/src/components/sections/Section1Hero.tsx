@@ -320,6 +320,7 @@ export function Section1Hero() {
             loop
             muted
             playsInline
+            preload="metadata"
             onCanPlay={() => setVideoLoaded(true)}
             style={{
               position: 'absolute',
@@ -342,9 +343,8 @@ export function Section1Hero() {
 
       {/* Capa 2: Costa,ภูเขา และทะเล (อยู่ด้านหน้าของชั้นท้องฟ้า) */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: tierraLoaded ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 1 }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -362,6 +362,7 @@ export function Section1Hero() {
             src="/images/home/parallax/tierra.webp?v=5"
             alt="Costa y mar del Abra de Getxo"
             fetchPriority="high"
+            decoding="async"
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
