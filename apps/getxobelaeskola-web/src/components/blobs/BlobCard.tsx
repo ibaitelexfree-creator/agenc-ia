@@ -3,6 +3,80 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
+function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[] }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = document.createElement('video')
+    video.src = videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc
+    video.autoplay = true
+    video.loop = true
+    video.muted = true
+    // @ts-ignore
+    video.playsInline = true
+    // @ts-ignore
+    video['webkit-playsinline'] = true
+    video.preload = 'auto'
+    video.style.display = 'none'
+    document.body.appendChild(video)
+    videoRef.current = video
+
+    video.play().catch(() => {})
+
+    let animationFrameId: number
+    const startTime = performance.now()
+
+    const render = (now: number) => {
+      const canvas = canvasRef.current
+      if (canvas && video.readyState >= 2) {
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          ctx.clearRect(0, 0, 100, 100)
+
+          // Interpolate SVG Morphing Path
+          const elapsed = ((now - startTime) % 8000) / 8000
+          let currentD = paths[0]
+          if (elapsed < 0.33) {
+            currentD = paths[0]
+          } else if (elapsed < 0.66) {
+            currentD = paths[1]
+          } else {
+            currentD = paths[2]
+          }
+
+          // Clip Canvas context to current Morphing Path
+          ctx.save()
+          const p = new Path2D(currentD)
+          ctx.clip(p)
+          ctx.drawImage(video, 0, 0, 100, 100)
+          ctx.restore()
+        }
+      }
+      animationFrameId = requestAnimationFrame(render)
+    }
+
+    animationFrameId = requestAnimationFrame(render)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      if (video.parentNode) {
+        video.parentNode.removeChild(video)
+      }
+    }
+  }, [videoSrc, paths])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={100}
+      height={100}
+      className="w-full h-full block"
+      style={{ width: '100%', height: '100%' }}
+    />
+  )
+}
+
 interface BlobCardProps {
   title: string
   subtitle: string
@@ -291,68 +365,26 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🌊 UNIFIED SINGLE SVG ARCHITECTURE (Video & Border in exact same viewBox) */}
+        {/* 🌊 HYBRID HTML5 CANVAS + SVG STROKE ARCHITECTURE (Guarantees iOS Safari Blob Video Morphing) */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
+          <CanvasBlobVideo
+            videoSrc={videoSrc}
+            paths={[d0, d1, d2]}
+          />
+        </div>
+
+        {/* 🎨 LAYER 2: MORPHING STROKE BORDER & SHIMMER */}
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 w-full h-full pointer-events-none select-none"
-          style={{ overflow: 'hidden', isolation: 'isolate' }}
+          style={{ overflow: 'hidden' }}
         >
           <defs>
-            {/* SVG ClipPath used by SVG elements */}
-            <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-              <path d={d0}>
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
             <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
               <stop offset="70%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
           </defs>
-
-          {/* 🎥 LAYER 1: VIDEO EMBEDDED INSIDE SVG & CLIPPED BY SVG CLIPPATH */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
-              <div
-                xmlns="http://www.w3.org/1999/xhtml"
-                style={{
-                  width: '100px',
-                  height: '100px',
-                  overflow: 'hidden',
-                  borderRadius: '50%',
-                  WebkitClipPath: `url(#${clipId})`,
-                  clipPath: `url(#${clipId})`,
-                }}
-              >
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  // @ts-ignore
-                  webkit-playsinline="true"
-                  disablePictureInPicture
-                  preload="auto"
-                  style={{
-                    width: '100px',
-                    height: '100px',
-                    objectFit: 'cover',
-                    display: 'block',
-                    borderRadius: '50%',
-                  }}
-                >
-                  <source src={videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc} type="video/mp4" />
-                  <source src={videoSrc.endsWith('.mp4') ? videoSrc.replace('.mp4', '.webm') : videoSrc} type="video/webm" />
-                </video>
-              </div>
-            </foreignObject>
-          </g>
 
           {/* 🎨 LAYER 2: MORPHING STROKE BORDER (100% Identical Path & Keyframes) */}
           <motion.path
