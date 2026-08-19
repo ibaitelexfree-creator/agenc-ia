@@ -1401,7 +1401,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* Range 3 & 4: Mobile Landscape & Short Viewports (height < 600px) */
+/* Range 3 & 4: Mobile Landscape & Short Viewports (height < 600px, e.g. 569x320px) */
 @media (orientation: landscape) and (max-height: 600px) {
   .scroll-engine-root {
     height: auto !important;
@@ -1420,7 +1420,8 @@ iframe[id*="equalweb"] {
   }
 
   .hero-video-blobs-container {
-    bottom: calc(4vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(0.5vh + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 8px !important;
   }
 
   .hero-blobs-grid {
@@ -1429,27 +1430,34 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(3.25px, 0.97vw, 9.75px) !important;
-    transform: scale(clamp(0.44, 58vh / 450, 0.74)) !important;
+    gap: clamp(2.5px, 0.8vw, 7.5px) !important;
+    transform: scale(clamp(0.28, 48vh / 450, 0.52)) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
     top: 0px !important;
+    transform: scale(clamp(0.52, 60vh / 450, 0.72)) !important;
+    transform-origin: left top !important;
   }
 }
 
-/* 📱 Fluid Mobile Landscape Height Safety System (< 500px height, e.g. 569x320px) */
-@media (orientation: landscape) and (max-height: 500px) {
+/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 569x320px) */
+@media (orientation: landscape) and (max-height: 420px) {
   .hero-video-blobs-container {
-    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(0.2vh + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .hero-blobs-grid {
-    gap: clamp(2.5px, 0.8vw, 8px) !important;
-    transform: scale(clamp(0.35, 52vh / 450, 0.58)) !important;
+    gap: clamp(2px, 0.6vw, 6px) !important;
+    transform: scale(clamp(0.24, 42vh / 450, 0.44)) !important;
     transform-origin: center bottom !important;
+  }
+
+  .hero-text-container {
+    transform: scale(clamp(0.44, 52vh / 450, 0.62)) !important;
+    transform-origin: left top !important;
   }
 }
 
