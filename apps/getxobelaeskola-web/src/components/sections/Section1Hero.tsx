@@ -724,7 +724,7 @@ function SailboatAccesoButton() {
           style={{
             position: 'absolute',
             left: '85.23%',
-            top: '66.40%',
+            top: isPhone ? '68.50%' : '76.40%',
             translate: '-50% -50%',
             display: 'flex',
             alignItems: 'center',
@@ -732,7 +732,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
-          className="scale-75 sm:scale-90 md:scale-100"
+          className="scale-90 sm:scale-95 md:scale-100 lg:scale-105"
         >
           <Link
             href={`/${locale}/auth/login`}
@@ -743,13 +743,13 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: locale === 'eu' ? 'clamp(8px, 1.1vw, 18px) clamp(15px, 2.2vw, 38px)' : 'clamp(10px, 1.4vw, 23px) clamp(20px, 3vw, 50px)',
+              padding: locale === 'eu' ? 'clamp(6px, 1vw, 16px) clamp(12px, 2vw, 34px)' : 'clamp(8px, 1.2vw, 20px) clamp(16px, 2.5vw, 44px)',
               display: 'inline-block'
             }}
           >
             <motion.div
               style={{
-                fontSize: locale === 'eu' ? 'clamp(12px, 1.4vw, 20px)' : 'clamp(14px, 1.7vw, 24px)'
+                fontSize: locale === 'eu' ? 'clamp(10px, 1.2vw, 18px)' : 'clamp(11px, 1.5vw, 22px)'
               }}
               className="flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center"
               animate={{
