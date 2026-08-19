@@ -291,14 +291,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* Unified SVG Component: Video Mask & Border Morphing 100% Identically */}
+        {/* 🌊 UNIFIED SINGLE SVG ARCHITECTURE (Video & Border in exact same viewBox) */}
         <svg
           viewBox="0 0 100 100"
           className="absolute inset-0 w-full h-full pointer-events-none select-none"
           style={{ overflow: 'hidden', isolation: 'isolate' }}
         >
           <defs>
-            {/* Morphing ClipPath locked 1:1 to the stroke path */}
+            {/* SVG ClipPath used by SVG elements */}
             <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
               <path d={d0}>
                 <animate
@@ -315,35 +315,46 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
             </linearGradient>
           </defs>
 
-          {/* 🎥 LAYER 1: VIDEO (Exact morphing blob path clip matching border 100%) */}
-          <g clipPath={`url(#${clipId})`} style={{ WebkitClipPath: `url(#${clipId})`, isolation: 'isolate' } as React.CSSProperties}>
-            <foreignObject x="0" y="0" width="100" height="100" style={{ width: '100px', height: '100px', overflow: 'hidden' }}>
-              <video
-                ref={videoRef}
-                src={videoUrl}
-                autoPlay
-                loop
-                muted
-                playsInline
-                // @ts-ignore
-                webkit-playsinline="true"
-                disablePictureInPicture
+          {/* 🎥 LAYER 1: VIDEO EMBEDDED INSIDE SVG & CLIPPED BY SVG CLIPPATH */}
+          <g clipPath={`url(#${clipId})`}>
+            <foreignObject x="0" y="0" width="100" height="100">
+              <div
+                xmlns="http://www.w3.org/1999/xhtml"
                 style={{
                   width: '100px',
                   height: '100px',
-                  objectFit: 'cover',
-                  display: 'block',
-                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-                  WebkitTransform: 'translateZ(0)',
+                  overflow: 'hidden',
+                  borderRadius: '50%',
+                  WebkitClipPath: `url(#${clipId})`,
+                  clipPath: `url(#${clipId})`,
                 }}
               >
-                <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
-                <source src={videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc} type="video/mp4" />
-              </video>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  // @ts-ignore
+                  webkit-playsinline="true"
+                  disablePictureInPicture
+                  preload="auto"
+                  style={{
+                    width: '100px',
+                    height: '100px',
+                    objectFit: 'cover',
+                    display: 'block',
+                    borderRadius: '50%',
+                  }}
+                >
+                  <source src={videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc} type="video/mp4" />
+                  <source src={videoSrc.endsWith('.mp4') ? videoSrc.replace('.mp4', '.webm') : videoSrc} type="video/webm" />
+                </video>
+              </div>
             </foreignObject>
           </g>
 
-          {/* 🎨 LAYER 2: MORPHING STROKE BORDER (Identical path d0 and keyframes) */}
+          {/* 🎨 LAYER 2: MORPHING STROKE BORDER (100% Identical Path & Keyframes) */}
           <motion.path
             d={d0}
             animate={{
