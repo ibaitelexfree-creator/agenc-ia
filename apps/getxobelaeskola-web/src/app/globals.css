@@ -1373,7 +1373,7 @@ iframe[id*="equalweb"] {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: clamp(8px, 2vw, 36px);
+  gap: clamp(7.6px, 1.9vw, 34.2px);
   width: 100%;
   max-width: 100%;
   margin: 0 auto;
@@ -1391,7 +1391,7 @@ iframe[id*="equalweb"] {
     flex-wrap: wrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(8px, 2.5vw, 14px) !important;
+    gap: clamp(7.6px, 2.37vw, 13.3px) !important;
     max-width: min(340px, 92vw) !important;
     margin: 0 auto !important;
   }
@@ -1429,7 +1429,7 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(4px, 1.2vw, 12px) !important;
+    gap: clamp(3.8px, 1.14vw, 11.4px) !important;
     transform: scale(clamp(0.48, 62vh / 450, 0.78)) !important;
     transform-origin: center bottom !important;
   }

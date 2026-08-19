@@ -402,7 +402,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
       {/* 🌊 UNIFIED SINGLE-SOURCE ARCHITECTURE (100% MATCHED MORPHING VIDEO & FRAME) */}
       <motion.div
-        className="relative w-[54.6px] h-[54.6px] min-[360px]:w-[63px] min-[360px]:h-[63px] min-[410px]:w-[75.6px] min-[410px]:h-[75.6px] sm:w-[94.5px] sm:h-[94.5px] md:w-[115.5px] md:h-[115.5px] lg:w-[141.75px] lg:h-[141.75px] xl:w-[157.5px] xl:h-[157.5px]"
+        className="relative w-[49.4px] h-[49.4px] min-[360px]:w-[57px] min-[360px]:h-[57px] min-[410px]:w-[68.4px] min-[410px]:h-[68.4px] sm:w-[85.5px] sm:h-[85.5px] md:w-[104.5px] md:h-[104.5px] lg:w-[128.25px] lg:h-[128.25px] xl:w-[142.5px] xl:h-[142.5px]"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
