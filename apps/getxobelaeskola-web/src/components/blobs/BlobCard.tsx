@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
-function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[] }) {
+function CanvasBlobVideo({ videoSrc, paths, color, isHovered }: { videoSrc: string; paths: string[]; color: string; isHovered: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -31,7 +31,7 @@ function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[
 
     const render = (now: number) => {
       const canvas = canvasRef.current
-      if (canvas && video.readyState >= 2) {
+      if (canvas) {
         const ctx = canvas.getContext('2d')
         if (ctx) {
           ctx.clearRect(0, 0, 100, 100)
@@ -74,19 +74,30 @@ function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[
             })
           }
 
-          // Clip Canvas context to current interpolated Morphing Path
-          ctx.save()
           if (typeof Path2D !== 'undefined') {
             const p = new Path2D(interpolatedD)
-            ctx.clip(p)
+
+            // LAYER 1: VIDEO (Clipped to interpolated morphing path)
+            if (video.readyState >= 2) {
+              ctx.save()
+              ctx.clip(p)
+              ctx.drawImage(video, 0, 0, 100, 100)
+              ctx.restore()
+            }
+
+            // LAYER 2: MORPHING STROKE BORDER (100% Identical Path and Render Frame)
+            ctx.save()
+            if (isHovered) {
+              ctx.fillStyle = `${color}33`
+              ctx.fill(p)
+            }
+            ctx.strokeStyle = color
+            ctx.lineWidth = 2.5
+            ctx.stroke(p)
+            ctx.restore()
           }
-          ctx.drawImage(video, 0, 0, 100, 100)
-          ctx.restore()
         }
       }
-      animationFrameId = requestAnimationFrame(render)
-    }
-
     animationFrameId = requestAnimationFrame(render)
 
     return () => {
@@ -95,7 +106,7 @@ function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[
         video.parentNode.removeChild(video)
       }
     }
-  }, [videoSrc, paths])
+  }, [videoSrc, paths, color, isHovered])
 
   return (
     <canvas
@@ -388,7 +399,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
       {/* 🌊 UNIFIED SINGLE-SOURCE ARCHITECTURE (100% MATCHED MORPHING VIDEO & FRAME) */}
       <motion.div
-        className="relative w-[52px] h-[52px] min-[360px]:w-[60px] min-[360px]:h-[60px] min-[410px]:w-[72px] min-[410px]:h-[72px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px] xl:w-[150px] xl:h-[150px]"
+        className="relative w-[54.6px] h-[54.6px] min-[360px]:w-[63px] min-[360px]:h-[63px] min-[410px]:w-[75.6px] min-[410px]:h-[75.6px] sm:w-[94.5px] sm:h-[94.5px] md:w-[115.5px] md:h-[115.5px] lg:w-[141.75px] lg:h-[141.75px] xl:w-[157.5px] xl:h-[157.5px]"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
@@ -396,11 +407,14 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🌊 HYBRID HTML5 CANVAS + SVG STROKE ARCHITECTURE (Guarantees iOS Safari Blob Video Morphing) */}
+        {/* 🌊 HYBRID HTML5 CANVAS + SVG STROKE ARCHITECTURE (100% Synchronized Video & Border) */}
         <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
           <CanvasBlobVideo
             videoSrc={videoSrc}
             paths={[d0, d1, d2]}
+            color={color}
+            isHovered={isHovered}
+            clipId={clipId}
           />
         </div>
 
