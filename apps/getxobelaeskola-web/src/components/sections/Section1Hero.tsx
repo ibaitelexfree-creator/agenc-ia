@@ -585,6 +585,7 @@ export function Section1Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+          className="mt-3 [@media(min-width:650px)_and_(max-width:850px)]:mt-14 md:mt-4"
         >
           <GlowButton href="#" color="garnet" size="sm">
             {t('cta')}
