@@ -288,8 +288,8 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 1,
-          scale: isPhone ? 1.133 : 1.0,
-          x: isPhone ? '-2vw' : '0px',
+          scale: 1.0,
+          x: '0px',
         }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -302,19 +302,16 @@ export function Section1Hero() {
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-20px',
-              right: '-20px',
-              top: '-20px',
-              bottom: '-20px',
-              width: 'calc(100% + 40px)',
-              height: 'calc(100% + 40px)',
+              inset: 0,
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 1,
             }}
           />
 
-          {/* Step 2: Video de nubes (ลอยนุ่มนวลเข้ามาสมทบ สีก้อนเมฆชัดเจนแต่คงความธรรมชาติ) */}
+          {/* Step 2: Video de nubes (ลอยนุ่มนวลเฉพาะท้องฟ้าเหนือทะเลและข้างภูเขาทั้งสองฝั่ง ไม่ให้ล้ำเข้าเรือ) */}
           <motion.video
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
@@ -336,8 +333,8 @@ export function Section1Hero() {
               zIndex: 2,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
-              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
-              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
             }}
           >
             <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
@@ -356,8 +353,8 @@ export function Section1Hero() {
           width: '100%',
           height: '100%',
           zIndex: 2,
-          scale: isPhone ? 1.14922 : 1.015,
-          x: isPhone ? '-2vw' : '0px',
+          scale: isPhone ? 1.15 : 1.08,
+          x: isPhone ? 'calc(-2vw + 6vw)' : '6vw',
         }}
       >
         <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -370,12 +367,12 @@ export function Section1Hero() {
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-20px',
-              right: '-20px',
-              top: '-20px',
-              bottom: '-40px',
-              width: 'calc(100% + 40px)',
-              height: 'calc(100% + 60px)',
+              left: '-100px',
+              right: '-100px',
+              top: '-30px',
+              bottom: '-50px',
+              width: 'calc(100% + 200px)',
+              height: 'calc(100% + 80px)',
               objectFit: 'cover',
               objectPosition: 'center',
             }}
@@ -415,10 +412,10 @@ export function Section1Hero() {
               style={{
                 position: 'absolute',
                 left: isTabletLandscape 
-                  ? `calc(${aspect.left}px + 2.25vw)` 
+                  ? `calc(${aspect.left}px + 2.25vw - 5vw)` 
                   : isTabletPortrait 
-                  ? `calc(${aspect.left}px + 1.5vw)` 
-                  : `${aspect.left}px`,
+                  ? `calc(${aspect.left}px + 1.5vw - 5vw)` 
+                  : `calc(${aspect.left}px - 5vw)`,
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
