@@ -274,6 +274,7 @@ export function Section1Hero() {
         justifyContent: 'center',
         paddingTop: '0px',
         boxSizing: 'border-box',
+        backgroundColor: '#0D2137',
       }}
     >
       {/* Capa 1: Cielo y Video de Nubes (Fondo) */}
@@ -369,9 +370,9 @@ export function Section1Hero() {
               left: '-10px',
               right: '-15px',
               top: '-10px',
-              bottom: '-10px',
+              bottom: '-40px',
               width: 'calc(100% + 25px)',
-              height: 'calc(100% + 20px)',
+              height: 'calc(100% + 50px)',
               objectFit: 'cover',
               objectPosition: 'center',
             }}
