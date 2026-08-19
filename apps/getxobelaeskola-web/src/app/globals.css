@@ -1429,12 +1429,26 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(6px, 1.5vw, 16px) !important;
+    gap: clamp(4px, 1.2vw, 12px) !important;
+    transform: scale(clamp(0.48, 62vh / 450, 0.78)) !important;
+    transform-origin: center bottom !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
     top: 0px !important;
+  }
+}
+
+/* 📱 Fluid Mobile Landscape Height Safety System (< 500px height, e.g. 569x320px) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero-video-blobs-container {
+    bottom: calc(1.5vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .hero-blobs-grid {
+    transform: scale(clamp(0.42, 58vh / 450, 0.65)) !important;
+    transform-origin: center bottom !important;
   }
 }
 
