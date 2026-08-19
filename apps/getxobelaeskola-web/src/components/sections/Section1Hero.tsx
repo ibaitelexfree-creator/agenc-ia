@@ -585,7 +585,7 @@ export function Section1Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-          className="mt-3 [@media(min-width:650px)_and_(max-width:850px)]:mt-14 md:mt-4"
+          className="mt-3 md:mt-4"
         >
           <GlowButton href="#" color="garnet" size="sm">
             {t('cta')}
@@ -725,7 +725,7 @@ function SailboatAccesoButton() {
           style={{
             position: 'absolute',
             left: '85.23%',
-            top: '76.40%',
+            top: '66.40%',
             translate: '-50% -50%',
             display: 'flex',
             alignItems: 'center',
@@ -733,7 +733,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
-          className="scale-90 sm:scale-95 md:scale-100 lg:scale-105"
+          className="scale-75 sm:scale-90 md:scale-100"
         >
           <Link
             href={`/${locale}/auth/login`}
