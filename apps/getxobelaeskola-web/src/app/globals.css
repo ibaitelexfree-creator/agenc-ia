@@ -1401,8 +1401,8 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* Range 3 & 4: Mobile Landscape & Short Viewports (height < 600px, e.g. 569x320px) */
-@media (orientation: landscape) and (max-height: 600px) {
+/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 569x320px) */
+@media (orientation: landscape) and (max-height: 600px) and (max-width: 960px) {
   .scroll-engine-root {
     height: auto !important;
   }
