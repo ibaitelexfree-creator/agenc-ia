@@ -1420,8 +1420,8 @@ iframe[id*="equalweb"] {
   }
 
   .hero-video-blobs-container {
-    bottom: calc(0.5vh + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 0 8px !important;
+    bottom: calc(0.1vh + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 4px !important;
   }
 
   .hero-blobs-grid {
@@ -1430,15 +1430,15 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(2.5px, 0.8vw, 7.5px) !important;
-    transform: scale(clamp(0.28, 48vh / 450, 0.52)) !important;
+    gap: clamp(2px, 0.7vw, 6.5px) !important;
+    transform: scale(clamp(0.25, 45vh / 450, 0.48)) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
     top: 0px !important;
-    transform: scale(clamp(0.52, 60vh / 450, 0.72)) !important;
+    transform: scale(clamp(0.48, 55vh / 450, 0.68)) !important;
     transform-origin: left top !important;
   }
 }
@@ -1446,17 +1446,17 @@ iframe[id*="equalweb"] {
 /* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 569x320px) */
 @media (orientation: landscape) and (max-height: 420px) {
   .hero-video-blobs-container {
-    bottom: calc(0.2vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(0px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .hero-blobs-grid {
-    gap: clamp(2px, 0.6vw, 6px) !important;
-    transform: scale(clamp(0.24, 42vh / 450, 0.44)) !important;
+    gap: clamp(1.5px, 0.5vw, 5px) !important;
+    transform: scale(clamp(0.20, 38vh / 450, 0.40)) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
-    transform: scale(clamp(0.44, 52vh / 450, 0.62)) !important;
+    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
     transform-origin: left top !important;
   }
 }
