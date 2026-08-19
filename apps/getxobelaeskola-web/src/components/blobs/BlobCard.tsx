@@ -8,6 +8,8 @@ function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const video = document.createElement('video')
     video.src = videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc
     video.autoplay = true
@@ -34,21 +36,50 @@ function CanvasBlobVideo({ videoSrc, paths }: { videoSrc: string; paths: string[
         if (ctx) {
           ctx.clearRect(0, 0, 100, 100)
 
-          // Interpolate SVG Morphing Path
-          const elapsed = ((now - startTime) % 8000) / 8000
-          let currentD = paths[0]
-          if (elapsed < 0.33) {
-            currentD = paths[0]
-          } else if (elapsed < 0.66) {
-            currentD = paths[1]
+          // Interpolate SVG Morphing Path smoothly matching SMIL 8s animation
+          const cycleMs = 8000
+          const progress = ((now - startTime) % cycleMs) / cycleMs
+          
+          let fromD = paths[0]
+          let toD = paths[1]
+          let blend = 0
+
+          if (progress < 0.333) {
+            fromD = paths[0]
+            toD = paths[1]
+            blend = progress / 0.333
+          } else if (progress < 0.666) {
+            fromD = paths[1]
+            toD = paths[2]
+            blend = (progress - 0.333) / 0.333
           } else {
-            currentD = paths[2]
+            fromD = paths[2]
+            toD = paths[0]
+            blend = (progress - 0.666) / 0.334
           }
 
-          // Clip Canvas context to current Morphing Path
+          // Parse and interpolate cubic bezier path numbers smoothly
+          const fromNums = fromD.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
+          const toNums = toD.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
+          
+          let interpolatedD = fromD
+          if (fromNums.length > 0 && fromNums.length === toNums.length) {
+            let numIdx = 0
+            interpolatedD = fromD.replace(/-?\d+(\.\d+)?/g, () => {
+              const startVal = fromNums[numIdx]
+              const endVal = toNums[numIdx]
+              numIdx++
+              const val = startVal + (endVal - startVal) * blend
+              return val.toFixed(2)
+            })
+          }
+
+          // Clip Canvas context to current interpolated Morphing Path
           ctx.save()
-          const p = new Path2D(currentD)
-          ctx.clip(p)
+          if (typeof Path2D !== 'undefined') {
+            const p = new Path2D(interpolatedD)
+            ctx.clip(p)
+          }
           ctx.drawImage(video, 0, 0, 100, 100)
           ctx.restore()
         }
