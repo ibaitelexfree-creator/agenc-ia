@@ -1794,5 +1794,20 @@
       "title": "Convertisseur Nautique",
       "subtitle": "Outil de précision pour convertir entre les unités maritimes et standard."
     }
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "subtitle": "Club de Voile à Getxo",
+    "cta": "Devenez Membre",
+    "card_cursos_title": "Apprendre à naviguer",
+    "card_cursos_subtitle": "Cours de voile légère et croisière",
+    "card_club_title": "Rejoignez la communauté",
+    "card_club_subtitle": "Naviguez toute l'année avec les membres",
+    "card_equipos_title": "Régates et perfectionnement",
+    "card_equipos_subtitle": "Équipes de compétition et technique",
+    "card_udalekuak_title": "Stages de voile",
+    "card_udalekuak_subtitle": "Camps d'été pour les jeunes",
+    "card_entidades_title": "Collaborer avec nous",
+    "card_entidades_subtitle": "Team building et entreprises"
   }
 }

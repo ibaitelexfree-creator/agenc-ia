@@ -2219,5 +2219,20 @@
       "title": "Nautical Converter",
       "subtitle": "Precision tool for converting between maritime and standard units."
     }
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "subtitle": "Sailing Club in Getxo",
+    "cta": "Become a Member",
+    "card_cursos_title": "Learn to sail",
+    "card_cursos_subtitle": "Dinghy & yacht sailing courses",
+    "card_club_title": "Join the community",
+    "card_club_subtitle": "Sail all year with members",
+    "card_equipos_title": "Compete & improve",
+    "card_equipos_subtitle": "Racing teams & technification",
+    "card_udalekuak_title": "Sailing camps",
+    "card_udalekuak_subtitle": "Summer camps for youth",
+    "card_entidades_title": "Partner with us",
+    "card_entidades_subtitle": "Team building & corporate"
   }
 }

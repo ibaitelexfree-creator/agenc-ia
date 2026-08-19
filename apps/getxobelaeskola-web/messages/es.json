@@ -2279,5 +2279,20 @@
       "title": "Conversor Náutico",
       "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
     }
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "subtitle": "Club de Navegación a Vela en Getxo",
+    "cta": "Hazte Socia",
+    "card_cursos_title": "Aprende a navegar",
+    "card_cursos_subtitle": "Cursos de vela ligera y crucero",
+    "card_club_title": "Únete a la comunidad",
+    "card_club_subtitle": "Navega todo el año con socias",
+    "card_equipos_title": "Compite y supérate",
+    "card_equipos_subtitle": "Equipos de regata y tecnificación",
+    "card_udalekuak_title": "Campamentos de vela",
+    "card_udalekuak_subtitle": "Campus de verano para jóvenes",
+    "card_entidades_title": "Colabora con nosotros",
+    "card_entidades_subtitle": "Team building e instituciones"
   }
 }

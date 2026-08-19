@@ -2271,5 +2271,20 @@
       "title": "Bihurtzaile Nautikoa",
       "subtitle": "Unitate nautiko eta estandarren artean bihurtzeko zehaztasunezko tresna."
     }
+  },
+  "s1": {
+    "eyebrow": "Getxo · Bizkaia",
+    "subtitle": "Getxoko Bela Nabigazio Kluba",
+    "cta": "Egin zaitez Bazkide",
+    "card_cursos_title": "Ikasi nabigatzen",
+    "card_cursos_subtitle": "Bela arina eta gurutzontzi ikastaroak",
+    "card_club_title": "Batu komunitatera",
+    "card_club_subtitle": "Nabigatu urte osoan bazkideekin",
+    "card_equipos_title": "Lehiatu eta hobetu",
+    "card_equipos_subtitle": "Estropada eta teknifikazio taldeak",
+    "card_udalekuak_title": "Bela udalekuak",
+    "card_udalekuak_subtitle": "Udako campusak gazteentzat",
+    "card_entidades_title": "Lan egin gurekin",
+    "card_entidades_subtitle": "Team building eta erakundeak"
   }
 }
