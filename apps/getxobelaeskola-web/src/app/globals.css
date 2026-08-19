@@ -1429,8 +1429,8 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(3.42px, 1.02vw, 10.26px) !important;
-    transform: scale(clamp(0.48, 62vh / 450, 0.78)) !important;
+    gap: clamp(3.25px, 0.97vw, 9.75px) !important;
+    transform: scale(clamp(0.44, 58vh / 450, 0.74)) !important;
     transform-origin: center bottom !important;
   }
 
@@ -1443,11 +1443,12 @@ iframe[id*="equalweb"] {
 /* 📱 Fluid Mobile Landscape Height Safety System (< 500px height, e.g. 569x320px) */
 @media (orientation: landscape) and (max-height: 500px) {
   .hero-video-blobs-container {
-    bottom: calc(1.5vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
 
   .hero-blobs-grid {
-    transform: scale(clamp(0.42, 58vh / 450, 0.65)) !important;
+    gap: clamp(2.5px, 0.8vw, 8px) !important;
+    transform: scale(clamp(0.35, 52vh / 450, 0.58)) !important;
     transform-origin: center bottom !important;
   }
 }
