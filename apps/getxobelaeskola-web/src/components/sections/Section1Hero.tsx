@@ -276,45 +276,7 @@ export function Section1Hero() {
         boxSizing: 'border-box',
       }}
     >
-      {/* Capa 2: Costa, montaña y mar (sin balanceo de mar/montaña) - CARGA 1º */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: tierraLoaded ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          y: layer2Y,
-          width: '100%',
-          height: '100%',
-          zIndex: 2,
-          scale: isPhone ? 1.14922 : 1.015,
-          x: isPhone ? '-2vw' : '0px',
-        }}
-      >
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-          <img
-            ref={tierraRef}
-            src="/images/home/parallax/tierra.webp?v=5"
-            alt="Costa y mar del Abra de Getxo"
-            fetchPriority="high"
-            onLoad={() => setTierraLoaded(true)}
-            style={{
-              position: 'absolute',
-              left: '-10px',
-              right: '-15px',
-              top: '-10px',
-              bottom: '-10px',
-              width: 'calc(100% + 25px)',
-              height: 'calc(100% + 20px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          />
-        </div>
-      </motion.div>
-
-      {/* Capa 1: Cielo y Video de Nubes (sin balanceo de mar) - CARGA 2º */}
+      {/* Capa 1: Cielo y Video de Nubes (Fondo) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -352,7 +314,7 @@ export function Section1Hero() {
             }}
           />
 
-          {/* Video de nubes flotando en la parte superior */}
+          {/* Video de nubes flotando en la parte superior (จำกัดความสูงไว้เฉพาะส่วนท้องฟ้า 35% ด้านบน) */}
           <video
             autoPlay
             loop
@@ -361,20 +323,58 @@ export function Section1Hero() {
             onCanPlay={() => setVideoLoaded(true)}
             style={{
               position: 'absolute',
-              top: '-10%',
+              top: '0',
               left: 0,
               width: '100%',
-              height: '52%',
+              height: '38%',
               objectFit: 'cover',
               objectPosition: 'top center',
               zIndex: 2,
-              opacity: 0.75,
+              opacity: 0.65,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
             }}
           >
             <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
           </video>
+        </div>
+      </motion.div>
+
+      {/* Capa 2: Costa,ภูเขา และทะเล (อยู่ด้านหน้าของชั้นท้องฟ้า) */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: tierraLoaded ? 1 : 0 }}
+        transition={{ duration: 0.6 }}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          y: layer2Y,
+          width: '100%',
+          height: '100%',
+          zIndex: 2,
+          scale: isPhone ? 1.14922 : 1.015,
+          x: isPhone ? '-2vw' : '0px',
+        }}
+      >
+        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+          <img
+            ref={tierraRef}
+            src="/images/home/parallax/tierra.webp?v=5"
+            alt="Costa y mar del Abra de Getxo"
+            fetchPriority="high"
+            onLoad={() => setTierraLoaded(true)}
+            style={{
+              position: 'absolute',
+              left: '-10px',
+              right: '-15px',
+              top: '-10px',
+              bottom: '-10px',
+              width: 'calc(100% + 25px)',
+              height: 'calc(100% + 20px)',
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
         </div>
       </motion.div>
 
