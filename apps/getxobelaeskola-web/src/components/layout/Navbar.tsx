@@ -255,7 +255,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
 
     return (
         <>
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col overflow-x-hidden">
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col">
                 {/* Top Utility Bar */}
                 <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
