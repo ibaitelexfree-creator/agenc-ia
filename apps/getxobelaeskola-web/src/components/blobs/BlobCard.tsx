@@ -410,69 +410,15 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* 🌊 HYBRID HTML5 CANVAS + SVG STROKE ARCHITECTURE (100% Synchronized Video & Border) */}
+        {/* 🌊 SINGLE UNIFIED CANVAS ARCHITECTURE (Video, Morphing Stroke & Shimmer on same Canvas 2D Render Loop) */}
         <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
           <CanvasBlobVideo
             videoSrc={videoSrc}
             paths={[d0, d1, d2]}
             color={color}
             isHovered={isHovered}
-            clipId={clipId}
           />
         </div>
-
-        {/* 🎨 LAYER 2: MORPHING STROKE BORDER & SHIMMER */}
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full pointer-events-none select-none"
-          style={{ overflow: 'hidden' }}
-        >
-          <defs>
-            <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
-              <stop offset="70%" stopColor="rgba(255,255,255,0)" />
-            </linearGradient>
-          </defs>
-
-          {/* 🎨 LAYER 2: MORPHING STROKE BORDER (100% Identical Path & Keyframes) */}
-          <motion.path
-            d={d0}
-            animate={{
-              fill: isHovered ? `${color}33` : 'none'
-            }}
-            transition={{
-              fill: { duration: 0.3 }
-            }}
-            stroke={color}
-            strokeWidth="2.5"
-            vectorEffect="non-scaling-stroke"
-            style={{ transformOrigin: '50px 50px' }}
-          >
-            <animate
-              attributeName="d"
-              dur="8s"
-              repeatCount="indefinite"
-              values={`${d0}; ${d1}; ${d2}; ${d0}`}
-            />
-          </motion.path>
-
-          {/* 💡 LAYER 3: Glass hover shimmer */}
-          <path
-            d={d0}
-            fill={`url(#${clipId}-gradient)`}
-            style={{
-              opacity: isHovered ? 1 : 0,
-              transition: 'opacity 0.3s ease',
-            }}
-          >
-            <animate
-              attributeName="d"
-              dur="8s"
-              repeatCount="indefinite"
-              values={`${d0}; ${d1}; ${d2}; ${d0}`}
-            />
-          </path>
-        </svg>
 
         {/* Portal de Teletransportación Mágica */}
         <AnimatePresence>
