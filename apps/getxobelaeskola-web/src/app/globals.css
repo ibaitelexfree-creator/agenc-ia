@@ -1380,7 +1380,19 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* Range 1 & 2: Mobile Portrait (< 600px) - Exact 3+2 Layout */
+/* 📐 RANGE 4: Tablet / iPad System (768px - 1023px)
+   Raise main text & CTA button up by 5% (5vh) and raise 5 video blobs up by an additional 5% (15vh bottom)
+   ensuring all 5 videos and labels are perfectly positioned above the bottom edge */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-text-container {
+    transform: translateY(-5vh) !important;
+  }
+
+  .hero-video-blobs-container {
+    bottom: calc(clamp(48px, 15vh, 120px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
 @media (max-width: 599px) and (orientation: portrait) {
   .hero-video-blobs-container {
     bottom: calc(2vh + env(safe-area-inset-bottom, 0px)) !important;
