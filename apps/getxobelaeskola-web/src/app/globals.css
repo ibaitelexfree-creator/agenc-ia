@@ -1380,8 +1380,9 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
-@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px):
+   Raise main text & elevate 5 video blobs container safely to 14vh from bottom */
+@media (min-width: 768px) and (max-width: 1366px) {
   .hero-text-container {
     transform: translateY(-4vh) !important;
   }
@@ -1391,10 +1392,19 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 🖥️ Desktop Viewport System (width >= 1024px Portrait / Large Desktop): */
-@media (min-width: 1701px) {
+/* 🖥️ Desktop Viewport System (width >= 1024px):
+   Lower 5 video blobs container down by 5% to sit perfectly flush near bottom edge */
+@media (min-width: 1024px) {
   .hero-video-blobs-container {
     bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* 📐 Large Displays & High Resolution Aspect Ratios (2360x1640, 2560x1600, 2960x1848, 3200x2136):
+   Position 5 hero video blobs down by ~5% to fit seamlessly near the bottom edge */
+@media (min-width: 1367px) {
+  .hero-video-blobs-container {
+    bottom: calc(clamp(40px, 8vh, 100px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
@@ -1425,72 +1435,29 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* General Landscape Mode Rules: Auto-close gap */
+/* General Landscape Mode Rules: Auto-close gap and scale down videos + text */
 @media (orientation: landscape) {
   .hero-blobs-grid {
     gap: clamp(2px, 0.8vw, 12px) !important;
+    transform: scale(0.78) !important;
+    transform-origin: center bottom !important;
   }
 }
 
-/* 📲 Tablet Landscape System (Auto-responsive scaling for each target tablet resolution group):
-   Position 5 hero video blobs container & text exactly 3% (3vh) above bottom edge with dynamic scale */
-
-/* 1. Tablet เล็ก (1024 × 768) */
-@media (orientation: landscape) and (min-width: 961px) and (max-width: 1150px) {
+/* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000):
+   Position 5 hero video blobs container & text 3% (3vh) above bottom edge */
+@media (orientation: landscape) and (min-width: 1000px) and (max-width: 1650px) {
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
-  .hero-blobs-grid {
-    transform: scale(clamp(0.46, 38vh / 768, 0.58)) !important;
-    transform-origin: center bottom !important;
-  }
-  .hero-text-container {
-    transform: translateY(-2vh) scale(0.70) !important;
-    transform-origin: left top !important;
-  }
-}
 
-/* 2. Tablet มาตรฐาน (1280 × 800) */
-@media (orientation: landscape) and (min-width: 1151px) and (max-width: 1300px) {
-  .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
   .hero-blobs-grid {
-    transform: scale(clamp(0.50, 42vh / 800, 0.63)) !important;
+    transform: scale(clamp(0.55, 48vh / 600, 0.72)) !important;
     transform-origin: center bottom !important;
   }
-  .hero-text-container {
-    transform: translateY(-2vh) scale(0.73) !important;
-    transform-origin: left top !important;
-  }
-}
 
-/* 3. iPad กลุ่ม 11" (1366 × 1024) */
-@media (orientation: landscape) and (min-width: 1301px) and (max-width: 1450px) {
-  .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .hero-blobs-grid {
-    transform: scale(clamp(0.56, 47vh / 1024, 0.70)) !important;
-    transform-origin: center bottom !important;
-  }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.79) !important;
-    transform-origin: left top !important;
-  }
-}
-
-/* 4. Tablet Android QHD (1600 × 1000) */
-@media (orientation: landscape) and (min-width: 1451px) and (max-width: 1700px) {
-  .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .hero-blobs-grid {
-    transform: scale(clamp(0.60, 49vh / 1000, 0.73)) !important;
-    transform-origin: center bottom !important;
-  }
-  .hero-text-container {
-    transform: translateY(-2vh) scale(0.82) !important;
+    transform: translateY(-2vh) scale(0.80) !important;
     transform-origin: left top !important;
   }
 }
