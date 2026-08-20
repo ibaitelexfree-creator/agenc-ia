@@ -1441,11 +1441,11 @@ iframe[id*="equalweb"] {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.55, 48vh / 768, 0.68)) !important;
+    transform: scale(clamp(0.46, 38vh / 768, 0.58)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.78) !important;
+    transform: translateY(-2vh) scale(0.70) !important;
     transform-origin: left top !important;
   }
 }
@@ -1456,11 +1456,11 @@ iframe[id*="equalweb"] {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.62, 52vh / 800, 0.74)) !important;
+    transform: scale(clamp(0.50, 42vh / 800, 0.63)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.82) !important;
+    transform: translateY(-2vh) scale(0.73) !important;
     transform-origin: left top !important;
   }
 }
@@ -1471,11 +1471,11 @@ iframe[id*="equalweb"] {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.70, 58vh / 1024, 0.82)) !important;
+    transform: scale(clamp(0.56, 47vh / 1024, 0.70)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.88) !important;
+    transform: translateY(-2vh) scale(0.79) !important;
     transform-origin: left top !important;
   }
 }
@@ -1486,11 +1486,11 @@ iframe[id*="equalweb"] {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.76, 60vh / 1000, 0.88)) !important;
+    transform: scale(clamp(0.60, 49vh / 1000, 0.73)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.92) !important;
+    transform: translateY(-2vh) scale(0.82) !important;
     transform-origin: left top !important;
   }
 }
