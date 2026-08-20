@@ -1433,19 +1433,19 @@ iframe[id*="equalweb"] {
 }
 
 /* 📲 Tablet Landscape System (Auto-responsive scaling for each target tablet resolution group):
-   Position 5 hero video blobs container & text exactly 3% (3vh) above bottom edge with dynamic scale */
+   Position 5 hero video blobs container & text exactly 1% (1vh) above bottom edge with dynamic scale */
 
 /* 1. Tablet เล็ก (1024 × 768) */
 @media (orientation: landscape) and (min-width: 961px) and (max-width: 1150px) {
   .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.46, 38vh / 768, 0.58)) !important;
+    transform: scale(clamp(0.40, 34vh / 768, 0.52)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.70) !important;
+    transform: translateY(-1vh) scale(0.65) !important;
     transform-origin: left top !important;
   }
 }
@@ -1453,14 +1453,14 @@ iframe[id*="equalweb"] {
 /* 2. Tablet มาตรฐาน (1280 × 800) */
 @media (orientation: landscape) and (min-width: 1151px) and (max-width: 1300px) {
   .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.50, 42vh / 800, 0.63)) !important;
+    transform: scale(clamp(0.44, 38vh / 800, 0.56)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.73) !important;
+    transform: translateY(-1vh) scale(0.68) !important;
     transform-origin: left top !important;
   }
 }
@@ -1468,14 +1468,14 @@ iframe[id*="equalweb"] {
 /* 3. iPad กลุ่ม 11" (1366 × 1024) */
 @media (orientation: landscape) and (min-width: 1301px) and (max-width: 1450px) {
   .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.56, 47vh / 1024, 0.70)) !important;
+    transform: scale(clamp(0.50, 42vh / 1024, 0.62)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.79) !important;
+    transform: translateY(-1vh) scale(0.72) !important;
     transform-origin: left top !important;
   }
 }
@@ -1483,14 +1483,14 @@ iframe[id*="equalweb"] {
 /* 4. Tablet Android QHD (1600 × 1000) */
 @media (orientation: landscape) and (min-width: 1451px) and (max-width: 1700px) {
   .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.60, 49vh / 1000, 0.73)) !important;
+    transform: scale(clamp(0.54, 44vh / 1000, 0.65)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.82) !important;
+    transform: translateY(-1vh) scale(0.75) !important;
     transform-origin: left top !important;
   }
 }
