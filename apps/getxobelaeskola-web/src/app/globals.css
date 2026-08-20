@@ -1380,14 +1380,79 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
+/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px): 3 items top row, 2 items bottom row */
+@media (max-width: 1023px) {
+  div.hero-blobs-grid,
+  .hero-blobs-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    row-gap: 14px !important;
+    column-gap: 10px !important;
+    justify-items: center !important;
+    align-items: center !important;
+    max-width: min(520px, 96vw) !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(1),
+  div.hero-blobs-grid > *:nth-child(2),
+  div.hero-blobs-grid > *:nth-child(3),
+  .hero-blobs-grid > *:nth-child(1),
+  .hero-blobs-grid > *:nth-child(2),
+  .hero-blobs-grid > *:nth-child(3) {
+    grid-column: span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(4),
+  .hero-blobs-grid > *:nth-child(4) {
+    grid-column: 2 / span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(5),
+  .hero-blobs-grid > *:nth-child(5) {
+    grid-column: 4 / span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+}
+
+/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment) */
+@media (min-width: 320px) and (max-width: 586px) {
+  div.hero-video-blobs-container,
+  .hero-video-blobs-container {
+    bottom: calc(clamp(12px, 3vh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 8px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  div.hero-blobs-grid,
+  .hero-blobs-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    row-gap: clamp(8px, 2vh, 12px) !important;
+    column-gap: clamp(4px, 1.5vw, 8px) !important;
+    justify-items: center !important;
+    align-items: center !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+}
+
 /* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
 @media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
   .hero-text-container {
-    transform: translateY(-4vh) !important;
+    transform: translateY(-2vh) !important;
   }
 
   .hero-video-blobs-container {
-    bottom: calc(clamp(70px, 14vh, 180px) + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(clamp(24px, 4vh, 60px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
@@ -1448,16 +1513,11 @@ iframe[id*="equalweb"] {
     box-sizing: border-box !important;
   }
 
+  /* Retain 3+2 grid layout for short landscape mode while scaling nicely */
+  div.hero-blobs-grid,
   .hero-blobs-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: clamp(1px, 0.4vw, 4px) !important;
     transform: scale(calc(clamp(0.20, 38vh / 450, 0.38))) !important;
     transform-origin: center bottom !important;
-    max-width: 100% !important;
   }
 
   .hero-text-container {
