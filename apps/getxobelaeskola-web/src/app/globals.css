@@ -1444,20 +1444,65 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📲 Tablet & iPad Landscape Mode System (iPad Gen 10/11, Air, Pro in Landscape - 768px to 1400px width with height < 1200px):
-   Elevate blobs container up by 15vh and scale grid appropriately to keep all 5 titles & subtitles 100% visible */
-@media (orientation: landscape) and (min-width: 768px) and (max-width: 1400px) and (max-height: 1200px) {
-  .hero-video-blobs-container {
-    bottom: calc(clamp(65px, 15vh, 180px) + env(safe-area-inset-bottom, 0px)) !important;
-  }
+/* 📲 Tablet Landscape System (Auto-responsive scaling for each tablet resolution group):
+   Position 5 hero video blobs container & text 3% (3vh) above bottom edge with dynamic scale */
 
+/* 1. Tablet เล็ก (1024 × 768) */
+@media (orientation: landscape) and (min-width: 1000px) and (max-width: 1150px) and (min-height: 600px) and (max-height: 790px) {
+  .hero-video-blobs-container {
+    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
   .hero-blobs-grid {
-    transform: scale(clamp(0.62, 50vh / 600, 0.80)) !important;
+    transform: scale(clamp(0.60, 50vh / 768, 0.70)) !important;
     transform-origin: center bottom !important;
   }
-
   .hero-text-container {
-    transform: translateY(-5vh) scale(0.85) !important;
+    transform: translateY(-2vh) scale(0.80) !important;
+    transform-origin: left top !important;
+  }
+}
+
+/* 2. Tablet มาตรฐาน (1280 × 800) */
+@media (orientation: landscape) and (min-width: 1151px) and (max-width: 1300px) and (min-height: 600px) and (max-height: 850px) {
+  .hero-video-blobs-container {
+    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .hero-blobs-grid {
+    transform: scale(clamp(0.68, 55vh / 800, 0.78)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    transform: translateY(-2vh) scale(0.85) !important;
+    transform-origin: left top !important;
+  }
+}
+
+/* 3. iPad กลุ่ม 11" (1366 × 1024) */
+@media (orientation: landscape) and (min-width: 1301px) and (max-width: 1450px) and (min-height: 851px) and (max-height: 1050px) {
+  .hero-video-blobs-container {
+    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .hero-blobs-grid {
+    transform: scale(clamp(0.75, 60vh / 1024, 0.88)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    transform: translateY(-2vh) scale(0.92) !important;
+    transform-origin: left top !important;
+  }
+}
+
+/* 4. Tablet Android QHD (1600 × 1000) */
+@media (orientation: landscape) and (min-width: 1451px) and (max-width: 1700px) and (min-height: 851px) and (max-height: 1100px) {
+  .hero-video-blobs-container {
+    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .hero-blobs-grid {
+    transform: scale(clamp(0.82, 62vh / 1000, 0.95)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    transform: translateY(-2vh) scale(0.96) !important;
     transform-origin: left top !important;
   }
 }
