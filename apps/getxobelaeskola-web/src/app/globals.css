@@ -1436,12 +1436,27 @@ iframe[id*="equalweb"] {
    Position 5 hero video blobs container & text exactly 3% (3vh) above bottom edge with dynamic scale */
 
 /* 1. Tablet เล็ก (1024 × 768) */
-@media (orientation: landscape) and (min-width: 961px) and (max-width: 1150px) and (min-height: 600px) and (max-height: 790px) {
+@media (orientation: landscape) and (min-width: 961px) and (max-width: 1150px) {
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.55, 48vh / 768, 0.68)) !important;
+    transform: scale(clamp(0.50, 42vh / 768, 0.62)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    transform: translateY(-2vh) scale(0.75) !important;
+    transform-origin: left top !important;
+  }
+}
+
+/* 2. Tablet มาตรฐาน (1280 × 800) */
+@media (orientation: landscape) and (min-width: 1151px) and (max-width: 1300px) {
+  .hero-video-blobs-container {
+    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .hero-blobs-grid {
+    transform: scale(clamp(0.55, 46vh / 800, 0.68)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
@@ -1450,47 +1465,32 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 2. Tablet มาตรฐาน (1280 × 800) */
-@media (orientation: landscape) and (min-width: 1151px) and (max-width: 1300px) and (min-height: 600px) and (max-height: 850px) {
-  .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .hero-blobs-grid {
-    transform: scale(clamp(0.62, 52vh / 800, 0.74)) !important;
-    transform-origin: center bottom !important;
-  }
-  .hero-text-container {
-    transform: translateY(-2vh) scale(0.82) !important;
-    transform-origin: left top !important;
-  }
-}
-
 /* 3. iPad กลุ่ม 11" (1366 × 1024) */
-@media (orientation: landscape) and (min-width: 1301px) and (max-width: 1450px) and (min-height: 851px) and (max-height: 1050px) {
+@media (orientation: landscape) and (min-width: 1301px) and (max-width: 1450px) {
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.70, 58vh / 1024, 0.82)) !important;
+    transform: scale(clamp(0.62, 52vh / 1024, 0.75)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.88) !important;
+    transform: translateY(-2vh) scale(0.85) !important;
     transform-origin: left top !important;
   }
 }
 
 /* 4. Tablet Android QHD (1600 × 1000) */
-@media (orientation: landscape) and (min-width: 1451px) and (max-width: 1700px) and (min-height: 851px) and (max-height: 1100px) {
+@media (orientation: landscape) and (min-width: 1451px) and (max-width: 1700px) {
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
   .hero-blobs-grid {
-    transform: scale(clamp(0.76, 60vh / 1000, 0.88)) !important;
+    transform: scale(clamp(0.65, 54vh / 1000, 0.78)) !important;
     transform-origin: center bottom !important;
   }
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.92) !important;
+    transform: translateY(-2vh) scale(0.88) !important;
     transform-origin: left top !important;
   }
 }
