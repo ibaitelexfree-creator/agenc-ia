@@ -98,7 +98,9 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
                             : 'saturate-[0.8] group-hover:saturate-100'
                     }`}
                     style={
-                        (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
+                        (experience.slug === 'cumpleanos-space-rental' || experience.slug === 'birthday-space-rental' || experience.imagen_url?.includes('birthday-space-rental'))
+                            ? { objectPosition: '50% 25%' }
+                            : (experience.slug === 'cumpleanos-bigsub' || experience.imagen_url?.includes('birthday-bigsub'))
                             ? { objectPosition: '50% 35%' }
                             : experience.imagen_url?.includes('windsurf-mooring')
                             ? { objectPosition: '50% 50%' }
