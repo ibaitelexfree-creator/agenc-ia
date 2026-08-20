@@ -1380,8 +1380,8 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px): 3 items top row, 2 items bottom row */
-@media (max-width: 1023px) {
+/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px Portrait): 3 items top row, 2 items bottom row */
+@media (max-width: 1023px) and (orientation: portrait) {
   div.hero-blobs-grid,
   .hero-blobs-grid {
     display: grid !important;
@@ -1421,8 +1421,8 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment) */
-@media (min-width: 320px) and (max-width: 586px) {
+/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment in Portrait) */
+@media (min-width: 320px) and (max-width: 586px) and (orientation: portrait) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
     bottom: calc(clamp(12px, 3vh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
@@ -1488,7 +1488,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 569x320px) */
+/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 586x320px) */
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 960px) {
   .scroll-engine-root {
     height: auto !important;
@@ -1496,7 +1496,7 @@ iframe[id*="equalweb"] {
   .scroll-engine-inner {
     position: relative !important;
     height: auto !important;
-    overflow: visible !important;
+    overflow: hidden !important;
   }
   .canvas-container {
     height: auto !important;
@@ -1506,43 +1506,67 @@ iframe[id*="equalweb"] {
     transform: none !important;
   }
 
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(0.1vh + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 0 4px !important;
+    bottom: calc(2vh + env(safe-area-inset-bottom, 0px)) !important; /* ยกขึ้นเล็กน้อยไม่ให้ล้นขอบล่าง */
+    padding: 0 2px !important;
+    width: 100vw !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
+    overflow: visible !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 
-  /* Retain 3+2 grid layout for short landscape mode while scaling nicely */
+  /* Single row flex layout for 1 2 3 4 5 video blobs in mobile landscape */
   div.hero-blobs-grid,
   .hero-blobs-grid {
-    transform: scale(calc(clamp(0.20, 38vh / 450, 0.38))) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0px !important; /* ปรับชิดกันมากขึ้นอีก 1% */
+    transform: scale(clamp(0.205, 30vh / 320, 0.365)) !important;
     transform-origin: center bottom !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    margin: 0 auto !important;
+  }
+
+  div.hero-blobs-grid > *,
+  .hero-blobs-grid > * {
+    grid-column: unset !important;
+    width: auto !important;
+    flex-shrink: 1 !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
-    top: -2vh !important;
-    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
+    top: -6.5vh !important;
+    transform: scale(clamp(0.33, 40vh / 450, 0.50)) !important;
     transform-origin: left top !important;
   }
 }
 
-/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 569x320px) */
+/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 586x320px) */
 @media (orientation: landscape) and (max-height: 420px) {
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(0px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1.5vh + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 !important;
   }
 
+  div.hero-blobs-grid,
   .hero-blobs-grid {
-    gap: clamp(0.5px, 0.2vw, 2px) !important;
-    transform: scale(calc(clamp(0.16, 32vh / 450, 0.32))) !important;
+    gap: 0px !important; /* ปรับชิดกันมากขึ้นอีก 1% */
+    transform: scale(clamp(0.165, 26.5vh / 320, 0.325)) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
-    top: -2vh !important;
-    transform: scale(clamp(0.35, 40vh / 450, 0.48)) !important;
+    top: -6.5vh !important;
+    transform: scale(clamp(0.28, 33vh / 450, 0.40)) !important; /* ย่อลงอีก 2% */
     transform-origin: left top !important;
   }
 }

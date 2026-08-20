@@ -380,7 +380,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       ref={cardRef}
       id={`blob-card-${title.replace(/\s/g, '')}`}
       href={href}
-      className="relative flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer shrink-0"
+      className="relative flex flex-col items-center gap-0 sm:gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       variants={{
@@ -493,7 +493,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       {/* ข้อความกำกับ — เพิ่มความคมชัดด้วย Drop Shadow โดยไม่มีกรอบพื้นหลังสีดำ */}
       <div className="text-center w-full max-w-[110px] min-[360px]:max-w-[125px] min-[410px]:max-w-[140px] sm:max-w-[170px] md:max-w-[190px] lg:max-w-[220px] z-20 pointer-events-none px-0.5">
         <motion.p
-          className="font-extrabold tracking-[0.02em] text-[11px] min-[360px]:text-[12px] sm:text-sm md:text-[15px] lg:text-lg select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-snug text-white"
+          className="font-extrabold tracking-[0.02em] text-[10.30px] min-[360px]:text-[11.24px] sm:text-[13.12px] md:text-[14.05px] lg:text-[16.86px] select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-snug text-white"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -502,7 +502,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[9px] min-[360px]:text-[11px] sm:text-xs md:text-[13px] lg:text-sm font-semibold text-white mt-[2px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.98)] leading-tight opacity-95"
+            className="text-[8.42px] min-[360px]:text-[10.30px] sm:text-[11.24px] md:text-[12.18px] lg:text-[13.12px] font-semibold text-white mt-[2px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.98)] leading-tight opacity-95"
             animate={{ opacity: isHovered ? 1 : 0.95, y: isHovered ? -1 : 0 }}
           >
             {subtitle}

@@ -461,7 +461,7 @@ export function Section1Hero() {
 
 
 
-      {/* Contenido principal — alineado con container fluido para evitar desbordamientos */}
+      {/* Contenido principal — Título, Subtítulo y CTA */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -478,104 +478,108 @@ export function Section1Hero() {
           color: 'var(--white)',
           y: layer3Y,
           marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? '-40px' : '-140px',
-          top: isLandscape ? '-2vh' : isMobile ? '-2vh' : '-2vh',
+          top: isLandscape ? '-6.5vh' : isMobile ? '-6.5vh' : '-2vh',
           transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
           transformOrigin: 'left center',
         }}
       >
-        {/* Eyebrow — ubicación */}
-        <div
-          style={{
-            display: 'inline-flex',
-            justifyContent: 'flex-start',
-            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
-            marginTop: '0px',
-          }}
-        >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.7rem' : '0.95rem'} />
-        </div>
+        <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
+          <div className="flex flex-col text-left">
+            {/* Eyebrow — ubicación */}
+            <div
+              style={{
+                display: 'inline-flex',
+                justifyContent: 'flex-start',
+                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
+                marginTop: '0px',
+              }}
+            >
+              <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.7rem' : '0.95rem'} />
+            </div>
  
-        {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '1rem' }}>
-          <LogoGBE isPhone={isPhone || isLandscape} />
-        </div>
+            {/* Logo / Nombre de la escuela */}
+            <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '1rem' }}>
+              <LogoGBE isPhone={isPhone || isLandscape} />
+            </div>
   
-        {/* Título principal */}
-        <h1
-          style={{
-            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.05rem, 4.2vw, 1.45rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
-            fontWeight: 700,
-            lineHeight: (isPhone || isLandscape) ? 1.06 : 1.12,
-            color: 'var(--white)',
-            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
-            textAlign: 'left',
-          }}
-        >
-          {t('title').split('|').map((part, index) => {
-            return (
-              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+            {/* Título principal */}
+            <h1
+              style={{
+                fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.05rem, 4.2vw, 1.45rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+                fontWeight: 700,
+                lineHeight: (isPhone || isLandscape) ? 1.06 : 1.12,
+                color: 'var(--white)',
+                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
+                textAlign: 'left',
+              }}
+            >
+              {t('title').split('|').map((part, index) => {
+                return (
+                  <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+                    <AnimatedText
+                      text={part.trim()}
+                      effect="falling"
+                      delay={0.6 + index * 0.45}
+                    />
+                  </span>
+                );
+              })}
+            </h1>
+  
+            {/* Subtítulo */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'stretch',
+                gap: (isPhone || isLandscape) ? '6px' : '16px',
+                maxWidth: '710px',
+                margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
+                textAlign: 'left',
+              }}
+            >
+              {/* Línea vertical color granate del logotipo */}
+              <motion.div
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+                style={{
+                  width: (isPhone || isLandscape) ? '3px' : '4px',
+                  backgroundColor: '#A91D22', // Granate del logo
+                  transformOrigin: 'top',
+                  flexShrink: 0,
+                }}
+              />
+              <div
+                style={{
+                  fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.68rem, 2.6vw, 0.8rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+                  fontWeight: 400,
+                  lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
+                  color: 'rgba(255,255,255,0.92)',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <AnimatedText
-                  text={part.trim()}
+                  text={t('subtitle')}
                   effect="falling"
-                  delay={0.6 + index * 0.45}
+                  delay={1.5}
                 />
-              </span>
-            );
-          })}
-        </h1>
-  
-        {/* Subtítulo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            gap: (isPhone || isLandscape) ? '6px' : '16px',
-            maxWidth: '710px',
-            margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
-            textAlign: 'left',
-          }}
-        >
-          {/* Línea vertical color granate del logotipo */}
-          <motion.div
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
-            style={{
-              width: (isPhone || isLandscape) ? '3px' : '4px',
-              backgroundColor: '#A91D22', // Granate del logo
-              transformOrigin: 'top',
-              flexShrink: 0,
-            }}
-          />
-          <div
-            style={{
-              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.68rem, 2.6vw, 0.8rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
-              fontWeight: 400,
-              lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
-              color: 'rgba(255,255,255,0.92)',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <AnimatedText
-              text={t('subtitle')}
-              effect="falling"
-              delay={1.5}
-            />
+              </div>
+            </div>
           </div>
+    
+          {/* CTA con atracción magnética — ซ่อนอัตโนมัติเมื่ออยู่ในมือถือแนวนอน (Landscape) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+            className={isLandscape ? "hidden" : "mt-3 md:mt-4"}
+          >
+            <GlowButton href="#" color="garnet" size="sm">
+              {t('cta')}
+            </GlowButton>
+          </motion.div>
         </div>
-  
-        {/* CTA con atracción magnética */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-          className="mt-3 md:mt-4"
-        >
-          <GlowButton href="#" color="garnet" size="sm">
-            {t('cta')}
-          </GlowButton>
-        </motion.div>
       </motion.div>
 
       {/* Los 5 blobs/videos interactivos */}
