@@ -1399,22 +1399,26 @@ iframe[id*="equalweb"] {
 }
 
 /* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000):
-   Force 5 hero video blobs container & text exactly 3% (3vh) above bottom edge on iPad & Tablets */
+   Force 5 hero video blobs container & text exactly 3% (3vh) above bottom edge with full text visibility */
 @media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   div.hero-blobs-grid,
   .hero-blobs-grid {
-    transform: scale(clamp(0.55, 48vh / 600, 0.72)) !important;
+    transform: scale(clamp(0.48, 42vh / 600, 0.65)) !important;
     transform-origin: center bottom !important;
+    overflow: visible !important;
   }
 
   div.hero-text-container,
   .hero-text-container {
-    transform: translateY(-2vh) scale(0.80) !important;
+    transform: translateY(-2vh) scale(0.78) !important;
     transform-origin: left top !important;
   }
 }
