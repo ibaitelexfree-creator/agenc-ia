@@ -1408,11 +1408,11 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* General Landscape Mode Rules: Auto-close gap and scale down videos + text by 5% */
+/* General Landscape Mode Rules: Auto-close gap and scale down videos + text */
 @media (orientation: landscape) {
   .hero-blobs-grid {
-    gap: clamp(4px, 1.2vw, 20px) !important;
-    transform: scale(0.95) !important;
+    gap: clamp(2px, 0.8vw, 12px) !important;
+    transform: scale(0.78) !important;
     transform-origin: center bottom !important;
   }
 }
@@ -1438,6 +1438,8 @@ iframe[id*="equalweb"] {
   .hero-video-blobs-container {
     bottom: calc(0.1vh + env(safe-area-inset-bottom, 0px)) !important;
     padding: 0 4px !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
   }
 
   .hero-blobs-grid {
@@ -1446,15 +1448,16 @@ iframe[id*="equalweb"] {
     flex-wrap: nowrap !important;
     justify-content: center !important;
     align-items: center !important;
-    gap: clamp(1.5px, 0.5vw, 5px) !important;
-    transform: scale(calc(clamp(0.25, 45vh / 450, 0.48) * 0.95)) !important;
+    gap: clamp(1px, 0.4vw, 4px) !important;
+    transform: scale(calc(clamp(0.20, 38vh / 450, 0.38))) !important;
     transform-origin: center bottom !important;
+    max-width: 100% !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
-    top: 0px !important;
-    transform: scale(clamp(0.48, 55vh / 450, 0.68)) !important;
+    top: -2vh !important;
+    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
     transform-origin: left top !important;
   }
 }
@@ -1466,13 +1469,14 @@ iframe[id*="equalweb"] {
   }
 
   .hero-blobs-grid {
-    gap: clamp(1px, 0.4vw, 4px) !important;
-    transform: scale(calc(clamp(0.20, 38vh / 450, 0.40) * 0.95)) !important;
+    gap: clamp(0.5px, 0.2vw, 2px) !important;
+    transform: scale(calc(clamp(0.16, 32vh / 450, 0.32))) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
-    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
+    top: -2vh !important;
+    transform: scale(clamp(0.35, 40vh / 450, 0.48)) !important;
     transform-origin: left top !important;
   }
 }
@@ -1551,9 +1555,12 @@ body {
   [class*="Reviews_section"] {
     min-height: 100vh;
     min-height: 100dvh;
-    padding-top: clamp(1rem, 3vh, 2.5rem);
-    padding-bottom: clamp(1rem, 3vh, 2.5rem);
+    height: 100vh;
+    height: 100dvh;
+    padding-top: clamp(0.5rem, 2vh, 1.5rem);
+    padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
     box-sizing: border-box;
+    overflow: hidden;
   }
 }
 

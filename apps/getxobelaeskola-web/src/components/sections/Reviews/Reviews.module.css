@@ -15,7 +15,7 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 639px) {
+@media (max-width: 639px) and (orientation: portrait) {
   .section { 
     height: auto !important; 
     min-height: auto !important;

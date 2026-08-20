@@ -475,7 +475,7 @@ export function Section1Hero() {
           color: 'var(--white)',
           y: layer3Y,
           marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? '-40px' : '-140px',
-          top: isMobile && !isLandscape ? '-40px' : '0px',
+          top: isLandscape ? '-2vh' : isMobile ? '-2vh' : '-2vh',
           transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
           transformOrigin: 'left center',
         }}
@@ -638,8 +638,8 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
       }}
     >
       <motion.svg 
-        width={isPhone ? "22" : "33"} 
-        height={isPhone ? "22" : "33"} 
+        width={isPhone ? "21.78" : "32.67"} 
+        height={isPhone ? "21.78" : "32.67"} 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
@@ -658,7 +658,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
           effect="falling"
           delay={0.35}
           style={{
-            fontSize: isPhone ? '0.88rem' : '1.18rem',
+            fontSize: isPhone ? '0.87rem' : '1.168rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
