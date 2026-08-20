@@ -1399,11 +1399,11 @@ iframe[id*="equalweb"] {
 }
 
 /* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000):
-   Force 5 hero video blobs container & text exactly 3% (3vh) above bottom edge with full text visibility */
+   Elevate 5 hero video blobs container & text by an additional 3% (6vh from bottom) so text is 100% visible */
 @media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(6vh + env(safe-area-inset-bottom, 0px)) !important;
     overflow: visible !important;
     height: auto !important;
     max-height: none !important;
