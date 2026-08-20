@@ -284,9 +284,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
+          top: '-2vh',
           y: layer1Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 1,
         }}
       >
@@ -347,9 +348,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
+          top: '-2vh',
           y: layer2Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 2,
         }}
       >
@@ -381,9 +383,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
+          top: '-2vh',
           y: layer3Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 3,
         }}
       >
@@ -580,7 +583,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(clamp(20px, 5vh, 48px) + env(safe-area-inset-bottom, 0px))',
+          bottom: (isLandscape && !isMobile) ? 'calc(clamp(40px, 8vh, 100px) + env(safe-area-inset-bottom, 0px))' : isLandscape ? 'calc(clamp(70px, 16vh, 200px) + env(safe-area-inset-bottom, 0px))' : 'calc(clamp(40px, 7vh, 100px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',

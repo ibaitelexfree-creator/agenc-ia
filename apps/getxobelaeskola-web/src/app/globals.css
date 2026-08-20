@@ -1380,16 +1380,31 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📐 RANGE 4: Tablet / iPad System (768px - 1023px)
-   Raise main text & CTA button up by 5% (5vh) and raise 5 video blobs up by an additional 5% (15vh bottom)
-   ensuring all 5 videos and labels are perfectly positioned above the bottom edge */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px):
+   Raise main text & elevate 5 video blobs container safely to 14vh from bottom */
+@media (min-width: 768px) and (max-width: 1366px) {
   .hero-text-container {
-    transform: translateY(-5vh) !important;
+    transform: translateY(-4vh) !important;
   }
 
   .hero-video-blobs-container {
-    bottom: calc(clamp(48px, 15vh, 120px) + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(clamp(70px, 14vh, 180px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* 🖥️ Desktop Viewport System (width >= 1024px):
+   Lower 5 video blobs container down by 5% to sit perfectly flush near bottom edge */
+@media (min-width: 1024px) {
+  .hero-video-blobs-container {
+    bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+/* 📐 Large Displays & High Resolution Aspect Ratios (2360x1640, 2560x1600, 2960x1848, 3200x2136):
+   Position 5 hero video blobs down by ~5% to fit seamlessly near the bottom edge */
+@media (min-width: 1367px) {
+  .hero-video-blobs-container {
+    bottom: calc(clamp(40px, 8vh, 100px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
@@ -1426,6 +1441,24 @@ iframe[id*="equalweb"] {
     gap: clamp(2px, 0.8vw, 12px) !important;
     transform: scale(0.78) !important;
     transform-origin: center bottom !important;
+  }
+}
+
+/* 📲 Tablet & iPad Landscape Mode System (iPad Gen 10/11, Air, Pro in Landscape - 768px to 1400px width with height < 1200px):
+   Elevate blobs container up by 15vh and scale grid appropriately to keep all 5 titles & subtitles 100% visible */
+@media (orientation: landscape) and (min-width: 768px) and (max-width: 1400px) and (max-height: 1200px) {
+  .hero-video-blobs-container {
+    bottom: calc(clamp(65px, 15vh, 180px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .hero-blobs-grid {
+    transform: scale(clamp(0.62, 50vh / 600, 0.80)) !important;
+    transform-origin: center bottom !important;
+  }
+
+  .hero-text-container {
+    transform: translateY(-5vh) scale(0.85) !important;
+    transform-origin: left top !important;
   }
 }
 
