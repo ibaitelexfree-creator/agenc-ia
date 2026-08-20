@@ -1380,9 +1380,8 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px):
-   Raise main text & elevate 5 video blobs container safely to 14vh from bottom */
-@media (min-width: 768px) and (max-width: 1366px) {
+/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
   .hero-text-container {
     transform: translateY(-4vh) !important;
   }
@@ -1392,70 +1391,28 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 🖥️ Desktop Viewport System (width >= 1024px):
-   Lower 5 video blobs container down by 5% to sit perfectly flush near bottom edge */
-@media (min-width: 1024px) {
+/* 🖥️ Desktop Viewport System (width >= 1024px Portrait / Large Desktop): */
+@media (min-width: 1651px) {
   .hero-video-blobs-container {
     bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
-/* 📐 Large Displays & High Resolution Aspect Ratios (2360x1640, 2560x1600, 2960x1848, 3200x2136):
-   Position 5 hero video blobs down by ~5% to fit seamlessly near the bottom edge */
-@media (min-width: 1367px) {
-  .hero-video-blobs-container {
-    bottom: calc(clamp(40px, 8vh, 100px) + env(safe-area-inset-bottom, 0px)) !important;
-  }
-}
-
-@media (max-width: 599px) and (orientation: portrait) {
-  .hero-video-blobs-container {
-    bottom: calc(2vh + env(safe-area-inset-bottom, 0px)) !important;
-  }
-
-  .hero-blobs-grid {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: clamp(4px, 1.5vw, 8px) !important;
-    max-width: min(360px, 95vw) !important;
-    margin: 0 auto !important;
-  }
-
-  .hero-blobs-grid > * {
-    flex: 0 1 calc(33.333% - 8px) !important;
-    max-width: calc(33.333% - 8px) !important;
-  }
-
-  .hero-blobs-grid > *:nth-child(4),
-  .hero-blobs-grid > *:nth-child(5) {
-    flex: 0 1 calc(38% - 8px) !important;
-    max-width: calc(38% - 8px) !important;
-  }
-}
-
-/* General Landscape Mode Rules: Auto-close gap and scale down videos + text */
-@media (orientation: landscape) {
-  .hero-blobs-grid {
-    gap: clamp(2px, 0.8vw, 12px) !important;
-    transform: scale(0.78) !important;
-    transform-origin: center bottom !important;
-  }
-}
-
 /* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000):
-   Position 5 hero video blobs container & text 3% (3vh) above bottom edge */
-@media (orientation: landscape) and (min-width: 1000px) and (max-width: 1650px) {
+   Force 5 hero video blobs container & text exactly 3% (3vh) above bottom edge on iPad & Tablets */
+@media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
     bottom: calc(3vh + env(safe-area-inset-bottom, 0px)) !important;
   }
 
+  div.hero-blobs-grid,
   .hero-blobs-grid {
     transform: scale(clamp(0.55, 48vh / 600, 0.72)) !important;
     transform-origin: center bottom !important;
   }
 
+  div.hero-text-container,
   .hero-text-container {
     transform: translateY(-2vh) scale(0.80) !important;
     transform-origin: left top !important;
