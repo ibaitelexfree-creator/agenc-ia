@@ -562,12 +562,12 @@ export function Section1Hero() {
               </div>
             </div>
 
-            {/* CTA con atracción magnética */}
+            {/* CTA con atracción magnética — ซ่อนเฉพาะมือถือขนาดเล็กแนวนอน (Landscape เช่น 586x320px) */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-              className="mt-4 md:mt-6"
+              className={(isLandscape && viewportScale < 0.65) ? "hidden" : "mt-4 md:mt-6"}
             >
               <GlowButton href="#" color="garnet" size="md">
                 {t('cta')}
