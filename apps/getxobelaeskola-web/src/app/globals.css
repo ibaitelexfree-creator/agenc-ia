@@ -1049,7 +1049,7 @@ a:hover {
   }
 }
 
-@media (max-width: 639px) and (orientation: portrait) {
+@media (max-width: 599px) and (orientation: portrait) {
   .promise {
     min-height: 100vh !important;
     min-height: 100dvh !important;
@@ -1057,8 +1057,8 @@ a:hover {
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
   }
 }
 
