@@ -1500,13 +1500,14 @@ iframe[id*="equalweb"] {
 }
 
 /* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
-@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+@media (orientation: portrait) {
   .hero-text-container {
-    transform: translateY(-2vh) !important;
+    transform: translateY(-10vh) !important;
   }
 
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(clamp(24px, 4vh, 60px) + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(clamp(40px, 12vh, 150px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
