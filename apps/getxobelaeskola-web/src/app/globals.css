@@ -1139,7 +1139,7 @@ a:hover {
     margin-bottom: clamp(6px, 1vh, 12px) !important;
   }
 }
-/* 📱 Mobile Portrait (available content width < 600px): Single column */
+/* 📱 Mobile Portrait (available content width < 600px): Single column with 3D depth flip */
 @media (max-width: 599px) and (orientation: portrait) {
   .promise__grid {
     grid-template-columns: minmax(0, 1fr) !important;
@@ -1154,6 +1154,58 @@ a:hover {
     max-width: 360px !important;
     height: clamp(190px, 28vh, 230px) !important;
     margin: 0 auto !important;
+    perspective: 1600px !important;
+    -webkit-perspective: 1600px !important;
+  }
+  .flip-card__face {
+    padding: clamp(14px, 2.2vh, 24px) clamp(12px, 2vw, 20px) !important;
+    transform-style: preserve-3d !important;
+    -webkit-transform-style: preserve-3d !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+  }
+  .flip-card__icon {
+    width: clamp(42px, 12vw, 56px) !important;
+    height: clamp(42px, 12vw, 56px) !important;
+    margin-bottom: clamp(10px, 1.8vh, 18px) !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
+  }
+  .flip-card__icon svg {
+    width: clamp(24px, 7vw, 36px) !important;
+    height: clamp(24px, 7vw, 36px) !important;
+  }
+  .flip-card__title {
+    font-size: clamp(1rem, 4.2vw, 1.3rem) !important;
+    margin-bottom: clamp(6px, 1vh, 12px) !important;
+    line-height: 1.25 !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
+    line-height: 1.35 !important;
+    margin-bottom: clamp(8px, 1.2vh, 16px) !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.72rem, 3vw, 0.85rem) !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
+    line-height: 1.4 !important;
+    padding: 0 6px !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.72rem, 3vw, 0.82rem) !important;
+    margin-bottom: clamp(8px, 1.2vh, 14px) !important;
+    transform: translateZ(90px) !important;
+    -webkit-transform: translateZ(90px) !important;
   }
 }
 
