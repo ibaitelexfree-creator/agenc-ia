@@ -1078,63 +1078,45 @@ a:hover {
     font-size: clamp(1.2rem, 2.4vw, 1.6rem) !important;
     margin-bottom: clamp(10px, 2vh, 18px) !important;
   }
+}
+
+@media (min-width: 600px) {
   .promise__grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(6px, 1.2vw, 14px) !important; /* ลดระยะห่างระหว่างการ์ดทั้ง 3 ใบให้ใกล้กันมากขึ้น */
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 1.8vw, 24px) !important;
     align-items: stretch !important;
     justify-items: stretch !important;
-    max-width: clamp(520px, 78vw, 840px) !important; /* กระชับความกว้างรวมของ Grid ให้ขยับเข้าใกล้กัน */
+    width: 100% !important;
+    max-width: 1240px !important;
     margin: 0 auto !important;
   }
   .promise__item {
     width: 100% !important;
+    min-width: 0 !important;
     display: flex !important;
   }
   .flip-card-wrapper {
     width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
     height: 100% !important;
-    min-height: clamp(140px, 36vh, 185px) !important;
+    min-height: clamp(160px, 25vh, 260px) !important;
     margin: 0 !important;
   }
-  .flip-card__face {
-    padding: clamp(8px, 1.5vh, 14px) clamp(8px, 1.2vw, 12px) !important;
-    border-radius: var(--gbe-radius-lg, 16px) !important;
-  }
-  .flip-card__icon {
-    width: 32px !important;
-    height: 32px !important;
-    margin-bottom: 6px !important;
-  }
-  .flip-card__icon svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
-  .flip-card__title {
-    font-size: clamp(0.78rem, 1.2vw, 0.95rem) !important;
-    margin-bottom: 3px !important;
-    line-height: 1.2 !important;
-  }
-  .flip-card__hook {
-    font-size: clamp(0.66rem, 1vw, 0.78rem) !important;
-    line-height: 1.25 !important;
-    margin-bottom: 4px !important;
-  }
-  .flip-card__cta {
-    font-size: clamp(0.62rem, 0.95vw, 0.72rem) !important;
-  }
-  .flip-card__desc {
-    font-size: clamp(0.66rem, 1vw, 0.78rem) !important;
-    line-height: 1.25 !important;
-  }
-  .flip-card__label {
-    font-size: clamp(0.62rem, 0.95vw, 0.7rem) !important;
-    margin-bottom: 4px !important;
-  }
 }
-/* 📱 Mobile Portrait: Single column with responsive card */
-@media (max-width: 768px) and (orientation: portrait) {
+/* 📱 Mobile Portrait (available content width < 600px): Single column */
+@media (max-width: 599px) and (orientation: portrait) {
+  .promise__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
   .flip-card-wrapper {
-    width: clamp(240px, 85vw, 340px) !important;
+    width: 100% !important;
+    max-width: 360px !important;
     height: clamp(190px, 28vh, 230px) !important;
     margin: 0 auto !important;
   }
