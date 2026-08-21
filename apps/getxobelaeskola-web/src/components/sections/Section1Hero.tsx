@@ -475,7 +475,7 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isPhone ? '-40px' : '-100px',
+          marginTop: isLandscape ? '-100px' : '0px',
         }}
       >
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>

@@ -28,16 +28,16 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
   const canvasX = useTransform(scrollYProgress, () => '0vw')
 
-  // SECTION_PROGRESS map matching the scroll stops for 8 sections
+  // 8 Section Keyframe Map with rest plateaus to guarantee 100% full-section framing
   const yScrollPoints = [
-    0.00, 0.07, // Section 0 (Hero)
-    0.14, 0.21, // Section 1
-    0.28, 0.35, // Section 2
-    0.42, 0.49, // Section 3
-    0.56, 0.63, // Section 4
-    0.70, 0.77, // Section 5
-    0.84, 0.91, // Section 6
-    0.98, 1.00  // Section 7 (CTA)
+    0.00, 0.05, // Section 0 (0vh)
+    0.14, 0.19, // Section 1 (-100vh)
+    0.28, 0.33, // Section 2 (-200vh)
+    0.42, 0.47, // Section 3 (-300vh)
+    0.56, 0.61, // Section 4 (-400vh)
+    0.70, 0.75, // Section 5 (-500vh)
+    0.84, 0.89, // Section 6 (-600vh)
+    0.98, 1.00  // Section 7 (-700vh)
   ]
   const rawCanvasY = useTransform(
     scrollYProgress,
@@ -81,7 +81,8 @@ export function useScrollEngineV2(): ScrollEngineReturn {
   const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const SECTION_PROGRESS = [0.035, 0.175, 0.315, 0.455, 0.595, 0.735, 0.875, 0.99]
+    // Snap targets matching the center of each rest plateau (0vh, -100vh, -200vh, etc.)
+    const SECTION_PROGRESS = [0.025, 0.165, 0.305, 0.445, 0.585, 0.725, 0.865, 0.99]
 
     let cachedMaxScroll: number | null = null
     const getMaxScroll = () => {
@@ -126,7 +127,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       const startY = window.scrollY
       const diff = targetY - startY
       const startTime = performance.now()
-      const duration = 900
+      const duration = 750
 
       const ease = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
 
@@ -136,13 +137,13 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         if (t < 1) {
           animationRef.current = requestAnimationFrame(step)
         } else {
-          isAnimatingRef.current = false
           document.documentElement.style.overflow = ''
           document.body.style.overflow = ''
           if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
           wheelTimeoutRef.current = setTimeout(() => {
+            isAnimatingRef.current = false
             isWheelScrollingRef.current = false
-          }, 400)
+          }, 200)
         }
       }
 
@@ -292,7 +293,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       const scrollY = window.scrollY
       const dir = e.deltaY > 0 ? 1 : -1
 
-      if (isAnimatingRef.current) {
+      if (isAnimatingRef.current || isWheelScrollingRef.current) {
         e.preventDefault()
         return
       }
@@ -309,20 +310,9 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         return
       }
 
+      if (Math.abs(e.deltaY) < 8) return
+
       e.preventDefault()
-
-      const isNewGesture = !isWheelScrollingRef.current
-      isWheelScrollingRef.current = true
-
-      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
-      wheelTimeoutRef.current = setTimeout(() => {
-        isWheelScrollingRef.current = false
-      }, 400)
-
-      const forceTransition = currentIndexRef.current === 8 && dir === -1 && scrollY <= maxScroll - 2
-
-      if (!isNewGesture && !forceTransition) return
-      if (Math.abs(e.deltaY) < 10) return
 
       const targetIdx = Math.min(Math.max(currentIndexRef.current + dir, 0), SECTION_PROGRESS.length - 1)
       if (targetIdx !== currentIndexRef.current) {
@@ -333,32 +323,38 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
     // --- Touch handlers ---
     let touchStartY = 0
+    let touchStartTime = 0
+    let touchLockTimeout: ReturnType<typeof setTimeout> | null = null
+
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY
-      touchTriggeredRef.current = false
+      touchStartTime = performance.now()
+      if (!isAnimatingRef.current) {
+        touchTriggeredRef.current = false
+      }
     }
 
     const handleTouchMove = (e: TouchEvent) => {
       const maxScroll = getMaxScroll()
       const scrollY = window.scrollY
 
-      if (isAnimatingRef.current) {
+      if (isAnimatingRef.current || touchTriggeredRef.current) {
         if (e.cancelable) e.preventDefault()
         return
       }
 
       const deltaY = touchStartY - e.touches[0].clientY
+      const deltaTime = performance.now() - touchStartTime
 
       if (scrollY >= maxScroll - 5) {
         if (deltaY > 0) return
         if (scrollY > maxScroll + 5 && deltaY < 0) return
       }
 
-      if (e.cancelable) e.preventDefault()
-      if (touchTriggeredRef.current) return
-
-      if (Math.abs(deltaY) > 50) {
+      // Responsive threshold for touch gesture detection (35px minimum distance & dynamic gesture lock)
+      if (Math.abs(deltaY) > 35 && deltaTime > 30) {
         touchTriggeredRef.current = true
+        if (e.cancelable) e.preventDefault()
         const dir = deltaY > 0 ? 1 : -1
         const targetIdx = Math.min(Math.max(currentIndexRef.current + dir, 0), SECTION_PROGRESS.length - 1)
         if (targetIdx !== currentIndexRef.current) {
@@ -366,6 +362,13 @@ export function useScrollEngineV2(): ScrollEngineReturn {
           animateScroll(SECTION_PROGRESS[targetIdx] * maxScroll)
         }
       }
+    }
+
+    const handleTouchEnd = () => {
+      if (touchLockTimeout) clearTimeout(touchLockTimeout)
+      touchLockTimeout = setTimeout(() => {
+        touchTriggeredRef.current = false
+      }, 750)
     }
 
     // --- Arrow/Page key handler ---
@@ -408,20 +411,20 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       currentIndexRef.current = closestIdx
     }
 
-    if (window.innerWidth > 900) {
-      window.addEventListener('keydown', handleTab, { capture: true, passive: false })
-      window.addEventListener('wheel', handleWheel, { passive: false })
-      window.addEventListener('touchstart', handleTouchStart, { passive: true })
-      window.addEventListener('touchmove', handleTouchMove, { passive: false })
-      window.addEventListener('keydown', handleKeyDown)
-      window.addEventListener('scroll', handleScrollSync, { passive: true })
-    }
+    window.addEventListener('keydown', handleTab, { capture: true, passive: false })
+    window.addEventListener('wheel', handleWheel, { passive: false })
+    window.addEventListener('touchstart', handleTouchStart, { passive: true })
+    window.addEventListener('touchmove', handleTouchMove, { passive: false })
+    window.addEventListener('touchend', handleTouchEnd, { passive: true })
+    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('scroll', handleScrollSync, { passive: true })
 
     return () => {
       window.removeEventListener('keydown', handleTab, { capture: true })
       window.removeEventListener('wheel', handleWheel)
       window.removeEventListener('touchstart', handleTouchStart)
       window.removeEventListener('touchmove', handleTouchMove)
+      window.removeEventListener('touchend', handleTouchEnd)
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('scroll', handleScrollSync)
       document.documentElement.style.overflow = ''

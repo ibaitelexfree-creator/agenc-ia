@@ -813,23 +813,8 @@ a:hover {
     "cta";
 }
 
-@media (max-width: 900px) {
-  .scroll-engine-root {
-    height: auto !important;
-  }
-  .scroll-engine-inner {
-    position: relative !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .canvas-container {
-    height: auto !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    transform: none !important;
-  }
-}
+/* Scroll Engine layout preserved across all viewports */
+
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
@@ -1525,6 +1510,10 @@ iframe[id*="equalweb"] {
   }
 }
 
+/* 📱 Mobile & Tablet Portrait Natural Scroll Engine System (< 1024px Portrait) */
+/* CSS scroll snap removed to prevent dual-control conflicts with JavaScript Virtual Canvas */
+
+
 /* 🖥️ Desktop Viewport System (width >= 1024px Portrait / Large Desktop): */
 @media (min-width: 1651px) {
   .hero-video-blobs-container {
@@ -1659,18 +1648,18 @@ iframe[id*="equalweb"] {
 }
 
 /* ==========================================================================
-   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (5% BUFFER SMOOTH TRANSITION FIT)
+   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM
    ========================================================================== */
 html,
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100vw;
-  width: 100dvw;
+  width: 100%;
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: clip;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   padding-left: env(safe-area-inset-left, 0px);
@@ -1683,27 +1672,34 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds with proportional inner padding */
-.promise,
-.section-cta,
-.section-2-identity,
-.section-3-adapts,
-.section-3-path,
-[class*="Blog_section"],
-[class*="Reviews_section"] {
-  width: 100%;
-  max-width: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding-top: clamp(1.5rem, 4vh, 3.5rem);
-  padding-bottom: clamp(1.5rem, 4vh, 3.5rem);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* Precise Edge Alignment in Portrait Orientation */
+@media (orientation: portrait) {
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    padding-top: calc(clamp(1rem, 3vh, 2.5rem) + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(clamp(1rem, 3vh, 2.5rem) + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
 }
 
-/* Precise Edge Alignment in Landscape Orientation */
+/* Precise Edge Alignment in Landscape Orientation (Preserved 100% Unchanged) */
 @media (orientation: landscape) {
   .promise,
   .section-cta,
@@ -1712,13 +1708,18 @@ body {
   .section-3-path,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
-    min-height: 100vh;
-    min-height: 100dvh;
+    width: 100%;
+    max-width: 100%;
     height: 100vh;
     height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
     padding-top: clamp(0.5rem, 2vh, 1.5rem);
     padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     overflow: hidden;
   }
 }
