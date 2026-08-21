@@ -39,6 +39,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
         height: 'var(--card-h, 260px)',
         maxWidth: '100%',
         perspective: '1600px',
+        WebkitPerspective: '1600px',
         cursor: 'pointer',
         WebkitTapHighlightColor: 'transparent',
         outline: 'none',
@@ -69,8 +70,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
           width: '100%',
           height: '100%',
           transition: 'transform var(--flip-duration) var(--flip-easing)',
+          WebkitTransition: '-webkit-transform var(--flip-duration) var(--flip-easing)',
           transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d',
           transform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          WebkitTransform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
           pointerEvents: 'none', // Ignore pointer events so they don't trigger mouseleave during rotation
         }}
       >
