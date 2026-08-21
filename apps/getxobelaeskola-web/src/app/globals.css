@@ -1499,26 +1499,23 @@ iframe[id*="equalweb"] {
   }
 }
 
+/* 📐 Lower 5 Hero Blobs Container Down Further */
+div.hero-video-blobs-container,
+.hero-video-blobs-container {
+  bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
+}
+
 /* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
 @media (orientation: portrait) {
   .hero-text-container {
     transform: translateY(-10vh) !important;
   }
-
-  div.hero-video-blobs-container,
-  .hero-video-blobs-container {
-    bottom: calc(clamp(40px, 12vh, 150px) + env(safe-area-inset-bottom, 0px)) !important;
-  }
 }
-
-/* 📱 Mobile & Tablet Portrait Natural Scroll Engine System (< 1024px Portrait) */
-/* CSS scroll snap removed to prevent dual-control conflicts with JavaScript Virtual Canvas */
-
 
 /* 🖥️ Desktop Viewport System (width >= 1024px Portrait / Large Desktop): */
 @media (min-width: 1651px) {
   .hero-video-blobs-container {
-    bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
@@ -1527,7 +1524,7 @@ iframe[id*="equalweb"] {
 @media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(9vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
     overflow: visible !important;
     height: auto !important;
     max-height: none !important;

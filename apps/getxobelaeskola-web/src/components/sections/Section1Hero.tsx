@@ -490,9 +490,9 @@ export function Section1Hero() {
                 marginTop: '0px',
               }}
             >
-              <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.77rem' : 'clamp(1.4rem, 2vw, 4rem)'} />
+              <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.77rem' : 'clamp(1.96rem, 2.78vw, 5.36rem)'} />
             </div>
- 
+
             {/* Logo / Nombre de la escuela */}
             <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '1rem' }}>
               <LogoGBE isPhone={isPhone || isLandscape} />
@@ -501,9 +501,9 @@ export function Section1Hero() {
             {/* Título principal */}
             <h1
               style={{
-                fontSize: isLandscape ? 'clamp(1.21rem, 3.8vw, 2.2rem)' : isPhone ? 'clamp(1.15rem, 4.2vw, 1.6rem)' : 'clamp(3.8rem, 6vw, 14rem)',
+                fontSize: isLandscape ? 'clamp(1.21rem, 3.8vw, 2.2rem)' : isPhone ? 'clamp(1.15rem, 4.2vw, 1.6rem)' : 'clamp(5.15rem, 8.24vw, 18.54rem)',
                 fontWeight: 700,
-                lineHeight: (isPhone || isLandscape) ? 1.06 : 1.08,
+                lineHeight: (isPhone || isLandscape) ? 1.06 : 1.05,
                 color: 'var(--white)',
                 marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
                 textAlign: 'left',
@@ -547,7 +547,7 @@ export function Section1Hero() {
               />
               <div
                 style={{
-                  fontSize: isLandscape ? 'clamp(0.75rem, 2.09vw, 0.9rem)' : isPhone ? 'clamp(0.75rem, 2.86vw, 0.88rem)' : 'clamp(1.75rem, 3vw, 6rem)',
+                  fontSize: isLandscape ? 'clamp(0.75rem, 2.09vw, 0.9rem)' : isPhone ? 'clamp(0.75rem, 2.86vw, 0.88rem)' : 'clamp(2.37rem, 4.12vw, 8.03rem)',
                   fontWeight: 400,
                   lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
                   color: 'rgba(255,255,255,0.92)',
@@ -570,7 +570,7 @@ export function Section1Hero() {
               transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
               className={(isLandscape && viewportScale < 0.65) ? "hidden" : "mt-4 md:mt-6"}
             >
-              <GlowButton href="#" color="garnet" size="md">
+              <GlowButton href="#" color="garnet" size="xl">
                 {t('cta')}
               </GlowButton>
             </motion.div>
@@ -583,7 +583,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: isLandscape ? 'calc(14vh + env(safe-area-inset-bottom, 0px))' : 'calc(clamp(40px, 12vh, 150px) + env(safe-area-inset-bottom, 0px))',
+          bottom: 'calc(0.3cm + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -642,8 +642,8 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
     >
       <motion.svg 
         style={{ 
-          width: isPhone ? "24px" : "clamp(36px, 2.2vw, 77px)",
-          height: isPhone ? "24px" : "clamp(36px, 2.2vw, 77px)",
+          width: isPhone ? "24px" : "clamp(51.5px, 3.09vw, 98.8px)",
+          height: isPhone ? "24px" : "clamp(51.5px, 3.09vw, 98.8px)",
           flexShrink: 0 
         }} 
         viewBox="0 0 36 36" 
@@ -663,7 +663,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
           effect="falling"
           delay={0.35}
           style={{
-            fontSize: isPhone ? '0.96rem' : 'clamp(1.28rem, 1.54vw, 3.3rem)',
+            fontSize: isPhone ? '0.96rem' : 'clamp(1.80rem, 2.27vw, 4.53rem)',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
