@@ -852,8 +852,9 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
-    --card-w: clamp(200px, 80vw, 260px);
-    --card-h: clamp(160px, 22vh, 200px);
+    --card-w: 310px;
+    --card-h: clamp(180px, 25vh, 220px);
+    --card-radius: 16px;
     --fs-card-title-front: 1.05rem;
     --fs-hook: 0.75rem;
     --fs-body: 0.78rem;
@@ -900,9 +901,9 @@ a:hover {
 /* 📲 Tablet ใหญ่ & Laptop เล็ก (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   :root {
-    --card-w: clamp(260px, 23vw, 320px);
-    --card-h: clamp(210px, 23vh, 250px);
-    --gap: 16px;
+    --card-w: clamp(255px, 24.5vw, 333px);
+    --card-h: var(--card-w);
+    --gap: 20px;
     --fs-card-title-front: 1.25rem;
     --fs-hook: 0.85rem;
     --fs-body: 0.88rem;
@@ -912,9 +913,9 @@ a:hover {
 /* 💻 Laptop Full HD & Desktop Full HD (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
   :root {
-    --card-w: 340px;
-    --card-h: 250px;
-    --gap: 20px;
+    --card-w: clamp(294px, 23.5vw, 353px);
+    --card-h: var(--card-w);
+    --gap: 24px;
     --fs-card-title-front: 1.35rem;
     --fs-hook: 0.88rem;
     --fs-body: 0.92rem;
@@ -924,9 +925,9 @@ a:hover {
 /* 🖥️ 2K / QHD (2560px - 3839px) */
 @media (min-width: 2560px) and (max-width: 3839px) {
   :root {
-    --card-w: 400px;
-    --card-h: 280px;
-    --gap: 28px;
+    --card-w: clamp(353px, 21.5vw, 431px);
+    --card-h: var(--card-w);
+    --gap: 32px;
     --fs-card-title-front: 1.55rem;
     --fs-hook: 1.05rem;
     --fs-body: 1.1rem;
@@ -937,8 +938,8 @@ a:hover {
 /* 🖥️ 4K (3840px+) */
 @media (min-width: 3840px) {
   :root {
-    --card-w: 500px;
-    --card-h: 340px;
+    --card-w: clamp(431px, 19.6vw, 529px);
+    --card-h: var(--card-w);
     --gap: 40px;
     --fs-card-title-front: 1.95rem;
     --fs-hook: 1.3rem;
@@ -1097,7 +1098,32 @@ a:hover {
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 1024px) {
+  .promise__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: var(--gap) !important;
+    align-items: center !important;
+    justify-items: center !important;
+    width: 100% !important;
+    max-width: var(--section-max-w) !important;
+    margin: 0 auto !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    max-width: var(--card-w) !important;
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .flip-card-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    min-height: auto !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
   .promise__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: clamp(8px, 1.8vw, 24px) !important;
@@ -1120,6 +1146,9 @@ a:hover {
     min-height: clamp(190px, 28vh, 260px) !important;
     margin: 0 !important;
   }
+}
+
+@media (min-width: 600px) {
   .flip-card__face {
     padding: clamp(12px, 2vh, 24px) clamp(10px, 1.5vw, 20px) !important;
   }
@@ -1158,9 +1187,16 @@ a:hover {
 }
 /* 📱 Mobile Portrait (available content width < 600px): Single column with 3D depth flip */
 @media (max-width: 599px) and (orientation: portrait) {
+  .promise {
+    padding: 16px 12px !important;
+  }
+  .promise__title {
+    font-size: 1.15rem !important;
+    margin-bottom: 10px !important;
+  }
   .promise__grid {
     grid-template-columns: minmax(0, 1fr) !important;
-    gap: 16px !important;
+    gap: 10px !important;
   }
   .promise__item {
     width: 100% !important;
@@ -1168,59 +1204,59 @@ a:hover {
   }
   .flip-card-wrapper {
     width: 100% !important;
-    max-width: 360px !important;
-    height: clamp(190px, 28vh, 230px) !important;
+    max-width: 290px !important;
+    height: 125px !important;
     margin: 0 auto !important;
     perspective: 1600px !important;
     -webkit-perspective: 1600px !important;
   }
   .flip-card__face {
-    padding: clamp(14px, 2.2vh, 24px) clamp(12px, 2vw, 20px) !important;
+    padding: 8px 12px !important;
     transform-style: preserve-3d !important;
     -webkit-transform-style: preserve-3d !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
   .flip-card__icon {
-    width: clamp(42px, 12vw, 56px) !important;
-    height: clamp(42px, 12vw, 56px) !important;
-    margin-bottom: clamp(10px, 1.8vh, 18px) !important;
+    width: 30px !important;
+    height: 30px !important;
+    margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__icon svg {
-    width: clamp(24px, 7vw, 36px) !important;
-    height: clamp(24px, 7vw, 36px) !important;
+    width: 18px !important;
+    height: 18px !important;
   }
   .flip-card__title {
-    font-size: clamp(1rem, 4.2vw, 1.3rem) !important;
-    margin-bottom: clamp(6px, 1vh, 12px) !important;
-    line-height: 1.25 !important;
+    font-size: 0.88rem !important;
+    margin-bottom: 2px !important;
+    line-height: 1.2 !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__hook {
-    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
-    line-height: 1.35 !important;
-    margin-bottom: clamp(8px, 1.2vh, 16px) !important;
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__cta {
-    font-size: clamp(0.72rem, 3vw, 0.85rem) !important;
+    font-size: 0.68rem !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__desc {
-    font-size: clamp(0.78rem, 3.2vw, 0.92rem) !important;
-    line-height: 1.4 !important;
-    padding: 0 6px !important;
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
+    padding: 0 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__label {
-    font-size: clamp(0.72rem, 3vw, 0.82rem) !important;
-    margin-bottom: clamp(8px, 1.2vh, 14px) !important;
+    font-size: 0.72rem !important;
+    margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
