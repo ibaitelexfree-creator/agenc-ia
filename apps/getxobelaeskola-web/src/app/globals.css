@@ -1036,8 +1036,10 @@ a:hover {
 
 @media (max-width: 599px) and (orientation: portrait) {
   .promise {
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
     padding: clamp(24px, 4vh, 40px) 16px !important;
     box-sizing: border-box;
   }
@@ -1050,9 +1052,11 @@ a:hover {
 /* 📱 Mobile Landscape: Match Section 4 FlipCards directly to BlogSection card dimensions */
 @media (max-width: 900px) and (orientation: landscape) {
   .promise {
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
-    padding: clamp(24px, 4vh, 48px) 24px !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: clamp(12px, 2.5vh, 24px) 16px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1060,8 +1064,36 @@ a:hover {
     align-items: center !important;
   }
   .promise__title {
-    font-size: clamp(1.2rem, 2.4vw, 1.6rem) !important;
-    margin-bottom: clamp(10px, 2vh, 18px) !important;
+    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
+    margin-bottom: clamp(6px, 1.2vh, 12px) !important;
+  }
+  .flip-card-wrapper {
+    min-height: clamp(140px, 45vh, 190px) !important;
+    height: clamp(140px, 45vh, 190px) !important;
+  }
+  .flip-card__face {
+    padding: 8px 10px !important;
+  }
+  .flip-card__icon {
+    width: 32px !important;
+    height: 32px !important;
+    margin-bottom: 4px !important;
+  }
+  .flip-card__icon svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+    margin-bottom: 2px !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.65rem, 0.9vw, 0.78rem) !important;
+    margin-bottom: 4px !important;
+    line-height: 1.2 !important;
+  }
+  .flip-card__cta {
+    font-size: 0.65rem !important;
   }
 }
 
@@ -1671,7 +1703,7 @@ body {
 }
 
 /* Precise Edge Alignment in Portrait Orientation */
-@media (orientation: portrait) {
+@media (orientation: portrait) and (min-width: 1024px) {
   .promise,
   .section-cta,
   .section-2-identity,
@@ -1697,8 +1729,20 @@ body {
   }
 }
 
+@media (max-width: 1023px) {
+  .promise,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+}
+
 /* Precise Edge Alignment in Landscape Orientation (Preserved 100% Unchanged) */
-@media (orientation: landscape) {
+@media (orientation: landscape) and (min-height: 700px) {
   .promise,
   .section-cta,
   .section-2-identity,
@@ -1719,6 +1763,18 @@ body {
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 699px) {
+  .promise,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
   }
 }
 
