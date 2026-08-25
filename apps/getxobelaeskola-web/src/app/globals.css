@@ -1149,7 +1149,7 @@ a:hover {
     margin: 0 auto !important;
   }
   .flip-card {
-    height: clamp(110px, 20vh, 135px) !important;
+    height: calc(1% + clamp(110px, 20vh, 135px)) !important;
     width: 100% !important;
   }
   .flip-card__face {
@@ -1210,7 +1210,7 @@ a:hover {
 
   width: 100%;
   max-width: var(--card-w);
-  height: var(--card-h);
+  height: calc(var(--card-h) * 1.01);
   perspective: 1600px;
 }
 
