@@ -1046,14 +1046,15 @@ a:hover {
 
 @media (max-width: 639px) and (orientation: portrait) {
   .promise {
-    min-height: 100vh !important;
+    height: 100dvh !important;
     min-height: 100dvh !important;
-    padding: clamp(24px, 4vh, 40px) 16px !important;
+    max-height: 100dvh !important;
+    padding: clamp(16px, 3vh, 32px) 12px !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(6px, 1.5vw, 12px);
   }
 }
 
@@ -1133,7 +1134,7 @@ a:hover {
     height: 100dvh !important;
     min-height: 100dvh !important;
     max-height: 100dvh !important;
-    padding: clamp(10px, 2vh, 20px) clamp(10px, 3vw, 16px) !important;
+    padding: clamp(10px, 2vh, 20px) clamp(8px, 2vw, 12px) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
@@ -1142,14 +1143,14 @@ a:hover {
     margin-bottom: clamp(6px, 1.5vh, 12px) !important;
   }
   .promise__grid {
-    grid-template-columns: 1fr !important; /* เรียงต่อกัน 1 Column (1 บรรทัดต่อ 1 ใบ: 1, 2, 3) */
-    gap: calc(1% + 8px) !important; /* เพิ่มระยะห่าง 1% ระหว่างการ์ดทั้ง 3 ใบ */
+    grid-template-columns: repeat(3, 1fr) !important; /* การ์ดทั้ง 3 ใบเรียงเคียงข้างกัน 3 ใบใน 1 แถว ไม่ซ้อนทับกัน */
+    gap: clamp(4px, 1.2vw, 8px) !important;
     width: 100% !important;
-    max-width: 320px !important;
+    max-width: 100% !important;
     margin: 0 auto !important;
   }
   .flip-card {
-    height: calc(1% + clamp(110px, 20vh, 135px)) !important;
+    height: calc(101% * clamp(140px, 42vh, 180px)) !important; /* เพิ่มความสูงการ์ดขึ้นใบละ 1% */
     width: 100% !important;
   }
   .flip-card__face {
