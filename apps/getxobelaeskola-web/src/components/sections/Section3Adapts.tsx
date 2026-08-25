@@ -178,16 +178,16 @@ export function Section3Adapts() {
           </AnimatePresence>
         </div>
 
-        {/* Header con Subtítulo Dinámico */}
-        <div style={{ marginBottom: 'clamp(0.6rem, 2vh, 1.8rem)', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+        {/* Header กับ Subtítulo Dynamic */}
+        <div style={{ marginBottom: 'clamp(0.4rem, 1.2vh, 1.2rem)', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
           <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" hideLineOnMobile={true} />
           <h2
             style={{
-              fontSize: 'clamp(1.3rem, 3vw, 2.3rem)',
+              fontSize: 'clamp(1.1rem, 2.8vw, 2.1rem)',
               fontWeight: 700,
               color: 'var(--gbe-navy-900)',
               lineHeight: 1.15,
-              marginBottom: '0.4rem',
+              marginBottom: '0.2rem',
               fontFamily: 'var(--gbe-font-display)',
             }}
           >
@@ -202,10 +202,10 @@ export function Section3Adapts() {
               transition={{ duration: 0.3 }}
               style={{
                 color: 'var(--gbe-text-muted)',
-                fontSize: 'clamp(0.8rem, 1.5vw, 1rem)',
-                lineHeight: 1.4,
+                fontSize: 'clamp(0.72rem, 1.4vw, 0.95rem)',
+                lineHeight: 1.3,
                 fontWeight: 300,
-                minHeight: '2rem',
+                minHeight: '1.6rem',
                 maxWidth: '700px',
                 margin: '0 auto',
               }}
@@ -219,29 +219,29 @@ export function Section3Adapts() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '0.5rem', // closer between them
-            marginBottom: '0.8rem',
+            gridTemplateColumns: isPhone ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '0.4rem', // closer between them
+            marginBottom: '0.5rem',
             position: 'relative',
             zIndex: 3,
           }}
         >
           {/* Card 1: Tipo de experiencia */}
           <Card3D intensity={5}>
-            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+            <div style={{ padding: '0.6rem 0.8rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('experience_label')}
               </span>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
                 <button
                   onClick={() => setExperience('calm')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.45rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: experience === 'calm' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: experience === 'calm' ? 'white' : 'var(--gbe-text)',
@@ -254,11 +254,11 @@ export function Section3Adapts() {
                   onClick={() => setExperience('action')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.45rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: experience === 'action' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: experience === 'action' ? 'white' : 'var(--gbe-text)',
@@ -273,20 +273,20 @@ export function Section3Adapts() {
 
           {/* Card 2: El escenario */}
           <Card3D intensity={5}>
-            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+            <div style={{ padding: '0.6rem 0.8rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('setting_label')}
               </span>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
                 <button
                   onClick={() => setEnvironment('inner')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.45rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: environment === 'inner' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: environment === 'inner' ? 'white' : 'var(--gbe-text)',
@@ -299,11 +299,11 @@ export function Section3Adapts() {
                   onClick={() => setEnvironment('outer')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.45rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: environment === 'outer' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: environment === 'outer' ? 'white' : 'var(--gbe-text)',

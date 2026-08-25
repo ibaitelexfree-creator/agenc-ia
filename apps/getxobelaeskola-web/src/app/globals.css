@@ -1122,6 +1122,66 @@ a:hover {
     margin-bottom: 4px !important;
   }
 }
+
+/* 📱 Very Small Screens (e.g. 320x586px Portrait) */
+@media (max-width: 600px) and (orientation: portrait) {
+  .promise {
+    padding: clamp(12px, 2.5vh, 24px) clamp(12px, 3vw, 20px) !important;
+    overflow-y: auto !important;
+  }
+  .promise__title {
+    font-size: clamp(1.1rem, 4.5vw, 1.4rem) !important;
+    margin-bottom: clamp(6px, 1.5vh, 12px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: 1fr !important; /* เรียงต่อกัน 1 Column (1 บรรทัดต่อ 1 ใบ: 1, 2, 3) */
+    gap: clamp(6px, 1.2vh, 10px) !important;
+    width: 100% !important;
+    max-width: 320px !important;
+    margin: 0 auto !important;
+  }
+  .flip-card {
+    height: clamp(110px, 20vh, 135px) !important;
+    width: 100% !important;
+  }
+  .flip-card__face {
+    padding: clamp(8px, 1.2vh, 12px) clamp(10px, 2.5vw, 16px) !important;
+    justify-content: center !important;
+  }
+  .flip-card__face--back {
+    padding-top: clamp(10px, 1.5vh, 16px) !important;
+  }
+  .flip-card__icon {
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 4px !important;
+  }
+  .flip-card__icon svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem) !important;
+    margin-bottom: 2px !important;
+    line-height: 1.15 !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.68rem, 2.8vw, 0.76rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.6rem, 2.4vw, 0.68rem) !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.62rem, 2.6vw, 0.72rem) !important;
+    margin-bottom: 2px !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.65rem, 2.8vw, 0.75rem) !important;
+    line-height: 1.25 !important;
+  }
+}
 /* 📱 Mobile Portrait: Single column with responsive card */
 @media (max-width: 768px) and (orientation: portrait) {
   .flip-card-wrapper {
