@@ -284,10 +284,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: 0,
+          top: '-2vh',
           y: layer1Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 1,
         }}
       >
@@ -348,10 +348,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: 0,
+          top: '-2vh',
           y: layer2Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 2,
         }}
       >
@@ -383,10 +383,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: 0,
+          top: '-2vh',
           y: layer3Y,
           width: '100%',
-          height: '100%',
+          height: '102%',
           zIndex: 3,
         }}
       >
@@ -475,8 +475,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? (viewportScale < 0.65 ? '-40px' : '-80px') : '0px',
-          transform: isLandscape ? 'translateY(-4vh)' : 'translateY(-10vh)',
+          marginTop: isLandscape ? '-100px' : '0px',
+          transform: 'translateY(-10vh)',
         }}
       >
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
