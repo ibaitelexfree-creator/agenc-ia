@@ -813,8 +813,23 @@ a:hover {
     "cta";
 }
 
-/* Scroll Engine layout preserved across all viewports */
-
+@media (max-width: 900px) {
+  .scroll-engine-root {
+    height: auto !important;
+  }
+  .scroll-engine-inner {
+    position: relative !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+  .canvas-container {
+    height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+}
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
@@ -852,9 +867,8 @@ a:hover {
 /* 📱 มือถือเล็ก (320px - 359px) */
 @media (max-width: 359px) {
   :root {
-    --card-w: 310px;
-    --card-h: clamp(180px, 25vh, 220px);
-    --card-radius: 16px;
+    --card-w: clamp(200px, 80vw, 260px);
+    --card-h: clamp(160px, 22vh, 200px);
     --fs-card-title-front: 1.05rem;
     --fs-hook: 0.75rem;
     --fs-body: 0.78rem;
@@ -901,9 +915,9 @@ a:hover {
 /* 📲 Tablet ใหญ่ & Laptop เล็ก (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   :root {
-    --card-w: clamp(255px, 24.5vw, 333px);
-    --card-h: var(--card-w);
-    --gap: 20px;
+    --card-w: clamp(260px, 23vw, 320px);
+    --card-h: clamp(210px, 23vh, 250px);
+    --gap: 16px;
     --fs-card-title-front: 1.25rem;
     --fs-hook: 0.85rem;
     --fs-body: 0.88rem;
@@ -913,9 +927,9 @@ a:hover {
 /* 💻 Laptop Full HD & Desktop Full HD (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
   :root {
-    --card-w: clamp(294px, 23.5vw, 353px);
-    --card-h: var(--card-w);
-    --gap: 24px;
+    --card-w: 340px;
+    --card-h: 250px;
+    --gap: 20px;
     --fs-card-title-front: 1.35rem;
     --fs-hook: 0.88rem;
     --fs-body: 0.92rem;
@@ -925,9 +939,9 @@ a:hover {
 /* 🖥️ 2K / QHD (2560px - 3839px) */
 @media (min-width: 2560px) and (max-width: 3839px) {
   :root {
-    --card-w: clamp(353px, 21.5vw, 431px);
-    --card-h: var(--card-w);
-    --gap: 32px;
+    --card-w: 400px;
+    --card-h: 280px;
+    --gap: 28px;
     --fs-card-title-front: 1.55rem;
     --fs-hook: 1.05rem;
     --fs-body: 1.1rem;
@@ -938,8 +952,8 @@ a:hover {
 /* 🖥️ 4K (3840px+) */
 @media (min-width: 3840px) {
   :root {
-    --card-w: clamp(431px, 19.6vw, 529px);
-    --card-h: var(--card-w);
+    --card-w: 500px;
+    --card-h: 340px;
     --gap: 40px;
     --fs-card-title-front: 1.95rem;
     --fs-hook: 1.3rem;
@@ -1035,29 +1049,25 @@ a:hover {
   }
 }
 
-@media (max-width: 599px) and (orientation: portrait) {
+@media (max-width: 639px) and (orientation: portrait) {
   .promise {
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
     padding: clamp(24px, 4vh, 40px) 16px !important;
     box-sizing: border-box;
   }
   .promise__grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 }
 
 /* 📱 Mobile Landscape: Match Section 4 FlipCards directly to BlogSection card dimensions */
 @media (max-width: 900px) and (orientation: landscape) {
   .promise {
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    padding: clamp(12px, 2.5vh, 24px) 16px !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding: clamp(24px, 4vh, 48px) 24px !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1065,200 +1075,68 @@ a:hover {
     align-items: center !important;
   }
   .promise__title {
-    font-size: clamp(1rem, 2.2vw, 1.4rem) !important;
-    margin-bottom: clamp(6px, 1.2vh, 12px) !important;
+    font-size: clamp(1.2rem, 2.4vw, 1.6rem) !important;
+    margin-bottom: clamp(10px, 2vh, 18px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: clamp(6px, 1.2vw, 14px) !important; /* ลดระยะห่างระหว่างการ์ดทั้ง 3 ใบให้ใกล้กันมากขึ้น */
+    align-items: stretch !important;
+    justify-items: stretch !important;
+    max-width: clamp(520px, 78vw, 840px) !important; /* กระชับความกว้างรวมของ Grid ให้ขยับเข้าใกล้กัน */
+    margin: 0 auto !important;
+  }
+  .promise__item {
+    width: 100% !important;
+    display: flex !important;
   }
   .flip-card-wrapper {
-    min-height: clamp(140px, 45vh, 190px) !important;
-    height: clamp(140px, 45vh, 190px) !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: clamp(140px, 36vh, 185px) !important;
+    margin: 0 !important;
   }
   .flip-card__face {
-    padding: 8px 10px !important;
+    padding: clamp(8px, 1.5vh, 14px) clamp(8px, 1.2vw, 12px) !important;
+    border-radius: var(--gbe-radius-lg, 16px) !important;
   }
   .flip-card__icon {
     width: 32px !important;
     height: 32px !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 6px !important;
   }
   .flip-card__icon svg {
-    width: 18px !important;
-    height: 18px !important;
+    width: 20px !important;
+    height: 20px !important;
   }
   .flip-card__title {
-    font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(0.78rem, 1.2vw, 0.95rem) !important;
+    margin-bottom: 3px !important;
+    line-height: 1.2 !important;
   }
   .flip-card__hook {
-    font-size: clamp(0.65rem, 0.9vw, 0.78rem) !important;
-    margin-bottom: 4px !important;
-    line-height: 1.2 !important;
-  }
-  .flip-card__cta {
-    font-size: 0.65rem !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .promise__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: var(--gap) !important;
-    align-items: center !important;
-    justify-items: center !important;
-    width: 100% !important;
-    max-width: var(--section-max-w) !important;
-    margin: 0 auto !important;
-  }
-  .promise__item {
-    width: 100% !important;
-    max-width: var(--card-w) !important;
-    aspect-ratio: 1 / 1 !important;
-    display: flex !important;
-    justify-content: center !important;
-  }
-  .flip-card-wrapper {
-    width: 100% !important;
-    height: 100% !important;
-    aspect-ratio: 1 / 1 !important;
-    min-height: auto !important;
-  }
-}
-
-@media (min-width: 600px) and (max-width: 1023px) {
-  .promise__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: clamp(8px, 1.8vw, 24px) !important;
-    align-items: stretch !important;
-    justify-items: stretch !important;
-    width: 100% !important;
-    max-width: 1240px !important;
-    margin: 0 auto !important;
-  }
-  .promise__item {
-    width: 100% !important;
-    min-width: 0 !important;
-    display: flex !important;
-  }
-  .flip-card-wrapper {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    height: 100% !important;
-    min-height: clamp(190px, 28vh, 260px) !important;
-    margin: 0 !important;
-  }
-}
-
-@media (min-width: 600px) {
-  .flip-card__face {
-    padding: clamp(12px, 2vh, 24px) clamp(10px, 1.5vw, 20px) !important;
-  }
-  .flip-card__icon {
-    width: clamp(36px, 4vw, 56px) !important;
-    height: clamp(36px, 4vw, 56px) !important;
-    margin-bottom: clamp(8px, 1.5vh, 16px) !important;
-  }
-  .flip-card__icon svg {
-    width: clamp(20px, 2.5vw, 36px) !important;
-    height: clamp(20px, 2.5vw, 36px) !important;
-  }
-  .flip-card__title {
-    font-size: clamp(0.85rem, 1.35vw, 1.25rem) !important;
-    margin-bottom: clamp(4px, 0.8vh, 10px) !important;
-    line-height: 1.2 !important;
-    word-break: break-word !important;
-  }
-  .flip-card__hook {
-    font-size: clamp(0.72rem, 1.05vw, 0.88rem) !important;
-    line-height: 1.3 !important;
-    margin-bottom: clamp(6px, 1vh, 14px) !important;
-  }
-  .flip-card__cta {
-    font-size: clamp(0.68rem, 0.95vw, 0.8rem) !important;
-  }
-  .flip-card__desc {
-    font-size: clamp(0.72rem, 1.05vw, 0.88rem) !important;
-    line-height: 1.35 !important;
-    padding: 0 4px !important;
-  }
-  .flip-card__label {
-    font-size: clamp(0.68rem, 0.95vw, 0.78rem) !important;
-    margin-bottom: clamp(6px, 1vh, 12px) !important;
-  }
-}
-/* 📱 Mobile Portrait (available content width < 600px): Single column with 3D depth flip */
-@media (max-width: 599px) and (orientation: portrait) {
-  .promise {
-    padding: 16px 12px !important;
-  }
-  .promise__title {
-    font-size: 1.15rem !important;
-    margin-bottom: 10px !important;
-  }
-  .promise__grid {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 10px !important;
-  }
-  .promise__item {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-  .flip-card-wrapper {
-    width: 100% !important;
-    max-width: 290px !important;
-    height: 125px !important;
-    margin: 0 auto !important;
-    perspective: 1600px !important;
-    -webkit-perspective: 1600px !important;
-  }
-  .flip-card__face {
-    padding: 8px 12px !important;
-    transform-style: preserve-3d !important;
-    -webkit-transform-style: preserve-3d !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
-  }
-  .flip-card__icon {
-    width: 30px !important;
-    height: 30px !important;
-    margin-bottom: 4px !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
-  }
-  .flip-card__icon svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
-  .flip-card__title {
-    font-size: 0.88rem !important;
-    margin-bottom: 2px !important;
-    line-height: 1.2 !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
-  }
-  .flip-card__hook {
-    font-size: 0.72rem !important;
-    line-height: 1.2 !important;
-    margin-bottom: 4px !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
-  }
-  .flip-card__cta {
-    font-size: 0.68rem !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
-  }
-  .flip-card__desc {
-    font-size: 0.72rem !important;
+    font-size: clamp(0.66rem, 1vw, 0.78rem) !important;
     line-height: 1.25 !important;
-    padding: 0 4px !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
+    margin-bottom: 4px !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.62rem, 0.95vw, 0.72rem) !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.66rem, 1vw, 0.78rem) !important;
+    line-height: 1.25 !important;
   }
   .flip-card__label {
-    font-size: 0.72rem !important;
+    font-size: clamp(0.62rem, 0.95vw, 0.7rem) !important;
     margin-bottom: 4px !important;
-    transform: translateZ(90px) !important;
-    -webkit-transform: translateZ(90px) !important;
+  }
+}
+/* 📱 Mobile Portrait: Single column with responsive card */
+@media (max-width: 768px) and (orientation: portrait) {
+  .flip-card-wrapper {
+    width: clamp(240px, 85vw, 340px) !important;
+    height: clamp(190px, 28vh, 230px) !important;
+    margin: 0 auto !important;
   }
 }
 
@@ -1502,8 +1380,8 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px Portrait): 3 items top row, 2 items bottom row */
-@media (max-width: 1023px) and (orientation: portrait) {
+/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px): 3 items top row, 2 items bottom row */
+@media (max-width: 1023px) {
   div.hero-blobs-grid,
   .hero-blobs-grid {
     display: grid !important;
@@ -1543,8 +1421,8 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment in Portrait) */
-@media (min-width: 320px) and (max-width: 586px) and (orientation: portrait) {
+/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment) */
+@media (min-width: 320px) and (max-width: 586px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
     bottom: calc(clamp(12px, 3vh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
@@ -1567,23 +1445,21 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📐 Lower 5 Hero Blobs Container Down Further */
-div.hero-video-blobs-container,
-.hero-video-blobs-container {
-  bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
-}
-
 /* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
-@media (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
   .hero-text-container {
-    transform: translateY(-10vh) !important;
+    transform: translateY(-2vh) !important;
+  }
+
+  .hero-video-blobs-container {
+    bottom: calc(clamp(24px, 4vh, 60px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
 /* 🖥️ Desktop Viewport System (width >= 1024px Portrait / Large Desktop): */
 @media (min-width: 1651px) {
   .hero-video-blobs-container {
-    bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
 
@@ -1592,7 +1468,7 @@ div.hero-video-blobs-container,
 @media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(0.3cm + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(9vh + env(safe-area-inset-bottom, 0px)) !important;
     overflow: visible !important;
     height: auto !important;
     max-height: none !important;
@@ -1612,7 +1488,7 @@ div.hero-video-blobs-container,
   }
 }
 
-/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 586x320px) */
+/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 569x320px) */
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 960px) {
   .scroll-engine-root {
     height: auto !important;
@@ -1620,7 +1496,7 @@ div.hero-video-blobs-container,
   .scroll-engine-inner {
     position: relative !important;
     height: auto !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   .canvas-container {
     height: auto !important;
@@ -1630,67 +1506,43 @@ div.hero-video-blobs-container,
     transform: none !important;
   }
 
-  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(2vh + env(safe-area-inset-bottom, 0px)) !important; /* ยกขึ้นเล็กน้อยไม่ให้ล้นขอบล่าง */
-    padding: 0 2px !important;
-    width: 100vw !important;
+    bottom: calc(0.1vh + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 4px !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
-    overflow: visible !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
 
-  /* Single row flex layout for 1 2 3 4 5 video blobs in mobile landscape */
+  /* Retain 3+2 grid layout for short landscape mode while scaling nicely */
   div.hero-blobs-grid,
   .hero-blobs-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 0px !important; /* ปรับชิดกันมากขึ้นอีก 1% */
-    transform: scale(clamp(0.205, 30vh / 320, 0.365)) !important;
+    transform: scale(calc(clamp(0.20, 38vh / 450, 0.38))) !important;
     transform-origin: center bottom !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-    margin: 0 auto !important;
-  }
-
-  div.hero-blobs-grid > *,
-  .hero-blobs-grid > * {
-    grid-column: unset !important;
-    width: auto !important;
-    flex-shrink: 1 !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
-    top: -6.5vh !important;
-    transform: scale(clamp(0.33, 40vh / 450, 0.50)) !important;
+    top: -2vh !important;
+    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
     transform-origin: left top !important;
   }
 }
 
-/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 586x320px) */
+/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 569x320px) */
 @media (orientation: landscape) and (max-height: 420px) {
-  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(1.5vh + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 0 !important;
+    bottom: calc(0px + env(safe-area-inset-bottom, 0px)) !important;
   }
 
-  div.hero-blobs-grid,
   .hero-blobs-grid {
-    gap: 0px !important; /* ปรับชิดกันมากขึ้นอีก 1% */
-    transform: scale(clamp(0.165, 26.5vh / 320, 0.325)) !important;
+    gap: clamp(0.5px, 0.2vw, 2px) !important;
+    transform: scale(calc(clamp(0.16, 32vh / 450, 0.32))) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
-    top: -6.5vh !important;
-    transform: scale(clamp(0.28, 33vh / 450, 0.40)) !important; /* ย่อลงอีก 2% */
+    top: -2vh !important;
+    transform: scale(clamp(0.35, 40vh / 450, 0.48)) !important;
     transform-origin: left top !important;
   }
 }
@@ -1714,18 +1566,18 @@ div.hero-video-blobs-container,
 }
 
 /* ==========================================================================
-   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM
+   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (5% BUFFER SMOOTH TRANSITION FIT)
    ========================================================================== */
 html,
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100%;
+  width: 100vw;
+  width: 100dvw;
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-x: clip;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   padding-left: env(safe-area-inset-left, 0px);
@@ -1738,8 +1590,28 @@ body {
   box-sizing: border-box;
 }
 
-/* Precise Edge Alignment in Portrait Orientation */
-@media (orientation: portrait) and (min-width: 1024px) {
+/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds with proportional inner padding */
+.promise,
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-top: clamp(1.5rem, 4vh, 3.5rem);
+  padding-bottom: clamp(1.5rem, 4vh, 3.5rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Precise Edge Alignment in Landscape Orientation */
+@media (orientation: landscape) {
   .promise,
   .section-cta,
   .section-2-identity,
@@ -1747,70 +1619,14 @@ body {
   .section-3-path,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
-    width: 100%;
-    max-width: 100%;
-    height: 100vh;
-    height: 100dvh;
     min-height: 100vh;
     min-height: 100dvh;
-    max-height: 100dvh;
-    padding-top: calc(clamp(1rem, 3vh, 2.5rem) + env(safe-area-inset-top, 0px));
-    padding-bottom: calc(clamp(1rem, 3vh, 2.5rem) + env(safe-area-inset-bottom, 0px));
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-}
-
-@media (max-width: 1023px) {
-  .promise,
-  [class*="Blog_section"],
-  [class*="Reviews_section"] {
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    position: relative !important;
-  }
-}
-
-/* Precise Edge Alignment in Landscape Orientation (Preserved 100% Unchanged) */
-@media (orientation: landscape) and (min-height: 700px) {
-  .promise,
-  .section-cta,
-  .section-2-identity,
-  .section-3-adapts,
-  .section-3-path,
-  [class*="Blog_section"],
-  [class*="Reviews_section"] {
-    width: 100%;
-    max-width: 100%;
     height: 100vh;
     height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
     padding-top: clamp(0.5rem, 2vh, 1.5rem);
     padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     overflow: hidden;
-  }
-}
-
-@media (orientation: landscape) and (max-height: 699px) {
-  .promise,
-  [class*="Blog_section"],
-  [class*="Reviews_section"] {
-    height: auto !important;
-    min-height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-    position: relative !important;
   }
 }
 

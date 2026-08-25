@@ -52,7 +52,7 @@ export function Section1Hero() {
   const [nubesLoaded, setNubesLoaded] = useState(false)
   const [barcoLoaded, setBarcoLoaded] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(true)
   const [isTabletPortrait, setIsTabletPortrait] = useState(false)
   const [isTabletLandscape, setIsTabletLandscape] = useState(false)
   const [isPhone, setIsPhone] = useState(false)
@@ -459,7 +459,9 @@ export function Section1Hero() {
         }}
       />
 
-      {/* Contenido principal — Título, Subtítulo y CTA */}
+
+
+      {/* Contenido principal — alineado con container fluido para evitar desbordamientos */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -471,111 +473,109 @@ export function Section1Hero() {
           textAlign: 'left',
           padding: isPhone ? '0 1.2rem' : '0 clamp(1rem, 4vw, 4rem)',
           width: '100%',
-          maxWidth: 'min(1800px, 94vw)',
+          maxWidth: 'min(1400px, 90vw)',
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? '-100px' : '0px',
-          transform: 'translateY(-10vh)',
+          marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? '-40px' : '-140px',
+          top: isLandscape ? '-2vh' : isMobile ? '-2vh' : '-2vh',
+          transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
+          transformOrigin: 'left center',
         }}
       >
-        <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
-          <div className="flex flex-col text-left">
-            {/* Eyebrow — ubicación */}
-            <div
-              style={{
-                display: 'inline-flex',
-                justifyContent: 'flex-start',
-                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
-                marginTop: '0px',
-              }}
-            >
-              <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.77rem' : 'clamp(1.96rem, 2.78vw, 5.36rem)'} />
-            </div>
-
-            {/* Logo / Nombre de la escuela */}
-            <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '1rem' }}>
-              <LogoGBE isPhone={isPhone || isLandscape} />
-            </div>
-    
-            {/* Título principal */}
-            <h1
-              style={{
-                fontSize: isLandscape ? 'clamp(1.21rem, 3.8vw, 2.2rem)' : isPhone ? 'clamp(1.15rem, 4.2vw, 1.6rem)' : 'clamp(5.15rem, 8.24vw, 18.54rem)',
-                fontWeight: 700,
-                lineHeight: (isPhone || isLandscape) ? 1.06 : 1.05,
-                color: 'var(--white)',
-                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
-                textAlign: 'left',
-              }}
-            >
-              {t('title').split('|').map((part, index) => {
-                return (
-                  <span key={index} style={{ display: 'block', whiteSpace: 'nowrap' }}>
-                    <AnimatedText
-                      text={part.trim()}
-                      effect="falling"
-                      delay={0.6 + index * 0.45}
-                    />
-                  </span>
-                );
-              })}
-            </h1>
-    
-            {/* Subtítulo */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'stretch',
-                gap: (isPhone || isLandscape) ? '6px' : 'clamp(16px, 1.5vw, 44px)',
-                maxWidth: 'min(1600px, 92vw)',
-                margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
-                textAlign: 'left',
-              }}
-            >
-              {/* Línea vertical color granate del logotipo */}
-              <motion.div
-                initial={{ scaleY: 0, opacity: 0 }}
-                animate={{ scaleY: 1, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
-                style={{
-                  width: (isPhone || isLandscape) ? '3px' : 'clamp(6px, 0.5vw, 16px)',
-                  backgroundColor: '#A91D22', // Granate del logo
-                  transformOrigin: 'top',
-                  flexShrink: 0,
-                }}
-              />
-              <div
-                style={{
-                  fontSize: isLandscape ? 'clamp(0.75rem, 2.09vw, 0.9rem)' : isPhone ? 'clamp(0.75rem, 2.86vw, 0.88rem)' : 'clamp(2.37rem, 4.12vw, 8.03rem)',
-                  fontWeight: 400,
-                  lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
-                  color: 'rgba(255,255,255,0.92)',
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
+        {/* Eyebrow — ubicación */}
+        <div
+          style={{
+            display: 'inline-flex',
+            justifyContent: 'flex-start',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem',
+            marginTop: '0px',
+          }}
+        >
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.7rem' : '0.95rem'} />
+        </div>
+ 
+        {/* Logo / Nombre de la escuela */}
+        <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '1rem' }}>
+          <LogoGBE isPhone={isPhone || isLandscape} />
+        </div>
+  
+        {/* Título principal */}
+        <h1
+          style={{
+            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.05rem, 4.2vw, 1.45rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontWeight: 700,
+            lineHeight: (isPhone || isLandscape) ? 1.06 : 1.12,
+            color: 'var(--white)',
+            marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
+            textAlign: 'left',
+          }}
+        >
+          {t('title').split('|').map((part, index) => {
+            return (
+              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
                 <AnimatedText
-                  text={t('subtitle')}
+                  text={part.trim()}
                   effect="falling"
-                  delay={1.5}
+                  delay={0.6 + index * 0.45}
                 />
-              </div>
-            </div>
-
-            {/* CTA con atracción magnética — ซ่อนเฉพาะมือถือขนาดเล็กแนวนอน (Landscape เช่น 586x320px) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-              className={(isLandscape && viewportScale < 0.65) ? "hidden" : "mt-4 md:mt-6"}
-            >
-              <GlowButton href="#" color="garnet" size="xl">
-                {t('cta')}
-              </GlowButton>
-            </motion.div>
+              </span>
+            );
+          })}
+        </h1>
+  
+        {/* Subtítulo */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            gap: (isPhone || isLandscape) ? '6px' : '16px',
+            maxWidth: '710px',
+            margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
+            textAlign: 'left',
+          }}
+        >
+          {/* Línea vertical color granate del logotipo */}
+          <motion.div
+            initial={{ scaleY: 0, opacity: 0 }}
+            animate={{ scaleY: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+            style={{
+              width: (isPhone || isLandscape) ? '3px' : '4px',
+              backgroundColor: '#A91D22', // Granate del logo
+              transformOrigin: 'top',
+              flexShrink: 0,
+            }}
+          />
+          <div
+            style={{
+              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.68rem, 2.6vw, 0.8rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontWeight: 400,
+              lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
+              color: 'rgba(255,255,255,0.92)',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+          >
+            <AnimatedText
+              text={t('subtitle')}
+              effect="falling"
+              delay={1.5}
+            />
           </div>
         </div>
+  
+        {/* CTA con atracción magnética */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+          className="mt-3 md:mt-4"
+        >
+          <GlowButton href="#" color="garnet" size="sm">
+            {t('cta')}
+          </GlowButton>
+        </motion.div>
       </motion.div>
 
       {/* Los 5 blobs/videos interactivos */}
@@ -583,7 +583,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(0.3cm + env(safe-area-inset-bottom, 0px))',
+          bottom: isLandscape ? 'calc(9vh + env(safe-area-inset-bottom, 0px))' : 'calc(clamp(40px, 7vh, 100px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -636,19 +636,17 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: isPhone ? '8px' : 'clamp(11px, 0.88vw, 26px)',
+        gap: isPhone ? '8px' : '10px',
         maxWidth: '100%',
       }}
     >
       <motion.svg 
-        style={{ 
-          width: isPhone ? "24px" : "clamp(51.5px, 3.09vw, 98.8px)",
-          height: isPhone ? "24px" : "clamp(51.5px, 3.09vw, 98.8px)",
-          flexShrink: 0 
-        }} 
+        width={isPhone ? "21.78" : "32.67"} 
+        height={isPhone ? "21.78" : "32.67"} 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
+        style={{ flexShrink: 0 }}
         initial={{ y: -60, opacity: 0, scale: 0.5 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
         transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
@@ -663,7 +661,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
           effect="falling"
           delay={0.35}
           style={{
-            fontSize: isPhone ? '0.96rem' : 'clamp(1.80rem, 2.27vw, 4.53rem)',
+            fontSize: isPhone ? '0.87rem' : '1.168rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
