@@ -475,8 +475,8 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? '-100px' : '0px',
-          transform: 'translateY(-10vh)',
+          marginTop: isLandscape ? (viewportScale < 0.65 ? '-40px' : '-80px') : '0px',
+          transform: isLandscape ? 'translateY(-4vh)' : 'translateY(-10vh)',
         }}
       >
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
