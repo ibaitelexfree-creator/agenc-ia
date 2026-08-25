@@ -1015,7 +1015,7 @@ a:hover {
 .promise__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
+  gap: calc(1% + var(--gap, 16px));
   justify-items: center;
   align-items: stretch;
   width: 100%;
@@ -1143,7 +1143,7 @@ a:hover {
   }
   .promise__grid {
     grid-template-columns: 1fr !important; /* เรียงต่อกัน 1 Column (1 บรรทัดต่อ 1 ใบ: 1, 2, 3) */
-    gap: clamp(6px, 1.2vh, 10px) !important;
+    gap: calc(1% + 8px) !important; /* เพิ่มระยะห่าง 1% ระหว่างการ์ดทั้ง 3 ใบ */
     width: 100% !important;
     max-width: 320px !important;
     margin: 0 auto !important;
