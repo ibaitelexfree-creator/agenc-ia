@@ -54,7 +54,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     ]
   )
   const canvasY = useTransform(rawCanvasY, (v) => {
-    return `${v}vh`
+    return `${v}dvh`
   })
 
   const rawProw = useTransform(scrollYProgress, scrollPoints, prowValues)

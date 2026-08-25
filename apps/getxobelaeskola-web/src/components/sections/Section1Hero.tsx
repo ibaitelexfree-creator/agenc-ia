@@ -260,6 +260,7 @@ export function Section1Hero() {
   return (
     <section
       ref={heroRef}
+      className="section-1-hero"
       style={{
         gridArea: 's1',
         position: 'relative',
@@ -267,7 +268,9 @@ export function Section1Hero() {
         maxWidth: '1920px',
         minWidth: '320px',
         margin: '0 auto',
+        height: '100dvh',
         minHeight: '100dvh',
+        maxHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
@@ -284,10 +287,9 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
           y: layer1Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 1,
         }}
       >
@@ -315,25 +317,19 @@ export function Section1Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.85 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            onCanPlay={() => setVideoLoaded(true)}
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
-            onCanPlay={() => setVideoLoaded(true)}
             style={{
               position: 'absolute',
-              top: '0',
-              left: 0,
+              inset: 0,
               width: '100%',
-              height: '45%',
+              height: '100%',
               objectFit: 'cover',
-              objectPosition: 'top center',
+              objectPosition: 'center',
               zIndex: 2,
-              mixBlendMode: 'screen',
-              pointerEvents: 'none',
-              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
-              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
             }}
           >
             <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
@@ -348,10 +344,9 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
           y: layer2Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 2,
         }}
       >
@@ -383,10 +378,9 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
           y: layer3Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 3,
         }}
       >

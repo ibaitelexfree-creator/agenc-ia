@@ -782,26 +782,27 @@ a:hover {
 }
 
 .scroll-engine-root {
-  height: 800vh;
+  height: 800dvh;
 }
 .scroll-engine-inner {
   position: fixed;
   top: 0;
   left: 0;
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
 }
 
 .canvas-container {
   width: 100%;
-  height: 800vh;
+  height: 800dvh;
   position: absolute;
   top: 0;
   left: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 100vh 100vh 100vh 100vh 100vh 100vh 100vh 100vh;
+  grid-template-rows: 100dvh 100dvh 100dvh 100dvh 100dvh 100dvh 100dvh 100dvh;
   grid-template-areas:
     "s1"
     "s2"
@@ -811,24 +812,6 @@ a:hover {
     "blog"
     "reviews"
     "cta";
-}
-
-@media (max-width: 900px) {
-  .scroll-engine-root {
-    height: auto !important;
-  }
-  .scroll-engine-inner {
-    position: relative !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .canvas-container {
-    height: auto !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    transform: none !important;
-  }
 }
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
@@ -1380,8 +1363,8 @@ iframe[id*="equalweb"] {
   transform: none;
 }
 
-/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px): 3 items top row, 2 items bottom row */
-@media (max-width: 1023px) {
+/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px Portrait): 3 items top row, 2 items bottom row */
+@media (max-width: 1023px) and (orientation: portrait) {
   div.hero-blobs-grid,
   .hero-blobs-grid {
     display: grid !important;
@@ -1421,8 +1404,8 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment) */
-@media (min-width: 320px) and (max-width: 586px) {
+/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment in Portrait) */
+@media (min-width: 320px) and (max-width: 586px) and (orientation: portrait) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
     bottom: calc(clamp(12px, 3vh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
@@ -1463,8 +1446,7 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000):
-   Elevate 5 hero video blobs container & text by another 3% (9vh from bottom) so text is 100% visible clear of screen edge */
+/* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000) */
 @media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
   div.hero-video-blobs-container,
   .hero-video-blobs-container {
@@ -1488,61 +1470,60 @@ iframe[id*="equalweb"] {
   }
 }
 
-/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 569x320px) */
+/* Range 3: Mobile Landscape & Short Viewports (width < 960px & height < 600px, e.g. 586x320px) */
 @media (orientation: landscape) and (max-height: 600px) and (max-width: 960px) {
-  .scroll-engine-root {
-    height: auto !important;
-  }
-  .scroll-engine-inner {
-    position: relative !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-  .canvas-container {
-    height: auto !important;
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    transform: none !important;
-  }
-
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(0.1vh + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1.5vh + env(safe-area-inset-bottom, 0px)) !important;
     padding: 0 4px !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
   }
 
-  /* Retain 3+2 grid layout for short landscape mode while scaling nicely */
+  /* Fluid single-row layout for 5 blobs in mobile landscape viewports */
   div.hero-blobs-grid,
   .hero-blobs-grid {
-    transform: scale(calc(clamp(0.20, 38vh / 450, 0.38))) !important;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: clamp(2px, 0.8vw, 8px) !important;
+    transform: scale(clamp(0.24, 34vh / 320, 0.42)) !important;
     transform-origin: center bottom !important;
+  }
+
+  div.hero-blobs-grid > *,
+  .hero-blobs-grid > * {
+    grid-column: unset !important;
+    width: auto !important;
   }
 
   .hero-text-container {
     margin-top: 0px !important;
-    top: -2vh !important;
-    transform: scale(clamp(0.40, 48vh / 450, 0.58)) !important;
+    top: 0px !important;
+    transform: scale(clamp(0.35, 42vh / 450, 0.52)) !important;
     transform-origin: left top !important;
   }
 }
 
-/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 569x320px) */
+/* 📱 Extremely Short Landscape Screens (< 420px height, e.g. 586x320px) */
 @media (orientation: landscape) and (max-height: 420px) {
+  div.hero-video-blobs-container,
   .hero-video-blobs-container {
-    bottom: calc(0px + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1vh + env(safe-area-inset-bottom, 0px)) !important;
   }
 
+  div.hero-blobs-grid,
   .hero-blobs-grid {
-    gap: clamp(0.5px, 0.2vw, 2px) !important;
-    transform: scale(calc(clamp(0.16, 32vh / 450, 0.32))) !important;
+    gap: clamp(1px, 0.4vw, 4px) !important;
+    transform: scale(clamp(0.20, 30vh / 320, 0.36)) !important;
     transform-origin: center bottom !important;
   }
 
   .hero-text-container {
-    top: -2vh !important;
-    transform: scale(clamp(0.35, 40vh / 450, 0.48)) !important;
+    top: 0px !important;
+    transform: scale(clamp(0.32, 38vh / 450, 0.45)) !important;
     transform-origin: left top !important;
   }
 }
@@ -1566,7 +1547,7 @@ iframe[id*="equalweb"] {
 }
 
 /* ==========================================================================
-   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (5% BUFFER SMOOTH TRANSITION FIT)
+   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (FLUID 100dvh FIT)
    ========================================================================== */
 html,
 body {
@@ -1578,10 +1559,6 @@ body {
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  padding-left: env(safe-area-inset-left, 0px);
-  padding-right: env(safe-area-inset-right, 0px);
 }
 
 #main-content {
@@ -1590,7 +1567,8 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure all landing page section components fit 100% of available portrait & landscape viewport bounds with proportional inner padding */
+/* Ensure all landing page sections perfectly map to 100dvh with responsive clamp padding */
+.section-1-hero,
 .promise,
 .section-cta,
 .section-2-identity,
@@ -1600,18 +1578,23 @@ body {
 [class*="Reviews_section"] {
   width: 100%;
   max-width: 100%;
+  height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
   min-height: 100dvh;
-  padding-top: clamp(1.5rem, 4vh, 3.5rem);
-  padding-bottom: clamp(1.5rem, 4vh, 3.5rem);
+  max-height: 100dvh;
+  padding-top: clamp(1rem, 3vh, 3rem);
+  padding-bottom: clamp(1rem, 3vh, 3rem);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
-/* Precise Edge Alignment in Landscape Orientation */
+/* Landscape orientation adjustments for short viewports (mobile, tablet, desktop landscape) */
 @media (orientation: landscape) {
+  .section-1-hero,
   .promise,
   .section-cta,
   .section-2-identity,
@@ -1619,12 +1602,13 @@ body {
   .section-3-path,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
-    min-height: 100vh;
-    min-height: 100dvh;
     height: 100vh;
     height: 100dvh;
-    padding-top: clamp(0.5rem, 2vh, 1.5rem);
-    padding-bottom: clamp(0.5rem, 2vh, 1.5rem);
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    padding-top: clamp(0.25rem, 1.5vh, 1.25rem);
+    padding-bottom: clamp(0.25rem, 1.5vh, 1.25rem);
     box-sizing: border-box;
     overflow: hidden;
   }
