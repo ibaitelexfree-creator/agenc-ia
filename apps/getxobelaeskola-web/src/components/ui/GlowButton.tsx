@@ -61,7 +61,7 @@ export function GlowButton({
         color: 'white',
         padding,
         borderRadius: '50px',
-        fontSize,
+        fontSize: 'inherit',
         fontWeight: 700,
         textDecoration: 'none',
         letterSpacing: '0.04em',

@@ -473,7 +473,7 @@ export function Section1Hero() {
           y: layer3Y,
           marginTop: isLandscape ? `calc(-55px * ${viewportScale})` : isPhone ? '-40px' : '-140px',
           top: isLandscape ? '-2vh' : isMobile ? '-2vh' : '-2vh',
-          transform: isLandscape ? `scale(${Math.max(0.62, viewportScale * 0.70)})` : 'none',
+          transform: 'none',
           transformOrigin: 'left center',
         }}
       >
@@ -486,7 +486,7 @@ export function Section1Hero() {
             marginTop: '0px',
           }}
         >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.7rem' : '0.95rem'} />
+          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.7378rem' : '1.30rem'} />
         </div>
  
         {/* Logo / Nombre de la escuela */}
@@ -497,7 +497,7 @@ export function Section1Hero() {
         {/* Título principal */}
         <h1
           style={{
-            fontSize: isLandscape ? 'clamp(1.1rem, 3.8vw, 1.8rem)' : isPhone ? 'clamp(1.05rem, 4.2vw, 1.45rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
+            fontSize: isLandscape ? 'clamp(1.159rem, 4.005vw, 1.897rem)' : isPhone ? 'clamp(1.106rem, 4.427vw, 1.528rem)' : 'clamp(2.75rem, 5.5vw, 5.10rem)',
             fontWeight: 700,
             lineHeight: (isPhone || isLandscape) ? 1.06 : 1.12,
             color: 'var(--white)',
@@ -524,7 +524,7 @@ export function Section1Hero() {
             display: 'flex',
             alignItems: 'stretch',
             gap: (isPhone || isLandscape) ? '6px' : '16px',
-            maxWidth: '710px',
+            maxWidth: '850px',
             margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
             textAlign: 'left',
           }}
@@ -543,7 +543,7 @@ export function Section1Hero() {
           />
           <div
             style={{
-              fontSize: isLandscape ? 'clamp(0.68rem, 1.9vw, 0.82rem)' : isPhone ? 'clamp(0.68rem, 2.6vw, 0.8rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
+              fontSize: isLandscape ? 'clamp(0.717rem, 2.00vw, 0.865rem)' : isPhone ? 'clamp(0.717rem, 2.74vw, 0.843rem)' : 'clamp(1.40rem, 2.5vw, 1.75rem)',
               fontWeight: 400,
               lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
               color: 'rgba(255,255,255,0.92)',
@@ -564,7 +564,10 @@ export function Section1Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-          className="mt-3 md:mt-4"
+          className="mt-3 md:mt-4 [@media(orientation:landscape)_and_(max-height:500px)]:!hidden"
+          style={{
+            fontSize: (isPhone || isLandscape) ? '0.896rem' : '1.20rem'
+          }}
         >
           <GlowButton href="#" color="garnet" size="sm">
             {t('cta')}
@@ -577,7 +580,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: isLandscape ? 'calc(9vh + env(safe-area-inset-bottom, 0px))' : 'calc(clamp(40px, 7vh, 100px) + env(safe-area-inset-bottom, 0px))',
+          bottom: isLandscape ? 'calc(5.5vh + env(safe-area-inset-bottom, 0px))' : 'calc(clamp(15px, 3.5vh, 70px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -655,7 +658,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
           effect="falling"
           delay={0.35}
           style={{
-            fontSize: isPhone ? '0.87rem' : '1.168rem',
+            fontSize: isPhone ? '0.917rem' : '1.375rem',
             fontWeight: 700,
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
@@ -700,7 +703,7 @@ function SailboatAccesoButton() {
   return (
     <>
       {showButton && (
-        <motion.div
+          <motion.div
           style={{
             position: 'absolute',
             left: '85.23%',
@@ -712,7 +715,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
-          className="scale-75 sm:scale-90 md:scale-100"
+          className="scale-75 sm:scale-90 md:scale-100 flex [@media(orientation:landscape)_and_(max-height:500px)]:!hidden"
         >
           <Link
             href={`/${locale}/auth/login`}
