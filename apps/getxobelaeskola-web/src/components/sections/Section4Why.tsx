@@ -27,23 +27,11 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
 
   return (
     <div
-      className="flip-card-wrapper"
+      className={`flip-card ${isRotated ? 'is-flipped' : ''}`}
       tabIndex={0}
       role="button"
       aria-expanded={isRotated}
       aria-label={`${title}. ${isRotated ? description : hook}`}
-      style={{
-        position: 'relative',
-        width: '100%',
-        minWidth: 0,
-        height: 'var(--card-h, 260px)',
-        maxWidth: '100%',
-        perspective: '1600px',
-        WebkitPerspective: '1600px',
-        cursor: 'pointer',
-        WebkitTapHighlightColor: 'transparent',
-        outline: 'none',
-      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={onToggle}
@@ -54,150 +42,39 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
         }
       }}
       onBlur={(e) => {
-        // Reset card state when focus leaves this wrapper
         if (!e.currentTarget.contains(e.relatedTarget as Node)) {
           if (hovered) setHovered(false)
         }
       }}
     >
-      <span className="sr-only">{title}. Pulsa Enter para dar la vuelta.</span>
-      
-      {/* 3D Inner container that rotates */}
-      <div
-        className="flip-card__inner"
-        style={{
-          position: 'relative',
-          width: '100%',
-          height: '100%',
-          transition: 'transform var(--flip-duration) var(--flip-easing)',
-          WebkitTransition: '-webkit-transform var(--flip-duration) var(--flip-easing)',
-          transformStyle: 'preserve-3d',
-          WebkitTransformStyle: 'preserve-3d',
-          transform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          WebkitTransform: isRotated ? 'rotateY(180deg)' : 'rotateY(0deg)',
-          pointerEvents: 'none', // Ignore pointer events so they don't trigger mouseleave during rotation
-        }}
-      >
+      <div className="flip-card__inner">
         {/* Front Face */}
-        <div
-          className="flip-card__face flip-card__face--front"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            borderRadius: 'var(--card-radius)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'var(--color-white)',
-            border: '1px solid var(--color-border)',
-            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
-            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
-            transformStyle: 'preserve-3d',
-          }}
-        >
-          <span
-            className="flip-card__icon"
-            style={{
-              borderRadius: '50%',
-              background: 'var(--color-gold-soft)',
-              color: 'var(--color-navy-900)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transition: 'transform var(--flip-duration) var(--flip-easing)',
-              transform: 'translateZ(90px)',
-            }}
-          >
+        <div className="flip-card__face flip-card__face--front">
+          <span className="flip-card__icon">
             {icon}
           </span>
-          <h3
-            className="flip-card__title"
-            style={{
-              fontFamily: 'var(--font-display-promise)',
-              color: 'var(--color-navy-900)',
-              fontWeight: 600,
-              transform: 'translateZ(90px)',
-              textAlign: 'center',
-            }}
-          >
+          <h3 className="flip-card__title">
             {title}
           </h3>
-          <p
-            className="flip-card__hook"
-            style={{
-              fontFamily: 'var(--font-body-promise)',
-              color: 'var(--color-ink-soft)',
-              transform: 'translateZ(90px)',
-              textAlign: 'center',
-            }}
-          >
+          <p className="flip-card__hook">
             {hook}
           </p>
-
-          <span
-            className="flip-card__cta"
-            style={{
-              fontFamily: 'var(--font-body-promise)',
-              fontWeight: 600,
-              color: 'var(--color-gold)',
-              letterSpacing: '0.02em',
-              transform: 'translateZ(90px)',
-            }}
-          >
-            {t('cta')}
+          <span className="flip-card__cta">
+            Descubrir más ↻
           </span>
         </div>
 
         {/* Back Face */}
-        <div
-          className="flip-card__face flip-card__face--back"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backfaceVisibility: 'hidden',
-            WebkitBackfaceVisibility: 'hidden',
-            borderRadius: 'var(--card-radius)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: 'linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%)',
-            transform: 'rotateY(180deg) translateZ(1px)',
-            boxShadow: isRotated ? 'var(--shadow-hover)' : 'var(--shadow-rest)',
-            transition: 'box-shadow var(--flip-duration) var(--flip-easing)',
-            transformStyle: 'preserve-3d',
-          }}
-        >
-          <span
-            className="flip-card__label"
-            style={{
-              fontFamily: 'var(--font-body-promise)',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              color: 'var(--color-gold)',
-              transform: 'translateZ(90px)',
-              textAlign: 'center',
-            }}
-          >
+        <div className="flip-card__face flip-card__face--back">
+          <span className="flip-card__label">
             {label}
           </span>
-          <p
-            className="flip-card__desc"
-            style={{
-              fontFamily: 'var(--font-body-promise)',
-              color: 'var(--color-white)',
-              opacity: 0.92,
-              textAlign: 'center',
-              transform: 'translateZ(90px)',
-            }}
-          >
+          <p className="flip-card__desc">
             {description}
           </p>
         </div>
       </div>
+      <div className="flip-card__overlay" aria-hidden="true" />
     </div>
   )
 }
@@ -268,14 +145,14 @@ export function Section4Why() {
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (!target.closest('.flip-card-wrapper')) {
+      if (!target.closest('.flip-card')) {
         setActiveCardIndex(null)
       }
     }
 
     const handleFocusChange = () => {
       const active = document.activeElement as HTMLElement
-      if (!active?.closest('.flip-card-wrapper')) {
+      if (!active?.closest('.flip-card')) {
         setActiveCardIndex(null)
       }
     }
