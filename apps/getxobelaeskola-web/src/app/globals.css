@@ -1061,14 +1061,16 @@ a:hover {
 /* 📱 Mobile Landscape: Match Section 4 FlipCards directly to BlogSection card dimensions */
 @media (max-width: 900px) and (orientation: landscape) {
   .promise {
-    min-height: 100vh !important;
+    height: 100dvh !important;
     min-height: 100dvh !important;
-    padding: clamp(24px, 4vh, 48px) 24px !important;
+    max-height: 100dvh !important;
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(1rem, 3vw, 2rem) !important;
     box-sizing: border-box !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
+    overflow: hidden !important;
   }
   .promise__title {
     font-size: clamp(1.2rem, 2.4vw, 1.6rem) !important;
