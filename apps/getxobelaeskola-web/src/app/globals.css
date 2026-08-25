@@ -1188,15 +1188,15 @@ a:hover {
 /* 📱 Mobile Portrait (available content width < 600px): Single column with 3D depth flip */
 @media (max-width: 599px) and (orientation: portrait) {
   .promise {
-    padding: 12px 12px !important;
+    padding: 16px 12px !important;
   }
   .promise__title {
-    font-size: 1.25rem !important;
-    margin-bottom: 8px !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 10px !important;
   }
   .promise__grid {
     grid-template-columns: minmax(0, 1fr) !important;
-    gap: 8px !important;
+    gap: 10px !important;
   }
   .promise__item {
     width: 100% !important;
@@ -1204,58 +1204,58 @@ a:hover {
   }
   .flip-card-wrapper {
     width: 100% !important;
-    max-width: 310px !important;
-    height: 140px !important;
+    max-width: 290px !important;
+    height: 125px !important;
     margin: 0 auto !important;
     perspective: 1600px !important;
     -webkit-perspective: 1600px !important;
   }
   .flip-card__face {
-    padding: 10px 14px !important;
+    padding: 8px 12px !important;
     transform-style: preserve-3d !important;
     -webkit-transform-style: preserve-3d !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
   .flip-card__icon {
-    width: 34px !important;
-    height: 34px !important;
+    width: 30px !important;
+    height: 30px !important;
     margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__icon svg {
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
   }
   .flip-card__title {
-    font-size: 0.95rem !important;
+    font-size: 0.88rem !important;
     margin-bottom: 2px !important;
     line-height: 1.2 !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__hook {
-    font-size: 0.78rem !important;
-    line-height: 1.25 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.2 !important;
     margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__cta {
-    font-size: 0.72rem !important;
+    font-size: 0.68rem !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__desc {
-    font-size: 0.78rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.72rem !important;
+    line-height: 1.25 !important;
     padding: 0 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
   }
   .flip-card__label {
-    font-size: 0.78rem !important;
+    font-size: 0.72rem !important;
     margin-bottom: 4px !important;
     transform: translateZ(90px) !important;
     -webkit-transform: translateZ(90px) !important;
