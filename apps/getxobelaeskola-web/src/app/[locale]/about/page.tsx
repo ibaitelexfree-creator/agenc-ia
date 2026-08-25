@@ -37,7 +37,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             desc: t('values.v1_desc'),
             icon: "⚓",
             bg: "/images/about-patio.jpg",
-            objectFit: "cover",
+            objectFit: "cover" as const,
             objectPosition: "center 50%"
         },
         {
@@ -45,7 +45,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             desc: t('values.v2_desc'),
             icon: "⛵",
             bg: "/images/about-own-pontoon.jpg",
-            objectFit: "cover",
+            objectFit: "cover" as const,
             objectPosition: "center 50%"
         },
         {
@@ -53,7 +53,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             desc: t('values.v3_desc'),
             icon: "🌊",
             bg: "/images/about-optimist.jpg",
-            objectFit: "cover",
+            objectFit: "cover" as const,
             objectPosition: "center top"
         }
     ];
