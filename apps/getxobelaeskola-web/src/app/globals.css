@@ -1014,7 +1014,15 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap);
   justify-items: center;
+  align-items: stretch;
   width: 100%;
+}
+
+.promise__item {
+  width: 100%;
+  max-width: var(--card-w);
+  display: flex;
+  justify-content: center;
 }
 
 @media (max-width: 1023px) {
