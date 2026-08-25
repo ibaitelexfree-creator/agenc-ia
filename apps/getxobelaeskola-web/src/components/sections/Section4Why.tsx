@@ -356,7 +356,7 @@ export function Section4Why() {
 
       {/* Cangrejo — criatura de la esquina */}
       <Crab
-        style={{ position: 'absolute', bottom: '3%', right: isPhone ? '25%' : '10%', zIndex: 5 }}
+        style={{ position: 'absolute', bottom: '5%', right: isPhone ? '25%' : '10%', zIndex: 5 }}
         enterDelay={1.0}
       />
     </section>
