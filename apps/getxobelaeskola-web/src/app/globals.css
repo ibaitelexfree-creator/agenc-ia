@@ -971,16 +971,19 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(40px, 8vh, 80px) 24px;
+  padding: clamp(1rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem);
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   min-height: 100dvh;
+  max-height: 100dvh;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .promise__inner {
@@ -1027,9 +1030,10 @@ a:hover {
 
 @media (max-width: 1023px) {
   .promise {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(32px, 6vh, 60px) 16px;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: clamp(1rem, 4vh, 2.5rem) 16px !important;
   }
   .promise__grid { 
     grid-template-columns: repeat(3, 1fr);
@@ -1126,8 +1130,12 @@ a:hover {
 /* 📱 Very Small Screens (e.g. 320x586px Portrait) */
 @media (max-width: 600px) and (orientation: portrait) {
   .promise {
-    padding: clamp(12px, 2.5vh, 24px) clamp(12px, 3vw, 20px) !important;
-    overflow-y: auto !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: clamp(10px, 2vh, 20px) clamp(10px, 3vw, 16px) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
   }
   .promise__title {
     font-size: clamp(1.1rem, 4.5vw, 1.4rem) !important;
