@@ -284,10 +284,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer1Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 1,
         }}
       >
@@ -348,10 +348,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer2Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 2,
         }}
       >
@@ -383,10 +383,10 @@ export function Section1Hero() {
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer3Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 3,
         }}
       >
