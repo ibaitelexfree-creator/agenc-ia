@@ -97,9 +97,9 @@ function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { vide
             ctx.save()
             ctx.clip(p)
             if (video.readyState >= 2) {
-              ctx.drawImage(video, 0, 0, 100, 100)
+              ctx.drawImage(video, 0, 1, 100, 100)
             } else if (fallbackImg.complete && fallbackImg.naturalWidth > 0) {
-              ctx.drawImage(fallbackImg, 0, 0, 100, 100)
+              ctx.drawImage(fallbackImg, 0, 1, 100, 100)
             } else {
               ctx.fillStyle = `${color}55`
               ctx.fill(p)

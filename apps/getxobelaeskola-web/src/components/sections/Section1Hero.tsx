@@ -333,7 +333,7 @@ export function Section1Hero() {
             onCanPlay={() => setVideoLoaded(true)}
             style={{
               position: 'absolute',
-              top: '0',
+              top: '1%',
               left: 0,
               width: '100%',
               height: '45%',
