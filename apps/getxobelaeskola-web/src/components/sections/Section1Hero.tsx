@@ -721,7 +721,7 @@ function SailboatAccesoButton() {
           style={{
             position: 'absolute',
             left: '85.23%',
-            top: '66.40%',
+            top: '76.40%',
             translate: '-50% -50%',
             display: 'flex',
             alignItems: 'center',
