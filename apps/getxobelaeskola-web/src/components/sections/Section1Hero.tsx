@@ -588,12 +588,11 @@ export function Section1Hero() {
         </div>
       </motion.div>
 
-      {/* Los 5 blobs/videos interactivos */}
       <div
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(0.3cm + env(safe-area-inset-bottom, 0px))',
+          bottom: 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
