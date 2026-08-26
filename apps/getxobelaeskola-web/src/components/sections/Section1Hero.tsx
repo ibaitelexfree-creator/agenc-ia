@@ -592,7 +592,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(-1.5vh + env(safe-area-inset-bottom, 0px))',
+          bottom: 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
@@ -721,7 +721,7 @@ function SailboatAccesoButton() {
           style={{
             position: 'absolute',
             left: '85.23%',
-            top: '76.40%',
+            top: '66.40%',
             translate: '-50% -50%',
             display: 'flex',
             alignItems: 'center',
