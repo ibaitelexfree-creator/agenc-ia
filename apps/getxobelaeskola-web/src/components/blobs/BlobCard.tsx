@@ -3,15 +3,21 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
-function CanvasBlobVideo({ videoSrc, paths, color, isHovered }: { videoSrc: string; paths: string[]; color: string; isHovered: boolean }) {
+function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { videoSrc: string; imageSrc: string; paths: string[]; color: string; isHovered: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
+    const fallbackImg = new Image()
+    if (imageSrc) {
+      fallbackImg.src = imageSrc
+    }
+
     const video = document.createElement('video')
-    video.src = videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc
+    const canPlayWebm = video.canPlayType('video/webm')
+    video.src = (canPlayWebm && videoSrc.endsWith('.webm')) ? videoSrc : (videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc)
     video.autoplay = true
     video.loop = true
     video.muted = true
@@ -20,10 +26,20 @@ function CanvasBlobVideo({ videoSrc, paths, color, isHovered }: { videoSrc: stri
     // @ts-ignore
     video['webkit-playsinline'] = true
     video.preload = 'auto'
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+    video.setAttribute('autoplay', '')
+    video.setAttribute('loop', '')
+    video.setAttribute('fetchpriority', 'high')
     video.style.display = 'none'
     document.body.appendChild(video)
     videoRef.current = video
 
+    const startPlay = () => {
+      video.play().catch(() => {})
+    }
+    video.addEventListener('canplay', startPlay, { once: true })
     video.play().catch(() => {})
 
     let animationFrameId: number
@@ -77,13 +93,18 @@ function CanvasBlobVideo({ videoSrc, paths, color, isHovered }: { videoSrc: stri
           if (typeof Path2D !== 'undefined') {
             const p = new Path2D(interpolatedD)
 
-            // LAYER 1: VIDEO (Clipped to interpolated morphing path)
+            // LAYER 1: VIDEO OR THUMBNAIL (Clipped to interpolated morphing path)
+            ctx.save()
+            ctx.clip(p)
             if (video.readyState >= 2) {
-              ctx.save()
-              ctx.clip(p)
               ctx.drawImage(video, 0, 0, 100, 100)
-              ctx.restore()
+            } else if (fallbackImg.complete && fallbackImg.naturalWidth > 0) {
+              ctx.drawImage(fallbackImg, 0, 0, 100, 100)
+            } else {
+              ctx.fillStyle = `${color}55`
+              ctx.fill(p)
             }
+            ctx.restore()
 
             // LAYER 2: MORPHING STROKE BORDER (100% Identical Path and Render Frame)
             ctx.save()
@@ -131,48 +152,25 @@ interface BlobCardProps {
   paths: string[]       // las 3 rutas de morphing
   href: string
   index?: number
+  isSceneReady?: boolean
 }
 
-export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [], href, index = 0 }: BlobCardProps) {
+export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [], href, index = 0, isSceneReady }: BlobCardProps) {
   const d0 = paths[0] || "M50,10 C80,5 95,30 90,55 C85,80 65,95 45,90 C25,85 5,70 10,45 C15,20 20,15 50,10Z"
   const d1 = paths[1] || d0
   const d2 = paths[2] || d0
 
   const [isHovered, setIsHovered] = useState(false)
   const [inView, setInView] = useState(false)         // para mobile
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const cardRef = useRef<HTMLAnchorElement>(null)
   const clipId = `clip-${title.replace(/\s/g, '')}`
 
-  const [pageLoaded, setPageLoaded] = useState(false)
-  const [loadVideo, setLoadVideo] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(true)
   const [videoReady, setVideoReady] = useState(false)
-  const [timeToReveal, setTimeToReveal] = useState(false)
-  const [startReveal, setStartReveal] = useState(false)
   const [revealComplete, setRevealComplete] = useState(false)
 
-  // Detect page load event or readyState to ensure videos load last
-  useEffect(() => {
-    const handleLoad = () => {
-      setPageLoaded(true)
-    }
-
-    if (document.readyState === 'complete') {
-      setPageLoaded(true)
-    } else {
-      window.addEventListener('load', handleLoad)
-      // Fallback timer to make sure cards reveal even if page load event gets blocked/delayed
-      const fallbackTimer = setTimeout(() => {
-        setPageLoaded(true)
-      }, 3500)
-      return () => {
-        window.removeEventListener('load', handleLoad)
-        clearTimeout(fallbackTimer)
-      }
-    }
-  }, [])
-
-  // Check if the video is already cached/loaded when loadVideo triggers
+  // Check if the video is already cached/loaded
   useEffect(() => {
     if (loadVideo && videoRef.current) {
       if (videoRef.current.readyState >= 2) { // HAVE_CURRENT_DATA or higher
@@ -194,32 +192,6 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
       }
     }
   }, [videoSrc])
-
-  // Load and auto-play videos on all screen sizes (desktop, tablet, mobile) automatically
-  useEffect(() => {
-    setLoadVideo(true)
-  }, [])
-
-  // Quick staggered reveal timeline (no pageLoaded dependency to fix LCP)
-  useEffect(() => {
-    let cumulativeDelay = 100; // Fast base buffer
-    for (let i = 1; i <= index; i++) {
-      cumulativeDelay += 150; // Fast stagger per card
-    }
-
-    const timer = setTimeout(() => {
-      setTimeToReveal(true)
-    }, cumulativeDelay)
-
-    return () => clearTimeout(timer)
-  }, [index])
-
-  // Trigger the reveal as soon as the staggered time slot has arrived (no video block)
-  useEffect(() => {
-    if (timeToReveal) {
-      setStartReveal(true)
-    }
-  }, [timeToReveal])
 
   // Atracción magnética muy suave y lenta (como fluido/líquido)
   const { x: magX, y: magY } = useMagneticCursor(cardRef, { 
@@ -397,8 +369,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           }
         }
       }}
-      initial="hidden"
-      animate={startReveal ? "visible" : "hidden"}>
+      initial="visible"
+      animate="visible">
 
       {/* 🌊 UNIFIED SINGLE-SOURCE ARCHITECTURE (100% MATCHED MORPHING VIDEO & FRAME) */}
       <motion.div
@@ -414,6 +386,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
           <CanvasBlobVideo
             videoSrc={videoSrc}
+            imageSrc={imageSrc}
             paths={[d0, d1, d2]}
             color={color}
             isHovered={isHovered}
@@ -422,7 +395,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
         {/* Portal de Teletransportación Mágica */}
         <AnimatePresence>
-          {!revealComplete && startReveal && (
+          {!revealComplete && (
             <>
               {/* Resplandor de luz central */}
               <motion.div

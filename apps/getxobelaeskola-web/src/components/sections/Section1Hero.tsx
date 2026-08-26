@@ -15,23 +15,24 @@ import { BlobCard } from '@/components/blobs/BlobCard'
 import { BLOB_PATHS } from '@/data/blobPaths'
 import { AnimatedText } from '@/components/ui/AnimatedText'
 
-// Variantes de animación de entrada
+// Variantes de animación de entrada (ทุกอย่างแสดงพร้อมกัน 100%)
 const containerVariants = {
-  hidden: {},
+  hidden: { opacity: 1 },
   visible: {
+    opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.3,
+      staggerChildren: 0,
+      delayChildren: 0,
     },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 1, y: 0 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as const },
+    transition: { duration: 0 },
   },
 }
 
@@ -99,13 +100,45 @@ export function Section1Hero() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  const [aspect, setAspect] = useState({ width: 0, height: 0, left: 0, top: 0 })
+  const [aspect, setAspect] = useState<{ width: number; height: number; left: number; top: number }>(() => {
+    if (typeof window !== 'undefined') {
+      const containerW = window.innerWidth
+      const containerH = window.innerHeight
+      const imgW = 1920
+      const imgH = 1072
+      const imgRatio = imgW / imgH
+      const bleedLeft = 364
+      const bleedRight = 234
+      const bleedTop = 78
+      const bleedBottom = 78
+      const canvasW = containerW + bleedLeft + bleedRight
+      const canvasH = containerH + bleedTop + bleedBottom
+      const canvasRatio = canvasW / canvasH
+      let actualW = 0
+      let actualH = 0
+      let left = 0
+      let top = 0
+      if (canvasRatio > imgRatio) {
+        actualW = canvasW
+        actualH = canvasW / imgRatio
+        top = (canvasH - actualH) / 2
+      } else {
+        actualH = canvasH
+        actualW = canvasH * imgRatio
+        const shiftFactor = containerW < 768 ? 0.72 : 0.5
+        left = (canvasW - actualW) * shiftFactor
+        top = (canvasH - actualH) / 2
+      }
+      return { width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop }
+    }
+    return { width: 1920 + 598, height: 1072 + 156, left: -364, top: -78 }
+  })
 
   useEffect(() => {
     const updateSize = () => {
       if (!heroRef.current) return
-      const containerW = heroRef.current.clientWidth
-      const containerH = heroRef.current.clientHeight
+      const containerW = heroRef.current.clientWidth || (typeof window !== 'undefined' ? window.innerWidth : 1920)
+      const containerH = heroRef.current.clientHeight || (typeof window !== 'undefined' ? window.innerHeight : 1080)
 
       const imgW = 1920
       const imgH = 1072
@@ -130,7 +163,9 @@ export function Section1Hero() {
       } else {
         actualH = canvasH
         actualW = canvasH * imgRatio
-        left = (canvasW - actualW) / 2
+        const shiftFactor = containerW < 768 ? 0.72 : 0.5
+        left = (canvasW - actualW) * shiftFactor
+        top = (canvasH - actualH) / 2
       }
 
       setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
@@ -139,14 +174,16 @@ export function Section1Hero() {
     updateSize()
     
     // Add timeouts to correct layout timing shifts on load
-    const t1 = setTimeout(updateSize, 100)
-    const t2 = setTimeout(updateSize, 500)
+    const t1 = setTimeout(updateSize, 50)
+    const t2 = setTimeout(updateSize, 200)
     
-    window.addEventListener('resize', updateSize)
+    window.addEventListener('resize', updateSize, { passive: true })
+    window.addEventListener('orientationchange', updateSize, { passive: true })
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
       window.removeEventListener('resize', updateSize)
+      window.removeEventListener('orientationchange', updateSize)
     }
   }, [])
 
@@ -265,11 +302,11 @@ export function Section1Hero() {
         gridArea: 's1',
         position: 'relative',
         width: '100%',
-        maxWidth: '1920px',
+        maxWidth: '100%',
         minWidth: '320px',
         margin: '0 auto',
         height: '100dvh',
-        minHeight: '100dvh',
+        minHeight: '100svh',
         maxHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',
@@ -286,10 +323,13 @@ export function Section1Hero() {
         animate={{ opacity: 1 }}
         style={{
           position: 'absolute',
-          inset: 0,
-          y: layer1Y,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: '-6%',
           width: '100%',
-          height: '100%',
+          height: '106%',
+          y: layer1Y,
           zIndex: 1,
         }}
       >
@@ -298,37 +338,45 @@ export function Section1Hero() {
             ref={nubesRef}
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
             alt="Cielo Abra de Getxo"
+            width={1920}
+            height={1072}
             fetchPriority="high"
             decoding="async"
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              inset: 0,
+              top: 0,
+              left: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'bottom center',
+              transform: 'scale(1.04)',
+              transformOrigin: 'bottom center',
               zIndex: 1,
             }}
           />
 
           {/* Step 2: Video de nubes */}
           <motion.video
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.85 }}
             animate={{ opacity: 0.85 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
             onCanPlay={() => setVideoLoaded(true)}
             autoPlay
             loop
             muted
             playsInline
+            preload="auto"
             style={{
               position: 'absolute',
-              inset: 0,
+              top: 0,
+              left: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'bottom center',
+              transform: 'scale(1.04)',
+              transformOrigin: 'bottom center',
               zIndex: 2,
             }}
           >
@@ -343,10 +391,13 @@ export function Section1Hero() {
         animate={{ opacity: 1 }}
         style={{
           position: 'absolute',
-          inset: 0,
-          y: layer2Y,
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: '-6%',
           width: '100%',
-          height: '100%',
+          height: '106%',
+          y: layer2Y,
           zIndex: 2,
         }}
       >
@@ -355,26 +406,30 @@ export function Section1Hero() {
             ref={tierraRef}
             src="/images/home/parallax/tierra.webp?v=5"
             alt="Costa y mar del Abra de Getxo"
+            width={1920}
+            height={1072}
             fetchPriority="high"
             decoding="async"
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
-              inset: 0,
+              top: 0,
+              left: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'bottom center',
+              transform: 'scale(1.05)',
+              transformOrigin: 'bottom center',
             }}
           />
         </div>
       </motion.div>
 
-      {/* Capa 3: Velero — Step 3: ค่อยๆ เฟดเข้าประจำตำแหน่งที่ 0.5s และเริ่มโยกตัวนุ่มนวล */}
+      {/* Capa 3: Velero — Restored original design & aspect ratio framing */}
       <motion.div
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
         style={{
           position: 'absolute',
           inset: 0,
@@ -397,48 +452,54 @@ export function Section1Hero() {
             ease: 'easeInOut',
           }}
         >
-          {aspect.width > 0 && (
-            <div
-              style={{
-                position: 'absolute',
-                left: `${aspect.left}px`,
-                top: `${aspect.top}px`,
-                width: `${aspect.width}px`,
-                height: `${aspect.height}px`,
-                transform: 'translateX(0px)',
-                transformOrigin: 'top center',
-              }}
-            >
-              <picture>
-                {/* AVIF Sources */}
-                <source
-                  type="image/avif"
-                  srcSet="/images/home/parallax/velero_mobile.avif?v=1 768w, /images/home/parallax/velero_desktop.avif?v=1 1920w"
-                  sizes="(max-width: 768px) 768px, 1920px"
-                />
-                {/* WebP Sources */}
-                <source
-                  type="image/webp"
-                  srcSet="/images/home/parallax/velero_mobile.webp?v=1 768w, /images/home/parallax/velero_desktop.webp?v=1 1920w"
-                  sizes="(max-width: 768px) 768px, 1920px"
-                />
-                <img
-                  ref={boatRef}
-                  src="/images/home/parallax/velero_desktop.webp?v=1"
-                  alt="Velero navegando en Getxo"
-                  fetchPriority="high"
-                  onLoad={() => setBarcoLoaded(true)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                  }}
-                />
-              </picture>
-              <SailboatAccesoButton />
-            </div>
-          )}
+          <div
+            style={{
+              position: 'absolute',
+              left: aspect.width > 0 ? `${aspect.left}px` : '-364px',
+              top: aspect.height > 0 ? `${aspect.top}px` : '-78px',
+              width: aspect.width > 0 ? `${aspect.width}px` : 'calc(100% + 598px)',
+              height: aspect.height > 0 ? `${aspect.height}px` : 'calc(100% + 156px)',
+              transform: 'translateX(0px)',
+              transformOrigin: 'top center',
+            }}
+          >
+            <picture>
+              {/* AVIF Sources */}
+              <source
+                type="image/avif"
+                media="(max-width: 768px)"
+                srcSet="/images/home/parallax/velero_mobile.avif?v=1"
+              />
+              <source
+                type="image/avif"
+                srcSet="/images/home/parallax/velero_desktop.avif?v=1"
+              />
+              {/* WebP Sources */}
+              <source
+                type="image/webp"
+                media="(max-width: 768px)"
+                srcSet="/images/home/parallax/velero_mobile.webp?v=1"
+              />
+              <source
+                type="image/webp"
+                srcSet="/images/home/parallax/velero_desktop.webp?v=1"
+              />
+              <img
+                ref={boatRef}
+                src="/images/home/parallax/velero_desktop.webp?v=1"
+                alt="Velero navegando en Getxo"
+                fetchPriority="high"
+                onLoad={() => setBarcoLoaded(true)}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                }}
+              />
+            </picture>
+            <SailboatAccesoButton />
+          </div>
         </motion.div>
       </motion.div>
 
@@ -458,8 +519,8 @@ export function Section1Hero() {
       {/* Contenido principal — alineado con container fluido para evitar desbordamientos */}
       <motion.div
         variants={containerVariants}
-        initial="hidden"
-        animate={mounted ? 'visible' : 'hidden'}
+        initial="visible"
+        animate="visible"
         className="hero-text-container"
         style={{
           position: 'relative',
@@ -511,7 +572,7 @@ export function Section1Hero() {
                 <AnimatedText
                   text={part.trim()}
                   effect="falling"
-                  delay={0.6 + index * 0.45}
+                  delay={0}
                 />
               </span>
             );
@@ -531,9 +592,9 @@ export function Section1Hero() {
         >
           {/* Línea vertical color granate del logotipo */}
           <motion.div
-            initial={{ scaleY: 0, opacity: 0 }}
+            initial={{ scaleY: 1, opacity: 1 }}
             animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+            transition={{ duration: 0 }}
             style={{
               width: (isPhone || isLandscape) ? '3px' : '4px',
               backgroundColor: '#A91D22', // Granate del logo
@@ -554,16 +615,16 @@ export function Section1Hero() {
             <AnimatedText
               text={t('subtitle')}
               effect="falling"
-              delay={1.5}
+              delay={0}
             />
           </div>
         </div>
   
         {/* CTA con atracción magnética */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+          transition={{ duration: 0 }}
           className="mt-3 md:mt-4 [@media(orientation:landscape)_and_(max-height:500px)]:!hidden"
           style={{
             fontSize: (isPhone || isLandscape) ? '0.896rem' : '1.20rem'
@@ -589,25 +650,17 @@ export function Section1Hero() {
           zIndex: 15,
         }}
       >
-        <AnimatePresence>
-          {mounted && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              className="hero-blobs-grid"
-              style={{
-                width: '100%',
-                transformOrigin: 'center bottom',
-              }}
-            >
-              {CARDS.map((card, idx) => (
-                <BlobCard key={card.title} {...card} index={idx} />
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <div
+          className="hero-blobs-grid"
+          style={{
+            width: '100%',
+            transformOrigin: 'center bottom',
+          }}
+        >
+          {CARDS.map((card, idx) => (
+            <BlobCard key={card.title} {...card} index={idx} />
+          ))}
+        </div>
       </div>
 
       {/* Criaturas animadas — pasan detrás del contenido */}
@@ -644,9 +697,9 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
         fill="none" 
         aria-hidden="true"
         style={{ flexShrink: 0 }}
-        initial={{ y: -60, opacity: 0, scale: 0.5 }}
+        initial={{ y: -30, opacity: 0, scale: 0.8 }}
         animate={{ y: 0, opacity: 1, scale: 1 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 12, delay: 0.3 }}
+        transition={{ type: 'spring', stiffness: 140, damping: 14, delay: 0.05 }}
       >
         <path d="M18 4 L4 28 L18 26 Z" fill="white" opacity="0.9" />
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
@@ -656,7 +709,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
         <AnimatedText
           text="Getxo Bela Eskola"
           effect="falling"
-          delay={0.35}
+          delay={0.1}
           style={{
             fontSize: isPhone ? '0.917rem' : '1.375rem',
             fontWeight: 700,

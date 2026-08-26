@@ -58,7 +58,7 @@ export default async function LocaleLayout({
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <FramerProvider>
-            <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-0 mx-auto overflow-x-clip">
+            <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-0 mx-auto overflow-x-clip bg-[#0D2137]">
               <Navbar locale={locale} initialUser={initialUser} />
                 <ConditionalLayout>
                   {children}

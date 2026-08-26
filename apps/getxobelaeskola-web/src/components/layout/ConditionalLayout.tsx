@@ -64,7 +64,7 @@ export default function ConditionalLayout({ children, navbar, footer }: Conditio
                 <div className="block">{navbar}</div>
             )}
 
-            <main id="main-content" className={`flex-grow min-h-screen bg-nautical-black ${!isAuth && isNativeApp ? 'pb-24 md:pb-0' : ''}`}>
+            <main id="main-content" className={`flex-grow min-h-screen bg-[#0D2137] ${!isAuth && isNativeApp ? 'pb-24 md:pb-0' : ''}`}>
                 {children}
             </main>
 
