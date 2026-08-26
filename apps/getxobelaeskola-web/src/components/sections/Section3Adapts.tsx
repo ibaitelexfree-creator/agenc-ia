@@ -135,12 +135,12 @@ export function Section3Adapts() {
           flex: 1,
           position: 'relative',
           padding: isPhone 
-            ? 'clamp(3.5rem, 10vh, 5.5rem) 1rem 1rem' 
-            : 'clamp(1.5rem, 5vh, 4rem) clamp(1.5rem, 6vw, 5rem) clamp(1rem, 3vh, 3rem)',
+            ? '1rem 0.75rem' 
+            : '2rem clamp(1.5rem, 6vw, 5rem)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'flex-start', // align to top so top padding pushes content down
+          justifyContent: 'center', // Center content vertically in middle of screen
         }}
       >
         {/* Filtro de cristal blanco traslúcido para legibilidad */}
@@ -220,15 +220,18 @@ export function Section3Adapts() {
           style={{
             display: 'grid',
             gridTemplateColumns: isPhone ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: '0.4rem', // closer between them
-            marginBottom: '0.5rem',
+            gap: isPhone ? '0.35rem' : '0.4rem',
+            marginBottom: '0.4rem',
             position: 'relative',
             zIndex: 3,
+            width: '100%',
+            maxWidth: '900px',
+            margin: '0 auto 0.4rem auto',
           }}
         >
           {/* Card 1: Tipo de experiencia */}
           <Card3D intensity={5}>
-            <div style={{ padding: '0.6rem 0.8rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
               <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('experience_label')}
               </span>
@@ -237,7 +240,7 @@ export function Section3Adapts() {
                   onClick={() => setExperience('calm')}
                   style={{
                     flex: 1,
-                    padding: '0.45rem 0.3rem',
+                    padding: '0.4rem 0.3rem',
                     borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
@@ -254,7 +257,7 @@ export function Section3Adapts() {
                   onClick={() => setExperience('action')}
                   style={{
                     flex: 1,
-                    padding: '0.45rem 0.3rem',
+                    padding: '0.4rem 0.3rem',
                     borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
@@ -273,7 +276,7 @@ export function Section3Adapts() {
 
           {/* Card 2: El escenario */}
           <Card3D intensity={5}>
-            <div style={{ padding: '0.6rem 0.8rem', display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
               <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('setting_label')}
               </span>
@@ -282,7 +285,7 @@ export function Section3Adapts() {
                   onClick={() => setEnvironment('inner')}
                   style={{
                     flex: 1,
-                    padding: '0.45rem 0.3rem',
+                    padding: '0.4rem 0.3rem',
                     borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
@@ -299,7 +302,7 @@ export function Section3Adapts() {
                   onClick={() => setEnvironment('outer')}
                   style={{
                     flex: 1,
-                    padding: '0.45rem 0.3rem',
+                    padding: '0.4rem 0.3rem',
                     borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
@@ -318,20 +321,20 @@ export function Section3Adapts() {
 
           {/* Card 3: Con quién navegar */}
           <Card3D intensity={5}>
-            <div style={{ padding: '0.85rem 1rem', display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-              <span style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
+            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
                 {t('boat_label')}
               </span>
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.4rem' }}>
                 <button
                   onClick={() => setBoat('small')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.4rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: boat === 'small' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: boat === 'small' ? 'white' : 'var(--gbe-text)',
@@ -344,11 +347,11 @@ export function Section3Adapts() {
                   onClick={() => setBoat('big')}
                   style={{
                     flex: 1,
-                    padding: '0.6rem',
-                    borderRadius: '10px',
+                    padding: '0.4rem 0.3rem',
+                    borderRadius: '8px',
                     border: 'none',
                     fontWeight: 600,
-                    fontSize: '0.85rem',
+                    fontSize: '0.78rem',
                     cursor: 'pointer',
                     backgroundColor: boat === 'big' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
                     color: boat === 'big' ? 'white' : 'var(--gbe-text)',
@@ -365,16 +368,15 @@ export function Section3Adapts() {
           <div 
             style={{ 
               transform: isPhone ? 'none' : 'translateY(24px)',
-              width: isPhone ? '75%' : 'auto',
-              margin: isPhone ? '0 auto' : '0'
+              width: '100%',
             }}
           >
             <Card3D
               intensity={5}
               style={{
                 backgroundColor: 'var(--gbe-mist)',
-                borderRadius: '16px',
-                padding: '0.75rem 1rem',
+                borderRadius: '14px',
+                padding: '0.6rem 0.8rem',
                 color: 'var(--gbe-navy-900)',
                 position: 'relative',
                 overflow: 'hidden',
@@ -392,7 +394,7 @@ export function Section3Adapts() {
                     textTransform: 'uppercase',
                     padding: '2px 8px',
                     borderRadius: '20px',
-                    marginBottom: '0.3rem',
+                    marginBottom: '0.25rem',
                   }}
                 >
                   {t('card4.badge')}
@@ -400,7 +402,7 @@ export function Section3Adapts() {
                 <p
                   style={{
                     fontSize: '0.70rem',
-                    lineHeight: 1.4,
+                    lineHeight: 1.35,
                     color: 'var(--gbe-text-muted)',
                   }}
                 >
