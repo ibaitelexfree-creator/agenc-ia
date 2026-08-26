@@ -580,7 +580,7 @@ export function Section1Hero() {
               transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
               className={(isLandscape && viewportScale < 0.65) ? "hidden" : "mt-4 md:mt-6"}
             >
-              <GlowButton href="#" color="garnet" size="xl">
+              <GlowButton href="#" color="garnet" size="md">
                 {t('cta')}
               </GlowButton>
             </motion.div>
