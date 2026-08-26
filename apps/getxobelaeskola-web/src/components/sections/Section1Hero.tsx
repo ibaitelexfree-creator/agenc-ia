@@ -130,7 +130,17 @@ export function Section1Hero() {
       } else {
         actualH = canvasH
         actualW = canvasH * imgRatio
-        left = (canvasW - actualW) / 2
+        // Shift factor for centering alignment: smooth transition for iPad/Tablet screens
+        let shiftFactor = 0.5
+        if (containerW <= 1024 && containerW >= 600) {
+          // Smooth fluid scaling between tablet and desktop aspect ratios
+          const progress = (containerW - 600) / (1024 - 600)
+          shiftFactor = 0.65 - (progress * 0.15)
+        } else if (containerW < 600) {
+          shiftFactor = 0.72
+        }
+        left = (canvasW - actualW) * shiftFactor
+        top = (canvasH - actualH) / 2
       }
 
       setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
