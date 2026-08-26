@@ -729,7 +729,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
-          className="scale-65 sm:scale-75 md:scale-85"
+          className="scale-75 sm:scale-90 md:scale-100"
         >
           <Link
             href={`/${locale}/auth/login`}
@@ -740,13 +740,13 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: locale === 'eu' ? 'clamp(4px, 0.8vw, 12px) clamp(8px, 1.5vw, 24px)' : 'clamp(5px, 0.9vw, 14px) clamp(10px, 1.8vw, 30px)',
+              padding: locale === 'eu' ? 'clamp(6px, 1vw, 16px) clamp(12px, 2vw, 34px)' : 'clamp(8px, 1.2vw, 20px) clamp(16px, 2.5vw, 44px)',
               display: 'inline-block'
             }}
           >
             <motion.div
               style={{
-                fontSize: locale === 'eu' ? 'clamp(8px, 0.9vw, 13px)' : 'clamp(9px, 1.0vw, 15px)'
+                fontSize: locale === 'eu' ? 'clamp(10px, 1.2vw, 18px)' : 'clamp(11px, 1.5vw, 22px)'
               }}
               className="flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center"
               animate={{
