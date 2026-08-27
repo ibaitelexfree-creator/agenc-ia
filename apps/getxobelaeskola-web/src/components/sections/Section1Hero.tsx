@@ -486,9 +486,19 @@ export function Section1Hero() {
           color: 'var(--white)',
           y: layer3Y,
           marginTop: isLandscape ? '-100px' : '0px',
-          transform: isPhone ? 'translateY(-12vh)' : 'translateY(-10vh)',
+          transform: 'translateY(var(--hero-text-y, -10vh))',
         }}
       >
+        <style jsx>{`
+          @media (max-width: 600px) {
+            .hero-text-container {
+              --hero-text-y: -14vh !important;
+            }
+            .hero-video-blobs-container {
+              --hero-blobs-bottom: calc(clamp(4px, 1vh, 12px) - 2.5vh + env(safe-area-inset-bottom, 0px)) !important;
+            }
+          }
+        `}</style>
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
           <div className="flex flex-col text-left">
             {/* Eyebrow — ubicación */}
@@ -592,9 +602,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: isPhone
-            ? 'calc(clamp(4px, 1vh, 12px) - 2vh + env(safe-area-inset-bottom, 0px))'
-            : 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
+          bottom: 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
