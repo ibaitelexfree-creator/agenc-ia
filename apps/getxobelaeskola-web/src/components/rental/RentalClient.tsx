@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import LegalConsentModal from '../shared/LegalConsentModal';
 import { createClient } from '@/lib/supabase/client';
 import RentalCard from './RentalCard';
@@ -293,6 +293,44 @@ export default function RentalClient({
         }
     };
 
+    const filterScrollRef = useRef<HTMLDivElement>(null);
+    const [isDraggingFilter, setIsDraggingFilter] = useState(false);
+    const [filterStartX, setFilterStartX] = useState(0);
+    const [filterScrollLeft, setFilterScrollLeft] = useState(0);
+
+    const scrollFilters = (direction: 'left' | 'right') => {
+        if (filterScrollRef.current) {
+            const amount = filterScrollRef.current.clientWidth * 0.6;
+            filterScrollRef.current.scrollBy({
+                left: direction === 'left' ? -amount : amount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleFilterWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+        if (filterScrollRef.current && e.deltaY !== 0) {
+            filterScrollRef.current.scrollLeft += e.deltaY;
+        }
+    };
+
+    const handleFilterMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!filterScrollRef.current) return;
+        setIsDraggingFilter(false);
+        setFilterStartX(e.pageX - filterScrollRef.current.offsetLeft);
+        setFilterScrollLeft(filterScrollRef.current.scrollLeft);
+    };
+
+    const handleFilterMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!filterScrollRef.current || e.buttons !== 1) return;
+        const x = e.pageX - filterScrollRef.current.offsetLeft;
+        const walk = (x - filterStartX) * 1.5;
+        if (Math.abs(walk) > 5) {
+            setIsDraggingFilter(true);
+            filterScrollRef.current.scrollLeft = filterScrollLeft - walk;
+        }
+    };
+
     const bookingRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (bookingService && bookingRef.current) {
@@ -301,17 +339,50 @@ export default function RentalClient({
     }, [bookingService]);
 
     return (
-        <div className="space-y-16 pb-48">
+        <div className="space-y-6 sm:space-y-12 md:space-y-16 pb-8 sm:pb-20 md:pb-32 w-full max-w-full overflow-hidden">
             {/* Filter Section */}
-            <div className="relative animate-fade-in">
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-nautical-deep to-transparent z-10 pointer-events-none" />
-                <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10">
+            <div className="relative animate-fade-in group w-full max-w-full overflow-hidden">
+                {/* Left Scroll Button */}
+                <button
+                    type="button"
+                    onClick={() => scrollFilters('left')}
+                    className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-nautical-black/90 border border-sea-foam/20 text-sea-foam/80 hover:text-accent hover:border-accent transition-all duration-300 shadow-xl backdrop-blur-md"
+                    aria-label="Scroll left"
+                >
+                    <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </button>
+
+                {/* Right Scroll Button */}
+                <button
+                    type="button"
+                    onClick={() => scrollFilters('right')}
+                    className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-nautical-black/90 border border-sea-foam/20 text-sea-foam/80 hover:text-accent hover:border-accent transition-all duration-300 shadow-xl backdrop-blur-md"
+                    aria-label="Scroll right"
+                >
+                    <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                </button>
+
+                {/* Left & Right Gradient Overlays */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-nautical-deep via-nautical-deep/80 to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-nautical-deep via-nautical-deep/80 to-transparent z-10 pointer-events-none" />
+
+                {/* Scrollable Container */}
+                <div
+                    ref={filterScrollRef}
+                    onWheel={handleFilterWheel}
+                    onMouseDown={handleFilterMouseDown}
+                    onMouseMove={handleFilterMouseMove}
+                    onMouseUp={() => setTimeout(() => setIsDraggingFilter(false), 50)}
+                    className="flex overflow-x-auto pb-3 sm:pb-4 px-8 sm:px-10 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
+                >
                     {categories.map(cat => (
                         <button
                             key={cat.id}
                             type="button"
-                            onClick={() => setSelectedCategory(cat.id)}
-                            className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${selectedCategory === cat.id
+                            onClick={() => {
+                                if (!isDraggingFilter) setSelectedCategory(cat.id);
+                            }}
+                            className={`shrink-0 whitespace-nowrap px-4 py-2.5 sm:px-8 sm:py-3 rounded-sm text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] transition-all duration-500 border ${selectedCategory === cat.id
                                 ? 'bg-accent text-nautical-black border-accent shadow-[0_0_25px_rgba(255,77,0,0.25)]'
                                 : 'bg-sea-foam/[0.02] text-sea-foam/50 border-sea-foam/10 hover:border-sea-foam/20 hover:text-sea-foam'
                                 }`}
@@ -325,7 +396,7 @@ export default function RentalClient({
             {/* Grid - FIXED to use RentalCard with AnimatePresence */}
             <motion.div 
                 layout
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-8 md:gap-12 w-full max-w-full"
             >
                 <AnimatePresence mode="popLayout">
                     {filteredServices.map((service, index) => (

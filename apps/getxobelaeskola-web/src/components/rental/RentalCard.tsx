@@ -123,7 +123,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             </div>
 
             {/* Image Header with Clip Path */}
-            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[380px]' : 'h-[300px]'}`}>
+            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[140px] xs:h-[170px] sm:h-[320px] md:h-[380px]' : 'h-[120px] xs:h-[150px] sm:h-[260px] md:h-[300px]'}`}>
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
@@ -164,45 +164,45 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
                 {/* Float Number & Category Badge */}
-                <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-nautical-black/80 backdrop-blur-md px-3 py-1.5 rounded-sm border border-sea-foam/10">
+                <div className="absolute top-2.5 left-2.5 sm:top-6 sm:left-6 z-20 flex items-center gap-2 bg-nautical-black/80 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-sm border border-sea-foam/10">
                     {index !== undefined && (
-                        <span className="text-xs font-mono font-bold text-accent">
+                        <span className="text-[10px] sm:text-xs font-mono font-bold text-accent">
                             #{index}
                         </span>
                     )}
                 </div>
 
                 {/* Float Category Label */}
-                <div className="absolute bottom-6 left-8 z-20 flex items-center gap-2">
+                <div className="absolute bottom-2.5 left-3 sm:bottom-6 sm:left-8 z-20 flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
+                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
                         {service.categoria}
                     </span>
                 </div>
             </div>
 
             {/* Content Area */}
-            <div className="p-8 md:p-10 flex flex-col flex-1 relative z-20">
-                <div className="mb-8">
-                    <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
+            <div className="p-3.5 xs:p-5 sm:p-8 md:p-10 flex flex-col flex-1 relative z-20">
+                <div className="mb-2 sm:mb-8">
+                    <div className="flex justify-between items-start mb-2 sm:mb-4">
+                        <h3 className="text-base xs:text-lg sm:text-2xl md:text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
                             {index !== undefined ? `${index}. ` : ''}{name}
                         </h3>
                     </div>
 
                     {/* Specs Row */}
-                    <div className="flex gap-6 py-4 border-y border-sea-foam/10 mb-6">
-                        <div className="flex flex-col gap-1">
+                    <div className="flex gap-4 sm:gap-6 py-2 sm:py-4 border-y border-sea-foam/10 mb-3 sm:mb-6">
+                        <div className="flex flex-col gap-0.5 sm:gap-1">
                             <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">{t('crew_label')}</span>
                             <div className="flex items-center gap-1.5 text-sea-foam/70">
                                 <Users className="w-3.5 h-3.5" />
                                 <span className="text-xs font-bold font-mono">{getCapacity()}</span>
                             </div>
                         </div>
-                        <div className="w-px h-8 bg-sea-foam/10" />
-                        <div className="flex flex-col gap-1">
+                        <div className="w-px h-6 sm:h-8 bg-sea-foam/10" />
+                        <div className="flex flex-col gap-0.5 sm:gap-1">
                             <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Price/h</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70 text-lg">
+                            <div className="flex items-center gap-1.5 text-sea-foam/70 text-base sm:text-lg">
                                 <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
                             </div>
                         </div>
@@ -210,15 +210,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 </div>
 
                 {/* Footer Actions */}
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-2 sm:pt-4">
                     <button
                         onClick={() => onBook(service.id)}
-                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
+                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-3 sm:p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
                     >
-                        <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
+                        <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
                             {t('booking.book_now')}
                         </span>
-                        <ArrowRight className="w-4 h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
+                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
 
                         {/* Glow effect on hover */}
                         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
