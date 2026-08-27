@@ -592,7 +592,9 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
+          bottom: isPhone
+            ? 'calc(clamp(4px, 1vh, 12px) - 2vh + env(safe-area-inset-bottom, 0px))'
+            : 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
