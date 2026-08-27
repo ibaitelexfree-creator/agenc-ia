@@ -486,7 +486,7 @@ export function Section1Hero() {
           color: 'var(--white)',
           y: layer3Y,
           marginTop: isLandscape ? '-100px' : '0px',
-          transform: 'translateY(-10vh)',
+          transform: isPhone ? 'translateY(-12vh)' : 'translateY(-10vh)',
         }}
       >
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
@@ -592,7 +592,9 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
+          bottom: isPhone 
+            ? 'calc(clamp(4px, 1vh, 12px) - 2vh + env(safe-area-inset-bottom, 0px))' 
+            : 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',
