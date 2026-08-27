@@ -485,17 +485,21 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? '-100px' : '0px',
-          transform: 'translateY(var(--hero-text-y, -10vh))',
         }}
       >
-        <style jsx>{`
+        <style jsx global>{`
+          .hero-text-container {
+            margin-top: -10vh !important;
+          }
+          .hero-video-blobs-container {
+            bottom: calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)) !important;
+          }
           @media (max-width: 600px) {
             .hero-text-container {
-              --hero-text-y: -14vh !important;
+              margin-top: -24vh !important;
             }
             .hero-video-blobs-container {
-              --hero-blobs-bottom: calc(clamp(4px, 1vh, 12px) - 2.5vh + env(safe-area-inset-bottom, 0px)) !important;
+              bottom: calc(clamp(4px, 1vh, 12px) - 3vh + env(safe-area-inset-bottom, 0px)) !important;
             }
           }
         `}</style>
