@@ -298,6 +298,23 @@ export default function RentalClient({
     const [filterStartX, setFilterStartX] = useState(0);
     const [filterScrollLeft, setFilterScrollLeft] = useState(0);
 
+    // Auto-scroll selected category into center view smoothly
+    useEffect(() => {
+        if (!filterScrollRef.current) return;
+        const container = filterScrollRef.current;
+        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="${selectedCategory}"]`);
+        if (activeBtn) {
+            const containerWidth = container.clientWidth;
+            const btnLeft = activeBtn.offsetLeft;
+            const btnWidth = activeBtn.offsetWidth;
+            const targetScrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+            container.scrollTo({
+                left: Math.max(0, targetScrollLeft),
+                behavior: 'smooth'
+            });
+        }
+    }, [selectedCategory]);
+
     const scrollFilters = (direction: 'left' | 'right') => {
         if (filterScrollRef.current) {
             const amount = filterScrollRef.current.clientWidth * 0.6;
@@ -346,20 +363,20 @@ export default function RentalClient({
                 <button
                     type="button"
                     onClick={() => scrollFilters('left')}
-                    className="absolute left-1 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-nautical-black/90 border border-sea-foam/20 text-sea-foam/80 hover:text-accent hover:border-accent transition-all duration-300 shadow-xl backdrop-blur-md"
+                    className="absolute left-1 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-nautical-black/90 border border-sea-foam/30 text-sea-foam hover:text-accent hover:border-accent active:scale-95 transition-all duration-300 shadow-2xl backdrop-blur-md"
                     aria-label="Scroll left"
                 >
-                    <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
                 {/* Right Scroll Button */}
                 <button
                     type="button"
                     onClick={() => scrollFilters('right')}
-                    className="absolute right-1 top-1/2 -translate-y-1/2 z-20 p-1.5 sm:p-2 rounded-full bg-nautical-black/90 border border-sea-foam/20 text-sea-foam/80 hover:text-accent hover:border-accent transition-all duration-300 shadow-xl backdrop-blur-md"
+                    className="absolute right-1 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-nautical-black/90 border border-sea-foam/30 text-sea-foam hover:text-accent hover:border-accent active:scale-95 transition-all duration-300 shadow-2xl backdrop-blur-md"
                     aria-label="Scroll right"
                 >
-                    <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
 
                 {/* Left & Right Gradient Overlays */}
@@ -373,11 +390,12 @@ export default function RentalClient({
                     onMouseDown={handleFilterMouseDown}
                     onMouseMove={handleFilterMouseMove}
                     onMouseUp={() => setTimeout(() => setIsDraggingFilter(false), 50)}
-                    className="flex overflow-x-auto pb-3 sm:pb-4 px-8 sm:px-10 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
+                    className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
                 >
                     {categories.map(cat => (
                         <button
                             key={cat.id}
+                            data-category-id={cat.id}
                             type="button"
                             onClick={() => {
                                 if (!isDraggingFilter) setSelectedCategory(cat.id);
