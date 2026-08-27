@@ -61,15 +61,15 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
     return (
         <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* 1. Cinematic Hero Section */}
-            <section className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
-                <div className="absolute inset-0 z-0">
+            <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden py-16 sm:py-20 lg:py-0">
+                <div className="absolute inset-0 z-0 w-full h-full">
                     <Image
                         src="/images/about-hero-heritage.webp"
                         alt="Maritime Heritage"
                         fill
                         priority
-                        className="object-cover opacity-85 object-[center_90%] sm:object-[center_82%] animate-slow-zoom grayscale-[20%] sepia-[10%] saturate-[1.05] contrast-[1.02] brightness-[0.98] blur-[0.3px] transition-all duration-1000"
-                        sizes="100vw"
+                        className="object-cover opacity-85 object-[center_60%] sm:object-[center_70%] md:object-[center_80%] lg:object-[center_82%] animate-slow-zoom grayscale-[20%] sepia-[10%] saturate-[1.05] contrast-[1.02] brightness-[0.98] blur-[0.3px] transition-all duration-1000 w-full h-full"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1200px) 100vw, 100vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/60 via-transparent to-nautical-black/75 pointer-events-none" />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.25)_100%)] pointer-events-none" />
@@ -104,7 +104,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
             </section>
 
             {/* 2. Heritage & Story Section */}
-            <section className="py-10 sm:py-16 md:py-24 relative overflow-hidden flex items-center min-h-[85vh] lg:min-h-screen">
+            <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden flex items-center min-h-[100dvh] w-full">
                 <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
                     <StaggeredEntrance className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
                         {/* Decorative Quote Mark */}
@@ -138,14 +138,14 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                         </div>
 
                         <div className="lg:col-span-6 lg:pl-4 xl:pl-6 mt-6 lg:mt-0">
-                            <div className="relative aspect-[4/3] lg:aspect-[16/11] max-w-md sm:max-w-lg mx-auto lg:max-w-none group border border-sea-foam/20 shadow-2xl overflow-hidden">
+                            <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/11] max-w-md sm:max-w-lg mx-auto lg:max-w-none group border border-sea-foam/20 shadow-2xl overflow-hidden">
                                 <HoverVideoOrImage
                                     src="/images/womes-8139.jpg"
                                     alt="Sea Experience"
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 45vw"
                                     containerClassName="w-full h-full relative"
-                                    imageClassName="object-cover object-[5%_20%] w-full h-full"
+                                    imageClassName="object-cover object-center sm:object-[5%_20%] w-full h-full"
                                 />
                                 {/* Image Badge - anchored relatively and cleanly positioned on all screens */}
                                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-nautical-deep/95 backdrop-blur-md px-3 py-2 border border-sea-foam/15 shadow-2xl z-20 transition-transform duration-300">
