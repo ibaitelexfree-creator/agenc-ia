@@ -40,7 +40,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
     const t = await getTranslations({ locale, namespace: 'contact_page' });
 
     return (
-        <main className="min-h-screen pt-48 pb-24 px-6 relative bg-nautical-black selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full pt-32 sm:pt-40 md:pt-48 pb-24 px-4 sm:px-6 relative bg-nautical-black selection:bg-accent selection:text-nautical-black">
             {/* Background Decorative Element */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 

@@ -155,28 +155,28 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
     };
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
             {/* Cinematic Header Section */}
-            <section className="relative pt-48 pb-32 overflow-hidden">
+            <section className="relative pt-32 sm:pt-40 md:pt-48 pb-20 sm:pb-28 md:pb-32 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10">
+                <div className="container mx-auto px-4 sm:px-6 relative z-10">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.6em] text-xs sm:text-sm font-bold mb-6 sm:mb-8 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-display leading-[0.9] text-sea-foam mb-12 animate-reveal relative z-20">
+                        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-display leading-[0.9] text-sea-foam mb-8 sm:mb-12 animate-reveal relative z-20">
                             {t('title_prefix')} <br />
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-xl leading-relaxed border-l border-sea-foam/10 pl-12 mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/60 font-light text-base sm:text-lg md:text-xl leading-relaxed border-l border-sea-foam/10 pl-6 sm:pl-8 md:pl-12 mt-6 sm:mt-8 md:mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>

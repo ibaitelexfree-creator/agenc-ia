@@ -163,14 +163,14 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
     };
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black overflow-x-hidden">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black overflow-x-hidden">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
             {/* Cinematic Header */}
-            <section className="relative pt-20 sm:pt-24 md:pt-32 pb-6 sm:pb-8 overflow-hidden">
+            <section className="relative pt-24 sm:pt-28 md:pt-36 pb-6 sm:pb-8 overflow-hidden w-full">
                 <div className="absolute top-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-accent/5 blur-[80px] sm:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-brass-gold/5 blur-[60px] sm:blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 

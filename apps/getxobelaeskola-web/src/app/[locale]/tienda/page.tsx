@@ -113,9 +113,9 @@ export default function TiendaPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Header */}
-            <section className="relative pt-48 pb-24 overflow-hidden bg-nautical-deep">
+            <section className="relative pt-32 sm:pt-40 md:pt-48 pb-20 sm:pb-24 overflow-hidden bg-nautical-deep w-full">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 

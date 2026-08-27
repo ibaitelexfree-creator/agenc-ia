@@ -291,7 +291,7 @@ export default function DashboardPage({ params }: { params: { locale: string } }
     const nextMilestone = getNextMilestone(skillsCount);
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-nautical-black via-nautical-black to-[#0a1628] text-white pb-20">
+        <div className="min-h-[100dvh] w-full bg-gradient-to-b from-nautical-black via-nautical-black to-[#0a1628] text-white pb-20">
             <h1 className="sr-only">Dashboard de Academia | Getxo Bela Eskola</h1>
             <NotificationContainer />
             <AchievementToast />
