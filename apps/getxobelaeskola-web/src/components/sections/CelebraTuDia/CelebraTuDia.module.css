@@ -1,32 +1,29 @@
 /* CelebraTuDia.module.css */
 
 .container {
-  /* ─── LOCAL DESIGN TOKENS (PROMINENT FULL SIZES) ─── */
-  --color-mar:         #1B8FCF;   /* azul agua bahía */
-  --color-arena:       #F5E6C8;   /* arena cálida */
-  --color-sol:         #FFD166;   /* amarillo sol */
-  --color-velero:      #EF6351;   /* rojo coral velero */
-  --color-hierba:      #6BBF59;   /* verde césped chill out */
-  --color-noche:       #0D2B45;   /* azul marino profundo */
-  --color-blanco:      #FAFAFA;   /* blanco suave */
+  /* ─── TOKENS DE DISEÑO LOCALES ───────────────── */
+  --color-mar:       #1B8FCF;   /* azul agua bahía */
+  --color-arena:     #F5E6C8;   /* arena cálida */
+  --color-sol:       #FFD166;   /* amarillo sol */
+  --color-velero:    #EF6351;   /* rojo coral velero */
+  --color-hierba:    #6BBF59;   /* verde césped chill out */
+  --color-noche:     #0D2B45;   /* azul marino profundo */
+  --color-blanco:    #FAFAFA;   /* blanco suave */
   --color-blanco-puro: #FFFFFF;
 
   --font-display:    'Baloo 2', 'Comfortaa', 'Quicksand', 'Nunito', system-ui, sans-serif;
   --font-body:       var(--font-sans, 'Inter', system-ui, sans-serif);
   --font-accent:     'Pacifico', 'Brush Script MT', cursive;
 
-  /* Prominent full-scale typography */
-  --text-hero:       clamp(2.5rem, 6.5vw, 5.5rem);
-  --text-display:    clamp(1.8rem, 4vw, 3rem);
-  --text-subtitle:   clamp(1.2rem, 2.5vw, 2.2rem);
-  --text-body:       clamp(0.95rem, 1.3vw, 1.125rem);
+  --text-hero:       clamp(1.75rem, 6vw, 5rem);
+  --text-display:    clamp(1.35rem, 3.5vw, 2.75rem);
+  --text-body:       clamp(0.875rem, 1.2vw, 1.125rem);
   
-  /* Generous Spacing tokens */
-  --space-xs:        0.5rem;
-  --space-sm:        1rem;
-  --space-md:        2rem;
-  --space-lg:        4rem;
-  --space-xl:        6rem;
+  --space-xs:        clamp(0.25rem, 1vw, 0.5rem);
+  --space-sm:        clamp(0.5rem, 1.5vw, 1rem);
+  --space-md:        clamp(1rem, 3vw, 2rem);
+  --space-lg:        clamp(1.5rem, 4vw, 3.5rem);
+  --space-xl:        clamp(2.5rem, 6vw, 5.5rem);
 
   background-color: var(--color-blanco);
   color: var(--color-noche);
@@ -43,15 +40,15 @@
   box-sizing: border-box;
 }
 
-/* ── SECTION 1 — HERO SECTION ────────────────────────────── */
+/* ── HERO SECTION ────────────────────────────── */
 .heroSection {
   position: relative;
-  min-height: 88vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(3rem, 8vh, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: clamp(2rem, 8vh, var(--space-xl)) clamp(0.75rem, 3vw, var(--space-md));
   background: linear-gradient(180deg, #E0F2FE 0%, var(--color-blanco) 100%);
   overflow: hidden;
   text-align: center;
@@ -66,15 +63,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
+  gap: clamp(0.35rem, 1.5vw, var(--space-sm));
   margin: 0 auto;
 }
 
 .heroEyebrow {
   font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.8vw, 0.95rem);
+  font-size: clamp(0.65rem, 1.8vw, 0.85rem);
   font-weight: 800;
-  letter-spacing: 0.25em;
+  letter-spacing: clamp(0.15em, 0.5vw, 0.3em);
   color: var(--color-mar);
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
@@ -107,11 +104,11 @@
 
 .heroSubtitle {
   font-family: var(--font-display);
-  font-size: var(--text-subtitle);
+  font-size: clamp(0.95rem, 2.2vw, 2.2rem);
   font-weight: 600;
   color: var(--color-noche);
   max-width: min(700px, 90vw);
-  margin: var(--space-sm) 0;
+  margin: clamp(0.35rem, 1vw, var(--space-sm)) 0;
   line-height: 1.3;
 }
 
@@ -119,11 +116,11 @@
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
   font-family: var(--font-body);
-  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  padding: 1rem 2.2rem;
+  padding: clamp(0.6rem, 1.5vw, 1.1rem) clamp(1.25rem, 3vw, 2.5rem);
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -139,7 +136,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: clamp(50px, 8vw, 120px);
+  height: clamp(40px, 8vw, 120px);
   z-index: 5;
   pointer-events: none;
 }
@@ -150,10 +147,10 @@
 
 .jumpingGirl {
   position: absolute;
-  bottom: clamp(40px, 7vw, 80px);
+  bottom: clamp(35px, 7vw, 80px);
   right: clamp(4%, 10vw, 15%);
-  width: clamp(60px, 10vw, 120px);
-  height: clamp(60px, 10vw, 120px);
+  width: clamp(50px, 10vw, 120px);
+  height: clamp(50px, 10vw, 120px);
   z-index: 6;
   cursor: pointer;
 }
@@ -162,15 +159,15 @@
 .panoramicScene {
   position: relative;
   width: 100%;
-  max-width: 100vw;
-  height: clamp(330px, 45vw, 565px);
+  height: clamp(450px, 65vw, 850px);
+  min-height: 75vh;
   background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
   overflow: hidden;
+  border-top: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  border-bottom: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 0;
 }
 
 .panoramicSceneInner {
@@ -185,7 +182,6 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
 }
 
 .parallaxLayerInteractive {
@@ -201,9 +197,9 @@
   height: 100%;
 }
 
-/* ── SECTION 2 — CELEBRATION CARDS (WHAT CAN YOUR CELEBRATION LOOK LIKE?) ── */
+/* ── FLOATING CARDS ─────────────────────────── */
 .cardsSection {
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background: var(--color-blanco);
   text-align: center;
   width: 100%;
@@ -214,16 +210,15 @@
   font-size: var(--text-display);
   font-weight: 800;
   color: var(--color-noche);
-  margin-bottom: var(--space-lg);
+  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
   word-break: break-word;
 }
 
-/* Responsive Grid Adaptation: 3-4 cols Desktop -> 2 cols Tablet -> 1 col Mobile */
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
-  max-width: 1280px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(0.75rem, 2vw, var(--space-md));
+  max-width: min(1200px, 96vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
@@ -231,7 +226,7 @@
 
 .cardContainer {
   position: relative;
-  height: 320px;
+  height: clamp(240px, 35vw, 320px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
@@ -243,8 +238,8 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: 20px;
-  padding: var(--space-md);
+  border-radius: clamp(12px, 2vw, 20px);
+  padding: clamp(0.75rem, 2vw, var(--space-md));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -265,20 +260,20 @@
 }
 
 .cardIcon {
-  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-  margin-bottom: var(--space-xs);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(0.25rem, 1vw, var(--space-sm));
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.3rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .cardDesc {
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
   line-height: 1.4;
   color: #6B7280;
   margin: 0;
@@ -286,27 +281,27 @@
 
 .cardBackText {
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
   font-weight: 600;
   line-height: 1.5;
   margin: 0;
 }
 
 .cardBadge {
-  margin-top: var(--space-sm);
-  padding: 0.3rem 0.85rem;
+  margin-top: clamp(0.35rem, 1vw, var(--space-sm));
+  padding: 0.25rem 0.75rem;
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-radius: 100px;
 }
 
-/* ── SECTION 3 — THIS IS YOUR DAY (TIMELINE) ────────────────── */
+/* ── TIMELINE ────────────────────────────────── */
 .timelineSection {
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background: var(--color-arena);
   overflow: hidden;
   width: 100%;
@@ -317,15 +312,15 @@
   font-size: var(--text-display);
   font-weight: 800;
   text-align: center;
-  margin-bottom: var(--space-lg);
+  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
   word-break: break-word;
 }
 
 .timelineWrapper {
   position: relative;
-  max-width: min(1000px, 94vw);
+  max-width: min(1000px, 96vw);
   margin: 0 auto;
-  padding: var(--space-md) 0;
+  padding: clamp(0.5rem, 2vw, var(--space-md)) 0;
   width: 100%;
 }
 
@@ -349,12 +344,11 @@
   transform-origin: left;
 }
 
-/* Layout Adaptation: Grid minmax 200px allows auto-wrapping nodes on mobile */
 .timelineNodes {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
   z-index: 5;
   width: 100%;
 }
@@ -368,28 +362,28 @@
 }
 
 .nodeDot {
-  width: 20px;
-  height: 20px;
+  width: clamp(16px, 3vw, 24px);
+  height: clamp(16px, 3vw, 24px);
   border-radius: 50px;
   background-color: var(--color-blanco-puro);
-  border: 3.5px solid var(--color-mar);
-  margin-top: 38px;
-  margin-bottom: var(--space-xs);
+  border: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  margin-top: clamp(10px, 2vw, 40px);
+  margin-bottom: var(--space-sm);
   z-index: 10;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .nodeTime {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
   font-weight: 800;
   color: var(--color-velero);
 }
 
 .nodeIcon {
-  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   margin-bottom: var(--space-xs);
-  height: 40px;
+  height: clamp(28px, 4vw, 40px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -397,22 +391,22 @@
 
 .nodeTitle {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .nodeDesc {
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
-  line-height: 1.4;
+  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+  line-height: 1.35;
   color: rgba(13, 43, 69, 0.7);
   margin: 0;
 }
 
-/* ── SECTION 4 — OUR BIG SUP BOARD ─────────────────────── */
+/* ── INTERACTIVE BIG SUP ─────────────────────── */
 .bigSUPSection {
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background: var(--color-blanco-puro);
   text-align: center;
   width: 100%;
@@ -427,18 +421,18 @@
 }
 
 .bigSUPDesc {
-  max-width: min(620px, 90vw);
-  margin: 0 auto var(--space-lg) auto;
+  max-width: min(600px, 92vw);
+  margin: 0 auto clamp(1rem, 3vw, var(--space-lg)) auto;
   line-height: 1.5;
-  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
   color: rgba(13, 43, 69, 0.7);
 }
 
 .boardContainer {
   position: relative;
-  max-width: min(900px, 94vw);
+  max-width: min(900px, 96vw);
   margin: 0 auto;
-  height: clamp(180px, 28vw, 280px);
+  height: clamp(160px, 28vw, 280px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -448,11 +442,11 @@
 
 .seatsGrid {
   position: absolute;
-  bottom: clamp(45px, 8vw, 90px);
+  bottom: clamp(40px, 8vw, 90px);
   width: 88%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: var(--space-xs);
+  gap: clamp(2px, 0.8vw, var(--space-xs));
 }
 
 .seat {
@@ -460,12 +454,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: clamp(60px, 11vw, 100px);
+  height: clamp(60px, 12vw, 110px);
 }
 
 .seatPlus {
-  width: clamp(22px, 3.8vw, 32px);
-  height: clamp(22px, 3.8vw, 32px);
+  width: clamp(20px, 4vw, 30px);
+  height: clamp(20px, 4vw, 30px);
   border-radius: 50%;
   background-color: var(--color-arena);
   border: 1.5px dashed var(--color-noche);
@@ -473,10 +467,10 @@
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: clamp(0.75rem, 1.4vw, 1rem);
+  font-size: clamp(0.7rem, 1.5vw, 1rem);
   color: var(--color-noche);
   cursor: pointer;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
 .seatPlus:hover {
@@ -486,7 +480,7 @@
 }
 
 .characterRider {
-  width: clamp(24px, 4.8vw, 50px);
+  width: clamp(25px, 5vw, 50px);
   height: clamp(40px, 8vw, 80px);
 }
 
@@ -508,19 +502,19 @@
 
 .successMessage {
   margin-top: var(--space-md);
-  padding: var(--space-md);
+  padding: clamp(0.75rem, 2vw, var(--space-md));
   background-color: #ECFDF5;
   border: 1px solid #A7F3D0;
   border-radius: 16px;
   display: inline-block;
-  max-width: min(520px, 90vw);
+  max-width: min(500px, 90vw);
   width: 100%;
 }
 
 .successText {
   color: #047857;
   font-weight: 700;
-  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
   margin-bottom: var(--space-xs);
 }
 
@@ -528,18 +522,18 @@
   background-color: #059669;
   color: var(--color-blanco-puro);
   border: none;
-  padding: 0.55rem 1.4rem;
+  padding: clamp(0.4rem, 1vw, 0.6rem) clamp(1rem, 2vw, 1.5rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   cursor: pointer;
   margin-top: var(--space-xs);
 }
 
-/* ── SECTION 5 — CHILL OUT ZONE ───────────────────────── */
+/* ── CHILL OUT SECTION ───────────────────────── */
 .chillOutSection {
   position: relative;
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background-color: var(--color-hierba);
   overflow: hidden;
   color: var(--color-blanco-puro);
@@ -556,7 +550,7 @@
 .chillOutContent {
   position: relative;
   z-index: 10;
-  max-width: min(800px, 90vw);
+  max-width: min(800px, 92vw);
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -565,37 +559,37 @@
 }
 
 .toldo {
-  margin: 0 auto var(--space-md) auto;
+  margin: 0 auto clamp(0.5rem, 1.5vw, var(--space-md)) auto;
   width: clamp(140px, 25vw, 240px);
   height: auto;
 }
 
 .chillText {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.5vw, 2.2rem);
+  font-size: clamp(1.05rem, 2.5vw, 2.4rem);
   font-weight: 700;
   line-height: 1.35;
-  margin: var(--space-md) 0;
+  margin: clamp(0.5rem, 2vw, var(--space-md)) 0;
   word-break: break-word;
 }
 
 .chillSceneIllust {
   position: relative;
-  width: clamp(140px, 24vw, 200px);
-  height: clamp(90px, 15vw, 130px);
+  width: clamp(140px, 25vw, 200px);
+  height: clamp(90px, 16vw, 130px);
   margin: 0 auto;
 }
 
 .musicNote {
   position: absolute;
   color: var(--color-sol);
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   pointer-events: none;
 }
 
-/* ── SECTION 6 — CATERING OPTIONS ────────────────────────── */
+/* ── CATERING SECTION ────────────────────────── */
 .cateringSection {
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background: var(--color-blanco);
   text-align: center;
   width: 100%;
@@ -611,16 +605,15 @@
 
 .cateringSubtitle {
   color: #6B7280;
-  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
-  margin-bottom: var(--space-lg);
+  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
 }
 
-/* Responsive Catering Grid: 3 cols Desktop -> 2 cols Tablet -> 1 col Mobile */
 .cateringGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-md);
-  max-width: 1200px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(1rem, 2.5vw, var(--space-md));
+  max-width: min(1000px, 96vw);
   margin: 0 auto;
   width: 100%;
 }
@@ -630,13 +623,13 @@
   background-color: var(--color-blanco-puro);
   border: 2px solid rgba(13, 43, 69, 0.04);
   border-radius: 24px;
-  padding: var(--space-lg) var(--space-md);
+  padding: clamp(1.25rem, 3vw, var(--space-lg)) clamp(0.75rem, 2vw, var(--space-md));
   box-shadow: 0 10px 30px rgba(13, 43, 69, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: 340px;
+  min-height: clamp(300px, 40vw, 380px);
   width: 100%;
 }
 
@@ -647,10 +640,10 @@
 
 .cateringBadge {
   position: absolute;
-  top: -14px;
+  top: -15px;
   background-color: var(--color-sol);
   color: var(--color-noche);
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
   font-weight: 900;
   padding: 0.3rem 0.85rem;
   border-radius: 100px;
@@ -659,23 +652,23 @@
 }
 
 .cateringCardIcon {
-  font-size: clamp(2.5rem, 5.5vw, 3.8rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
 .cateringCardTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 800;
-  margin: var(--space-sm) 0 var(--space-xs) 0;
+  margin: clamp(0.35rem, 1vw, var(--space-sm)) 0 var(--space-xs) 0;
   word-break: break-word;
 }
 
 .cateringCardDesc {
-  font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
   line-height: 1.45;
   color: #6B7280;
   max-width: 240px;
-  margin-bottom: var(--space-md);
+  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
 }
 
 .cateringCardBtn {
@@ -683,10 +676,10 @@
   background-color: var(--color-noche);
   color: var(--color-blanco-puro);
   border: none;
-  padding: 0.65rem 1.4rem;
+  padding: clamp(0.55rem, 1.2vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -706,10 +699,10 @@
   color: var(--color-blanco-puro);
 }
 
-/* ── SECTION 7 & 8 — BOOKING FORM & CLOSING SECTION ─────────────────────────── */
+/* ── CLOSING SECTION ─────────────────────────── */
 .closingSection {
   position: relative;
-  padding: clamp(3rem, 6vw, var(--space-xl)) clamp(1rem, 4vw, var(--space-md));
+  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
   background-color: var(--color-noche);
   color: var(--color-blanco-puro);
   text-align: center;
@@ -762,7 +755,7 @@
   top: -20px;
   background-color: var(--color-sol);
   color: var(--color-noche);
-  font-size: 0.65rem;
+  font-size: clamp(0.6rem, 1vw, 0.7rem);
   font-weight: 800;
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
@@ -779,9 +772,9 @@
 
 .closingPhrase {
   font-family: var(--font-accent);
-  font-size: clamp(1.5rem, 3.8vw, 3rem);
+  font-size: clamp(1.4rem, 3.5vw, 3rem);
   color: var(--color-sol);
-  margin-bottom: var(--space-lg);
+  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
   line-height: 1.25;
   word-break: break-word;
 }
@@ -789,7 +782,7 @@
 .contactForm {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: var(--space-md);
+  padding: clamp(0.85rem, 2.5vw, var(--space-md));
   border-radius: 20px;
   backdrop-filter: blur(10px);
   text-align: left;
@@ -798,15 +791,15 @@
 
 .formTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
   font-weight: 700;
-  margin-bottom: var(--space-md);
+  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
   text-align: center;
   word-break: break-word;
 }
 
 .formGroup {
-  margin-bottom: var(--space-md);
+  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -814,7 +807,7 @@
 }
 
 .formLabel {
-  font-size: clamp(0.725rem, 1.2vw, 0.825rem);
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -825,9 +818,9 @@
   background-color: rgba(255, 255, 255, 0.08);
   border: 1.5px solid rgba(255, 255, 255, 0.15);
   color: var(--color-blanco-puro);
-  padding: 0.75rem 1rem;
+  padding: clamp(0.5rem, 1.5vw, 0.8rem) clamp(0.75rem, 2vw, 1.2rem);
   border-radius: 12px;
-  font-size: clamp(0.85rem, 1.3vw, 0.95rem);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
   width: 100%;
 }
 
@@ -839,7 +832,7 @@
 .sliderContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  gap: clamp(0.35rem, 1vw, var(--space-sm));
   width: 100%;
 }
 
@@ -869,9 +862,9 @@
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
   font-weight: 800;
-  padding: 0.85rem;
+  padding: clamp(0.7rem, 1.5vw, 1rem);
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -885,36 +878,38 @@
   transform: scale(1.01);
 }
 
-/* ── SMALL MOBILE BREAKPOINT (320px - 480px) ── */
-@media (max-width: 480px) {
-  .cardsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .timelineNodes {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .timelineLineBg,
-  .timelineLineProgress {
-    display: none;
-  }
-
-  .cateringGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ── SPECIFIC LANDSCAPE MOBILE MEDIA QUERY (HEIGHT-CONSTRAINED) ── */
 @media (max-height: 500px) and (orientation: landscape) {
   .heroSection {
-    min-height: 80vh;
-    padding: 1.5rem 1.25rem;
+    min-height: 85vh;
+    padding: clamp(1rem, 4vh, 2rem) clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .heroContent {
+    gap: 0.25rem;
+  }
+
+  .heroEyebrow {
+    font-size: 0.65rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(1.4rem, 5vw, 2.5rem);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(0.8rem, 2vw, 1.1rem);
+    margin: 0.25rem 0;
+  }
+
+  .heroCta {
+    font-size: 0.75rem;
+    padding: 0.45rem 1.25rem;
   }
 
   .panoramicScene {
-    height: clamp(180px, 35vh, 260px);
+    height: clamp(160px, 35vh, 260px);
   }
 
   .cardsSection,
@@ -923,23 +918,59 @@
   .chillOutSection,
   .cateringSection,
   .closingSection {
-    padding: 2rem 1.25rem;
+    padding: clamp(1.25rem, 4vh, 2.5rem) clamp(0.75rem, 2vw, 1.5rem);
   }
 
   .cardsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+    gap: 0.75rem;
   }
 
   .cardContainer {
-    height: 260px;
+    height: clamp(180px, 45vh, 240px);
+  }
+
+  .cardIcon {
+    font-size: 1.8rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .cardTitle {
+    font-size: 0.9rem;
+  }
+
+  .cardDesc {
+    font-size: 0.7rem;
+    line-height: 1.25;
   }
 
   .cateringGrid {
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: 0.75rem;
   }
 
   .cateringCard {
-    min-height: 280px;
+    min-height: clamp(220px, 50vh, 280px);
+    padding: 1rem 0.75rem;
+  }
+
+  .cateringCardIcon {
+    font-size: 2.2rem;
+  }
+
+  .cateringCardTitle {
+    font-size: 0.95rem;
+    margin: 0.25rem 0 0.15rem 0;
+  }
+
+  .cateringCardDesc {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cateringCardBtn {
+    padding: 0.45rem 1rem;
+    font-size: 0.75rem;
   }
 }
 
