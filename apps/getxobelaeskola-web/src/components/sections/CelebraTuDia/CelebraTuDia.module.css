@@ -159,8 +159,8 @@
 .panoramicScene {
   position: relative;
   width: 100%;
-  height: clamp(435px, 63vw, 825px);
-  min-height: 72vh;
+  height: clamp(425px, 61vw, 805px);
+  min-height: 70vh;
   background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
   overflow: hidden;
   border-top: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
