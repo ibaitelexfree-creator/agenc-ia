@@ -170,20 +170,20 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
             />
 
             {/* Cinematic Header */}
-            <section className="relative pt-24 sm:pt-28 md:pt-36 pb-6 sm:pb-8 overflow-hidden w-full">
+            <section className="relative pt-16 min-[480px]:pt-20 sm:pt-28 md:pt-36 pb-3 min-[480px]:pb-4 sm:pb-8 overflow-hidden w-full">
                 <div className="absolute top-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-accent/5 blur-[80px] sm:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-brass-gold/5 blur-[60px] sm:blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.6em] text-[10px] sm:text-sm font-bold mb-1.5 sm:mb-4 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1] sm:leading-[0.95] text-sea-foam mb-4 sm:mb-6 animate-reveal relative z-20 break-words">
-                            {t('title_prefix')} <br />
+                        <h1 className="text-2xl min-[480px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1] sm:leading-[0.95] text-sea-foam mb-2 sm:mb-6 animate-reveal relative z-20 break-words">
+                            {t('title_prefix')}{' '}
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-sm sm:text-base md:text-lg leading-relaxed border-l border-sea-foam/10 pl-4 sm:pl-6 md:pl-8 mt-4 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/60 font-light text-xs min-[480px]:text-sm sm:text-base md:text-lg leading-relaxed border-l border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>
@@ -191,8 +191,8 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
             </section>
 
             {/* Experiences Grid */}
-            <section className="pb-20 sm:pb-32 md:pb-48 relative">
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+            <section className="pb-12 sm:pb-32 md:pb-48 relative">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <ExperiencesClient experiences={experiences} locale={locale} />
                 </div>
 
