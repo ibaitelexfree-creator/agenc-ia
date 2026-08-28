@@ -1,29 +1,32 @@
 /* CelebraTuDia.module.css */
 
 .container {
-  /* ─── TOKENS DE DISEÑO LOCALES ───────────────── */
-  --color-mar:       #1B8FCF;   /* azul agua bahía */
-  --color-arena:     #F5E6C8;   /* arena cálida */
-  --color-sol:       #FFD166;   /* amarillo sol */
-  --color-velero:    #EF6351;   /* rojo coral velero */
-  --color-hierba:    #6BBF59;   /* verde césped chill out */
-  --color-noche:     #0D2B45;   /* azul marino profundo */
-  --color-blanco:    #FAFAFA;   /* blanco suave */
+  /* ─── LOCAL DESIGN TOKENS (FLUID & SCALABLE) ─── */
+  --color-mar:         #1B8FCF;   /* azul agua bahía */
+  --color-arena:       #F5E6C8;   /* arena cálida */
+  --color-sol:         #FFD166;   /* amarillo sol */
+  --color-velero:      #EF6351;   /* rojo coral velero */
+  --color-hierba:      #6BBF59;   /* verde césped chill out */
+  --color-noche:       #0D2B45;   /* azul marino profundo */
+  --color-blanco:      #FAFAFA;   /* blanco suave */
   --color-blanco-puro: #FFFFFF;
 
   --font-display:    'Baloo 2', 'Comfortaa', 'Quicksand', 'Nunito', system-ui, sans-serif;
   --font-body:       var(--font-sans, 'Inter', system-ui, sans-serif);
   --font-accent:     'Pacifico', 'Brush Script MT', cursive;
 
-  --text-hero:       clamp(1.75rem, 6vw, 5rem);
-  --text-display:    clamp(1.35rem, 3.5vw, 2.75rem);
-  --text-body:       clamp(0.875rem, 1.2vw, 1.125rem);
+  /* Typography scale clamped across 320px to 2560px+ */
+  --text-hero:       clamp(1.75rem, 5.5vw, 4.5rem);
+  --text-display:    clamp(1.25rem, 3.2vw, 2.5rem);
+  --text-subtitle:   clamp(0.95rem, 2.2vw, 1.8rem);
+  --text-body:       clamp(0.8rem, 1.2vw, 1.05rem);
   
-  --space-xs:        clamp(0.25rem, 1vw, 0.5rem);
+  /* Fluid Spacing tokens */
+  --space-xs:        clamp(0.25rem, 0.8vw, 0.5rem);
   --space-sm:        clamp(0.5rem, 1.5vw, 1rem);
-  --space-md:        clamp(1rem, 3vw, 2rem);
-  --space-lg:        clamp(1.5rem, 4vw, 3.5rem);
-  --space-xl:        clamp(2.5rem, 6vw, 5.5rem);
+  --space-md:        clamp(0.85rem, 2.5vw, 1.75rem);
+  --space-lg:        clamp(1.25rem, 3.5vw, 3rem);
+  --space-xl:        clamp(2rem, 5vw, 4.5rem);
 
   background-color: var(--color-blanco);
   color: var(--color-noche);
@@ -43,12 +46,12 @@
 /* ── HERO SECTION ────────────────────────────── */
 .heroSection {
   position: relative;
-  min-height: 100vh;
+  min-height: clamp(380px, 75vh, 680px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 8vh, var(--space-xl)) clamp(0.75rem, 3vw, var(--space-md));
+  padding: clamp(1.5rem, 5vh, var(--space-xl)) clamp(0.75rem, 3vw, var(--space-md));
   background: linear-gradient(180deg, #E0F2FE 0%, var(--color-blanco) 100%);
   overflow: hidden;
   text-align: center;
@@ -59,19 +62,19 @@
   position: relative;
   z-index: 10;
   width: 100%;
-  max-width: min(900px, 92vw);
+  max-width: min(850px, 92vw);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(0.35rem, 1.5vw, var(--space-sm));
+  gap: clamp(0.25rem, 1.2vw, var(--space-sm));
   margin: 0 auto;
 }
 
 .heroEyebrow {
   font-family: var(--font-body);
-  font-size: clamp(0.65rem, 1.8vw, 0.85rem);
+  font-size: clamp(0.65rem, 1.6vw, 0.85rem);
   font-weight: 800;
-  letter-spacing: clamp(0.15em, 0.5vw, 0.3em);
+  letter-spacing: clamp(0.12em, 0.4vw, 0.25em);
   color: var(--color-mar);
   text-transform: uppercase;
   margin-bottom: var(--space-xs);
@@ -104,11 +107,11 @@
 
 .heroSubtitle {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 2.2vw, 2.2rem);
+  font-size: var(--text-subtitle);
   font-weight: 600;
   color: var(--color-noche);
-  max-width: min(700px, 90vw);
-  margin: clamp(0.35rem, 1vw, var(--space-sm)) 0;
+  max-width: min(650px, 90vw);
+  margin: clamp(0.25rem, 1vw, var(--space-sm)) 0;
   line-height: 1.3;
 }
 
@@ -116,11 +119,11 @@
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
   font-family: var(--font-body);
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  font-size: clamp(0.75rem, 1.5vw, 0.95rem);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: clamp(0.6rem, 1.5vw, 1.1rem) clamp(1.25rem, 3vw, 2.5rem);
+  letter-spacing: 0.08em;
+  padding: clamp(0.55rem, 1.2vw, 0.95rem) clamp(1.2rem, 2.5vw, 2.2rem);
   border-radius: 100px;
   border: none;
   cursor: pointer;
@@ -136,7 +139,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: clamp(40px, 8vw, 120px);
+  height: clamp(35px, 6vw, 100px);
   z-index: 5;
   pointer-events: none;
 }
@@ -147,10 +150,10 @@
 
 .jumpingGirl {
   position: absolute;
-  bottom: clamp(35px, 7vw, 80px);
-  right: clamp(4%, 10vw, 15%);
-  width: clamp(50px, 10vw, 120px);
-  height: clamp(50px, 10vw, 120px);
+  bottom: clamp(30px, 6vw, 75px);
+  right: clamp(3%, 8vw, 12%);
+  width: clamp(45px, 8vw, 100px);
+  height: clamp(45px, 8vw, 100px);
   z-index: 6;
   cursor: pointer;
 }
@@ -160,12 +163,11 @@
   position: relative;
   width: 100%;
   max-width: 100vw;
-  height: clamp(400px, 56vw, 760px);
-  min-height: 66vh;
+  height: clamp(260px, 45vw, 550px);
   background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
   overflow: hidden;
-  border-top: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
-  border-bottom: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  border-top: clamp(2px, 0.4vw, 4px) solid var(--color-mar);
+  border-bottom: clamp(2px, 0.4vw, 4px) solid var(--color-mar);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -214,15 +216,15 @@
   font-size: var(--text-display);
   font-weight: 800;
   color: var(--color-noche);
-  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
+  margin-bottom: clamp(0.85rem, 2.5vw, var(--space-lg));
   word-break: break-word;
 }
 
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: clamp(0.75rem, 2vw, var(--space-md));
-  max-width: min(1200px, 96vw);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: clamp(0.65rem, 1.8vw, var(--space-md));
+  max-width: min(1100px, 94vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
@@ -230,7 +232,7 @@
 
 .cardContainer {
   position: relative;
-  height: clamp(240px, 35vw, 320px);
+  height: clamp(220px, 32vw, 290px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
@@ -242,14 +244,14 @@
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: clamp(12px, 2vw, 20px);
-  padding: clamp(0.75rem, 2vw, var(--space-md));
+  border-radius: clamp(12px, 1.8vw, 18px);
+  padding: clamp(0.65rem, 1.8vw, var(--space-md));
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 25px rgba(13, 43, 69, 0.05);
-  border: 2px solid rgba(13, 43, 69, 0.04);
+  box-shadow: 0 8px 20px rgba(13, 43, 69, 0.05);
+  border: 1.5px solid rgba(13, 43, 69, 0.04);
 }
 
 .cardFront {
@@ -264,39 +266,39 @@
 }
 
 .cardIcon {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin-bottom: clamp(0.25rem, 1vw, var(--space-sm));
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: clamp(0.2rem, 0.8vw, var(--space-xs));
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.2rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .cardDesc {
-  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
-  line-height: 1.4;
+  font-size: clamp(0.725rem, 1.1vw, 0.9rem);
+  line-height: 1.35;
   color: #6B7280;
   margin: 0;
 }
 
 .cardBackText {
   font-family: var(--font-display);
-  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-size: clamp(0.8rem, 1.3vw, 1rem);
   font-weight: 600;
-  line-height: 1.5;
+  line-height: 1.45;
   margin: 0;
 }
 
 .cardBadge {
-  margin-top: clamp(0.35rem, 1vw, var(--space-sm));
-  padding: 0.25rem 0.75rem;
+  margin-top: clamp(0.3rem, 0.8vw, var(--space-xs));
+  padding: 0.2rem 0.65rem;
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
-  font-size: clamp(0.65rem, 1vw, 0.75rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -316,33 +318,33 @@
   font-size: var(--text-display);
   font-weight: 800;
   text-align: center;
-  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
+  margin-bottom: clamp(0.85rem, 2.5vw, var(--space-lg));
   word-break: break-word;
 }
 
 .timelineWrapper {
   position: relative;
-  max-width: min(1000px, 96vw);
+  max-width: min(950px, 94vw);
   margin: 0 auto;
-  padding: clamp(0.5rem, 2vw, var(--space-md)) 0;
+  padding: clamp(0.5rem, 1.5vw, var(--space-md)) 0;
   width: 100%;
 }
 
 .timelineLineBg {
   position: absolute;
-  top: 50px;
+  top: 45px;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 3px;
   background-color: rgba(13, 43, 69, 0.1);
   z-index: 1;
 }
 
 .timelineLineProgress {
   position: absolute;
-  top: 50px;
+  top: 45px;
   left: 0;
-  height: 4px;
+  height: 3px;
   background-color: var(--color-velero);
   z-index: 2;
   transform-origin: left;
@@ -351,8 +353,8 @@
 .timelineNodes {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-  gap: clamp(1rem, 2.5vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: clamp(0.85rem, 2vw, 1.75rem);
   z-index: 5;
   width: 100%;
 }
@@ -366,28 +368,28 @@
 }
 
 .nodeDot {
-  width: clamp(16px, 3vw, 24px);
-  height: clamp(16px, 3vw, 24px);
+  width: clamp(14px, 2.5vw, 20px);
+  height: clamp(14px, 2.5vw, 20px);
   border-radius: 50px;
   background-color: var(--color-blanco-puro);
-  border: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
-  margin-top: clamp(10px, 2vw, 40px);
-  margin-bottom: var(--space-sm);
+  border: clamp(2px, 0.4vw, 3.5px) solid var(--color-mar);
+  margin-top: clamp(8px, 1.8vw, 30px);
+  margin-bottom: var(--space-xs);
   z-index: 10;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
 
 .nodeTime {
   font-family: var(--font-display);
-  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-size: clamp(0.85rem, 1.6vw, 1.1rem);
   font-weight: 800;
   color: var(--color-velero);
 }
 
 .nodeIcon {
-  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-size: clamp(1.35rem, 3vw, 2rem);
   margin-bottom: var(--space-xs);
-  height: clamp(28px, 4vw, 40px);
+  height: clamp(24px, 3.5vw, 36px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,15 +397,15 @@
 
 .nodeTitle {
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .nodeDesc {
-  font-size: clamp(0.75rem, 1.2vw, 0.85rem);
-  line-height: 1.35;
+  font-size: clamp(0.7rem, 1.1vw, 0.8rem);
+  line-height: 1.3;
   color: rgba(13, 43, 69, 0.7);
   margin: 0;
 }
@@ -425,18 +427,18 @@
 }
 
 .bigSUPDesc {
-  max-width: min(600px, 92vw);
-  margin: 0 auto clamp(1rem, 3vw, var(--space-lg)) auto;
-  line-height: 1.5;
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  max-width: min(580px, 90vw);
+  margin: 0 auto clamp(0.85rem, 2.5vw, var(--space-lg)) auto;
+  line-height: 1.45;
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
   color: rgba(13, 43, 69, 0.7);
 }
 
 .boardContainer {
   position: relative;
-  max-width: min(900px, 96vw);
+  max-width: min(850px, 94vw);
   margin: 0 auto;
-  height: clamp(160px, 28vw, 280px);
+  height: clamp(140px, 24vw, 240px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -446,11 +448,11 @@
 
 .seatsGrid {
   position: absolute;
-  bottom: clamp(40px, 8vw, 90px);
+  bottom: clamp(35px, 7vw, 75px);
   width: 88%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: clamp(2px, 0.8vw, var(--space-xs));
+  gap: clamp(1px, 0.6vw, var(--space-xs));
 }
 
 .seat {
@@ -458,12 +460,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: clamp(60px, 12vw, 110px);
+  height: clamp(50px, 10vw, 90px);
 }
 
 .seatPlus {
-  width: clamp(20px, 4vw, 30px);
-  height: clamp(20px, 4vw, 30px);
+  width: clamp(18px, 3.5vw, 28px);
+  height: clamp(18px, 3.5vw, 28px);
   border-radius: 50%;
   background-color: var(--color-arena);
   border: 1.5px dashed var(--color-noche);
@@ -471,10 +473,10 @@
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-size: clamp(0.65rem, 1.3vw, 0.9rem);
   color: var(--color-noche);
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 3px 5px rgba(0,0,0,0.05);
 }
 
 .seatPlus:hover {
@@ -484,8 +486,8 @@
 }
 
 .characterRider {
-  width: clamp(25px, 5vw, 50px);
-  height: clamp(40px, 8vw, 80px);
+  width: clamp(22px, 4.5vw, 45px);
+  height: clamp(35px, 7vw, 70px);
 }
 
 .supBoardSvg {
@@ -499,26 +501,26 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: clamp(20px, 4vw, 40px);
+  height: clamp(16px, 3.5vw, 35px);
   background-color: var(--color-mar);
-  border-radius: 50% 50% 0 0 / 15px 15px 0 0;
+  border-radius: 50% 50% 0 0 / 12px 12px 0 0;
 }
 
 .successMessage {
   margin-top: var(--space-md);
-  padding: clamp(0.75rem, 2vw, var(--space-md));
+  padding: clamp(0.65rem, 1.8vw, var(--space-md));
   background-color: #ECFDF5;
   border: 1px solid #A7F3D0;
-  border-radius: 16px;
+  border-radius: 14px;
   display: inline-block;
-  max-width: min(500px, 90vw);
+  max-width: min(480px, 88vw);
   width: 100%;
 }
 
 .successText {
   color: #047857;
   font-weight: 700;
-  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
   margin-bottom: var(--space-xs);
 }
 
@@ -526,10 +528,10 @@
   background-color: #059669;
   color: var(--color-blanco-puro);
   border: none;
-  padding: clamp(0.4rem, 1vw, 0.6rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.35rem, 0.9vw, 0.55rem) clamp(0.85rem, 1.8vw, 1.35rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
   cursor: pointer;
   margin-top: var(--space-xs);
 }
@@ -554,7 +556,7 @@
 .chillOutContent {
   position: relative;
   z-index: 10;
-  max-width: min(800px, 92vw);
+  max-width: min(750px, 90vw);
   margin: 0 auto;
   text-align: center;
   display: flex;
@@ -563,31 +565,31 @@
 }
 
 .toldo {
-  margin: 0 auto clamp(0.5rem, 1.5vw, var(--space-md)) auto;
-  width: clamp(140px, 25vw, 240px);
+  margin: 0 auto clamp(0.4rem, 1.2vw, var(--space-md)) auto;
+  width: clamp(120px, 22vw, 210px);
   height: auto;
 }
 
 .chillText {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2.5vw, 2.4rem);
+  font-size: clamp(0.95rem, 2.2vw, 2rem);
   font-weight: 700;
   line-height: 1.35;
-  margin: clamp(0.5rem, 2vw, var(--space-md)) 0;
+  margin: clamp(0.4rem, 1.8vw, var(--space-md)) 0;
   word-break: break-word;
 }
 
 .chillSceneIllust {
   position: relative;
-  width: clamp(140px, 25vw, 200px);
-  height: clamp(90px, 16vw, 130px);
+  width: clamp(120px, 22vw, 180px);
+  height: clamp(80px, 14vw, 115px);
   margin: 0 auto;
 }
 
 .musicNote {
   position: absolute;
   color: var(--color-sol);
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.9rem, 1.8vw, 1.35rem);
   pointer-events: none;
 }
 
@@ -609,15 +611,15 @@
 
 .cateringSubtitle {
   color: #6B7280;
-  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
+  font-size: clamp(0.8rem, 1.3vw, 0.95rem);
+  margin-bottom: clamp(0.85rem, 2.5vw, var(--space-lg));
 }
 
 .cateringGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: clamp(1rem, 2.5vw, var(--space-md));
-  max-width: min(1000px, 96vw);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(0.85rem, 2vw, var(--space-md));
+  max-width: min(950px, 94vw);
   margin: 0 auto;
   width: 100%;
 }
@@ -625,65 +627,65 @@
 .cateringCard {
   position: relative;
   background-color: var(--color-blanco-puro);
-  border: 2px solid rgba(13, 43, 69, 0.04);
-  border-radius: 24px;
-  padding: clamp(1.25rem, 3vw, var(--space-lg)) clamp(0.75rem, 2vw, var(--space-md));
-  box-shadow: 0 10px 30px rgba(13, 43, 69, 0.04);
+  border: 1.5px solid rgba(13, 43, 69, 0.04);
+  border-radius: 20px;
+  padding: clamp(1rem, 2.5vw, var(--space-lg)) clamp(0.65rem, 1.8vw, var(--space-md));
+  box-shadow: 0 8px 25px rgba(13, 43, 69, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: clamp(300px, 40vw, 380px);
+  min-height: clamp(270px, 35vw, 340px);
   width: 100%;
 }
 
 .cateringCardPopular {
   border-color: var(--color-sol);
-  box-shadow: 0 15px 40px rgba(255, 209, 102, 0.15);
+  box-shadow: 0 12px 35px rgba(255, 209, 102, 0.15);
 }
 
 .cateringBadge {
   position: absolute;
-  top: -15px;
+  top: -12px;
   background-color: var(--color-sol);
   color: var(--color-noche);
-  font-size: clamp(0.65rem, 1vw, 0.75rem);
+  font-size: clamp(0.6rem, 0.9vw, 0.7rem);
   font-weight: 900;
-  padding: 0.3rem 0.85rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 100px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
   letter-spacing: 0.08em;
 }
 
 .cateringCardIcon {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
 }
 
 .cateringCardTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
   font-weight: 800;
-  margin: clamp(0.35rem, 1vw, var(--space-sm)) 0 var(--space-xs) 0;
+  margin: clamp(0.25rem, 0.8vw, var(--space-sm)) 0 var(--space-xs) 0;
   word-break: break-word;
 }
 
 .cateringCardDesc {
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
-  line-height: 1.45;
+  font-size: clamp(0.75rem, 1.1vw, 0.88rem);
+  line-height: 1.4;
   color: #6B7280;
-  max-width: 240px;
-  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
+  max-width: 220px;
+  margin-bottom: clamp(0.65rem, 1.8vw, var(--space-md));
 }
 
 .cateringCardBtn {
-  width: min(85%, 220px);
+  width: min(85%, 200px);
   background-color: var(--color-noche);
   color: var(--color-blanco-puro);
   border: none;
-  padding: clamp(0.55rem, 1.2vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.45rem, 1vw, 0.7rem) clamp(0.85rem, 1.8vw, 1.35rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.7rem, 1.1vw, 0.85rem);
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -695,7 +697,7 @@
 .cateringCardBtnFree {
   background-color: transparent;
   color: var(--color-noche);
-  border: 2px solid var(--color-noche);
+  border: 1.5px solid var(--color-noche);
 }
 
 .cateringCardBtnFree:hover {
@@ -731,8 +733,8 @@
 }
 
 .balloonBody {
-  width: clamp(28px, 4vw, 40px);
-  height: clamp(35px, 5vw, 50px);
+  width: clamp(24px, 3.5vw, 36px);
+  height: clamp(30px, 4.5vw, 45px);
   border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
   position: relative;
 }
@@ -743,25 +745,25 @@
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 6px solid inherit;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 5px solid inherit;
 }
 
 .balloonString {
   width: 1px;
-  height: clamp(40px, 6vw, 60px);
+  height: clamp(35px, 5vw, 55px);
   background-color: rgba(255,255,255,0.3);
 }
 
 .balloonText {
   position: absolute;
-  top: -20px;
+  top: -18px;
   background-color: var(--color-sol);
   color: var(--color-noche);
-  font-size: clamp(0.6rem, 1vw, 0.7rem);
+  font-size: clamp(0.55rem, 0.9vw, 0.65rem);
   font-weight: 800;
-  padding: 0.2rem 0.5rem;
+  padding: 0.15rem 0.4rem;
   border-radius: 4px;
   white-space: nowrap;
 }
@@ -769,16 +771,16 @@
 .closingContent {
   position: relative;
   z-index: 10;
-  max-width: min(600px, 92vw);
+  max-width: min(560px, 90vw);
   margin: 0 auto;
   width: 100%;
 }
 
 .closingPhrase {
   font-family: var(--font-accent);
-  font-size: clamp(1.4rem, 3.5vw, 3rem);
+  font-size: clamp(1.25rem, 3.2vw, 2.6rem);
   color: var(--color-sol);
-  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
+  margin-bottom: clamp(0.85rem, 2.5vw, var(--space-lg));
   line-height: 1.25;
   word-break: break-word;
 }
@@ -786,8 +788,8 @@
 .contactForm {
   background-color: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: clamp(0.85rem, 2.5vw, var(--space-md));
-  border-radius: 20px;
+  padding: clamp(0.75rem, 2.2vw, var(--space-md));
+  border-radius: 18px;
   backdrop-filter: blur(10px);
   text-align: left;
   width: 100%;
@@ -795,15 +797,15 @@
 
 .formTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.25rem);
   font-weight: 700;
-  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
+  margin-bottom: clamp(0.65rem, 1.8vw, var(--space-md));
   text-align: center;
   word-break: break-word;
 }
 
 .formGroup {
-  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
+  margin-bottom: clamp(0.65rem, 1.8vw, var(--space-md));
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
@@ -811,7 +813,7 @@
 }
 
 .formLabel {
-  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+  font-size: clamp(0.65rem, 1.1vw, 0.78rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -820,11 +822,11 @@
 
 .formInput {
   background-color: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border: 1.25px solid rgba(255, 255, 255, 0.15);
   color: var(--color-blanco-puro);
-  padding: clamp(0.5rem, 1.5vw, 0.8rem) clamp(0.75rem, 2vw, 1.2rem);
-  border-radius: 12px;
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  padding: clamp(0.45rem, 1.2vw, 0.7rem) clamp(0.65rem, 1.8vw, 1rem);
+  border-radius: 10px;
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
   width: 100%;
 }
 
@@ -836,19 +838,19 @@
 .sliderContainer {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.35rem, 1vw, var(--space-sm));
+  gap: clamp(0.3rem, 0.8vw, var(--space-sm));
   width: 100%;
 }
 
 .sliderValue {
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
   font-weight: 800;
   color: var(--color-sol);
 }
 
 .sliderPeopleIllust {
-  height: 26px;
+  height: 24px;
   display: flex;
   gap: 2px;
   align-items: center;
@@ -857,7 +859,7 @@
 }
 
 .miniPerson {
-  font-size: clamp(0.85rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.75rem, 1.3vw, 1.1rem);
   line-height: 1;
 }
 
@@ -866,13 +868,13 @@
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
   font-family: var(--font-display);
-  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
   font-weight: 800;
-  padding: clamp(0.7rem, 1.5vw, 1rem);
+  padding: clamp(0.6rem, 1.3vw, 0.85rem);
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(239, 99, 81, 0.25);
+  box-shadow: 0 5px 16px rgba(239, 99, 81, 0.25);
   margin-top: var(--space-xs);
   transition: transform 0.2s, background-color 0.2s;
 }
@@ -882,38 +884,111 @@
   transform: scale(1.01);
 }
 
-/* ── SPECIFIC LANDSCAPE MOBILE MEDIA QUERY (HEIGHT-CONSTRAINED) ── */
-@media (max-height: 500px) and (orientation: landscape) {
-  .heroSection {
-    min-height: 85vh;
-    padding: clamp(1rem, 4vh, 2rem) clamp(0.75rem, 2vw, 1.5rem);
-  }
-
+/* ── VERY SMALL MOBILE BREAKPOINT (320px - 360px) ── */
+@media (max-width: 360px) {
   .heroContent {
-    gap: 0.25rem;
+    gap: 0.15rem;
   }
 
   .heroEyebrow {
-    font-size: 0.65rem;
-    margin-bottom: 0.15rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
   }
 
   .heroTitle {
-    font-size: clamp(1.4rem, 5vw, 2.5rem);
+    font-size: 1.6rem;
   }
 
   .heroSubtitle {
-    font-size: clamp(0.8rem, 2vw, 1.1rem);
-    margin: 0.25rem 0;
+    font-size: 0.85rem;
   }
 
   .heroCta {
-    font-size: 0.75rem;
-    padding: 0.45rem 1.25rem;
+    font-size: 0.7rem;
+    padding: 0.45rem 1rem;
+  }
+
+  .cardsGrid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .cardContainer {
+    height: 200px;
+  }
+
+  .cardIcon {
+    font-size: 1.6rem;
+  }
+
+  .cardTitle {
+    font-size: 0.85rem;
+  }
+
+  .cardDesc {
+    font-size: 0.68rem;
+  }
+
+  .cateringGrid {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+
+  .cateringCard {
+    min-height: 240px;
+    padding: 0.85rem 0.6rem;
+  }
+
+  .cateringCardIcon {
+    font-size: 2rem;
+  }
+
+  .cateringCardTitle {
+    font-size: 0.88rem;
+  }
+
+  .cateringCardDesc {
+    font-size: 0.68rem;
+  }
+
+  .cateringCardBtn {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.7rem;
+  }
+}
+
+/* ── SPECIFIC LANDSCAPE MOBILE MEDIA QUERY (HEIGHT-CONSTRAINED) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .heroSection {
+    min-height: 80vh;
+    padding: clamp(0.75rem, 3vh, 1.5rem) clamp(0.5rem, 2vw, 1.25rem);
+  }
+
+  .heroContent {
+    gap: 0.15rem;
+  }
+
+  .heroEyebrow {
+    font-size: 0.6rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .heroTitle {
+    font-size: clamp(1.3rem, 4.5vw, 2.2rem);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(0.75rem, 1.8vw, 1rem);
+    margin: 0.15rem 0;
+  }
+
+  .heroCta {
+    font-size: 0.7rem;
+    padding: 0.4rem 1.1rem;
   }
 
   .panoramicScene {
-    height: clamp(160px, 35vh, 260px);
+    height: clamp(150px, 32vh, 240px);
   }
 
   .cardsSection,
@@ -922,59 +997,59 @@
   .chillOutSection,
   .cateringSection,
   .closingSection {
-    padding: clamp(1.25rem, 4vh, 2.5rem) clamp(0.75rem, 2vw, 1.5rem);
+    padding: clamp(1rem, 3vh, 2rem) clamp(0.5rem, 2vw, 1.25rem);
   }
 
   .cardsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: 0.6rem;
   }
 
   .cardContainer {
-    height: clamp(180px, 45vh, 240px);
+    height: clamp(160px, 40vh, 220px);
   }
 
   .cardIcon {
-    font-size: 1.8rem;
-    margin-bottom: 0.15rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.1rem;
   }
 
   .cardTitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 
   .cardDesc {
-    font-size: 0.7rem;
-    line-height: 1.25;
+    font-size: 0.68rem;
+    line-height: 1.2;
   }
 
   .cateringGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+    gap: 0.6rem;
   }
 
   .cateringCard {
-    min-height: clamp(220px, 50vh, 280px);
-    padding: 1rem 0.75rem;
+    min-height: clamp(200px, 45vh, 260px);
+    padding: 0.85rem 0.6rem;
   }
 
   .cateringCardIcon {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
 
   .cateringCardTitle {
-    font-size: 0.95rem;
-    margin: 0.25rem 0 0.15rem 0;
+    font-size: 0.88rem;
+    margin: 0.15rem 0;
   }
 
   .cateringCardDesc {
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.68rem;
+    margin-bottom: 0.35rem;
   }
 
   .cateringCardBtn {
-    padding: 0.45rem 1rem;
-    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.7rem;
   }
 }
 
