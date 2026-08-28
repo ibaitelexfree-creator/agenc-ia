@@ -221,9 +221,9 @@
 /* Responsive Grid Adaptation: 3-4 cols Desktop -> 2 cols Tablet -> 1 col Mobile */
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-md);
-  max-width: min(1200px, 94vw);
+  max-width: 1280px;
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
@@ -618,9 +618,9 @@
 /* Responsive Catering Grid: 3 cols Desktop -> 2 cols Tablet -> 1 col Mobile */
 .cateringGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-md);
-  max-width: min(1050px, 94vw);
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
 }
