@@ -414,7 +414,7 @@ export default function RentalClient({
             {/* Grid - FIXED to use RentalCard with AnimatePresence */}
             <motion.div 
                 layout
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-8 md:gap-12 w-full max-w-full"
+                className="grid grid-cols-1 landscape:max-h-[500px]:grid-cols-3 max-h-[500px]:grid-cols-2 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 lg:gap-12 w-full max-w-full"
             >
                 <AnimatePresence mode="popLayout">
                     {filteredServices.map((service, index) => (

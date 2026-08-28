@@ -115,15 +115,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
+            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer scale-[0.93]"
         >
             {/* Design Decor - Nautical Numbers */}
-            <div className="absolute top-4 right-6 text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
+            <div className="absolute top-2 right-3 min-[480px]:top-3 min-[480px]:right-4 sm:top-4 sm:right-6 text-[60px] min-[480px]:text-[80px] sm:text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
                 {index !== undefined ? String(index).padStart(2, '0') : service.categoria.substring(0, 2).toUpperCase()}
             </div>
 
             {/* Image Header with Clip Path */}
-            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[140px] xs:h-[170px] sm:h-[320px] md:h-[380px]' : 'h-[120px] xs:h-[150px] sm:h-[260px] md:h-[300px]'}`}>
+            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[90px] min-[480px]:h-[110px] sm:h-[320px] md:h-[380px]' : 'h-[80px] min-[480px]:h-[100px] sm:h-[260px] md:h-[300px]'}`}>
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
@@ -164,45 +164,45 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
                 {/* Float Number & Category Badge */}
-                <div className="absolute top-2.5 left-2.5 sm:top-6 sm:left-6 z-20 flex items-center gap-2 bg-nautical-black/80 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1.5 rounded-sm border border-sea-foam/10">
+                <div className="absolute top-1.5 left-1.5 min-[480px]:top-2 min-[480px]:left-2 sm:top-6 sm:left-6 z-20 flex items-center gap-1.5 min-[480px]:gap-2 bg-nautical-black/80 backdrop-blur-md px-1.5 py-0.5 min-[480px]:px-2 min-[480px]:py-0.5 sm:px-3 sm:py-1.5 rounded-sm border border-sea-foam/10">
                     {index !== undefined && (
-                        <span className="text-[10px] sm:text-xs font-mono font-bold text-accent">
+                        <span className="text-[9px] min-[480px]:text-[10px] sm:text-xs font-mono font-bold text-accent">
                             #{index}
                         </span>
                     )}
                 </div>
 
                 {/* Float Category Label */}
-                <div className="absolute bottom-2.5 left-3 sm:bottom-6 sm:left-8 z-20 flex items-center gap-2">
+                <div className="absolute bottom-1.5 left-2 min-[480px]:bottom-2 min-[480px]:left-2.5 sm:bottom-6 sm:left-8 z-20 flex items-center gap-1 min-[480px]:gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[8px] sm:text-[9px] uppercase tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
+                    <span className="text-[7px] min-[480px]:text-[8px] sm:text-[9px] uppercase tracking-[0.1em] min-[480px]:tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
                         {service.categoria}
                     </span>
                 </div>
             </div>
 
             {/* Content Area */}
-            <div className="p-3.5 xs:p-5 sm:p-8 md:p-10 flex flex-col flex-1 relative z-20">
-                <div className="mb-2 sm:mb-8">
-                    <div className="flex justify-between items-start mb-2 sm:mb-4">
-                        <h3 className="text-base xs:text-lg sm:text-2xl md:text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
+            <div className="p-2.5 min-[480px]:p-3.5 sm:p-8 md:p-10 flex flex-col flex-1 relative z-20">
+                <div className="mb-1.5 min-[480px]:mb-2 sm:mb-8">
+                    <div className="flex justify-between items-start mb-1 min-[480px]:mb-1.5 sm:mb-4">
+                        <h3 className="text-xs min-[480px]:text-sm sm:text-2xl md:text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500 line-clamp-2">
                             {index !== undefined ? `${index}. ` : ''}{name}
                         </h3>
                     </div>
 
                     {/* Specs Row */}
-                    <div className="flex gap-4 sm:gap-6 py-2 sm:py-4 border-y border-sea-foam/10 mb-3 sm:mb-6">
+                    <div className="flex gap-2 min-[480px]:gap-3 sm:gap-6 py-1 min-[480px]:py-1.5 sm:py-4 border-y border-sea-foam/10 mb-1.5 min-[480px]:mb-2 sm:mb-6">
                         <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">{t('crew_label')}</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70">
-                                <Users className="w-3.5 h-3.5" />
-                                <span className="text-xs font-bold font-mono">{getCapacity()}</span>
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t('crew_label')}</span>
+                            <div className="flex items-center gap-1 text-sea-foam/70">
+                                <Users className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
+                                <span className="text-[10px] min-[480px]:text-xs font-bold font-mono">{getCapacity()}</span>
                             </div>
                         </div>
-                        <div className="w-px h-6 sm:h-8 bg-sea-foam/10" />
+                        <div className="w-px h-5 min-[480px]:h-6 sm:h-8 bg-sea-foam/10" />
                         <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Price/h</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70 text-base sm:text-lg">
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">Price/h</span>
+                            <div className="flex items-center gap-1 text-sea-foam/70 text-xs min-[480px]:text-sm sm:text-lg">
                                 <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
                             </div>
                         </div>
@@ -210,15 +210,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 </div>
 
                 {/* Footer Actions */}
-                <div className="mt-auto pt-2 sm:pt-4">
+                <div className="mt-auto pt-1 min-[480px]:pt-1.5 sm:pt-4">
                     <button
                         onClick={() => onBook(service.id)}
-                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-3 sm:p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
+                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-1.5 min-[480px]:p-2.5 sm:p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
                     >
-                        <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
+                        <span className="text-[8px] min-[480px]:text-[9px] sm:text-[10px] uppercase tracking-[0.15em] min-[480px]:tracking-[0.3em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-1.5 transition-all">
                             {t('booking.book_now')}
                         </span>
-                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
+                        <ArrowRight className="w-3 h-3 min-[480px]:w-3.5 min-[480px]:h-3.5 sm:w-4 sm:h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-1.5 transition-all" />
 
                         {/* Glow effect on hover */}
                         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />

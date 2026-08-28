@@ -162,21 +162,21 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             />
 
             {/* Cinematic Header Section */}
-            <section className="relative pt-20 sm:pt-32 md:pt-44 pb-8 sm:pb-16 md:pb-24 overflow-hidden w-full">
+            <section className="relative pt-16 min-[480px]:pt-20 sm:pt-32 md:pt-44 pb-4 min-[480px]:pb-6 sm:pb-16 md:pb-24 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-3 sm:mb-6 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-1.5 sm:mb-6 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-[clamp(1.75rem,5.5vw,6.5rem)] font-display leading-[1.05] text-sea-foam mb-4 sm:mb-8 md:mb-12 animate-reveal relative z-20 whitespace-normal sm:whitespace-nowrap">
+                        <h1 className="text-[clamp(1.5rem,5.5vw,6.5rem)] font-display leading-[1.05] text-sea-foam mb-2 sm:mb-8 md:mb-12 animate-reveal relative z-20 whitespace-normal sm:whitespace-nowrap">
                             <span>{t('title_prefix')}</span>{' '}
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/70 font-light text-xs sm:text-base md:text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-4 sm:mt-8 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/70 font-light text-xs sm:text-base md:text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-8 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>
@@ -184,8 +184,8 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             </section>
 
             {/* Main Interactive Fleet Section */}
-            <section className="pb-12 sm:pb-24 md:pb-36 relative">
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+            <section className="pb-8 sm:pb-24 md:pb-36 relative">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <RentalClient services={(services as any[]) || []} locale={locale} />
                 </div>
 
