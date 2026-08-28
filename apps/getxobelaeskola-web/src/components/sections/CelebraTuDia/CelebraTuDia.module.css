@@ -216,17 +216,45 @@
 
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
-  gap: clamp(0.75rem, 2vw, var(--space-md));
-  max-width: min(1200px, 96vw);
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(1rem, 2vw, 1.75rem);
+  max-width: min(1150px, 94vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
 }
 
+.cardsGrid > :nth-child(1),
+.cardsGrid > :nth-child(2),
+.cardsGrid > :nth-child(3) {
+  grid-column: span 2;
+}
+
+.cardsGrid > :nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.cardsGrid > :nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+@media (max-width: 860px) {
+  .cardsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  }
+
+  .cardsGrid > :nth-child(1),
+  .cardsGrid > :nth-child(2),
+  .cardsGrid > :nth-child(3),
+  .cardsGrid > :nth-child(4),
+  .cardsGrid > :nth-child(5) {
+    grid-column: auto;
+  }
+}
+
 .cardContainer {
   position: relative;
-  height: clamp(240px, 35vw, 320px);
+  height: clamp(230px, 32vw, 290px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
