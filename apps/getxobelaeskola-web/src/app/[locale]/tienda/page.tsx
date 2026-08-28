@@ -115,39 +115,39 @@ export default function TiendaPage() {
     return (
         <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Header */}
-            <section className="relative pt-32 sm:pt-40 md:pt-48 pb-20 sm:pb-24 overflow-hidden bg-nautical-deep w-full">
+            <section className="relative pt-16 min-[480px]:pt-20 sm:pt-40 md:pt-48 pb-6 min-[480px]:pb-8 sm:pb-24 overflow-hidden bg-nautical-deep w-full">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10 text-center">
-                    <header className="max-w-4xl mx-auto space-y-6">
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-black tracking-widest uppercase mb-4 animate-fade-in-up">
-                            <ShoppingBag className="w-3.5 h-3.5" />
+                <div className="container mx-auto px-3 sm:px-6 relative z-10 text-center">
+                    <header className="max-w-4xl mx-auto space-y-3 sm:space-y-6">
+                        <span className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] sm:text-xs font-black tracking-widest uppercase mb-2 sm:mb-4 animate-fade-in-up">
+                            <ShoppingBag className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             Tienda Oficial • 10 Productos
                         </span>
-                        <h1 className="text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
+                        <h1 className="text-2xl min-[480px]:text-3xl sm:text-5xl md:text-8xl font-display text-sea-foam leading-none uppercase">
                             Equipamiento y <br />
                             <span className="italic font-light text-brass-gold/90">regalos náuticos</span>
                         </h1>
-                        <p className="max-w-xl mx-auto text-foreground/50 font-light text-lg leading-relaxed mt-8">
-                            Viste los colores de la escuela o regala navegación con nuestra selection de merchandising y bonos multisesión listos para canjear.
+                        <p className="max-w-xl mx-auto text-foreground/50 font-light text-xs sm:text-lg leading-relaxed mt-3 sm:mt-8">
+                            Viste los colores de la escuela o regala navegación con nuestra selección de merchandising y bonos multisesión listos para canjear.
                         </p>
                     </header>
                 </div>
             </section>
 
             {/* Product Grid */}
-            <section className="py-24 relative">
-                <div className="container mx-auto px-6">
-                    <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <section className="py-8 sm:py-24 relative">
+                <div className="container mx-auto px-3 sm:px-6">
+                    <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 landscape:max-h-[500px]:grid-cols-3 max-h-[500px]:grid-cols-2 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 lg:gap-12">
                         {products.map((product, index) => (
                             <motion.div
                                 key={product.id}
                                 {...hoverLift}
-                                className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm flex flex-col h-full shadow-lg"
+                                className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 rounded-xl sm:rounded-2xl overflow-hidden backdrop-blur-sm flex flex-col h-full shadow-lg scale-[0.93]"
                             >
                                 {/* Image Box with CTA Overlay */}
-                                <div className="relative aspect-[4/3] overflow-hidden bg-black flex items-center justify-center">
+                                <div className="relative aspect-[4/3] max-h-[110px] min-[480px]:max-h-[130px] sm:max-h-none overflow-hidden bg-black flex items-center justify-center">
                                     {product.image ? (
                                         <Image
                                             src={product.image}
@@ -157,11 +157,11 @@ export default function TiendaPage() {
                                             className="object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                                         />
                                     ) : (
-                                        <div className="absolute inset-0 bg-black flex flex-col items-center justify-center p-6 text-center border-b border-sea-foam/10">
-                                            <div className="w-12 h-12 rounded-full bg-sea-foam/5 border border-sea-foam/10 flex items-center justify-center mb-2">
-                                                <ShoppingBag className="w-6 h-6 text-accent/60" />
+                                        <div className="absolute inset-0 bg-black flex flex-col items-center justify-center p-3 sm:p-6 text-center border-b border-sea-foam/10">
+                                            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-sea-foam/5 border border-sea-foam/10 flex items-center justify-center mb-1 sm:mb-2">
+                                                <ShoppingBag className="w-4 h-4 sm:w-6 sm:h-6 text-accent/60" />
                                             </div>
-                                            <span className="text-[10px] uppercase tracking-widest text-sea-foam/30 font-black">
+                                            <span className="text-[8px] sm:text-[10px] uppercase tracking-widest text-sea-foam/30 font-black">
                                                 Getxo Bela • Black Edition
                                             </span>
                                         </div>
@@ -170,7 +170,7 @@ export default function TiendaPage() {
                                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-colors duration-500" />
 
                                     {/* Number Badge */}
-                                    <div className="absolute top-4 right-4 bg-accent text-nautical-black font-mono font-black text-xs px-2.5 py-1 rounded-full shadow-md z-10">
+                                    <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-accent text-nautical-black font-mono font-black text-[9px] sm:text-xs px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md z-10">
                                         #{String(index + 1).padStart(2, '0')}
                                     </div>
 
@@ -183,43 +183,43 @@ export default function TiendaPage() {
                                     >
                                         <button 
                                             onClick={() => alert(`Enlace de compra para ${product.name} en desarrollo.`)}
-                                            className="px-8 py-4 bg-accent text-white text-[10px] uppercase tracking-[0.3em] font-black rounded-full hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 transition-all pointer-events-auto flex items-center gap-2"
+                                            className="px-4 py-2 sm:px-8 sm:py-4 bg-accent text-white text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] font-black rounded-full hover:scale-105 active:scale-95 shadow-xl shadow-accent/20 transition-all pointer-events-auto flex items-center gap-1.5 sm:gap-2"
                                         >
                                             Comprar Ahora
-                                            <ChevronRight className="w-3.5 h-3.5" />
+                                            <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                                         </button>
                                     </motion.div>
 
                                     {/* Category Accent */}
-                                    <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-md border border-white/10 px-3.5 py-1.5 rounded-full text-[9px] uppercase tracking-widest text-accent font-black">
+                                    <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-black/80 backdrop-blur-md border border-white/10 px-2 py-0.5 sm:px-3.5 sm:py-1.5 rounded-full text-[7px] sm:text-[9px] uppercase tracking-widest text-accent font-black">
                                         {product.category}
                                     </div>
                                 </div>
 
                                 {/* Content Details */}
-                                <div className="p-8 flex flex-col flex-grow justify-between gap-6">
-                                    <div className="space-y-4">
-                                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
-                                            <span className="text-[9px] uppercase tracking-widest text-sea-foam/40 font-black">Getxo Bela • Item {index + 1}</span>
-                                            <span className="text-xl font-display text-accent italic">
+                                <div className="p-2.5 min-[480px]:p-3.5 sm:p-8 flex flex-col flex-grow justify-between gap-3 sm:gap-6">
+                                    <div className="space-y-1.5 sm:space-y-4">
+                                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-1.5 sm:pb-4 gap-2">
+                                            <span className="text-[7px] min-[480px]:text-[8px] sm:text-[9px] uppercase tracking-widest text-sea-foam/40 font-black">Getxo Bela • Item {index + 1}</span>
+                                            <span className="text-base min-[480px]:text-lg sm:text-xl font-display text-accent italic">
                                                 {product.price}<span className="text-sea-foam text-xs ml-0.5">€</span>
                                             </span>
                                         </div>
-                                        <h3 className="text-2xl font-display text-sea-foam group-hover:text-accent transition-colors duration-500">
+                                        <h3 className="text-xs min-[480px]:text-sm sm:text-2xl font-display text-sea-foam group-hover:text-accent transition-colors duration-500 line-clamp-2">
                                             {product.name}
                                         </h3>
-                                        <p className="text-sea-foam/60 text-sm font-light leading-relaxed line-clamp-3">
+                                        <p className="text-sea-foam/60 text-[10px] min-[480px]:text-xs sm:text-sm font-light leading-tight sm:leading-relaxed line-clamp-2 sm:line-clamp-3">
                                             {product.description}
                                         </p>
                                     </div>
 
                                     {/* Stars & Details */}
-                                    <div className="flex items-center justify-between pt-4 border-t border-sea-foam/10 text-sea-foam/40 text-[9px] uppercase tracking-wider font-bold">
-                                        <div className="flex items-center gap-1">
+                                    <div className="flex items-center justify-between pt-1.5 sm:pt-4 border-t border-sea-foam/10 text-sea-foam/40 text-[7px] sm:text-[9px] uppercase tracking-wider font-bold">
+                                        <div className="flex items-center gap-0.5 sm:gap-1">
                                             {[...Array(5)].map((_, i) => (
                                                 <Star 
                                                     key={i} 
-                                                    className={`w-3 h-3 ${i < product.rating ? 'text-brass-gold fill-brass-gold' : 'text-sea-foam/10'}`} 
+                                                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 ${i < product.rating ? 'text-brass-gold fill-brass-gold' : 'text-sea-foam/10'}`} 
                                                 />
                                             ))}
                                         </div>
