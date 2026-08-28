@@ -254,7 +254,7 @@
 
 .cardContainer {
   position: relative;
-  height: clamp(222px, 31vw, 280px);
+  height: clamp(217px, 30vw, 274px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
@@ -267,7 +267,7 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: clamp(12px, 2vw, 20px);
-  padding: clamp(0.65rem, 1.8vw, var(--space-md));
+  padding: clamp(0.6rem, 1.7vw, var(--space-md));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,39 +288,39 @@
 }
 
 .cardIcon {
-  font-size: clamp(1.9rem, 4.8vw, 3.4rem);
-  margin-bottom: clamp(0.2rem, 0.9vw, var(--space-xs));
+  font-size: clamp(1.85rem, 4.7vw, 3.3rem);
+  margin-bottom: clamp(0.18rem, 0.85vw, var(--space-xs));
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: clamp(0.97rem, 1.9vw, 1.26rem);
+  font-size: clamp(0.95rem, 1.85vw, 1.23rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .cardDesc {
-  font-size: clamp(0.725rem, 1.15vw, 0.92rem);
-  line-height: 1.38;
+  font-size: clamp(0.71rem, 1.12vw, 0.9rem);
+  line-height: 1.35;
   color: #6B7280;
   margin: 0;
 }
 
 .cardBackText {
   font-family: var(--font-display);
-  font-size: clamp(0.825rem, 1.45vw, 1.06rem);
+  font-size: clamp(0.8rem, 1.4vw, 1.04rem);
   font-weight: 600;
   line-height: 1.45;
   margin: 0;
 }
 
 .cardBadge {
-  margin-top: clamp(0.3rem, 0.9vw, var(--space-xs));
-  padding: 0.22rem 0.7rem;
+  margin-top: clamp(0.28rem, 0.85vw, var(--space-xs));
+  padding: 0.2rem 0.68rem;
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
-  font-size: clamp(0.63rem, 0.95vw, 0.72rem);
+  font-size: clamp(0.61rem, 0.92vw, 0.7rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
