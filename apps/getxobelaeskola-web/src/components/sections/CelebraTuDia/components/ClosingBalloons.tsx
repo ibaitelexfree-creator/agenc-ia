@@ -73,10 +73,11 @@ export default function ClosingBalloons() {
       {/* Floating balloons fields */}
       {!prefersReducedMotion && (
         <div className={styles.balloonsField}>
-          {balloons.map((b) => (
-            <AnimatePresence key={b.id}>
-              {!b.isPopped && (
+          <AnimatePresence>
+            {balloons.map((b) => (
+              !b.isPopped ? (
                 <motion.div
+                  key={`balloon-${b.id}`}
                   className={styles.balloon}
                   style={{
                     left: `${b.left}%`,
@@ -104,10 +105,9 @@ export default function ClosingBalloons() {
                   {/* Balloon String */}
                   <div className={styles.balloonString} />
                 </motion.div>
-              )}
-              {b.isPopped && (
+              ) : (
                 <motion.div
-                  key="poppedText"
+                  key={`poppedText-${b.id}`}
                   className={styles.balloonText}
                   style={{ left: `${b.left}%`, bottom: '40%' }}
                   initial={{ scale: 0.8, opacity: 1 }}
@@ -117,9 +117,9 @@ export default function ClosingBalloons() {
                 >
                   {b.popText}
                 </motion.div>
-              )}
-            </AnimatePresence>
-          ))}
+              )
+            ))}
+          </AnimatePresence>
         </div>
       )}
 
