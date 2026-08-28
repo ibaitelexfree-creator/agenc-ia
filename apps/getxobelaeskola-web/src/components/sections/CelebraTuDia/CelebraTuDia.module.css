@@ -917,25 +917,6 @@
     gap: 0.25rem;
   }
 
-  .heroEyebrow {
-    font-size: 0.65rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .heroTitle {
-    font-size: clamp(1.4rem, 5vw, 2.5rem);
-  }
-
-  .heroSubtitle {
-    font-size: clamp(0.8rem, 2vw, 1.1rem);
-    margin: 0.25rem 0;
-  }
-
-  .heroCta {
-    font-size: 0.75rem;
-    padding: 0.45rem 1.25rem;
-  }
-
   .panoramicScene {
     height: clamp(160px, 35vh, 260px);
   }
@@ -949,56 +930,13 @@
     padding: clamp(1.25rem, 4vh, 2.5rem) clamp(0.75rem, 2vw, 1.5rem);
   }
 
-  .cardsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
-    gap: 0.75rem;
-  }
-
   .cardContainer {
     height: clamp(180px, 45vh, 240px);
-  }
-
-  .cardIcon {
-    font-size: 1.8rem;
-    margin-bottom: 0.15rem;
-  }
-
-  .cardTitle {
-    font-size: 0.9rem;
-  }
-
-  .cardDesc {
-    font-size: 0.7rem;
-    line-height: 1.25;
-  }
-
-  .cateringGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    gap: 0.75rem;
   }
 
   .cateringCard {
     min-height: clamp(220px, 50vh, 280px);
     padding: 1rem 0.75rem;
-  }
-
-  .cateringCardIcon {
-    font-size: 2.2rem;
-  }
-
-  .cateringCardTitle {
-    font-size: 0.95rem;
-    margin: 0.25rem 0 0.15rem 0;
-  }
-
-  .cateringCardDesc {
-    font-size: 0.7rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .cateringCardBtn {
-    padding: 0.45rem 1rem;
-    font-size: 0.75rem;
   }
 }
 
