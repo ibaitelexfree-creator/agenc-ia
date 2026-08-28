@@ -158,18 +158,21 @@
 /* ── SCENA PANORAMICA ────────────────────────── */
 .panoramicScene {
   position: relative;
-  width: 100%;
-  max-width: 100vw;
-  height: clamp(410px, 58vw, 775px);
-  min-height: 67vh;
+  width: 96%;
+  max-width: 1200px;
+  height: clamp(390px, 55vw, 740px);
+  min-height: 65vh;
   background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
   overflow: hidden;
   border-top: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
   border-bottom: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  border-left: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  border-right: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
+  border-radius: clamp(12px, 2vw, 24px);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
