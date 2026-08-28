@@ -52,7 +52,7 @@
   align-items: center;
   justify-content: center;
   padding: clamp(1.5rem, 5vh, var(--space-xl)) clamp(0.75rem, 3vw, var(--space-md));
-  background: linear-gradient(180deg, #E0F2FE 0%, var(--color-blanco) 100%);
+  background: linear-gradient(180deg, #E0F2FE 0%, #BAE6FD 100%);
   overflow: hidden;
   text-align: center;
   width: 100%;
@@ -145,7 +145,7 @@
 }
 
 .wavePath {
-  fill: var(--color-mar);
+  fill: #BAE6FD;
 }
 
 .jumpingGirl {
@@ -164,7 +164,7 @@
   width: 100%;
   max-width: 100vw;
   height: clamp(260px, 45vw, 550px);
-  background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
+  background: linear-gradient(180deg, #BAE6FD 0%, #1B8FCF 40%, var(--color-blanco) 100%);
   overflow: hidden;
   display: flex;
   align-items: center;
