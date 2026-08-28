@@ -159,8 +159,8 @@
 .panoramicScene {
   position: relative;
   width: 100%;
-  height: clamp(410px, 58vw, 765px);
-  min-height: 66vh;
+  height: clamp(450px, 65vw, 850px);
+  min-height: 75vh;
   background: linear-gradient(180deg, #F3F4F6 0%, #E0F2FE 70%, #BAE6FD 100%);
   overflow: hidden;
   border-top: clamp(2px, 0.5vw, 4px) solid var(--color-mar);
@@ -216,45 +216,17 @@
 
 .cardsGrid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: clamp(1rem, 2vw, 1.75rem);
-  max-width: min(1150px, 94vw);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(0.75rem, 2vw, var(--space-md));
+  max-width: min(1200px, 96vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
 }
 
-.cardsGrid > :nth-child(1),
-.cardsGrid > :nth-child(2),
-.cardsGrid > :nth-child(3) {
-  grid-column: span 2;
-}
-
-.cardsGrid > :nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-.cardsGrid > :nth-child(5) {
-  grid-column: 4 / span 2;
-}
-
-@media (max-width: 860px) {
-  .cardsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-  }
-
-  .cardsGrid > :nth-child(1),
-  .cardsGrid > :nth-child(2),
-  .cardsGrid > :nth-child(3),
-  .cardsGrid > :nth-child(4),
-  .cardsGrid > :nth-child(5) {
-    grid-column: auto;
-  }
-}
-
 .cardContainer {
   position: relative;
-  height: clamp(212px, 29vw, 268px);
+  height: clamp(240px, 35vw, 320px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
@@ -267,7 +239,7 @@
   height: 100%;
   backface-visibility: hidden;
   border-radius: clamp(12px, 2vw, 20px);
-  padding: clamp(0.55rem, 1.6vw, var(--space-md));
+  padding: clamp(0.75rem, 2vw, var(--space-md));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -288,39 +260,39 @@
 }
 
 .cardIcon {
-  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
-  margin-bottom: clamp(0.16rem, 0.8vw, var(--space-xs));
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(0.25rem, 1vw, var(--space-sm));
 }
 
 .cardTitle {
   font-family: var(--font-display);
-  font-size: clamp(0.93rem, 1.8vw, 1.2rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
   font-weight: 700;
   margin-bottom: var(--space-xs);
   word-break: break-word;
 }
 
 .cardDesc {
-  font-size: clamp(0.695rem, 1.1vw, 0.88rem);
-  line-height: 1.32;
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  line-height: 1.4;
   color: #6B7280;
   margin: 0;
 }
 
 .cardBackText {
   font-family: var(--font-display);
-  font-size: clamp(0.785rem, 1.35vw, 1.02rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
   font-weight: 600;
-  line-height: 1.42;
+  line-height: 1.5;
   margin: 0;
 }
 
 .cardBadge {
-  margin-top: clamp(0.25rem, 0.8vw, var(--space-xs));
-  padding: 0.18rem 0.65rem;
+  margin-top: clamp(0.35rem, 1vw, var(--space-sm));
+  padding: 0.25rem 0.75rem;
   background-color: var(--color-velero);
   color: var(--color-blanco-puro);
-  font-size: clamp(0.59rem, 0.9vw, 0.68rem);
+  font-size: clamp(0.65rem, 1vw, 0.75rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.08em;
