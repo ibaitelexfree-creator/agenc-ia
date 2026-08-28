@@ -169,7 +169,7 @@ export default function ScenaPanoramica() {
           </motion.g>
 
           {/* CHARACTER 1: Girl on Big SUP (falls/drips back on click) */}
-          <g transform="translate(250, 431)">
+          <g transform="translate(266, 431)">
             <motion.g
               animate={prefersReducedMotion ? {} : (girlFell ? {
                 y: [0, 80, 80, -20, 0],
