@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Optimized video playback performance & eliminated video stuttering across homepage (`http://localhost:3000/en/`).
+- **Task:** Fixed small screen visibility bug for "Plan de Recuperación, Transformación y Resiliencia" logo in Footer.
 - **Changes:**
-  - Optimized `CanvasBlobVideo` in `BlobCard.tsx` with pre-tokenized SVG paths, 30fps frame throttling, and `IntersectionObserver` off-screen auto-pause.
-  - Added GPU hardware compositing hints (`will-change: transform`, `transform: translateZ(0)`) to `Section1Hero.tsx`.
+  - Fixed invalid Tailwind class `h-4.5` in `src/components/layout/Footer.tsx` to fluid responsive height classes `h-5 sm:h-7 md:h-8`.
+  - Adjusted logo container flex gap (`gap-6 sm:gap-8 md:gap-12`) for clean mobile alignment.
 - **Status:** COMPLETED & VERIFIED.

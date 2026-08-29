@@ -166,9 +166,9 @@ export default async function Footer({ locale }: { locale: string }) {
                 <CollaboratorsGrid />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-6">
+                <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-4 sm:px-6">
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 md:h-10 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
+                    <div className="h-6 sm:h-8 md:h-10 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
@@ -179,7 +179,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-4.5 md:h-6 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
+                    <div className="h-5 sm:h-7 md:h-8 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"
