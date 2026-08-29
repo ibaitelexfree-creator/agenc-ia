@@ -54,7 +54,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${cormorantGaramond.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="preload" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/tierra.webp?v=5" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/velero_desktop.webp?v=1" as="image" type="image/webp" fetchPriority="high" />
+      </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <FramerProvider>
