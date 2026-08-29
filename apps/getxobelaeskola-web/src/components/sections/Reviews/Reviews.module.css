@@ -26,9 +26,11 @@
 }
 
 .container {
-  max-width: clamp(840px, 78vw, 1150px);
+  max-width: var(--gbe-container-max, 1400px);
+  padding: 0 var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -47,7 +49,7 @@
   gap: clamp(24px, 4vw, 48px);
   align-items: center;
 }
-@media (max-width: 900px) {
+@media (max-width: 767px) {
   .headerGrid { grid-template-columns: 1fr; gap: 16px; }
 }
 

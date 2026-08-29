@@ -111,14 +111,13 @@ export default async function Footer({ locale }: { locale: string }) {
 
     return (
         <footer
-            style={{ gridArea: 'footer', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
             className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative z-20"
         >
             <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
             {!isSubscribed && <Newsletter locale={locale} />}
             <HomeStats />
 
-            <div className="py-24 container mx-auto px-6 flex flex-col items-center">
+            <div className="py-24 global-container flex flex-col items-center">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center gap-6 mb-12 group">
                     <div className="flex flex-col items-center">

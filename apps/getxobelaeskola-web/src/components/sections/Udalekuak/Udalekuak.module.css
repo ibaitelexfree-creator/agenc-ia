@@ -24,12 +24,15 @@
 .heroSection {
   position: relative;
   width: 100%;
-  height: 100vh;
-  min-height: 480px;
+  min-height: clamp(450px, 80vh, 850px);
+  height: auto;
+  max-height: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
+  box-sizing: border-box;
+  padding: clamp(2rem, 5vh, 4rem) 1rem;
 }
 
 .heroBg {
@@ -42,52 +45,65 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #ffffff;
 }
 
 .heroVideo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover !important;
   object-position: center center;
   transition: transform 0.3s ease-in-out;
+  transform: scale(0.96);
 }
 
-/* 📱 Extra Small Screens (320px - 480px) */
-@media (max-width: 480px) {
+/* 📱 Small Screens & Mobile (Up to 768px) */
+@media (max-width: 768px) {
   .heroVideo, .heroVideoReverse {
-    /* Scale video down proportionately on narrow screens so video text Udalekuak resizes down gracefully */
-    object-fit: contain;
+    object-fit: cover !important;
     width: 100%;
     height: 100%;
-    object-position: center 38%;
-    transform: scale(1.3);
-  }
-}
-
-/* 📱 Small - Medium Mobile (481px - 640px) */
-@media (min-width: 481px) and (max-width: 640px) {
-  .heroVideo, .heroVideoReverse {
-    object-fit: cover;
-    object-position: center 40%;
-    transform: scale(1.18);
+    max-width: 100vw;
+    max-height: 100dvh;
+    object-position: center center;
+    transform: scale(0.96);
   }
 }
 
 /* 💻 Tablets & Laptops (641px - 1024px) */
 @media (min-width: 641px) and (max-width: 1024px) {
   .heroVideo, .heroVideoReverse {
-    object-fit: cover;
+    object-fit: cover !important;
     object-position: center center;
-    transform: scale(1.08);
+    transform: scale(0.96);
   }
 }
 
 /* 💻 Large Desktop (1025px - 1920px+) */
 @media (min-width: 1025px) {
   .heroVideo, .heroVideoReverse {
-    object-fit: cover;
+    object-fit: cover !important;
     object-position: center center;
-    transform: scale(1.0);
+    transform: scale(0.96);
+  }
+}
+
+/* 📱 Orientation Landscape specific adjustment - Video up 3%, Text shift */
+@media (orientation: landscape) {
+  .heroVideo, .heroVideoReverse {
+    object-fit: cover !important;
+    object-position: center 47% !important;
+    transform: scale(0.96);
+  }
+
+  .heroEyebrow {
+    transform: translateY(1vh);
+  }
+
+  .heroBottomGroup {
+    transform: translateY(-3vh);
   }
 }
 
@@ -109,33 +125,51 @@
   z-index: 10;
   text-align: center;
   color: var(--color-white);
-  padding: 0 1rem;
+  padding: 1rem;
   width: 100%;
   max-width: 900px;
+  height: 100%;
+  max-height: 100dvh;
+  box-sizing: border-box;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .heroEyebrow {
-  font-size: clamp(0.875rem, 2.5vw, 1.25rem);
+  font-size: clamp(0.75rem, 2.2vw, 1.25rem);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: clamp(0.15em, 0.4em, 0.4em);
   color: var(--color-sun);
-  margin-top: clamp(120px, 15vh, 180px);
-  margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  margin-top: clamp(4.5rem, 10vh, 7rem);
+  margin-bottom: 0;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+  flex-shrink: 0;
+  transform: translateY(7vh);
+}
+
+.heroBottomGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.5vh, 1.25rem);
+  margin-top: auto;
+  margin-bottom: clamp(2.5rem, 7vh, 4.5rem);
+  flex-shrink: 0;
+  width: 100%;
+  transform: translateY(-2vh);
 }
 
 .heroSubtitle {
   font-family: var(--font-accent);
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(1.25rem, 3.8vw, 2.75rem);
   color: #000000;
-  margin-bottom: 2rem;
-  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.6);
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8);
   padding: 0 0.5rem;
 }
 
@@ -144,12 +178,113 @@
   background-color: var(--color-sun);
   color: var(--color-ocean);
   font-weight: 700;
-  font-size: 1.125rem;
-  padding: 1rem 2.5rem;
+  font-size: clamp(0.9rem, 2.2vw, 1.125rem);
+  padding: clamp(0.65rem, 1.4vh, 1rem) clamp(1.6rem, 3.8vw, 2.5rem);
   border-radius: 100px;
   text-decoration: none;
   box-shadow: 0 10px 30px rgba(10, 61, 107, 0.2);
   transition: transform 0.3s, background-color 0.3s;
+}
+
+@media (max-height: 700px), (max-width: 640px) {
+  .heroEyebrow {
+    margin-top: clamp(3.5rem, 8vh, 5rem);
+  }
+
+  .heroBottomGroup {
+    margin-bottom: clamp(1.8rem, 5vh, 3rem);
+    gap: 0.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  }
+
+  .heroCta {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 📱 Compact & Small Screens Portrait (e.g. 320px x 586px) */
+@media (orientation: portrait) and (max-width: 480px), (orientation: portrait) and (max-height: 620px) {
+  .heroSection {
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .heroBg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .heroVideo, .heroVideoReverse {
+    object-fit: cover !important;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100dvh;
+    object-position: center center;
+    transform: scale(1.0);
+  }
+
+  .heroContent {
+    padding: 0.5rem;
+  }
+
+  .heroEyebrow {
+    margin-top: clamp(2.2rem, 5vh, 3.5rem);
+    font-size: clamp(0.7rem, 3.2vw, 0.85rem);
+    letter-spacing: 0.15em;
+  }
+
+  .heroBottomGroup {
+    margin-bottom: clamp(1.2rem, 4vh, 2rem);
+    gap: 0.35rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(0.95rem, 3.8vw, 1.25rem);
+  }
+
+  .heroCta {
+    padding: 0.45rem 1.1rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* 📱 Compact Landscape (e.g. 586px x 320px) */
+@media (orientation: landscape) and (max-height: 400px), (max-width: 640px) and (orientation: landscape) {
+  .heroContent {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .heroEyebrow {
+    font-size: clamp(0.6rem, 2.4vw, 0.8rem);
+    letter-spacing: 0.15em;
+    margin-top: clamp(1rem, 3vh, 2rem);
+    transform: translateY(2vh);
+  }
+
+  .heroBottomGroup {
+    margin-bottom: clamp(0.7rem, 2.5vh, 1.4rem);
+    gap: 0.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  }
+
+  .heroCta {
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+  }
 }
 
 .heroCta:hover {

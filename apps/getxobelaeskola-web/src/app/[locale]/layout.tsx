@@ -45,7 +45,7 @@ export default async function LocaleLayout({
   const { createClient } = await import('@/lib/supabase/server');
   const supabase = createClient();
   const { data: { user: authUser } } = await supabase.auth.getUser();
-  let initialUser = null;
+  let initialUser: any = null;
   
   if (authUser) {
       const { data: profile } = await supabase.from('profiles').select('rol, status_socio').eq('id', authUser.id).single();
@@ -70,9 +70,7 @@ export default async function LocaleLayout({
               <ScrollUpButton />
               <WhatsAppButton />
 
-              <Suspense fallback={null}>
-                <StatusToast />
-              </Suspense>
+              <StatusToast />
               <Analytics />
               <SpeedInsights />
               <AccessibilityScript />

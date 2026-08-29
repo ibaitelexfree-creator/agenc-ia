@@ -153,13 +153,13 @@ export default function DashboardPage({ params }: { params: { locale: string } }
         window.scrollTo({ top: 0, behavior: 'instant' });
         async function fetchData() {
             try {
-                const resProgreso = await fetch(apiUrl(`/api/academy/progress?locale=${params.locale}`));
+                const resProgreso = await fetch(apiUrl(`/api/progress?locale=${params.locale}`));
                 const progressData = await resProgreso.json();
 
                 if (progressData.error) throw new Error(progressData.error);
                 setData(progressData);
 
-                const resCursos = await fetch(apiUrl('/api/academy/courses'));
+                const resCursos = await fetch(apiUrl('/api/courses'));
                 const coursesData = await resCursos.json();
                 setCursos(coursesData.cursos || []);
 
@@ -230,20 +230,28 @@ export default function DashboardPage({ params }: { params: { locale: string } }
 
     if (!data) {
         return (
-            <div className="min-h-screen bg-nautical-black flex flex-col items-center justify-center p-6 text-center">
+            <div className="min-h-screen bg-[#0D2137] text-white flex flex-col items-center justify-center p-6 text-center">
                 <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-6">
                     <X size={40} />
                 </div>
                 <h2 className="text-2xl font-display text-white mb-2 italic">No se pudo cargar tu bitácora</h2>
-                <p className="text-white/40 mb-8 max-w-xs">Parece que hay un problema de conexión o tu sesión ha expirado.</p>
-                <button
-                    onClick={() => window.location.reload()}
-                    className="px-8 py-3 bg-accent text-nautical-black font-black uppercase tracking-widest text-xs rounded"
-                >
-                    Reintentar
-                </button>
-                <Link href={`/${params.locale}/student/dashboard`} className="mt-4 text-white/20 text-[10px] uppercase tracking-widest hover:text-white transition-colors">
-                    Volver al Panel Principal
+                <p className="text-white/60 mb-8 max-w-xs text-sm">Inicia sesión o regístrate para acceder a tu panel de alumno y bitácora de navegación.</p>
+                <div className="flex flex-col sm:flex-row gap-4 items-center">
+                    <Link
+                        href={`/${params.locale}/auth/login`}
+                        className="px-8 py-3 bg-accent text-neutral-950 font-black uppercase tracking-widest text-xs rounded hover:bg-white transition-colors"
+                    >
+                        Iniciar Sesión
+                    </Link>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="px-6 py-3 border border-white/20 text-white font-bold uppercase tracking-widest text-xs rounded hover:bg-white/10 transition-colors"
+                    >
+                        Reintentar
+                    </button>
+                </div>
+                <Link href={`/${params.locale}`} className="mt-8 text-white/40 text-xs uppercase tracking-widest hover:text-white transition-colors">
+                    Volver al Inicio
                 </Link>
             </div>
         );
@@ -291,7 +299,7 @@ export default function DashboardPage({ params }: { params: { locale: string } }
     const nextMilestone = getNextMilestone(skillsCount);
 
     return (
-        <div className="min-h-[100dvh] w-full bg-gradient-to-b from-nautical-black via-nautical-black to-[#0a1628] text-white pb-20">
+        <div className="min-h-[100dvh] w-full bg-gradient-to-b from-[#0D2137] via-[#0D2137] to-[#0a1628] text-white pb-20">
             <h1 className="sr-only">Dashboard de Academia | Getxo Bela Eskola</h1>
             <NotificationContainer />
             <AchievementToast />

@@ -975,23 +975,22 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(1rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem);
   position: relative;
   width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  min-height: 100dvh;
-  max-height: 100dvh;
+  min-height: clamp(450px, 80vh, 900px);
+  height: auto;
+  max-height: none;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .promise__inner {
-  max-width: var(--section-max-w);
+  max-width: var(--gbe-container-max, 1400px);
   margin: 0 auto;
   text-align: center;
   width: 100%;
@@ -1034,10 +1033,10 @@ a:hover {
 
 @media (max-width: 1023px) {
   .promise {
-    height: 100dvh !important;
-    min-height: 100dvh !important;
-    max-height: 100dvh !important;
-    padding: clamp(1rem, 4vh, 2.5rem) 16px !important;
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding: clamp(1.25rem, 3vh, 2.5rem) 16px;
   }
   .promise__grid { 
     grid-template-columns: repeat(3, 1fr);
@@ -1619,18 +1618,18 @@ iframe[id*="equalweb"] {
 }
 
 /* ==========================================================================
-   GLOBAL RESPONSIVE EDGE & VIEWPORT SYSTEM (FLUID 100dvh FIT)
+   GLOBAL RESPONSIVE ARCHITECTURE & UNIFIED CONTAINER SYSTEM
    ========================================================================== */
 html,
 body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  width: 100vw;
-  width: 100dvw;
+  width: 100%;
   max-width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  overflow-x: clip;
 }
 
 #main-content {
@@ -1639,7 +1638,19 @@ body {
   box-sizing: border-box;
 }
 
-/* Ensure all landing page sections perfectly map to 100dvh with responsive clamp padding */
+/* Global Container Utility: Enforces uniform width and horizontal margins across all pages & sections */
+.global-container {
+  width: 100%;
+  max-width: var(--gbe-container-max, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
+  padding-right: var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
+  box-sizing: border-box;
+}
+
+/* Fluid Global Section System: Eliminates rigid 100dvh capping to prevent content clipping */
+.global-section,
 .section-1-hero,
 .promise,
 .section-cta,
@@ -1650,22 +1661,20 @@ body {
 [class*="Reviews_section"] {
   width: 100%;
   max-width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  min-height: 100vh;
-  min-height: 100dvh;
-  max-height: 100dvh;
-  padding-top: clamp(1rem, 3vh, 3rem);
-  padding-bottom: clamp(1rem, 3vh, 3rem);
+  min-height: clamp(450px, 80vh, 900px);
+  height: auto;
+  max-height: none;
+  padding-top: var(--gbe-section-py, clamp(2rem, 4vh, 4.5rem));
+  padding-bottom: var(--gbe-section-py, clamp(2rem, 4vh, 4.5rem));
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
-/* Landscape orientation adjustments for short viewports (mobile, tablet, desktop landscape) */
-@media (orientation: landscape) {
+@media (orientation: landscape) and (max-height: 700px) {
+  .global-section,
   .section-1-hero,
   .promise,
   .section-cta,
@@ -1674,18 +1683,17 @@ body {
   .section-3-path,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
-    max-height: 100dvh;
-    padding-top: clamp(0.25rem, 1.5vh, 1.25rem);
-    padding-bottom: clamp(0.25rem, 1.5vh, 1.25rem);
-    box-sizing: border-box;
-    overflow: hidden;
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding-top: clamp(1.25rem, 3vh, 2.5rem);
+    padding-bottom: clamp(1.25rem, 3vh, 2.5rem);
+    overflow: visible;
   }
 }
 
 section {
   box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
 }

@@ -127,7 +127,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       const startY = window.scrollY
       const diff = targetY - startY
       const startTime = performance.now()
-      const duration = 750
+      const duration = 450
 
       const ease = (t: number) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t)
 
@@ -143,7 +143,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
           wheelTimeoutRef.current = setTimeout(() => {
             isAnimatingRef.current = false
             isWheelScrollingRef.current = false
-          }, 200)
+          }, 50)
         }
       }
 
@@ -368,7 +368,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       if (touchLockTimeout) clearTimeout(touchLockTimeout)
       touchLockTimeout = setTimeout(() => {
         touchTriggeredRef.current = false
-      }, 750)
+      }, 200)
     }
 
     // --- Arrow/Page key handler ---

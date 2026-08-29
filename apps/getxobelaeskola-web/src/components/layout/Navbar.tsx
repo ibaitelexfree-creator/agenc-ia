@@ -257,7 +257,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         <>
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col">
                 {/* Top Utility Bar */}
-                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
+                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
                     <div className="flex items-center gap-5">
                         <a href="https://wa.me/34944916632" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
@@ -384,7 +384,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     </div>
                 </div>
  
-                <nav className="w-full px-4 md:px-12 py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
+                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}

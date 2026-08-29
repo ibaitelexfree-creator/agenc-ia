@@ -130,7 +130,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                     {...register('email')}
                     type="email"
                     autoComplete="email"
-                    className="w-full h-12 bg-black/[0.03] border border-black/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-black/[0.05] transition-all font-light text-sea-foam placeholder:text-black/40"
+                    className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
                     placeholder="tu@email.com"
                 />
                 {errors.email && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.email.message}</p>}
@@ -143,7 +143,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
-                    className="w-full h-12 bg-black/[0.03] border border-black/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-black/[0.05] transition-all font-light text-sea-foam placeholder:text-black/40"
+                    className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
                     placeholder="••••••••"
                 />
                 {errors.password && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.password.message}</p>}
@@ -154,11 +154,11 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                         id="show-password"
                         checked={showPassword}
                         onChange={(e) => setShowPassword(e.target.checked)}
-                        className="w-3 h-3 rounded border-black/20 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
+                        className="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
                     />
                     <label
                         htmlFor="show-password"
-                        className="text-[9px] uppercase tracking-widest text-sea-foam/70 cursor-pointer hover:text-accent transition-colors"
+                        className="text-[10px] uppercase tracking-widest text-white/70 cursor-pointer hover:text-accent transition-colors"
                     >
                         {t('show_password')}
                     </label>
@@ -168,7 +168,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
             <div className="flex justify-end">
                 <Link
                     href={`/${locale}/auth/forgot-password`}
-                    className="text-[10px] uppercase tracking-widest text-accent hover:text-sea-foam transition-colors font-bold underline underline-offset-4"
+                    className="text-[10px] uppercase tracking-widest text-accent hover:text-white transition-colors font-bold underline underline-offset-4"
                 >
                     {t('forgot_password')}
                 </Link>
@@ -183,7 +183,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                                 type="button"
                                 onClick={handleResendEmail}
                                 disabled={resendStatus === 'loading'}
-                                className="ml-2 text-blue-500 underline hover:text-blue-400 transition-colors font-bold inline-block"
+                                className="ml-2 text-blue-400 underline hover:text-blue-300 transition-colors font-bold inline-block"
                             >
                                 {resendStatus === 'loading' ? '...' : t('resend_email')}
                             </button>
@@ -191,7 +191,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                     </p>
 
                     {resendStatus === 'success' && (
-                        <p className="text-[10px] text-green-500 text-center uppercase tracking-widest animate-fade-in">
+                        <p className="text-[10px] text-green-400 text-center uppercase tracking-widest animate-fade-in">
                             {t('resend_success')}
                         </p>
                     )}
@@ -211,17 +211,17 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
 
             <button
                 disabled={loading}
-                className="w-full h-12 rounded-xl bg-gradient-to-r from-accent to-accent/80 text-white font-black uppercase tracking-widest text-xs mt-4 disabled:opacity-50 hover:shadow-[0_0_30px_rgba(184,134,11,0.3)] transition-all active:scale-[0.98]"
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-accent to-accent/80 text-neutral-950 font-black uppercase tracking-widest text-xs mt-4 disabled:opacity-50 hover:shadow-[0_0_30px_rgba(184,134,11,0.3)] transition-all active:scale-[0.98]"
             >
                 {loading ? t('logging_in') : t('login_btn')}
             </button>
 
             <div className="relative my-8">
                 <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-black/10"></div>
+                    <div className="w-full border-t border-white/10"></div>
                 </div>
                 <div className="relative flex justify-center text-[10px] uppercase tracking-widest">
-                    <span className="bg-white px-4 text-black/50 font-bold italic">{t('or_divider')}</span>
+                    <span className="bg-[#0D2137] px-4 text-white/50 font-bold italic">{t('or_divider')}</span>
                 </div>
             </div>
 

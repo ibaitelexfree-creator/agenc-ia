@@ -13,19 +13,20 @@ export function CTASection() {
 
   return (
     <div
-      className="section-cta"
+      className="section-cta global-section"
       style={{
         gridArea: 'cta',
         position: 'relative',
         width: '100%',
-        height: '100dvh',
-        minHeight: '100dvh',
-        maxHeight: '100dvh',
+        minHeight: 'clamp(450px, 80vh, 850px)',
+        height: 'auto',
+        maxHeight: 'none',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
+        overflow: 'visible',
         boxSizing: 'border-box',
+        padding: 'clamp(2.5rem, 6vh, 6rem) clamp(1rem, 4vw, 3rem)',
       }}
     >
       <DramaticWind />
