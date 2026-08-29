@@ -342,6 +342,8 @@ export function Section1Hero() {
               zIndex: 2,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
+              willChange: 'transform',
+              transform: 'translateZ(0)',
               WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
               maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
             }}

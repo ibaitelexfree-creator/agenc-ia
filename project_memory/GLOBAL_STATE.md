@@ -2,12 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Implemented Global Responsive System across the entire codebase including `/contact/` (`apps/getxobelaeskola-web`).
+- **Task:** Optimized video playback performance & eliminated video stuttering across homepage (`http://localhost:3000/en/`).
 - **Changes:**
-  - Added 8-range responsive breakpoints in `tailwind.config.js`.
-  - Added global design tokens (`--gbe-container-max`, `--gbe-container-px`, `--gbe-section-py`) in `src/styles/tokens.css`.
-  - Added `.global-container` and `.global-section` utility classes in `src/app/globals.css`.
-  - Applied `.global-container` & fluid responsive grid to Contact page (`src/app/[locale]/contact/page.tsx`).
-  - Removed rigid `100dvh` and `max-height: 100dvh` caps on content sections.
-  - Standardized container paddings across Navbar, Footer, and page components.
+  - Optimized `CanvasBlobVideo` in `BlobCard.tsx` with pre-tokenized SVG paths, 30fps frame throttling, and `IntersectionObserver` off-screen auto-pause.
+  - Added GPU hardware compositing hints (`will-change: transform`, `transform: translateZ(0)`) to `Section1Hero.tsx`.
 - **Status:** COMPLETED & VERIFIED.
