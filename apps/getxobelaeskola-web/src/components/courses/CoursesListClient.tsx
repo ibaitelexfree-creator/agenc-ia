@@ -49,7 +49,7 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                 ) : (
                     <motion.div 
                         layout
-                        className="courses-grid-system mt-6 md:mt-10 lg:mt-12"
+                        className="courses-grid-system grid portrait:grid-cols-1 portrait:md:grid-cols-2 portrait:lg:grid-cols-3 landscape:grid-cols-2 landscape:md:grid-cols-3 mt-6 md:mt-10 lg:mt-12"
                     >
                         <AnimatePresence mode="popLayout">
                             {displayCourses.map((course) => (
