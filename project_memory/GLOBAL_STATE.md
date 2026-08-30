@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Configured 2-column landscape layout for `CTAFinal` section.
+- **Task:** Restored original larger size for `Newsletter` section and configured fluid `clamp()` scaling across all viewports.
 - **Changes:**
-  - Added `@media (orientation: landscape) and (max-height: 600px)` in `EquiposEntrenamiento.module.css`.
-  - Positions left column (`ÚNETE A LA FLOTA`) to the left and right column (`MENSAJE EN LÍNEA` & buttons) to the right side-by-side with fluid scaling, preventing vertical and horizontal overflow in landscape mode.
+  - Removed fixed `100vh` constraint in `NewsletterSection.tsx`.
+  - Added fluid `clamp()` sizing for eyebrow (`clamp(0.72rem, 1.2vw, 0.88rem)`), title (`clamp(1.8rem, 4vw, 3.5rem)`), subtitle, input field, and action button in `Newsletter.tsx`.
 - **Status:** COMPLETED & VERIFIED.
