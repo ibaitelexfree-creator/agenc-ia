@@ -119,7 +119,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           {t('eyebrow')}
         </motion.p>
 
-        {/* BOTTOM CONTENT GROUP (Subtitle + CTA below video text) */}
+        {/* BOTTOM CONTENT GROUP (Subtitle + CTA below center video text area) */}
         <div className={styles.heroBottomGroup}>
           {/* Subtitle (handwritten font Caveat) */}
           <motion.p
