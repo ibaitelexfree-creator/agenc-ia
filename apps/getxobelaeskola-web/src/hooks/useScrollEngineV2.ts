@@ -121,9 +121,6 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
     // Animated scroll — used for wheel/touch/arrow keys.
     const animateScroll = (targetY: number) => {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-
       const startY = window.scrollY
       const diff = targetY - startY
       const startTime = performance.now()
@@ -137,8 +134,6 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         if (t < 1) {
           animationRef.current = requestAnimationFrame(step)
         } else {
-          document.documentElement.style.overflow = ''
-          document.body.style.overflow = ''
           if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
           wheelTimeoutRef.current = setTimeout(() => {
             isAnimatingRef.current = false
@@ -427,8 +422,6 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       window.removeEventListener('touchend', handleTouchEnd)
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('scroll', handleScrollSync)
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
       if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
       window.removeEventListener('resize', handleResizeForScroll)

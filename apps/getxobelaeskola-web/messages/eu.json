@@ -1035,49 +1035,11 @@
     }
   },
   "tools": {
-    "index": {
-      "eyebrow": "Nautika Tresnak",
-      "title": "Zubi Digitala",
-      "description": "Navigaziorako, plangintzarako eta segurtasunerako tresna funtsezkoen bilduma.",
-      "converter": {
-        "title": "Nautika Bihurtzailea",
-        "description": "Unitate bihurtzaile profesionala abiadura, distantzia, sakonera eta presiorako.",
-        "cta": "Bihurtzailea Ireki"
-      },
-      "plotter": {
-        "title": "Kartografia Plotterra",
-        "description": "Entrenatu zure nabigazio trebetasunak plotter interaktiboarekin.",
-        "cta": "Plotterra Ireki"
-      }
-    },
-    "nautical_converter": {
-      "eyebrow": "Erabilgarritasuna",
-      "title": "Nautika Bihurtzailea",
-      "description": "Zehaztasunezko tresna itsas zein oinarrizko unitateak bihurtzeko.",
-      "input": "Sarrera Balioa",
-      "result": "Emaitza",
-      "history": "Azken Bihurketak",
-      "clear_history": "Historia Garbitu",
-      "speed": "Abiadura",
-      "distance": "Distantzia",
-      "depth": "Sakonera",
-      "temperature": "Tenperatura",
-      "pressure": "Presioa",
-      "units": {
-        "knots": "Nudoak",
-        "kmh": "km/h",
-        "ms": "m/s",
-        "meters": "Metroak",
-        "feet": "Oinak",
-        "nautical_miles": "Itsas Milia",
-        "km": "Kiloetroak",
-        "fathoms": "Bratzak",
-        "celsius": "Celsius",
-        "fahrenheit": "Fahrenheit",
-        "hpa": "hPa",
-        "mb": "Milibarrak",
-        "inhg": "inHg"
-      }
+    "title": "Tresna Nautikoak",
+    "nautical_converter": "Bihurtzaile Nautikoa",
+    "converter": {
+      "title": "Bihurtzaile Nautikoa",
+      "subtitle": "Unitate nautiko eta estandarren artean bihurtzeko zehaztasunezko tresna."
     }
   },
   "validation": {
@@ -1299,25 +1261,19 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Bela Nabigazio Kluba Getxon",
-    "subtitle": "Nabigatu, ikasi eta partekatu",
-    "cta": "Egin zaitez bazkide",
-    "scroll_hint": "Jarraitu nabigatzera",
-    "word1": "Nabigatu.",
-    "word2": "Ikasi.",
-    "word3": "Partekatu.",
-    "tu_mar_tu_club": "Zure itsasoa. Zure kluba.",
-    "todo_lo_que_ofrecemos": "Eskaintzen dugun guztia",
-    "card_cursos_title": "Ikastaroak",
-    "card_cursos_subtitle": "Ikasi nabigatzen",
-    "card_club_title": "Bazkide Kluba",
-    "card_club_subtitle": "Bat egin komunitatearekin",
-    "card_equipos_title": "Taldeak",
-    "card_equipos_subtitle": "Lehiatu eta hobetu",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Bela udalekuak",
-    "card_entidades_title": "Erakundeak",
-    "card_entidades_subtitle": "Lagundu gurekin"
+    "title": "Nabigatu, ikasi eta partekatu",
+    "subtitle": "Getxoko Bela Nabigazio Kluba",
+    "cta": "Egin zaitez Bazkide",
+    "card_cursos_title": "Ikasi nabigatzen",
+    "card_cursos_subtitle": "Bela arina eta gurutzontzi ikastaroak",
+    "card_club_title": "Batu komunitatera",
+    "card_club_subtitle": "Nabigatu urte osoan bazkideekin",
+    "card_equipos_title": "Nabigatzen aurrera egin",
+    "card_equipos_subtitle": "Estropada eta teknifikazio taldeak",
+    "card_udalekuak_title": "Bela udalekuak",
+    "card_udalekuak_subtitle": "Udako campusak gazteentzat",
+    "card_entidades_title": "Lan egin gurekin",
+    "card_entidades_subtitle": "Team building eta erakundeak"
   },
   "s2": {
     "eyebrow": "Esperientzia",
@@ -1353,7 +1309,7 @@
   "s3": {
     "eyebrow": "Prestakuntza",
     "title": "Aurkitu zure bidea",
-    "subtitle": "Zein da zure maila eta zenbat denbora duzu?",
+    "subtitle": "Zein da zure maila?",
     "level_basic": "Oinarrizko maila",
     "level_mid": "Maila ertaina",
     "youth": "Gazteak",
@@ -1790,10 +1746,14 @@
     "eyebrow": "Nor gara",
     "title_line1": "Zer da",
     "title_line2": "Getxo Bela Eskola?",
-    "value1_prefix": "Ez gara ohiko eskola bat, ",
-    "value1_highlight": "balioak dituen komunitate hurbil bat baizik.",
-    "value2": "<gold>Nabigatzen ikasteko</gold>, partekatzeko eta itsasoaz <gold>gozatzeko</gold> lekua.",
-    "cta": "Irakurri gehiago"
+    "value1_prefix": "Ez gara eskola konbentzional bat, baizik eta ",
+    "value1_highlight": "balioak dituen komunitate hurbil bat.",
+    "value2": "Itsasoaz <gold>gozatzeko</gold>, partekatzeko eta <gold>nabigatzen ikasteko</gold> lekua.",
+    "cta": "Irakurri gehiago",
+    "modal_p1": "Ez gara eskola konbentzional bat, baizik eta itsasoaren eta horrekin datozen balioen inguruan eraikitako komunitate hurbil bat.",
+    "modal_p2": "Nabigatzen ikastea taldean partekatzearekin, gozatzearekin eta haztearekin batera doan lekua. Hemen, bela ez da kirol gisa soilik bizi, pertsonak elkarrekin eta ingurunearekin lotzen dituen esperientzia gisa baizik.",
+    "modal_p3": "Ikaskuntza natural, eskuragarri eta presiorik gabekoan sinesten dugu, non pertsona bakoitzak bere erritmoa eta nabigazioa bizitzeko modua aurkitzen dituen. Lehen urratsak ematen dituztenetatik hasi eta aurrera egiten jarraitu nahi dutenetaraino, guztiek dute beren lekua.",
+    "modal_p4": "Uretatik haratago, loturak, konfiantza eta itzultzera gonbidatzen duen itsasoa ulertzeko modu bat sortzen den topagunea gara."
   },
   "s3_adapts": {
     "eyebrow": "Esperientzia",
@@ -2264,28 +2224,28 @@
     "mb": "Millibars",
     "inhg": "inHg"
   },
-  "tools": {
-    "title": "Tresna Nautikoak",
-    "nautical_converter": "Bihurtzaile Nautikoa",
-    "converter": {
-      "title": "Bihurtzaile Nautikoa",
-      "subtitle": "Unitate nautiko eta estandarren artean bihurtzeko zehaztasunezko tresna."
+  "s3_adapts_new": {
+    "title": "BELA ZURI<br/>EGOKITZEN ZAIO",
+    "subtitle": "Belaontzi txikiak edo handiak,<br/>lasaitasun edo ekintza egunak,<br/>ur lasaiak edo itsaso zabala.<br/>Zuk aukeratzen duzu nola nabigatu nahi duzun.",
+    "leer_mas": "LEER MÁS",
+    "modal": {
+      "title": "Nahierarako nabigazioa, itsasoa nola bizi nahi duzun arabera.",
+      "intro1": "Bela ez da kirol zurruna. Itsasoa bizitzeko modu bat da, zuri, zure denborari eta egun bakoitzean nahi duzunari egokitzen zaiona.",
+      "intro2": "Gaur egun oso iragarpen meteorologiko zehatzak eta haize eredu argiak ditugu. Gure ikastaroetan ez duzu nabigatzen bakarrik ikasten, baldintzak ulertzen eta aurreikusten ere ikasten duzu. Horrela, nahiko ziurtasunez aukeratu dezakezu noiz eta nola atera.",
+      "experience_title": "Zuk aukeratzen duzu esperientzia mota",
+      "experience_1": "Lasaitasuna: lanaren ondoren irtetea, belaontzi txiki edo partekatu batean deskonektatzea, presarik gabe nabigatuz.",
+      "experience_2": "Ekintza: haize egunak, intentsitate handiagoa, maniobra dinamikoak eta sentsazio indartsuak.",
+      "experience_3": "Belak biak ahalbidetzen dizkizu.",
+      "scenario_title": "Zuk aukeratzen duzu eszenatokia",
+      "scenario_1": "Barruko Abra: ur babestu eta lasaiak, ikasteko edo erlaxatzeko ezin hobeak.",
+      "scenario_2": "Kanpoko Abra: itsaso zabala, olatuak eta nabigazio biziagoa eta zirraragarriagoa.",
+      "who_title": "Zuk aukeratzen duzu norekin nabigatu",
+      "who_1": "Belaontzi txikiak: bakarka edo 2 eta 6 pertsona bitarteko taldeetan, parte-hartze aktiboarekin.",
+      "who_2": "Belaontzi handiak (gurutzaontziak): 8 pertsona arte, nahiz eta ezin hobea 2 eta 6 artekoa izan esperientzia dinamiko bat izateko.",
+      "modern_title": "Nabigatzeko modu modernoa",
+      "modern_1": "Antzina marinel handiak sortzen ziren nola irteten ziren bazekitelako, baina ez nola itzuliko ziren.",
+      "modern_2": "Gaur egun baldintzak zehaztasun handiz aurreikus ditzakegu.",
+      "modern_3": "Belak benetakoa izaten jarraitzen du, baina orain kontzienteagoa, eskuragarriagoa eta, batez ere, pertsona bakoitzari moldagarriagoa da."
     }
-  },
-  "s1": {
-    "eyebrow": "Getxo · Bizkaia",
-    "title": "Nabigatu, ikasi eta partekatu",
-    "subtitle": "Getxoko Bela Nabigazio Kluba",
-    "cta": "Egin zaitez Bazkide",
-    "card_cursos_title": "Ikasi nabigatzen",
-    "card_cursos_subtitle": "Bela arina eta gurutzontzi ikastaroak",
-    "card_club_title": "Batu komunitatera",
-    "card_club_subtitle": "Nabigatu urte osoan bazkideekin",
-    "card_equipos_title": "Lehiatu eta hobetu",
-    "card_equipos_subtitle": "Estropada eta teknifikazio taldeak",
-    "card_udalekuak_title": "Bela udalekuak",
-    "card_udalekuak_subtitle": "Udako campusak gazteentzat",
-    "card_entidades_title": "Lan egin gurekin",
-    "card_entidades_subtitle": "Team building eta erakundeak"
   }
 }

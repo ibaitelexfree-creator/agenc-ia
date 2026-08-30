@@ -1,99 +1,23 @@
-// src/components/sections/Section3Adapts.tsx
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
-import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Card3D } from '@/components/ui/Card3D'
-import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
-import { Windsurfer } from '@/components/creatures/Windsurfer'
-
-type ExperienceType = 'calm' | 'action'
-type EnvironmentType = 'inner' | 'outer'
-type BoatType = 'small' | 'big'
-
-interface AnimatedCounterProps {
-    from: number;
-    to: number;
-    duration?: number; // en ms
-    suffix?: string;
-}
-
-function AnimatedCounter({ from, to, duration = 1500, suffix = '' }: AnimatedCounterProps) {
-    const [count, setCount] = useState(from);
-    const elementRef = useRef<HTMLSpanElement>(null);
-    const animationRef = useRef<number | null>(null);
-
-    useEffect(() => {
-        const currentElement = elementRef.current;
-        if (!currentElement) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    let startTime: number | null = null;
-
-                    const step = (timestamp: number) => {
-                        if (!startTime) startTime = timestamp;
-                        const elapsed = timestamp - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        
-                        // Easing: easeOutQuad
-                        const easeProgress = progress * (2 - progress);
-                        const currentValue = Math.floor(from + (to - from) * easeProgress);
-                        
-                        setCount(currentValue);
-
-                        if (progress < 1) {
-                            animationRef.current = requestAnimationFrame(step);
-                        }
-                    };
-
-                    animationRef.current = requestAnimationFrame(step);
-                } else {
-                    // Resetear al salir de vista
-                    if (animationRef.current) {
-                        cancelAnimationFrame(animationRef.current);
-                        animationRef.current = null;
-                    }
-                    setCount(from);
-                }
-            },
-            { 
-                threshold: 0.1,
-                rootMargin: '-30px 0px' 
-            }
-        );
-
-        observer.observe(currentElement);
-
-        return () => {
-            observer.unobserve(currentElement);
-            if (animationRef.current) {
-                cancelAnimationFrame(animationRef.current);
-            }
-        };
-    }, [from, to, duration]);
-
-    return <span ref={elementRef}>{count}{suffix}</span>;
-}
+import { useScrollLock } from '@/hooks/useScrollLock'
 
 export function Section3Adapts() {
-  const t = useTranslations('s3_adapts')
-  const tStats = useTranslations('home.stats')
-  const params = useParams()
-  const locale = (params?.locale as string) || 'es'
-
-  // Estados del configurador reactivo
-  const [experience, setExperience] = useState<ExperienceType>('calm')
-  const [environment, setEnvironment] = useState<EnvironmentType>('inner')
-  const [boat, setBoat] = useState<BoatType>('small')
-  
+  const t = useTranslations('s3_adapts_new')
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [isPhone, setIsPhone] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  
+  const modalRef = useRef<HTMLDivElement>(null)
+  useScrollLock(modalRef, isModalOpen)
+
   useEffect(() => {
+    setMounted(true)
     const checkSize = () => {
       setIsPhone(window.innerWidth < 768)
     }
@@ -102,16 +26,18 @@ export function Section3Adapts() {
     return () => window.removeEventListener('resize', checkSize)
   }, [])
 
-  // Obtener el subtítulo dinámico según la combinación
-  const getDynamicSubtitle = () => {
-    const envKey = environment === 'inner' ? 'int' : 'ext'
-    const key = `combo_${experience}_${envKey}_${boat}`
-    try {
-      return t(key)
-    } catch {
-      return t('subtitle_default')
-    }
-  }
+  // Cerrar el modal automáticamente al hacer scroll en la página principal
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const initialScrollY = window.scrollY;
+    const handleScroll = () => {
+      if (Math.abs(window.scrollY - initialScrollY) > 10) {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isModalOpen]);
 
   return (
     <section
@@ -120,30 +46,29 @@ export function Section3Adapts() {
         gridArea: 's3',
         position: 'relative',
         width: '100%',
-        height: '100dvh',
         minHeight: '100dvh',
-        maxHeight: '100dvh',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         boxSizing: 'border-box',
       }}
     >
-      {/* 62% Inferior: Panel del configurador interactivo original con fondo de imagen reactivo */}
       <div
         style={{
           flex: 1,
           position: 'relative',
           padding: isPhone 
-            ? '1rem 0.75rem' 
-            : '2rem clamp(1.5rem, 6vw, 5rem)',
+            ? '2rem 1.5rem' 
+            : '2rem clamp(2rem, 6vw, 5rem)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center', // Center content vertically in middle of screen
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center'
         }}
       >
-        {/* Filtro de cristal blanco traslúcido para legibilidad */}
+        {/* Background image & filter */}
         <div 
           style={{ 
             position: 'absolute', 
@@ -155,333 +80,176 @@ export function Section3Adapts() {
           }} 
           className="pointer-events-none"
         />
-
-        {/* Imagen de fondo reactiva colocada sobre el filtro con buena opacidad */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 2 }} className="pointer-events-none select-none">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={experience}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.25 }} 
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: 'easeInOut' }}
-              style={{ position: 'absolute', inset: 0 }}
-            >
-              <Image
-                src={experience === 'calm' ? '/images/ai/section2-calm-bay.webp' : '/images/ai/section2-action-sea.webp'}
-                alt="Fondo interactivo"
-                fill
-                quality={70}
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <Image
+            src="/images/ai/section2-calm-bay.webp"
+            alt="Fondo vela"
+            fill
+            quality={70}
+            style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.25 }}
+          />
         </div>
 
-        {/* Header กับ Subtítulo Dynamic */}
-        <div style={{ marginBottom: 'clamp(0.4rem, 1.2vh, 1.2rem)', position: 'relative', zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-          <SectionEyebrow text={t('eyebrow')} color="var(--gbe-navy-700)" hideLineOnMobile={true} />
+        {/* Content */}
+        <div style={{ position: 'relative', zIndex: 3, maxWidth: '800px' }}>
           <h2
             style={{
-              fontSize: 'clamp(1.1rem, 2.8vw, 2.1rem)',
-              fontWeight: 700,
+              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              fontWeight: 800,
               color: 'var(--gbe-navy-900)',
-              lineHeight: 1.15,
-              marginBottom: '0.2rem',
+              lineHeight: 1.1,
+              marginBottom: '2rem',
               fontFamily: 'var(--gbe-font-display)',
+              textTransform: 'uppercase',
             }}
-          >
-            {t('title')}
-          </h2>
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={getDynamicSubtitle()}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -5 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                color: 'var(--gbe-text-muted)',
-                fontSize: 'clamp(0.72rem, 1.4vw, 0.95rem)',
-                lineHeight: 1.3,
-                fontWeight: 300,
-                minHeight: '1.6rem',
-                maxWidth: '700px',
-                margin: '0 auto',
-              }}
-            >
-              {getDynamicSubtitle()}
-            </motion.p>
-          </AnimatePresence>
-        </div>
-
-        {/* Grid interactivo apilado */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: isPhone ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: isPhone ? '0.35rem' : '0.4rem',
-            marginBottom: '0.4rem',
-            position: 'relative',
-            zIndex: 3,
-            width: '100%',
-            maxWidth: '900px',
-            margin: '0 auto 0.4rem auto',
-          }}
-        >
-          {/* Card 1: Tipo de experiencia */}
-          <Card3D intensity={5}>
-            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                {t('experience_label')}
-              </span>
-              <div style={{ display: 'flex', gap: '0.4rem' }}>
-                <button
-                  onClick={() => setExperience('calm')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: experience === 'calm' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: experience === 'calm' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('calm_label')}
-                </button>
-                <button
-                  onClick={() => setExperience('action')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: experience === 'action' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: experience === 'action' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('action_label')}
-                </button>
-              </div>
-            </div>
-          </Card3D>
-
-          {/* Card 2: El escenario */}
-          <Card3D intensity={5}>
-            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                {t('setting_label')}
-              </span>
-              <div style={{ display: 'flex', gap: '0.4rem' }}>
-                <button
-                  onClick={() => setEnvironment('inner')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: environment === 'inner' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: environment === 'inner' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('inner_abra_label')}
-                </button>
-                <button
-                  onClick={() => setEnvironment('outer')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: environment === 'outer' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: environment === 'outer' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('outer_abra_label')}
-                </button>
-              </div>
-            </div>
-          </Card3D>
-
-          {/* Card 3: Con quién navegar */}
-          <Card3D intensity={5}>
-            <div style={{ padding: '0.55rem 0.75rem', display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-              <span style={{ fontSize: '0.68rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--gbe-text-muted)' }}>
-                {t('boat_label')}
-              </span>
-              <div style={{ display: 'flex', gap: '0.4rem' }}>
-                <button
-                  onClick={() => setBoat('small')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: boat === 'small' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: boat === 'small' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('small_label')}
-                </button>
-                <button
-                  onClick={() => setBoat('big')}
-                  style={{
-                    flex: 1,
-                    padding: '0.4rem 0.3rem',
-                    borderRadius: '8px',
-                    border: 'none',
-                    fontWeight: 600,
-                    fontSize: '0.78rem',
-                    cursor: 'pointer',
-                    backgroundColor: boat === 'big' ? 'var(--gbe-navy-900)' : 'var(--gbe-mist)',
-                    color: boat === 'big' ? 'white' : 'var(--gbe-text)',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {t('cruise_label')}
-                </button>
-              </div>
-            </div>
-          </Card3D>
-
-          {/* Card 4: Vela Moderna */}
-          <div 
-            style={{ 
-              transform: isPhone ? 'none' : 'translateY(24px)',
-              width: '100%',
+            dangerouslySetInnerHTML={{ __html: t('title') }}
+          />
+          
+          <p
+            style={{
+              color: 'var(--gbe-text)',
+              fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
+              lineHeight: 1.6,
+              fontWeight: 400,
+              marginBottom: '3rem',
             }}
-          >
-            <Card3D
-              intensity={5}
-              style={{
-                backgroundColor: 'var(--gbe-mist)',
-                borderRadius: '14px',
-                padding: '0.6rem 0.8rem',
-                color: 'var(--gbe-navy-900)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
-            >
-              <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
-                <span
-                  style={{
-                    alignSelf: 'flex-start',
-                    backgroundColor: 'var(--gbe-navy-900)',
-                    color: 'var(--gbe-gold)',
-                    fontSize: '0.58rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    padding: '2px 8px',
-                    borderRadius: '20px',
-                    marginBottom: '0.25rem',
-                  }}
-                >
-                  {t('card4.badge')}
-                </span>
-                <p
-                  style={{
-                    fontSize: '0.70rem',
-                    lineHeight: 1.35,
-                    color: 'var(--gbe-text-muted)',
-                  }}
-                >
-                  {t('card4.body')}
-                </p>
-              </div>
-            </Card3D>
-          </div>
-        </div>
+            dangerouslySetInnerHTML={{ __html: t('subtitle') }}
+          />
 
-        {/* Enlace global para "Leer más" */}
-        <div style={{ alignSelf: 'center', margin: '0.4rem 0 0.8rem 0', position: 'relative', zIndex: 3 }}>
-          <Link
-            href={`/${locale}/courses`}
-            className="group relative inline-flex items-center gap-3 text-2xs uppercase tracking-[0.25em] font-bold text-nautical-blue"
-            style={{ textDecoration: 'none' }}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            style={{
+              backgroundColor: 'var(--gbe-navy-900)',
+              color: 'white',
+              border: 'none',
+              padding: '1rem 2.5rem',
+              fontSize: '1rem',
+              fontWeight: 700,
+              borderRadius: '50px',
+              cursor: 'pointer',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              transition: 'transform 0.2s, background-color 0.2s',
+              boxShadow: '0 4px 15px rgba(11, 61, 99, 0.2)',
+            }}
+            onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
           >
-            <span className="w-8 h-px bg-nautical-blue group-hover:scale-x-150 transition-transform duration-500 origin-left" />
-            {t('card4.badge')} →
-          </Link>
+            {t('leer_mas')}
+          </button>
         </div>
       </div>
 
-      {/* Ola decorativa animada en la parte inferior */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '100px',
-          overflow: 'hidden',
-          zIndex: 5,
-          pointerEvents: 'none',
-        }}
-      >
-        <motion.div
-          animate={{ x: ['0%', '-50%'] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-          style={{ display: 'flex', width: '200%', height: '100%' }}
-        >
-          <WaveSVG3D opacity={0.35} experience={experience} />
-          <WaveSVG3D opacity={0.35} experience={experience} />
-        </motion.div>
-      </div>
+      {/* Modal (Portaled) */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 999999,
+                backgroundColor: 'rgba(11, 61, 99, 0.8)',
+                backdropFilter: 'blur(8px)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '1.5rem',
+              }}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <motion.div
+                ref={modalRef}
+                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: '20px',
+                  padding: isPhone ? '2rem 1.5rem' : '3rem 4rem',
+                  maxWidth: '800px',
+                  width: '100%',
+                  maxHeight: '90vh',
+                  overflowY: 'auto',
+                  position: 'relative',
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                }}
+              >
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '1.5rem',
+                    right: '1.5rem',
+                    background: 'rgba(0,0,0,0.05)',
+                    border: 'none',
+                    borderRadius: '50%',
+                    width: '36px',
+                    height: '36px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '1.2rem',
+                    color: 'var(--gbe-navy-900)',
+                    transition: 'background 0.2s',
+                  }}
+                  onMouseOver={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.1)'}
+                  onMouseOut={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.05)'}
+                >
+                  ✕
+                </button>
 
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--gbe-navy-900)', marginBottom: '1.5rem' }}>
+                  {t('modal.title')}
+                </h3>
+                
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', color: 'var(--gbe-text)', lineHeight: 1.6 }}>
+                  <p>{t('modal.intro1')}</p>
+                  <p>{t('modal.intro2')}</p>
+
+                  <div>
+                    <h4 style={{ fontWeight: 700, color: 'var(--gbe-navy-700)', marginBottom: '0.5rem' }}>{t('modal.experience_title')}</h4>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <li>{t('modal.experience_1')}</li>
+                      <li>{t('modal.experience_2')}</li>
+                    </ul>
+                    <p style={{ marginTop: '0.5rem', fontWeight: 600 }}>{t('modal.experience_3')}</p>
+                  </div>
+
+                  <div>
+                    <h4 style={{ fontWeight: 700, color: 'var(--gbe-navy-700)', marginBottom: '0.5rem' }}>{t('modal.scenario_title')}</h4>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <li>{t('modal.scenario_1')}</li>
+                      <li>{t('modal.scenario_2')}</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 style={{ fontWeight: 700, color: 'var(--gbe-navy-700)', marginBottom: '0.5rem' }}>{t('modal.who_title')}</h4>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <li>{t('modal.who_1')}</li>
+                      <li>{t('modal.who_2')}</li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 style={{ fontWeight: 700, color: 'var(--gbe-navy-700)', marginBottom: '0.5rem' }}>{t('modal.modern_title')}</h4>
+                    <p>{t('modal.modern_1')}</p>
+                    <p>{t('modal.modern_2')}</p>
+                    <p style={{ fontWeight: 600, marginTop: '0.5rem' }}>{t('modal.modern_3')}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
-  )
-}
-
-function WaveSVG3D({ opacity, experience }: { opacity: number; experience: ExperienceType }) {
-  const speed = experience === 'calm' ? 8 : 4.5
-  return (
-    <motion.div
-      style={{
-        perspective: '200px',
-        width: '50%',
-        height: '100%',
-        flexShrink: 0,
-      }}
-      animate={{ rotateX: [0, 1.5, 0, -1.5, 0], y: [0, -5, 0] }}
-      transition={{ duration: speed, repeat: Infinity, ease: 'easeInOut' }}
-    >
-      <svg
-        viewBox="0 0 1440 120"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        style={{ width: '100%', height: '100%' }}
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 80 C180 40 360 110 540 70 C720 30 900 110 1080 70 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z"
-          fill={`rgba(11, 61, 99, ${opacity})`}
-        />
-        <path
-          d="M0 60 C180 20 360 100 540 60 C720 20 900 100 1080 60 C1260 20 1380 90 1440 60 L1440 120 L0 120 Z"
-          fill={`rgba(44, 110, 155, ${opacity * 0.7})`}
-        />
-      </svg>
-    </motion.div>
   )
 }

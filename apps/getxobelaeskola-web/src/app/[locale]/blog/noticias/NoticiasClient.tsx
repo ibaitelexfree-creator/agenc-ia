@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Calendar, User, Search, BookOpen, ChevronLeft } from 'lucide-react';
+import { Calendar, Search, BookOpen, ChevronLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 interface BlogPost {
@@ -115,10 +115,6 @@ export default function NoticiasClient({
                                 <Calendar className="w-3.5 h-3.5 text-accent" />
                                 {new Date(selectedPost.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
                             </span>
-                            <span className="flex items-center gap-1">
-                                <User className="w-3.5 h-3.5 text-accent" />
-                                {selectedPost.author}
-                            </span>
                         </div>
 
                         <h1 className="text-2xl md:text-4xl font-display text-[#1A1A1A] leading-tight mb-6">
@@ -191,10 +187,6 @@ export default function NoticiasClient({
                                         <span className="flex items-center gap-1">
                                             <Calendar className="w-2.5 h-2.5 text-accent" />
                                             {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short' })}
-                                        </span>
-                                        <span className="flex items-center gap-1">
-                                            <User className="w-2.5 h-2.5 text-accent" />
-                                            {post.author}
                                         </span>
                                     </div>
 

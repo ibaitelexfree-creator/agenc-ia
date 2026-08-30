@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { Calendar, ArrowRight, BookOpen } from 'lucide-react';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import { hoverLift } from '@/lib/animations/variants';
 import { motion } from 'framer-motion';
@@ -124,10 +124,6 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                                             <span className="flex items-center gap-1.5">
                                                 <Calendar className="w-3.5 h-3.5" />
                                                 {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
-                                            </span>
-                                            <span className="flex items-center gap-1.5">
-                                                <User className="w-3.5 h-3.5" />
-                                                {post.author}
                                             </span>
                                         </div>
                                         {/* Title */}

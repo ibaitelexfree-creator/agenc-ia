@@ -13,7 +13,6 @@ import { useOceanGradient } from '@/hooks/useOceanGradient'
 import { SectionTransitionOverlay } from '@/components/layout/SectionTransitionOverlay'
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery'
 import { ReducedMotionCanvas } from '@/components/layout/ReducedMotionCanvas'
-import { CTASection } from '@/components/sections/CTASection'
 import { LandingSidebar } from '@/components/layout/LandingSidebar'
 
 function OceanGradientActivator() {
@@ -35,7 +34,6 @@ export function LandingPageClient() {
           <Section2Adapts />
           <Section3Path />
           <Section4Why />
-          <CTASection />
         </ReducedMotionCanvas>
       </div>
     )

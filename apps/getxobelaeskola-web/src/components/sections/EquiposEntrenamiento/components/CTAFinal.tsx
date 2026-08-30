@@ -101,7 +101,7 @@ export default function CTAFinal() {
 
               {/* O por WhatsApp */}
               <motion.a
-                href="https://wa.me/34600000000"
+                href="https://wa.me/34634405624"
                 className={`${styles['radio-msg__btn']} ${styles['radio-msg__btn--secondary']}`}
                 target="_blank"
                 rel="noopener noreferrer"

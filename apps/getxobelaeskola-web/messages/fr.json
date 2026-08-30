@@ -822,25 +822,19 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Club de Voile à Getxo",
-    "subtitle": "Naviguez, apprenez et partagez",
-    "cta": "Devenir Membre",
-    "scroll_hint": "Continuer à naviguer",
-    "word1": "Naviguez.",
-    "word2": "Apprenez.",
-    "word3": "Partagez.",
-    "tu_mar_tu_club": "Votre mer. Votre club.",
-    "todo_lo_que_ofrecemos": "Tout ce que nous offrons",
-    "card_cursos_title": "Cours",
-    "card_cursos_subtitle": "Apprenez à naviguer",
-    "card_club_title": "Club Membres",
-    "card_club_subtitle": "Rejoignez la communauté",
-    "card_equipos_title": "Équipes",
-    "card_equipos_subtitle": "Visez l'excellence",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Camps de voile",
-    "card_entidades_title": "Entités",
-    "card_entidades_subtitle": "Devenez partenaire"
+    "title": "Naviguez, apprenez et partagez",
+    "subtitle": "Club de Voile à Getxo",
+    "cta": "Devenez Membre",
+    "card_cursos_title": "Apprendre à naviguer",
+    "card_cursos_subtitle": "Cours de voile légère et croisière",
+    "card_club_title": "Rejoignez la communauté",
+    "card_club_subtitle": "Naviguez toute l'année avec les membres",
+    "card_equipos_title": "Progressez en naviguant",
+    "card_equipos_subtitle": "Équipes de compétition et technique",
+    "card_udalekuak_title": "Stages de voile",
+    "card_udalekuak_subtitle": "Camps d'été pour les jeunes",
+    "card_entidades_title": "Collaborer avec nous",
+    "card_entidades_subtitle": "Team building et entreprises"
   },
   "s2": {
     "eyebrow": "L'expérience",
@@ -876,7 +870,7 @@
   "s3": {
     "eyebrow": "Formation",
     "title": "Découvre ton chemin",
-    "subtitle": "Quel est ton niveau et de combien de temps disposes-tu ?",
+    "subtitle": "Quel est ton niveau ?",
     "level_basic": "Niveau débutant",
     "level_mid": "Niveau intermédiaire",
     "youth": "Jeunes",
@@ -1312,11 +1306,15 @@
   "s2_identity": {
     "eyebrow": "Qui sommes-nous",
     "title_line1": "Qu'est-ce que",
-    "title_line2": "Getxo Bela Eskola?",
+    "title_line2": "Getxo Bela Eskola ?",
     "value1_prefix": "Nous ne sommes pas une école conventionnelle, mais une ",
-    "value1_highlight": "communauté proche avec des valeurs.",
-    "value2": "Un endroit pour <gold>apprendre à naviguer</gold>, partager et <gold>profiter</gold> de la mer.",
-    "cta": "Lire plus"
+    "value1_highlight": "communauté proche et porteuse de valeurs.",
+    "value2": "Un lieu pour <gold>apprendre à naviguer</gold>, partager et <gold>profiter</gold> de la mer.",
+    "cta": "Lire plus",
+    "modal_p1": "Nous ne sommes pas une école conventionnelle, mais une communauté proche construite autour de la mer et des valeurs qui l'accompagnent.",
+    "modal_p2": "Un lieu où apprendre à naviguer va de pair avec partager, profiter et grandir en groupe. Ici, la voile ne se vit pas seulement comme un sport, mais comme une expérience qui relie les personnes entre elles et avec l'environnement.",
+    "modal_p3": "Nous croyons en un apprentissage naturel, accessible et sans pression, où chaque personne trouve son rythme et sa façon de vivre la navigation. De ceux qui font leurs premiers pas à ceux qui cherchent à continuer d'avancer, tout le monde a sa place.",
+    "modal_p4": "Au-delà de l'eau, nous sommes un point de rencontre où se créent des liens, de la confiance et une façon de comprendre la mer qui donne envie d'y revenir."
   },
   "s3_adapts": {
     "eyebrow": "L'expérience",
@@ -1795,20 +1793,28 @@
       "subtitle": "Outil de précision pour convertir entre les unités maritimes et standard."
     }
   },
-  "s1": {
-    "eyebrow": "Getxo · Bizkaia",
-    "title": "Naviguez, apprenez et partagez",
-    "subtitle": "Club de Voile à Getxo",
-    "cta": "Devenez Membre",
-    "card_cursos_title": "Apprendre à naviguer",
-    "card_cursos_subtitle": "Cours de voile légère et croisière",
-    "card_club_title": "Rejoignez la communauté",
-    "card_club_subtitle": "Naviguez toute l'année avec les membres",
-    "card_equipos_title": "Régates et perfectionnement",
-    "card_equipos_subtitle": "Équipes de compétition et technique",
-    "card_udalekuak_title": "Stages de voile",
-    "card_udalekuak_subtitle": "Camps d'été pour les jeunes",
-    "card_entidades_title": "Collaborer avec nous",
-    "card_entidades_subtitle": "Team building et entreprises"
+  "s3_adapts_new": {
+    "title": "LA VOILE<br/>S'ADAPTE À VOUS",
+    "subtitle": "Petits ou grands voiliers,<br/>jours de calme ou d'action,<br/>eaux tranquilles ou pleine mer.<br/>Vous choisissez comment naviguer.",
+    "leer_mas": "LEER MÁS",
+    "modal": {
+      "title": "Navigation à la carte, selon la façon dont vous souhaitez vivre la mer.",
+      "intro1": "La voile n'est pas un sport rigide. C'est une façon de vivre la mer qui s'adapte à vous, à votre temps et à ce dont vous avez envie chaque jour.",
+      "intro2": "Aujourd'hui, nous disposons de prévisions météorologiques très précises et de modèles de vent clairs. Dans nos cours, vous apprenez non seulement à naviguer, mais aussi à comprendre et à anticiper les conditions. Ainsi, vous pouvez choisir avec une grande certitude quand et comment sortir.",
+      "experience_title": "Vous choisissez le type d'expérience",
+      "experience_1": "Calme : sortir après le travail, déconnecter sur un petit voilier ou en partage, naviguer sans hâte.",
+      "experience_2": "Action : jours de vent, plus d'intensité, manœuvres dynamiques et sensations fortes.",
+      "experience_3": "La voile vous permet les deux.",
+      "scenario_title": "Vous choisissez le décor",
+      "scenario_1": "Abra intérieur : eaux protégées et tranquilles, idéales pour apprendre ou se détendre.",
+      "scenario_2": "Abra extérieur : pleine mer, vagues et une navigation plus vivante et excitante.",
+      "who_title": "Vous choisissez avec qui naviguer",
+      "who_1": "Petits voiliers : en solitaire ou en groupes de 2 à 6 personnes, avec une participation active.",
+      "who_2": "Grands voiliers (croiseurs) : jusqu'à 8 personnes, bien que l'idéal soit entre 2 et 6 pour une expérience dynamique.",
+      "modern_title": "Une façon moderne de naviguer",
+      "modern_1": "Autrefois, de grands marins se forgeaient car ils savaient comment ils partaient, mais pas comment ils reviendraient.",
+      "modern_2": "Aujourd'hui, nous pouvons prévoir les conditions avec une grande précision.",
+      "modern_3": "La voile reste authentique, mais elle est maintenant aussi plus consciente, accessible et, surtout, adaptable à chaque personne."
+    }
   }
 }

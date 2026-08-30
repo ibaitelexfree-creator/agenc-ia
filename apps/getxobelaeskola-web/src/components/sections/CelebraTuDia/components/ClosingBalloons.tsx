@@ -65,7 +65,7 @@ export default function ClosingBalloons() {
     const eventDate = date || 'Sin fecha definida';
     const textMessage = `Hola Getxo Bela Eskola! Queremos celebrar un día especial con vosotras. Fecha propuesta: ${eventDate}, Grupo: ${peopleCount} personas.`;
     const encoded = encodeURIComponent(textMessage);
-    window.open(`https://wa.me/34688688688?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/34634405624?text=${encoded}`, '_blank');
   };
 
   return (

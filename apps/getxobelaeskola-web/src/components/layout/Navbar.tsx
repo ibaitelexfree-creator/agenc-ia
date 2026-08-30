@@ -192,6 +192,8 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         return null;
     }
 
+    const isAdmin = user?.rol === 'admin';
+
     // Restructured navigation tree according to requirements
     const navItems: NavItem[] = [
         {
@@ -224,7 +226,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 { href: 'servicios/team-building', label: 'team_building', icon: <Compass className="w-4 h-4" /> },
                 { href: 'servicios/cumpleanos', label: 'celebra_aqui_tu_dia', icon: <Sparkles className="w-4 h-4" /> },
                 { href: 'servicios/material', label: 'guarda_tu_material_deportivo', icon: <Anchor className="w-4 h-4" /> },
-                { href: 'servicios/tienda', label: 'tienda', icon: <ShoppingBag className="w-4 h-4" /> },
+                ...(isAdmin ? [{ href: 'servicios/tienda', label: 'tienda', icon: <ShoppingBag className="w-4 h-4" /> }] : []),
             ],
         },
         {
@@ -246,11 +248,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 { href: 'contacto/localizacion', label: 'horario_contacto_localizacion', icon: <Clock className="w-4 h-4" /> },
             ],
         },
-        {
+        ...(isAdmin ? [{
             href: 'tienda',
             label: 'tienda',
             icon: <ShoppingBag className="w-3.5 h-3.5" />,
-        },
+        }] : []),
     ];
 
     return (
@@ -260,7 +262,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
                     <div className="flex items-center gap-5">
-                        <a href="https://wa.me/34944916632" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
+                        <a href="https://wa.me/34634405624" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
                             <Phone className="w-4.5 h-4.5" />
                         </a>
                         <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#ff5c97] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,92,151,0.3)]" title="Instagram">
@@ -334,9 +336,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                         <span className="w-[1px] h-3 bg-white/10" />
  
                         {/* Shopping Cart */}
-                        <Link href={`/${locale}/tienda`} className="text-white hover:text-accent hover:scale-110 active:scale-95 transition-all duration-200 flex items-center drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" title="Cart">
-                            <ShoppingCart className="w-4.5 h-4.5" />
-                        </Link>
+                        {isAdmin && (
+                            <Link href={`/${locale}/tienda`} className="text-white hover:text-accent hover:scale-110 active:scale-95 transition-all duration-200 flex items-center drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" title="Cart">
+                                <ShoppingCart className="w-4.5 h-4.5" />
+                            </Link>
+                        )}
  
                         {/* Profile / Login */}
                         <Link 
@@ -437,7 +441,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             {item.dropdown ? (
                                 <button
                                     type="button"
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -458,7 +462,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                 <Link
                                     href={`/${locale}/${item.href}`}
                                     prefetch={false}
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                 >
                                     {item.icon}
@@ -489,7 +493,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                                     prefetch={false}
                                                     className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-sea-foam/75 hover:text-sea-foam hover:bg-sea-foam/5 transition-all duration-200 group/sub"
                                                 >
-                                                    <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
+                                                    <span className="text-sea-foam/75 group-hover/sub:text-sea-foam transition-colors">{sub.icon}</span>
                                                     {getLabel(sub.label)}
                                                 </Link>
                                             ))}
@@ -554,7 +558,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className={`text-xs uppercase tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 ${isAtHero ? 'text-white' : 'text-sea-foam'}`}
+                                className={`text-xs uppercase tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 text-black`}
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {getLabel('logout')}
@@ -630,7 +634,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                         style={{ transitionDelay: `${idx * 80}ms` }}
                                         onClick={() => { if (!item.dropdown) setIsMenuOpen(false); }}
                                     >
-                                        <span className="text-accent/60">{item.icon}</span>
+                                        <span className="text-sea-foam">{item.icon}</span>
                                         <span className={`text-3xl font-display italic text-sea-foam transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                                             {getLabel(item.label)}
                                         </span>
@@ -664,7 +668,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                                     className="flex items-center gap-3 py-3 text-lg text-sea-foam/50 hover:text-sea-foam transition-colors"
                                                     onClick={() => setIsMenuOpen(false)}
                                                 >
-                                                    <span className="text-accent/50">{sub.icon}</span>
+                                                    <span className="text-sea-foam/50">{sub.icon}</span>
                                                     {getLabel(sub.label)}
                                                 </Link>
                                             ))}
@@ -725,3 +729,5 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         </>
     );
 }
+
+

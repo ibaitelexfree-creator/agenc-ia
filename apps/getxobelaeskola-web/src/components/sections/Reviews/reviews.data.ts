@@ -10,7 +10,7 @@ export interface Review {
   textEu: string
   textEn: string
   textFr: string
-  avatarUrl: string
+  avatarUrl?: string
   source: string
 }
 
@@ -27,7 +27,6 @@ export const reviews: Review[] = [
     textEu: "Esperientzia paregabea belaontzian ikasten. J80ko monitorea oso adi egon zen uneoro, segurtasuna lehenetsiz baina dena oso dibertigarri eginez.",
     textEn: "An incredible experience learning to sail. The J80 instructor was extremely attentive, always prioritizing safety while making it super fun.",
     textFr: "Une expérience incroyable pour apprendre à naviguer. L'instructeur de J80 était très attentif, privilégiant toujours la sécurité tout en rendant l'activité super amusante.",
-    avatarUrl: "/images/reviews/avatar-1.webp",
     source: "google",
   },
   {
@@ -42,7 +41,6 @@ export const reviews: Review[] = [
     textEu: "Bela eskola bikaina. Jende oso atsegina eta profesionala. Nabigatzen ikasteko lekurik onena Getxon, zalantzarik gabe!",
     textEn: "Excellent sailing school. Very friendly and professional people. The best place to learn sailing in Getxo, without a doubt!",
     textFr: "Excellente école de voile. Des personnes très chaleureuses et professionnelles. Le meilleur endroit pour apprendre la voile à Getxo, sans aucun doute !",
-    avatarUrl: "/images/reviews/avatar-2.webp",
     source: "google",
   },
   {
@@ -57,7 +55,6 @@ export const reviews: Review[] = [
     textEu: "Asteburuko bela arineko ikastaroa egin genuen eta asko gustatu zitzaigun. Ontzia ezin hobe zegoen eta monitoreak konfiantza eta lasaitasun handia eman zigun.",
     textEn: "We did the weekend dinghy sailing course and loved it. The sailboat was spotless and the instructor conveyed a lot of confidence and calm.",
     textFr: "Nous avons fait le cours de voile légère le week-end et nous avons adoré. Le voilier était impeccable et l'instructeur nous a transmis beaucoup de confiance et de calme.",
-    avatarUrl: "/images/reviews/avatar-3.webp",
     source: "google",
   },
   {
@@ -72,7 +69,6 @@ export const reviews: Review[] = [
     textEu: "Guztiz gomendagarria. Segurtasuna oso ondo zainduta eta monitoreak oso gertukoak. Udalekuak ere zoragarriak dira umeentzat.",
     textEn: "Highly recommended. Safety is well taken care of and the instructors are very friendly. Summer camps are also wonderful for kids.",
     textFr: "Hautement recommandé. La sécurité est très bien gérée et les instructeurs sont très proches. Les camps d'été sont aussi fantastiques pour les enfants.",
-    avatarUrl: "/images/reviews/avatar-4.webp",
     source: "google",
   },
   {
@@ -87,7 +83,6 @@ export const reviews: Review[] = [
     textEu: "Giro bikaina duen kluba. Ez da soilik nabigatzen ikastea, irteera bakoitzaren ondoren Getxoko portuan sortzen den komunitatea baizik.",
     textEn: "A club with an amazing atmosphere. It's not just about learning to sail, it's the community that is built after each outing in the port of Getxo.",
     textFr: "Un club avec une ambiance incroyable. Ce n'est pas seulement apprendre à naviguer, c'est la communauté qui se crée après chaque sortie au port de Getxo.",
-    avatarUrl: "/images/reviews/avatar-5.webp",
     source: "google",
   },
   {
@@ -102,7 +97,6 @@ export const reviews: Review[] = [
     textEu: "Profesional bikainak. J80 belaontzian hasteko ikastaroa harrigarria izan zen. Asko ikasi nuen monitorearen pazientzia eta esperientziari esker.",
     textEn: "Great professionals. The J80 sailboat initiation course was awesome. I learned a lot thanks to the patience and experience of the instructor.",
     textFr: "Grands professionnels. Le cours d'initiation au voilier J80 était génial. J'ai beaucoup appris grâce à la patience et l'expérience de l'instructeur.",
-    avatarUrl: "/images/reviews/avatar-6.webp",
     source: "google",
   }
 ];

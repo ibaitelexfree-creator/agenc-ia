@@ -1007,49 +1007,11 @@
     }
   },
   "tools": {
-    "index": {
-      "eyebrow": "Herramientas Náuticas",
-      "title": "Puente Digital",
-      "description": "Una colección de herramientas esenciales para la navegación, planificación y seguridad en el mar. Diseñado por navegantes para navegantes.",
-      "converter": {
-        "title": "Convertidor Náutico",
-        "description": "Convertidor profesional de unidades para velocidad, distancia, profundidad y presión. Incluye historial y preajustes rápidos.",
-        "cta": "Lanzar Convertidor"
-      },
-      "plotter": {
-        "title": "Plotter de Cartas",
-        "description": "Practica tus habilidades de navegación con nuestro plotter interactivo. Traza rumbos, mide distancias y más.",
-        "cta": "Abrir Plotter"
-      }
-    },
-    "nautical_converter": {
-      "eyebrow": "Utilidad",
-      "title": "Convertidor Náutico",
-      "description": "Herramienta de precisión para convertir entre unidades marítimas y estándar.",
-      "input": "Valor de Entrada",
-      "result": "Resultado",
-      "history": "Conversiones Recientes",
-      "clear_history": "Borrar Historial",
-      "speed": "Velocidad",
-      "distance": "Distancia",
-      "depth": "Profundidad",
-      "temperature": "Temp",
-      "pressure": "Presión",
-      "units": {
-        "knots": "Nudos",
-        "kmh": "km/h",
-        "ms": "m/s",
-        "meters": "Metros",
-        "feet": "Pies",
-        "nautical_miles": "Millas Náuticas",
-        "km": "Kilómetros",
-        "fathoms": "Brazas",
-        "celsius": "Celsius",
-        "fahrenheit": "Fahrenheit",
-        "hpa": "hPa",
-        "mb": "Milibares",
-        "inhg": "inHg"
-      }
+    "title": "Utilidades Náuticas",
+    "nautical_converter": "Conversor Náutico",
+    "converter": {
+      "title": "Conversor Náutico",
+      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
     }
   },
   "validation": {
@@ -1305,25 +1267,19 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Club de Navegación a Vela en Getxo",
-    "subtitle": "Navega, aprende y comparte",
+    "title": "Navega, aprende y comparte",
+    "subtitle": "Club de Navegación a Vela en Getxo",
     "cta": "Hazte Socia",
-    "scroll_hint": "Sigue navegando",
-    "word1": "Navega.",
-    "word2": "Aprende.",
-    "word3": "Comparte.",
-    "tu_mar_tu_club": "Tu mar. Tu club.",
-    "todo_lo_que_ofrecemos": "Todo lo que ofrecemos",
-    "card_cursos_title": "Cursos",
-    "card_cursos_subtitle": "Aprende a navegar",
-    "card_club_title": "Club Socias",
-    "card_club_subtitle": "Únete a la comunidad",
-    "card_equipos_title": "Equipos",
-    "card_equipos_subtitle": "Compite y supérate",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Campamentos de vela",
-    "card_entidades_title": "Entidades",
-    "card_entidades_subtitle": "Colabora con nosotros"
+    "card_cursos_title": "Aprende a navegar",
+    "card_cursos_subtitle": "Cursos de vela ligera y crucero",
+    "card_club_title": "Únete a la comunidad",
+    "card_club_subtitle": "Navega todo el año con socias",
+    "card_equipos_title": "Compite y supérate",
+    "card_equipos_subtitle": "Equipos de regata y tecnificación",
+    "card_udalekuak_title": "Campamentos de vela",
+    "card_udalekuak_subtitle": "Campus de verano para jóvenes",
+    "card_entidades_title": "Colabora con nosotros",
+    "card_entidades_subtitle": "Team building e instituciones"
   },
   "s2": {
     "eyebrow": "La experiencia",
@@ -1359,7 +1315,7 @@
   "s3": {
     "eyebrow": "Formación",
     "title": "Descubre tu camino",
-    "subtitle": "¿Cuál es tu nivel y cuánto tiempo tienes?",
+    "subtitle": "¿Cuál es tu nivel?",
     "level_basic": "Nivel básico",
     "level_mid": "Nivel medio",
     "youth": "Jóvenes",
@@ -1799,7 +1755,11 @@
     "value1_prefix": "No somos una escuela convencional, sino una ",
     "value1_highlight": "comunidad cercana y con valores.",
     "value2": "Un lugar donde <gold>aprender a navegar</gold>, compartir y <gold>disfrutar</gold> de la mar.",
-    "cta": "Leer más"
+    "cta": "Leer más",
+    "modal_p1": "No somos una escuela convencional, sino una comunidad cercana construida alrededor de la mar y los valores que la acompañan.",
+    "modal_p2": "Un lugar donde aprender a navegar va de la mano de compartir, disfrutar y crecer en grupo. Aquí la vela no se vive solo como un deporte, sino como una experiencia que conecta a las personas entre sí y con el entorno.",
+    "modal_p3": "Creemos en un aprendizaje natural, accesible y sin presión, donde cada persona encuentra su ritmo y su manera de vivir la navegación. Desde quienes dan sus primeros pasos hasta quienes buscan seguir avanzando, todas tienen su espacio.",
+    "modal_p4": "Más allá del agua, somos un punto de encuentro donde se generan vínculos, confianza y una forma de entender la mar que invita a volver."
   },
   "s3_adapts": {
     "eyebrow": "La experiencia",
@@ -2272,28 +2232,28 @@
     "mb": "Milibares",
     "inhg": "inHg"
   },
-  "tools": {
-    "title": "Utilidades Náuticas",
-    "nautical_converter": "Conversor Náutico",
-    "converter": {
-      "title": "Conversor Náutico",
-      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
+  "s3_adapts_new": {
+    "title": "LA VELA SE<br/>ADAPTA A TI",
+    "subtitle": "Veleros pequeños o grandes,<br/>días de calma o de acción,<br/>aguas tranquilas o mar abierta.<br/>Tú eliges cómo quieres navegar.",
+    "leer_mas": "LEER MÁS",
+    "modal": {
+      "title": "Navegación a la carta, según cómo quieras vivir el mar.",
+      "intro1": "La vela no es un deporte rígido. Es una forma de vivir el mar que se adapta a ti, a tu tiempo y a lo que te apetece cada día.",
+      "intro2": "Hoy contamos con partes meteorológicos muy precisos y patrones de viento claros. En nuestros cursos aprendes no solo a navegar, sino a entender y anticipar las condiciones. Así, puedes elegir con bastante certeza cuándo y cómo salir.",
+      "experience_title": "Tú eliges el tipo de experiencia",
+      "experience_1": "Calma: salir después del trabajo, desconectar en un velero pequeño o compartido, navegando sin prisa.",
+      "experience_2": "Acción: días de viento, más intensidad, maniobras dinámicas y sensaciones fuertes.",
+      "experience_3": "La vela te permite ambas.",
+      "scenario_title": "Tú eliges el escenario",
+      "scenario_1": "Abra interior: aguas protegidas y tranquilas, ideales para aprender o relajarse.",
+      "scenario_2": "Abra exterior: mar abierto, olas y una navegación más viva y emocionante.",
+      "who_title": "Tú eliges con quién navegar",
+      "who_1": "Veleros pequeños: en solitario o en grupos de 2 a 6 personas, con participación activa.",
+      "who_2": "Veleros grandes (cruceros): hasta 8 personas, aunque lo ideal es entre 2 y 6 para una experiencia dinámica.",
+      "modern_title": "Una forma moderna de navegar",
+      "modern_1": "Antes se forjaban grandes marineros porque sabían cómo salían, pero no cómo volverían.",
+      "modern_2": "Hoy podemos prever las condiciones con mucha precisión.",
+      "modern_3": "La vela sigue siendo auténtica, pero ahora también es más consciente, accesible y, sobre todo, adaptable a cada persona."
     }
-  },
-  "s1": {
-    "eyebrow": "Getxo · Bizkaia",
-    "title": "Navega, aprende y comparte",
-    "subtitle": "Club de Navegación a Vela en Getxo",
-    "cta": "Hazte Socia",
-    "card_cursos_title": "Aprende a navegar",
-    "card_cursos_subtitle": "Cursos de vela ligera y crucero",
-    "card_club_title": "Únete a la comunidad",
-    "card_club_subtitle": "Navega todo el año con socias",
-    "card_equipos_title": "Compite y supérate",
-    "card_equipos_subtitle": "Equipos de regata y tecnificación",
-    "card_udalekuak_title": "Campamentos de vela",
-    "card_udalekuak_subtitle": "Campus de verano para jóvenes",
-    "card_entidades_title": "Colabora con nosotros",
-    "card_entidades_subtitle": "Team building e instituciones"
   }
 }

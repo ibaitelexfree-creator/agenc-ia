@@ -3,7 +3,7 @@
 import React from 'react';
 
 export default function WhatsAppButton() {
-    const phoneNumber = '34600000000'; // Número de contacto oficial de WhatsApp
+    const phoneNumber = '34634405624'; // Getxo Bela Eskola
     const message = encodeURIComponent('Hola Getxo Bela Eskola, me gustaría obtener más información.');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
@@ -32,10 +32,11 @@ export default function WhatsAppButton() {
                 contain: 'layout paint style',
                 transform: 'translate3d(0, 0, 0)',
                 WebkitTransform: 'translate3d(0, 0, 0)',
-                overflow: 'hidden',
+                overflow: 'visible',
             }}
-            className="whatsapp-button-floating hover:scale-105 active:scale-95 transition-transform duration-200"
+            className="whatsapp-button-floating hover:scale-110 active:scale-95 transition-transform duration-200 group"
         >
+            <div className="absolute inset-0 rounded-full border-2 border-[#25D366] animate-ping opacity-40 group-hover:opacity-60" style={{ zIndex: -1 }} />
             <svg
                 width="24"
                 height="24"

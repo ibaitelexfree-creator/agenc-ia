@@ -84,7 +84,7 @@ export default function BlogCard({ post }: BlogCardProps) {
         <span className={styles.category}>
           {categoryLabel}
         </span>
-        <p className={styles.author}>{locale === 'eu' ? 'egilea' : locale === 'en' ? 'by' : locale === 'fr' ? 'par' : 'por'} {post.author}</p>
+
         <h3 className={styles.cardTitle}>{title}</h3>
       </div>
     </motion.a>

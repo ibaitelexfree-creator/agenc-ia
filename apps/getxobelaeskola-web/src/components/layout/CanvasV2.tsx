@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 import { useScrollContext } from './ScrollEngine'
-import { CTASection } from '@/components/sections/CTASection'
+
 
 export function CanvasV2({ children }: { children: React.ReactNode }) {
   const { canvasX, canvasY } = useScrollContext()

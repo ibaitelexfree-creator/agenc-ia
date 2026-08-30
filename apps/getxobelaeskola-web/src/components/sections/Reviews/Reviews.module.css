@@ -5,7 +5,10 @@
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  background: var(--gbe-white);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.85)), url('/images/sailing_testimonials_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   padding: clamp(16px, 3vh, 40px) 24px;
   display: flex;
   flex-direction: column;
@@ -26,7 +29,7 @@
 }
 
 .container {
-  max-width: clamp(840px, 78vw, 1150px);
+  max-width: clamp(840px, 78vw, 1200px);
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -128,36 +131,38 @@
 .cardName { font-weight: 600; font-size: 13px; color: var(--gbe-navy-900); }
 .cardTime { font-size: 11px; color: var(--gbe-text-muted); }
 
-.carouselWrapper { display: flex; align-items: center; gap: 12px; position: relative; width: 100%; }
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Efecto de desvanecimiento en los extremos */
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
 .track {
   display: flex;
   gap: 18px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding-bottom: 16px;
-  padding-top: 8px;
-  width: 100%;
+  width: max-content;
+  padding: 16px 0; /* Espacio para las sombras (arriba/abajo) */
+  animation: scrollLeft 35s linear infinite;
 }
-.track::-webkit-scrollbar { display: none; }
-.track > * { scroll-snap-align: start; }
-
-.arrow {
+.track:hover {
+  animation-play-state: paused;
+}
+.track > * {
+  /* Evitar que framer-motion o el usuario cambien el ancho y rompan el loop */
   flex-shrink: 0;
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  border: 1px solid var(--gbe-border);
-  background: var(--gbe-white);
-  color: var(--gbe-navy-900);
-  font-size: 18px;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
 }
-.arrow:hover { color: var(--gbe-white); }
 
-@media (max-width: 768px) {
-  .arrow { display: none; } /* en móvil, solo swipe táctil */
-  .track > * { min-width: 85vw; }
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* Desplaza exactamente la mitad del ancho total más la mitad del gap */
+    transform: translateX(calc(-50% - 9px));
+  }
 }

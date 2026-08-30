@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 import { useScrollContext } from './ScrollEngine'
-import { CTASection } from '@/components/sections/CTASection'
 
 export function Canvas({ children }: { children: React.ReactNode }) {
   const { canvasX, canvasY, scrollYProgress } = useScrollContext()
@@ -44,7 +43,6 @@ export function Canvas({ children }: { children: React.ReactNode }) {
         El CTA ocupa "cta" — se añade en Fase 5
       */}
       {children}
-      <CTASection />
     </motion.div>
   )
 }

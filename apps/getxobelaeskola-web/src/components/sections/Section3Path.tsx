@@ -129,7 +129,7 @@ export function Section3Path() {
         alt=""
         fill
         quality={60}
-        style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.07 }}
+        style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.2 }}
         aria-hidden
       />
  

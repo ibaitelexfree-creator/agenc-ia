@@ -16,7 +16,6 @@ const Section3Path = dynamic(() => import('@/components/sections/Section3Path').
 const Section4Why = dynamic(() => import('@/components/sections/Section4Why').then(mod => mod.Section4Why), { ssr: true })
 const ReviewsSection = dynamic(() => import('@/components/sections/Reviews/ReviewsSection'), { ssr: true })
 const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection'), { ssr: true })
-const CTASection = dynamic(() => import('@/components/sections/CTASection').then(mod => mod.CTASection), { ssr: true })
 
 const HomeStatsSection = dynamic(() => import('@/components/sections/HomeStatsSection'), { ssr: true })
 const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: true })
@@ -40,7 +39,6 @@ export function LandingPageClientV2() {
           <Section4Why />
           <BlogSection />
           <ReviewsSection />
-          <CTASection />
         </ReducedMotionCanvas>
       </div>
     )
@@ -62,7 +60,6 @@ export function LandingPageClientV2() {
         <Section4Why />
         <BlogSection />
         <ReviewsSection />
-        <CTASection />
       </CanvasV2>
     </ScrollEngineV2>
   )

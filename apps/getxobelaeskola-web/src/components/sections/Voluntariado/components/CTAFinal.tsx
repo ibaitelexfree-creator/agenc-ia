@@ -15,7 +15,7 @@ const EMAIL = "info@getxobelaeskola.cloud";
 export function CTAFinal({ locale }: CTAFinalProps) {
   const t = voluntariadoTranslations[locale] || voluntariadoTranslations.es;
   const encodedText = encodeURIComponent(t.whatsappMessage);
-  const whatsappUrl = `https://wa.me/34688688688?text=${encodedText}`;
+  const whatsappUrl = `https://wa.me/34634405624?text=${encodedText}`;
 
   const handleClick = () => {
     lanzarConfetti();

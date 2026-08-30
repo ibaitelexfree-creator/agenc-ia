@@ -1,19 +1,42 @@
 // src/components/sections/Section2Identity.tsx
 'use client'
 
-import { useRef, useContext } from 'react'
-import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion'
+import { useRef, useContext, useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
 import { GlowButton } from '@/components/ui/GlowButton'
 import { ScrollContext } from '@/components/layout/ScrollEngine'
+import { useScrollLock } from '@/hooks/useScrollLock'
 
 export function Section2Identity() {
   const t = useTranslations('s2_identity')
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
   
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  const modalRef = useRef<HTMLDivElement>(null)
+  useScrollLock(modalRef, isModalOpen)
+
+  // Cerrar el modal automáticamente al hacer scroll en la página principal
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const initialScrollY = window.scrollY;
+    const handleScroll = () => {
+      // Permitimos un pequeño margen de 10px por si hay micro-ajustes
+      if (Math.abs(window.scrollY - initialScrollY) > 10) {
+        setIsModalOpen(false);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isModalOpen]);
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   // Vinculamos la animación al scroll de la sección (entre 0.14 y 0.28 del total de scroll si es V2, o local si no)
@@ -116,7 +139,7 @@ export function Section2Identity() {
         }}
       >
         <Image
-          src="/images/course-detail-header-sailing.webp"
+          src="/images/ai/cta-sunset.webp"
           alt="Getxo Bela Eskola Comunidad"
           fill
           quality={85}
@@ -136,7 +159,7 @@ export function Section2Identity() {
         }}
       >
         <Image
-          src="/images/course-detail-header-sailing.webp"
+          src="/images/ai/cta-sunset.webp"
           alt=""
           fill
           quality={85}
@@ -346,11 +369,135 @@ export function Section2Identity() {
             visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 15 } }
           }}
         >
-          <GlowButton href={`/${locale}/about`} color="ocean" size="md">
+          <GlowButton onClick={() => setIsModalOpen(true)} color="ocean" size="md">
             {t('cta')}
           </GlowButton>
         </motion.div>
       </motion.div>
+
+      {/* Modal Framer Motion (Portaled) */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {isModalOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: 999999,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(0, 27, 58, 0.85)',
+                backdropFilter: 'blur(12px)',
+                padding: '1rem',
+              }}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <motion.div
+                ref={modalRef}
+                initial={{ scale: 0.8, y: 30, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.8, y: 30, opacity: 0 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                style={{
+                  backgroundColor: 'var(--gbe-navy-900)',
+                  border: '1px solid rgba(242, 169, 59, 0.3)',
+                  borderRadius: '24px',
+                  padding: 'clamp(2rem, 5vw, 4rem)',
+                  maxWidth: '700px',
+                  width: '100%',
+                  maxHeight: '90vh',
+                  overflowY: 'auto',
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(242, 169, 59, 0.15)',
+                  position: 'relative',
+                  textAlign: 'center',
+                  color: 'white',
+                }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  style={{
+                    position: 'absolute',
+                    top: '1.5rem',
+                    right: '1.5rem',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    border: 'none',
+                    color: 'white',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    fontSize: '1.2rem',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'background 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)')}
+                >
+                  ✕
+                </button>
+                
+                <h3 style={{ 
+                  fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', 
+                  fontFamily: 'var(--gbe-font-display)', 
+                  marginBottom: '1.5rem', 
+                  color: 'var(--gbe-gold)',
+                  textShadow: '0 0 20px rgba(242, 169, 59, 0.25)'
+                }}>
+                  {t('title_line1')} {t('title_line2')} ✦
+                </h3>
+                
+                <p style={{ 
+                  fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', 
+                  lineHeight: 1.6, 
+                  marginBottom: '1rem', 
+                  color: 'rgba(255,255,255,0.9)',
+                  fontWeight: 300,
+                  textAlign: 'left'
+                }}>
+                  {t('modal_p1')}
+                </p>
+                <p style={{ 
+                  fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', 
+                  lineHeight: 1.6, 
+                  marginBottom: '1rem', 
+                  color: 'rgba(255,255,255,0.9)',
+                  fontWeight: 300,
+                  textAlign: 'left'
+                }}>
+                  {t('modal_p2')}
+                </p>
+                <p style={{ 
+                  fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', 
+                  lineHeight: 1.6, 
+                  marginBottom: '1rem', 
+                  color: 'rgba(255,255,255,0.9)',
+                  fontWeight: 300,
+                  textAlign: 'left'
+                }}>
+                  {t('modal_p3')}
+                </p>
+                <p style={{ 
+                  fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', 
+                  lineHeight: 1.6, 
+                  color: 'rgba(255,255,255,0.9)',
+                  fontWeight: 300,
+                  textAlign: 'left'
+                }}>
+                  {t('modal_p4')}
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   )
 }

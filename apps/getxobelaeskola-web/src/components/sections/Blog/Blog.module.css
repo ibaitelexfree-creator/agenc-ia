@@ -59,10 +59,7 @@
     font-size: clamp(11px, 2.2vh, 13px) !important;
     line-height: 1.2 !important;
   }
-  .author {
-    font-size: 9px !important;
-    margin: 2px 0 1px !important;
-  }
+
   .category {
     font-size: 8px !important;
   }
@@ -140,7 +137,7 @@
   font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--gbe-navy-500);
 }
-.author { font-size: 11px; color: var(--gbe-text-muted); margin: 5px 0 2px; }
+
 .cardTitle {
   font-family: var(--gbe-font-display);
   font-size: 15px; line-height: 1.32; font-weight: 600;

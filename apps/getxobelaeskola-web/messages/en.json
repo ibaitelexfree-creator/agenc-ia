@@ -986,49 +986,11 @@
     }
   },
   "tools": {
-    "index": {
-      "eyebrow": "Nautical Tools",
-      "title": "Digital Bridge",
-      "description": "A collection of essential tools for navigation, planning, and safety at sea. Designed for sailors by sailors.",
-      "converter": {
-        "title": "Nautical Converter",
-        "description": "Professional unit converter for speed, distance, depth, and pressure. Includes history and quick presets.",
-        "cta": "Launch Converter"
-      },
-      "plotter": {
-        "title": "Chart Plotter",
-        "description": "Practice your navigation skills with our interactive chart plotter. Plot courses, measure distances, and more.",
-        "cta": "Open Plotter"
-      }
-    },
-    "nautical_converter": {
-      "eyebrow": "Utility",
+    "title": "Nautical Utilities",
+    "nautical_converter": "Nautical Converter",
+    "converter": {
       "title": "Nautical Converter",
-      "description": "Precision tool for converting between maritime and standard units.",
-      "input": "Input Value",
-      "result": "Result",
-      "history": "Recent Conversions",
-      "clear_history": "Clear History",
-      "speed": "Speed",
-      "distance": "Distance",
-      "depth": "Depth",
-      "temperature": "Temp",
-      "pressure": "Pressure",
-      "units": {
-        "knots": "Knots",
-        "kmh": "km/h",
-        "ms": "m/s",
-        "meters": "Meters",
-        "feet": "Feet",
-        "nautical_miles": "Nautical Miles",
-        "km": "Kilometers",
-        "fathoms": "Fathoms",
-        "celsius": "Celsius",
-        "fahrenheit": "Fahrenheit",
-        "hpa": "hPa",
-        "mb": "Millibars",
-        "inhg": "inHg"
-      }
+      "subtitle": "Precision tool for converting between maritime and standard units."
     }
   },
   "validation": {
@@ -1245,25 +1207,19 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Sailing Club in Getxo",
-    "subtitle": "Sail, learn and share",
+    "title": "Sail, learn and share",
+    "subtitle": "Sailing Club in Getxo",
     "cta": "Become a Member",
-    "scroll_hint": "Keep sailing",
-    "word1": "Sail.",
-    "word2": "Learn.",
-    "word3": "Share.",
-    "tu_mar_tu_club": "Your sea. Your club.",
-    "todo_lo_que_ofrecemos": "Everything we offer",
-    "card_cursos_title": "Courses",
-    "card_cursos_subtitle": "Learn to sail",
-    "card_club_title": "Club Members",
-    "card_club_subtitle": "Join the community",
-    "card_equipos_title": "Teams",
-    "card_equipos_subtitle": "Compete and improve",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Summer camps",
-    "card_entidades_title": "Entities",
-    "card_entidades_subtitle": "Partner with us"
+    "card_cursos_title": "Learn to sail",
+    "card_cursos_subtitle": "Dinghy & yacht sailing courses",
+    "card_club_title": "Join the community",
+    "card_club_subtitle": "Sail all year with members",
+    "card_equipos_title": "Progress sailing",
+    "card_equipos_subtitle": "Racing teams & technification",
+    "card_udalekuak_title": "Sailing camps",
+    "card_udalekuak_subtitle": "Summer camps for youth",
+    "card_entidades_title": "Partner with us",
+    "card_entidades_subtitle": "Team building & corporate"
   },
   "s2": {
     "eyebrow": "The experience",
@@ -1299,7 +1255,7 @@
   "s3": {
     "eyebrow": "Training",
     "title": "Find your path",
-    "subtitle": "What's your level and how much time do you have?",
+    "subtitle": "What's your level?",
     "level_basic": "Basic level",
     "level_mid": "Intermediate level",
     "youth": "Youth",
@@ -1737,9 +1693,13 @@
     "title_line1": "What is",
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "We are not a conventional school, but a ",
-    "value1_highlight": "close community with values.",
+    "value1_highlight": "close-knit community built on values.",
     "value2": "A place to <gold>learn to sail</gold>, share, and <gold>enjoy</gold> the sea.",
-    "cta": "Read more"
+    "cta": "Read more",
+    "modal_p1": "We are not a conventional school, but a close community built around the sea and the values that accompany it.",
+    "modal_p2": "A place where learning to sail goes hand in hand with sharing, enjoying, and growing as a group. Here, sailing is not just experienced as a sport, but as an experience that connects people with each other and with the environment.",
+    "modal_p3": "We believe in natural, accessible, and pressure-free learning, where each person finds their rhythm and their way of experiencing sailing. From those taking their first steps to those looking to keep advancing, everyone has their space.",
+    "modal_p4": "Beyond the water, we are a meeting point where bonds and trust are generated, and a way of understanding the sea that invites you to return."
   },
   "s3_adapts": {
     "eyebrow": "The experience",
@@ -2212,28 +2172,28 @@
     "mb": "Millibars",
     "inhg": "inHg"
   },
-  "tools": {
-    "title": "Nautical Utilities",
-    "nautical_converter": "Nautical Converter",
-    "converter": {
-      "title": "Nautical Converter",
-      "subtitle": "Precision tool for converting between maritime and standard units."
+  "s3_adapts_new": {
+    "title": "SAILING<br/>ADAPTS TO YOU",
+    "subtitle": "Small or large sailboats,<br/>calm or action-packed days,<br/>sheltered waters or open sea.<br/>You choose how you want to sail.",
+    "leer_mas": "LEER MÁS",
+    "modal": {
+      "title": "Sailing à la carte, according to how you want to experience the sea.",
+      "intro1": "Sailing is not a rigid sport. It is a way of experiencing the sea that adapts to you, your time, and what you feel like doing each day.",
+      "intro2": "Today we have very precise weather forecasts and clear wind patterns. In our courses, you learn not only to sail but to understand and anticipate conditions. Thus, you can choose with fairly high certainty when and how to go out.",
+      "experience_title": "You choose the type of experience",
+      "experience_1": "Calm: heading out after work, disconnecting on a small or shared sailboat, sailing unhurriedly.",
+      "experience_2": "Action: windy days, more intensity, dynamic maneuvers, and strong sensations.",
+      "experience_3": "Sailing allows you both.",
+      "scenario_title": "You choose the setting",
+      "scenario_1": "Inner Abra: protected and calm waters, ideal for learning or relaxing.",
+      "scenario_2": "Outer Abra: open sea, waves, and a more lively and exciting navigation.",
+      "who_title": "You choose who to sail with",
+      "who_1": "Small sailboats: solo or in groups of 2 to 6 people, with active participation.",
+      "who_2": "Large sailboats (cruisers): up to 8 people, although the ideal is between 2 and 6 for a dynamic experience.",
+      "modern_title": "A modern way to sail",
+      "modern_1": "In the past, great sailors were forged because they knew how they went out, but not how they would return.",
+      "modern_2": "Today we can foresee conditions with great precision.",
+      "modern_3": "Sailing remains authentic, but now it is also more conscious, accessible, and, above all, adaptable to each person."
     }
-  },
-  "s1": {
-    "eyebrow": "Getxo · Bizkaia",
-    "title": "Sail, learn and share",
-    "subtitle": "Sailing Club in Getxo",
-    "cta": "Become a Member",
-    "card_cursos_title": "Learn to sail",
-    "card_cursos_subtitle": "Dinghy & yacht sailing courses",
-    "card_club_title": "Join the community",
-    "card_club_subtitle": "Sail all year with members",
-    "card_equipos_title": "Compete & improve",
-    "card_equipos_subtitle": "Racing teams & technification",
-    "card_udalekuak_title": "Sailing camps",
-    "card_udalekuak_subtitle": "Summer camps for youth",
-    "card_entidades_title": "Partner with us",
-    "card_entidades_subtitle": "Team building & corporate"
   }
 }

@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { Seahorse } from '@/components/creatures/Seahorse'
+import Image from 'next/image'
 import { Crab } from '@/components/creatures/Crab'
 
 interface FlipCardProps {
@@ -119,18 +119,18 @@ export function Section4Why() {
     switch (key) {
       case 'title': return tHome('title') || 'Por qué elegirnos'
       case 'eyebrow': return ''
-      case 'pillar1.title': return tHome('cert_title') || 'Certificación Oficial'
-      case 'pillar1.body': return tHome('cert_desc') || 'Titulaciones reconocidas para navegar en cualquier mar.'
-      case 'pillar1.backTitle': return 'Calidad Garantizada'
-      case 'pillar1.backBody': return 'Acreditación oficial por la federación de vela.'
-      case 'pillar2.title': return tHome('staff_title') || 'Instructores Expertos'
-      case 'pillar2.body': return tHome('staff_desc') || 'Aprende de navegantes con miles de millas de experiencia.'
-      case 'pillar2.backTitle': return 'Equipo Cualificado'
-      case 'pillar2.backBody': return 'Profesionales apasionados dedicados a tu seguridad y aprendizaje.'
-      case 'pillar3.title': return tHome('comm_title') || 'Comunidad Activa'
-      case 'pillar3.body': return tHome('comm_desc') || 'Únete a un club de apasionados por la vela y el Cantábrico.'
-      case 'pillar3.backTitle': return 'Ambiente Cercano'
-      case 'pillar3.backBody': return 'Eventos, salidas grupales y actividades durante todo el año.'
+      case 'pillar1.title': return 'Económico'
+      case 'pillar1.body': return 'Creemos que la vela debe estar al alcance de todo el mundo.'
+      case 'pillar1.backTitle': return 'Vela para todos'
+      case 'pillar1.backBody': return 'Al ser una escuela municipal, trabajamos para democratizarla con precios accesibles. Si navegas con asiduidad y te haces socio/a, puedes salir a navegar desde 52,5€ al mes.'
+      case 'pillar2.title': return 'Comunidad'
+      case 'pillar2.body': return 'No somos solo una escuela, somos una comunidad muy cercana y con valores.'
+      case 'pillar2.backTitle': return 'Nuestra familia'
+      case 'pillar2.backBody': return 'Un lugar donde conocer gente con las mismas ganas de mar, compartir experiencias y crecer navegando juntos. Aquí vienes a aprender, pero también a formar parte de algo.'
+      case 'pillar3.title': return 'A tu medida'
+      case 'pillar3.body': return 'Cada persona es diferente, y aquí lo tenemos muy en cuenta.'
+      case 'pillar3.backTitle': return 'Tu experiencia'
+      case 'pillar3.backBody': return 'No todo el mundo busca lo mismo al salir al mar, por eso adaptamos la experiencia a ti desde el primer momento. Cuéntanos qué te apetece, cuál es tu ritmo y tus objetivos, y te ayudamos a encontrar la forma de navegar que mejor encaje contigo.'
       default: return key
     }
   }
@@ -166,21 +166,31 @@ export function Section4Why() {
   }, [])
 
   return (
-    <section className="promise" aria-labelledby="promise-heading">
-      {/* Seahorse — floating creature on the upper left corner */}
-      <Seahorse
-        style={{ position: 'absolute', top: '15%', left: '4%', zIndex: 15 }}
-        enterDelay={0.5}
-      />
+    <section className="promise" aria-labelledby="promise-heading" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Magical Marine Background */}
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }} className="pointer-events-none select-none">
+        <Image
+          src="/images/ai/section4-community.webp"
+          alt="Comunidad y Mar"
+          fill
+          quality={70}
+          style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.4 }}
+        />
+        <div style={{ 
+          position: 'absolute', 
+          inset: 0, 
+          background: 'linear-gradient(135deg, rgba(11, 61, 99, 0.9) 0%, rgba(14, 116, 144, 0.75) 100%)' 
+        }} />
+      </div>
 
-      <div className="promise__inner">
+      <div className="promise__inner" style={{ position: 'relative', zIndex: 2 }}>
         {t('eyebrow') ? (
           <>
-            <p className="promise__eyebrow">{t('title')}</p>
-            <h2 id="promise-heading" className="promise__title">{t('eyebrow')}</h2>
+            <p className="promise__eyebrow" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>{t('title')}</p>
+            <h2 id="promise-heading" className="promise__title" style={{ color: 'white' }}>{t('eyebrow')}</h2>
           </>
         ) : (
-          <h2 id="promise-heading" className="promise__title">{t('title')}</h2>
+          <h2 id="promise-heading" className="promise__title" style={{ color: 'white' }}>{t('title')}</h2>
         )}
 
         <motion.div
