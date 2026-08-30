@@ -314,7 +314,7 @@ export default async function CourseDetailPage({
 
             <div className="relative z-10 pt-32 pb-24 px-6">
                 <div className="container mx-auto">
-                    <Link href={`/${locale}/courses`} className="text-sm uppercase tracking-[0.3em] text-accent mb-12 inline-block hover:pl-2 transition-all">
+                    <Link href={`/${locale}/servicios/cursos`} className="text-sm uppercase tracking-[0.3em] text-accent mb-12 inline-block hover:pl-2 transition-all">
                         ← {t('back_to_catalog')}
                     </Link>
 

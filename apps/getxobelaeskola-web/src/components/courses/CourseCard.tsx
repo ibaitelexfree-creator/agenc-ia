@@ -96,7 +96,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                 </p>
 
                 <Link
-                    href={`/${locale}/courses/${course.slug}`}
+                    href={`/${locale}/servicios/cursos/${course.slug}`}
                     className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                 >
                     <span className="text-[10px] uppercase tracking-[0.5em] font-black text-sea-foam group-hover/link:text-accent transition-colors">

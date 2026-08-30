@@ -36,10 +36,7 @@ export default function TeamCards() {
         {t('title')}
       </motion.h2>
 
-      <div 
-        className={styles['team-cards-grid']}
-        onMouseLeave={() => setActiveTeam(null)}
-      >
+      <div className={styles['team-cards-grid']}>
         {TEAMS.map((team, i) => (
           <TeamCard
             key={team.id}
