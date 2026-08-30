@@ -23,7 +23,14 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
   const currentMonth = new Date().getMonth(); // 0 is January, 9 is October
   const targetYear = currentMonth >= 9 ? currentYear + 1 : currentYear;
 
-  // Handle switching and playing videos seamlessly
+  // Handle switching and playing videos seamlessly + safety fallback for text visibility
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      setIntroEnded(true);
+    }, 3500);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   useEffect(() => {
     if (!introEnded) return;
 

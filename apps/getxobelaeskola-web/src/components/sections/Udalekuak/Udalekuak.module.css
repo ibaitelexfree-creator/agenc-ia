@@ -247,7 +247,7 @@
   }
 }
 
-/* 💻 Desktop & Large Screens (1024px+) - Cover full screen without left/right side bars */
+/* 💻 Desktop & Large Screens (1024px+) */
 @media (min-width: 1024px) {
   .heroVideo, .heroVideoReverse {
     object-fit: cover !important;
@@ -331,57 +331,109 @@
 }
 
 /* ──────────────────────────────────────────────
-   SPECIAL ORIENTATION & SHORT VIEWPORT OVERRIDES
+   SPECIAL ORIENTATION & LANDSCAPE VIEWPORT RULES
    ────────────────────────────────────────────── */
 
-/* 📱 Landscape Mode / Short Viewports (max-height: 550px) */
-@media (max-height: 550px) {
+/* 📱 Landscape Mode Optimizations */
+@media (orientation: landscape) {
+  .heroSection {
+    height: 100dvh !important;
+    min-height: 0 !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
   .heroContent {
-    padding: 0.25rem 0.5rem;
+    max-height: 100dvh !important;
+    height: 100dvh !important;
+    padding: clamp(0.35rem, 1.5vh, 1rem) clamp(0.5rem, 2vw, 1.5rem);
+    box-sizing: border-box;
   }
 
+  /* GetxoBelaEskola · Verano enlarged by 7% (scale 1.10) */
   .heroEyebrow {
-    margin-top: clamp(1rem, 4vh, 2.2rem);
-    font-size: clamp(0.6rem, 2.2vw, 0.8rem);
-    letter-spacing: 0.15em;
+    margin-top: clamp(3.8rem, 16vh, 7rem);
+    transform: translateY(20vh) scale(1.10);
+    transform-origin: center top;
   }
 
-  .heroBottomGroup {
-    margin-bottom: clamp(0.6rem, 3vh, 1.4rem);
-    gap: 0.25rem;
-  }
-
+  /* Semanas que dejan huella en la mar shifted up 1% */
   .heroSubtitle {
-    font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+    transform: translateY(-1vh);
   }
 
+  /* Reservar plaza 2026 button scaled 2% smaller */
   .heroCta {
-    padding: 0.35rem 0.85rem;
-    font-size: 0.75rem;
+    transform: scale(0.98);
+    transform-origin: center center;
   }
 }
 
-/* 📱 Extremely Short Landscape (max-height: 400px) */
-@media (max-height: 400px) {
+/* Screens 700px and above in landscape: shift GetxoBelaEskola · Verano UP by 5% */
+@media (min-width: 700px) and (orientation: landscape) {
   .heroEyebrow {
-    margin-top: 0.5rem;
-    font-size: 0.6rem;
+    margin-top: clamp(3rem, 12vh, 5.5rem);
+    transform: translateY(15vh) scale(1.10) !important;
+  }
+}
+
+/* Mobile Landscape (< 700px width) adjustment: small screens kept intact */
+@media (max-width: 699px) and (orientation: landscape) {
+  .heroEyebrow {
+    margin-top: clamp(2.8rem, 10vh, 5rem);
+    transform: translateY(29vh) scale(1.10) !important;
+  }
+}
+
+/* Short Landscape Viewports (max-height: 600px) */
+@media (orientation: landscape) and (max-height: 600px) {
+  .heroBottomGroup {
+    margin-bottom: clamp(0.5rem, 3vh, 1.5rem);
+    gap: clamp(0.2rem, 1vh, 0.4rem);
+  }
+
+  .heroSubtitle {
+    font-size: clamp(0.85rem, 3.8vh, 1.25rem);
+    line-height: 1.15;
+    transform: translateY(-1vh);
+  }
+
+  .heroCta {
+    padding: clamp(0.3rem, 1.1vh, 0.55rem) clamp(0.85rem, 2vw, 1.4rem);
+    font-size: clamp(0.7rem, 2.4vh, 0.85rem);
+    transform: scale(0.98);
+  }
+}
+
+/* Extremely Short Landscape (max-height: 400px) */
+@media (orientation: landscape) and (max-height: 400px) {
+  .heroContent {
+    padding: 0.2rem 0.4rem;
+  }
+
+  .heroEyebrow {
+    margin-top: 1.4rem;
+    font-size: 0.65rem;
+    transform: translateY(18vh) scale(1.10) !important;
   }
 
   .heroBottomGroup {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.3rem;
     gap: 0.15rem;
   }
 
   .heroSubtitle {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
+    transform: translateY(-1vh);
   }
 
   .heroCta {
-    padding: 0.25rem 0.7rem;
-    font-size: 0.7rem;
+    padding: 0.22rem 0.65rem;
+    font-size: 0.68rem;
+    transform: scale(0.98);
   }
 }
+
 
 .heroCta {
   display: inline-block;
