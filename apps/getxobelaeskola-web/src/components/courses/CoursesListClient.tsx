@@ -22,10 +22,17 @@ export default function CoursesListClient({ initialCourses, categories, locale }
     const searchParams = useSearchParams();
     const activeCategory = searchParams.get('category');
 
-    // Client-side filtering
-    const displayCourses = activeCategory
-        ? initialCourses.filter(course => course.categoria_id === activeCategory)
+    // Client-side filtering with fail-safe fallback
+    const filtered = activeCategory
+        ? initialCourses.filter(course => 
+            course.categoria_id === activeCategory ||
+            course.categoria?.id === activeCategory ||
+            course.categoria?.slug === activeCategory ||
+            course.categoria?.nombre_es?.toLowerCase() === activeCategory?.toLowerCase()
+          )
         : initialCourses;
+
+    const displayCourses = (filtered && filtered.length > 0) ? filtered : initialCourses;
 
     return (
         <section className="pb-48 relative overflow-hidden">
