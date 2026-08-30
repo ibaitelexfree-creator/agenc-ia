@@ -33,7 +33,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default function UdalekuakPage() {
     return (
-        <main className="min-h-screen bg-[#F0F8FF] text-[#0A3D6B] selection:bg-[#F4A830] selection:text-[#0A3D6B]">
+        <main className="min-h-[100dvh] w-full bg-[#F0F8FF] text-[#0A3D6B] selection:bg-[#F4A830] selection:text-[#0A3D6B]">
             <Udalekuak />
         </main>
     );

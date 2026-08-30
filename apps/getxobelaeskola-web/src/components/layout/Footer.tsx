@@ -111,14 +111,13 @@ export default async function Footer({ locale }: { locale: string }) {
 
     return (
         <footer
-            style={{ gridArea: 'footer', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
             className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative z-20"
         >
             <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
             {!isSubscribed && <Newsletter locale={locale} />}
             <HomeStats />
 
-            <div className="py-24 container mx-auto px-6 flex flex-col items-center">
+            <div className="py-24 global-container flex flex-col items-center">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center gap-6 mb-12 group">
                     <div className="flex flex-col items-center">
@@ -167,9 +166,9 @@ export default async function Footer({ locale }: { locale: string }) {
                 <CollaboratorsGrid />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-6">
+                <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-4 sm:px-6">
                     {/* NextGenerationEU Logo */}
-                    <div className="h-8 md:h-10 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
+                    <div className="h-6 sm:h-8 md:h-10 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-nextgen.svg"
                             alt="Financiado por la Unión Europea - NextGenerationEU"
@@ -180,7 +179,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                     
                     {/* Plan de Recuperación Logo */}
-                    <div className="h-4.5 md:h-6 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
+                    <div className="h-5 sm:h-7 md:h-8 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                         <Image
                             src="/images/logo-plan-recuperacion.svg"
                             alt="Plan de Recuperación, Transformación y Resiliencia"

@@ -113,14 +113,14 @@ export default async function CoursesPage({
     const displayCourses = (allCourses && allCourses.length > 0) ? allCourses : fallbackCourses;
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Header Section */}
-            <section className="relative pt-36 sm:pt-40 md:pt-44 lg:pt-48 xl:pt-52 pb-8 md:pb-12 lg:pb-16 overflow-hidden">
+            <section className="relative pt-32 sm:pt-36 md:pt-40 lg:pt-44 xl:pt-48 pb-8 md:pb-12 lg:pb-16 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10 text-center md:text-left">
+                <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center md:text-left">
                     <header className="max-w-4xl">
                         <span className="text-accent uppercase tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
                             {t('header_badge')}
@@ -143,7 +143,7 @@ export default async function CoursesPage({
                 locale={locale}
             />
 
-            {/* Minimal Background Background Decoration */}
+            {/* Minimal Background Decoration */}
             <div className="fixed inset-0 bg-mesh opacity-10 pointer-events-none z-0" />
         </main>
     );

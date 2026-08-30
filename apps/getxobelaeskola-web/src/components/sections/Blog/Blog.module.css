@@ -66,9 +66,11 @@
 }
 
 .container {
-  max-width: clamp(880px, 82vw, 1210px);
+  max-width: var(--gbe-container-max, 1400px);
+  padding: 0 var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
   margin: 0 auto;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
@@ -101,7 +103,7 @@
   width: 100%;
 }
 
-@media (max-width: 639px) and (orientation: portrait) {
+@media (max-width: 767px) {
   .grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;

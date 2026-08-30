@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, XCircle, AlertCircle, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
-export default function StatusToast() {
+function StatusToastContent() {
     const t = useTranslations('notifications');
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -108,5 +108,13 @@ export default function StatusToast() {
                 </motion.div>
             )}
         </AnimatePresence>
+    );
+}
+
+export default function StatusToast() {
+    return (
+        <Suspense fallback={null}>
+            <StatusToastContent />
+        </Suspense>
     );
 }

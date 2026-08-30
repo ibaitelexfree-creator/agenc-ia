@@ -23,12 +23,19 @@
   --gbe-shadow-hover: 0 24px 60px rgba(0, 27, 58, 0.14);
   --gbe-shadow-glow:  0 0 40px rgba(242, 169, 59, 0.25);
 
-  /* ===== Espaciado de sección ===== */
-  --gbe-section-padding-desktop: 120px;
-  --gbe-section-padding-mobile:  64px;
-  --gbe-container-max: 1240px;
+  /* ===== Global Fluid Layout & Responsive Tokens ===== */
+  --gbe-container-max: 1400px;
+  --gbe-container-px: clamp(1rem, 4vw, 3rem);
+  --gbe-section-py: clamp(2rem, 5vh, 5.5rem);
+  --gbe-section-gap: clamp(1.25rem, 3vw, 3rem);
+  --gbe-card-gap: clamp(0.75rem, 2vw, 2rem);
+
+  /* Legacy aliases for backward compatibility */
+  --gbe-section-padding-desktop: clamp(60px, 8vh, 120px);
+  --gbe-section-padding-mobile:  clamp(24px, 4vh, 48px);
 
   /* ===== Tipografía ===== */
   --gbe-font-display: var(--font-display), "Cormorant Garamond", serif;
   --gbe-font-body:    var(--font-sans), "Outfit", sans-serif;
 }
+

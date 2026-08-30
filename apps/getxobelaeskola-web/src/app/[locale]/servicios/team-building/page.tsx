@@ -39,7 +39,7 @@ export async function generateMetadata({ params: { locale } }: PageProps): Promi
 
 export default function TeamBuildingPage() {
     return (
-        <main className="min-h-screen pt-24 md:pt-32 bg-white selection:bg-[#005F8A] selection:text-white">
+        <main className="min-h-[100dvh] w-full pt-20 md:pt-28 bg-white selection:bg-[#005F8A] selection:text-white">
             <TeamBuilding />
         </main>
     );

@@ -7,6 +7,15 @@ function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { vide
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const videoRef = useRef<HTMLVideoElement | null>(null)
 
+  // Pre-tokenize SVG path numbers once on mount/props update to eliminate regex overhead in 60fps loop
+  const parsedPaths = useRef<{ d: string; nums: number[] }[]>([])
+  useEffect(() => {
+    parsedPaths.current = paths.map(d => ({
+      d,
+      nums: d.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
+    }))
+  }, [paths])
+
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -25,112 +34,141 @@ function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { vide
     video.playsInline = true
     // @ts-ignore
     video['webkit-playsinline'] = true
-    video.preload = 'auto'
+    video.preload = 'metadata'
     video.setAttribute('muted', '')
     video.setAttribute('playsinline', '')
     video.setAttribute('webkit-playsinline', '')
     video.setAttribute('autoplay', '')
     video.setAttribute('loop', '')
-    video.setAttribute('fetchpriority', 'high')
     video.style.display = 'none'
     document.body.appendChild(video)
     videoRef.current = video
 
+    let isVisible = true
     const startPlay = () => {
-      video.play().catch(() => {})
+      if (isVisible) {
+        video.play().catch(() => {})
+      }
     }
     video.addEventListener('canplay', startPlay, { once: true })
-    video.play().catch(() => {})
+
+    // IntersectionObserver: Pause video and animation frame loop when off-screen
+    const canvasEl = canvasRef.current
+    let observer: IntersectionObserver | null = null
+    if (canvasEl && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting
+        if (isVisible) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      }, { threshold: 0.1 })
+      observer.observe(canvasEl)
+    } else {
+      video.play().catch(() => {})
+    }
 
     let animationFrameId: number
     const startTime = performance.now()
+    let lastRender = 0
+    const frameInterval = 1000 / 30 // Throttle loop to 30fps max for fluid rendering without main thread strain
 
     const render = (now: number) => {
-      const canvas = canvasRef.current
-      if (canvas) {
-        const ctx = canvas.getContext('2d')
-        if (ctx) {
-          ctx.clearRect(0, 0, 100, 100)
-
-          // Interpolate SVG Morphing Path smoothly matching SMIL 8s animation
-          const cycleMs = 8000
-          const progress = ((now - startTime) % cycleMs) / cycleMs
-          
-          let fromD = paths[0]
-          let toD = paths[1]
-          let blend = 0
-
-          if (progress < 0.333) {
-            fromD = paths[0]
-            toD = paths[1]
-            blend = progress / 0.333
-          } else if (progress < 0.666) {
-            fromD = paths[1]
-            toD = paths[2]
-            blend = (progress - 0.333) / 0.333
-          } else {
-            fromD = paths[2]
-            toD = paths[0]
-            blend = (progress - 0.666) / 0.334
-          }
-
-          // Parse and interpolate cubic bezier path numbers smoothly
-          const fromNums = fromD.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
-          const toNums = toD.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
-          
-          let interpolatedD = fromD
-          if (fromNums.length > 0 && fromNums.length === toNums.length) {
-            let numIdx = 0
-            interpolatedD = fromD.replace(/-?\d+(\.\d+)?/g, () => {
-              const startVal = fromNums[numIdx]
-              const endVal = toNums[numIdx]
-              numIdx++
-              const val = startVal + (endVal - startVal) * blend
-              return val.toFixed(2)
-            })
-          }
-
-          if (typeof Path2D !== 'undefined') {
-            const p = new Path2D(interpolatedD)
-
-            // LAYER 1: VIDEO OR THUMBNAIL (Clipped to interpolated morphing path)
-            ctx.save()
-            ctx.clip(p)
-            if (video.readyState >= 2) {
-              ctx.drawImage(video, 0, 3, 100, 100)
-            } else if (fallbackImg.complete && fallbackImg.naturalWidth > 0) {
-              ctx.drawImage(fallbackImg, 0, 3, 100, 100)
-            } else {
-              ctx.fillStyle = `${color}55`
-              ctx.fill(p)
-            }
-            ctx.restore()
-
-            // LAYER 2: MORPHING STROKE BORDER (100% Identical Path and Render Frame)
-            ctx.save()
-            if (isHovered) {
-              ctx.fillStyle = `${color}33`
-              ctx.fill(p)
-            }
-            ctx.strokeStyle = color
-            ctx.lineWidth = 2.5
-            ctx.stroke(p)
-            ctx.restore()
-          }
-        }
-      }
       animationFrameId = requestAnimationFrame(render)
+
+      if (!isVisible) return
+
+      const elapsed = now - lastRender
+      if (elapsed < frameInterval) return
+      lastRender = now - (elapsed % frameInterval)
+
+      const canvas = canvasRef.current
+      if (!canvas) return
+      const ctx = canvas.getContext('2d', { alpha: true })
+      if (!ctx) return
+
+      ctx.clearRect(0, 0, 100, 100)
+
+      const cycleMs = 8000
+      const progress = ((now - startTime) % cycleMs) / cycleMs
+      
+      const pData = parsedPaths.current
+      if (!pData || pData.length < 3) return
+
+      let fromObj = pData[0]
+      let toObj = pData[1]
+      let blend = 0
+
+      if (progress < 0.333) {
+        fromObj = pData[0]
+        toObj = pData[1]
+        blend = progress / 0.333
+      } else if (progress < 0.666) {
+        fromObj = pData[1]
+        toObj = pData[2]
+        blend = (progress - 0.333) / 0.333
+      } else {
+        fromObj = pData[2]
+        toObj = pData[0]
+        blend = (progress - 0.666) / 0.334
+      }
+
+      const fromNums = fromObj.nums
+      const toNums = toObj.nums
+      
+      let interpolatedD = fromObj.d
+      if (fromNums.length > 0 && fromNums.length === toNums.length) {
+        let numIdx = 0
+        interpolatedD = fromObj.d.replace(/-?\d+(\.\d+)?/g, () => {
+          const startVal = fromNums[numIdx]
+          const endVal = toNums[numIdx]
+          numIdx++
+          return (startVal + (endVal - startVal) * blend).toFixed(2)
+        })
+      }
+
+      if (typeof Path2D !== 'undefined') {
+        const p = new Path2D(interpolatedD)
+
+        // LAYER 1: VIDEO OR THUMBNAIL (Clipped to interpolated morphing path)
+        ctx.save()
+        ctx.clip(p)
+        if (video.readyState >= 2) {
+          ctx.drawImage(video, 0, 3, 100, 100)
+        } else if (fallbackImg.complete && fallbackImg.naturalWidth > 0) {
+          ctx.drawImage(fallbackImg, 0, 3, 100, 100)
+        } else {
+          ctx.fillStyle = `${color}55`
+          ctx.fill(p)
+        }
+        ctx.restore()
+
+        // LAYER 2: MORPHING STROKE BORDER
+        ctx.save()
+        if (isHovered) {
+          ctx.fillStyle = `${color}33`
+          ctx.fill(p)
+        }
+        ctx.strokeStyle = color
+        ctx.lineWidth = 2.5
+        ctx.stroke(p)
+        ctx.restore()
+      }
     }
 
     animationFrameId = requestAnimationFrame(render)
 
     return () => {
       cancelAnimationFrame(animationFrameId)
+      if (observer && canvasEl) {
+        observer.unobserve(canvasEl)
+      }
       if (video.parentNode) {
         video.parentNode.removeChild(video)
       }
     }
-  }, [videoSrc, paths, color, isHovered])
+  }, [videoSrc, imageSrc, color, isHovered])
 
   return (
     <canvas

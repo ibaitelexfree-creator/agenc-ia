@@ -287,27 +287,34 @@ export function Section1Hero() {
         backgroundColor: '#0D2137',
       }}
     >
-      {/* Capa 1: Cielo y Video de Nubes (Fondo) — Step 1: Solid initial paint */}
+      {/* Capa 1: Cielo y Video de Nubes (Fondo) */}
       <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer1Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 1,
         }}
       >
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            backgroundImage: 'url("/images/home/parallax/cielo%20extendido%20v2.webp?v=3")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        >
           <img
             ref={nubesRef}
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
             alt="Cielo Abra de Getxo"
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
@@ -321,57 +328,64 @@ export function Section1Hero() {
           />
 
           {/* Step 2: Video de nubes */}
-          <motion.video
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.85 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          <video
             autoPlay
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             onCanPlay={() => setVideoLoaded(true)}
+            onLoadedData={(e) => { e.currentTarget.play().catch(() => {}) }}
             style={{
               position: 'absolute',
-              top: '3%',
+              top: '0%',
               left: 0,
               width: '100%',
-              height: '45%',
+              height: '75%',
               objectFit: 'cover',
-              objectPosition: 'top center',
+              objectPosition: 'center',
               zIndex: 2,
+              opacity: 0.85,
               mixBlendMode: 'screen',
               pointerEvents: 'none',
-              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
-              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%)',
+              transform: 'translate3d(0,0,0)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
             }}
           >
             <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
-          </motion.video>
+          </video>
         </div>
       </motion.div>
 
-      {/* Capa 2: Costa,ภูเขา และทะเล — Step 1: Solid initial paint */}
+      {/* Capa 2: Costa,ภูเขา และทะเล */}
       <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer2Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 2,
         }}
       >
-        <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            backgroundImage: 'url("/images/home/parallax/tierra.webp?v=5")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'bottom center',
+          }}
+        >
           <img
             ref={tierraRef}
             src="/images/home/parallax/tierra.webp?v=5"
             alt="Costa y mar del Abra de Getxo"
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
             onLoad={() => setTierraLoaded(true)}
             style={{
               position: 'absolute',
@@ -379,24 +393,21 @@ export function Section1Hero() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center',
+              objectPosition: 'bottom center',
             }}
           />
         </div>
       </motion.div>
 
-      {/* Capa 3: Velero — Step 3: ค่อยๆ เฟดเข้าประจำตำแหน่งที่ 0.5s และเริ่มโยกตัวนุ่มนวล */}
+      {/* Capa 3: Velero */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.5 }}
         style={{
           position: 'absolute',
           inset: 0,
-          top: '-2vh',
+          top: 0,
           y: layer3Y,
           width: '100%',
-          height: '102%',
+          height: '100%',
           zIndex: 3,
         }}
       >
@@ -443,6 +454,7 @@ export function Section1Hero() {
                   src="/images/home/parallax/velero_desktop.webp?v=1"
                   alt="Velero navegando en Getxo"
                   fetchPriority="high"
+                  decoding="sync"
                   onLoad={() => setBarcoLoaded(true)}
                   style={{
                     width: '100%',
@@ -485,10 +497,24 @@ export function Section1Hero() {
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isLandscape ? '-100px' : '0px',
-          transform: isPhone ? 'translateY(-12vh)' : 'translateY(-10vh)',
         }}
       >
+        <style jsx global>{`
+          .hero-text-container {
+            margin-top: -10vh !important;
+          }
+          .hero-video-blobs-container {
+            bottom: calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)) !important;
+          }
+          @media (max-width: 600px) {
+            .hero-text-container {
+              margin-top: -24vh !important;
+            }
+            .hero-video-blobs-container {
+              bottom: calc(clamp(4px, 1vh, 12px) - 3vh + env(safe-area-inset-bottom, 0px)) !important;
+            }
+          }
+        `}</style>
         <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
           <div className="flex flex-col text-left">
             {/* Eyebrow — ubicación */}
@@ -592,7 +618,7 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))',
+          bottom: 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',

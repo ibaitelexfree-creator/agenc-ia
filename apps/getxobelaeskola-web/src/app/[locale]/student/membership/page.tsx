@@ -103,7 +103,7 @@ export default function MembershipPage({ params: { locale } }: { params: { local
     ];
 
     return (
-        <main className="min-h-screen bg-nautical-black text-white pb-24 relative overflow-hidden">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-white pb-24 relative overflow-hidden">
             {/* Background Atmosphere */}
             <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-[#0a1628] to-nautical-black z-0" />
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-brass-gold/10 blur-[80px] rounded-full pointer-events-none" />

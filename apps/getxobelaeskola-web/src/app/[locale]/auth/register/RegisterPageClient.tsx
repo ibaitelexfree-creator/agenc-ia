@@ -38,7 +38,7 @@ function RegisterPageContent({ locale }: { locale: string }) {
             </div>
 
             {/* Decorative Column */}
-            <div className="hidden lg:block relative overflow-hidden bg-nautical-black order-1 lg:order-2">
+            <div className="hidden lg:block relative overflow-hidden bg-[#0D2137] order-1 lg:order-2">
                 <Image
                     src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200"
                     alt="Experiencia de Vela"
@@ -46,10 +46,10 @@ function RegisterPageContent({ locale }: { locale: string }) {
                     sizes="50vw"
                     className="object-cover grayscale opacity-40 scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-l from-nautical-black via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-l from-[#0D2137] via-transparent to-transparent" />
 
                 <div className="absolute bottom-20 right-20 z-10 text-right">
-                    <h2 className="text-6xl font-display mb-4 italic text-sea-foam">{t('hero_text')}</h2>
+                    <h2 className="text-6xl font-display mb-4 italic text-white">{t('hero_text')}</h2>
                     <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
             </div>
@@ -63,7 +63,7 @@ export default function RegisterPage({
     params: { locale: string }
 }) {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-nautical-black" />}>
+        <Suspense fallback={<div className="min-h-screen bg-[#0D2137]" />}>
             <RegisterPageContent locale={locale} />
         </Suspense>
     );

@@ -66,7 +66,6 @@ export default function UdalekuakIntro() {
           viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className={styles.decoratorLine}
-          style={{ marginTop: '2.5rem' }}
         />
 
       </div>

@@ -23,7 +23,14 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
   const currentMonth = new Date().getMonth(); // 0 is January, 9 is October
   const targetYear = currentMonth >= 9 ? currentYear + 1 : currentYear;
 
-  // Handle switching and playing videos seamlessly
+  // Handle switching and playing videos seamlessly + safety fallback for text visibility
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      setIntroEnded(true);
+    }, 3500);
+    return () => clearTimeout(fallbackTimer);
+  }, []);
+
   useEffect(() => {
     if (!introEnded) return;
 
@@ -119,30 +126,32 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
           {t('eyebrow')}
         </motion.p>
 
-        {/* Subtitle (handwritten font Caveat) */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={introEnded ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
-          className={styles.heroSubtitle}
-          style={{ marginTop: 'clamp(180px, 35vh, 320px)' }}
-        >
-          {t('subtitle')}
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div
-          initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
-          animate={introEnded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1.2, delay: 2.4, ease: 'easeInOut' }}
-        >
-          <button
-            onClick={onCtaClick}
-            className={styles.heroCta}
+        {/* BOTTOM CONTENT GROUP (Subtitle + CTA below center video text area) */}
+        <div className={styles.heroBottomGroup}>
+          {/* Subtitle (handwritten font Caveat) */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={introEnded ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1.5, delay: 1.2, ease: 'easeInOut' }}
+            className={styles.heroSubtitle}
           >
-            {t('cta', { year: targetYear })}
-          </button>
-        </motion.div>
+            {t('subtitle')}
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.95 }}
+            animate={introEnded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+            transition={{ duration: 1.2, delay: 2.4, ease: 'easeInOut' }}
+          >
+            <button
+              onClick={onCtaClick}
+              className={styles.heroCta}
+            >
+              {t('cta', { year: targetYear })}
+            </button>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

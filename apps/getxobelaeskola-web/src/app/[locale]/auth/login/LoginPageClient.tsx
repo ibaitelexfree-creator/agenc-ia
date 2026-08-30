@@ -36,14 +36,14 @@ function LoginPageContent({ locale }: { locale: string }) {
     // If we are still checking for a session, show a loading state instead of the login form
     if (checking) {
         return (
-            <div className="min-h-screen bg-nautical-black flex items-center justify-center">
+            <div className="min-h-screen bg-[#0D2137] text-white flex items-center justify-center">
                 <div className="w-10 h-10 border-4 border-accent/20 border-t-accent rounded-full animate-spin" />
             </div>
         );
     }
 
     return (
-        <main className="min-h-screen bg-nautical-black flex flex-col relative overflow-hidden">
+        <main className="min-h-screen bg-[#0D2137] text-white flex flex-col relative overflow-hidden">
             {/* Background Gradient Effects */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-brass-gold/5 blur-[120px] rounded-full pointer-events-none" />
@@ -55,9 +55,9 @@ function LoginPageContent({ locale }: { locale: string }) {
                     alt="Capitán"
                     className="absolute inset-0 w-full h-full object-cover opacity-25 sm:opacity-30 grayscale"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-nautical-black/80 via-nautical-black/50 to-nautical-black lg:bg-gradient-to-r lg:from-nautical-black lg:via-transparent lg:to-nautical-black" />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0D2137]/80 via-[#0D2137]/50 to-[#0D2137] lg:bg-gradient-to-r lg:from-[#0D2137] lg:via-transparent lg:to-[#0D2137]" />
                 <div className="absolute top-6 left-6 lg:top-auto lg:bottom-20 lg:left-16 z-10 opacity-80 lg:opacity-100">
-                    <h2 className="text-xl sm:text-2xl lg:text-5xl font-display mb-1 lg:mb-3 italic text-sea-foam">{t('hero_text')}</h2>
+                    <h2 className="text-xl sm:text-2xl lg:text-5xl font-display mb-1 lg:mb-3 italic text-white">{t('hero_text')}</h2>
                     <p className="text-accent uppercase tracking-widest text-[9px] sm:text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
             </div>
@@ -70,8 +70,8 @@ function LoginPageContent({ locale }: { locale: string }) {
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/10 border border-accent/20 mb-5">
                             <Anchor className="w-8 h-8 text-accent" />
                         </div>
-                        <h1 className="text-3xl lg:text-4xl font-display text-sea-foam mb-2">{t('login_title')}</h1>
-                        <p className="text-sea-foam/60 text-sm">{t('login_desc')}</p>
+                        <h1 className="text-3xl lg:text-4xl font-display text-white mb-2">{t('login_title')}</h1>
+                        <p className="text-white/60 text-sm">{t('login_desc')}</p>
                     </header>
 
                     {/* Login Form */}
@@ -79,11 +79,11 @@ function LoginPageContent({ locale }: { locale: string }) {
 
                     {/* Register Link */}
                     <footer className="mt-8 text-center">
-                        <p className="text-sea-foam/60 text-xs">
+                        <p className="text-white/60 text-xs">
                             {t('no_account')}{' '}
                             <Link
                                 href={`/${locale}/auth/register${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ''}`}
-                                className="text-accent hover:text-sea-foam transition-colors font-bold"
+                                className="text-accent hover:text-white transition-colors font-bold"
                             >
                                 {t('create_one')}
                             </Link>
@@ -97,7 +97,7 @@ function LoginPageContent({ locale }: { locale: string }) {
 
 export default function LoginPageClient({ locale }: { locale: string }) {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-nautical-black" />}>
+        <Suspense fallback={<div className="min-h-screen bg-[#0D2137]" />}>
             <LoginPageContent locale={locale} />
         </Suspense>
     );

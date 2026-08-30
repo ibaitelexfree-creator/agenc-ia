@@ -6,6 +6,21 @@ module.exports = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
+        screens: {
+            'xs': '320px',
+            'vsm': '320px',
+            'sm': '360px',
+            'md': '768px',
+            'tab-sm': '768px',
+            'tab': '820px',
+            'lg': '1024px',
+            'tab-lg': '1024px',
+            'xl': '1280px',
+            'laptop': '1280px',
+            'desktop': '1440px',
+            '2xl': '1536px',
+            'desktop-xl': '1920px',
+        },
         extend: {
             fontSize: {
                 '2xs': ['0.6875rem', { lineHeight: '1rem' }], // ~11px

@@ -63,7 +63,6 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
       style={{
         perspective: '2000px',
         zIndex: activeOpen ? 50 : 10,
-        height: '370px', // optimized height for compact screens
       }}
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -254,7 +253,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
               backgroundImage: 'radial-gradient(rgba(200, 169, 106, 0.05) 1px, transparent 0)',
               backgroundSize: '24px 24px',
               borderRadius: '18px',
-              padding: '2.5rem 1.5rem',
+              padding: 'clamp(0.75rem, 3vh, 2.5rem) clamp(0.4rem, 1.5vw, 1.5rem)',
               border: `2px solid ${COLORS.goldFoil}`,
               boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.3)',
               backfaceVisibility: 'hidden',

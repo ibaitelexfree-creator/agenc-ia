@@ -45,7 +45,7 @@ export default async function LocaleLayout({
   const { createClient } = await import('@/lib/supabase/server');
   const supabase = createClient();
   const { data: { user: authUser } } = await supabase.auth.getUser();
-  let initialUser = null;
+  let initialUser: any = null;
   
   if (authUser) {
       const { data: profile } = await supabase.from('profiles').select('rol, status_socio').eq('id', authUser.id).single();
@@ -54,7 +54,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${cormorantGaramond.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="preload" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/tierra.webp?v=5" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/velero_desktop.webp?v=1" as="image" type="image/webp" fetchPriority="high" />
+      </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
           <FramerProvider>
@@ -70,9 +74,7 @@ export default async function LocaleLayout({
               <ScrollUpButton />
               <WhatsAppButton />
 
-              <Suspense fallback={null}>
-                <StatusToast />
-              </Suspense>
+              <StatusToast />
               <Analytics />
               <SpeedInsights />
               <AccessibilityScript />

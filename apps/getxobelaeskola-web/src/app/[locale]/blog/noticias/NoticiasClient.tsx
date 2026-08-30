@@ -90,7 +90,7 @@ export default function NoticiasClient({
 
     if (selectedPost) {
         return (
-            <main className="min-h-screen bg-[#F7FAFC] pt-20 pb-12 selection:bg-accent selection:text-[#1A1A1A]">
+            <main className="min-h-[100dvh] w-full bg-[#F7FAFC] pt-20 pb-12 selection:bg-accent selection:text-[#1A1A1A]">
                 <div className="container mx-auto px-6 max-w-4xl">
                     <button
                         onClick={() => setSelectedPost(null)}
@@ -131,7 +131,7 @@ export default function NoticiasClient({
     }
 
     return (
-        <main className="min-h-screen bg-[#F7FAFC] pt-16 pb-10 selection:bg-accent selection:text-[#1A1A1A]">
+        <main className="min-h-[100dvh] w-full bg-[#F7FAFC] pt-16 pb-10 selection:bg-accent selection:text-[#1A1A1A]">
             <div className="container mx-auto px-6 max-w-4xl">
                 {/* Header */}
                 <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
