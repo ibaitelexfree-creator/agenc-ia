@@ -50,7 +50,7 @@
   height: 100%;
   max-width: 100%;
   max-height: 100dvh;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center center;
   transition: transform 0.3s ease-in-out;
 }
@@ -341,6 +341,21 @@
     min-height: 0 !important;
     max-height: 100dvh !important;
     overflow: hidden !important;
+  }
+
+  .heroBg {
+    height: 100% !important;
+    max-height: 100% !important;
+    inset: 0 !important;
+  }
+
+  .heroVideo, .heroVideoReverse {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center center !important;
   }
 
   .heroContent {
