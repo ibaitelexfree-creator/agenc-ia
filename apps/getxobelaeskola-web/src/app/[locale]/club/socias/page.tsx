@@ -49,13 +49,13 @@ export default function ClubSociasPage() {
     return (
         <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Hero */}
-            <section className="relative pt-10 landscape:pt-8 sm:pt-16 md:pt-32 lg:pt-36 pb-10 landscape:pb-10 md:pb-28 overflow-hidden bg-nautical-deep w-full -mt-[0.5vh] md:mt-0">
+            <section className="relative pt-10 max-md:landscape:pt-8 md:pt-32 lg:pt-36 pb-10 max-md:landscape:pb-10 md:pb-28 overflow-hidden bg-nautical-deep w-full max-md:-mt-[0.5vh]">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                 <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6 relative z-10 text-center">
-                    <header className="w-full max-w-full md:max-w-4xl md:mx-auto space-y-2.5 landscape:space-y-2.5 md:space-y-6">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-brass-gold/10 border border-brass-gold/20 text-brass-gold text-[10px] sm:text-xs font-black tracking-widest uppercase mb-1 md:mb-4 animate-fade-in-up">
+                    <header className="w-full max-w-full md:max-w-4xl md:mx-auto space-y-2.5 max-md:landscape:space-y-2.5 md:space-y-6">
+                        <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-brass-gold/10 border border-brass-gold/20 text-brass-gold text-[10px] sm:text-xs font-black tracking-widest uppercase mb-1 md:mb-4 animate-fade-in-up">
                             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             {t('title')}
                         </span>
@@ -71,10 +71,10 @@ export default function ClubSociasPage() {
             </section>
 
             {/* Split Image & Text Section */}
-            <section className="py-8 landscape:py-10 md:py-24 relative overflow-hidden w-full">
+            <section className="py-8 max-md:landscape:py-10 md:py-24 relative overflow-hidden w-full">
                 <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6">
-                    <StaggeredEntrance type="slide" className="grid grid-cols-1 landscape:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-16 items-center w-full">
-                        <div className="landscape:col-span-1 lg:col-span-6 w-full">
+                    <StaggeredEntrance type="slide" className="grid grid-cols-1 max-md:landscape:grid-cols-2 lg:grid-cols-12 gap-5 lg:gap-16 items-center w-full">
+                        <div className="max-md:landscape:col-span-1 lg:col-span-6 w-full">
                             <div className="relative aspect-[3/2.03] md:aspect-[3/2] w-full border-2 border-sea-foam/30 overflow-hidden shadow-2xl group bg-nautical-deep rounded-xl md:rounded-none scale-y-[1.01] md:scale-y-100">
                                 <Image
                                     src="/images/socias-angharad-wa0084.webp"
@@ -86,8 +86,8 @@ export default function ClubSociasPage() {
                             </div>
                         </div>
 
-                        <div className="landscape:col-span-1 lg:col-span-6 space-y-3 md:space-y-8 w-full max-w-full">
-                            <h2 className="text-lg landscape:text-xl sm:text-2xl md:text-3xl lg:text-5xl font-display uppercase tracking-tight w-full">
+                        <div className="max-md:landscape:col-span-1 lg:col-span-6 space-y-3 md:space-y-8 w-full max-w-full">
+                            <h2 className="text-lg max-md:landscape:text-xl sm:text-2xl md:text-3xl lg:text-5xl font-display uppercase tracking-tight w-full">
                                 {t('section_title_part1')} <br />
                                 <span className="italic font-light text-accent">{t('section_title_part2')}</span>
                             </h2>
@@ -100,7 +100,7 @@ export default function ClubSociasPage() {
             </section>
 
             {/* Benefits Grid */}
-            <section className="py-12 landscape:py-14 md:py-32 relative bg-sea-foam/[0.02] border-t border-sea-foam/10 w-full">
+            <section className="py-12 max-md:landscape:py-14 md:py-32 relative bg-sea-foam/[0.02] border-t border-sea-foam/10 w-full">
                 <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6">
                     <header className="mb-8 md:mb-24 text-center w-full max-w-full">
                         <span className="text-accent uppercase tracking-[0.4em] md:tracking-[0.5em] text-[10px] sm:text-xs font-black mb-2 md:mb-4 block">{t('benefits_eyebrow')}</span>
@@ -108,7 +108,7 @@ export default function ClubSociasPage() {
                         <div className="w-16 md:w-24 h-px bg-accent/40 mx-auto mt-3 md:mt-6" />
                     </header>
 
-                    <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 w-full">
+                    <StaggeredEntrance type="slide" staggerDelay={0.12} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 w-full">
                         {benefits.map((benefit, i) => (
                             <m.div
                                 key={i}
@@ -136,10 +136,10 @@ export default function ClubSociasPage() {
             </section>
 
             {/* Call To Action */}
-            <section className="py-14 landscape:py-14 md:py-32 relative bg-nautical-deep overflow-hidden border-t border-sea-foam/10 text-center w-full">
+            <section className="py-14 max-md:landscape:py-14 md:py-32 relative bg-nautical-deep overflow-hidden border-t border-sea-foam/10 text-center w-full">
                 <div className="absolute inset-0 bg-maps opacity-5 pointer-events-none" />
                 <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6 relative z-10 space-y-6 md:space-y-12">
-                    <h2 className="text-xl landscape:text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-display uppercase tracking-tight w-full">
+                    <h2 className="text-xl max-md:landscape:text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-display uppercase tracking-tight w-full">
                         {t('cta_title')}
                     </h2>
                     <p className="text-sea-foam/60 text-xs sm:text-sm md:text-lg font-light w-full max-w-2xl md:max-w-xl mx-auto leading-relaxed">
