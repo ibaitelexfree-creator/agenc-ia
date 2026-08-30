@@ -1725,7 +1725,7 @@ section {
 }
 
 /* ==========================================================================
-   COURSES RESPONSIVE SYSTEM: STRICT PORTRAIT VS LANDSCAPE ARCHITECTURE
+   COURSES RESPONSIVE SYSTEM: SCOPED STRICTLY TO MOBILE & TABLET (< 1024px)
    ========================================================================== */
 
 /* PORTRAIT: Mobile (< 768px, e.g. 320x586, 360x640, 390x844) */
@@ -1760,27 +1760,6 @@ section {
     width: 100% !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 1.75rem !important;
-  }
-  .course-card-img-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1 !important;
-    max-height: none !important;
-    overflow: hidden;
-  }
-}
-
-/* PORTRAIT: Desktop / Large (>= 1024px) */
-@media (orientation: portrait) and (min-width: 1024px) {
-  .courses-header-section {
-    padding-top: clamp(8rem, 16vh, 12rem);
-    padding-bottom: clamp(2rem, 4vh, 4rem);
-  }
-  .courses-grid-system {
-    display: grid !important;
-    width: 100% !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2rem !important;
   }
   .course-card-img-container {
     position: relative;
@@ -1829,27 +1808,6 @@ section {
     width: 100%;
     aspect-ratio: 16 / 10 !important;
     max-height: 170px !important;
-    overflow: hidden;
-  }
-}
-
-/* LANDSCAPE: Desktop (>= 1024px) */
-@media (orientation: landscape) and (min-width: 1024px) {
-  .courses-header-section {
-    padding-top: clamp(6.5rem, 14vh, 10rem) !important;
-    padding-bottom: clamp(1.5rem, 3vh, 3rem) !important;
-  }
-  .courses-grid-system {
-    display: grid !important;
-    width: 100% !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2rem !important;
-  }
-  .course-card-img-container {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1 !important;
-    max-height: none !important;
     overflow: hidden;
   }
 }
