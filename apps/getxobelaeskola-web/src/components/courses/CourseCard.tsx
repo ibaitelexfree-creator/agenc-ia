@@ -44,7 +44,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
             {/* Image Container with Cinematic Zoom */}
-            <div className="relative h-[400px] w-full overflow-hidden">
+            <div className="course-card-img-container">
                 <NauticalImage
                     src={course.imagen_url}
                     category="veleros"
@@ -57,9 +57,9 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                 <div className="absolute inset-0 premium-gradient-overlay z-10" />
 
                 {/* Level Badge - Premium Minimalist */}
-                <div className="absolute top-8 left-8 p-0 z-20">
+                <div className="absolute top-4 left-4 sm:top-8 sm:left-8 p-0 z-20">
                     <div className="flex items-center gap-4 animate-fade-in group-hover:translate-x-2 transition-transform duration-700">
-                        <div className="w-10 h-px bg-accent flex-shrink-0" />
+                        <div className="w-6 sm:w-10 h-px bg-accent flex-shrink-0" />
                         <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-black whitespace-nowrap pr-4">
                             {t(`levels.${course.nivel}`)}
                         </span>
@@ -67,7 +67,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                 </div>
 
                 {/* Vertical Text Accent */}
-                <div className="absolute right-8 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
+                <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
                     <span className="text-[10px] uppercase tracking-[0.5em] text-sea-foam/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
                         {course.duracion_h} HOURS TRAINING
                     </span>
@@ -75,7 +75,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             </div>
 
             {/* Content Area */}
-            <div className="p-8 md:p-10 relative z-10 space-y-6">
+            <div className="p-5 sm:p-6 md:p-8 landscape:p-4 landscape:sm:p-5 landscape:md:p-6 relative z-10 space-y-4 md:space-y-6">
                 <div className="space-y-4">
                     <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
                         <span className="text-technical">

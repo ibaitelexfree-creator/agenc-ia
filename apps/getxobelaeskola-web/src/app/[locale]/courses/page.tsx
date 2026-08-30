@@ -115,7 +115,7 @@ export default async function CoursesPage({
     return (
         <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Header Section */}
-            <section className="relative pt-32 sm:pt-36 md:pt-40 lg:pt-44 xl:pt-48 pb-8 md:pb-12 lg:pb-16 overflow-hidden w-full">
+            <section className="relative courses-header-section overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
