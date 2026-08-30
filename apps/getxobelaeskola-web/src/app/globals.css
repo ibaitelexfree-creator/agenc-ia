@@ -1728,6 +1728,14 @@ section {
    COURSES RESPONSIVE SYSTEM: SCOPED STRICTLY TO MOBILE & TABLET (< 1024px)
    ========================================================================== */
 
+/* Base Desktop Image Container Rule */
+.course-card-img-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
 /* PORTRAIT: Mobile (< 768px, e.g. 320x586, 360x640, 390x844) */
 @media (orientation: portrait) and (max-width: 767px) {
   .courses-header-section {
