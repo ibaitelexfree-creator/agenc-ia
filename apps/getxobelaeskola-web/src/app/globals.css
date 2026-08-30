@@ -1724,49 +1724,168 @@ section {
   max-width: 100%;
 }
 
-/* MOBILE LANDSCAPE RANGE: Scoped strictly to Mobile Landscape (< 768px, e.g. 586x320px) */
-@media (orientation: landscape) and (max-width: 767px) {
-  /* Scaled-down header top padding */
-  main section:first-of-type {
+/* ==========================================================================
+   GLOBAL 8-RANGE + DUAL ORIENTATION RESPONSIVE SYSTEM
+   ========================================================================== */
+
+/* RANGE 1 — 20-359px (Very Small Mobile) */
+@media (max-width: 359px) and (orientation: portrait) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(160px, 45vh, 220px) !important;
+  }
+}
+
+@media (max-width: 359px) and (orientation: landscape) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(75px, 22vh, 95px) !important;
+  }
+}
+
+/* RANGE 2 — 360-767px (Mobile) */
+@media (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(220px, 40vh, 320px) !important;
+  }
+}
+
+@media (min-width: 360px) and (max-width: 767px) and (orientation: landscape) {
+  .courses-header-section {
     padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
     padding-bottom: clamp(0.5rem, 2vh, 1rem) !important;
   }
-
-  /* Desktop-style 3 Column Grid scaled to fit landscape width */
   .courses-grid-system {
     display: grid !important;
-    width: 100% !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 0.625rem !important;
     margin-top: 1rem !important;
   }
-
-  /* Scaled-down image container height */
   .course-card-img-container {
     height: clamp(80px, 22vh, 110px) !important;
   }
-
-  /* Scale down card content padding, spacing, and typography */
   .courses-grid-system .glass-card > div:last-of-type {
     padding: clamp(0.4rem, 1.2vw, 0.75rem) !important;
     gap: 0.35rem !important;
   }
-
   .courses-grid-system .glass-card h3 {
     font-size: clamp(0.78rem, 2vw, 1.05rem) !important;
     line-height: 1.1 !important;
-    padding-top: 0.15rem !important;
   }
-
   .courses-grid-system .glass-card p {
     font-size: clamp(0.6rem, 1.2vw, 0.72rem) !important;
     min-height: auto !important;
-    line-clamp: 2 !important;
     -webkit-line-clamp: 2 !important;
   }
-
   .courses-grid-system .glass-card a {
     padding-top: 0.35rem !important;
     padding-bottom: 0.35rem !important;
+  }
+}
+
+/* RANGE 3 — 768-819px (Small Tablet / iPad) */
+@media (min-width: 768px) and (max-width: 819px) and (orientation: portrait) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(260px, 30vh, 340px) !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 819px) and (orientation: landscape) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(140px, 25vh, 180px) !important;
+  }
+}
+
+/* RANGE 4 — 820-1023px (Large Tablet / iPad) */
+@media (min-width: 820px) and (max-width: 1023px) and (orientation: portrait) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.75rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(280px, 32vh, 360px) !important;
+  }
+}
+
+@media (min-width: 820px) and (max-width: 1023px) and (orientation: landscape) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.25rem !important;
+  }
+  .course-card-img-container {
+    height: clamp(160px, 26vh, 200px) !important;
+  }
+}
+
+/* RANGE 5 — 1024-1279px (Tablet Landscape / Small Laptop) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+  .course-card-img-container {
+    height: 360px !important;
+  }
+}
+
+/* RANGE 6 — 1280-1439px (Laptop) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2rem !important;
+  }
+  .course-card-img-container {
+    height: 380px !important;
+  }
+}
+
+/* RANGE 7 — 1440-1919px (Large Laptop / Desktop) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.25rem !important;
+  }
+  .course-card-img-container {
+    height: 400px !important;
+  }
+}
+
+/* RANGE 8 — 1920px+ (Full HD / Large Desktop) */
+@media (min-width: 1920px) {
+  .courses-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 2.5rem !important;
+  }
+  .course-card-img-container {
+    height: 420px !important;
   }
 }
