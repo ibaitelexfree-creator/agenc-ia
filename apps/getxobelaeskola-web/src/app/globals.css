@@ -1723,3 +1723,52 @@ section {
   width: 100%;
   max-width: 100%;
 }
+
+/* ==========================================================================
+   MOBILE LANDSCAPE (e.g. 586x320px): SCALED DESKTOP LAYOUT (3 COLUMNS)
+   ========================================================================== */
+@media (orientation: landscape) and (max-width: 767px) {
+  /* Scaled-down header top padding */
+  main section:first-of-type {
+    padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
+    padding-bottom: clamp(0.5rem, 2vh, 1rem) !important;
+  }
+
+  /* Desktop-style 3 Column Grid scaled to fit landscape width */
+  .courses-grid-system {
+    display: grid !important;
+    width: 100% !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.625rem !important;
+    margin-top: 1rem !important;
+  }
+
+  /* Scaled-down image container height */
+  .course-card-img-container {
+    height: clamp(80px, 22vh, 110px) !important;
+  }
+
+  /* Scale down card content padding, spacing, and typography */
+  .courses-grid-system .glass-card > div:last-of-type {
+    padding: clamp(0.4rem, 1.2vw, 0.75rem) !important;
+    gap: 0.35rem !important;
+  }
+
+  .courses-grid-system .glass-card h3 {
+    font-size: clamp(0.78rem, 2vw, 1.05rem) !important;
+    line-height: 1.1 !important;
+    padding-top: 0.15rem !important;
+  }
+
+  .courses-grid-system .glass-card p {
+    font-size: clamp(0.6rem, 1.2vw, 0.72rem) !important;
+    min-height: auto !important;
+    line-clamp: 2 !important;
+    -webkit-line-clamp: 2 !important;
+  }
+
+  .courses-grid-system .glass-card a {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+}

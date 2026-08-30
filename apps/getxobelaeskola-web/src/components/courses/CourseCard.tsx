@@ -44,7 +44,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
             {/* Image Container with Cinematic Zoom */}
-            <div className="relative h-[400px] w-full overflow-hidden">
+            <div className="relative h-[400px] w-full overflow-hidden course-card-img-container">
                 <NauticalImage
                     src={course.imagen_url}
                     category="veleros"
