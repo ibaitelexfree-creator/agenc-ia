@@ -49,11 +49,11 @@ export default function ClubSociasPage() {
     return (
         <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Hero */}
-            <section className="relative pt-10 max-md:landscape:pt-8 md:pt-32 lg:pt-36 pb-10 max-md:landscape:pb-10 md:pb-28 overflow-hidden bg-nautical-deep w-full max-md:-mt-[0.5vh]">
+            <section className="relative pt-20 max-md:pt-[calc(2.5rem+3vh)] max-md:landscape:pt-[calc(2rem+3vh)] md:pt-32 lg:pt-36 pb-10 max-md:landscape:pb-10 md:pb-28 overflow-hidden bg-nautical-deep w-full">
                 <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-                <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6 relative z-10 text-center">
+                <div className="w-full px-4 sm:px-6 md:container md:mx-auto md:px-6 relative z-10 text-center max-md:mt-[3vh]">
                     <header className="w-full max-w-full md:max-w-4xl md:mx-auto space-y-2.5 max-md:landscape:space-y-2.5 md:space-y-6">
                         <span className="inline-flex items-center gap-1.5 md:gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-brass-gold/10 border border-brass-gold/20 text-brass-gold text-[10px] sm:text-xs font-black tracking-widest uppercase mb-1 md:mb-4 animate-fade-in-up">
                             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
