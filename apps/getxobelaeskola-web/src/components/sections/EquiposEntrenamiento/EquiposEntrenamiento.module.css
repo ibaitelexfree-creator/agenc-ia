@@ -216,25 +216,56 @@
 
 .team-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-  gap: var(--space-md);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.5rem, 2vw, var(--space-md));
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
+  align-items: stretch;
 }
 
-@media (max-width: 640px) {
+.team-card-wrapper {
+  height: clamp(320px, 45vh, 420px);
+  cursor: pointer;
+  width: 100%;
+}
+
+/* ── 1. PORTRAIT (< 586px width OR portrait viewports under 768px): Strictly 1 Column (1 -> 2 -> 3) ── */
+@media (max-width: 585px), (orientation: portrait) and (max-width: 767px) {
   .team-cards-grid {
-    grid-template-columns: minmax(260px, 340px);
+    grid-template-columns: minmax(0, 360px);
     justify-content: center;
+    gap: var(--space-md);
+  }
+
+  .team-card-wrapper {
+    height: 339px; /* Reduced by 3% from 350px */
   }
 }
 
-/* ── Wrapper que tiene la perspectiva ─────────────────────── */
-.team-card-wrapper {
-  height: 360px;   /* altura fija para el flip */
-  cursor: pointer;
+/* ── 2. LANDSCAPE COMPACT (e.g. 586x320, 600x320, 640x360, 720x400): 3 cards in 1 Row (1 | 2 | 3) ── */
+@media (orientation: landscape) and (max-height: 500px) {
+  .team-cards-section {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .team-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.35rem, 1.5vw, 0.85rem);
+    max-width: 100%;
+  }
+
+  .team-card-wrapper {
+    height: clamp(190px, 60vh, 260px);
+  }
+}
+
+/* ── 3. LANDSCAPE / TABLET / DESKTOP (Width >= 586px in landscape): 3 cards in 1 Row (1 | 2 | 3) ── */
+@media (min-width: 586px) and (orientation: landscape) {
+  .team-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 /* ── La capa que rota (necesita transform-style) ─────────── */
@@ -542,13 +573,13 @@
 }
 
 .logbook {
-  max-width: 800px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   background: var(--color-hull);
   border-radius: 20px;
-  padding: var(--space-lg);
-  border: 1px solid rgba(43, 224, 192, 0.1);
+  padding: clamp(var(--space-md), 3vw, var(--space-lg));
+  border: 1px solid rgba(43, 224, 192, 0.12);
   text-align: left;
   /* Renglones de fondo — evoca papel */
   background-image: repeating-linear-gradient(
@@ -588,23 +619,45 @@
   margin: var(--space-sm) 0 var(--space-md);
 }
 
-.logbook__entry {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  padding: var(--space-sm) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+.logbook__entries-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  width: 100%;
+  margin: var(--space-md) 0;
 }
 
-.logbook__entry:last-of-type { border-bottom: none; }
+.logbook__entry {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  padding: clamp(0.85rem, 1.8vw, 1.25rem);
+  background: rgba(10, 30, 54, 0.55);
+  border: 1px solid rgba(43, 224, 192, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logbook__entry:hover {
+  border-color: rgba(43, 224, 192, 0.25);
+  transform: translateY(-2px);
+}
+
+.logbook__entry-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
 
 .logbook__entry-num {
   font-family: var(--font-race);
   font-size: 0.75rem;
   color: var(--color-fog);
   letter-spacing: 0.05em;
-  min-width: 36px;
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
 .logbook__entry-body { flex: 1; }
@@ -613,14 +666,14 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .logbook__entry-icon { font-size: 1.1rem; }
 
 .logbook__entry-title {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--color-sail);
 }
@@ -629,13 +682,13 @@
   font-family: var(--font-body);
   font-size: 0.88rem;
   color: var(--color-fog);
-  line-height: 1.6;
+  line-height: 1.55;
   margin: 0;
 }
 
 .logbook__highlight {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 8px;
   font-family: var(--font-race);
   font-size: 0.8rem;
   color: var(--color-buoy);
@@ -646,17 +699,48 @@
 
 .logbook__check {
   flex-shrink: 0;
-  width: 28px; height: 28px;
+  width: 26px; height: 26px;
   background: rgba(43, 224, 192, 0.08);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2px;
 }
 
 .logbook__check-svg {
   width: 14px; height: 14px;
+}
+
+/* ── RESPONSIVE MEDIA QUERIES FOR LOGBOOK ENTRIES ────────────────── */
+
+/* 1. DESKTOP / LARGE LANDSCAPE (1024px+): 4 Columns in 1 Row (01 | 02 | 03 | 04) */
+@media (min-width: 1024px) {
+  .logbook__entries-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* 2. TABLET / MEDIUM LANDSCAPE (768px - 1023px): 2 or 3 Columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .logbook__entries-grid {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+}
+
+/* 3. MOBILE LANDSCAPE & SMALL LANDSCAPE (e.g. 480x320, 586x320, 640x360, 667x375, 720x400): 2 Columns (01 | 02 / 03 | 04) */
+@media (orientation: landscape) and (max-height: 600px), (min-width: 586px) and (max-width: 767px) {
+  .logbook__entries-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.5vw, 0.85rem);
+  }
+}
+
+/* 4. MOBILE PORTRAIT (< 586px width & portrait viewports): Strictly 1 Column (01 -> 02 -> 03 -> 04) */
+@media (max-width: 585px), (orientation: portrait) and (max-width: 767px) {
+  .logbook__entries-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
 }
 
 .logbook__signature {
