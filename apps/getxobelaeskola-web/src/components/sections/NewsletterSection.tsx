@@ -17,7 +17,7 @@ export default function NewsletterSection({ locale = 'es' }: { locale?: string }
         zIndex: 10,
       }}
     >
-      <div className="w-full max-w-4xl px-6">
+      <div className="w-full max-w-[95%] sm:max-w-[92%] px-3 sm:px-6">
         <Newsletter locale={locale} />
       </div>
     </div>

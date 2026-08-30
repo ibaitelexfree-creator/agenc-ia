@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Expanded cloud video coverage height to 75% above sea and mountain in `Section1Hero.tsx`.
+- **Task:** Configured Newsletter component and section layout to fit the page proportionally in `Newsletter.tsx` and `NewsletterSection.tsx`.
 - **Changes:**
-  - Updated Cloud Video height from 45% to 75% and gradient mask to 75%.
-  - Drifting clouds float across the sky, above the sea, and beside the mountain peak.
+  - Set `w-full max-w-[96%]` and proportional padding (`p-5 sm:p-8 md:p-10`) so the card fits smoothly into any page context.
+  - Adjusted `NewsletterSection.tsx` container width to `max-w-[95%]`.
 - **Status:** COMPLETED & VERIFIED.
