@@ -34,9 +34,8 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
   const t = useTranslations('equipos_entrenamiento.teams');
   
   const [isHovered, setIsHovered] = useState(false);
-  const [isAutoOpen, setIsAutoOpen] = useState(false);
 
-  const activeOpen = isActive || isHovered || isAutoOpen;
+  const activeOpen = isActive || isHovered;
 
   const label = t(`${teamKey}.label`);
   const age = t(`${teamKey}.age`);
@@ -72,32 +71,6 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
       onMouseLeave={() => setIsHovered(false)}
       onClick={onToggle}
     >
-      {/* Scroll Trigger Detector for Automatic Open/Close */}
-      <motion.div
-        className="hidden"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.6 }}
-        onViewportEnter={() => {
-          // Open automatically with slight sequence stagger
-          const timer = setTimeout(() => {
-            setIsAutoOpen(true);
-          }, entryDelay * 1000 + 200);
-
-          // Close automatically after 2.5 seconds
-          const closeTimer = setTimeout(() => {
-            setIsAutoOpen(false);
-          }, entryDelay * 1000 + 2700);
-
-          return () => {
-            clearTimeout(timer);
-            clearTimeout(closeTimer);
-          };
-        }}
-        onViewportLeave={() => {
-          setIsAutoOpen(false);
-        }}
-      />
 
       <motion.div
         className="w-full h-full relative"
