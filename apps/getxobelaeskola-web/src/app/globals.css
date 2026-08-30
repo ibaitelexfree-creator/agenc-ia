@@ -1724,8 +1724,8 @@ section {
   max-width: 100%;
 }
 
-/* MOBILE LANDSCAPE RANGE: Width 320px-950px, Height <= 550px (e.g. 586x320px) */
-@media (orientation: landscape) and (max-width: 950px) and (max-height: 550px) {
+/* MOBILE LANDSCAPE RANGE: Scoped strictly to Mobile Landscape (< 768px, e.g. 586x320px) */
+@media (orientation: landscape) and (max-width: 767px) {
   /* Scaled-down header top padding */
   main section:first-of-type {
     padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
