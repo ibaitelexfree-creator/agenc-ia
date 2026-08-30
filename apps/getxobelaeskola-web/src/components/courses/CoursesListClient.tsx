@@ -29,7 +29,7 @@ export default function CoursesListClient({ initialCourses, categories, locale }
 
     return (
         <section className="pb-48 relative overflow-hidden">
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="w-full max-w-full px-4 sm:px-6 md:px-8 landscape:px-4 relative z-10">
                 <CourseFilters categories={categories || []} locale={locale} />
 
                 {displayCourses.length === 0 ? (
