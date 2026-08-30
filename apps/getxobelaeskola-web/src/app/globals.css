@@ -1743,143 +1743,52 @@ section {
 .courses-grid-system {
   display: grid;
   width: 100%;
-  gap: clamp(1.25rem, 2.5vw, 3rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2vw, 2.5rem);
 }
 
 /* PORTRAIT RESPONSIVE BREAKPOINTS */
 @media (orientation: portrait) {
-  /* 320px -> 359px: Small mobile portrait */
-  @media (max-width: 359px) {
+  /* < 640px: Mobile portrait */
+  @media (max-width: 639px) {
     .courses-grid-system {
       grid-template-columns: 1fr;
-      gap: 1rem;
+      gap: 1.25rem;
     }
   }
 
-  /* 360px -> 767px: Mobile portrait */
-  @media (min-width: 360px) and (max-width: 767px) {
+  /* >= 640px: Tablet/iPad/Desktop portrait (3 cards per row) */
+  @media (min-width: 640px) {
     .courses-grid-system {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
-
-  /* 768px -> 819px: Tablet portrait (iPad portrait) */
-  @media (min-width: 768px) and (max-width: 819px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1.75rem;
-    }
-  }
-
-  /* 820px -> 1023px: Large tablet portrait (iPad Pro portrait) */
-  @media (min-width: 820px) and (max-width: 1023px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2rem;
-    }
-  }
-
-  /* 1024px -> 1279px: Large portrait / Desktop portrait */
-  @media (min-width: 1024px) and (max-width: 1279px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2.25rem;
-    }
-  }
-
-  /* 1280px+ portrait */
-  @media (min-width: 1280px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2.5rem;
     }
   }
 }
 
 /* LANDSCAPE RESPONSIVE BREAKPOINTS */
 @media (orientation: landscape) {
-  /* 320px -> 359px: Micro landscape */
-  @media (max-width: 359px) {
+  /* < 540px: Micro mobile landscape */
+  @media (max-width: 539px) {
     .courses-grid-system {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
     }
   }
 
-  /* 360px -> 767px: Mobile landscape */
-  @media (min-width: 360px) and (max-width: 767px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.25rem;
-    }
-  }
-
-  /* 768px -> 819px: Compact tablet landscape */
-  @media (min-width: 768px) and (max-width: 819px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-  }
-
-  /* 820px -> 1023px: Tablet landscape */
-  @media (min-width: 820px) and (max-width: 1023px) {
+  /* >= 540px: All landscape screens (3 cards per row) */
+  @media (min-width: 540px) {
     .courses-grid-system {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.75rem;
-    }
-  }
-
-  /* 1024px -> 1279px: iPad / Tablet Pro landscape */
-  @media (min-width: 1024px) and (max-width: 1279px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2rem;
-    }
-  }
-
-  /* 1280px -> 1439px: Laptop landscape */
-  @media (min-width: 1280px) and (max-width: 1439px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2.25rem;
-    }
-  }
-
-  /* 1440px -> 1919px: Desktop landscape */
-  @media (min-width: 1440px) and (max-width: 1919px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 2.5rem;
-    }
-  }
-
-  /* 1920px+: Ultra-wide / Full HD landscape */
-  @media (min-width: 1920px) {
-    .courses-grid-system {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 2.75rem;
+      gap: clamp(1rem, 2vw, 2.25rem);
     }
   }
 }
 
-/* FLUID CARD IMAGE & CONTENT SCALING */
+/* SQUARE CARD IMAGE SCALING (Aspect Ratio 1:1) */
 .course-card-img-container {
   position: relative;
   width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  height: clamp(220px, 35vh, 400px);
-}
-
-@media (orientation: landscape) {
-  .course-card-img-container {
-    height: clamp(160px, 30vh, 260px);
-  }
-}
-
-@media (orientation: landscape) and (max-height: 500px) {
-  .course-card-img-container {
-    height: clamp(130px, 28vh, 190px);
-  }
 }
