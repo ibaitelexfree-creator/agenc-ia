@@ -36,7 +36,7 @@ export default function CourseFilters({ categories, locale }: CourseFiltersProps
             {/* Gradient Mask for horizontal scroll */}
             <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-nautical-deep to-transparent z-10 pointer-events-none" />
 
-            <div className="flex flex-wrap lg:flex-nowrap lg:overflow-x-auto pb-4 gap-3 sm:gap-4 no-scrollbar scroll-smooth">
+            <div className="flex flex-wrap landscape:flex-nowrap landscape:overflow-x-auto lg:flex-nowrap lg:overflow-x-auto pb-3 sm:pb-4 gap-2.5 sm:gap-3 md:gap-4 no-scrollbar scroll-smooth w-full">
                 <button
                     onClick={() => handleCategoryChange(null)}
                     className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${!activeCategory
