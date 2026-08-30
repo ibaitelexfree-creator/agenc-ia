@@ -44,7 +44,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
             {/* Image Container with Cinematic Zoom */}
-            <div className="relative h-[400px] w-full overflow-hidden course-card-img-container">
+            <div className="relative h-[400px] landscape:h-[110px] md:h-[400px] w-full overflow-hidden">
                 <NauticalImage
                     src={course.imagen_url}
                     category="veleros"
@@ -75,29 +75,29 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             </div>
 
             {/* Content Area */}
-            <div className="p-8 md:p-10 relative z-10 space-y-6">
-                <div className="space-y-4">
-                    <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
-                        <span className="text-technical">
+            <div className="p-8 landscape:p-3 md:p-10 relative z-10 space-y-6 landscape:space-y-2 md:space-y-6">
+                <div className="space-y-4 landscape:space-y-1 md:space-y-4">
+                    <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 landscape:pb-1 md:pb-4 gap-2">
+                        <span className="text-technical text-xs landscape:text-[9px]">
                             Premium Academy
                         </span>
-                        <span className="text-2xl font-display text-sea-foam italic flex-shrink-0">
-                            {course.precio}<span className="text-brass-gold text-lg ml-1">€</span>
+                        <span className="text-2xl landscape:text-lg font-display text-sea-foam italic flex-shrink-0">
+                            {course.precio}<span className="text-brass-gold text-lg landscape:text-sm ml-1">€</span>
                         </span>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
+                    <h3 className="text-3xl sm:text-4xl landscape:text-base md:text-3xl lg:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2 landscape:pt-1">
                         {name}
                     </h3>
                 </div>
 
-                <p className="text-sea-foam/60 font-light text-sm leading-relaxed min-h-[4rem] group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3">
+                <p className="text-sea-foam/60 font-light text-sm landscape:text-[11px] leading-relaxed min-h-[4rem] landscape:min-h-0 group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3 landscape:line-clamp-2">
                     {description}
                 </p>
 
                 <Link
                     href={`/${locale}/servicios/cursos/${course.slug}`}
-                    className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
+                    className="group/link w-full inline-flex items-center justify-between py-6 landscape:py-2 md:py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                 >
                     <span className="text-[10px] uppercase tracking-[0.5em] font-black text-sea-foam group-hover/link:text-accent transition-colors">
                         {t('view_more')}
