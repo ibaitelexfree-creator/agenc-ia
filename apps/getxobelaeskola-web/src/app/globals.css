@@ -1744,12 +1744,12 @@ section {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.25rem, 2vw, 2.5rem);
+  gap: clamp(1rem, 2vw, 2.5rem);
 }
 
 /* PORTRAIT RESPONSIVE BREAKPOINTS */
 @media (orientation: portrait) {
-  /* < 640px: Mobile portrait */
+  /* < 640px: Mobile portrait (1 column) */
   @media (max-width: 639px) {
     .courses-grid-system {
       grid-template-columns: 1fr;
@@ -1757,7 +1757,7 @@ section {
     }
   }
 
-  /* >= 640px: Tablet/iPad/Desktop portrait (3 cards per row) */
+  /* >= 640px: Tablet & Desktop portrait (3 columns) */
   @media (min-width: 640px) {
     .courses-grid-system {
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1768,27 +1768,34 @@ section {
 
 /* LANDSCAPE RESPONSIVE BREAKPOINTS */
 @media (orientation: landscape) {
-  /* < 540px: Micro mobile landscape */
-  @media (max-width: 539px) {
+  /* < 768px: Mobile landscape (e.g. 586x320px) -> 2 columns for optimal width & readability */
+  @media (max-width: 767px) {
     .courses-grid-system {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
     }
   }
 
-  /* >= 540px: All landscape screens (3 cards per row) */
-  @media (min-width: 540px) {
+  /* >= 768px: Tablet & Desktop landscape -> 3 columns */
+  @media (min-width: 768px) {
     .courses-grid-system {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(1rem, 2vw, 2.25rem);
+      gap: clamp(1.25rem, 2vw, 2.25rem);
     }
   }
 }
 
-/* SQUARE CARD IMAGE SCALING (Aspect Ratio 1:1) */
+/* SQUARE / FLUID CARD IMAGE SCALING */
 .course-card-img-container {
   position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+}
+
+@media (orientation: landscape) and (max-height: 450px) {
+  .course-card-img-container {
+    aspect-ratio: 16 / 9;
+    max-height: 150px;
+  }
 }

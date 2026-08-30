@@ -86,18 +86,18 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                         </span>
                     </div>
 
-                    <h3 className="text-3xl sm:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
+                    <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
                         {name}
                     </h3>
                 </div>
 
-                <p className="text-sea-foam/60 font-light text-sm leading-relaxed min-h-[4rem] group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3">
+                <p className="text-sea-foam/60 font-light text-xs sm:text-sm leading-relaxed line-clamp-2 md:line-clamp-3 group-hover:text-sea-foam/80 transition-colors duration-500">
                     {description}
                 </p>
 
                 <Link
                     href={`/${locale}/servicios/cursos/${course.slug}`}
-                    className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
+                    className="group/link w-full inline-flex items-center justify-between py-3 sm:py-4 md:py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                 >
                     <span className="text-[10px] uppercase tracking-[0.5em] font-black text-sea-foam group-hover/link:text-accent transition-colors">
                         {t('view_more')}
