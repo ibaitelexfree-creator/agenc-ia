@@ -2,12 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Implemented full fluid responsive layout for `CUADERNO DE BITÁCORA` (`LogbookRequirements`).
+- **Task:** Configured 2-column landscape layout for `CTAFinal` section.
 - **Changes:**
-  - Standardized the 4 items (`01`, `02`, `03`, `04`) into distinct rectangular cards with subtle border & background.
-  - Implemented fluid column grid rules:
-    - **Mobile Portrait (< 586px / Portrait)**: 1 Column (`01` ↓ `02` ↓ `03` ↓ `04`).
-    - **Mobile Landscape (586x320, 640x360, etc.)**: 2 Columns (`01 | 02` / `03 | 04`).
-    - **Tablet / Medium Landscape (768px - 1023px)**: 2 or 3 Columns dynamically.
-    - **Desktop (1024px+)**: 4 Columns in 1 Row (`01 | 02 | 03 | 04`).
-- **Status:** COMPLETED & VERIFIED. NO DESIGN/CONTENT MODIFICATIONS MADE.
+  - Added `@media (orientation: landscape) and (max-height: 600px)` in `EquiposEntrenamiento.module.css`.
+  - Positions left column (`ÚNETE A LA FLOTA`) to the left and right column (`MENSAJE EN LÍNEA` & buttons) to the right side-by-side with fluid scaling, preventing vertical and horizontal overflow in landscape mode.
+- **Status:** COMPLETED & VERIFIED.

@@ -72,7 +72,7 @@ export default function LogbookRequirements() {
 
         <div className={styles['logbook__divider']} />
 
-        {/* Entradas en Grid Responsive */}
+        {/* Entradas */}
         <div className={styles['logbook__entries-grid']}>
           {REQUIREMENTS.map((req, i) => {
             const reqKey = req.id;
@@ -84,20 +84,12 @@ export default function LogbookRequirements() {
               <motion.div
                 key={req.id}
                 className={styles['logbook__entry']}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
               >
-                {/* Header de la tarjeta: Número y Check */}
-                <div className={styles['logbook__entry-top']}>
-                  <span className={styles['logbook__entry-num']}>[{req.number}]</span>
-                  <div className={styles['logbook__check']}>
-                    <AnimatedCheck
-                      delay={0.4 + i * 0.1}
-                      isVisible={isInView}
-                    />
-                  </div>
-                </div>
+                {/* Número de entrada */}
+                <span className={styles['logbook__entry-num']}>[{req.number}]</span>
 
                 {/* Contenido */}
                 <div className={styles['logbook__entry-body']}>
@@ -111,6 +103,14 @@ export default function LogbookRequirements() {
                   {highlight && (
                     <span className={styles['logbook__highlight']}>{highlight}</span>
                   )}
+                </div>
+
+                {/* Check animado */}
+                <div className={styles['logbook__check']}>
+                  <AnimatedCheck
+                    delay={0.5 + i * 0.12}
+                    isVisible={isInView}
+                  />
                 </div>
               </motion.div>
             );
