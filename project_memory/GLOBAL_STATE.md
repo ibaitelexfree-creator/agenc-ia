@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Enforced full screen background video display (`object-fit: cover !important`) in `Udalekuak.module.css`.
+- **Task:** Restricted `object-fit: cover !important` strictly to landscape mode (`@media (orientation: landscape)`) in `Udalekuak.module.css`.
 - **Changes:**
-  - Updated `.heroVideo` and `.heroVideoReverse` base CSS from `object-fit: contain !important` to `object-fit: cover !important`.
-  - Added explicit `object-fit: cover !important`, `min-width: 100%`, `min-height: 100%` in `@media (orientation: landscape)` to guarantee 100% full screen video coverage across all screen sizes and landscape viewports.
+  - Restored base CSS `.heroVideo` to `object-fit: contain !important;` so portrait mode remains 100% untouched and identical to original design.
+  - Kept `object-fit: cover !important;` scoped strictly to landscape mode orientation.
 - **Status:** COMPLETED & VERIFIED.
