@@ -67,23 +67,75 @@ export default async function CoursesPage({
         // Fallback or empty - handled by client empty state or fallback below
     }
 
-    // Fallback data reflecting the new catalog
+    const fallbackCategories = [
+        { id: 'cat-1', slug: 'vela-ligera', nombre_es: 'Vela Ligera', nombre_eu: 'Bela Arina' },
+        { id: 'cat-2', slug: 'windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurfa' },
+        { id: 'cat-3', slug: 'cursos-adultos', nombre_es: 'Cursos Adultos', nombre_eu: 'Helduentzako Ikastaroak' },
+        { id: 'cat-4', slug: 'cursos-infantiles', nombre_es: 'Cursos Infantiles', nombre_eu: 'Haurrentzako Ikastaroak' },
+        { id: 'cat-5', slug: 'titulaciones', nombre_es: 'Titulaciones', nombre_eu: 'Titulazioak' },
+        { id: 'cat-6', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Belaontzia' }
+    ];
+
+    // Comprehensive Fallback data reflecting the complete catalog
     const fallbackCourses = [
         {
             id: '1',
+            slug: 'iniciacion-vela-ligera',
+            nombre_es: 'Iniciación a la Vela Ligera',
+            nombre_eu: 'Bela Arineko Hasiera',
+            descripcion_es: 'Primer contacto con la navegación a vela. Aprende los fundamentos básicos de la vela en embarcaciones ligeras.',
+            descripcion_eu: 'Lehen kontaktua belarekin. Ikasi bela arinaren oinarriak.',
+            precio: 0,
+            duracion_h: 20,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-1',
+            categoria: { id: 'cat-1', nombre_es: 'Vela Ligera', nombre_eu: 'Bela Arina' },
+            imagen_url: '/images/courses/CursodeVelaLigera.webp'
+        },
+        {
+            id: '2',
+            slug: 'windsurf-1-sesion',
+            nombre_es: 'Windsurf 1 Sesión',
+            nombre_eu: 'Windsurf Saio 1',
+            descripcion_es: 'Sesión individual de windsurf de 2 horas. Perfecto para probar.',
+            descripcion_eu: 'Bi orduko windsurf saio indibiduala. Probatzeko bikaina.',
+            precio: 40,
+            duracion_h: 2,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-2',
+            categoria: { id: 'cat-2', nombre_es: 'Windsurf', nombre_eu: 'Windsurfa' },
+            imagen_url: '/images/experiences/windsurf-mooring.jpg'
+        },
+        {
+            id: '3',
+            slug: 'windsurf-3-sesiones',
+            nombre_es: 'Windsurf 3 Sesiones',
+            nombre_eu: 'Windsurf 3 Saio',
+            descripcion_es: 'Pack de 3 sesiones de windsurf de 2 horas cada una para consolidar técnica.',
+            descripcion_eu: '3 saiotako windsurf paketea teknika hobetzeko.',
+            precio: 100,
+            duracion_h: 6,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-2',
+            categoria: { id: 'cat-2', nombre_es: 'Windsurf', nombre_eu: 'Windsurfa' },
+            imagen_url: '/images/experiences/windsurf-mooring.jpg'
+        },
+        {
+            id: '4',
             slug: 'iniciacion-adultos',
-            nombre_es: 'Iniciación Adultos',
+            nombre_es: 'Iniciación Adultos Vela',
             nombre_eu: 'Helduentzako Hasiera',
-            descripcion_es: 'Curso de iniciación a la navegación para adultos. 12 horas de formación práctica.',
+            descripcion_es: 'Curso de iniciación a la navegación a vela para adultos. 12 horas de formación práctica.',
             descripcion_eu: 'Helduentzako nabigazio ikastaroa (hasiera). 12 orduko prestakuntza praktikoa.',
             precio: 180,
             duracion_h: 12,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Cursos Adultos', nombre_eu: 'Helduentzako Ikastaroak' },
+            categoria_id: 'cat-3',
+            categoria: { id: 'cat-3', nombre_es: 'Cursos Adultos', nombre_eu: 'Helduentzako Ikastaroak' },
             imagen_url: '/images/J80.webp'
         },
         {
-            id: '2',
+            id: '5',
             slug: 'campus-verano-getxo',
             nombre_es: 'Campus Verano (Haurrak)',
             nombre_eu: 'Udako Campusa (Haurrak)',
@@ -92,24 +144,27 @@ export default async function CoursesPage({
             precio: 130,
             duracion_h: 20,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Cursos Infantiles', nombre_eu: 'Haurrentzako Ikastaroak' },
+            categoria_id: 'cat-4',
+            categoria: { id: 'cat-4', nombre_es: 'Cursos Infantiles', nombre_eu: 'Haurrentzako Ikastaroak' },
             imagen_url: '/images/course-raquero-students.webp'
         },
         {
-            id: '3',
-            slug: 'windsurf-iniciacion',
-            nombre_es: 'Iniciación Windsurf',
-            nombre_eu: 'Windsurf Hasiera',
-            descripcion_es: 'Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.',
-            descripcion_eu: 'Ikasi windsurfeko oinarriak 5 saiotan (2 ordu saio bakoitzeko).',
-            precio: 150,
-            duracion_h: 10,
+            id: '6',
+            slug: 'licencia-navegacion',
+            nombre_es: 'Licencia de Navegación',
+            nombre_eu: 'Nabigazio Lizentzia',
+            descripcion_es: 'Obtén tu Licencia de Navegación (Titulín) en 6 horas sin examen oficial.',
+            descripcion_eu: 'Lortu zure Nabigazio Lizentzia 6 ordutan azterketa ofizialik gabe.',
+            precio: 120,
+            duracion_h: 6,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Windsurf', nombre_eu: 'Windsurfa' },
+            categoria_id: 'cat-5',
+            categoria: { id: 'cat-5', nombre_es: 'Titulaciones', nombre_eu: 'Titulazioak' },
             imagen_url: '/images/courses/PerfeccionamientoVela.webp'
         }
     ];
 
+    const displayCategories = (categories && categories.length > 0) ? categories : fallbackCategories;
     const displayCourses = (allCourses && allCourses.length > 0) ? allCourses : fallbackCourses;
 
     return (
@@ -139,7 +194,7 @@ export default async function CoursesPage({
             {/* Client-side Course List Area */}
             <CoursesListClient
                 initialCourses={displayCourses}
-                categories={categories}
+                categories={displayCategories}
                 locale={locale}
             />
 
