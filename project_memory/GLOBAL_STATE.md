@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Restored original larger size for `Newsletter` section and configured fluid `clamp()` scaling across all viewports.
+- **Task:** Reduced boat icon and windsurfer creature element dimensions by an additional 20%.
 - **Changes:**
-  - Removed fixed `100vh` constraint in `NewsletterSection.tsx`.
-  - Added fluid `clamp()` sizing for eyebrow (`clamp(0.72rem, 1.2vw, 0.88rem)`), title (`clamp(1.8rem, 4vw, 3.5rem)`), subtitle, input field, and action button in `Newsletter.tsx`.
+  - Scaled down sailboat container to `w-7 sm:w-9 md:w-11` and icon to `w-3.5 sm:w-4 md:w-5` in `ComingSoonPlaceholder.tsx`.
+  - Reduced `Windsurfer.tsx` SVG dimensions by 20% (to 44x56px).
 - **Status:** COMPLETED & VERIFIED.
