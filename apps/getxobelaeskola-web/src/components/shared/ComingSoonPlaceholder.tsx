@@ -24,7 +24,7 @@ export default function ComingSoonPlaceholder({
             <div className="absolute bottom-0 left-0 w-[200px] h-[200px] sm:w-[350px] sm:h-[350px] bg-brass-gold/5 blur-[60px] sm:blur-[100px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
 
             <div className="text-center max-w-xl sm:max-w-2xl relative z-10 space-y-2 sm:space-y-4 md:space-y-6 my-auto">
-                <div className="inline-flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 md:w-18 md:h-18 rounded-full border border-accent/20 bg-accent/5 mt-2 sm:mt-4 mb-2 sm:mb-3 text-accent shadow-[0_0_40px_rgba(21,79,163,0.15)]">
+                <div className="inline-flex items-center justify-center w-11 h-11 sm:w-14 sm:h-14 md:w-18 md:h-18 rounded-full border border-accent/20 bg-accent/5 mt-6 sm:mt-10 md:mt-12 mb-2 sm:mb-3 text-accent shadow-[0_0_40px_rgba(21,79,163,0.15)]">
                     <Sailboat className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9" />
                 </div>
                 <span className="text-accent uppercase tracking-[0.15em] sm:tracking-[0.3em] md:tracking-[0.5em] text-[9px] sm:text-xs font-black block">Getxo Bela Eskola</span>
