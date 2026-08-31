@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
 import CoursesListClient from '@/components/courses/CoursesListClient';
+import NewsletterSection from '@/components/sections/NewsletterSection';
 import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -170,12 +171,12 @@ export default async function CoursesPage({
     return (
         <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Header Section */}
-            <section className="relative pt-32 sm:pt-36 md:pt-40 lg:pt-44 xl:pt-48 pb-8 md:pb-12 lg:pb-16 overflow-hidden w-full">
+            <section className="courses-header-section relative pt-24 sm:pt-28 md:pt-36 lg:pt-40 pb-6 sm:pb-8 md:pb-12 lg:pb-16 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10 text-center md:text-left">
+                <div className="container mx-auto px-4 sm:px-6 relative z-10 text-left">
                     <header className="max-w-4xl">
                         <span className="text-accent uppercase tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
                             {t('header_badge')}
@@ -197,6 +198,9 @@ export default async function CoursesPage({
                 categories={displayCategories}
                 locale={locale}
             />
+
+            {/* Newsletter Section */}
+            <NewsletterSection locale={locale} />
 
             {/* Minimal Background Decoration */}
             <div className="fixed inset-0 bg-mesh opacity-10 pointer-events-none z-0" />

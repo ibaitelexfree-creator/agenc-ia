@@ -38,66 +38,70 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative glass-card overflow-hidden cursor-pointer"
+            className="group relative glass-card overflow-hidden cursor-pointer flex flex-col h-full justify-between"
         >
             {/* Top Border Reveal Accent */}
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
-            {/* Image Container with Cinematic Zoom */}
-            <div className="relative h-[400px] w-full overflow-hidden course-card-img-container">
-                <NauticalImage
-                    src={course.imagen_url}
-                    category="veleros"
-                    alt={name}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
-                />
-                {/* Overlays */}
-                <div className="absolute inset-0 premium-gradient-overlay z-10" />
+            <div>
+                {/* Image Container with Cinematic Zoom */}
+                <div className="relative h-[260px] sm:h-[300px] md:h-[340px] w-full overflow-hidden course-card-img-container">
+                    <NauticalImage
+                        src={course.imagen_url}
+                        category="veleros"
+                        alt={name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-[2s] ease-out group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
+                    />
+                    {/* Overlays */}
+                    <div className="absolute inset-0 premium-gradient-overlay z-10" />
 
-                {/* Level Badge - Premium Minimalist */}
-                <div className="absolute top-4 left-4 sm:top-8 sm:left-8 p-0 z-20">
-                    <div className="flex items-center gap-4 animate-fade-in group-hover:translate-x-2 transition-transform duration-700">
-                        <div className="w-6 sm:w-10 h-px bg-accent flex-shrink-0" />
-                        <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-black whitespace-nowrap pr-4">
-                            {t(`levels.${course.nivel}`)}
+                    {/* Level Badge - Premium Minimalist */}
+                    <div className="absolute top-4 left-4 sm:top-6 sm:left-6 p-0 z-20">
+                        <div className="flex items-center gap-3 animate-fade-in group-hover:translate-x-2 transition-transform duration-700">
+                            <div className="w-6 sm:w-8 h-px bg-accent flex-shrink-0" />
+                            <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-black whitespace-nowrap pr-2">
+                                {t(`levels.${course.nivel}`)}
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Vertical Text Accent */}
+                    <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
+                        <span className="text-[10px] uppercase tracking-[0.5em] text-sea-foam/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
+                            {course.duracion_h} HOURS TRAINING
                         </span>
                     </div>
                 </div>
 
-                {/* Vertical Text Accent */}
-                <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
-                    <span className="text-[10px] uppercase tracking-[0.5em] text-sea-foam/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
-                        {course.duracion_h} HOURS TRAINING
-                    </span>
+                {/* Content Area */}
+                <div className="p-6 sm:p-8 relative z-10 space-y-4 flex flex-col justify-between flex-grow">
+                    <div className="space-y-3">
+                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-3 gap-2">
+                            <span className="text-technical">
+                                Premium Academy
+                            </span>
+                            <span className="text-xl sm:text-2xl font-display text-sea-foam italic flex-shrink-0">
+                                {course.precio}<span className="text-brass-gold text-base sm:text-lg ml-1">€</span>
+                            </span>
+                        </div>
+
+                        <h3 className="text-2xl sm:text-3xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-1">
+                            {name}
+                        </h3>
+                    </div>
+
+                    <p className="text-sea-foam/60 font-light text-xs sm:text-sm leading-relaxed group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3 min-h-[3.6rem]">
+                        {description}
+                    </p>
                 </div>
             </div>
 
-            {/* Content Area */}
-            <div className="p-8 md:p-10 relative z-10 space-y-6">
-                <div className="space-y-4">
-                    <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-4 gap-2">
-                        <span className="text-technical">
-                            Premium Academy
-                        </span>
-                        <span className="text-2xl font-display text-sea-foam italic flex-shrink-0">
-                            {course.precio}<span className="text-brass-gold text-lg ml-1">€</span>
-                        </span>
-                    </div>
-
-                    <h3 className="text-3xl sm:text-4xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-2">
-                        {name}
-                    </h3>
-                </div>
-
-                <p className="text-sea-foam/60 font-light text-sm leading-relaxed min-h-[4rem] group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-3">
-                    {description}
-                </p>
-
+            <div className="px-6 sm:px-8 pb-6 sm:pb-8 pt-0 relative z-10">
                 <Link
                     href={`/${locale}/servicios/cursos/${course.slug}`}
-                    className="group/link w-full inline-flex items-center justify-between py-6 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
+                    className="group/link w-full inline-flex items-center justify-between py-4 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                 >
                     <span className="text-[10px] uppercase tracking-[0.5em] font-black text-sea-foam group-hover/link:text-accent transition-colors">
                         {t('view_more')}

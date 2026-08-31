@@ -63,8 +63,9 @@ video {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
   max-width: 100% !important;
-  max-height: 100% !important;
 }
 
 /* Fix iOS Safari bug where video breaks out of rounded/circular frames (rounded-full / border-radius) */
@@ -1707,13 +1708,14 @@ body {
   .section-2-identity,
   .section-3-adapts,
   .section-3-path,
+  .courses-header-section,
   [class*="Blog_section"],
   [class*="Reviews_section"] {
     min-height: auto;
     height: auto;
     max-height: none;
-    padding-top: clamp(1.25rem, 3vh, 2.5rem);
-    padding-bottom: clamp(1.25rem, 3vh, 2.5rem);
+    padding-top: clamp(3.25rem, 9vh, 4.5rem) !important;
+    padding-bottom: clamp(0.5rem, 2vh, 1.25rem) !important;
     overflow: visible;
   }
 }
@@ -1728,164 +1730,140 @@ section {
    GLOBAL 8-RANGE + DUAL ORIENTATION RESPONSIVE SYSTEM
    ========================================================================== */
 
+/* Base Card Grid System */
+.courses-grid-system {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2.5rem);
+  width: 100%;
+}
+
 /* RANGE 1 — 20-359px (Very Small Mobile) */
 @media (max-width: 359px) and (orientation: portrait) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
   .course-card-img-container {
-    height: clamp(160px, 45vh, 220px) !important;
+    height: clamp(180px, 45vh, 240px) !important;
   }
 }
 
 @media (max-width: 359px) and (orientation: landscape) {
   .courses-grid-system {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 0.5rem !important;
   }
   .course-card-img-container {
-    height: clamp(75px, 22vh, 95px) !important;
+    height: clamp(90px, 25vh, 120px) !important;
   }
 }
 
 /* RANGE 2 — 360-767px (Mobile) */
 @media (min-width: 360px) and (max-width: 767px) and (orientation: portrait) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
   }
   .course-card-img-container {
-    height: clamp(220px, 40vh, 320px) !important;
+    height: clamp(240px, 42vh, 340px) !important;
   }
 }
 
 @media (min-width: 360px) and (max-width: 767px) and (orientation: landscape) {
   .courses-header-section {
-    padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
-    padding-bottom: clamp(0.5rem, 2vh, 1rem) !important;
+    padding-top: clamp(3rem, 9vh, 4rem) !important;
+    padding-bottom: clamp(0.25rem, 1.5vh, 0.5rem) !important;
   }
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 0.625rem !important;
-    margin-top: 1rem !important;
+    gap: clamp(0.5rem, 1.5vw, 1rem) !important;
+    margin-top: 0.75rem !important;
   }
   .course-card-img-container {
-    height: clamp(80px, 22vh, 110px) !important;
+    height: clamp(110px, 28vh, 150px) !important;
   }
   .courses-grid-system .glass-card > div:last-of-type {
-    padding: clamp(0.4rem, 1.2vw, 0.75rem) !important;
+    padding: clamp(0.5rem, 1.5vw, 1rem) !important;
     gap: 0.35rem !important;
   }
   .courses-grid-system .glass-card h3 {
-    font-size: clamp(0.78rem, 2vw, 1.05rem) !important;
-    line-height: 1.1 !important;
+    font-size: clamp(0.85rem, 2.2vw, 1.25rem) !important;
+    line-height: 1.15 !important;
   }
   .courses-grid-system .glass-card p {
-    font-size: clamp(0.6rem, 1.2vw, 0.72rem) !important;
+    font-size: clamp(0.7rem, 1.4vw, 0.85rem) !important;
     min-height: auto !important;
-    -webkit-line-clamp: 2 !important;
+    -webkit-line-clamp: 3 !important;
   }
   .courses-grid-system .glass-card a {
-    padding-top: 0.35rem !important;
-    padding-bottom: 0.35rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
 }
 
 /* RANGE 3 — 768-819px (Small Tablet / iPad) */
-@media (min-width: 768px) and (max-width: 819px) and (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 819px) {
   .courses-grid-system {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1.5rem !important;
-  }
-  .course-card-img-container {
-    height: clamp(260px, 30vh, 340px) !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 819px) and (orientation: landscape) {
-  .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 1rem !important;
+    gap: clamp(1rem, 2vw, 1.5rem) !important;
   }
   .course-card-img-container {
-    height: clamp(140px, 25vh, 180px) !important;
+    height: clamp(200px, 30vh, 280px) !important;
   }
 }
 
 /* RANGE 4 — 820-1023px (Large Tablet / iPad) */
-@media (min-width: 820px) and (max-width: 1023px) and (orientation: portrait) {
+@media (min-width: 820px) and (max-width: 1023px) {
   .courses-grid-system {
-    display: grid !important;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 1.75rem !important;
-  }
-  .course-card-img-container {
-    height: clamp(280px, 32vh, 360px) !important;
-  }
-}
-
-@media (min-width: 820px) and (max-width: 1023px) and (orientation: landscape) {
-  .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 1.25rem !important;
+    gap: clamp(1.25rem, 2.2vw, 1.75rem) !important;
   }
   .course-card-img-container {
-    height: clamp(160px, 26vh, 200px) !important;
+    height: clamp(240px, 32vh, 320px) !important;
   }
 }
 
 /* RANGE 5 — 1024-1279px (Tablet Landscape / Small Laptop) */
 @media (min-width: 1024px) and (max-width: 1279px) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 1.5rem !important;
+    gap: clamp(1.5rem, 2.5vw, 2rem) !important;
   }
   .course-card-img-container {
-    height: 360px !important;
+    height: clamp(280px, 36vh, 360px) !important;
   }
 }
 
 /* RANGE 6 — 1280-1439px (Laptop) */
 @media (min-width: 1280px) and (max-width: 1439px) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2rem !important;
+    gap: clamp(1.75rem, 2.5vw, 2.25rem) !important;
   }
   .course-card-img-container {
-    height: 380px !important;
+    height: clamp(300px, 38vh, 380px) !important;
   }
 }
 
 /* RANGE 7 — 1440-1919px (Large Laptop / Desktop) */
 @media (min-width: 1440px) and (max-width: 1919px) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2.25rem !important;
+    gap: clamp(2rem, 2.5vw, 2.75rem) !important;
   }
   .course-card-img-container {
-    height: 400px !important;
+    height: clamp(340px, 40vh, 440px) !important;
   }
 }
 
 /* RANGE 8 — 1920px+ (Full HD / Large Desktop) */
 @media (min-width: 1920px) {
   .courses-grid-system {
-    display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 2.5rem !important;
+    gap: clamp(2.25rem, 3vw, 3.5rem) !important;
   }
   .course-card-img-container {
-    height: 420px !important;
+    height: clamp(380px, 45vh, 500px) !important;
   }
 }
