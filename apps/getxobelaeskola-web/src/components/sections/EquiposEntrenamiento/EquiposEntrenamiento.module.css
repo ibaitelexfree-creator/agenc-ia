@@ -523,19 +523,26 @@
 
 /* ── CALENDAR ─────────────────────────────────────────────── */
 .calendar-section {
-  padding: var(--space-xl) var(--space-md);
+  padding: clamp(2rem, 5vh, 4rem) var(--space-md);
   background: var(--color-hull);
   text-align: center;
   width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .calendar-section .section-eyebrow--light {
   margin-top: 0;
-  margin-bottom: 0.3cm;
+  margin-bottom: clamp(0.25rem, 1vh, 0.75rem);
 }
 
 .calendar-section .section-title--light {
-  margin-bottom: clamp(0.8cm, 1cm, 1.2cm);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
 }
 
 .cal-card {
@@ -662,6 +669,7 @@
 @media (orientation: landscape) and (max-height: 600px) {
   .calendar-section {
     padding: clamp(0.35rem, 1.8vh, 1rem) var(--space-md);
+    min-height: auto;
   }
 
   .calendar-section .section-eyebrow--light {
@@ -731,6 +739,7 @@
 @media (max-width: 585px), (orientation: portrait) and (max-width: 767px) {
   .calendar-section {
     padding: clamp(1.25rem, 3.5vh, 2.25rem) var(--space-sm);
+    min-height: auto;
   }
 
   .calendar-section .section-title--light {
@@ -753,24 +762,48 @@
   }
 }
 
-/* 3. TABLET (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* 3. TABLET & UP (>= 600px) */
+@media (min-width: 600px) {
   .calendar-section {
-    padding: var(--space-lg) var(--space-md);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(1.5rem, 4vh, 3.5rem) var(--space-md);
   }
 
   .cal-card {
-    max-width: 480px;
+    max-width: 540px;
     padding: var(--space-md);
   }
 }
 
 /* ── LOGBOOK ──────────────────────────────────────────────── */
 .logbook-section {
-  padding: var(--space-xl) var(--space-md);
+  padding: clamp(2rem, 5vh, 4rem) var(--space-md);
   background: var(--color-deep);
   text-align: center;
   width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+@media (min-width: 600px) {
+  .logbook-section {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(1.5rem, 4vh, 3.5rem) var(--space-md);
+  }
+}
+
+@media (max-width: 599px) {
+  .logbook-section {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
 }
 
 /* ── LOGBOOK (Original Desktop Design Base) ────────────────────────── */
