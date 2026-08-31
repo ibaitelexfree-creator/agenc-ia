@@ -64,7 +64,8 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
         zIndex: activeOpen ? 50 : 10,
         aspectRatio: '1 / 1',
         width: '100%',
-        height: 'auto',
+        height: '100%',
+        maxHeight: '100%',
       }}
       initial={{ opacity: 0, y: 48 }}
       whileInView={{ opacity: 1, y: 0 }}
