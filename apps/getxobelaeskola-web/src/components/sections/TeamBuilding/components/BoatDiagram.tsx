@@ -64,7 +64,7 @@ export default function BoatDiagram() {
             {/* Rudder / Tiller */}
             <path d="M 175,390 L 170,430 L 155,425 Z" fill="#7F8C8D" />
             <line x1="170" y1="390" x2="200" y2="380" stroke="#0A1628" strokeWidth="3" />
-          </svg>
+          </motion.svg>
 
           {/* Desktop & Tablet Floating Overlay Cards directly on top of the image */}
           <div className="hidden md:block">
