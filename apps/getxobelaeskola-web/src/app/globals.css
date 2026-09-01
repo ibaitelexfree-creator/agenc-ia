@@ -917,17 +917,30 @@ a:hover {
 /* 📲 Tablet เล็ก & iPad / Tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
-    --card-w: clamp(216px, 26.8vw, 309px); /* ขยายใหญ่ขึ้น 3% */
-    --card-h: clamp(196px, 22.7vh, 247px); /* ขยายใหญ่ขึ้น 3% */
+    --card-w: clamp(220px, 27vw, 320px); /* ขยายใหญ่ขึ้น 3% */
+    --card-h: clamp(210px, 26vh, 275px); /* เพิ่มความสูงการ์ดเพื่อรองรับข้อความยาว */
     --gap: clamp(10px, 1.5vw, 20px);
     --fs-card-title-front: clamp(1.05rem, 1.6vw, 1.25rem);
-    --fs-hook: clamp(0.78rem, 1.1vw, 0.85rem);
-    --fs-body: clamp(0.8rem, 1.1vw, 0.88rem);
+    --fs-hook: clamp(0.75rem, 1vw, 0.82rem);
+    --fs-body: clamp(0.72rem, 0.95vw, 0.82rem); /* ปรับขนาดฟอนต์ข้อความด้านหลังให้พอดี */
   }
 
   .promise__item {
     transform: scale(1.03); /* ขยายการ์ดทั้ง 3 ใบขึ้น 3% สำหรับ iPad และ Tablet */
     transform-origin: center center;
+  }
+
+  .flip-card__face--back {
+    padding: 16px 14px !important;
+    justify-content: center !important;
+  }
+
+  .flip-card__label {
+    margin-bottom: 8px !important;
+  }
+
+  .flip-card__desc {
+    line-height: 1.35 !important;
   }
 }
 
@@ -1328,8 +1341,8 @@ a:hover {
 .flip-card__face--back {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
-  justify-content: flex-start;
-  padding-top: 32px; /* reduced padding for description */
+  justify-content: center;
+  padding: 20px 16px;
 }
 
 .flip-card__icon {
