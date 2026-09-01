@@ -121,10 +121,10 @@ export default function SplitSection() {
               {/* Background marine image with zoom effect */}
               <motion.div style={{ scale: rightScale }} className="absolute inset-0 z-0">
                 <Image
-                  src="/images/team-building-j80-hero-20201129.jpg"
+                  src="/images/team-building-j80-hero-20201129.jpg?v=4"
                   alt="Sea background Abra"
                   fill
-                  className="object-cover opacity-35 brightness-75"
+                  className="object-cover opacity-35 brightness-75 sepia-[0.25] saturate-[1.15] hue-rotate-[-8deg]"
                 />
               </motion.div>
 
