@@ -979,16 +979,24 @@
     grid-template-columns: 1fr auto;
     gap: 0.5rem;
     padding: 1rem;
-    background: rgba(10, 30, 54, 0.55);
-    border: 1px solid rgba(43, 224, 192, 0.14);
+    background: #ffffff;
+    border: 2px solid var(--gbe-gold, #F2A93B);
     border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(43, 224, 192, 0.14);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   }
 
   .logbook__entry-num {
     grid-area: num;
     padding-top: 0;
+    color: #1a1a1a;
+  }
+
+  .logbook__entry-title {
+    color: #000000;
+  }
+
+  .logbook__entry-text {
+    color: #1a1a1a;
   }
 
   .logbook__check {
