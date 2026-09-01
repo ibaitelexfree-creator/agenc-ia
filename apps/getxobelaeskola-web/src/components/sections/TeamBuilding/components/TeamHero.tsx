@@ -103,8 +103,18 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
         <div className="lg:col-span-6 relative flex justify-center w-full h-[380px] sm:h-[500px] lg:h-[580px]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: [0, -10, 0, 8, 0],
+              rotate: [0, 0.8, 0, -0.8, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+              scale: { delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+              y: { repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1.7 },
+              rotate: { repeat: Infinity, duration: 6.5, ease: "easeInOut", delay: 1.7 }
+            }}
             className="w-full h-full relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100"
           >
             <Image
