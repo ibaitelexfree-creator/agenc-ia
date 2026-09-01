@@ -258,7 +258,7 @@
 
 /* ── TEAM CARDS ───────────────────────────────────────────── */
 .team-cards-section {
-  padding: clamp(2rem, 5vh, 4rem) var(--space-md);
+  padding: clamp(1.25rem, 3.5vh, 3rem) var(--space-md);
   background: var(--color-deep);
   text-align: center;
   width: 100%;
@@ -267,8 +267,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  min-height: 100dvh;
+  min-height: auto;
 }
 
 .section-eyebrow--light {
@@ -278,15 +277,15 @@
   color: var(--color-bio);
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: clamp(0.25rem, 1vh, 0.75rem);
+  margin-bottom: clamp(0.15rem, 0.6vh, 0.4rem);
 }
 
 .section-title--light {
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: clamp(1.3rem, 3vw, 2.5rem);
   font-weight: 700;
   color: var(--color-sail);
-  margin-bottom: clamp(1rem, 3vh, 2rem);
+  margin-bottom: clamp(0.75rem, 2vh, 1.5rem);
   line-height: 1.05;
 }
 
@@ -294,8 +293,8 @@
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   gap: clamp(0.5rem, 1.5vw, 1.5rem) !important;
-  max-width: min(1080px, calc((100vh - 180px) * 3)) !important;
-  max-width: min(1080px, calc((100dvh - 180px) * 3)) !important;
+  max-width: min(1080px, calc((100vh - 220px) * 3)) !important;
+  max-width: min(1080px, calc((100dvh - 220px) * 3)) !important;
   width: 100% !important;
   margin: 0 auto !important;
   align-items: center !important;
@@ -316,7 +315,7 @@
 @media (max-width: 599px) and (orientation: portrait) {
   .team-cards-section {
     min-height: auto;
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .team-cards-grid {
@@ -343,7 +342,7 @@
 @media (orientation: landscape) and (max-height: 700px) {
   .team-cards-section {
     min-height: auto !important;
-    padding: clamp(0.75rem, 2.5vh, 2rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
+    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
   }
 
   .team-cards-grid {
@@ -359,8 +358,8 @@
   }
 }
 
-/* ── 4. DESKTOP & LARGE SCREENS (>= 600px min-height: 701px): 3 Cards 1:1 fit ── */
-@media (min-width: 600px) and (min-height: 701px) {
+/* ── 4. DESKTOP & LARGE SCREENS (>= 600px min-height: 750px): 3 Cards 1:1 fit ── */
+@media (min-width: 600px) and (min-height: 750px) {
   .team-cards-section {
     min-height: 100vh;
     min-height: 100dvh;
