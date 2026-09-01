@@ -212,7 +212,7 @@ export default function DetallesCTA() {
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
-                    className="bg-[#C9A84C] text-[#0A1628] font-bold py-4 rounded-xl mt-4 cursor-pointer text-center text-sm md:text-base transition-colors duration-200"
+                    className="bg-[#C9A84C] text-[#0A1628] font-bold py-3 sm:py-4 px-4 rounded-xl mt-4 cursor-pointer text-center text-xs sm:text-sm md:text-base transition-colors duration-200"
                   >
                     {isSubmitting ? '...' : t('cta_gold')}
                   </motion.button>

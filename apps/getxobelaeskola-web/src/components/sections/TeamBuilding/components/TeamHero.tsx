@@ -69,7 +69,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             {t('description')}
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-stretch sm:items-center">
             <motion.button
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +80,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
               }}
               whileTap={{ scale: 0.97 }}
               onClick={onScrollToForm}
-              className="bg-[#C9A84C] text-[#0A1628] text-base font-semibold tracking-wide rounded-full px-8 py-4 w-full sm:w-auto shadow-md transition-shadow duration-300"
+              className="bg-[#C9A84C] text-[#0A1628] text-xs sm:text-sm md:text-base font-semibold tracking-wide rounded-full px-4 py-2.5 sm:px-8 sm:py-4 w-full sm:w-auto shadow-md transition-shadow duration-300"
             >
               {t('cta')}
             </motion.button>
@@ -92,7 +92,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
               whileHover={{ scale: 1.02, x: 5 }}
               whileTap={{ scale: 0.98 }}
               onClick={onScrollToTimeline}
-              className="border-b border-[#0A1628] text-[#0A1628] hover:text-[#005F8A] hover:border-[#005F8A] font-semibold text-base py-4 px-2 sm:w-auto text-left self-start sm:self-center transition-colors duration-200"
+              className="border-b border-[#0A1628] text-[#0A1628] hover:text-[#005F8A] hover:border-[#005F8A] font-semibold text-xs sm:text-sm md:text-base py-2 sm:py-4 px-2 sm:w-auto text-left self-start sm:self-center transition-colors duration-200"
             >
               {t('cta_sub')}
             </motion.button>
