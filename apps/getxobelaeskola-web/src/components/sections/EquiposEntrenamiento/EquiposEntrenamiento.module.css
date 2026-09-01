@@ -293,9 +293,9 @@
 .team-cards-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(0.75rem, 2vw, 1.5rem) !important;
-  max-width: min(1080px, calc((100vh - 220px) * 3)) !important;
-  max-width: min(1080px, calc((100dvh - 220px) * 3)) !important;
+  gap: clamp(0.5rem, 1.5vw, 1.5rem) !important;
+  max-width: min(1080px, calc((100vh - 180px) * 3)) !important;
+  max-width: min(1080px, calc((100dvh - 180px) * 3)) !important;
   width: 100% !important;
   margin: 0 auto !important;
   align-items: center !important;
@@ -312,8 +312,8 @@
   box-sizing: border-box !important;
 }
 
-/* ── 1. MOBILE ONLY (< 600px portrait): Responsive 1 column allowed ── */
-@media (max-width: 599px) {
+/* ── 1. MOBILE PORTRAIT ONLY (< 600px portrait): 1 column ── */
+@media (max-width: 599px) and (orientation: portrait) {
   .team-cards-section {
     min-height: auto;
     padding: 3rem 1rem;
@@ -332,8 +332,35 @@
   }
 }
 
-/* ── 2. IPAD / TABLET & UP (>= 600px): Strictly 3 Cards per row, Square (1:1), Fit in Viewport ── */
-@media (min-width: 600px) {
+/* ── 2. LANDSCAPE MODE (Small screen horizontal): Strictly 3 Cards 1-2-3 side-by-side ── */
+@media (orientation: landscape) {
+  .team-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ── 3. LOW HEIGHT LANDSCAPE (max-height: 700px): Flexible section height & strictly square 1:1 cards ── */
+@media (orientation: landscape) and (max-height: 700px) {
+  .team-cards-section {
+    min-height: auto !important;
+    padding: clamp(0.75rem, 2.5vh, 2rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
+  }
+
+  .team-cards-grid {
+    max-width: min(1080px, 96vw) !important;
+    gap: clamp(0.35rem, 1vw, 0.75rem) !important;
+  }
+
+  .team-card-wrapper {
+    aspect-ratio: 1 / 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+}
+
+/* ── 4. DESKTOP & LARGE SCREENS (>= 600px min-height: 701px): 3 Cards 1:1 fit ── */
+@media (min-width: 600px) and (min-height: 701px) {
   .team-cards-section {
     min-height: 100vh;
     min-height: 100dvh;
