@@ -73,30 +73,30 @@ export default function BoatDiagram() {
             <motion.div 
               animate={{ y: [0, -5, 0, 5, 0] }}
               transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-[30%] left-[3%] w-64 z-30 text-left"
+              className="absolute top-[30%] left-[3%] w-[245px] z-30 text-left"
             >
               <div 
-                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
-                style={{ borderRadius: '32px 24px 30px 20px' }}
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-4 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '30px 22px 28px 18px' }}
               >
                 {/* Cloud Puffs */}
-                <div className="absolute -top-3 left-6 w-8 h-8 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
-                <div className="absolute -top-2.5 left-12 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
-                <div className="absolute -bottom-2 right-8 w-6 h-6 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-3 left-6 w-7 h-7 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-12 w-5.5 h-5.5 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 right-8 w-5.5 h-5.5 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="w-5.5 h-5.5 rounded-full bg-[#005F8A] text-white text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
                       1
                     </span>
-                    <h3 className="text-[#0A1628] font-bold text-sm">
+                    <h3 className="text-[#0A1628] font-bold text-[13.5px]">
                       {t('proa.label')}
                     </h3>
                   </div>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                  <p className="text-gray-600 text-[11.5px] leading-relaxed mb-2">
                     {t('proa.description')}
                   </p>
-                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                  <span className="text-[9.5px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
                     {t('proa.skill')}
                   </span>
                 </div>
@@ -107,30 +107,30 @@ export default function BoatDiagram() {
             <motion.div 
               animate={{ y: [0, 5, 0, -5, 0] }}
               transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute top-[46%] right-[3%] w-64 z-30 text-left"
+              className="absolute top-[46%] right-[3%] w-[245px] z-30 text-left"
             >
               <div 
-                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
-                style={{ borderRadius: '24px 32px 20px 30px' }}
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-4 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '22px 30px 18px 28px' }}
               >
                 {/* Cloud Puffs */}
-                <div className="absolute -top-3 right-8 w-8 h-8 bg-white/95 rounded-full border-t border-r border-sky-100/80 pointer-events-none" />
-                <div className="absolute -top-2.5 right-14 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
-                <div className="absolute -bottom-2 left-6 w-6 h-6 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-3 right-8 w-7 h-7 bg-white/95 rounded-full border-t border-r border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 right-14 w-5.5 h-5.5 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 left-6 w-5.5 h-5.5 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="w-5.5 h-5.5 rounded-full bg-[#005F8A] text-white text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
                       2
                     </span>
-                    <h3 className="text-[#0A1628] font-bold text-sm">
+                    <h3 className="text-[#0A1628] font-bold text-[13.5px]">
                       {t('timon.label')}
                     </h3>
                   </div>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                  <p className="text-gray-600 text-[11.5px] leading-relaxed mb-2">
                     {t('timon.description')}
                   </p>
-                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                  <span className="text-[9.5px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
                     {t('timon.skill')}
                   </span>
                 </div>
@@ -141,30 +141,30 @@ export default function BoatDiagram() {
             <motion.div 
               animate={{ y: [0, -6, 0, 4, 0] }}
               transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute top-[6%] left-[21%] w-64 z-30 text-left"
+              className="absolute top-[6%] left-[21%] w-[245px] z-30 text-left"
             >
               <div 
-                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
-                style={{ borderRadius: '30px 20px 32px 24px' }}
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-4 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '28px 18px 30px 22px' }}
               >
                 {/* Cloud Puffs */}
-                <div className="absolute -top-3 left-10 w-9 h-9 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
-                <div className="absolute -top-2.5 left-18 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
-                <div className="absolute -bottom-2 right-10 w-6 h-6 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-3 left-10 w-8 h-8 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-18 w-5.5 h-5.5 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 right-10 w-5.5 h-5.5 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="w-5.5 h-5.5 rounded-full bg-[#005F8A] text-white text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
                       3
                     </span>
-                    <h3 className="text-[#0A1628] font-bold text-sm">
+                    <h3 className="text-[#0A1628] font-bold text-[13.5px]">
                       {t('vela_mayor.label')}
                     </h3>
                   </div>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                  <p className="text-gray-600 text-[11.5px] leading-relaxed mb-2">
                     {t('vela_mayor.description')}
                   </p>
-                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                  <span className="text-[9.5px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
                     {t('vela_mayor.skill')}
                   </span>
                 </div>
@@ -175,30 +175,30 @@ export default function BoatDiagram() {
             <motion.div 
               animate={{ y: [0, 4, 0, -6, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-              className="absolute bottom-[4%] left-[47%] w-64 z-30 text-left"
+              className="absolute bottom-[4%] left-[47%] w-[245px] z-30 text-left"
             >
               <div 
-                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
-                style={{ borderRadius: '20px 30px 24px 32px' }}
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-4 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '18px 28px 22px 30px' }}
               >
                 {/* Cloud Puffs */}
-                <div className="absolute -top-3 left-8 w-8 h-8 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
-                <div className="absolute -top-2.5 left-14 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
-                <div className="absolute -bottom-2 left-6 w-6 h-6 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-3 left-8 w-7 h-7 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-14 w-5.5 h-5.5 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 left-6 w-5.5 h-5.5 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-2 mb-1.5">
-                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                  <div className="flex items-center gap-1.5 mb-1.5">
+                    <span className="w-5.5 h-5.5 rounded-full bg-[#005F8A] text-white text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
                       4
                     </span>
-                    <h3 className="text-[#0A1628] font-bold text-sm">
+                    <h3 className="text-[#0A1628] font-bold text-[13.5px]">
                       {t('winch.label')}
                     </h3>
                   </div>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                  <p className="text-gray-600 text-[11.5px] leading-relaxed mb-2">
                     {t('winch.description')}
                   </p>
-                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                  <span className="text-[9.5px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
                     {t('winch.skill')}
                   </span>
                 </div>
