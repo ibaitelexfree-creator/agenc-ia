@@ -258,7 +258,7 @@
 
 /* ── TEAM CARDS ───────────────────────────────────────────── */
 .team-cards-section {
-  padding: clamp(1.25rem, 3.5vh, 3rem) var(--space-md);
+  padding: clamp(2.5rem, 6vh, 5.5rem) var(--space-md);
   background: var(--color-deep);
   text-align: center;
   width: 100%;
@@ -277,24 +277,23 @@
   color: var(--color-bio);
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: clamp(0.15rem, 0.6vh, 0.4rem);
+  margin-bottom: clamp(0.25rem, 1vh, 0.6rem);
 }
 
 .section-title--light {
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3vw, 2.5rem);
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
   font-weight: 700;
   color: var(--color-sail);
-  margin-bottom: clamp(0.75rem, 2vh, 1.5rem);
+  margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem);
   line-height: 1.05;
 }
 
 .team-cards-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(0.5rem, 1.5vw, 1.5rem) !important;
-  max-width: min(1080px, calc((100vh - 220px) * 3)) !important;
-  max-width: min(1080px, calc((100dvh - 220px) * 3)) !important;
+  gap: clamp(0.75rem, 2vw, 1.75rem) !important;
+  max-width: min(1140px, 94vw) !important;
   width: 100% !important;
   margin: 0 auto !important;
   align-items: center !important;
@@ -315,7 +314,7 @@
 @media (max-width: 599px) and (orientation: portrait) {
   .team-cards-section {
     min-height: auto;
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem;
   }
 
   .team-cards-grid {
@@ -342,11 +341,11 @@
 @media (orientation: landscape) and (max-height: 700px) {
   .team-cards-section {
     min-height: auto !important;
-    padding: clamp(0.5rem, 2vh, 1.5rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
+    padding: clamp(1rem, 3vh, 2rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
   }
 
   .team-cards-grid {
-    max-width: min(1080px, 96vw) !important;
+    max-width: min(1140px, 96vw) !important;
     gap: clamp(0.35rem, 1vw, 0.75rem) !important;
   }
 
@@ -358,16 +357,15 @@
   }
 }
 
-/* ── 4. DESKTOP & LARGE SCREENS (>= 600px min-height: 750px): 3 Cards 1:1 fit ── */
-@media (min-width: 600px) and (min-height: 750px) {
+/* ── 4. DESKTOP & LARGE SCREENS (320px to 1920px): Generous top/bottom whitespace & 3 Cards 1:1 fit ── */
+@media (min-width: 992px) {
   .team-cards-section {
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: clamp(1.5rem, 4vh, 3.5rem) var(--space-md);
+    padding: clamp(4rem, 8vh, 6.5rem) var(--space-md);
   }
 
   .team-cards-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: min(1140px, 90vw) !important;
   }
 
   .team-card-wrapper {
