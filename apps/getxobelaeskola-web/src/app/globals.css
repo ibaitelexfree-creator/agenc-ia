@@ -914,15 +914,20 @@ a:hover {
   }
 }
 
-/* 📲 Tablet เล็ก & iPad / Tablet (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
+/* 📲 Tablet เล็ก & iPad / Tablet (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
   :root {
-    --card-w: clamp(210px, 26vw, 300px);
-    --card-h: clamp(190px, 22vh, 240px);
+    --card-w: clamp(216px, 26.8vw, 309px); /* ขยายใหญ่ขึ้น 3% */
+    --card-h: clamp(196px, 22.7vh, 247px); /* ขยายใหญ่ขึ้น 3% */
     --gap: clamp(10px, 1.5vw, 20px);
     --fs-card-title-front: clamp(1.05rem, 1.6vw, 1.25rem);
     --fs-hook: clamp(0.78rem, 1.1vw, 0.85rem);
     --fs-body: clamp(0.8rem, 1.1vw, 0.88rem);
+  }
+
+  .promise__item {
+    transform: scale(1.03); /* ขยายการ์ดทั้ง 3 ใบขึ้น 3% สำหรับ iPad และ Tablet */
+    transform-origin: center center;
   }
 }
 
