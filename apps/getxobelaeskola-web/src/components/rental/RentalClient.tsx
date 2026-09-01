@@ -356,7 +356,7 @@ export default function RentalClient({
     }, [bookingService]);
 
     return (
-        <div className="space-y-6 sm:space-y-12 md:space-y-16 pb-8 sm:pb-20 md:pb-32 w-full max-w-full overflow-hidden">
+        <div className="space-y-4 sm:space-y-8 md:space-y-12 landscape:space-y-6 pb-6 sm:pb-12 md:pb-20 landscape:pb-10 w-full max-w-full overflow-hidden">
             {/* Filter Section */}
             <div className="relative animate-fade-in group w-full max-w-full overflow-hidden">
                 {/* Left Scroll Button */}
@@ -411,10 +411,10 @@ export default function RentalClient({
                 </div>
             </div>
 
-            {/* Grid - FIXED to use RentalCard with AnimatePresence */}
+            {/* Grid - Responsive across portrait and landscape */}
             <motion.div 
                 layout
-                className="grid grid-cols-1 landscape:max-h-[500px]:grid-cols-3 max-h-[500px]:grid-cols-2 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 lg:gap-12 w-full max-w-full"
+                className="grid grid-cols-1 min-[480px]:grid-cols-2 landscape:grid-cols-2 sm:landscape:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 lg:gap-10 w-full max-w-full"
             >
                 <AnimatePresence mode="popLayout">
                     {filteredServices.map((service, index) => (

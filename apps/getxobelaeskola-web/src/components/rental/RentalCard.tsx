@@ -182,10 +182,10 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             </div>
 
             {/* Content Area */}
-            <div className="p-2.5 min-[480px]:p-3.5 sm:p-8 md:p-10 flex flex-col flex-1 relative z-20">
-                <div className="mb-1.5 min-[480px]:mb-2 sm:mb-8">
-                    <div className="flex justify-between items-start mb-1 min-[480px]:mb-1.5 sm:mb-4">
-                        <h3 className="text-xs min-[480px]:text-sm sm:text-2xl md:text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500 line-clamp-2">
+            <div className="p-3 min-[480px]:p-4 sm:p-6 md:p-8 landscape:p-4 flex flex-col flex-1 relative z-20">
+                <div className="mb-1.5 min-[480px]:mb-2 sm:mb-6 landscape:mb-3">
+                    <div className="flex justify-between items-start mb-1 min-[480px]:mb-1.5 sm:mb-3 landscape:mb-1.5">
+                        <h3 className="text-xs min-[480px]:text-sm sm:text-xl md:text-2xl landscape:text-base font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500 line-clamp-2">
                             {index !== undefined ? `${index}. ` : ''}{name}
                         </h3>
                     </div>
