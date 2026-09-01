@@ -258,7 +258,7 @@
 
 /* ── TEAM CARDS ───────────────────────────────────────────── */
 .team-cards-section {
-  padding: clamp(2.5rem, 6vh, 5.5rem) var(--space-md);
+  padding: clamp(1.5rem, 4vh, 3.5rem) var(--space-md);
   background: var(--color-deep);
   text-align: center;
   width: 100%;
@@ -267,7 +267,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .section-eyebrow--light {
@@ -277,23 +278,24 @@
   color: var(--color-bio);
   text-transform: uppercase;
   margin-top: 0;
-  margin-bottom: clamp(0.25rem, 1vh, 0.6rem);
+  margin-bottom: clamp(0.2rem, 0.8vh, 0.5rem);
 }
 
 .section-title--light {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-size: clamp(1.4rem, 3.2vw, 2.8rem);
   font-weight: 700;
   color: var(--color-sail);
-  margin-bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+  margin-bottom: clamp(1rem, 3vh, 2rem);
   line-height: 1.05;
 }
 
 .team-cards-grid {
   display: grid !important;
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: clamp(0.75rem, 2vw, 1.75rem) !important;
-  max-width: min(1140px, 94vw) !important;
+  gap: clamp(0.5rem, 1.8vw, 1.5rem) !important;
+  max-width: min(1140px, calc((100vh - 220px) * 3)) !important;
+  max-width: min(1140px, calc((100dvh - 220px) * 3)) !important;
   width: 100% !important;
   margin: 0 auto !important;
   align-items: center !important;
@@ -337,11 +339,11 @@
   }
 }
 
-/* ── 3. LOW HEIGHT LANDSCAPE (max-height: 700px): Flexible section height & strictly square 1:1 cards ── */
-@media (orientation: landscape) and (max-height: 700px) {
+/* ── 3. LOW HEIGHT LANDSCAPE (max-height: 600px): Allow flexible section height ── */
+@media (orientation: landscape) and (max-height: 600px) {
   .team-cards-section {
     min-height: auto !important;
-    padding: clamp(1rem, 3vh, 2rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
+    padding: clamp(0.75rem, 2vh, 1.5rem) clamp(0.5rem, 1.5vw, 1.25rem) !important;
   }
 
   .team-cards-grid {
@@ -357,15 +359,16 @@
   }
 }
 
-/* ── 4. DESKTOP & LARGE SCREENS (320px to 1920px): Generous top/bottom whitespace & 3 Cards 1:1 fit ── */
-@media (min-width: 992px) {
+/* ── 4. DESKTOP & COMPUTER SCREENS (>= 600px): Full 100vh frame alignment with spacious top/bottom centering ── */
+@media (min-width: 600px) and (min-height: 601px) {
   .team-cards-section {
-    padding: clamp(4rem, 8vh, 6.5rem) var(--space-md);
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    padding: clamp(1.5rem, 4vh, 3.5rem) var(--space-md) !important;
   }
 
   .team-cards-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    max-width: min(1140px, 90vw) !important;
   }
 
   .team-card-wrapper {
