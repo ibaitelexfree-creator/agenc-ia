@@ -115,15 +115,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer scale-[0.93]"
+            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
         >
             {/* Design Decor - Nautical Numbers */}
             <div className="absolute top-2 right-3 min-[480px]:top-3 min-[480px]:right-4 sm:top-4 sm:right-6 text-[60px] min-[480px]:text-[80px] sm:text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
                 {index !== undefined ? String(index).padStart(2, '0') : service.categoria.substring(0, 2).toUpperCase()}
             </div>
 
-            {/* Image Header with Clip Path */}
-            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[90px] min-[480px]:h-[110px] sm:h-[320px] md:h-[380px]' : 'h-[80px] min-[480px]:h-[100px] sm:h-[260px] md:h-[300px]'}`}>
+            {/* Image Header with Responsive Aspect Ratio */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
@@ -132,15 +132,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.3] brightness-[1.06] contrast-[1.08] ${
                         isBigsub
-                            ? 'object-[center_60%] scale-100'
+                            ? 'object-[center_60%]'
                             : isTransientLt8m
                                 ? 'object-center'
                                 : isTransientGt8m
-                                    ? 'object-[52%_85%] scale-[1.38]'
+                                    ? 'object-[52%_85%]'
                                     : isCanoeMooring
-                                        ? 'object-[45%_42%] scale-[1.35]'
+                                        ? 'object-[45%_42%]'
                                         : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                            ? 'object-[center_65%] scale-100'
+                                            ? 'object-[center_65%]'
                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
                                                     ? 'object-[50%_center]'
@@ -148,13 +148,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
                                                     : isWindsurfRental
-                                                        ? 'object-[center_65%] scale-[1.12]'
+                                                        ? 'object-[center_65%]'
                                                         : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
-                                                            ? 'object-center scale-100'
+                                                            ? 'object-center'
                                                             : service.nombre_es.toLowerCase().includes('optimist')
-                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'
+                                                                ? 'object-center'
                                                                 : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
-                                                                    ? 'object-[center_35%] scale-[1.02]'
+                                                                    ? 'object-[center_35%]'
                                                                     : 'object-center'
                     }`}
                 />
