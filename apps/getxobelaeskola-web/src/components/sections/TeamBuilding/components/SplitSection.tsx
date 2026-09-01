@@ -177,7 +177,7 @@ export default function SplitSection() {
               transition={{ duration: 0.6 }}
               className="bg-gray-50 border border-gray-150 rounded-2xl p-6 flex flex-col gap-4 shadow-sm"
             >
-              <div>
+              <div className="p-2">
                 <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-gray-400 block mb-1">
                   {t(`${item.key}.office_label`)}
                 </span>
@@ -185,13 +185,21 @@ export default function SplitSection() {
                   "{t(`${item.key}.office_phrase`)}"
                 </p>
               </div>
-              <div className="border-t border-gray-200 pt-4">
-                <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#005F8A] block mb-1">
-                  {t(`${item.key}.sea_label`)}
-                </span>
-                <p className="text-lg text-[#0A1628] font-medium">
-                  "{t(`${item.key}.sea_phrase`)}"
-                </p>
+              <div className="relative rounded-xl overflow-hidden bg-[#005F8A] p-5 text-white shadow-md">
+                <Image
+                  src="/images/team-building-j80-hero-20201129.jpg?v=4"
+                  alt="Sea background Abra"
+                  fill
+                  className="object-cover opacity-35 brightness-75 sepia-[0.25] saturate-[1.15] hue-rotate-[-8deg]"
+                />
+                <div className="relative z-10">
+                  <span className="text-[9px] font-semibold uppercase tracking-[0.15em] text-[#B8D4E8] block mb-1">
+                    {t(`${item.key}.sea_label`)}
+                  </span>
+                  <p className="text-lg text-white font-medium">
+                    "{t(`${item.key}.sea_phrase`)}"
+                  </p>
+                </div>
               </div>
             </motion.div>
           ))}
