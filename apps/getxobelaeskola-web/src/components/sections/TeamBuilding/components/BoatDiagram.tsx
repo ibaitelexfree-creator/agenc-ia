@@ -67,86 +67,143 @@ export default function BoatDiagram() {
           </motion.svg>
 
           {/* Desktop & Tablet Floating Overlay Cards directly on top of the image */}
+          {/* Desktop & Tablet Floating Overlay Cards directly on top of the image */}
           <div className="hidden md:block">
-            {/* 1. Proa (Bow) - Top Left Overlay */}
-            <div className="absolute top-[32%] left-[4%] w-60 z-30 text-left">
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 ring-1 ring-black/5">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center">
-                    1
-                  </span>
-                  <h3 className="text-[#0A1628] font-bold text-sm">
-                    {t('proa.label')}
-                  </h3>
-                </div>
-                <p className="text-gray-600 text-xs leading-relaxed mb-2">
-                  {t('proa.description')}
-                </p>
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
-                  {t('proa.skill')}
-                </span>
-              </div>
-            </div>
+            {/* 1. Proa (Bow) - Top Left Cloud Overlay */}
+            <motion.div 
+              animate={{ y: [0, -5, 0, 5, 0] }}
+              transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-[30%] left-[3%] w-64 z-30 text-left"
+            >
+              <div 
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '32px 24px 30px 20px' }}
+              >
+                {/* Cloud Puffs */}
+                <div className="absolute -top-3 left-6 w-8 h-8 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-12 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 right-8 w-6 h-6 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
 
-            {/* 2. Timón (Helm) - Bottom Right Overlay */}
-            <div className="absolute top-[48%] right-[4%] w-60 z-30 text-left">
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 ring-1 ring-black/5">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center">
-                    2
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                      1
+                    </span>
+                    <h3 className="text-[#0A1628] font-bold text-sm">
+                      {t('proa.label')}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    {t('proa.description')}
+                  </p>
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                    {t('proa.skill')}
                   </span>
-                  <h3 className="text-[#0A1628] font-bold text-sm">
-                    {t('timon.label')}
-                  </h3>
                 </div>
-                <p className="text-gray-600 text-xs leading-relaxed mb-2">
-                  {t('timon.description')}
-                </p>
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
-                  {t('timon.skill')}
-                </span>
               </div>
-            </div>
+            </motion.div>
 
-            {/* 3. Vela Mayor (Mainsail) - Top Right/Center Overlay */}
-            <div className="absolute top-[8%] left-[22%] w-64 z-30 text-left">
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 ring-1 ring-black/5">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center">
-                    3
-                  </span>
-                  <h3 className="text-[#0A1628] font-bold text-sm">
-                    {t('vela_mayor.label')}
-                  </h3>
-                </div>
-                <p className="text-gray-600 text-xs leading-relaxed mb-2">
-                  {t('vela_mayor.description')}
-                </p>
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
-                  {t('vela_mayor.skill')}
-                </span>
-              </div>
-            </div>
+            {/* 2. Timón (Helm) - Bottom Right Cloud Overlay */}
+            <motion.div 
+              animate={{ y: [0, 5, 0, -5, 0] }}
+              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute top-[46%] right-[3%] w-64 z-30 text-left"
+            >
+              <div 
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '24px 32px 20px 30px' }}
+              >
+                {/* Cloud Puffs */}
+                <div className="absolute -top-3 right-8 w-8 h-8 bg-white/95 rounded-full border-t border-r border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 right-14 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 left-6 w-6 h-6 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
 
-            {/* 4. Winches (Winches) - Bottom Center/Right Overlay */}
-            <div className="absolute bottom-[6%] left-[48%] w-64 z-30 text-left">
-              <div className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 ring-1 ring-black/5">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center">
-                    4
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                      2
+                    </span>
+                    <h3 className="text-[#0A1628] font-bold text-sm">
+                      {t('timon.label')}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    {t('timon.description')}
+                  </p>
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                    {t('timon.skill')}
                   </span>
-                  <h3 className="text-[#0A1628] font-bold text-sm">
-                    {t('winch.label')}
-                  </h3>
                 </div>
-                <p className="text-gray-600 text-xs leading-relaxed mb-2">
-                  {t('winch.description')}
-                </p>
-                <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
-                  {t('winch.skill')}
-                </span>
               </div>
-            </div>
+            </motion.div>
+
+            {/* 3. Vela Mayor (Mainsail) - Top Center Cloud Overlay */}
+            <motion.div 
+              animate={{ y: [0, -6, 0, 4, 0] }}
+              transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute top-[6%] left-[21%] w-64 z-30 text-left"
+            >
+              <div 
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '30px 20px 32px 24px' }}
+              >
+                {/* Cloud Puffs */}
+                <div className="absolute -top-3 left-10 w-9 h-9 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-18 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 right-10 w-6 h-6 bg-white/95 rounded-full border-b border-r border-sky-100/80 pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                      3
+                    </span>
+                    <h3 className="text-[#0A1628] font-bold text-sm">
+                      {t('vela_mayor.label')}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    {t('vela_mayor.description')}
+                  </p>
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                    {t('vela_mayor.skill')}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* 4. Winches (Winches) - Bottom Center Cloud Overlay */}
+            <motion.div 
+              animate={{ y: [0, 4, 0, -6, 0] }}
+              transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              className="absolute bottom-[4%] left-[47%] w-64 z-30 text-left"
+            >
+              <div 
+                className="bg-white/95 backdrop-blur-md border border-sky-100/90 p-5 shadow-[0_12px_32px_rgba(0,95,138,0.12)] hover:shadow-[0_18px_40px_rgba(0,95,138,0.22)] transition-all duration-300 relative group"
+                style={{ borderRadius: '20px 30px 24px 32px' }}
+              >
+                {/* Cloud Puffs */}
+                <div className="absolute -top-3 left-8 w-8 h-8 bg-white/95 rounded-full border-t border-l border-sky-100/80 pointer-events-none" />
+                <div className="absolute -top-2.5 left-14 w-6 h-6 bg-white/95 rounded-full border-t border-sky-100/80 pointer-events-none" />
+                <div className="absolute -bottom-2 left-6 w-6 h-6 bg-white/95 rounded-full border-b border-l border-sky-100/80 pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <span className="w-6 h-6 rounded-full bg-[#005F8A] text-white text-xs font-bold font-serif flex items-center justify-center shadow-sm">
+                      4
+                    </span>
+                    <h3 className="text-[#0A1628] font-bold text-sm">
+                      {t('winch.label')}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 text-xs leading-relaxed mb-2">
+                    {t('winch.description')}
+                  </p>
+                  <span className="text-[10px] font-semibold px-2.5 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                    {t('winch.skill')}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
             {/* Hotspot Pulse Dots */}
             {J80_POINTS.map((point, idx) => (
@@ -160,14 +217,16 @@ export default function BoatDiagram() {
             ))}
           </div>
 
-          {/* Mobile Overlay Cards Grid (Directly inside graphic container on small screens) */}
-          <div className="block md:hidden z-30 w-full grid grid-cols-1 gap-3 mt-4 text-left">
+          {/* Mobile Overlay Cards Grid */}
+          <div className="block md:hidden z-30 w-full grid grid-cols-1 gap-3.5 mt-4 text-left">
             {J80_POINTS.map((point, idx) => (
               <div
                 key={point.id}
-                className="bg-white/95 backdrop-blur-sm border border-gray-200 rounded-xl p-3.5 shadow-md"
+                className="bg-white/95 backdrop-blur-sm border border-sky-100 p-4 shadow-md relative"
+                style={{ borderRadius: idx % 2 === 0 ? '24px 18px 22px 16px' : '18px 24px 16px 22px' }}
               >
-                <div className="flex items-center gap-2 mb-1">
+                <div className="absolute -top-2 left-5 w-5 h-5 bg-white/95 rounded-full border-t border-l border-sky-100 pointer-events-none" />
+                <div className="flex items-center gap-2 mb-1 relative z-10">
                   <span className="w-5 h-5 rounded-full bg-[#005F8A] text-white text-[11px] font-bold font-serif flex items-center justify-center">
                     {idx + 1}
                   </span>
@@ -175,10 +234,10 @@ export default function BoatDiagram() {
                     {t(`${point.key}.label`)}
                   </h3>
                 </div>
-                <p className="text-gray-600 text-[11px] leading-relaxed mb-2">
+                <p className="text-gray-600 text-[11px] leading-relaxed mb-2 relative z-10">
                   {t(`${point.key}.description`)}
                 </p>
-                <span className="text-[9px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block">
+                <span className="text-[9px] font-semibold px-2 py-0.5 bg-[#EBF5FB] text-[#005F8A] rounded-full inline-block relative z-10">
                   {t(`${point.key}.skill`)}
                 </span>
               </div>
