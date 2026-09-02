@@ -108,8 +108,8 @@
   letter-spacing: clamp(0.15em, 0.35em, 0.4em);
   color: var(--color-sun);
   margin-top: auto !important;
-  margin-bottom: clamp(3rem, 12vh, 6rem);
-  transform: translateY(-10vh);
+  margin-bottom: clamp(3.5rem, 15vh, 7.5rem);
+  transform: translateY(-15vh);
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
   flex-shrink: 0;
 }
