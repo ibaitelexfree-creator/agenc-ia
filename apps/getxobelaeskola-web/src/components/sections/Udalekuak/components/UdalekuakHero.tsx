@@ -30,7 +30,7 @@ export default function UdalekuakHero({ onCtaClick }: UdalekuakHeroProps) {
       </div>
 
       {/* CENTERED CONTENT */}
-      <div className={styles.heroContent}>
+      <div className={styles.heroContent} style={{ transform: 'translateY(-12vh)' }}>
         {/* Eyebrow */}
         <motion.p
           initial={prefersReducedMotion ? {} : { opacity: 0, letterSpacing: '0.2em' }}
