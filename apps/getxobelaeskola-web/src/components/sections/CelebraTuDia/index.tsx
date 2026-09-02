@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import styles from './CelebraTuDia.module.css';
 import HeroSection from './components/HeroSection';
 import FloatingCards from './components/FloatingCards';
+import SailingBackground from './components/SailingBackground';
 import InteractiveBigSUP from './components/InteractiveBigSUP';
 import CateringCards from './components/CateringCards';
 import ClosingBalloons from './components/ClosingBalloons';
@@ -27,6 +28,9 @@ export default function CelebraTuDia() {
 
       {/* Fase 3: Cards Flotantes */}
       <FloatingCards />
+
+      {/* Fase 6: Velero cruzando */}
+      <SailingBackground />
 
       {/* Fase 4: Timeline */}
       <HorizontalTimeline />

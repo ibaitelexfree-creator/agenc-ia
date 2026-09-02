@@ -13,7 +13,7 @@ export default function SailingBackground() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-24 overflow-hidden bg-sky-100/50 border-y border-sky-200 pointer-events-none"
+      className="relative w-full h-16 overflow-hidden bg-sky-100/50 border-y border-sky-200 pointer-events-none"
     >
       {/* Wave lines backgrounds */}
       <svg className="absolute inset-0 w-full h-full opacity-25" viewBox="0 0 1000 100" preserveAspectRatio="none">
@@ -23,10 +23,10 @@ export default function SailingBackground() {
       {/* Sailboat traversing */}
       {isInView && (
         <motion.div
-          className="absolute bottom-2 left-0 w-28 h-28"
-          initial={prefersReducedMotion ? { x: '50%', opacity: 1 } : { x: '-150px', opacity: 0 }}
+          className="absolute bottom-1 left-0 w-16 h-16"
+          initial={prefersReducedMotion ? { x: '50%', opacity: 1 } : { x: '-100px', opacity: 0 }}
           animate={prefersReducedMotion ? {} : {
-            x: 'calc(100vw + 150px)',
+            x: 'calc(100vw + 100px)',
             opacity: [0, 1, 1, 0]
           }}
           transition={prefersReducedMotion ? {} : {
