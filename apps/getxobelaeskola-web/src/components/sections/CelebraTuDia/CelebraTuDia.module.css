@@ -232,8 +232,8 @@
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(0.5rem, 1vw, 1.05rem);
-  max-width: min(940px, 87vw);
+  gap: clamp(0.45rem, 0.95vw, 1rem);
+  max-width: min(890px, 82vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
