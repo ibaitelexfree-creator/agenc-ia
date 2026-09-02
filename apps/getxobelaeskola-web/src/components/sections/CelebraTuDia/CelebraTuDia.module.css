@@ -269,10 +269,10 @@
 
 .cardContainer {
   position: relative;
-  height: clamp(140px, 18vh, 190px);
+  width: 100%;
+  aspect-ratio: 1 / 1;
   cursor: pointer;
   transform-style: preserve-3d;
-  width: 100%;
 }
 
 .cardFace {
