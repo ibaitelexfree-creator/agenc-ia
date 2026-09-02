@@ -467,15 +467,23 @@
 
 /* ── INTERACTIVE BIG SUP ─────────────────────── */
 .bigSUPSection {
-  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
   background: var(--color-blanco-puro);
   text-align: center;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .bigSUPTitle {
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: clamp(1.25rem, 2.5vw, 2.2rem);
   font-weight: 800;
   margin-bottom: var(--space-xs);
   word-break: break-word;
@@ -483,17 +491,17 @@
 
 .bigSUPDesc {
   max-width: min(600px, 92vw);
-  margin: 0 auto clamp(1rem, 3vw, var(--space-lg)) auto;
-  line-height: 1.5;
-  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  margin: 0 auto clamp(1rem, 2.5vh, 1.5rem) auto;
+  line-height: 1.4;
+  font-size: clamp(0.75rem, 0.95vw, 0.85rem);
   color: rgba(13, 43, 69, 0.7);
 }
 
 .boardContainer {
   position: relative;
-  max-width: min(900px, 96vw);
+  max-width: min(900px, 94vw);
   margin: 0 auto;
-  height: clamp(160px, 28vw, 280px);
+  height: clamp(140px, 20vh, 220px);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -503,7 +511,7 @@
 
 .seatsGrid {
   position: absolute;
-  bottom: clamp(40px, 8vw, 90px);
+  bottom: clamp(35px, 6vh, 70px);
   width: 88%;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
@@ -515,12 +523,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: clamp(60px, 12vw, 110px);
+  height: clamp(50px, 10vh, 90px);
 }
 
 .seatPlus {
-  width: clamp(20px, 4vw, 30px);
-  height: clamp(20px, 4vw, 30px);
+  width: clamp(18px, 3vw, 26px);
+  height: clamp(18px, 3vw, 26px);
   border-radius: 50%;
   background-color: var(--color-arena);
   border: 1.5px dashed var(--color-noche);
@@ -528,7 +536,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 900;
-  font-size: clamp(0.7rem, 1.5vw, 1rem);
+  font-size: clamp(0.65rem, 1.2vw, 0.85rem);
   color: var(--color-noche);
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
@@ -541,8 +549,8 @@
 }
 
 .characterRider {
-  width: clamp(25px, 5vw, 50px);
-  height: clamp(40px, 8vw, 80px);
+  width: clamp(20px, 4vw, 40px);
+  height: clamp(32px, 6vh, 65px);
 }
 
 .supBoardSvg {
@@ -556,14 +564,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: clamp(20px, 4vw, 40px);
+  height: clamp(16px, 3vh, 30px);
   background-color: var(--color-mar);
   border-radius: 50% 50% 0 0 / 15px 15px 0 0;
 }
 
 .successMessage {
-  margin-top: var(--space-md);
-  padding: clamp(0.75rem, 2vw, var(--space-md));
+  margin-top: 0.75rem;
+  padding: clamp(0.5rem, 1.5vh, 1rem);
   background-color: #ECFDF5;
   border: 1px solid #A7F3D0;
   border-radius: 16px;
@@ -575,30 +583,38 @@
 .successText {
   color: #047857;
   font-weight: 700;
-  font-size: clamp(0.85rem, 1.5vw, 1.05rem);
-  margin-bottom: var(--space-xs);
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  margin-bottom: 0.25rem;
 }
 
 .successBtn {
   background-color: #059669;
   color: var(--color-blanco-puro);
   border: none;
-  padding: clamp(0.4rem, 1vw, 0.6rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.35rem, 0.8vw, 0.5rem) clamp(0.85rem, 1.5vw, 1.25rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
   cursor: pointer;
-  margin-top: var(--space-xs);
+  margin-top: 0.25rem;
 }
 
 /* ── CHILL OUT SECTION ───────────────────────── */
 .chillOutSection {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
   background-color: var(--color-hierba);
   overflow: hidden;
   color: var(--color-blanco-puro);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .chillOutBg {
@@ -620,45 +636,53 @@
 }
 
 .toldo {
-  margin: 0 auto clamp(0.5rem, 1.5vw, var(--space-md)) auto;
-  width: clamp(140px, 25vw, 240px);
+  margin: 0 auto clamp(0.4rem, 1vh, 0.8rem) auto;
+  width: clamp(120px, 18vw, 200px);
   height: auto;
 }
 
 .chillText {
   font-family: var(--font-display);
-  font-size: clamp(1.05rem, 2.5vw, 2.4rem);
+  font-size: clamp(1rem, 2vw, 1.8rem);
   font-weight: 700;
   line-height: 1.35;
-  margin: clamp(0.5rem, 2vw, var(--space-md)) 0;
+  margin: clamp(0.4rem, 1.5vh, 1rem) 0;
   word-break: break-word;
 }
 
 .chillSceneIllust {
   position: relative;
-  width: clamp(140px, 25vw, 200px);
-  height: clamp(90px, 16vw, 130px);
+  width: clamp(120px, 20vw, 170px);
+  height: clamp(80px, 12vh, 110px);
   margin: 0 auto;
 }
 
 .musicNote {
   position: absolute;
   color: var(--color-sol);
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.2rem);
   pointer-events: none;
 }
 
 /* ── CATERING SECTION ────────────────────────── */
 .cateringSection {
-  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
   background: var(--color-blanco);
   text-align: center;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .cateringTitle {
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: clamp(1.25rem, 2.5vw, 2.2rem);
   font-weight: 800;
   margin-bottom: var(--space-xs);
   word-break: break-word;
@@ -666,15 +690,15 @@
 
 .cateringSubtitle {
   color: #6B7280;
-  font-size: clamp(0.85rem, 1.4vw, 1.05rem);
-  margin-bottom: clamp(1rem, 3vw, var(--space-lg));
+  font-size: clamp(0.75rem, 0.95vw, 0.85rem);
+  margin-bottom: clamp(1rem, 2vh, 1.5rem);
 }
 
 .cateringGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: clamp(1rem, 2.5vw, var(--space-md));
-  max-width: min(1000px, 96vw);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  max-width: min(960px, 94vw);
   margin: 0 auto;
   width: 100%;
 }
@@ -683,14 +707,14 @@
   position: relative;
   background-color: var(--color-blanco-puro);
   border: 2px solid rgba(13, 43, 69, 0.04);
-  border-radius: 24px;
-  padding: clamp(1.25rem, 3vw, var(--space-lg)) clamp(0.75rem, 2vw, var(--space-md));
+  border-radius: 20px;
+  padding: clamp(1rem, 2vh, 1.5rem) clamp(0.6rem, 1.2vw, 1rem);
   box-shadow: 0 10px 30px rgba(13, 43, 69, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: clamp(300px, 40vw, 380px);
+  min-height: clamp(240px, 30vh, 320px);
   width: 100%;
 }
 
@@ -701,46 +725,46 @@
 
 .cateringBadge {
   position: absolute;
-  top: -15px;
+  top: -12px;
   background-color: var(--color-sol);
   color: var(--color-noche);
-  font-size: clamp(0.65rem, 1vw, 0.75rem);
+  font-size: clamp(0.55rem, 0.8vw, 0.68rem);
   font-weight: 900;
-  padding: 0.3rem 0.85rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 100px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   letter-spacing: 0.08em;
 }
 
 .cateringCardIcon {
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
 }
 
 .cateringCardTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
   font-weight: 800;
-  margin: clamp(0.35rem, 1vw, var(--space-sm)) 0 var(--space-xs) 0;
+  margin: clamp(0.25rem, 0.8vh, 0.5rem) 0 0.15rem 0;
   word-break: break-word;
 }
 
 .cateringCardDesc {
-  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
-  line-height: 1.45;
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  line-height: 1.35;
   color: #6B7280;
-  max-width: 240px;
-  margin-bottom: clamp(0.75rem, 2vw, var(--space-md));
+  max-width: 220px;
+  margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
 }
 
 .cateringCardBtn {
-  width: min(85%, 220px);
+  width: min(85%, 200px);
   background-color: var(--color-noche);
   color: var(--color-blanco-puro);
   border: none;
-  padding: clamp(0.55rem, 1.2vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(0.45rem, 1vh, 0.65rem) clamp(0.85rem, 1.5vw, 1.25rem);
   border-radius: 100px;
   font-weight: 700;
-  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  font-size: clamp(0.7rem, 0.9vw, 0.82rem);
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -762,13 +786,21 @@
 
 /* ── CLOSING SECTION ─────────────────────────── */
 .closingSection {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  padding: var(--space-xl) clamp(0.75rem, 3vw, var(--space-md));
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 2.5rem);
+  padding-bottom: clamp(0.5rem, 1.5vh, 1.25rem);
   background-color: var(--color-noche);
   color: var(--color-blanco-puro);
   text-align: center;
   overflow: hidden;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .balloonsField {
