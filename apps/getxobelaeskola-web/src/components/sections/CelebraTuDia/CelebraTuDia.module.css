@@ -204,7 +204,7 @@
 
 /* ── FLOATING CARDS ─────────────────────────── */
 .cardsSection {
-  padding: clamp(2rem, 5vh, 4rem) clamp(0.75rem, 3vw, var(--space-md));
+  padding: var(--space-xl) clamp(1rem, 4vw, var(--space-lg));
   background: var(--color-blanco);
   text-align: center;
   width: 100%;
@@ -216,15 +216,15 @@
   font-size: var(--text-display);
   font-weight: 800;
   color: var(--color-noche);
-  margin-bottom: clamp(1rem, 2.5vh, 2rem);
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
   word-break: break-word;
 }
 
 .cardsGrid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(0.75rem, 1.5vw, 1.25rem);
-  max-width: min(1150px, 94vw);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  max-width: min(1200px, 94vw);
   margin: 0 auto;
   perspective: 1000px;
   width: 100%;
@@ -246,7 +246,7 @@
 
 @media (max-width: 860px) {
   .cardsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   }
 
   .cardsGrid > :nth-child(1),
@@ -260,7 +260,7 @@
 
 .cardContainer {
   position: relative;
-  height: clamp(180px, 22vh, 230px);
+  height: clamp(220px, 30vw, 280px);
   cursor: pointer;
   transform-style: preserve-3d;
   width: 100%;
