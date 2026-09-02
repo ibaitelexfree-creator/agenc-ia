@@ -60,7 +60,7 @@
   font-size: clamp(2.2rem, 6.5vw, 5rem);
   font-weight: 800;
   color: var(--color-white);
-  text-transform: uppercase;
+  text-transform: lowercase;
   letter-spacing: 0.04em;
   margin-top: 0.5rem;
   margin-bottom: clamp(2rem, 5vh, 3.5rem);
