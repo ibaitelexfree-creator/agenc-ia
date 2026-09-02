@@ -45,14 +45,29 @@
   justify-content: center;
 }
 
-.heroVideo, .heroVideoReverse {
+.heroVideo, .heroVideoReverse, .heroImage {
   width: 100%;
   height: 100%;
   max-width: 100%;
   max-height: 100dvh;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center center;
   transition: transform 0.3s ease-in-out;
+}
+
+.heroTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 6.5vw, 5rem);
+  font-weight: 800;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: auto 0;
+  transform: translateY(11vh);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.75), 0 2px 8px rgba(0, 0, 0, 0.5);
+  line-height: 1.1;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .heroOverlay {
@@ -94,6 +109,7 @@
   color: var(--color-sun);
   margin-top: clamp(3.5rem, 9vh, 6.5rem);
   margin-bottom: 0;
+  transform: translateY(14vh);
   text-shadow: 0 2px 10px rgba(0,0,0,0.6);
   flex-shrink: 0;
 }
@@ -143,10 +159,11 @@
    RESPONSIVE BREAKPOINTS (FLUID 9-RANGE SYSTEM)
    ────────────────────────────────────────────── */
 
-/* 📱 Mobile Screens (up to 767px) - Shift eyebrow down by 9% total & enlarge by 3% */
+/* 📱 Mobile Screens (up to 767px) */
 @media (max-width: 767px) {
   .heroEyebrow {
-    transform: translateY(9vh) scale(1.03) !important;
+    margin-top: clamp(2.5rem, 7vh, 4.5rem);
+    transform: scale(1.03) !important;
     transform-origin: center top;
   }
 }
@@ -365,38 +382,38 @@
     box-sizing: border-box;
   }
 
-  /* GetxoBelaEskola · Verano enlarged by 7% (scale 1.10) */
+  /* GetxoBelaEskola · Verano */
   .heroEyebrow {
-    margin-top: clamp(3.8rem, 16vh, 7rem);
-    transform: translateY(20vh) scale(1.10);
+    margin-top: clamp(2rem, 8vh, 4rem);
+    transform: scale(1.05);
     transform-origin: center top;
   }
 
-  /* Semanas que dejan huella en la mar shifted up 1% */
+  /* Semanas que dejan huella en la mar */
   .heroSubtitle {
-    transform: translateY(-1vh);
+    transform: none;
   }
 
-  /* Reservar plaza 2026 button scaled 2% smaller */
+  /* Reservar plaza 2026 button */
   .heroCta {
     transform: scale(0.98);
     transform-origin: center center;
   }
 }
 
-/* Screens 700px and above in landscape: shift GetxoBelaEskola · Verano UP by 5% */
+/* Screens 700px and above in landscape */
 @media (min-width: 700px) and (orientation: landscape) {
   .heroEyebrow {
-    margin-top: clamp(3rem, 12vh, 5.5rem);
-    transform: translateY(15vh) scale(1.10) !important;
+    margin-top: clamp(2.5rem, 8vh, 4.5rem);
+    transform: scale(1.05) !important;
   }
 }
 
-/* Mobile Landscape (< 700px width) adjustment: small screens kept intact */
+/* Mobile Landscape (< 700px width) */
 @media (max-width: 699px) and (orientation: landscape) {
   .heroEyebrow {
-    margin-top: clamp(2.8rem, 10vh, 5rem);
-    transform: translateY(29vh) scale(1.10) !important;
+    margin-top: clamp(1.8rem, 6vh, 3.5rem);
+    transform: scale(1.05) !important;
   }
 }
 
