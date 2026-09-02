@@ -204,15 +204,7 @@
 
 /* ── FLOATING CARDS ─────────────────────────── */
 .cardsSection {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: clamp(2rem, 5vh, 4rem);
-  padding-bottom: clamp(0.5rem, 1.2vh, 0.75rem);
-  padding-left: clamp(1rem, 3vw, var(--space-md));
-  padding-right: clamp(1rem, 3vw, var(--space-md));
+  padding: var(--space-xl) clamp(1rem, 3vw, var(--space-md));
   background: var(--color-blanco);
   text-align: center;
   width: 100%;
@@ -343,15 +335,7 @@
 
 /* ── TIMELINE ────────────────────────────────── */
 .timelineSection {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: clamp(2rem, 5vh, 4rem);
-  padding-bottom: clamp(0.5rem, 1.2vh, 0.75rem);
-  padding-left: clamp(1rem, 3vw, var(--space-md));
-  padding-right: clamp(1rem, 3vw, var(--space-md));
+  padding: var(--space-xl) clamp(1rem, 3vw, var(--space-md));
   background: var(--color-arena);
   overflow: hidden;
   width: 100%;
