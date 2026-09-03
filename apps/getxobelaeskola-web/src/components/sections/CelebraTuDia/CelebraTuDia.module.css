@@ -652,9 +652,10 @@
 
 .chillSceneIllust {
   position: relative;
-  width: clamp(120px, 20vw, 170px);
-  height: clamp(80px, 12vh, 110px);
-  margin: 0 auto;
+  width: min(100%, 524px);
+  max-width: 95vw;
+  height: auto;
+  margin: 1.5rem auto;
 }
 
 .musicNote {
