@@ -117,8 +117,8 @@ export default function CollaboratorsGrid() {
     return (
         <div className="flex flex-col items-center gap-6 w-full max-w-6xl mb-12 relative px-2 sm:px-4">
             {/* Header & Search Bar */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full border-b border-sea-foam/10 pb-4">
-                <div className="flex items-center gap-2 sm:gap-3 flex-nowrap whitespace-nowrap shrink-0 max-w-full justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full border-b border-sea-foam/10 pb-4">
+                <div className="flex items-center justify-center gap-2 sm:gap-3 flex-nowrap whitespace-nowrap shrink-0 w-full md:w-auto">
                     <span className="text-[11px] min-[360px]:text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/80 flex items-center gap-1.5 sm:gap-2 shrink-0">
                         <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent animate-pulse shrink-0" />
                         Colaboradores
@@ -129,7 +129,7 @@ export default function CollaboratorsGrid() {
                 </div>
 
                 {/* Search Bar */}
-                <div className="relative w-full sm:w-72">
+                <div className="relative w-full max-w-sm md:w-72">
                     <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-sea-foam/40 pointer-events-none" />
                     <input
                         type="text"
