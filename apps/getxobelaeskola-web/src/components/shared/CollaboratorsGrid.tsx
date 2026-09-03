@@ -118,12 +118,12 @@ export default function CollaboratorsGrid() {
         <div className="flex flex-col items-center gap-6 w-full max-w-6xl mb-12 relative px-2 sm:px-4">
             {/* Header & Search Bar */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full border-b border-sea-foam/10 pb-4">
-                <div className="flex items-center gap-3">
-                    <span className="text-xs sm:text-sm uppercase tracking-[0.3em] font-black text-sea-foam/80 flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-accent animate-pulse" />
+                <div className="flex items-center gap-2 sm:gap-3 flex-nowrap whitespace-nowrap shrink-0 max-w-full justify-center">
+                    <span className="text-[11px] min-[360px]:text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/80 flex items-center gap-1.5 sm:gap-2 shrink-0">
+                        <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent animate-pulse shrink-0" />
                         Colaboradores
                     </span>
-                    <span className="px-2.5 py-0.5 text-[11px] font-bold rounded-full bg-accent/10 text-accent border border-accent/20">
+                    <span className="px-2 py-0.5 sm:px-2.5 text-[10px] sm:text-[11px] font-bold rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0">
                         {filteredCollaborators.length}
                     </span>
                 </div>
