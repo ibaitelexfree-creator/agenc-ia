@@ -124,7 +124,7 @@ export default function SplitSection() {
                   src="/images/team-building-j80-hero-20201129.jpg?v=4"
                   alt="Sea background Abra"
                   fill
-                  className="object-cover opacity-35 brightness-75 sepia-[0.25] saturate-[1.15] hue-rotate-[-8deg]"
+                  className="object-cover opacity-35 brightness-75"
                 />
               </motion.div>
 

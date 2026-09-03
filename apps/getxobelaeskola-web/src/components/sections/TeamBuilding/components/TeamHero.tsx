@@ -118,17 +118,15 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             className="w-full h-full relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100"
           >
             <Image
-              src="/images/team-building-j80-hero-20201129.jpg?v=4"
+              src="/images/team-building-j80-hero-20201129.jpg?v=6"
               alt="J80 sailboat under sail"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover sepia-[0.28] saturate-[1.18] contrast-[1.04] hue-rotate-[-8deg]"
+              className="object-cover"
             />
-            {/* Rich Golden Hour Warmth overlay */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-amber-700/25 via-amber-500/15 to-orange-300/10 pointer-events-none mix-blend-soft-light" />
-            <div className="absolute inset-0 bg-amber-500/10 pointer-events-none mix-blend-color-burn" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            {/* Subtle natural vignette shadow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
           </motion.div>
         </div>
       </div>
