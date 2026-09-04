@@ -34,6 +34,7 @@ const nextConfig = {
     output: isCapacitor ? 'export' : 'standalone',
     staticPageGenerationTimeout: 600,
     transpilePackages: [
+        'framer-motion',
         '@capacitor/core',
         '@capacitor/android',
         '@capacitor/ios',
