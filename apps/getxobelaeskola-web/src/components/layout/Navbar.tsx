@@ -259,25 +259,25 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         <>
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col">
                 {/* Top Utility Bar */}
-                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 [@media(orientation:landscape)_and_(max-height:500px)]:!h-6 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative select-none">
+                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
-                    <div className="flex items-center gap-5 [@media(orientation:landscape)_and_(max-height:500px)]:!gap-3">
+                    <div className="flex items-center gap-5">
                         <a href="https://wa.me/34634405624" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
-                            <Phone className="w-4.5 h-4.5 [@media(orientation:landscape)_and_(max-height:500px)]:!w-3.5 [@media(orientation:landscape)_and_(max-height:500px)]:!h-3.5" />
+                            <Phone className="w-4.5 h-4.5" />
                         </a>
                         <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#ff5c97] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,92,151,0.3)]" title="Instagram">
-                            <Instagram className="w-4.5 h-4.5 [@media(orientation:landscape)_and_(max-height:500px)]:!w-3.5 [@media(orientation:landscape)_and_(max-height:500px)]:!h-3.5" />
+                            <Instagram className="w-4.5 h-4.5" />
                         </a>
                         <a href="https://www.facebook.com/Pakea.bela.eskola/" target="_blank" rel="noopener noreferrer" className="text-[#4895ff] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(72,149,255,0.3)]" title="Facebook">
-                            <Facebook className="w-4.5 h-4.5 [@media(orientation:landscape)_and_(max-height:500px)]:!w-3.5 [@media(orientation:landscape)_and_(max-height:500px)]:!h-3.5" />
+                            <Facebook className="w-4.5 h-4.5" />
                         </a>
                         <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="text-[#ff3b30] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,59,48,0.3)]" title="YouTube">
-                            <Youtube className="w-4.5 h-4.5 [@media(orientation:landscape)_and_(max-height:500px)]:!w-3.5 [@media(orientation:landscape)_and_(max-height:500px)]:!h-3.5" />
+                            <Youtube className="w-4.5 h-4.5" />
                         </a>
                     </div>
  
                     {/* Right side: Language, Cart, Profile, Search (Lupa a la derecha del todo) */}
-                    <div className="flex items-center gap-5 [@media(orientation:landscape)_and_(max-height:500px)]:!gap-3">
+                    <div className="flex items-center gap-5">
                         {/* Language Selector Dropdown */}
                         <div 
                             className="relative lang-dropdown-container"
@@ -316,7 +316,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                         className="absolute top-full right-0 mt-1 bg-neutral-900 border border-white/10 rounded shadow-xl overflow-hidden py-1 w-20 z-[10001]"
                                     >
                                         {['es', 'eu', 'en', 'fr'].map((lang) => (
-                                             <button
+                                            <button
                                                 key={lang}
                                                 onClick={(e) => {
                                                     e.stopPropagation();
@@ -388,7 +388,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     </div>
                 </div>
  
-                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 [@media(orientation:landscape)_and_(max-height:500px)]:!py-1 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[50px] md:min-h-[60px] [@media(orientation:landscape)_and_(max-height:500px)]:!min-h-[42px]">
+                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
@@ -405,7 +405,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             scale: 0.99,
                         }}
                         transition={{ type: 'spring', stiffness: 50, damping: 15 }}
-                        className="relative w-28 h-10 md:w-36 md:h-12 [@media(orientation:landscape)_and_(max-height:500px)]:!w-24 [@media(orientation:landscape)_and_(max-height:500px)]:!h-8 flex-shrink-0 transition-premium group-hover:scale-105"
+                        className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
                         {/* Wrapper for subtle vertical floating animation - stopped and positioned 5px higher */}
                         <div
@@ -602,11 +602,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             setIsMenuOpen(!isMenuOpen);
                             setMobileExpanded(null);
                         }}
-                        className="xl:hidden flex-shrink-0 w-11 h-11 md:w-14 md:h-14 [@media(orientation:landscape)_and_(max-height:500px)]:!w-9 [@media(orientation:landscape)_and_(max-height:500px)]:!h-9 flex items-center justify-center bg-accent text-white rounded-full shadow-2xl relative z-[10000] transition-premium hover:scale-110 active:scale-95 shadow-accent/30"
+                        className="xl:hidden flex-shrink-0 w-14 h-14 flex items-center justify-center bg-accent text-white rounded-full shadow-2xl relative z-[10000] transition-premium hover:scale-110 active:scale-95 shadow-accent/30"
                         aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
                     >
-                        {isMenuOpen ? <X size={20} strokeWidth={3} /> : (
-                            <div className="flex flex-col gap-1 w-5 md:w-6 [@media(orientation:landscape)_and_(max-height:500px)]:!w-4">
+                        {isMenuOpen ? <X size={24} strokeWidth={3} /> : (
+                            <div className="flex flex-col gap-1 w-6">
                                 <span className="block w-full h-0.5 bg-white rounded-full" />
                                 <span className="block w-3/4 h-0.5 bg-white rounded-full ml-auto" />
                                 <span className="block w-full h-0.5 bg-white rounded-full" />
