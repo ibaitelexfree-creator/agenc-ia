@@ -56,13 +56,13 @@ export function Section3Adapts() {
       <style jsx global>{`
         @media (orientation: landscape) {
           .section-3-adapts h2 {
-            font-size: clamp(1.9rem, 4.75vw, 3.8rem) !important;
+            font-size: clamp(1.8rem, 4.5vw, 3.6rem) !important;
           }
           .section-3-adapts p {
-            font-size: clamp(1.045rem, 1.9vw, 1.33rem) !important;
+            font-size: clamp(0.99rem, 1.8vw, 1.26rem) !important;
           }
           .section-3-adapts button {
-            font-size: 0.95rem !important;
+            font-size: 0.9rem !important;
           }
         }
       `}</style>
