@@ -28,40 +28,56 @@
 
 @media (orientation: landscape) and (max-height: 600px) {
   .section {
-    height: auto !important;
-    min-height: auto !important;
-    overflow: visible !important;
-    padding: clamp(24px, 4vh, 36px) 16px !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: 100dvh !important;
+    overflow: hidden !important;
+    padding: clamp(6px, 1.5vh, 14px) clamp(16px, 3vw, 24px) !important;
     margin-top: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+  }
+  .container {
+    max-width: clamp(500px, 90vw, 840px) !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
   }
   .title {
-    font-size: clamp(14px, 3vh, 20px) !important;
+    font-size: clamp(13px, 2.5vh, 18px) !important;
     margin-bottom: 2px !important;
   }
   .subheading {
-    font-size: clamp(9px, 2vh, 12px) !important;
-    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    font-size: clamp(9px, 1.8vh, 11px) !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
+    padding: 0 !important;
   }
   .grid {
-    gap: clamp(6px, 1.5vw, 12px) !important;
-    margin-bottom: clamp(6px, 1.5vh, 10px) !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: clamp(6px, 1.2vw, 12px) !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .card {
+    max-width: 100% !important;
   }
   .imageWrapper {
-    aspect-ratio: 16 / 7 !important;
+    aspect-ratio: 16 / 7.5 !important;
   }
   .cardBody {
-    padding: 6px 10px 8px !important;
+    padding: 4px 6px 6px !important;
   }
   .cardTitle {
-    font-size: clamp(11px, 2.2vh, 13px) !important;
+    font-size: clamp(9.5px, 1.8vh, 11.5px) !important;
     line-height: 1.2 !important;
   }
-
   .category {
-    font-size: 8px !important;
+    font-size: 7.5px !important;
   }
 }
 
@@ -103,7 +119,7 @@
   width: 100%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px) and (orientation: portrait) {
   .grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;

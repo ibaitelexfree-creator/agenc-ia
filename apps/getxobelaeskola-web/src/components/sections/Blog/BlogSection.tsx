@@ -42,7 +42,10 @@ export default function BlogSection() {
   const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    const checkMobile = () => {
+      const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+      setIsMobile(window.innerWidth < 640 && isPortrait);
+    };
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
