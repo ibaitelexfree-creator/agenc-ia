@@ -1126,28 +1126,40 @@ a:hover {
   }
   .promise__grid {
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: clamp(6px, 1.2vw, 14px) !important; /* การ์ดทั้ง 3 ใบวางเรียง 3 คอลัมน์เคียงข้างกันใน 1 แถว */
-    align-items: stretch !important;
-    justify-items: stretch !important;
+    gap: clamp(8px, 1.5vw, 16px) !important; /* การ์ดทั้ง 3 ใบวางเรียง 3 คอลัมน์เคียงข้างกันใน 1 แถว */
+    align-items: center !important;
+    justify-items: center !important;
     width: 100% !important;
-    max-width: clamp(500px, 90vw, 840px) !important; /* ไม่เกินขอบซ้ายขวา */
+    max-width: clamp(440px, 78vw, 660px) !important; /* กระชับความกว้างรวมของ Grid เพื่อให้เป็นสี่เหลี่ยมจัตุรัสพอดี */
     margin: 0 auto !important;
   }
   .promise__item {
     width: 100% !important;
     display: flex !important;
+    justify-content: center !important;
   }
   .flip-card {
     width: 100% !important;
-    aspect-ratio: 1 / 1 !important;
+    aspect-ratio: 1 / 1 !important; /* ทรงสี่เหลี่ยมจัตุรัสแบบ 1:1 เท่ากันทุกด้าน */
     height: auto !important;
     min-height: auto !important;
-    max-height: clamp(135px, 36vh, 175px) !important;
+    max-height: clamp(140px, 45vh, 200px) !important;
     margin: 0 !important;
   }
+  .flip-card__inner {
+    width: 100% !important;
+    height: 100% !important;
+  }
   .flip-card__face {
+    width: 100% !important;
+    height: 100% !important;
     padding: clamp(6px, 1.2vh, 12px) clamp(6px, 1vw, 10px) !important;
     border-radius: var(--gbe-radius-lg, 16px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
   }
   .flip-card__icon {
     width: 28px !important;
