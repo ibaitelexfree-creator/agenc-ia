@@ -53,6 +53,19 @@ export function Section3Adapts() {
         boxSizing: 'border-box',
       }}
     >
+      <style jsx global>{`
+        @media (orientation: landscape) {
+          .section-3-adapts h2 {
+            font-size: clamp(1.9rem, 4.75vw, 3.8rem) !important;
+          }
+          .section-3-adapts p {
+            font-size: clamp(1.045rem, 1.9vw, 1.33rem) !important;
+          }
+          .section-3-adapts button {
+            font-size: 0.95rem !important;
+          }
+        }
+      `}</style>
       <div
         style={{
           flex: 1,
