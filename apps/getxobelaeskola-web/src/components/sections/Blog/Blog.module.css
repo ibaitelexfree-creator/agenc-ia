@@ -65,12 +65,23 @@
   }
   .card {
     max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+    height: 100% !important;
   }
   .imageWrapper {
-    aspect-ratio: 16 / 7.5 !important;
+    aspect-ratio: 16 / 9 !important;
+    flex-shrink: 0 !important;
   }
   .cardBody {
     padding: 4px 6px 6px !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
   }
   .cardTitle {
     font-size: clamp(9.5px, 1.8vh, 11.5px) !important;
