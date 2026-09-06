@@ -18,15 +18,62 @@
   box-sizing: border-box;
 }
 
+/* 📱 All Mobile Vertical Portrait Screens (up to 639px) */
 @media (max-width: 639px) and (orientation: portrait) {
   .section { 
     height: auto !important; 
     min-height: auto !important;
     overflow: visible !important;
-    padding: 48px 16px !important; 
-    margin-top: 0 !important;
+    padding: calc(24px + 3vh) 10px 24px 10px !important; 
+    margin-top: 3% !important;
+  }
+  .container {
+    padding: 0 4px !important;
+  }
+  .headline {
+    font-size: clamp(16px, 4.8vw, 22px) !important;
+  }
+  .headerLines p {
+    font-size: clamp(10.5px, 2.8vw, 13px) !important;
+    margin-bottom: 3px !important;
+  }
+  .subheading {
+    font-size: clamp(11.5px, 3.2vw, 15px) !important;
+    margin: 10px 0 8px !important;
+  }
+  .card {
+    min-width: 200px !important;
+    max-width: 235px !important;
+    padding: 11px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .cardText {
+    font-size: 12px !important;
+  }
+  .cardName {
+    font-size: 12px !important;
+  }
+  .cardTime {
+    font-size: 10.5px !important;
+  }
+  .track {
+    gap: 12px !important;
+    padding: 8px 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  .carouselWrapper {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent) !important;
   }
 }
+
+
+
 
 .container {
   max-width: var(--gbe-container-max, 1400px);

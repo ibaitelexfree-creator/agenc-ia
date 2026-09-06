@@ -15,9 +15,8 @@ export default function ReviewsCarousel() {
       <motion.div
         className={styles.track}
         variants={staggerContainer(0.12)}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
+        initial="visible"
+        animate="visible"
       >
         {duplicatedReviews.map((review, index) => (
           <ReviewCard key={`${review.id}-${index}`} review={review} />
