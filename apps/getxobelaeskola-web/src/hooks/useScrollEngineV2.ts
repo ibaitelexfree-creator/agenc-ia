@@ -28,16 +28,15 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
   const canvasX = useTransform(scrollYProgress, () => '0vw')
 
-  // 8 Section Keyframe Map with rest plateaus to guarantee 100% full-section framing
+  // 7 Section Keyframe Map with rest plateaus matching the 7 components in CanvasV2
   const yScrollPoints = [
     0.00, 0.05, // Section 0 (0vh)
-    0.14, 0.19, // Section 1 (-100vh)
-    0.28, 0.33, // Section 2 (-200vh)
-    0.42, 0.47, // Section 3 (-300vh)
-    0.56, 0.61, // Section 4 (-400vh)
-    0.70, 0.75, // Section 5 (-500vh)
-    0.84, 0.89, // Section 6 (-600vh)
-    0.98, 1.00  // Section 7 (-700vh)
+    0.16, 0.21, // Section 1 (-100vh)
+    0.32, 0.37, // Section 2 (-200vh)
+    0.48, 0.53, // Section 3 (-300vh)
+    0.64, 0.69, // Section 4 (-400vh)
+    0.80, 0.85, // Section 5 (-500vh)
+    0.95, 1.00  // Section 6 (-600vh)
   ]
   const rawCanvasY = useTransform(
     scrollYProgress,
@@ -49,8 +48,7 @@ export function useScrollEngineV2(): ScrollEngineReturn {
       -300, -300,
       -400, -400,
       -500, -500,
-      -600, -600,
-      -700, -700
+      -600, -600
     ]
   )
   const canvasY = useTransform(rawCanvasY, (v) => {
@@ -64,11 +62,11 @@ export function useScrollEngineV2(): ScrollEngineReturn {
   const compassAngle = useSpring(rawCompass, { stiffness: 15, damping: 8 })
 
   const currentSection = useTransform(scrollYProgress, (progress: number): number => {
-    if (progress < 0.12) return 0
-    if (progress < 0.28) return 1
-    if (progress < 0.44) return 2
-    if (progress < 0.60) return 3
-    if (progress < 0.76) return 4
+    if (progress < 0.15) return 0
+    if (progress < 0.31) return 1
+    if (progress < 0.47) return 2
+    if (progress < 0.63) return 3
+    if (progress < 0.79) return 4
     if (progress < 0.92) return 5
     return 6
   })
@@ -81,8 +79,8 @@ export function useScrollEngineV2(): ScrollEngineReturn {
   const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    // Snap targets matching the center of each rest plateau (0vh, -100vh, -200vh, etc.)
-    const SECTION_PROGRESS = [0.025, 0.165, 0.305, 0.445, 0.585, 0.725, 0.865, 0.99]
+    // Snap targets matching the center of each rest plateau for the 7 sections (0vh to -600vh)
+    const SECTION_PROGRESS = [0.025, 0.185, 0.345, 0.505, 0.665, 0.825, 0.975]
 
     let cachedMaxScroll: number | null = null
     const getMaxScroll = () => {
