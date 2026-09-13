@@ -2,8 +2,8 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Added continuous auto-scrolling to `/servicios/alquileres/` category filter bar.
+- **Task:** Updated `/servicios/alquileres/` category filter bar to 360-degree single-direction infinite loop.
 - **Changes:**
-  - Added continuous smooth auto-scrolling loop to `RentalClient.tsx` for filter categories (`TODOS` to `EVENTOS`).
-  - Added intelligent auto-pause on mouse hover, touch, drag, and category selection.
+  - Implemented single-direction endless marquee loop (`TODOS` -> `EVENTOS` -> `TODOS`...) in `RentalClient.tsx`.
+  - Added seamless reset mechanism so scrolling never changes direction or hits a boundary wall.
 - **Status:** COMPLETED & VERIFIED.

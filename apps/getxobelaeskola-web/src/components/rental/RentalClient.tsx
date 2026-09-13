@@ -122,7 +122,7 @@ export default function RentalClient({
     const dayRef = useRef<HTMLInputElement>(null);
     const datePickerRef = useRef<HTMLInputElement>(null);
 
-    const categories = [
+    const categories = useMemo(() => [
         { id: 'all', name: t('categories.all') },
         { id: 'alquileres', name: t('categories.alquileres') },
         { id: 'veleros', name: t('categories.veleros') },
@@ -134,7 +134,13 @@ export default function RentalClient({
         { id: 'membresias', name: t('categories.membresias') },
         { id: 'bonos', name: t('categories.bonos') },
         { id: 'eventos', name: t('categories.eventos') }
-    ];
+    ], [t]);
+
+    const displayCategories = useMemo(() => [
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set1-${c.id}-${i}` })),
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set2-${c.id}-${i}` })),
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set3-${c.id}-${i}` }))
+    ], [categories]);
 
     const filteredServices = selectedCategory === 'all'
         ? services
@@ -299,7 +305,6 @@ export default function RentalClient({
     const [filterScrollLeft, setFilterScrollLeft] = useState(0);
 
     const [isFilterInteracting, setIsFilterInteracting] = useState(false);
-    const filterAutoScrollDir = useRef<'right' | 'left'>('right');
     const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const pauseFilterAutoScroll = (duration = 4000) => {
@@ -310,7 +315,20 @@ export default function RentalClient({
         }, duration);
     };
 
-    // Continuous smooth auto-scrolling for filter categories
+    const handleScrollBoundary = () => {
+        const container = filterScrollRef.current;
+        if (!container) return;
+        const singleSetWidth = container.scrollWidth / 3;
+        if (singleSetWidth <= 0) return;
+
+        if (container.scrollLeft >= singleSetWidth * 2) {
+            container.scrollLeft -= singleSetWidth;
+        } else if (container.scrollLeft <= 2) {
+            container.scrollLeft += singleSetWidth;
+        }
+    };
+
+    // Continuous single-direction smooth auto-scrolling (left-to-right infinite loop)
     useEffect(() => {
         if (isFilterInteracting) return;
 
@@ -318,32 +336,36 @@ export default function RentalClient({
             const container = filterScrollRef.current;
             if (!container) return;
 
-            const maxScroll = container.scrollWidth - container.clientWidth;
-            if (maxScroll <= 0) return;
+            const singleSetWidth = container.scrollWidth / 3;
+            if (singleSetWidth <= 0) return;
 
-            if (filterAutoScrollDir.current === 'right') {
-                if (container.scrollLeft >= maxScroll - 2) {
-                    filterAutoScrollDir.current = 'left';
-                } else {
-                    container.scrollLeft += 1;
-                }
+            if (container.scrollLeft >= singleSetWidth * 2) {
+                container.scrollLeft -= singleSetWidth;
             } else {
-                if (container.scrollLeft <= 2) {
-                    filterAutoScrollDir.current = 'right';
-                } else {
-                    container.scrollLeft -= 1;
-                }
+                container.scrollLeft += 1;
             }
-        }, 35);
+        }, 30);
 
         return () => clearInterval(interval);
     }, [isFilterInteracting]);
+
+    // Initial position set to middle set for seamless backward/forward scrolling
+    useEffect(() => {
+        const container = filterScrollRef.current;
+        if (container) {
+            const singleSetWidth = container.scrollWidth / 3;
+            if (singleSetWidth > 0 && container.scrollLeft === 0) {
+                container.scrollLeft = singleSetWidth;
+            }
+        }
+    }, []);
 
     // Auto-scroll selected category into center view smoothly
     useEffect(() => {
         if (!filterScrollRef.current) return;
         const container = filterScrollRef.current;
-        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="${selectedCategory}"]`);
+        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="set2-${selectedCategory}"]`)
+            || container.querySelector<HTMLButtonElement>(`[data-category-id*="-${selectedCategory}"]`);
         if (activeBtn) {
             const containerWidth = container.clientWidth;
             const btnLeft = activeBtn.offsetLeft;
@@ -372,6 +394,7 @@ export default function RentalClient({
         pauseFilterAutoScroll(4000);
         if (filterScrollRef.current && e.deltaY !== 0) {
             filterScrollRef.current.scrollLeft += e.deltaY;
+            handleScrollBoundary();
         }
     };
 
@@ -390,6 +413,7 @@ export default function RentalClient({
         if (Math.abs(walk) > 5) {
             setIsDraggingFilter(true);
             filterScrollRef.current.scrollLeft = filterScrollLeft - walk;
+            handleScrollBoundary();
         }
     };
 
@@ -431,6 +455,7 @@ export default function RentalClient({
                 {/* Scrollable Container */}
                 <div
                     ref={filterScrollRef}
+                    onScroll={handleScrollBoundary}
                     onWheel={handleFilterWheel}
                     onMouseDown={handleFilterMouseDown}
                     onMouseMove={handleFilterMouseMove}
@@ -441,10 +466,10 @@ export default function RentalClient({
                     onTouchEnd={() => pauseFilterAutoScroll(4000)}
                     className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
                 >
-                    {categories.map(cat => (
+                    {displayCategories.map(cat => (
                         <button
-                            key={cat.id}
-                            data-category-id={cat.id}
+                            key={cat.uniqueId}
+                            data-category-id={cat.uniqueId}
                             type="button"
                             onClick={() => {
                                 if (!isDraggingFilter) setSelectedCategory(cat.id);
