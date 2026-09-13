@@ -117,11 +117,6 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
         >
-            {/* Design Decor - Nautical Numbers */}
-            <div className="absolute top-2 right-3 min-[480px]:top-3 min-[480px]:right-4 sm:top-4 sm:right-6 text-[60px] min-[480px]:text-[80px] sm:text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
-                {index !== undefined ? String(index).padStart(2, '0') : service.categoria.substring(0, 2).toUpperCase()}
-            </div>
-
             {/* Image Header with Responsive Aspect Ratio */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                 <NauticalImage
@@ -163,15 +158,6 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-300/10 via-transparent to-amber-500/8 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
-                {/* Float Number & Category Badge */}
-                <div className="absolute top-1.5 left-1.5 min-[480px]:top-2 min-[480px]:left-2 sm:top-6 sm:left-6 z-20 flex items-center gap-1.5 min-[480px]:gap-2 bg-nautical-black/80 backdrop-blur-md px-1.5 py-0.5 min-[480px]:px-2 min-[480px]:py-0.5 sm:px-3 sm:py-1.5 rounded-sm border border-sea-foam/10">
-                    {index !== undefined && (
-                        <span className="text-[9px] min-[480px]:text-[10px] sm:text-xs font-mono font-bold text-accent">
-                            #{index}
-                        </span>
-                    )}
-                </div>
-
                 {/* Float Category Label */}
                 <div className="absolute bottom-1.5 left-2 min-[480px]:bottom-2 min-[480px]:left-2.5 sm:bottom-6 sm:left-8 z-20 flex items-center gap-1 min-[480px]:gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
@@ -186,7 +172,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="mb-1.5 min-[480px]:mb-2 sm:mb-6 landscape:mb-3">
                     <div className="flex justify-between items-start mb-1 min-[480px]:mb-1.5 sm:mb-3 landscape:mb-1.5">
                         <h3 className="text-xs min-[480px]:text-sm sm:text-xl md:text-2xl landscape:text-base font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500 line-clamp-2">
-                            {index !== undefined ? `${index}. ` : ''}{name}
+                            {name}
                         </h3>
                     </div>
 

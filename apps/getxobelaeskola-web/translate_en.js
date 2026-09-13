@@ -28,11 +28,11 @@ const en = {
       licencia_title: "Youth (Basic / Intermediate)",
       licencia_price: "Consult",
       licencia_desc: "Txikigune (Single days), Udalekuak (5 days) and continuous training 3 days a month.",
-      j80_title: "Adults (Beginner)",
+      j80_title: "Adults (Initiation)",
       j80_price: "Consult",
-      j80_desc: "Beginner cruise. First contact with cruise sailing adapted to each person.",
+      j80_desc: "Initiation cruise. First contact with cruise sailing adapted to each person.",
       rental_title: "Adults (Intermediate)",
-      rental_desc: "Dinghy sailing beginner/advanced, Cruise perfection, Cruise with gennaker and technification.",
+      rental_desc: "Dinghy sailing initiation/advanced, Cruise perfection, Cruise with gennaker and technification.",
       price_rental: "Consult"
     },
     fleet_cta: {

@@ -298,6 +298,47 @@ export default function RentalClient({
     const [filterStartX, setFilterStartX] = useState(0);
     const [filterScrollLeft, setFilterScrollLeft] = useState(0);
 
+    const [isFilterInteracting, setIsFilterInteracting] = useState(false);
+    const filterAutoScrollDir = useRef<'right' | 'left'>('right');
+    const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const pauseFilterAutoScroll = (duration = 4000) => {
+        setIsFilterInteracting(true);
+        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = setTimeout(() => {
+            setIsFilterInteracting(false);
+        }, duration);
+    };
+
+    // Continuous smooth auto-scrolling for filter categories
+    useEffect(() => {
+        if (isFilterInteracting) return;
+
+        const interval = setInterval(() => {
+            const container = filterScrollRef.current;
+            if (!container) return;
+
+            const maxScroll = container.scrollWidth - container.clientWidth;
+            if (maxScroll <= 0) return;
+
+            if (filterAutoScrollDir.current === 'right') {
+                if (container.scrollLeft >= maxScroll - 2) {
+                    filterAutoScrollDir.current = 'left';
+                } else {
+                    container.scrollLeft += 1;
+                }
+            } else {
+                if (container.scrollLeft <= 2) {
+                    filterAutoScrollDir.current = 'right';
+                } else {
+                    container.scrollLeft -= 1;
+                }
+            }
+        }, 35);
+
+        return () => clearInterval(interval);
+    }, [isFilterInteracting]);
+
     // Auto-scroll selected category into center view smoothly
     useEffect(() => {
         if (!filterScrollRef.current) return;
@@ -312,10 +353,12 @@ export default function RentalClient({
                 left: Math.max(0, targetScrollLeft),
                 behavior: 'smooth'
             });
+            pauseFilterAutoScroll(5000);
         }
     }, [selectedCategory]);
 
     const scrollFilters = (direction: 'left' | 'right') => {
+        pauseFilterAutoScroll(5000);
         if (filterScrollRef.current) {
             const amount = filterScrollRef.current.clientWidth * 0.6;
             filterScrollRef.current.scrollBy({
@@ -326,6 +369,7 @@ export default function RentalClient({
     };
 
     const handleFilterWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+        pauseFilterAutoScroll(4000);
         if (filterScrollRef.current && e.deltaY !== 0) {
             filterScrollRef.current.scrollLeft += e.deltaY;
         }
@@ -333,6 +377,7 @@ export default function RentalClient({
 
     const handleFilterMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!filterScrollRef.current) return;
+        pauseFilterAutoScroll(6000);
         setIsDraggingFilter(false);
         setFilterStartX(e.pageX - filterScrollRef.current.offsetLeft);
         setFilterScrollLeft(filterScrollRef.current.scrollLeft);
@@ -390,6 +435,10 @@ export default function RentalClient({
                     onMouseDown={handleFilterMouseDown}
                     onMouseMove={handleFilterMouseMove}
                     onMouseUp={() => setTimeout(() => setIsDraggingFilter(false), 50)}
+                    onMouseEnter={() => setIsFilterInteracting(true)}
+                    onMouseLeave={() => setIsFilterInteracting(false)}
+                    onTouchStart={() => pauseFilterAutoScroll(6000)}
+                    onTouchEnd={() => pauseFilterAutoScroll(4000)}
                     className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
                 >
                     {categories.map(cat => (
@@ -417,7 +466,7 @@ export default function RentalClient({
                 className="grid grid-cols-1 min-[480px]:grid-cols-2 landscape:grid-cols-2 sm:landscape:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 lg:gap-10 w-full max-w-full"
             >
                 <AnimatePresence mode="popLayout">
-                    {filteredServices.map((service, index) => (
+                    {filteredServices.map((service) => (
                         <motion.div
                             key={service.id}
                             layout
@@ -429,7 +478,6 @@ export default function RentalClient({
                             <RentalCard
                                 service={service}
                                 locale={locale}
-                                index={index + 1}
                                 onBook={(id) => setBookingService(id)}
                             />
                         </motion.div>

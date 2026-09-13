@@ -25,13 +25,15 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
     const tData = useTranslations('courses_data');
 
     const hasTranslation = tData.has(`${course.slug}.name`);
-    const name = hasTranslation
+    const rawName = hasTranslation
         ? tData(`${course.slug}.name`)
         : (locale === 'es' ? course.nombre_es : (locale === 'eu' ? course.nombre_eu : course.nombre_es)) || course.nombre_es || 'Curso sin nombre';
+    const name = rawName.replace(/beginner/gi, '').trim();
 
-    const description = hasTranslation
+    const rawDescription = hasTranslation
         ? tData(`${course.slug}.description`)
         : (locale === 'es' ? course.descripcion_es : (locale === 'eu' ? course.descripcion_eu : course.descripcion_es)) || course.descripcion_es || '';
+    const description = rawDescription.replace(/beginner/gi, '').trim();
 
     return (
         <motion.div 
@@ -59,16 +61,6 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                     />
                     {/* Overlays */}
                     <div className="absolute inset-0 premium-gradient-overlay z-10" />
-
-                    {/* Level Badge - Premium Minimalist */}
-                    <div className="absolute top-1 left-1 sm:top-3 sm:left-3 p-0 z-20">
-                        <div className="flex items-center gap-1 sm:gap-2 animate-fade-in group-hover:translate-x-1.5 transition-transform duration-700">
-                            <div className="w-2 sm:w-5 h-px bg-accent flex-shrink-0" />
-                            <span className="text-[8px] sm:text-xs uppercase tracking-[0.1em] sm:tracking-[0.2em] text-accent font-black whitespace-nowrap pr-1">
-                                {t(`levels.${course.nivel}`)}
-                            </span>
-                        </div>
-                    </div>
 
                     {/* Vertical Text Accent */}
                     <div className="hidden sm:block absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
