@@ -1064,8 +1064,8 @@ a:hover {
 }
 
 .promise__item {
-  width: 80%;
-  max-width: 80%;
+  width: 64%;
+  max-width: 64%;
   display: flex;
   justify-content: center;
 }
@@ -1091,8 +1091,8 @@ a:hover {
     grid-template-columns: repeat(3, 1fr) !important;
   }
   .promise__item {
-    width: 80% !important;
-    max-width: 80% !important;
+    width: 64% !important;
+    max-width: 64% !important;
   }
 }
 
@@ -1253,7 +1253,7 @@ a:hover {
 .flip-card__cta,
 .flip-card__label,
 .flip-card__desc {
-  transform: translateZ(40px);
+  transform: translateZ(90px);
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
@@ -1271,12 +1271,12 @@ a:hover {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
   justify-content: center;
-  padding: clamp(10px, 1.8vw, 22px) clamp(8px, 1.5vw, 18px);
+  padding: clamp(8px, 1.4vw, 18px) clamp(6px, 1.2vw, 14px);
 }
 
 .flip-card__icon {
-  width: clamp(34px, 3.8vw, 54px);
-  height: clamp(34px, 3.8vw, 54px);
+  width: clamp(28px, 3.2vw, 44px);
+  height: clamp(28px, 3.2vw, 44px);
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--color-gold-soft);
@@ -1284,36 +1284,36 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: clamp(4px, 1vw, 14px);
+  margin-bottom: clamp(3px, 0.8vw, 10px);
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
 .flip-card:hover .flip-card__icon,
 .flip-card.is-flipped .flip-card__icon {
-  transform: translateZ(45px) scale(1.08);
+  transform: translateZ(90px) scale(1.08);
 }
 
 .flip-card__title {
   font-family: var(--font-display-promise);
-  font-size: clamp(0.9rem, 1.25vw, 1.2rem);
+  font-size: clamp(0.78rem, 1.05vw, 1.05rem);
   color: var(--color-navy-900);
-  margin: 0 0 clamp(3px, 0.6vw, 6px);
+  margin: 0 0 clamp(2px, 0.5vw, 5px);
   font-weight: 600;
   text-align: center;
 }
 
 .flip-card__hook {
   font-family: var(--font-body-promise);
-  font-size: clamp(0.68rem, 0.85vw, 0.82rem);
+  font-size: clamp(0.6rem, 0.72vw, 0.72rem);
   color: var(--color-ink-soft);
-  line-height: 1.35;
-  margin: 0 0 clamp(6px, 1vw, 14px);
+  line-height: 1.28;
+  margin: 0 0 clamp(4px, 0.8vw, 10px);
   text-align: center;
 }
 
 .flip-card__cta {
   font-family: var(--font-body-promise);
-  font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+  font-size: clamp(0.58rem, 0.7vw, 0.7rem);
   font-weight: 600;
   color: var(--color-gold);
   letter-spacing: 0.02em;
@@ -1322,20 +1322,20 @@ a:hover {
 
 .flip-card__label {
   font-family: var(--font-body-promise);
-  font-size: clamp(0.72rem, 0.85vw, 0.82rem);
+  font-size: clamp(0.62rem, 0.75vw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--color-gold);
-  margin: 0 0 clamp(4px, 0.8vw, 10px);
+  margin: 0 0 clamp(3px, 0.6vw, 8px);
   text-align: center;
 }
 
 .flip-card__desc {
   font-family: var(--font-body-promise);
-  font-size: clamp(0.65rem, 0.8vw, 0.78rem);
+  font-size: clamp(0.56rem, 0.68vw, 0.7rem);
   color: var(--color-white);
   opacity: 0.92;
-  line-height: 1.32;
+  line-height: 1.25;
   margin: 0;
   text-align: center;
 }
