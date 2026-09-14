@@ -176,16 +176,16 @@ export default async function CoursesPage({
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10 text-left">
-                    <header className="max-w-4xl">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-left">
+                    <header className="w-full max-w-4xl">
                         <span className="text-accent uppercase tracking-[0.6em] text-[clamp(0.65rem,0.8vw,0.875rem)] font-bold mb-2 sm:mb-4 block animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-[clamp(1.75rem,4vw,4.5rem)] font-display leading-[0.95] text-sea-foam mb-2 sm:mb-6 animate-reveal relative">
+                        <h1 className="text-[clamp(2rem,4.5vw,4.5rem)] font-display leading-[0.95] text-sea-foam mb-2 sm:mb-6 animate-reveal relative">
                             {t('header_title')} <br />
                             <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-[clamp(0.85rem,1.2vw,1.25rem)] leading-relaxed border-l-2 border-sea-foam/10 pl-4 sm:pl-6 md:pl-8 mt-2 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-[clamp(0.9rem,1.3vw,1.25rem)] leading-relaxed border-l-2 border-sea-foam/20 pl-4 sm:pl-6 md:pl-8 mt-3 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('header_desc')}
                         </p>
                     </header>
