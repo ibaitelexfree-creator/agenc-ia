@@ -1159,8 +1159,7 @@ a:hover {
   .flip-card {
     width: 100% !important;
     max-width: 100% !important;
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
+    height: clamp(160px, 24vh, 220px) !important;
     margin: 0 auto !important;
   }
 }
@@ -1175,25 +1174,14 @@ a:hover {
   -webkit-tap-highlight-color: transparent;
 
   width: 100%;
-  max-width: 100%;
-  aspect-ratio: 1 / 1;
-  height: auto;
+  max-width: var(--card-w);
+  height: calc(var(--card-h) * 1.01);
   perspective: 1600px;
-}
-
-@media (min-width: 586px) {
-  .flip-card {
-    width: 100% !important;
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
-  }
 }
 
 @media (min-width: 1024px) {
   .flip-card {
-    width: 100% !important;
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
+    height: calc(var(--card-h) * 1.05);
   }
 }
 
