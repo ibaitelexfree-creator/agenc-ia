@@ -1098,9 +1098,20 @@ a:hover {
 
 @media (min-width: 1920px) {
   .promise__grid {
-    max-width: 70% !important;
+    max-width: 1200px !important;
     margin-left: auto !important;
     margin-right: auto !important;
+  }
+  .promise__item {
+    transform: scale(0.7) !important;
+    transform-origin: center center !important;
+  }
+  .flip-card {
+    width: 70% !important;
+    max-width: 70% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    margin: 0 auto !important;
   }
 }
 
