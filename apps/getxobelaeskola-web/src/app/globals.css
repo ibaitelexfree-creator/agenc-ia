@@ -1587,84 +1587,30 @@ iframe[id*="equalweb"] {
     bottom: calc(clamp(24px, 4vh, 60px) + env(safe-area-inset-bottom, 0px)) !important;
   }
 }
-
-/* 🖥️ Desktop Viewport System (width >= 1024px / Large Desktop): */
-@media (min-width: 1024px) {
-  .hero-text-container {
-    transform: scale(1.22) !important;
-    transform-origin: left center !important;
-  }
+/* 🖥️ Fluid Viewport System for Hero & Landing Sections: Pure CSS Grid/Flexbox without scale() hacks */
+.hero-text-container {
+  width: 100%;
+  max-width: var(--gbe-container-max, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
-@media (min-width: 1651px) {
-  .hero-text-container {
-    transform: scale(1.35) !important;
-    transform-origin: left center !important;
-  }
-  .hero-video-blobs-container {
-    bottom: calc(clamp(32px, 7vh, 90px) + env(safe-area-inset-bottom, 0px)) !important;
-  }
+.hero-video-blobs-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* 📲 Tablet Landscape System (Tablet เล็ก 1024x768, Tablet มาตรฐาน 1280x800, iPad 11" 1366x1024, Tablet Android QHD 1600x1000) */
-@media (orientation: landscape) and (min-width: 768px) and (max-width: 1650px) {
-  div.hero-video-blobs-container,
-  .hero-video-blobs-container {
-    bottom: calc(7.5vh + env(safe-area-inset-bottom, 0px)) !important;
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-
-  div.hero-blobs-grid,
-  .hero-blobs-grid {
-    transform: scale(clamp(0.48, 42vh / 600, 0.65)) !important;
-    transform-origin: center bottom !important;
-    overflow: visible !important;
-  }
-
-  div.hero-text-container,
-  .hero-text-container {
-    transform: translateY(-3vh) scale(1.22) !important;
-    transform-origin: left top !important;
-  }
+.hero-blobs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  width: 100%;
 }
 
-/* 📱 Short & Mobile Landscape Viewports (e.g., 586x320px) */
-@media (orientation: landscape) and (max-height: 500px) {
-  div.hero-video-blobs-container,
-  .hero-video-blobs-container {
-    bottom: calc(0.2vh + env(safe-area-inset-bottom, 0px)) !important;
-    padding: 0 4px !important;
-    max-width: 100vw !important;
-    box-sizing: border-box !important;
-  }
-
-  div.hero-blobs-grid,
-  .hero-blobs-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: clamp(2px, 0.8vw, 8px) !important;
-    transform: scale(clamp(0.24, 34vh / 320, 0.42)) !important;
-    transform-origin: center bottom !important;
-  }
-
-  div.hero-blobs-grid > *,
-  .hero-blobs-grid > * {
-    grid-column: unset !important;
-    width: auto !important;
-  }
-
-  .hero-text-container {
-    margin-top: 0px !important;
-    top: 0px !important;
-    transform: scale(clamp(0.35, 42vh / 450, 0.52)) !important;
-    transform-origin: left top !important;
-  }
-}
 
 .whatsapp-button-floating {
   position: fixed !important;
@@ -1785,22 +1731,8 @@ section {
    COURSES RESPONSIVE GRID SYSTEM
    ========================================================================== */
 
-/* Portrait Mobile (max 639px & vertical ratio): 1 column */
-@media screen and (max-width: 639px) and (max-aspect-ratio: 1/1) {
-  .courses-grid-system {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-}
+/* Standard responsive layout driven by Tailwind utility classes on CoursesListClient */
 
-/* Landscape / Wide aspect ratio (586x320, 667x375, etc): 3 columns */
-@media screen and (min-aspect-ratio: 1/1) {
-  .courses-grid-system {
-    display: grid !important;
-    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-    gap: 0.5rem !important;
-  }
-}
 
 @media screen and (max-height: 500px) and (min-aspect-ratio: 1/1) {
   .courses-header-section {

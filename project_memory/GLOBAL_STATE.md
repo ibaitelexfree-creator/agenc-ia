@@ -2,8 +2,11 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Updated `/servicios/alquileres/` category filter bar to 360-degree single-direction infinite loop.
+- **Task:** Updated `/servicios/cursos/` page grid layout rules according to exact device portrait/landscape matrix.
 - **Changes:**
-  - Implemented single-direction endless marquee loop (`TODOS` -> `EVENTOS` -> `TODOS`...) in `RentalClient.tsx`.
-  - Added seamless reset mechanism so scrolling never changes direction or hits a boundary wall.
+  - Configured `CoursesListClient.tsx` grid to `grid-cols-1 min-[586px]:grid-cols-3`.
+  - Ensures small mobile portrait (<586px) displays 1 card per row (`[ 1 ]`).
+  - Ensures tablet/iPad portrait (>=586px, 768px, 820px) AND all landscape/desktop viewports display exactly 3 cards per row (`[ 1 ] [ 2 ] [ 3 ]`).
 - **Status:** COMPLETED & VERIFIED.
+
+

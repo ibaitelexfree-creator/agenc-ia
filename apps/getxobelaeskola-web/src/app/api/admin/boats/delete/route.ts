@@ -1,6 +1,8 @@
 import { requireAdmin } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(_request: Request) {
     try {
         const { supabaseAdmin, error: authError } = await requireAdmin();
