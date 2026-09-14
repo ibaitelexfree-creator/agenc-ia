@@ -1209,6 +1209,16 @@ a:hover {
   }
 }
 
+@media (min-width: 1920px) {
+  .flip-card {
+    width: 70% !important;
+    max-width: 70% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}
+
 .flip-card__inner {
   position: relative;
   width: 100%;
