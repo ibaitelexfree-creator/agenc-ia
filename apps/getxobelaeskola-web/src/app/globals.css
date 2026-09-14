@@ -1096,6 +1096,14 @@ a:hover {
   }
 }
 
+@media (min-width: 1920px) {
+  .promise__grid {
+    max-width: 70% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
 /* 📱 Very Small Screens (e.g. < 586px Portrait) */
 @media (max-width: 585px) and (orientation: portrait) {
   .promise {
