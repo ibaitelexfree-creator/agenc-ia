@@ -44,7 +44,7 @@ export default function BlogSection() {
   useEffect(() => {
     const checkMobile = () => {
       const isPortrait = window.matchMedia('(orientation: portrait)').matches;
-      setIsMobile(window.innerWidth < 640 && isPortrait);
+      setIsMobile(window.innerWidth < 586 && isPortrait);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);

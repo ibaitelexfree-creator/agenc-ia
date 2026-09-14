@@ -94,7 +94,7 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                 </div>
 
                 {/* Staggered Grid */}
-                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid grid-cols-1 min-[586px]:grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-8 blog-grid-system w-full max-w-full">
                     {displayPosts.map((post) => (
                         <motion.article
                             key={post.id}

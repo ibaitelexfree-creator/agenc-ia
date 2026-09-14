@@ -124,20 +124,15 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   gap: clamp(14px, 1.8vw, 20px);
   margin-bottom: clamp(12px, 1.8vh, 22px);
   width: 100%;
 }
 
-@media (max-width: 767px) and (orientation: portrait) {
+@media (min-width: 586px) {
   .grid {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
-    max-height: none !important;
-    overflow: visible !important;
-    padding: 0;
-    width: 100%;
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }
 
@@ -216,7 +211,7 @@
 
 @media (max-width: 639px) {
   .card {
-    max-width: 310px;
+    width: 100%;
     margin: 0 auto;
   }
   .cardBody { padding: 14px 16px 16px; }
