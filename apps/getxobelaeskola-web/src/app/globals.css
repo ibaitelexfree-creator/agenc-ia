@@ -1059,13 +1059,13 @@ a:hover {
   grid-template-columns: 1fr;
   gap: calc(1% + var(--gap, 16px));
   justify-items: center;
-  align-items: stretch;
+  align-items: center;
   width: 100%;
 }
 
 .promise__item {
-  width: 100%;
-  max-width: 100%;
+  width: 80%;
+  max-width: 80%;
   display: flex;
   justify-content: center;
 }
@@ -1089,6 +1089,10 @@ a:hover {
 @media (min-width: 586px) {
   .promise__grid {
     grid-template-columns: repeat(3, 1fr) !important;
+  }
+  .promise__item {
+    width: 80% !important;
+    max-width: 80% !important;
   }
 }
 
