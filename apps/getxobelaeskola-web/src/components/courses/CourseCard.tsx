@@ -40,17 +40,14 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
             whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative glass-card overflow-hidden cursor-pointer flex flex-col w-full aspect-square justify-between"
-            style={{
-                aspectRatio: '1 / 1'
-            }}
+            className="group relative glass-card overflow-hidden cursor-pointer flex flex-col w-full h-full min-h-[350px] sm:min-h-[380px] lg:min-h-[420px] justify-between rounded-xl border border-sea-foam/10"
         >
             {/* Top Border Reveal Accent */}
             <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
             <div className="h-full flex flex-col justify-between w-full">
-                {/* Image Container with Cinematic Zoom - Relative to Card height/width */}
-                <div className="relative w-full h-[40%] overflow-hidden course-card-img-container flex-shrink-0">
+                {/* Image Container with Cinematic Zoom */}
+                <div className="relative w-full h-[45%] min-h-[140px] sm:min-h-[160px] overflow-hidden course-card-img-container flex-shrink-0">
                     <NauticalImage
                         src={course.imagen_url}
                         category="veleros"
@@ -70,36 +67,36 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                     </div>
                 </div>
 
-                {/* Content Area */}
-                <div className="p-1.5 sm:p-4 lg:p-6 relative z-10 flex flex-col justify-between flex-grow overflow-hidden h-[60%]">
-                    <div className="space-y-0.5">
-                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-0.5 gap-1">
-                            <span className="text-[7.5px] sm:text-xs text-technical truncate">
+                {/* Content Area - Generous Padding & Readable Typography */}
+                <div className="p-3.5 sm:p-5 lg:p-6 relative z-10 flex flex-col justify-between flex-grow overflow-hidden h-[55%] space-y-2">
+                    <div className="space-y-1">
+                        <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-1 gap-1">
+                            <span className="text-[11px] sm:text-xs text-technical truncate opacity-80">
                                 Premium Academy
                             </span>
-                            <span className="text-[10px] sm:text-lg lg:text-2xl font-display text-sea-foam italic flex-shrink-0">
-                                {course.precio}<span className="text-brass-gold text-[8px] sm:text-sm ml-0.5">€</span>
+                            <span className="text-base sm:text-xl lg:text-2xl font-display text-sea-foam italic flex-shrink-0">
+                                {course.precio}<span className="text-brass-gold text-xs sm:text-sm ml-0.5">€</span>
                             </span>
                         </div>
 
-                        <h3 className="text-[9.5px] sm:text-base lg:text-xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-tight pt-0.5 line-clamp-1 sm:line-clamp-2">
+                        <h3 className="text-sm sm:text-base lg:text-lg font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-snug pt-1 line-clamp-2">
                             {name}
                         </h3>
                     </div>
 
-                    <p className="text-sea-foam/60 font-light text-[8.5px] sm:text-xs lg:text-sm leading-tight sm:leading-relaxed group-hover:text-sea-foam/80 transition-colors duration-500 line-clamp-2 my-auto">
+                    <p className="text-sea-foam/70 font-light text-xs sm:text-sm leading-relaxed group-hover:text-sea-foam/90 transition-colors duration-500 line-clamp-2 my-auto">
                         {description}
                     </p>
 
-                    <div className="pt-0.5 relative z-10">
+                    <div className="pt-1 relative z-10">
                         <Link
                             href={`/${locale}/servicios/cursos/${course.slug}`}
-                            className="group/link w-full inline-flex items-center justify-between py-0.5 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
+                            className="group/link w-full inline-flex items-center justify-between py-1 px-0 border-t border-sea-foam/10 hover:border-accent transition-all duration-700"
                         >
-                            <span className="text-[8px] sm:text-xs uppercase tracking-[0.1em] sm:tracking-[0.2em] font-black text-sea-foam group-hover/link:text-accent transition-colors">
+                            <span className="text-xs uppercase tracking-[0.15em] font-bold text-sea-foam group-hover/link:text-accent transition-colors">
                                 {t('view_more')}
                             </span>
-                            <span className="text-[10px] sm:text-lg translate-x-0 group-hover/link:translate-x-2 transition-transform duration-700 opacity-0 group-hover/link:opacity-100 italic font-light text-accent">→</span>
+                            <span className="text-sm sm:text-base translate-x-0 group-hover/link:translate-x-2 transition-transform duration-700 opacity-0 group-hover/link:opacity-100 italic font-light text-accent">→</span>
                         </Link>
                     </div>
                 </div>

@@ -70,7 +70,7 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                                     animate={{ opacity: 1, scale: 1 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.25 }}
-                                    className="w-full aspect-square"
+                                    className="w-full h-full flex flex-col"
                                 >
                                     <CourseCard course={course} locale={locale} />
                                 </motion.div>
