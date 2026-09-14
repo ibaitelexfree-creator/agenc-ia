@@ -1664,6 +1664,25 @@ section {
   }
 }
 
+/* 🖥️ 1920px+ Display Optimization: Reduce card scale/width by 30% */
+@media screen and (min-width: 1920px) {
+  .courses-grid-system,
+  .rentals-grid-system {
+    max-width: 1344px !important; /* 1920px * 0.70 container scaling */
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .promise__grid {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .promise__item {
+    transform: scale(0.70) !important;
+    transform-origin: center center !important;
+  }
+}
+
 
 
 @media screen and (max-height: 500px) and (min-aspect-ratio: 1/1) {
