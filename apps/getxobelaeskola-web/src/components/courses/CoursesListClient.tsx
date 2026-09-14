@@ -36,7 +36,7 @@ export default function CoursesListClient({ initialCourses, categories, locale }
 
     return (
         <section className="pb-16 sm:pb-24 lg:pb-36 relative overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 courses-container-padding relative z-10">
+            <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 courses-container-padding relative z-10">
                 <CourseFilters categories={categories || []} locale={locale} />
 
                 {displayCourses.length === 0 ? (
@@ -56,9 +56,11 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                 ) : (
                     <motion.div 
                         layout
-                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 lg:gap-10 mt-4 sm:mt-8 md:mt-12 courses-grid-system"
+                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-4 sm:mt-8 md:mt-12 courses-grid-system w-full max-w-full"
                         style={{
                             display: 'grid',
+                            width: '100%',
+                            maxWidth: '100%'
                         }}
                     >
                         <AnimatePresence mode="popLayout">

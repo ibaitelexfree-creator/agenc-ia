@@ -905,7 +905,7 @@ a:hover {
 /* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 767px) */
 @media (min-width: 390px) and (max-width: 767px) {
   :root {
-    --card-w: clamp(240px, 85vw, 320px);
+    --card-w: 100%;
     --card-h: clamp(180px, 24vh, 220px);
     --fs-card-title-front: 1.15rem;
     --fs-hook: 0.8rem;
@@ -917,16 +917,16 @@ a:hover {
 /* 📲 Tablet เล็ก & iPad / Tablet (768px - 1024px) */
 @media (min-width: 768px) and (max-width: 1024px) {
   :root {
-    --card-w: clamp(220px, 27vw, 320px); /* ขยายใหญ่ขึ้น 3% */
-    --card-h: clamp(210px, 26vh, 275px); /* เพิ่มความสูงการ์ดเพื่อรองรับข้อความยาว */
+    --card-w: 100%;
+    --card-h: clamp(210px, 26vh, 275px);
     --gap: clamp(10px, 1.5vw, 20px);
     --fs-card-title-front: clamp(1.05rem, 1.6vw, 1.25rem);
     --fs-hook: clamp(0.75rem, 1vw, 0.82rem);
-    --fs-body: clamp(0.72rem, 0.95vw, 0.82rem); /* ปรับขนาดฟอนต์ข้อความด้านหลังให้พอดี */
+    --fs-body: clamp(0.72rem, 0.95vw, 0.82rem);
   }
 
   .promise__item {
-    transform: scale(1.03); /* ขยายการ์ดทั้ง 3 ใบขึ้น 3% สำหรับ iPad และ Tablet */
+    transform: scale(1.03);
     transform-origin: center center;
   }
 
@@ -947,7 +947,7 @@ a:hover {
 /* 📲 Tablet ใหญ่ & Laptop เล็ก (1024px - 1439px) */
 @media (min-width: 1024px) and (max-width: 1439px) {
   :root {
-    --card-w: clamp(260px, 23vw, 320px);
+    --card-w: 100%;
     --card-h: clamp(210px, 23vh, 250px);
     --gap: 16px;
     --fs-card-title-front: 1.25rem;
@@ -955,6 +955,7 @@ a:hover {
     --fs-body: 0.88rem;
   }
 }
+
 
 /* 💻 Laptop Full HD & Desktop Full HD (1440px - 1919px) */
 @media (min-width: 1440px) and (max-width: 1919px) {
@@ -1208,10 +1209,9 @@ a:hover {
     margin-bottom: clamp(4px, 1vh, 8px) !important;
   }
   .promise__grid {
-    grid-template-columns: 1fr !important; /* เรียงต่อกันแนวตั้ง 1, 2, 3 (ทีละ 1 ใบต่อบรรทัด) แบบเดิม */
+    grid-template-columns: 1fr !important;
     gap: clamp(6px, 1.2vh, 10px) !important;
     width: 100% !important;
-    max-width: 320px !important;
     margin: 0 auto !important;
   }
   .flip-card {
