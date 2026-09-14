@@ -168,8 +168,8 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-3 sm:px-6 relative z-10">
-                    <header className="max-w-4xl">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                    <header className="w-full max-w-4xl">
                         <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-1.5 sm:mb-4 landscape:mb-2 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
@@ -177,7 +177,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                             <span>{t('title_prefix')}</span>{' '}
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/70 font-light text-xs sm:text-base md:text-lg leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 landscape:mt-3 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-xs sm:text-base md:text-lg leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 landscape:mt-3 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>
@@ -186,12 +186,12 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
 
             {/* Main Interactive Fleet Section */}
             <section className="pb-8 sm:pb-16 md:pb-24 landscape:pb-12 relative">
-                <div className="container mx-auto px-3 sm:px-6 relative z-10">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <RentalClient services={(services as any[]) || []} locale={locale} />
                 </div>
 
                 {/* Bottom Note / Disclosure */}
-                <div className="container mx-auto px-4 sm:px-6 mt-8 sm:mt-16 md:mt-20 landscape:mt-8">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-16 md:mt-20 landscape:mt-8">
                     <ExperienceDisclaimerCard noteText={t('footer_note')} locale={locale} />
                 </div>
             </section>

@@ -1728,21 +1728,24 @@ section {
 }
 
 /* ==========================================================================
-   COURSES RESPONSIVE GRID SYSTEM (REAL DEVICE GUARANTEE)
+   COURSES & RENTALS RESPONSIVE GRID SYSTEM (REAL DEVICE GUARANTEE)
    ========================================================================== */
-.courses-grid-system {
+.courses-grid-system,
+.rentals-grid-system {
   display: grid !important;
   grid-template-columns: 1fr !important;
   gap: 1.25rem !important;
 }
 
 @media screen and (min-width: 586px) {
-  .courses-grid-system {
+  .courses-grid-system,
+  .rentals-grid-system {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 1.5rem !important;
   }
 }
+
 
 
 @media screen and (max-height: 500px) and (min-aspect-ratio: 1/1) {
