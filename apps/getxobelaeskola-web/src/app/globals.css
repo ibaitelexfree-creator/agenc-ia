@@ -1096,19 +1096,19 @@ a:hover {
   }
 }
 
-@media (min-width: 1920px) {
+@media (min-width: 1024px) {
   .promise__grid {
     max-width: 1200px !important;
     margin-left: auto !important;
     margin-right: auto !important;
   }
   .promise__item {
-    transform: scale(0.7) !important;
+    transform: scale(0.89) !important;
     transform-origin: center center !important;
   }
   .flip-card {
-    width: 70% !important;
-    max-width: 70% !important;
+    width: 89% !important;
+    max-width: 89% !important;
     aspect-ratio: 1 / 1 !important;
     height: auto !important;
     margin: 0 auto !important;
@@ -1214,16 +1214,8 @@ a:hover {
 
 @media (min-width: 1024px) {
   .flip-card {
-    width: 100% !important;
-    aspect-ratio: 1 / 1 !important;
-    height: auto !important;
-  }
-}
-
-@media (min-width: 1920px) {
-  .flip-card {
-    width: 70% !important;
-    max-width: 70% !important;
+    width: 89% !important;
+    max-width: 89% !important;
     aspect-ratio: 1 / 1 !important;
     height: auto !important;
     margin: 0 auto !important;
