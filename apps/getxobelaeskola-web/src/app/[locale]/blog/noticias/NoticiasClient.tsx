@@ -132,7 +132,7 @@ export default function NoticiasClient({
 
     return (
         <main className="min-h-[100dvh] w-full bg-[#F7FAFC] pt-28 pb-16 selection:bg-accent selection:text-[#1A1A1A]">
-            <div className="container mx-auto px-4 sm:px-6 max-w-[1200px] w-full">
+            <div className="container mx-auto px-6 max-w-4xl">
                 {/* Header */}
                 <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
                     <span className="text-[9px] uppercase tracking-[0.3em] font-black text-accent block">
@@ -161,46 +161,45 @@ export default function NoticiasClient({
                 </div>
 
                 {/* Posts List Grid */}
-                <div className="grid grid-cols-1 min-[586px]:grid-cols-3 gap-3 sm:gap-5 lg:gap-6 w-full max-w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {filteredPosts.map((post) => (
                         <article
                             key={post.id}
                             onClick={() => setSelectedPost(post)}
-                            className="w-full aspect-square relative flex flex-col bg-white border border-black/10 rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
+                            className="flex flex-col bg-white border border-black/10 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
                         >
-                            {/* Image Container (42% of square card) */}
-                            <div className="relative h-[42%] w-full overflow-hidden bg-nautical-deep flex-shrink-0">
+                            <div className="relative aspect-[16/9] overflow-hidden bg-nautical-deep">
                                 <Image
                                     src={post.image}
                                     alt={post.title}
                                     fill
-                                    sizes="(max-width: 585px) 100vw, (max-width: 1200px) 33vw, 380px"
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full flex items-center gap-1 text-[7.5px] min-[586px]:text-[8px] sm:text-[9px] uppercase tracking-wider text-accent font-black z-10">
-                                    <BookOpen className="w-2.5 h-2.5" />
+                                <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full flex items-center gap-1 text-[7px] uppercase tracking-wider text-accent font-black">
+                                    <BookOpen className="w-2 h-2" />
                                     <span>{isEu ? 'Koadernoa' : isEn ? 'Logbook' : 'Bitácora'}</span>
                                 </div>
                             </div>
 
-                            {/* Text Content Container (58% of square card) */}
-                            <div className="p-2.5 min-[586px]:p-3 sm:p-4 flex flex-col justify-between h-[58%] min-h-0 overflow-hidden bg-white">
-                                <div className="space-y-1 sm:space-y-2 min-h-0 overflow-hidden flex-1">
-                                    <div className="flex items-center gap-1.5 text-[7.5px] min-[586px]:text-[8.5px] sm:text-[9.5px] uppercase tracking-widest text-[#1A1A1A]/50 font-bold">
-                                        <Calendar className="w-2.5 h-2.5 text-accent flex-shrink-0" />
-                                        <span>{new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short' })}</span>
+                            <div className="p-3 flex flex-col justify-between flex-grow gap-3">
+                                <div className="space-y-1.5">
+                                    <div className="flex items-center gap-2 text-[7.5px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
+                                        <span className="flex items-center gap-1">
+                                            <Calendar className="w-2.5 h-2.5 text-accent" />
+                                            {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short' })}
+                                        </span>
                                     </div>
 
-                                    <h3 className="text-[11px] min-[586px]:text-[11.5px] sm:text-[13.5px] lg:text-[15.5px] font-display text-[#1A1A1A] leading-snug font-semibold group-hover:text-accent transition-colors line-clamp-2">
+                                    <h3 className="text-sm font-display text-[#1A1A1A] leading-snug group-hover:text-accent transition-colors line-clamp-2">
                                         {post.title}
                                     </h3>
 
-                                    <p className="text-[#1A1A1A]/60 text-[9px] min-[586px]:text-[9.5px] sm:text-[11px] lg:text-[12px] leading-relaxed line-clamp-2">
+                                    <p className="text-[#1A1A1A]/60 text-[10px] leading-relaxed line-clamp-2">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
-                                <div className="flex items-center gap-1 text-[7.5px] min-[586px]:text-[8.5px] sm:text-[9.5px] uppercase tracking-widest text-accent font-black pt-1.5 sm:pt-2 border-t border-black/5 flex-shrink-0">
+                                <div className="flex items-center gap-1 text-[7.5px] uppercase tracking-widest text-accent font-black pt-2.5 border-t border-black/5">
                                     <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : 'Leer publicación'}</span>
                                 </div>
                             </div>
