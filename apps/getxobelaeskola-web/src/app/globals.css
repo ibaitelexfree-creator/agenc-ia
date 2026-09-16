@@ -1138,7 +1138,7 @@ a:hover {
     margin: 0 auto !important;
   }
   .flip-card {
-    height: clamp(86px, 15.5vh, 104px) !important;
+    height: clamp(100px, 18vh, 125px) !important;
     width: 100% !important;
     max-width: 100% !important;
     aspect-ratio: auto !important;
