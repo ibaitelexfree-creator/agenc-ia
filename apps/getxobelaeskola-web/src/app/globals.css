@@ -1118,77 +1118,67 @@ a:hover {
 /* 📱 Very Small Screens (e.g. < 586px Portrait) */
 @media (max-width: 585px) and (orientation: portrait) {
   .promise {
-    height: auto !important;
+    height: 100dvh !important;
     min-height: 100dvh !important;
-    max-height: none !important;
-    padding: 20px 16px 28px !important;
+    max-height: 100dvh !important;
+    padding: clamp(8px, 1.8vh, 16px) clamp(10px, 3vw, 16px) !important;
     box-sizing: border-box !important;
-    overflow: visible !important;
+    overflow: hidden !important;
   }
   .promise__title {
-    font-size: clamp(1rem, 4vw, 1.25rem) !important;
-    margin-bottom: 12px !important;
-    text-align: center !important;
+    font-size: clamp(1.05rem, 4.2vw, 1.35rem) !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
   }
   .promise__grid {
     grid-template-columns: 1fr !important;
-    gap: 8px !important;
+    gap: clamp(6px, 1.2vh, 10px) !important;
     width: 100% !important;
-    max-width: 320px !important;
     margin: 0 auto !important;
   }
   .flip-card {
-    height: clamp(84px, 15vh, 102px) !important;
+    height: calc(101% * clamp(112px, 20.5vh, 138px)) !important;
     width: 100% !important;
-    max-width: 100% !important;
-    aspect-ratio: auto !important;
   }
   .flip-card__face {
-    padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 14px) !important;
+    padding: clamp(8px, 1.2vh, 12px) clamp(10px, 2.5vw, 16px) !important;
     justify-content: center !important;
-    border-radius: 10px !important;
-    box-sizing: border-box !important;
-  }
-  .flip-card__face--front {
-    border: 1.5px solid var(--color-border, #CBD5E1) !important;
   }
   .flip-card__face--back {
-    padding-top: clamp(6px, 1vh, 10px) !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
+    padding-top: clamp(10px, 1.5vh, 16px) !important;
   }
   .flip-card__icon {
-    width: 22px !important;
-    height: 22px !important;
-    margin-bottom: 2px !important;
+    width: 28px !important;
+    height: 28px !important;
+    margin-bottom: 4px !important;
   }
   .flip-card__icon svg {
-    width: 13px !important;
-    height: 13px !important;
+    width: 16px !important;
+    height: 16px !important;
   }
   .flip-card__title {
-    font-size: clamp(0.72rem, 3vw, 0.82rem) !important;
-    margin-bottom: 1px !important;
-    line-height: 1.1 !important;
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem) !important;
+    margin-bottom: 2px !important;
+    line-height: 1.15 !important;
   }
   .flip-card__hook {
-    font-size: clamp(0.6rem, 2.4vw, 0.68rem) !important;
-    line-height: 1.15 !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(0.68rem, 2.8vw, 0.76rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 4px !important;
   }
   .flip-card__cta {
-    font-size: clamp(0.55rem, 2.1vw, 0.62rem) !important;
+    font-size: clamp(0.6rem, 2.4vw, 0.68rem) !important;
   }
   .flip-card__label {
-    font-size: clamp(0.58rem, 2.3vw, 0.66rem) !important;
-    margin-bottom: 1px !important;
+    font-size: clamp(0.62rem, 2.6vw, 0.72rem) !important;
+    margin-bottom: 2px !important;
   }
   .flip-card__desc {
-    font-size: clamp(0.58rem, 2.3vw, 0.66rem) !important;
-    line-height: 1.15 !important;
+    font-size: clamp(0.65rem, 2.8vw, 0.75rem) !important;
+    line-height: 1.25 !important;
   }
 }
-/* 📱 Tablet Portrait (586px - 768px): Responsive square card */
-@media (min-width: 586px) and (max-width: 768px) and (orientation: portrait) {
+/* 📱 Mobile Portrait: Responsive square card */
+@media (max-width: 768px) and (orientation: portrait) {
   .flip-card {
     width: 100% !important;
     max-width: 100% !important;
