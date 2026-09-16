@@ -163,7 +163,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             />
 
             {/* Cinematic Header Section */}
-            <section className="rental-header-section relative pt-[clamp(7.5rem,14vh,11rem)] pb-[clamp(1rem,3vh,4rem)] overflow-hidden w-full">
+            <section className="rental-header-section relative pt-[clamp(7.5rem,14vh,11rem)] pb-2 sm:pb-4 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />

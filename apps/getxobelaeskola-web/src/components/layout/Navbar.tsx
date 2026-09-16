@@ -43,6 +43,7 @@ const localizedLabels: Record<string, Record<string, string>> = {
     home: { es: 'Inicio', eu: 'Hasiera', en: 'Home', fr: 'Accueil' },
     club: { es: 'Club', eu: 'Kluba', en: 'Club', fr: 'Club' },
     conocenos: { es: 'Conócenos', eu: 'Ezagutu gaitzazu', en: 'About us', fr: 'Qui sommes-nous' },
+    instalaciones: { es: 'Instalaciones', eu: 'Instalazioak', en: 'Facilities', fr: 'Installations' },
     club_de_socias: { es: 'Club de socias', eu: 'Bazkideen kluba', en: 'Members club', fr: 'Club des membres' },
     regatas: { es: 'Regatas', eu: 'Estropadak', en: 'Regattas', fr: 'Régates' },
     que_es_la_vela: { es: 'Qué es la vela', eu: 'Zer da bela', en: 'What is sailing', fr: 'Qu\'est-ce que la voile' },
@@ -207,6 +208,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
             icon: <Anchor className="w-3.5 h-3.5" />,
             dropdown: [
                 { href: 'club/conocenos', label: 'conocenos', icon: <Users className="w-4 h-4" /> },
+                { href: 'club/instalaciones', label: 'instalaciones', icon: <School className="w-4 h-4" /> },
                 { href: 'club/socias', label: 'club_de_socias', icon: <Sparkles className="w-4 h-4" /> },
                 { href: 'club/regatas', label: 'regatas', icon: <Sailboat className="w-4 h-4" /> },
                 { href: 'club/que-es-la-vela', label: 'que_es_la_vela', icon: <Wind className="w-4 h-4" /> },

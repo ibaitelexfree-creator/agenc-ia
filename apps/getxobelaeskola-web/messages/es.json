@@ -210,7 +210,7 @@
     "header_badge": "NUESTRA OFERTA",
     "header_title": "Cursos de",
     "header_highlight": "Navegación",
-    "header_desc": "En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona. Nuestro objetivo es que cada una encuentre su lugar en la mar y aprenda a navegar con seguridad, calma y confianza.",
+    "header_desc": "En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona.",
     "duration": "h",
     "price_from": "Desde"
   },
@@ -258,6 +258,38 @@
       "p1": "Hace más de 15 años nacimos en Getxo con un objetivo claro: acercar la mar a todas las personas desde un enfoque humano, educativo y accesible. Somos una asociación sin ánimo de lucro y un proyecto social que entiende la vela como una herramienta de aprendizaje, de convivencia y de transformación personal.",
       "p2": "Con los años hemos ido creciendo, profesionalizándonos y ampliando actividades, siempre con la misma base: poner a las personas en el centro. La Eskola sigue siendo un lugar cercano, sencillo y construido desde la comunidad, y nuestro camino sigue centrado en acompañar a las personas para que vivan la mar de forma sencilla, segura y auténtica.",
       "p3": "No somos una empresa, y no actuamos como tal. Como asociación sin ánimo de lucro, todo lo que entra se reinvierte en mejorar el proyecto: renovar embarcaciones, formar monitoras, cuidar las instalaciones y ampliar actividades."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "NUESTRO ESPACIO",
+    "header_title": "Nuestras",
+    "header_highlight": "Instalaciones",
+    "header_desc": "En el corazón del Puerto Deportivo de Getxo, con salida directa al Abra y a pocos pasos de la playa de Ereaga. Un espacio diseñado para aprender, compartir y vivir el Cantábrico con total confort.",
+    "cta_title": "Ven a Conocer la Eskola",
+    "cta_desc": "Descubre nuestros espacios náuticos, prueba una embarcación o asómate a sentir la brisa en el pantalán.",
+    "btn_about": "Conócenos",
+    "btn_courses": "Ver Cursos",
+    "items": {
+      "instalaciones": {
+        "title": "Nuestras Instalaciones",
+        "badge": "Puerto de Getxo",
+        "desc": "Ubicadas en una zona privilegiada del Puerto Deportivo de Getxo, a pocos metros de la playa de Ereaga y con salida directa al Abra. Contamos con aula audiovisual, vestuarios cuidados, amplio espacio exterior, taller y zona chill-out."
+      },
+      "pantalan": {
+        "title": "Pantalán Propio",
+        "badge": "Acceso Directo",
+        "desc": "El pantalán es nuestro enlace directo con la mar. La flota es variada: vela ligera, cruceros, windsurf, big SUP, paddle surf, piraguas y lanchas de apoyo."
+      },
+      "aulas": {
+        "title": "Aulas y Taller",
+        "badge": "Teoría & Maniobra",
+        "desc": "Espacios formativos con recursos audiovisuales interactivos, cartas náuticas y taller técnico para el cuidado y trimado de embarcaciones."
+      },
+      "aseos": {
+        "title": "Aseos y Vestuarios",
+        "badge": "Confort & Cuidados",
+        "desc": "Vestuarios completos, duchas de agua caliente, casilleros seguros y zona de descanso pensados para reconfortarte al terminar tu jornada en el mar."
+      }
     }
   },
   "contact_page": {
@@ -1797,153 +1829,174 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "Iniciación J80",
-      "description": "Aprende los conceptos básicos de navegación en nuestra flota de J80.",
+      "description": "Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…",
       "details": [
-        "Fundamentos de vela",
         "Maniobras básicas",
-        "12 horas de clase",
-        "Flota J80"
+        "Funcionamiento de las velas y barco",
+        "Meteorología y lectura de la mar",
+        "Seguridad a bordo · Flota J80"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Windsurf 1 Sesión",
-      "description": "Sesión individual de windsurf de 2 horas. Perfecto para probar.",
+    "crucero-perfeccionamiento": {
+      "name": "Crucero perfeccionamiento",
+      "description": "Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.",
       "details": [
-        "Prueba de 2 horas",
-        "Material incluido",
-        "Monitor dedicado",
-        "Primer contacto"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Campus Verano (Empadronados)",
-      "description": "Campus de verano para niños y jóvenes de 5 a 21 años empadronados en Getxo.",
-      "details": [
-        "Navegación en grupo",
-        "Seguridad en el mar",
-        "Juegos y actividades",
-        "20 horas semanales"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Campus Verano (No Empadronados)",
-      "description": "Campus de verano para niños y jóvenes de 5 a 21 años no empadronados en Getxo.",
-      "details": [
-        "Navegación en grupo",
-        "Seguridad en el mar",
-        "Juegos y actividades",
-        "20 horas semanales"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Iniciación Adultos",
-      "description": "Curso de iniciación a la navegación para adultos.",
-      "details": [
-        "Fundamentos de vela",
-        "Maniobras básicas",
-        "12 horas de clase",
-        "Grupos de adultos"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Perfeccionamiento",
-      "description": "Mejora tu técnica de trimado y maniobra.",
-      "details": [
-        "Trimado de velas",
+        "Trimado fino de velas",
+        "Control y gobierno del barco",
         "Maniobras avanzadas",
-        "Navegación eficiente",
-        "Práctica en mar abierto"
+        "Lectura de viento y mar"
       ]
     },
-    "vela-ligera": {
-      "name": "Vela Ligera",
-      "description": "Aprende los fundamentos de la navegación a vela en Getxo.",
+    "crucero-gennaker": {
+      "name": "Crucero con gennaker",
+      "description": "Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.",
       "details": [
-        "Optimist, Laser y 420",
-        "Octubre a Junio",
-        "3 domingos al mes",
-        "Incluye monitor y equipo"
+        "Izada, trasluchada y arriada de gennaker",
+        "Rumbos portantes y ángulos de viento",
+        "Seguridad y coordinación en equipo",
+        "Dinámica en velero J80"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Tecnificación Adultos",
-      "description": "Curso de perfeccionamiento y tecnificación para adultos.",
+    "entrenamientos-adultas": {
+      "name": "Entrenamientos para adultas",
+      "description": "Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.",
       "details": [
-        "Tácticas de regata",
-        "Maniobras de precisión",
-        "Puesta a punto",
-        "Entrenamiento en J80"
+        "Programa continuo anual o mensual",
+        "Autonomía y trabajo en equipo",
+        "Navegación en diversas condiciones",
+        "Puesta a punto y maniobra"
       ]
     },
-    "otros": {
-      "name": "Otros / Varios",
-      "description": "Sesiones y eventos varios no categorizados.",
+    "vela-ligera-iniciacion": {
+      "name": "Vela ligera iniciación",
+      "description": "Un primer paso ideal para descubrir la navegación en veleros pequeños donde el contacto con las sensaciones del barco y con el viento son muchos mayores.",
       "details": [
-        "Eventos especiales",
-        "Sesiones a medida",
-        "Consultar opciones"
+        "Sensibilidad directa al timón y escotas",
+        "Equilibrio y dinámica con el viento",
+        "Aparejo y maniobras básicas",
+        "Monitores especializados"
       ]
     },
-    "licencia-navegacion": {
-      "name": "Licencia de Navegación",
-      "description": "Obtén tu titulación oficial en una mañana.",
+    "vela-ligera-avanzado": {
+      "name": "Vela ligera avanzado",
+      "description": "Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.",
       "details": [
-        "Título oficial sin examen",
-        "Gobierno de barcos hasta 6m",
-        "Motos náuticas hasta 55CV",
-        "Navegación diurna (2 millas)"
+        "Maniobras de precisión y velocidad",
+        "Autonomía total a bordo",
+        "Táctica de rumbos y trimado fino",
+        "Lectura de rachas y corrientes"
       ]
     },
-    "konpondu": {
-      "name": "Konpondu",
-      "description": "Curso especializado en mantenimiento y reparación naviera.",
+    "txikigune-sabados": {
+      "name": "Txikigune (Sábados de navegación)",
+      "description": "Espacio semanal para niñas y niños que quieren disfrutar de la mar días sueltos sin compromisos. Navegación, juego, aprendizaje y convivencia.",
       "details": [
-        "Mantenimiento del motor",
-        "Fibra y resina",
-        "Electricidad a bordo",
-        "Jarcia y acastillaje"
+        "Días sueltos los sábados sin compromiso",
+        "Juegos marineros y aprendizaje activo",
+        "Convivencia y trabajo en equipo",
+        "Edades de 5 a 21 años"
       ]
     },
-    "windsurf-iniciacion": {
-      "name": "Curso Iniciación Windsurf",
-      "description": "Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.",
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Campamentos)",
+      "description": "Campamentos de verano donde la navegación se combina con actividades acuáticas, trabajo en equipo y experiencias que se recuerdan toda la vida.",
       "details": [
-        "Equilibrio y posición",
-        "Dirección y giros",
-        "5 sesiones de 2h",
-        "Material adaptado"
+        "Campamentos estivales semanales",
+        "Vela, paddle surf, kayak y juegos",
+        "Monitores titulados y ratio reducida",
+        "Experiencias de vida en el mar"
       ]
     },
-    "windsurf-campus": {
-      "name": "Campus Windsurf",
-      "description": "Campamento intensivo de windsurf de 15 horas.",
+    "entrenamientos-infantiles-continuos": {
+      "name": "Entrenamientos infantiles continuos",
+      "description": "Grupos estables para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.",
       "details": [
-        "Uso avanzado de la vela",
-        "Planeo y arnés",
-        "15 horas totales",
-        "Diversión en el mar"
+        "Entrenamientos regulares escolares",
+        "Seguimiento pedagógico y técnico",
+        "Progresión en Optimist y flota ligera",
+        "Comunidad y deporte formativo"
       ]
     },
-    "windsurf-3-sesiones": {
-      "name": "Windsurf 3 Sesiones",
-      "description": "Pack de 3 sesiones de windsurf de 2 horas cada una. Ideal para practicar y mejorar.",
+    "entrenamientos-continuos-jovenes": {
+      "name": "Entrenamientos continuos para jóvenes",
+      "description": "Grupos estables para jóvenes que buscan aprender y/o seguir creciendo en técnica, autonomía y trabajo en equipo.",
       "details": [
-        "3 sesiones de 2h",
-        "Consolidación de técnica",
-        "Mejora de rumbo",
-        "Material completo"
+        "Jóvenes de hasta 21 años",
+        "Perfeccionamiento técnico en flota",
+        "Autonomía y toma de decisiones",
+        "Navegación deportiva y regatas formativas"
       ]
     },
-    "iniciacion-vela-ligera": {
-      "name": "Iniciación a la Vela Ligera",
-      "description": "Primer contacto con la navegación a vela. Aprende los fundamentos básicos de la vela en embarcaciones ligeras.",
+    "bautismos": {
+      "name": "Bautismos",
+      "description": "Una primera experiencia en la mar, pensada para disfrutar sin presión y descubrir la navegación de manera sencilla y acompañada.",
       "details": [
-        "Optimist, Laser y 420",
-        "Conceptos básicos de viento",
-        "Navegación autónoma",
-        "Monitor y equipo"
+        "Primer contacto suave y accesible",
+        "Sin necesidad de experiencia previa",
+        "Acompañamiento cercano por monitor",
+        "Vistas y sensaciones del Abra"
+      ]
+    },
+    "familia": {
+      "name": "Familia",
+      "description": "Sesiones pensadas para compartir en familia, con ritmos tranquilos, dinámicas divertidas y navegación segura.",
+      "details": [
+        "Actividad para todas las edades",
+        "Dinámicas adaptadas a niños y adultos",
+        "Barco en exclusiva con patrón",
+        "Recuerdos inolvidables juntos"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Cursos personalizados",
+      "description": "Formaciones a medida según objetivos, nivel y disponibilidad: desde técnica concreta hasta navegación por proyectos.",
+      "details": [
+        "Formación 100% personalizada",
+        "Horarios y fechas a convenir",
+        "Objetivos técnicos o de travesía específicos",
+        "Atención individual o grupos cerrados"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Regata corporativa",
+      "description": "Experiencia para empresas y grupos: navegación, trabajo en equipo y convivencia en un entorno diferente y estimulante.",
+      "details": [
+        "Team building y cohesión de equipos",
+        "Regata dinámica y participativa",
+        "Flota homogénea de veleros",
+        "Coordinación y briefing marinero"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Windsurf: Iniciación y perfeccionamiento",
+      "description": "Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica. Trabajo de equilibrio, maniobras, lectura del viento y autonomía en la tabla.",
+      "details": [
+        "1 sesión suelta (2,5h): 45 €",
+        "Bono 4 sesiones (10h): 150 € (37,5 €/salida)",
+        "Campus continuo (5 sesiones fijas 3h, 15h): 250 €",
+        "Tabla, vela, neopreno y chaleco incluidos"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Mantenimiento de embarcaciones",
+      "description": "Curso teórico-práctico de mantenimiento en general, enfocado principalmente a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.",
+      "details": [
+        "8 horas totales (2 días · 4h/día) · 100 €",
+        "Casco, fibra, antifouling y gelcoat",
+        "Acastillaje, jarcia y cabuyería",
+        "Motor y electricidad básica"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Costura y reparación de velas",
+      "description": "Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.",
+      "details": [
+        "Puntadas marineras y uso de máquina",
+        "Reparación de desgarros y refuerzos",
+        "Cuidado y mantenimiento de tejidos náuticos",
+        "Material y herramientas del velero"
       ]
     }
   },

@@ -210,7 +210,7 @@
     "header_badge": "GURE ESKAINTZA",
     "header_title": "Nabigazio",
     "header_highlight": "Ikastaroak",
-    "header_desc": "Getxo Bela Eskolan adin eta maila guztietarako ikastaroak eskaintzen ditugu, beti pertsona bakoitzari egokitutako ikuspegi hurbil eta progresibo batetik. Gure helburua da bakoitzak bere lekua aurkitzea itsasoan eta nabigatzen ikastea segurtasunez, lasaitasunez eta konfiantzaz.",
+    "header_desc": "Getxo Bela Eskolan adin eta maila guztietarako ikastaroak eskaintzen ditugu, beti pertsona bakoitzari egokitutako ikuspegi hurbil eta progresibo batetik.",
     "duration": "h",
     "price_from": "Prezioa: "
   },
@@ -258,6 +258,38 @@
       "p1": "Duela 15 urte baino gehiago jaio ginen Getxon helburu argi batekin: itsasoa pertsona guztiei hurbiltzea ikuspegi humano, hezitzaile eta eskuragarri batetik. Irabazi-asmorik gabeko elkarte bat gara eta bela ikaskuntzarako, elkarbizitzarako eta eraldaketa pertsonalerako tresna gisa ulertzen duen proiektu soziala.",
       "p2": "Urteetan zehar hazi egin gara, profesionalizatu eta jarduerak zabaldu ditugu, beti oinarri berdinarekin: pertsonak erdian jartzea. Eskola leku hurbil eta sinplea izaten jarraitzen du, komunitatetik eraikia, eta gure bideak pertsonei laguntzen jarraitzen du, itsasoa modu sinple, seguru eta autentikoan bizi dezaten.",
       "p3": "Ez gara enpresa bat, eta ez dugu hala jokatzen. Irabazi-asmorik gabeko elkarte gisa, sartzen den guztia proiektua hobetzeko bideratzen da: ontziak berritzeko, monitoreak prestatzeko, instalazioak zaintzeko eta jarduerak zabaltzeko."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "GURE ESPAZIOA",
+    "header_title": "Gure",
+    "header_highlight": "Instalazioak",
+    "header_desc": "Getxoko Kirol Portuaren bihotzean, Abrara irteera zuzenarekin eta Ereagako hondartzatik pauso gutxira. Itsasoa erosotasun osoz ikasi, partekatu eta bizitzeko gunea.",
+    "cta_title": "Etorri Eskola Ezagutzera",
+    "cta_desc": "Ezagutu gure itsas espazioak, probatu ontzi bat edo etorri pantalanean haizea sentitzera.",
+    "btn_about": "Ezagutu gaitzazu",
+    "btn_courses": "Ikusi Ikastaroak",
+    "items": {
+      "instalaciones": {
+        "title": "Gure Instalazioak",
+        "badge": "Getxoko Portua",
+        "desc": "Getxoko Kirol Portuko gune pribilegiatu batean kokatua, Ereagako hondartzatik metro gutxira eta Abrara irteera zuzenarekin. Ikus-entzunezko gela, aldagela zainduak, kanpoko espazio zabala, tailerra eta chill-out gunea ditugu."
+      },
+      "pantalan": {
+        "title": "Pantalan Propioa",
+        "badge": "Zuzeneko Lotura",
+        "desc": "Pantalana da itsasoarekin dugun lotura zuzena. Flota anitza da: bela arina, gurutzontziak, windsurfa, big SUPa, paddle surfa, piraguak eta laguntza-ontziak."
+      },
+      "aulas": {
+        "title": "Gelak eta Tailerra",
+        "badge": "Teoria & Maniobra",
+        "desc": "Ikus-entzunezko baliabidez hornitutako gela interaktiboak, nabigazio-karten baliabideak eta ontziak zaintzeko eta doitzeko tailer teknikoa."
+      },
+      "aseos": {
+        "title": "Komunak eta Aldagelak",
+        "badge": "Erosotasuna",
+        "desc": "Aldagela osoak, ur beroko dutxak, takila seguruak eta chill-out gunea, itsasoko jardunaldia amaitzean eroso berreskuratzeko."
+      }
     }
   },
   "contact_page": {
@@ -1791,153 +1823,174 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "J80 Hastapena",
-      "description": "Ikasi nabigazioaren oinarrizko kontzeptuak gure J80 flotan.",
+      "description": "Gurutzaontzian nabigatzeko lehen kontaktua pertsona bakoitzari egokitua, ikastaro osoa: oinarrizko maniobrak, belen eta ontziaren funtzionamendua, meteorologia, segurtasuna…",
       "details": [
-        "Belaren oinarriak",
         "Oinarrizko maniobrak",
-        "12 orduko klaseak",
-        "J80 flota"
+        "Belen eta ontziaren funtzionamendua",
+        "Meteorologia eta itsasoaren irakurketa",
+        "Segurtasuna ontzian · J80 flota"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Windsurf Saio 1",
-      "description": "Windsurf saio bakarra (2 ordu). Probatzeko bikaina.",
+    "crucero-perfeccionamiento": {
+      "name": "Gurutzaontzi hobekuntza",
+      "description": "Dagoeneko nabigatzen dutenentzat eta aurrera egin nahi dutenentzat: trimatzea, maniobra zehatzak, ontziaren kontrola eta itsasoaren irakurketa.",
       "details": [
-        "2 orduko proba",
-        "Materiala barne",
-        "Monitore espezializatua",
-        "Lehen kontaktua"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Udako Campusa (Erroldatuak)",
-      "description": "5 eta 21 urte bitarteko haur eta gazteentzako udako campusa, Getxon erroldatuta daudenentzat.",
-      "details": [
-        "Taldeko nabigazioa",
-        "Segurtasuna itsasoan",
-        "Jolasak eta jarduerak",
-        "Astean 20 ordu"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Udako Campusa (Erroldatu gabeak)",
-      "description": "5 eta 21 urte bitarteko haur eta gazteentzako udako campusa, Getxon erroldatu gabe daudenentzat.",
-      "details": [
-        "Taldeko nabigazioa",
-        "Segurtasuna itsasoan",
-        "Jolasak eta jarduerak",
-        "Astean 20 ordu"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Helduentzako Hasiera",
-      "description": "Helduentzako nabigazio ikastaroa (hasiera).",
-      "details": [
-        "Belaren oinarriak",
-        "Oinarrizko maniobrak",
-        "12 orduko klaseak",
-        "Helduen taldeak"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Hobekuntza",
-      "description": "Hobetu zure trimatze eta maniobra teknika.",
-      "details": [
-        "Belak trimatzea",
+        "Belen trimatze fina",
+        "Ontziaren kontrola eta gobernua",
         "Maniobra aurreratuak",
-        "Nabigazio eraginkorra",
-        "Praktika itsaso zabalean"
+        "Haizearen eta itsasoaren irakurketa"
       ]
     },
-    "vela-ligera": {
-      "name": "Bela Arina",
-      "description": "Ikasi bela nabigazioaren oinarriak Getxon.",
+    "crucero-gennaker": {
+      "name": "Gurutzaontzia gennakerrarekin",
+      "description": "Ikastaro tekniko eta dinamikoa haize aldeko belak segurtasunez eta konfiantzaz erabiltzen ikasteko.",
       "details": [
-        "Optimist, Laser eta 420",
-        "Urritik Ekainera",
-        "Hilean 3 igande",
-        "Monitorea eta ekipoa barne"
+        "Gennakerra igotzea, biratzea eta jaistea",
+        "Haize aldeko norabideak eta angeluak",
+        "Segurtasuna eta talde-koordinazioa",
+        "Dinamika J80 belaontzian"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Helduentzako Teknifikazioa",
-      "description": "Helduentzako hobekuntza eta teknifikazio ikastaroa.",
+    "entrenamientos-adultas": {
+      "name": "Helduentzako entrenamenduak",
+      "description": "Ohiko saioak teknika hobetzeko, autonomia irabazteko eta hainbat baldintzatan taldean nabigatzeko.",
       "details": [
-        "Estropada taktikak",
-        "Doitasun maniobrak",
-        "Puntuan jartzea",
-        "J80 entrenamendua"
+        "Urteko edo hileko programa jarraitua",
+        "Autonomia eta talde-lana",
+        "Nabigazioa askotariko baldintzetan",
+        "Puntuan jartzea eta maniobrak"
       ]
     },
-    "otros": {
-      "name": "Beste batzuk",
-      "description": "Kategorizatu gabeko hainbat saio eta ekitaldi.",
+    "vela-ligera-iniciacion": {
+      "name": "Bela arina hastapena",
+      "description": "Lehen pauso ezin hobea belaontzi txikietan nabigazioa ezagutzeko, non ontziaren eta haizearen sentsazioekiko kontaktua askoz handiagoa den.",
       "details": [
-        "Ekitaldi bereziak",
-        "Neurrira egindako saioak",
-        "Aukerak kontsultatu"
+        "Sentikortasun zuzena lema eta eskotetan",
+        "Oreka eta dinamika haizearekin",
+        "Aparejua eta oinarrizko maniobrak",
+        "Monitore espezializatuak"
       ]
     },
-    "licencia-navegacion": {
-      "name": "Nabigazio Lizentzia",
-      "description": "Lortu zure titulu ofiziala goiz batean.",
+    "vela-ligera-avanzado": {
+      "name": "Bela arina aurreratua",
+      "description": "Sakontzea bilatzen dutenentzat: maniobra zehatzagoak, autonomia osoa eta itsasoarekin harreman finagoa.",
       "details": [
-        "Azterketarik gabeko titulu ofiziala",
-        "6 metrorainoko ontzien gobernua",
-        "55CV-rainoko motorrak",
-        "Eguneko nabigazioa (2 milia)"
+        "Doitasunezko eta abiadurazko maniobrak",
+        "Autonomia osoa ontzian",
+        "Norabide taktika eta trimatze fina",
+        "Hodeiertzaren eta korronteen irakurketa"
       ]
     },
-    "konpondu": {
-      "name": "Konpondu",
-      "description": "Mantentze eta konponketa nautikoko ikastaro espezializatua.",
+    "txikigune-sabados": {
+      "name": "Txikigune (Larunbateko nabigazioa)",
+      "description": "Konpromisorik gabe egun solteetan itsasoaz gozatu nahi duten neska-mutilentzako asteroko espazioa. Nabigazioa, jolasa, ikaskuntza eta elkarbizitza.",
       "details": [
-        "Motorraren mantentzea",
-        "Zuntza eta erretxina",
-        "Elektrizitatea ontzian",
-        "Aparejuak eta lanabesak"
+        "Egun solteak larunbatetan konpromisorik gabe",
+        "Itsas jolasak eta ikaskuntza aktiboa",
+        "Elkarbizitza eta talde-lana",
+        "5 eta 21 urte bitartekoentzat"
       ]
     },
-    "windsurf-iniciacion": {
-      "name": "Windsurf Hasiera Ikastaroa",
-      "description": "Ikasi windsurfeko oinarriak 5 saiotan (2 ordu saio bakoitzeko).",
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Udalekuak)",
+      "description": "Udako kanpamentuak, non nabigazioa ur-jarduerekin, talde-lanarekin eta bizitza osorako oroitzen diren esperientziekin uztartzen den.",
       "details": [
-        "Oreka eta posizioa",
-        "Norabidea eta birak",
-        "5 saio (bakoitza 2 ordu)",
-        "Material egokitua"
+        "Udako asteroko kanpamentuak",
+        "Bela, paddle surf, kayak eta jolasak",
+        "Monitore tituludunak eta talde txikiak",
+        "Itsasoko bizipen ahaztezinak"
       ]
     },
-    "windsurf-campus": {
-      "name": "Windsurf Campusa",
-      "description": "15 orduko windsurf campus intentsiboa.",
+    "entrenamientos-infantiles-continuos": {
+      "name": "Haurrentzako entrenamendu jarraituak",
+      "description": "Gehiago ikasi, teknikan aurrera egin eta urte osoan itsasoaz gozatu nahi duten neska-mutilentzako talde egonkorrak.",
       "details": [
-        "Belaren erabilera aurreratua",
-        "Planeoa eta arnesa",
-        "15 ordu guztira",
-        "Dibertsiotik itsasoan"
+        "Eskola-urteko ohiko entrenamenduak",
+        "Jarraipen pedagogiko eta teknikoa",
+        "Garapena Optimist eta ontzi arinetan",
+        "Komunitatea eta heziketa-kirola"
       ]
     },
-    "windsurf-3-sesiones": {
-      "name": "Windsurf 3 Saio",
-      "description": "3 windsurf saioko paketea (2 ordu saio bakoitzeko). Praktikatzeko eta hobetzeko aproposa.",
+    "entrenamientos-continuos-jovenes": {
+      "name": "Gazteentzako entrenamendu jarraituak",
+      "description": "Teknikan, autonomian eta talde-lanean ikasi edo hazten jarraitu nahi duten gazteentzako talde egonkorrak.",
       "details": [
-        "3 saio (bakoitza 2 ordu)",
-        "Teknikaren sendotzea",
-        "Norabidea hobetzea",
-        "Material osoa"
+        "21 urtera arteko gazteak",
+        "Hobekuntza teknikoa flotan",
+        "Autonomia eta erabaki-hartzea",
+        "Kirol-nabigazioa eta heziketa-estropadak"
       ]
     },
-    "iniciacion-vela-ligera": {
-      "name": "Bela Arinaren Hasiera",
-      "description": "Belarekin nabigatzeko lehen kontaktua. Ikasi belaren oinarrizko printzipioak.",
+    "bautismos": {
+      "name": "Bataioak",
+      "description": "Itsasoko lehen esperientzia bat, presiorik gabe gozatzeko eta nabigazioa modu erraz eta gidatuan ezagutzeko pentsatua.",
       "details": [
-        "Optimist, Laser eta 420",
-        "Haizearen oinarrizko kontzeptuak",
-        "Nabigazio autonomoa",
-        "Monitorea eta ekipoa"
+        "Lehen kontaktu leun eta eskuragarria",
+        "Aurretiazko esperientziarik gabe",
+        "Monitorearen laguntza hurbila",
+        "Abrako bistak eta sentsazioak"
+      ]
+    },
+    "familia": {
+      "name": "Familia",
+      "description": "Familian partekatzeko pentsatutako saioak, erritmo lasaiekin, dinamika dibertigarriekin eta nabigazio seguruarekin.",
+      "details": [
+        "Adin guztietarako jarduera",
+        "Haurrei eta helduei egokitutako dinamikak",
+        "Ontzi esklusiboa patroiarekin",
+        "Oroitzapen paregabeak elkarrekin"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Neurrira egindako ikastaroak",
+      "description": "Helburuen, mailaren eta eskuragarritasunaren araberako prestakuntza pertsonalizatua: teknika zehatzetatik hasi eta proiektu bidezko nabigaziora arte.",
+      "details": [
+        "%100 prestakuntza pertsonalizatua",
+        "Ordutegiak eta datak adosteko",
+        "Helburu tekniko edo zeharkaldi zehatzak",
+        "Banakako arreta edo talde itxiak"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Enpresa estropada",
+      "description": "Enpresa eta taldeentzako esperientzia: nabigazioa, talde-lana eta elkarbizitza ingurune ezberdin eta susgarrirako batean.",
+      "details": [
+        "Team building eta talde kohesioa",
+        "Estropada dinamiko eta parte-hartzailea",
+        "Belaontzi flota homogeneoa",
+        "Koordinazioa eta itsas briefing-a"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Windsurfa: Hastapena eta hobekuntza",
+      "description": "Ikaskuntza progresiboa hutsetik hasten denarentzat edo teknikan aurrera egin nahi duenarentzat. Oreka, maniobrak, haizearen irakurketa eta ohol gaineko autonomia.",
+      "details": [
+        "Saio 1 solte (2,5h): 45 €",
+        "4 saioko bonua (10h): 150 € (37,5 €/saio)",
+        "Campus jarraitua (5 saio finko 3h, 15h): 250 €",
+        "Ohola, bela, neoprenoa eta salbagailua barne"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Ontzien mantentzea",
+      "description": "Mantentze-lanei buruzko ikastaro teoriko-praktikoa oro har, batez ere bela arineko eta gurutzaontzietako ontziak zaintzen, berrikusten eta mantentzen ikastera bideratua.",
+      "details": [
+        "8 ordu guztira (2 egun · 4h/egun) · 100 €",
+        "Kaskoa, zuntza, antifouling-a eta gelcoata",
+        "Herdoil-kontrakoak, aparejua eta sokak",
+        "Oinarrizko motorra eta elektrizitatea"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Belen jostura eta konponketa",
+      "description": "Belen eta itsas material ehungileen bizitza erabilgarria josten, konpontzen eta luzatzen ikasteko lantegi espezializatua.",
+      "details": [
+        "Itsas puntadak eta josteko makina",
+        "Urraturak konpontzea eta errefortzuak",
+        "Ehungintza nautikoaren zaintza",
+        "Belagilearen tresnak eta materialak"
       ]
     }
   },

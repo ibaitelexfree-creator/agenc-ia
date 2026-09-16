@@ -6,8 +6,6 @@ import { Metadata } from 'next';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverVideoOrImage from '@/components/shared/HoverVideoOrImage';
 import { getSeoAlternates } from '@/lib/seo';
-
-import AboutValuesSection from '@/components/about/AboutValuesSection';
 import AboutStorySection from '@/components/about/AboutStorySection';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -31,33 +29,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default async function AboutPage({ params: { locale } }: { params: { locale: string } }) {
     const t = await getTranslations({ locale, namespace: 'about_page' });
-
-    const valuesItems = [
-        {
-            title: t('values.v1_title'),
-            desc: t('values.v1_desc'),
-            icon: "⚓",
-            bg: "/images/about-patio.jpg",
-            objectFit: "cover" as const,
-            objectPosition: "center 50%"
-        },
-        {
-            title: t('values.v2_title'),
-            desc: t('values.v2_desc'),
-            icon: "⛵",
-            bg: "/images/about-own-pontoon.jpg",
-            objectFit: "cover" as const,
-            objectPosition: "center 50%"
-        },
-        {
-            title: t('values.v3_title'),
-            desc: t('values.v3_desc'),
-            icon: "🧭",
-            bg: "/images/about-optimist.jpg",
-            objectFit: "cover" as const,
-            objectPosition: "center top"
-        }
-    ];
 
     return (
         <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
@@ -122,21 +93,7 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                 }}
             />
 
-            {/* 3. The Pillars (Values) Section */}
-            <section className="py-8 sm:py-12 md:py-14 relative bg-sea-foam/[0.01]">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none" />
-                <div className="container mx-auto px-4 sm:px-6 relative max-w-7xl">
-                    <header className="mb-6 sm:mb-8 text-center max-w-4xl mx-auto space-y-2 sm:space-y-3">
-                        <span className="text-accent uppercase tracking-[0.4em] sm:tracking-[0.6em] text-xs sm:text-sm font-bold">Nuestra Esencia</span>
-                        <h2 className="text-[clamp(1.75rem,4vw,3.5rem)] font-display text-sea-foam leading-tight">{t('define_title')}</h2>
-                        <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-accent to-transparent mx-auto" />
-                    </header>
-
-                    <AboutValuesSection items={valuesItems} />
-                </div>
-            </section>
-
-            {/* 4. Panoramic CTA Section */}
+            {/* 3. Panoramic CTA Section */}
             <section className="relative min-h-[60vh] md:min-h-[75vh] py-20 md:py-32 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
                     <Image

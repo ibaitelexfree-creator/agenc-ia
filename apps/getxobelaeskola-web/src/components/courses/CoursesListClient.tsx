@@ -54,31 +54,25 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                         </div>
                     </div>
                 ) : (
-                    <motion.div 
-                        layout
+                    <div 
                         className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-4 sm:mt-8 md:mt-12 courses-grid-system w-full max-w-full"
-                        style={{
-                            display: 'grid',
-                            width: '100%',
-                            maxWidth: '100%'
-                        }}
                     >
-                        <AnimatePresence mode="popLayout">
+                        <AnimatePresence initial={false} mode="popLayout">
                             {displayCourses.map((course) => (
                                 <motion.div
                                     key={course.id}
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.9 }}
-                                    transition={{ duration: 0.25 }}
+                                    layout="position"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
                                     className="w-full h-full flex flex-col"
                                 >
                                     <CourseCard course={course} locale={locale} />
                                 </motion.div>
                             ))}
                         </AnimatePresence>
-                    </motion.div>
+                    </div>
                 )}
             </div>
         </section>

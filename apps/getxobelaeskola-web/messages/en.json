@@ -210,7 +210,7 @@
     "header_badge": "OUR OFFER",
     "header_title": "Sailing",
     "header_highlight": "Courses",
-    "header_desc": "At Getxo Bela Eskola we offer courses for all ages and levels, always from a close, progressive approach adapted to each person. Our goal is for everyone to find their place in the sea and learn to sail with safety, calm and confidence.",
+    "header_desc": "At Getxo Bela Eskola we offer courses for all ages and levels, always from a close, progressive approach adapted to each person.",
     "duration": "h",
     "price_from": "From"
   },
@@ -258,6 +258,38 @@
       "p1": "More than 15 years ago we were born in Getxo with a clear goal: to bring the sea closer to everyone from a human, educational and accessible approach. We are a non-profit association and a social project that understands sailing as a tool for learning, coexistence and personal transformation.",
       "p2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community, and our path remains focused on accompanying people to experience the sea in a simple, safe and authentic way.",
       "p3": "We are not a company, and we do not act as such. As a non-profit association, everything that comes in is reinvested in improving the project: renewing boats, training instructors, maintaining the facilities and expanding activities."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "OUR SPACE",
+    "header_title": "Our",
+    "header_highlight": "Facilities",
+    "header_desc": "In the heart of Getxo Marina, with direct access to the Abra bay and steps away from Ereaga beach. Designed to learn, share and live the Cantabrian sea in complete comfort.",
+    "cta_title": "Come Visit the Eskola",
+    "cta_desc": "Discover our nautical facilities, try out a boat, or just feel the ocean breeze on the pontoon.",
+    "btn_about": "About us",
+    "btn_courses": "View Courses",
+    "items": {
+      "instalaciones": {
+        "title": "Our Facilities",
+        "badge": "Getxo Marina",
+        "desc": "Located in a prime area of Getxo Marina, steps from Ereaga beach with direct bay access. We feature audiovisual classrooms, well-kept lockers, outdoor terrace, workshop, and chill-out zone."
+      },
+      "pantalan": {
+        "title": "Private Pontoon",
+        "badge": "Direct Sea Access",
+        "desc": "The pontoon is our gateway to the open sea. Our versatile fleet includes dinghies, cruisers, windsurfs, big SUPs, paddle surfs, canoes and rescue boats."
+      },
+      "aulas": {
+        "title": "Classrooms & Workshop",
+        "badge": "Theory & Practical",
+        "desc": "Equipped spaces with interactive media, chart simulations and technical repair workshops for boat tuning and theory courses."
+      },
+      "aseos": {
+        "title": "Restrooms & Lockers",
+        "badge": "Comfort & Care",
+        "desc": "Full changing rooms, hot showers, secure storage lockers, and relaxing chill-out facilities after your sailing session."
+      }
     }
   },
   "contact_page": {
@@ -1737,153 +1769,174 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "J80 Initiation",
-      "description": "Learn the basics of navigation on our J80 fleet.",
+      "description": "First contact with cruising adapted to each person, a truly complete course: basic maneuvers, sail & boat dynamics, meteorology, safety…",
       "details": [
-        "Sailing fundamentals",
         "Basic maneuvers",
-        "12 class hours",
-        "J80 fleet"
+        "Sails & boat dynamics",
+        "Meteorology and weather reading",
+        "Safety on board · J80 fleet"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Windsurf 1 Session",
-      "description": "Individual 2-hour windsurfing session. Perfect to try.",
+    "crucero-perfeccionamiento": {
+      "name": "Cruiser Advanced",
+      "description": "For those who already sail and want to advance: sail trimming, fine maneuvers, boat control and sea reading.",
       "details": [
-        "2-hour trial",
-        "Equipment included",
-        "Dedicated instructor",
-        "First contact"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Summer Campus (Registered Residents)",
-      "description": "Summer campus for children and youth from 5 to 21 years registered in Getxo.",
-      "details": [
-        "Group sailing",
-        "Safety at sea",
-        "Games and activities",
-        "20 hours per week"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Summer Campus (Non-Residents)",
-      "description": "Summer campus for children and youth from 5 to 21 years not registered in Getxo.",
-      "details": [
-        "Group sailing",
-        "Safety at sea",
-        "Games and activities",
-        "20 hours per week"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Adult Initiation",
-      "description": "Initiation sailing course for adults.",
-      "details": [
-        "Sailing fundamentals",
-        "Basic maneuvers",
-        "12 hours of class",
-        "Adult groups"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Advanced Sailing",
-      "description": "Improve your trimming and maneuvering technique.",
-      "details": [
-        "Sail trimming",
+        "Fine sail trimming",
+        "Boat control & helm",
         "Advanced maneuvers",
-        "Efficient sailing",
-        "Open water practice"
+        "Wind and wave reading"
       ]
     },
-    "vela-ligera": {
-      "name": "Dinghy Sailing",
-      "description": "Learn the fundamentals of dinghy sailing in Getxo.",
+    "crucero-gennaker": {
+      "name": "Cruiser with Gennaker",
+      "description": "Technical and dynamic course to learn how to handle downwind sails safely and with confidence.",
       "details": [
-        "Optimist, Laser and 420",
-        "October to June",
-        "3 Sundays per month",
-        "Instructor and equipment included"
+        "Hoisting, gybing and dousing gennaker",
+        "Downwind angles and apparent wind",
+        "Safety and crew coordination",
+        "J80 sailing dynamics"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Adult Technification",
-      "description": "Advanced training and technification course for adults.",
+    "entrenamientos-adultas": {
+      "name": "Adult Training Sessions",
+      "description": "Regular sessions to sharpen technique, gain autonomy and sail as a team in varied conditions.",
       "details": [
-        "Race tactics",
-        "Precision maneuvers",
-        "Fine-tuning",
-        "J80 training"
+        "Continuous annual or monthly program",
+        "Autonomy and teamwork",
+        "Sailing in varied conditions",
+        "Fine-tuning and precision maneuvers"
       ]
     },
-    "otros": {
-      "name": "Others / Miscellaneous",
-      "description": "Various uncategorized sessions and events.",
-      "details": [
-        "Special events",
-        "Custom sessions",
-        "Consult options"
-      ]
-    },
-    "licencia-navegacion": {
-      "name": "Sailing License",
-      "description": "Obtain your official sailing license in one morning.",
-      "details": [
-        "Official license without exam",
-        "Navigation of boats up to 6m",
-        "Jet skis up to 55HP",
-        "Daytime navigation (2 miles)"
-      ]
-    },
-    "konpondu": {
-      "name": "Konpondu (Repair)",
-      "description": "Specialized course in boat maintenance and repair.",
-      "details": [
-        "Engine maintenance",
-        "Fiber and resin",
-        "Onboard electricity",
-        "Rigging and deck hardware"
-      ]
-    },
-    "windsurf-iniciacion": {
-      "name": "Windsurf Initiation Course",
-      "description": "Learn the fundamentals of windsurfing in 5 sessions of 2 hours.",
-      "details": [
-        "Balance and position",
-        "Steering and turns",
-        "5 sessions of 2h",
-        "Adapted equipment"
-      ]
-    },
-    "windsurf-campus": {
-      "name": "Windsurf Campus",
-      "description": "15-hour intensive windsurfing camp.",
-      "details": [
-        "Advanced sail control",
-        "Planing and harness",
-        "15 total hours",
-        "Fun at sea"
-      ]
-    },
-    "windsurf-3-sesiones": {
-      "name": "Windsurf 3 Sessions",
-      "description": "Pack of 3 windsurfing sessions of 2 hours each. Ideal to practice and improve.",
-      "details": [
-        "3 sessions of 2h",
-        "Technique consolidation",
-        "Improve course",
-        "Complete gear"
-      ]
-    },
-    "iniciacion-vela-ligera": {
+    "vela-ligera-iniciacion": {
       "name": "Dinghy Sailing Initiation",
-      "description": "First contact with sailing. Learn the basic fundamentals of sailing on light boats.",
+      "description": "An ideal first step to discover sailing on small boats where contact with boat feel and wind is much greater.",
       "details": [
-        "Optimist, Laser and 420",
-        "Basic wind concepts",
-        "Autonomous sailing",
-        "Instructor and gear"
+        "Direct responsiveness on helm and sheet",
+        "Balance and wind dynamics",
+        "Rigging and basic maneuvers",
+        "Specialized instructors"
+      ]
+    },
+    "vela-ligera-avanzado": {
+      "name": "Advanced Dinghy Sailing",
+      "description": "For those looking to deepen their skills: more precise maneuvers, total autonomy and a finer bond with the sea.",
+      "details": [
+        "Precision maneuvers and boat speed",
+        "Total autonomy on board",
+        "Course tactics and fine trimming",
+        "Wind shifts and current reading"
+      ]
+    },
+    "txikigune-sabados": {
+      "name": "Txikigune (Saturday Sailing)",
+      "description": "Weekly space for children and teens wanting to enjoy the sea on flexible days with no commitment. Sailing, play, learning and camaraderie.",
+      "details": [
+        "Flexible drop-in Saturdays",
+        "Seafaring games and active learning",
+        "Camaraderie and teamwork",
+        "Ages 5 to 21 years"
+      ]
+    },
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Summer Camps)",
+      "description": "Summer camps combining sailing with water activities, teamwork and unforgettable memories.",
+      "details": [
+        "Weekly summer camps",
+        "Sailing, paddle surf, kayak and games",
+        "Certified instructors and small ratios",
+        "Lifelong seafaring experiences"
+      ]
+    },
+    "entrenamientos-infantiles-continuos": {
+      "name": "Continuous Junior Training",
+      "description": "Stable groups for boys and girls looking to learn more, advance technically and enjoy the sea all year round.",
+      "details": [
+        "Regular school-year training",
+        "Pedagogical and technical coaching",
+        "Progression in Optimist and dinghies",
+        "Community and formative sport"
+      ]
+    },
+    "entrenamientos-continuos-jovenes": {
+      "name": "Continuous Youth Training",
+      "description": "Stable groups for youth aiming to learn and continuously grow in technique, autonomy and teamwork.",
+      "details": [
+        "Youth up to 21 years",
+        "Technical refinement across fleet",
+        "Autonomy and tactical decisions",
+        "Sport sailing and developmental regattas"
+      ]
+    },
+    "bautismos": {
+      "name": "Sea Baptisms",
+      "description": "A first sea experience designed to enjoy pressure-free and discover sailing easily accompanied by an instructor.",
+      "details": [
+        "Gentle and accessible introduction",
+        "No previous experience needed",
+        "Attentive instructor guidance",
+        "Vistas and feeling of the Abra"
+      ]
+    },
+    "familia": {
+      "name": "Family Sailing",
+      "description": "Sessions tailored for families to share, featuring calm pacing, fun dynamics and safe navigation.",
+      "details": [
+        "Activity for all ages",
+        "Dynamics adapted for kids and adults",
+        "Exclusive boat with skipper",
+        "Unforgettable memories together"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Custom Courses",
+      "description": "Bespoke training based on goals, level and availability: from targeted maneuvers to project-based offshore sailing.",
+      "details": [
+        "100% tailored training",
+        "Flexible scheduling and dates",
+        "Specific technical or passage goals",
+        "Individual or private groups"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Corporate Regatta",
+      "description": "Experience for corporate teams and groups: sailing, teamwork and camaraderie in an inspiring maritime setting.",
+      "details": [
+        "Team building and team cohesion",
+        "Dynamic and engaging regatta",
+        "Matched fleet of sailboats",
+        "Coordination and marine briefing"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Windsurf: Initiation & Progression",
+      "description": "Progressive learning for beginners or advancing windsurfers. Balance work, maneuvers, wind reading and board autonomy.",
+      "details": [
+        "Single session (2.5h): 45 €",
+        "4-session pack (10h): 150 € (37.5 €/session)",
+        "Continuous camp (5 fixed 3h sessions, 15h): 250 €",
+        "Board, rig, wetsuit and vest included"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Boat Maintenance",
+      "description": "Theoretical-practical maintenance course, mainly focused on learning to care for, inspect and maintain dinghies and cruising yachts.",
+      "details": [
+        "8 total hours (2 days · 4h/day) · 100 €",
+        "Hull, fiberglass, antifouling & gelcoat",
+        "Rigging, deck fittings and ropes",
+        "Basic engine and electrical systems"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Sailmaking & Canvas Repair",
+      "description": "Specialized workshop learning how to stitch, repair and extend the lifespan of sails and marine canvas.",
+      "details": [
+        "Sailmaker stitches and machine use",
+        "Tears, patches and reinforcements",
+        "Care and maintenance of sailcloth",
+        "Sailmaker tools and needles"
       ]
     }
   },

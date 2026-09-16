@@ -208,7 +208,7 @@
     "header_badge": "NOTRE OFFRE",
     "header_title": "Cours",
     "header_highlight": "Navigation",
-    "header_desc": "Chez Getxo Bela Eskola, nous proposons des cours pour tous les âges et tous les niveaux, toujours selon une approche proche, progressive et adaptée à chaque personne. Notre objectif est que chacun trouve sa place dans la mer et apprenne à naviguer en toute sécurité, sereinement et en toute confiance.",
+    "header_desc": "Chez Getxo Bela Eskola, nous proposons des cours pour tous les âges et tous les niveaux, toujours selon une approche proche, progressive et adaptée à chaque personne.",
     "duration": "h",
     "price_from": "Depuis"
   },
@@ -256,6 +256,38 @@
       "p1": "Il y a plus de 15 ans, nous sommes nés à Getxo avec un objectif clair : rapprocher la mer de tous à partir d'une approche humaine, éducative et accessible. Nous sommes une association à but non lucratif et un projet social qui considère la voile comme un outil d'apprentissage, de coexistence et de transformation personnelle.",
       "p2": "Au fil des années, nous avons grandi, nous sommes professionnalisés et nos activités se sont développées, toujours avec la même base : mettre l'humain au centre. L'Eskola continue d'être un lieu simple et proche, construit à partir de la communauté, et notre chemin reste centré sur l'accompagnement des personnes pour qu'elles vivent la mer de manière simple, sûre et authentique.",
       "p3": "Nous ne sommes pas une entreprise, et nous n'agissons pas comme telle. En tant qu'association à but non lucratif, tout ce qui rentre est réinvesti dans l'amélioration du projet : renouvellement des bateaux, formation des moniteurs, entretien des installations et développement des activités."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "NOTRE ESPACE",
+    "header_title": "Nos",
+    "header_highlight": "Installations",
+    "header_desc": "Au cœur du port de plaisance de Getxo, avec accès direct à la baie de l'Abra et à quelques pas de la plage d'Ereaga. Un espace conçu pour apprendre et naviguer dans le plus grand confort.",
+    "cta_title": "Venez Découvrir l'Eskola",
+    "cta_desc": "Découvrez nos installations nautiques, essayez un bateau ou venez simplement sentir la brise marine sur notre ponton.",
+    "btn_about": "Qui sommes-nous",
+    "btn_courses": "Voir les cours",
+    "items": {
+      "instalaciones": {
+        "title": "Nos Installations",
+        "badge": "Port de Getxo",
+        "desc": "Situées dans une zone privilégiée du port de plaisance de Getxo, à quelques mètres de la plage d'Ereaga et avec un accès direct à l'Abra. Salles de classe audiovisuelles, vestiaires soignés, atelier et espace détente."
+      },
+      "pantalan": {
+        "title": "Ponton Privé",
+        "badge": "Accès Direct Mer",
+        "desc": "Le ponton est notre lien direct avec la mer. Flotte complète : voile légère, croiseurs, planche à voile, big SUP, paddle surf, canoës et bateaux de sécurité."
+      },
+      "aulas": {
+        "title": "Salles & Atelier",
+        "badge": "Théorie & Manœuvre",
+        "desc": "Espaces d'apprentissage équipés d'outils audiovisuels, cartes marines et atelier technique pour l'entretien des bateaux."
+      },
+      "aseos": {
+        "title": "Sanitaires & Vestiaires",
+        "badge": "Confort & Détente",
+        "desc": "Vestiaires complets avec douches chaudes, casiers sécurisés et espace chill-out pour se ressourcer après votre session en mer."
+      }
     }
   },
   "contact_form": {
@@ -1352,153 +1384,174 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "Initiation J80",
-      "description": "Apprenez les bases de la navigation sur notre flotte de J80.",
+      "description": "Premier contact avec la navigation en croisière adapté à chacun, cours complet : manœuvres de base, fonctionnement des voiles et du bateau, météo, sécurité…",
       "details": [
-        "Bases de la voile",
         "Manœuvres de base",
-        "12 heures de cours",
-        "Flotte J80"
+        "Fonctionnement des voiles et du bateau",
+        "Météorologie marine",
+        "Sécurité à bord · Flotte J80"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Session Individuelle Planche à Voile",
-      "description": "Session individuelle de planche à voile de 2 heures. Idéal pour essayer.",
+    "crucero-perfeccionamiento": {
+      "name": "Croisière perfectionnement",
+      "description": "Pour ceux qui naviguent déjà et souhaitent progresser : réglage fin, manœuvres précises, contrôle du bateau et lecture de la mer.",
       "details": [
-        "Essai de 2 heures",
-        "Matériel inclus",
-        "Moniteur dédié",
-        "Premier contact"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Campus d'Été (Résidents)",
-      "description": "Campus d'été pour enfants et jeunes de 5 à 21 ans résidents à Getxo.",
-      "details": [
-        "Navigation en groupe",
-        "Sécurité en mer",
-        "Jeux et activités",
-        "20 heures par semaine"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Campus d'Été (Non-Résidents)",
-      "description": "Campus d'été pour enfants et jeunes de 5 à 21 ans non-résidents à Getxo.",
-      "details": [
-        "Navigation en groupe",
-        "Sécurité en mer",
-        "Jeux et activités",
-        "20 heures par semaine"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Initiation Adultes",
-      "description": "Cours d'initiation à la voile pour adultes.",
-      "details": [
-        "Bases de la voile",
-        "Manœuvres de base",
-        "12 heures de cours",
-        "Groupes d'adultes"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Perfectionnement",
-      "description": "Améliorez votre technique de réglage et de manœuvre.",
-      "details": [
-        "Réglage des voiles",
+        "Réglage fin des voiles",
+        "Contrôle et tenue du cap",
         "Manœuvres avancées",
-        "Navigation efficace",
-        "Pratique en haute mer"
+        "Lecture du vent et de la mer"
       ]
     },
-    "vela-ligera": {
-      "name": "Dériveur",
-      "description": "Apprenez les bases de la navigation en dériveur à Getxo.",
+    "crucero-gennaker": {
+      "name": "Croisière avec gennaker",
+      "description": "Cours technique et dynamique pour apprendre à manœuvrer les voiles de portant en toute sécurité et confiance.",
       "details": [
-        "Optimist, Laser et 420",
-        "D'octobre à juin",
-        "3 dimanches par mois",
-        "Moniteur et équipement inclus"
+        "Envoi, empannage et affalage du gennaker",
+        "Allures portantes et vent apparent",
+        "Sécurité et coordination d équipage",
+        "Dynamique sur J80"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Technification Adultes",
-      "description": "Cours de perfectionnement et de technification pour adultes.",
+    "entrenamientos-adultas": {
+      "name": "Entraînements adultes",
+      "description": "Séances régulières pour perfectionner la technique, gagner en autonomie et naviguer en équipe par toutes conditions.",
       "details": [
-        "Tactique de course",
-        "Manœuvres de précision",
-        "Mise au point",
-        "Entraînement J80"
+        "Programme continu annuel ou mensuel",
+        "Autonomie et travail en équipe",
+        "Navigation par conditions variées",
+        "Réglages et manœuvres"
       ]
     },
-    "otros": {
-      "name": "Autres / Divers",
-      "description": "Diverses sessions et événements non catégorisés.",
+    "vela-ligera-iniciacion": {
+      "name": "Dériveur initiation",
+      "description": "Un premier pas idéal pour découvrir la voile légère sur de petits dériveurs où les sensations de barre et de vent sont intenses.",
       "details": [
-        "Événements spéciaux",
-        "Sessions sur mesure",
-        "Consulter options"
+        "Sensibilité directe à la barre et aux écoutes",
+        "Équilibre et dynamique du vent",
+        "Gréement et manœuvres de base",
+        "Moniteurs qualifiés"
       ]
     },
-    "licencia-navegacion": {
-      "name": "Permis Plaisance",
-      "description": "Obtenez votre permis de navigation officiel en une matinée.",
+    "vela-ligera-avanzado": {
+      "name": "Dériveur avancé",
+      "description": "Pour approfondir : manœuvres plus précises, autonomie totale et relation plus fine avec la mer.",
       "details": [
-        "Permis officiel sans examen",
-        "Navigation de bateaux jusqu'à 6m",
-        "Jetskis jusqu'à 55CV",
-        "Navigation de jour (2 milles)"
+        "Manœuvres de précision et vitesse",
+        "Autonomie complète à bord",
+        "Tactique de cap et réglage fin",
+        "Lecture des risées et courants"
       ]
     },
-    "konpondu": {
-      "name": "Konpondu (Réparation)",
-      "description": "Cours spécialisé dans l'entretien et la réparation de bateaux.",
+    "txikigune-sabados": {
+      "name": "Txikigune (Samedis de voile)",
+      "description": "Espace hebdomadaire pour les enfants et jeunes souhaitant profiter de la mer à la journée sans engagement. Voile, jeux, apprentissage et convivialité.",
       "details": [
-        "Entretien moteur",
-        "Fibre et résine",
-        "Électricité à bord",
-        "Gréement et accastillage"
+        "Séances libres le samedi sans engagement",
+        "Jeux marins et apprentissage actif",
+        "Convivialité et esprit d équipe",
+        "Âges de 5 à 21 ans"
       ]
     },
-    "windsurf-iniciacion": {
-      "name": "Cours d'Initiation à la Planche à Voile",
-      "description": "Apprenez les bases de la planche à voile en 5 séances de 2 heures.",
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Camps d été)",
+      "description": "Stages d été combinant la voile avec des activités aquatiques, le travail d équipe et des souvenirs inoubliables.",
       "details": [
-        "Équilibre et position",
-        "Direction et virages",
-        "5 séances de 2h",
-        "Matériel adapté"
+        "Stages d été à la semaine",
+        "Voile, paddle surf, kayak et jeux",
+        "Moniteurs diplômés et effectifs réduits",
+        "Expériences marquantes en mer"
       ]
     },
-    "windsurf-campus": {
-      "name": "Stage Planche à Voile",
-      "description": "Stage intensif de planche à voile de 15 heures.",
+    "entrenamientos-infantiles-continuos": {
+      "name": "Entraînements continus enfants",
+      "description": "Groupes réguliers pour les enfants désireux d apprendre davantage, progresser techniquement et vivre la mer toute l année.",
       "details": [
-        "Contrôle de voile avancé",
-        "Planning et harnais",
-        "15 heures au total",
-        "Plaisir en mer"
+        "Entraînements réguliers sur l année scolaire",
+        "Suivi pédagogique et technique",
+        "Progression sur Optimist et dériveurs",
+        "Communauté et sport formateur"
       ]
     },
-    "windsurf-3-sesiones": {
-      "name": "Forfait 3 Sessions Planche à Voile",
-      "description": "Forfait de 3 sessions de planche à voile de 2 heures chacune. Idéal pour s'entraîner.",
+    "entrenamientos-continuos-jovenes": {
+      "name": "Entraînements continus jeunes",
+      "description": "Groupes stables pour les jeunes désireux de progresser en technique, autonomie et esprit d équipe.",
       "details": [
-        "3 sessions de 2h",
-        "Consolidation technique",
-        "Amélioration cap",
-        "Matériel complet"
+        "Jeunes jusqu à 21 ans",
+        "Perfectionnement technique en flotte",
+        "Autonomie et prise de décision",
+        "Navigation sportive et régates"
       ]
     },
-    "iniciacion-vela-ligera": {
-      "name": "Initiation Dériveur",
-      "description": "Premier contact avec la voile. Apprenez les bases fondamentales de la voile sur dériveur.",
+    "bautismos": {
+      "name": "Baptêmes de mer",
+      "description": "Une première expérience en mer conçue pour profiter sans pression et découvrir la voile simplement et en douceur.",
       "details": [
-        "Optimist, Laser et 420",
-        "Concepts de vent de base",
-        "Navigation autonome",
-        "Moniteur et matériel"
+        "Première approche douce et accessible",
+        "Sans expérience requise",
+        "Accompagnement attentif par un moniteur",
+        "Sensations marines dans la baie de l Abra"
+      ]
+    },
+    "familia": {
+      "name": "Voile en famille",
+      "description": "Séances conçues pour partager en famille, à un rythme paisible, avec des dynamiques ludiques et une navigation sécurisée.",
+      "details": [
+        "Activité pour tous les âges",
+        "Dynamiques adaptées enfants et adultes",
+        "Bateau privatisé avec skipper",
+        "Souvenirs inoubliables partagés"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Cours sur mesure",
+      "description": "Formations sur mesure selon vos objectifs, votre niveau et vos disponibilités : de la technique pointue aux projets de navigation.",
+      "details": [
+        "Formation 100% personnalisée",
+        "Horaires et dates flexibles",
+        "Objectifs techniques ou hauturiers ciblés",
+        "En solo ou groupe privé"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Régate d entreprise",
+      "description": "Expérience pour entreprises et groupes : navigation, cohésion d équipe et convivialité dans un environnement stimulant.",
+      "details": [
+        "Cohésion d équipe et team building",
+        "Régate dynamique et participative",
+        "Flotte homogène de voiliers",
+        "Coordination et briefing marin"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Planche à voile : Initiation et perfectionnement",
+      "description": "Apprentissage progressif pour débuter ou perfectionner sa technique. Équilibre, manœuvres, lecture du vent et autonomie sur la planche.",
+      "details": [
+        "1 séance unitaire (2,5h) : 45 €",
+        "Pack 4 séances (10h) : 150 € (37,5 €/séance)",
+        "Stage continu (5 séances fixes de 3h, 15h) : 250 €",
+        "Flotteur, gréement, combinaison et gilet inclus"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Maintenance des bateaux",
+      "description": "Cours théorique et pratique d entretien général, axé sur l apprentissage du soin, de la révision et du maintien des dériveurs et des voiliers de croisière.",
+      "details": [
+        "8 heures au total (2 jours · 4h/jour) · 100 €",
+        "Coque, résine, antifouling et gelcoat",
+        "Accastillage, gréement et matelotage",
+        "Moteur et électricité élémentaire"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Couture et réparation de voiles",
+      "description": "Atelier spécialisé pour apprendre à coudre, réparer et prolonger la durée de vie des voiles et des textiles nautiques.",
+      "details": [
+        "Points de voilerie et machine à coudre",
+        "Réparation des déchirures et renforts",
+        "Entretien des tissus nautiques",
+        "Outils et matériel de voilier"
       ]
     }
   },
