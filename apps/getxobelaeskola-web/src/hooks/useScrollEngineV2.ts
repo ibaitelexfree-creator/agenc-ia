@@ -30,13 +30,13 @@ export function useScrollEngineV2(): ScrollEngineReturn {
 
   // 7 Section Keyframe Map with rest plateaus matching the 7 components in CanvasV2
   const yScrollPoints = [
-    0.00, 0.05, // Section 0 (0vh)
-    0.16, 0.21, // Section 1 (-100vh)
-    0.32, 0.37, // Section 2 (-200vh)
-    0.48, 0.53, // Section 3 (-300vh)
-    0.64, 0.69, // Section 4 (-400vh)
-    0.80, 0.85, // Section 5 (-500vh)
-    0.95, 1.00  // Section 6 (-600vh)
+    0.00, 0.06, // Section 0 (0vh)
+    0.16, 0.22, // Section 1 (-100vh)
+    0.32, 0.38, // Section 2 (-200vh)
+    0.48, 0.54, // Section 3 (-300vh)
+    0.64, 0.70, // Section 4 (-400vh)
+    0.80, 0.86, // Section 5 (-500vh)
+    0.94, 1.00  // Section 6 (-600vh)
   ]
   const rawCanvasY = useTransform(
     scrollYProgress,
@@ -136,7 +136,8 @@ export function useScrollEngineV2(): ScrollEngineReturn {
           wheelTimeoutRef.current = setTimeout(() => {
             isAnimatingRef.current = false
             isWheelScrollingRef.current = false
-          }, 50)
+            touchTriggeredRef.current = false
+          }, 60)
         }
       }
 
@@ -317,14 +318,10 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     // --- Touch handlers ---
     let touchStartY = 0
     let touchStartTime = 0
-    let touchLockTimeout: ReturnType<typeof setTimeout> | null = null
 
     const handleTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0].clientY
       touchStartTime = performance.now()
-      if (!isAnimatingRef.current) {
-        touchTriggeredRef.current = false
-      }
     }
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -344,8 +341,8 @@ export function useScrollEngineV2(): ScrollEngineReturn {
         if (scrollY > maxScroll + 5 && deltaY < 0) return
       }
 
-      // Responsive threshold for touch gesture detection (35px minimum distance & dynamic gesture lock)
-      if (Math.abs(deltaY) > 35 && deltaTime > 30) {
+      // Responsive threshold for touch gesture detection (40px minimum distance & dynamic gesture lock)
+      if (Math.abs(deltaY) > 40 && deltaTime > 25) {
         touchTriggeredRef.current = true
         if (e.cancelable) e.preventDefault()
         const dir = deltaY > 0 ? 1 : -1
@@ -358,10 +355,10 @@ export function useScrollEngineV2(): ScrollEngineReturn {
     }
 
     const handleTouchEnd = () => {
-      if (touchLockTimeout) clearTimeout(touchLockTimeout)
-      touchLockTimeout = setTimeout(() => {
+      // Keep touchTriggeredRef true if animation is active to prevent inertia momentum from triggering another jump
+      if (!isAnimatingRef.current) {
         touchTriggeredRef.current = false
-      }, 200)
+      }
     }
 
     // --- Arrow/Page key handler ---

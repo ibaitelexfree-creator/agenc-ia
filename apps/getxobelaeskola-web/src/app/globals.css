@@ -809,7 +809,7 @@ a:hover {
 }
 
 .scroll-engine-root {
-  height: 800dvh;
+  height: 700dvh;
   background-color: #0D2137;
 }
 .scroll-engine-inner {
@@ -826,13 +826,13 @@ a:hover {
 
 .canvas-container {
   width: 100%;
-  height: 800dvh;
+  height: 700dvh;
   position: absolute;
   top: 0;
   left: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: repeat(8, minmax(100svh, 100dvh));
+  grid-template-rows: repeat(7, 100dvh);
   background-color: #0D2137;
   grid-template-areas:
     "s1"
@@ -841,8 +841,7 @@ a:hover {
     "s4"
     "s5"
     "blog"
-    "reviews"
-    "cta";
+    "reviews";
 }
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
@@ -1601,16 +1600,16 @@ body {
   box-sizing: border-box;
 }
 
-/* Fluid Global Section System: Eliminates rigid 100dvh capping to prevent content clipping */
-.global-section,
-.section-1-hero,
-.promise,
-.section-cta,
-.section-2-identity,
-.section-3-adapts,
-.section-3-path,
-[class*="Blog_section"],
-[class*="Reviews_section"] {
+/* Fluid Global Section System: Applied to standalone pages (does not override landing canvas grid sections) */
+:not(.canvas-container) > .global-section,
+:not(.canvas-container) > .section-1-hero,
+:not(.canvas-container) > .promise,
+:not(.canvas-container) > .section-cta,
+:not(.canvas-container) > .section-2-identity,
+:not(.canvas-container) > .section-3-adapts,
+:not(.canvas-container) > .section-3-path,
+:not(.canvas-container) > [class*="Blog_section"],
+:not(.canvas-container) > [class*="Reviews_section"] {
   width: 100%;
   max-width: 100%;
   min-height: clamp(350px, 75vh, 900px);
@@ -1626,15 +1625,15 @@ body {
 }
 
 @media (max-width: 767px) {
-  .global-section,
-  .section-1-hero,
-  .promise,
-  .section-cta,
-  .section-2-identity,
-  .section-3-adapts,
-  .section-3-path,
-  [class*="Blog_section"],
-  [class*="Reviews_section"] {
+  :not(.canvas-container) > .global-section,
+  :not(.canvas-container) > .section-1-hero,
+  :not(.canvas-container) > .promise,
+  :not(.canvas-container) > .section-cta,
+  :not(.canvas-container) > .section-2-identity,
+  :not(.canvas-container) > .section-3-adapts,
+  :not(.canvas-container) > .section-3-path,
+  :not(.canvas-container) > [class*="Blog_section"],
+  :not(.canvas-container) > [class*="Reviews_section"] {
     min-height: auto;
     padding-top: clamp(1.25rem, 3vh, 3rem);
     padding-bottom: clamp(1.25rem, 3vh, 3rem);
@@ -1642,15 +1641,15 @@ body {
 }
 
 @media (orientation: landscape) and (max-height: 700px) {
-  .global-section,
-  .section-1-hero,
-  .promise,
-  .section-cta,
-  .section-2-identity,
-  .section-3-adapts,
-  .section-3-path,
-  [class*="Blog_section"],
-  [class*="Reviews_section"] {
+  :not(.canvas-container) > .global-section,
+  :not(.canvas-container) > .section-1-hero,
+  :not(.canvas-container) > .promise,
+  :not(.canvas-container) > .section-cta,
+  :not(.canvas-container) > .section-2-identity,
+  :not(.canvas-container) > .section-3-adapts,
+  :not(.canvas-container) > .section-3-path,
+  :not(.canvas-container) > [class*="Blog_section"],
+  :not(.canvas-container) > [class*="Reviews_section"] {
     min-height: auto;
     height: auto;
     max-height: none;
