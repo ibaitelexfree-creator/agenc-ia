@@ -1,0 +1,214 @@
+[
+  {
+    "course": "Iniciación J80",
+    "slug": "crucero-iniciacion",
+    "productId": "prod_VGqPmM5uhYo3qJ",
+    "prices": [
+      {
+        "id": "price_1UGIilCkVFJsTE8LLdj8c391",
+        "nickname": "Tarifa oficial (12h)",
+        "amount": 18000
+      }
+    ]
+  },
+  {
+    "course": "Crucero perfeccionamiento",
+    "slug": "crucero-perfeccionamiento",
+    "productId": "prod_VGqP6zrBsINKdN",
+    "prices": [
+      {
+        "id": "price_1UGIimCkVFJsTE8LGmvZ2w5B",
+        "nickname": "Tarifa oficial (12h)",
+        "amount": 18000
+      }
+    ]
+  },
+  {
+    "course": "Crucero con gennaker",
+    "slug": "crucero-gennaker",
+    "productId": "prod_VGqP0D0Fp9mDfh",
+    "prices": [
+      {
+        "id": "price_1UGIinCkVFJsTE8LbmIVEGzy",
+        "nickname": "Tarifa oficial (12h)",
+        "amount": 18000
+      }
+    ]
+  },
+  {
+    "course": "Entrenamientos para adultas / Tecnificación",
+    "slug": "entrenamientos-adultas",
+    "productId": "prod_VGqPw3U0oL1juQ",
+    "prices": [
+      {
+        "id": "price_1UGIioCkVFJsTE8LNU7AGJnn",
+        "nickname": "Cuota mensual (Curso anual 10 meses)",
+        "amount": 10000
+      },
+      {
+        "id": "price_1UGIioCkVFJsTE8LhN9MZ3R5",
+        "nickname": "1 mes suelto",
+        "amount": 11000
+      },
+      {
+        "id": "price_1UGIioCkVFJsTE8LaCMeAoW9",
+        "nickname": "Salida puntual",
+        "amount": 4500
+      }
+    ]
+  },
+  {
+    "course": "Vela ligera iniciación",
+    "slug": "vela-ligera-iniciacion",
+    "productId": "prod_VGqPAoAeuMr944",
+    "prices": [
+      {
+        "id": "price_1UGIipCkVFJsTE8LRyIWVUkN",
+        "nickname": "Tarifa oficial (12h)",
+        "amount": 15000
+      }
+    ]
+  },
+  {
+    "course": "Vela ligera avanzado",
+    "slug": "vela-ligera-avanzado",
+    "productId": "prod_VGqPyZQo5eHZhh",
+    "prices": [
+      {
+        "id": "price_1UGIiqCkVFJsTE8LsihlQrNs",
+        "nickname": "Tarifa oficial (12h)",
+        "amount": 18000
+      }
+    ]
+  },
+  {
+    "course": "Txikigune (Sábados de navegación)",
+    "slug": "txikigune-sabados",
+    "productId": "prod_VGqPVvpbBIE4Pg",
+    "prices": [
+      {
+        "id": "price_1UGIirCkVFJsTE8L3JIYmjm0",
+        "nickname": "Sesión suelta sábado",
+        "amount": 3500
+      }
+    ]
+  },
+  {
+    "course": "Udalekuak (Campamentos de verano)",
+    "slug": "udalekuak-campamentos",
+    "productId": "prod_VGqPLfqS0zW55e",
+    "prices": [
+      {
+        "id": "price_1UGIisCkVFJsTE8LFLQWi9jC",
+        "nickname": "Tarifa semana campamento",
+        "amount": 13000
+      }
+    ]
+  },
+  {
+    "course": "Entrenamientos infantiles continuos",
+    "slug": "entrenamientos-infantiles-continuos",
+    "productId": "prod_VGqP8UAR2ZkvA5",
+    "prices": [
+      {
+        "id": "price_1UGIitCkVFJsTE8LUdFF0m8H",
+        "nickname": "Cuota mensual",
+        "amount": 8500
+      }
+    ]
+  },
+  {
+    "course": "Entrenamientos continuos para jóvenes",
+    "slug": "entrenamientos-continuos-jovenes",
+    "productId": "prod_VGqPh8PDfsGczC",
+    "prices": [
+      {
+        "id": "price_1UGIitCkVFJsTE8LvG3ISyvS",
+        "nickname": "Cuota mensual",
+        "amount": 9500
+      }
+    ]
+  },
+  {
+    "course": "Bautismos de mar",
+    "slug": "bautismos",
+    "productId": "prod_VGqPB0N5YQVrvY",
+    "prices": [
+      {
+        "id": "price_1UGIiuCkVFJsTE8LdBiPOG3s",
+        "nickname": "Bautismo 2h",
+        "amount": 4500
+      }
+    ]
+  },
+  {
+    "course": "Navegación en Familia",
+    "slug": "familia",
+    "productId": "prod_VGqPPdf3ibtms7",
+    "prices": [
+      {
+        "id": "price_1UGIivCkVFJsTE8LNUxL9fbY",
+        "nickname": "Tarifa sesión familiar",
+        "amount": 16000
+      }
+    ]
+  },
+  {
+    "course": "Cursos personalizados a medida",
+    "slug": "cursos-personalizados",
+    "productId": "prod_VGqPkZ7WW4qnI1",
+    "prices": []
+  },
+  {
+    "course": "Regata corporativa / Teambuilding",
+    "slug": "regata-corporativa",
+    "productId": "prod_VGqPWtsdfkAWqy",
+    "prices": []
+  },
+  {
+    "course": "Curso de Windsurf",
+    "slug": "windsurf-iniciacion-perfeccionamiento",
+    "productId": "prod_VGqPfyc4DeolJN",
+    "prices": [
+      {
+        "id": "price_1UGIixCkVFJsTE8LfmnqtvwC",
+        "nickname": "1 sesión suelta (2,5h)",
+        "amount": 4500
+      },
+      {
+        "id": "price_1UGIiyCkVFJsTE8LGsneGybO",
+        "nickname": "Bono 4 sesiones (10h)",
+        "amount": 15000
+      },
+      {
+        "id": "price_1UGIiyCkVFJsTE8LTNK5iwtw",
+        "nickname": "Campus intensivo (5 sesiones - 15h)",
+        "amount": 25000
+      }
+    ]
+  },
+  {
+    "course": "Mantenimiento Konpondu",
+    "slug": "mantenimiento-embarcaciones",
+    "productId": "prod_VGqPq4B5qBBk4i",
+    "prices": [
+      {
+        "id": "price_1UGIizCkVFJsTE8L087rmY6i",
+        "nickname": "Tarifa curso (8h)",
+        "amount": 10000
+      }
+    ]
+  },
+  {
+    "course": "Costura y reparación de velas",
+    "slug": "costura-reparacion-velas",
+    "productId": "prod_VGqPxiAOzJjJAp",
+    "prices": [
+      {
+        "id": "price_1UGIj0CkVFJsTE8LrouT06RC",
+        "nickname": "Tarifa taller (6h)",
+        "amount": 9000
+      }
+    ]
+  }
+]
