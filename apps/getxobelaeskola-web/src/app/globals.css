@@ -1138,10 +1138,10 @@ a:hover {
     margin: 0 auto !important;
   }
   .flip-card {
-    height: clamp(100px, 18vh, 125px) !important;
     width: 100% !important;
     max-width: 100% !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
   }
   .flip-card__face {
     padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 14px) !important;
