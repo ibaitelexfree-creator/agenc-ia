@@ -809,7 +809,7 @@ a:hover {
 }
 
 .scroll-engine-root {
-  height: 700dvh;
+  height: 800dvh;
   background-color: #0D2137;
 }
 .scroll-engine-inner {
@@ -826,13 +826,13 @@ a:hover {
 
 .canvas-container {
   width: 100%;
-  height: 700dvh;
+  height: 800dvh;
   position: absolute;
   top: 0;
   left: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: repeat(7, 100dvh);
+  grid-template-rows: repeat(8, minmax(100svh, 100dvh));
   background-color: #0D2137;
   grid-template-areas:
     "s1"
@@ -841,7 +841,8 @@ a:hover {
     "s4"
     "s5"
     "blog"
-    "reviews";
+    "reviews"
+    "cta";
 }
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
@@ -1117,70 +1118,77 @@ a:hover {
 /* 📱 Very Small Screens (e.g. < 586px Portrait) */
 @media (max-width: 585px) and (orientation: portrait) {
   .promise {
-    height: 100dvh !important;
+    height: auto !important;
     min-height: 100dvh !important;
-    max-height: 100dvh !important;
-    padding: clamp(6px, 1.5vh, 14px) clamp(8px, 2.5vw, 14px) !important;
+    max-height: none !important;
+    padding: 20px 16px 28px !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   .promise__title {
     font-size: clamp(1rem, 4vw, 1.25rem) !important;
-    margin-bottom: clamp(3px, 0.8vh, 6px) !important;
+    margin-bottom: 12px !important;
+    text-align: center !important;
   }
   .promise__grid {
     grid-template-columns: 1fr !important;
-    gap: clamp(5px, 1vh, 8px) !important;
-    width: 96% !important;
+    gap: 8px !important;
+    width: 100% !important;
     max-width: 320px !important;
     margin: 0 auto !important;
   }
   .flip-card {
-    height: clamp(92px, 17vh, 118px) !important;
+    height: clamp(84px, 15vh, 102px) !important;
     width: 100% !important;
     max-width: 100% !important;
     aspect-ratio: auto !important;
   }
   .flip-card__face {
-    padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 12px) !important;
+    padding: clamp(6px, 1vh, 10px) clamp(8px, 2vw, 14px) !important;
     justify-content: center !important;
+    border-radius: 10px !important;
+    box-sizing: border-box !important;
+  }
+  .flip-card__face--front {
+    border: 1.5px solid var(--color-border, #CBD5E1) !important;
   }
   .flip-card__face--back {
     padding-top: clamp(6px, 1vh, 10px) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.3) !important;
   }
   .flip-card__icon {
-    width: 24px !important;
-    height: 24px !important;
+    width: 22px !important;
+    height: 22px !important;
     margin-bottom: 2px !important;
   }
   .flip-card__icon svg {
-    width: 14px !important;
-    height: 14px !important;
+    width: 13px !important;
+    height: 13px !important;
   }
   .flip-card__title {
-    font-size: clamp(0.75rem, 3vw, 0.85rem) !important;
-    margin-bottom: 2px !important;
-    line-height: 1.15 !important;
+    font-size: clamp(0.72rem, 3vw, 0.82rem) !important;
+    margin-bottom: 1px !important;
+    line-height: 1.1 !important;
   }
   .flip-card__hook {
-    font-size: clamp(0.62rem, 2.5vw, 0.72rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(0.6rem, 2.4vw, 0.68rem) !important;
+    line-height: 1.15 !important;
     margin-bottom: 2px !important;
   }
   .flip-card__cta {
-    font-size: clamp(0.56rem, 2.2vw, 0.64rem) !important;
+    font-size: clamp(0.55rem, 2.1vw, 0.62rem) !important;
   }
   .flip-card__label {
-    font-size: clamp(0.6rem, 2.4vw, 0.7rem) !important;
-    margin-bottom: 2px !important;
+    font-size: clamp(0.58rem, 2.3vw, 0.66rem) !important;
+    margin-bottom: 1px !important;
   }
   .flip-card__desc {
-    font-size: clamp(0.6rem, 2.4vw, 0.7rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(0.58rem, 2.3vw, 0.66rem) !important;
+    line-height: 1.15 !important;
   }
 }
-/* 📱 Mobile Portrait: Responsive square card */
-@media (max-width: 768px) and (orientation: portrait) {
+/* 📱 Tablet Portrait (586px - 768px): Responsive square card */
+@media (min-width: 586px) and (max-width: 768px) and (orientation: portrait) {
   .flip-card {
     width: 100% !important;
     max-width: 100% !important;
@@ -1603,16 +1611,16 @@ body {
   box-sizing: border-box;
 }
 
-/* Fluid Global Section System: Applied to standalone pages (does not override landing canvas grid sections) */
-:not(.canvas-container) > .global-section,
-:not(.canvas-container) > .section-1-hero,
-:not(.canvas-container) > .promise,
-:not(.canvas-container) > .section-cta,
-:not(.canvas-container) > .section-2-identity,
-:not(.canvas-container) > .section-3-adapts,
-:not(.canvas-container) > .section-3-path,
-:not(.canvas-container) > [class*="Blog_section"],
-:not(.canvas-container) > [class*="Reviews_section"] {
+/* Fluid Global Section System: Eliminates rigid 100dvh capping to prevent content clipping */
+.global-section,
+.section-1-hero,
+.promise,
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
   width: 100%;
   max-width: 100%;
   min-height: clamp(350px, 75vh, 900px);
@@ -1628,15 +1636,15 @@ body {
 }
 
 @media (max-width: 767px) {
-  :not(.canvas-container) > .global-section,
-  :not(.canvas-container) > .section-1-hero,
-  :not(.canvas-container) > .promise,
-  :not(.canvas-container) > .section-cta,
-  :not(.canvas-container) > .section-2-identity,
-  :not(.canvas-container) > .section-3-adapts,
-  :not(.canvas-container) > .section-3-path,
-  :not(.canvas-container) > [class*="Blog_section"],
-  :not(.canvas-container) > [class*="Reviews_section"] {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
     min-height: auto;
     padding-top: clamp(1.25rem, 3vh, 3rem);
     padding-bottom: clamp(1.25rem, 3vh, 3rem);
@@ -1644,15 +1652,15 @@ body {
 }
 
 @media (orientation: landscape) and (max-height: 700px) {
-  :not(.canvas-container) > .global-section,
-  :not(.canvas-container) > .section-1-hero,
-  :not(.canvas-container) > .promise,
-  :not(.canvas-container) > .section-cta,
-  :not(.canvas-container) > .section-2-identity,
-  :not(.canvas-container) > .section-3-adapts,
-  :not(.canvas-container) > .section-3-path,
-  :not(.canvas-container) > [class*="Blog_section"],
-  :not(.canvas-container) > [class*="Reviews_section"] {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
     min-height: auto;
     height: auto;
     max-height: none;
