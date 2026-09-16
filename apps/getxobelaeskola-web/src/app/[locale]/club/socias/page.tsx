@@ -59,9 +59,12 @@ export default function ClubSociasPage() {
                             <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             {t('title')}
                         </span>
-                        <h1 className="text-[clamp(1.35rem,3.8vw,4rem)] md:text-[clamp(2.5rem,6vw,5.5rem)] font-display text-sea-foam leading-[1.1] md:leading-[1.05] uppercase w-full">
-                            {t('hero_title_part1')} <br />
-                            <span className="italic font-light text-accent/90">{t('hero_title_part2')}</span>
+                        <h1 className="text-[clamp(1.35rem,3.8vw,3.75rem)] md:text-[clamp(2.2rem,5vw,4.75rem)] font-display text-sea-foam leading-[1.1] md:leading-[1.05] uppercase w-full">
+                            {t.has('hero_title') ? t('hero_title') : (
+                                <>
+                                    {t('hero_title_part1')} {t('hero_title_part2')}
+                                </>
+                            )}
                         </h1>
                         <p className="w-full max-w-full md:max-w-2xl md:mx-auto text-foreground/70 font-light text-xs sm:text-sm md:text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-3 md:pl-12 mt-3 md:mt-8 text-left md:text-center">
                             {t('subtitle')} {t('description2')}

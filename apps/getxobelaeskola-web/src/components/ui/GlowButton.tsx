@@ -13,6 +13,7 @@ type GlowButtonProps = {
   color?: 'coral' | 'ocean' | 'garnet'
   size?: 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
   external?: boolean
+  className?: string
 }
 
 export function GlowButton({
@@ -22,6 +23,7 @@ export function GlowButton({
   color = 'coral',
   size = 'md',
   external = false,
+  className,
 }: GlowButtonProps) {
   const ref = useRef<HTMLAnchorElement>(null)
   const prefersReducedMotion = usePrefersReducedMotion()
@@ -48,6 +50,7 @@ export function GlowButton({
     <motion.a
       ref={ref}
       href={href}
+      className={className}
       onClick={(e) => {
         createRipple(e as any)
         onClick?.()

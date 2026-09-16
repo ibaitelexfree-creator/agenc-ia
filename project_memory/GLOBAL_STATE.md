@@ -3,8 +3,12 @@
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** 
-  1. Updated `/servicios/cursos/` page grid layout rules according to exact device portrait/landscape matrix.
-  2. Created dedicated `/club/instalaciones/` page with interactive morphing blobs, removed facilities/values from about page, and added INSTALACIONES to Navbar Club dropdown (2nd position).
+  1. Updated `/club/socias/` page Hero Title to "HAZTE SOCIA DEL CLUB" in a single line (replacing "Forma parte de <br /> nuestra tripulación").
+  2. Updated translations in all supported languages (`es.json`, `eu.json`, `en.json`, `fr.json`).
+  3. Ensured build and type checks pass cleanly.
+- **Status:** COMPLETED & VERIFIED.
+
+## Previous Activity
 - **Changes:**
   - Configured `CoursesListClient.tsx` grid to `grid-cols-1 min-[586px]:grid-cols-3`.
   - Ensures small mobile portrait (<586px) displays 1 card per row (`[ 1 ]`).

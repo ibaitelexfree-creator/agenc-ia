@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 import JsonLd from '@/components/shared/JsonLd';
 import dynamic from 'next/dynamic';
-import { LandingPageClientV2 } from '@/components/home/LandingPageClientV2';
-
+import { HomePrototypeLayout } from '@/components/home-prototypes/HomePrototypeLayout';
 import { getSeoAlternates } from '@/lib/seo';
 
 const NativeAppRedirect = dynamic(() => import('@/components/shared/NativeAppRedirect'), { ssr: false });
@@ -65,7 +64,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
     <div className="w-full">
       <JsonLd data={jsonLd} />
       <NativeAppRedirect locale={locale} />
-      <LandingPageClientV2 />
+      <HomePrototypeLayout variant="home-8" />
 
       {/* SEO Hidden H1 */}
       <h1 className="sr-only">
