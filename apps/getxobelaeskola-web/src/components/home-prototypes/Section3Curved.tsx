@@ -345,118 +345,73 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
           >
             {/* Capa beige con máscara SVG para Home-7 y Home-8 que perfora las ventanas hacia el vídeo de fondo */}
             {(variant === 'home-7' || variant === 'home-8') && (
-              <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+              <div
+                className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+                style={{
+                  WebkitBackfaceVisibility: 'hidden',
+                  WebkitTransform: 'translate3d(0,0,0)',
+                  transform: 'translateZ(0)'
+                }}
+              >
                 <svg className="w-full h-full absolute inset-0" preserveAspectRatio="none">
                   <defs>
-                    <mask id="s3-bubble-mask">
+                    <mask id="s3-bubble-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
                       <rect x="0" y="0" width="100%" height="100%" fill="white" />
                       
                       {/* Burbuja 1: cx 22%, cy 10% (8% hacia abajo desde 2%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[0].x}px, ${bubbleOffsets[0].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-s3-1">
-                            <motion.ellipse
-                              cx="22%" cy="10%"
-                              rx={isMobile ? "26" : "52"}
-                              ry={isMobile ? "23" : "46"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '22% 10%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-s3-1">
                           <ellipse
                             cx="22%" cy="10%"
                             rx={isMobile ? "26" : "52"}
                             ry={isMobile ? "23" : "46"}
                             fill="black"
-                            className="svg-bubble-s3-1"
+                            className="bubble-s3-entrance-1"
+                            style={{ transformOrigin: '22% 10%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 2: cx 78%, cy 82% - Escalada proporcional en móvil */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[1].x}px, ${bubbleOffsets[1].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-s3-2">
-                            <motion.ellipse
-                              cx="78%" cy="82%"
-                              rx={isMobile ? "36" : "72"}
-                              ry={isMobile ? "31" : "62"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '78% 82%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-s3-2">
                           <ellipse
                             cx="78%" cy="82%"
                             rx={isMobile ? "36" : "72"}
                             ry={isMobile ? "31" : "62"}
                             fill="black"
-                            className="svg-bubble-s3-2"
+                            className="bubble-s3-entrance-2"
+                            style={{ transformOrigin: '78% 82%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 3: cx 75%, cy 16% (13% abajo desde 3%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[2].x}px, ${bubbleOffsets[2].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-s3-3">
-                            <motion.ellipse
-                              cx="75%" cy="16%"
-                              rx={isMobile ? "24" : "48"}
-                              ry={isMobile ? "21" : "42"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.8, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '75% 16%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-s3-3">
                           <ellipse
                             cx="75%" cy="16%"
                             rx={isMobile ? "24" : "48"}
                             ry={isMobile ? "21" : "42"}
                             fill="black"
-                            className="svg-bubble-s3-3"
+                            className="bubble-s3-entrance-3"
+                            style={{ transformOrigin: '75% 16%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 4: cx 20%, cy 93% (10% izquierda desde 30%, 15% abajo desde 78%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[3].x}px, ${bubbleOffsets[3].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-s3-4">
-                            <motion.ellipse
-                              cx="20%" cy="93%"
-                              rx={isMobile ? "32" : "64"}
-                              ry={isMobile ? "28" : "56"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '20% 93%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-s3-4">
                           <ellipse
                             cx="20%" cy="93%"
                             rx={isMobile ? "32" : "64"}
                             ry={isMobile ? "28" : "56"}
                             fill="black"
-                            className="svg-bubble-s3-4"
+                            className="bubble-s3-entrance-4"
+                            style={{ transformOrigin: '20% 93%' }}
                           />
-                        )}
+                        </g>
                       </g>
                     </mask>
                   </defs>
@@ -632,6 +587,30 @@ Tú eliges cómo quieres navegar.`}
       {/* ===================== ESTILOS PARA HOME-7 BURBUJAS INVERTIDAS ===================== */}
       <style jsx>{`
         /* Animación fluida de deriva orgánica continua en reposo (claramente perceptible) */
+        .bubble-s3-entrance-1 {
+          animation: bubbleInS3 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+        }
+        .bubble-s3-entrance-2 {
+          animation: bubbleInS3 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+        }
+        .bubble-s3-entrance-3 {
+          animation: bubbleInS3 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.38s backwards;
+        }
+        .bubble-s3-entrance-4 {
+          animation: bubbleInS3 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+        }
+
+        @keyframes bubbleInS3 {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
         .svg-bubble-s3-1 {
           animation: svgFloatS3_1 14s infinite ease-in-out;
           transform-origin: 18% 15%;

@@ -294,122 +294,75 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
           >
             {/* Capa beige con máscara SVG para Home-7 y Home-8 que perfora las ventanas hacia el vídeo de fondo */}
             {(variant === 'home-7' || variant === 'home-8') && (
-              <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+              <div
+                className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+                style={{
+                  WebkitBackfaceVisibility: 'hidden',
+                  WebkitTransform: 'translate3d(0,0,0)',
+                  transform: 'translateZ(0)'
+                }}
+              >
                 <svg className="w-full h-full absolute inset-0" preserveAspectRatio="none">
                   <defs>
-                    <mask id="s2-bubble-mask">
+                    <mask id="s2-bubble-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
                       <rect x="0" y="0" width="100%" height="100%" fill="white" />
                       
                       {/* Burbuja 1: cx 20%, cy 10% - Escalada proporcional en móvil */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[0].x}px, ${bubbleOffsets[0].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-1">
-                            <motion.ellipse
-                              cx="20%" cy="10%"
-                              rx={isMobile ? "28" : "55"}
-                              ry={isMobile ? "24" : "48"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '20% 10%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-1">
                           <ellipse
                             cx="20%" cy="10%"
                             rx={isMobile ? "28" : "55"}
                             ry={isMobile ? "24" : "48"}
                             fill="black"
-                            className="svg-bubble-1"
+                            className="bubble-entrance-1"
+                            style={{ transformOrigin: '20% 10%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 2: cx 75% (5% izquierda desde 80%), cy 85% (10% abajo desde 75%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[1].x}px, ${bubbleOffsets[1].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-2">
-                            <motion.ellipse
-                              cx="75%" cy="85%"
-                              rx={isMobile ? "35" : "70"}
-                              ry={isMobile ? "30" : "60"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: '75% 85%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-2">
                           <ellipse
                             cx="75%" cy="85%"
                             rx={isMobile ? "35" : "70"}
                             ry={isMobile ? "30" : "60"}
                             fill="black"
-                            className="svg-bubble-2"
+                            className="bubble-entrance-2"
+                            style={{ transformOrigin: '75% 85%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 3: cx 35% (o 20% en <400px, 10% izquierda), cy 95% (15% abajo desde 80%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[2].x}px, ${bubbleOffsets[2].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-3">
-                            <motion.ellipse
-                              cx={isNarrowMobile ? "20%" : "35%"}
-                              cy="95%"
-                              rx={isMobile ? "26" : "50"}
-                              ry={isMobile ? "23" : "46"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.8, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: isNarrowMobile ? '20% 95%' : '35% 95%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-3">
                           <ellipse
                             cx={isNarrowMobile ? "20%" : "35%"}
                             cy="95%"
                             rx={isMobile ? "26" : "50"}
                             ry={isMobile ? "23" : "46"}
                             fill="black"
-                            className="svg-bubble-3"
+                            className="bubble-entrance-3"
+                            style={{ transformOrigin: isNarrowMobile ? '20% 95%' : '35% 95%' }}
                           />
-                        )}
+                        </g>
                       </g>
 
                       {/* Burbuja 4: cx 72% (79% en <400px, 7% a la derecha), cy 23% */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[3].x}px, ${bubbleOffsets[3].y}px, 0)` }}>
-                        {variant === 'home-8' ? (
-                          <g className="svg-bubble-4">
-                            <motion.ellipse
-                              cx={isNarrowMobile ? "79%" : "72%"}
-                              cy="23%"
-                              rx={isMobile ? "34" : "69"}
-                              ry={isMobile ? "30" : "60"}
-                              fill="black"
-                              initial={{ scale: 0, opacity: 0 }}
-                              whileInView={{ scale: 1, opacity: 1 }}
-                              viewport={{ once: false, amount: 0.65 }}
-                              transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                              style={{ transformOrigin: isNarrowMobile ? '79% 23%' : '72% 23%' }}
-                            />
-                          </g>
-                        ) : (
+                        <g className="svg-bubble-4">
                           <ellipse
                             cx={isNarrowMobile ? "79%" : "72%"}
                             cy="23%"
                             rx={isMobile ? "34" : "69"}
                             ry={isMobile ? "30" : "60"}
                             fill="black"
-                            className="svg-bubble-4"
+                            className="bubble-entrance-4"
+                            style={{ transformOrigin: isNarrowMobile ? '79% 23%' : '72% 23%' }}
                           />
-                        )}
+                        </g>
                       </g>
                     </mask>
                   </defs>
@@ -624,6 +577,30 @@ sentir el mar y disfrutar en equipo.`}
       {/* ===================== ESTILOS ESPECÍFICOS PARA HOME-7 BURBUJAS ===================== */}
       <style jsx>{`
         /* Animación fluida de deriva orgánica continua en reposo (claramente perceptible) */
+        .bubble-entrance-1 {
+          animation: bubbleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+        }
+        .bubble-entrance-2 {
+          animation: bubbleIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+        }
+        .bubble-entrance-3 {
+          animation: bubbleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.38s backwards;
+        }
+        .bubble-entrance-4 {
+          animation: bubbleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+        }
+
+        @keyframes bubbleIn {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
         .svg-bubble-1 {
           animation: svgFloat1 13s infinite ease-in-out;
           transform-origin: 20% 10%;
