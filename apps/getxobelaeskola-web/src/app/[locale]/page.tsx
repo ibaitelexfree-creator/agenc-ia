@@ -64,7 +64,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
     <div className="w-full">
       <JsonLd data={jsonLd} />
       <NativeAppRedirect locale={locale} />
-      <HomePrototypeLayout variant="home-8" />
+      <HomePrototypeLayout variant="home-8" waveVariant="animated-organic" blobsElevated={7} />
 
       {/* SEO Hidden H1 */}
       <h1 className="sr-only">

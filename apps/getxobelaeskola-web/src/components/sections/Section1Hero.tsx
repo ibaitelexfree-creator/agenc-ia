@@ -44,7 +44,7 @@ const BLOB_POSITIONS = [
 ]
 
 interface Section1HeroProps {
-  blobsElevated?: boolean
+  blobsElevated?: boolean | number
 }
 
 export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
@@ -623,7 +623,7 @@ export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
         style={{
           position: 'absolute',
           bottom: blobsElevated 
-            ? 'calc(var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))) + 5%)'
+            ? `calc(var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))) + ${typeof blobsElevated === 'number' ? blobsElevated : 7}%)`
             : 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
           transform: 'translateX(-50%)',
