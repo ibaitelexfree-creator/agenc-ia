@@ -1179,9 +1179,17 @@ a:hover {
   perspective: 1600px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 586px) {
   .flip-card {
-    height: calc(var(--card-h) * 1.05);
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .promise__grid {
+    max-width: 75% !important;
+    margin: 0 auto !important;
   }
 }
 
