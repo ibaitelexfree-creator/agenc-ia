@@ -15,27 +15,30 @@ const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection
 interface HomePrototypeLayoutProps {
   variant?: 'home-1' | 'home-2' | 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
   waveVariant?: WaveBandVariant
+  blobsElevated?: boolean
 }
 
 export function HomePrototypeLayout({ 
   variant = 'home-8',
-  waveVariant
+  waveVariant,
+  blobsElevated = false
 }: HomePrototypeLayoutProps) {
   // Mapeo automático de variante de ola si se accede por ruta de prototipo
   const resolvedWaveVariant: WaveBandVariant | undefined = waveVariant || (
-    variant === 'home-2' ? 'animated-sync' :
-    variant === 'home-3' ? 'animated-organic' :
-    variant === 'home-4' ? 'static-gentle' :
+    variant === 'home-2' || variant === 'home-3' || variant === 'home-4' ? 'animated-organic' :
     variant === 'home-5' ? 'floating-overlay' :
     undefined
   )
+
+  const isWavePrototype = variant === 'home-2' || variant === 'home-3' || variant === 'home-4'
+  const isBlobsElevated = blobsElevated || variant === 'home-3'
 
   return (
     <div className="w-full min-h-screen bg-[#0D2137] text-white flex flex-col relative overflow-x-hidden">
 
       {/* Sección 1: Hero original idéntico */}
       <section className="relative w-full">
-        <Section1Hero />
+        <Section1Hero blobsElevated={isBlobsElevated} />
       </section>
 
       {/* Sección 2: Rediseño curvo con vídeo y zona beige */}
@@ -46,12 +49,12 @@ export function HomePrototypeLayout({
             <Section1To2WaveBand variant={resolvedWaveVariant} />
           </div>
         )}
-        <Section2Curved variant={variant === 'home-2' || variant === 'home-3' || variant === 'home-4' ? 'home-8' : variant} />
+        <Section2Curved variant={isWavePrototype ? 'home-8' : variant} />
       </section>
 
       {/* Sección 3: Inversión con vídeo a la izquierda y zona beige a la derecha */}
       <section className="relative w-full">
-        <Section3Curved variant={variant} />
+        <Section3Curved variant={isWavePrototype ? 'home-8' : variant} />
       </section>
 
       {/* Sección 4: Descubre tu camino (Cursos / árbol de formación intacto) */}

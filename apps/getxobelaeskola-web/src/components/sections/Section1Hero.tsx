@@ -43,7 +43,11 @@ const BLOB_POSITIONS = [
   { left: '88%', top: '50%' },
 ]
 
-export function Section1Hero() {
+interface Section1HeroProps {
+  blobsElevated?: boolean
+}
+
+export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
   const t = useTranslations('s1')
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
@@ -618,7 +622,9 @@ export function Section1Hero() {
         className="hero-video-blobs-container"
         style={{
           position: 'absolute',
-          bottom: 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
+          bottom: blobsElevated 
+            ? 'calc(var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))) + 5%)'
+            : 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '100%',

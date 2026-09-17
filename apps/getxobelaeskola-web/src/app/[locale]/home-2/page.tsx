@@ -3,13 +3,13 @@ import { HomePrototypeLayout } from '@/components/home-prototypes/HomePrototypeL
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'Home 2 (Franja Ondulada Sincronizada) | Getxo Bela Eskola',
-    description: 'Prototipo con franja ondulada beige con ondulación paralela continua al unísono.',
+    title: 'Home 2 (Franja Ondulada Orgánica Marina - Ganador) | Getxo Bela Eskola',
+    description: 'Home con franja ondulada beige con olas orgánicas rítmicas arriba y abajo.',
   }
 }
 
 export default function Home2Page() {
-  return <HomePrototypeLayout variant="home-2" waveVariant="animated-sync" />
+  return <HomePrototypeLayout variant="home-2" waveVariant="animated-organic" />
 }
 
 export function generateStaticParams() {
