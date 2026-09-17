@@ -1667,3 +1667,9 @@ section {
     padding-right: 0.5rem !important;
   }
 }
+
+/* 🌊 Elevated Blobs (7% / 7vh elevation for primary Home) */
+.hero-video-blobs-container.blobs-elevated {
+  transform: translate(-50%, -7vh) !important;
+  margin-bottom: 0 !important;
+}

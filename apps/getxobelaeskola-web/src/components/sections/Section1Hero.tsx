@@ -619,14 +619,12 @@ export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
       </motion.div>
 
       <div
-        className="hero-video-blobs-container"
+        className={`hero-video-blobs-container ${blobsElevated ? 'blobs-elevated' : ''}`}
         style={{
           position: 'absolute',
-          bottom: blobsElevated 
-            ? `calc(var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px))) + ${typeof blobsElevated === 'number' ? blobsElevated : 7}%)`
-            : 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
+          bottom: 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: blobsElevated ? 'translate(-50%, -7vh)' : 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
           padding: '0 16px',
