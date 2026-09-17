@@ -5,7 +5,6 @@ import { Section1Hero } from '@/components/sections/Section1Hero'
 import { Section2Curved } from '@/components/home-prototypes/Section2Curved'
 import { Section3Curved } from '@/components/home-prototypes/Section3Curved'
 import dynamic from 'next/dynamic'
-import HomePreviewNav from '@/components/home-preview/HomePreviewNav'
 
 const Section3Path = dynamic(() => import('@/components/sections/Section3Path').then(mod => mod.Section3Path), { ssr: true })
 const Section4Why = dynamic(() => import('@/components/sections/Section4Why').then(mod => mod.Section4Why), { ssr: true })
@@ -13,14 +12,12 @@ const ReviewsSection = dynamic(() => import('@/components/sections/Reviews/Revie
 const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection'), { ssr: true })
 
 interface HomePrototypeLayoutProps {
-  variant: 'home-1' | 'home-2' | 'home-3' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
+  variant?: 'home-1' | 'home-2' | 'home-3' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
 }
 
-export function HomePrototypeLayout({ variant }: HomePrototypeLayoutProps) {
+export function HomePrototypeLayout({ variant = 'home-8' }: HomePrototypeLayoutProps) {
   return (
     <div className="w-full min-h-screen bg-[#0D2137] text-white flex flex-col relative overflow-x-hidden">
-      {/* Selector de prototipos fijado arriba */}
-      <HomePreviewNav current={variant} />
 
       {/* Sección 1: Hero original idéntico */}
       <section className="relative w-full">
