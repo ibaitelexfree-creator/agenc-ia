@@ -9,11 +9,15 @@ interface Section1To2WaveBandProps {
 }
 
 export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2WaveBandProps) {
+  // Home 2 ('animated-sync'): 25% más alta -> clamp(58px, 9vh, 105px)
+  // Las demás: clamp(46px, 7.2vh, 84px)
+  // TODAS transparentes (sin la zona azul oscura bg-[#0D2137] de atrás, solo la franja beige/blanca curvada)
+
   if (variant === 'static-gentle') {
     return (
       <div 
-        className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-[#0D2137]"
-        style={{ height: 'clamp(44px, 7vh, 80px)' }}
+        className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-transparent"
+        style={{ height: 'clamp(46px, 7.2vh, 84px)' }}
       >
         <svg 
           viewBox="0 0 1440 120" 
@@ -32,8 +36,8 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
   if (variant === 'animated-organic') {
     return (
       <div 
-        className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-[#0D2137]"
-        style={{ height: 'clamp(46px, 7.5vh, 84px)' }}
+        className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-transparent"
+        style={{ height: 'clamp(46px, 7.2vh, 84px)' }}
       >
         <div className="wave-track flex w-[200%] h-full">
           <svg 
@@ -79,8 +83,8 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
   if (variant === 'floating-overlay') {
     return (
       <div 
-        className="w-full absolute left-0 right-0 top-0 z-30 pointer-events-none overflow-hidden select-none"
-        style={{ height: 'clamp(48px, 7vh, 82px)', filter: 'drop-shadow(0 4px 12px rgba(0, 27, 58, 0.4))' }}
+        className="w-full absolute left-0 right-0 top-0 z-30 pointer-events-none overflow-hidden select-none bg-transparent"
+        style={{ height: 'clamp(48px, 7.5vh, 86px)' }}
       >
         <div className="wave-track-floating flex w-[200%] h-full">
           <svg 
@@ -123,10 +127,11 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
     )
   }
 
+  // Home 2: 'animated-sync' (Un 25% más alta: clamp(58px, 9vh, 105px), sin fondo azul oscuro)
   return (
     <div 
-      className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-[#0D2137]"
-      style={{ height: 'clamp(44px, 7vh, 80px)' }}
+      className="w-full relative z-20 pointer-events-none overflow-hidden select-none -mt-[1px] -mb-[1px] bg-transparent"
+      style={{ height: 'clamp(58px, 9vh, 105px)' }}
     >
       <div className="wave-track-sync flex w-[200%] h-full">
         <svg 
@@ -135,7 +140,7 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
           className="w-1/2 h-full flex-shrink-0 block"
         >
           <path 
-            d="M0,32 Q360,68 720,32 T1440,32 L1440,92 Q1080,56 720,92 T0,92 Z" 
+            d="M0,25 Q360,65 720,25 T1440,25 L1440,95 Q1080,55 720,95 T0,95 Z" 
             fill="#F6F2EC" 
           />
         </svg>
@@ -145,7 +150,7 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
           className="w-1/2 h-full flex-shrink-0 block"
         >
           <path 
-            d="M0,32 Q360,68 720,32 T1440,32 L1440,92 Q1080,56 720,92 T0,92 Z" 
+            d="M0,25 Q360,65 720,25 T1440,25 L1440,95 Q1080,55 720,95 T0,95 Z" 
             fill="#F6F2EC" 
           />
         </svg>
@@ -168,3 +173,4 @@ export function Section1To2WaveBand({ variant = 'animated-sync' }: Section1To2Wa
     </div>
   )
 }
+

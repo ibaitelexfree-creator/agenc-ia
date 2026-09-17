@@ -38,13 +38,14 @@ export function HomePrototypeLayout({
         <Section1Hero />
       </section>
 
-      {/* Franja beige ondulada divisoria entre Sección 1 y Sección 2 */}
-      {resolvedWaveVariant && (
-        <Section1To2WaveBand variant={resolvedWaveVariant} />
-      )}
-
       {/* Sección 2: Rediseño curvo con vídeo y zona beige */}
       <section className="relative w-full">
+        {/* Franja beige ondulada divisoria flotante sin zona azul oscura detrás */}
+        {resolvedWaveVariant && (
+          <div className="absolute left-0 right-0 top-0 -translate-y-1/2 z-30 pointer-events-none">
+            <Section1To2WaveBand variant={resolvedWaveVariant} />
+          </div>
+        )}
         <Section2Curved variant={variant === 'home-2' || variant === 'home-3' || variant === 'home-4' ? 'home-8' : variant} />
       </section>
 
