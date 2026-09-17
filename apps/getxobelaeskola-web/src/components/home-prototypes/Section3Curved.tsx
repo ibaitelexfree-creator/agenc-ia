@@ -9,7 +9,7 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { useScrollLock } from '@/hooks/useScrollLock'
 
 interface Section3CurvedProps {
-  variant: 'home-1' | 'home-2' | 'home-3' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
+  variant: 'home-1' | 'home-2' | 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
 }
 
 export function Section3Curved({ variant }: Section3CurvedProps) {
@@ -52,13 +52,13 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   // Burbuja 7: cx 35%, cy 93%
   // Burbuja 8: cx 80%, cy 80%
   useEffect(() => {
-    if (variant !== 'home-7' && variant !== 'home-8') return
+    if (variant !== 'home-3' && variant !== 'home-4' && variant !== 'home-5' && variant !== 'home-6' && variant !== 'home-7' && variant !== 'home-8' && variant !== 'home-9') return
 
     const basePositions = [
-      { xPct: 0.18, yPct: 0.15, radius: 50 },
-      { xPct: 0.75, yPct: 0.25, radius: 55 },
-      { xPct: 0.35, yPct: 0.93, radius: 65 },
-      { xPct: 0.80, yPct: 0.80, radius: 75 },
+      { xPct: 0.54, yPct: 0.14, radius: 50 }, // Burbuja 5
+      { xPct: 0.78, yPct: 0.82, radius: 65 }, // Burbuja 6
+      { xPct: 0.75, yPct: 0.46, radius: 50 }, // Burbuja 7
+      { xPct: 0.45, yPct: 0.81, radius: 52 }, // Burbuja 8
     ]
 
     let animFrame: number
@@ -83,10 +83,27 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
       if (!beigeZone) return
 
       const rect = beigeZone.getBoundingClientRect()
+
+      // Si el cursor no está sobre la zona beige donde están las burbujas, no repeler
+      if (
+        clientX < rect.left ||
+        clientX > rect.right ||
+        clientY < rect.top ||
+        clientY > rect.bottom
+      ) {
+        targetOffsets = [
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+        ]
+        return
+      }
+
       const mouseX = clientX - rect.left
       const mouseY = clientY - rect.top
 
-      const repelDist = 200 // Distancia de influencia de repulsión
+      const repelDist = 135 // Distancia de influencia precisa para evitar falsas repulsiones
 
       targetOffsets = basePositions.map((bubble) => {
         const bubbleX = rect.width * bubble.xPct
@@ -96,8 +113,8 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
         const dist = Math.sqrt(dx * dx + dy * dy)
 
         if (dist < repelDist && dist > 0) {
-          // Fuerza de empuje proporcional a la cercanía (máximo ~75px)
-          const force = (1 - dist / repelDist) * 75
+          // Fuerza de empuje suave y natural
+          const force = (1 - dist / repelDist) * 60
           const angle = Math.atan2(dy, dx)
           return {
             x: Math.cos(angle) * force,
@@ -207,10 +224,10 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
     offset: ['start end', 'end start']
   })
 
-  // Progreso de entrada de la sección (en home-5, home-6 y home-8 arranca de inmediato con el scroll para no perder golpes de desplazamiento)
+  // Progreso de entrada de la sección (en home-3, home-4, home-5, home-6, home-7, home-8 y home-9 arranca de inmediato con el scroll para no perder golpes de desplazamiento)
   const enterProgress = useTransform(
     scrollYProgress,
-    (variant === 'home-5' || variant === 'home-6' || variant === 'home-8') ? [0.0, 0.22] : [0.15, 0.45],
+    (variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8' || variant === 'home-9') ? [0.0, 0.22] : [0.15, 0.45],
     [0, 1]
   )
 
@@ -231,7 +248,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const desktopBeigeWidth = useTransform(
     enterProgress,
     [0, 1],
-    (variant === 'home-5' || variant === 'home-6' || variant === 'home-8') ? ['44%', '56%'] : ['28%', '56%']
+    (variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8' || variant === 'home-9') ? ['44%', '56%'] : ['28%', '56%']
   )
   const beigeWidth = isMobile ? '84%' : desktopBeigeWidth
 
@@ -257,7 +274,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
       <div className={`relative w-full h-full flex-1 ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
         
         {/* ===================== VÍDEO DE FONDO ===================== */}
-        {variant === 'home-7' || variant === 'home-8' ? (
+        {variant !== 'home-1' && variant !== 'home-2' ? (
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0D2137]">
             <video
               autoPlay
@@ -301,7 +318,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
           <div
             className={`absolute right-[calc(100%-2px)] top-0 bottom-0 z-20 pointer-events-none ${variant === 'home-6' ? 'w-[16vw] max-w-[280px]' : 'w-[14vw] sm:w-[12vw] lg:w-[9vw] max-w-[150px]'}`}
           >
-            {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3') && (
+            {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3' || variant === 'home-4' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8') && (
               /* Curva S náutica suave inversa */
               <svg
                 className="h-full w-full fill-[#F6F2EC] scale-x-[-1]"
@@ -311,40 +328,14 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                 <path d="M0,0 L0,800 C30,730 80,630 35,460 C-5,310 75,150 0,0 Z" />
               </svg>
             )}
-
-            {variant === 'home-6' && (
-              /* Home-6: Formas MUCHO más locas invertidas con curvas orgánicas y gotas de agua */
-              <svg
-                className="h-full w-full fill-[#F6F2EC] scale-x-[-1] overflow-visible"
-                viewBox="0 0 200 800"
-                preserveAspectRatio="none"
-              >
-                <path d="M0,0 L0,800 C60,780 140,750 150,710 C165,660 70,640 40,600 C-10,540 160,530 185,460 C210,380 90,360 45,310 C-15,250 170,220 160,150 C150,80 70,60 0,0 Z" />
-                <circle cx="175" cy="270" r="14" fill="#F6F2EC" opacity="0.95" />
-                <path d="M150,380 C175,370 190,400 175,420 C160,430 140,410 150,380 Z" fill="#F6F2EC" opacity="0.9" />
-                <circle cx="160" cy="590" r="18" fill="#F6F2EC" opacity="0.92" />
-                <path d="M135,660 C150,650 165,670 150,685 C135,695 125,675 135,660 Z" fill="#F6F2EC" opacity="0.85" />
-              </svg>
-            )}
-
-            {(variant === 'home-7' || variant === 'home-8') && (
-              /* Home-7 y Home-8: Curva sinuosa inversa */
-              <svg
-                className="h-full w-full fill-[#F6F2EC] scale-x-[-1]"
-                viewBox="0 0 100 800"
-                preserveAspectRatio="none"
-              >
-                <path d="M0,0 L0,800 C40,710 80,560 15,390 C-10,240 60,110 0,0 Z" />
-              </svg>
-            )}
           </div>
 
           {/* Bloque beige con contenido y máscaras de burbujas */}
           <div
-            className={`relative z-10 w-full h-full min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-16 sm:py-24 lg:py-28'} px-6 sm:px-12 md:px-16 lg:pl-24 lg:pr-16 overflow-hidden ${(variant === 'home-7' || variant === 'home-8') ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
+            className={`relative z-10 w-full h-full min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-16 sm:py-24 lg:py-28'} px-6 sm:px-12 md:px-16 lg:pl-24 lg:pr-16 overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
           >
-            {/* Capa beige con máscara SVG para Home-7 y Home-8 que perfora las ventanas hacia el vídeo de fondo */}
-            {(variant === 'home-7' || variant === 'home-8') && (
+            {/* Capa beige con máscara SVG que perfora las ventanas hacia el vídeo de fondo */}
+            {variant !== 'home-1' && variant !== 'home-2' && (
               <div
                 className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
                 style={{
@@ -358,21 +349,21 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                     <mask id="s3-bubble-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
                       <rect x="0" y="0" width="100%" height="100%" fill="white" />
                       
-                      {/* Burbuja 1: cx 22%, cy 10% (8% hacia abajo desde 2%) */}
+                      {/* Burbuja 1 (Burbuja 5 global): cx 54% (12% derecha), cy 14% (4% abajo) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[0].x}px, ${bubbleOffsets[0].y}px, 0)` }}>
                         <g className="svg-bubble-s3-1">
                           <ellipse
-                            cx="22%" cy="10%"
+                            cx="54%" cy="14%"
                             rx={isMobile ? "26" : "52"}
                             ry={isMobile ? "23" : "46"}
                             fill="black"
                             className="bubble-s3-entrance-1"
-                            style={{ transformOrigin: '22% 10%' }}
+                            style={{ transformOrigin: '54% 14%' }}
                           />
                         </g>
                       </g>
 
-                      {/* Burbuja 2: cx 78%, cy 82% - Escalada proporcional en móvil */}
+                      {/* Burbuja 2 (Burbuja 6 global): cx 78%, cy 82% - Escalada proporcional en móvil */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[1].x}px, ${bubbleOffsets[1].y}px, 0)` }}>
                         <g className="svg-bubble-s3-2">
                           <ellipse
@@ -386,30 +377,30 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                         </g>
                       </g>
 
-                      {/* Burbuja 3: cx 75%, cy 16% (13% abajo desde 3%) */}
+                      {/* Burbuja 3 (Burbuja 7 global): cx 75%, cy 46% (30% más abajo desde 16%) */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[2].x}px, ${bubbleOffsets[2].y}px, 0)` }}>
                         <g className="svg-bubble-s3-3">
                           <ellipse
-                            cx="75%" cy="16%"
+                            cx="75%" cy="46%"
                             rx={isMobile ? "24" : "48"}
                             ry={isMobile ? "21" : "42"}
                             fill="black"
                             className="bubble-s3-entrance-3"
-                            style={{ transformOrigin: '75% 16%' }}
+                            style={{ transformOrigin: '75% 46%' }}
                           />
                         </g>
                       </g>
 
-                      {/* Burbuja 4: cx 20%, cy 93% (10% izquierda desde 30%, 15% abajo desde 78%) */}
+                      {/* Burbuja 4 (Burbuja 8 global): cx 45% (25% derecha), cy 81% (12% arriba), 20% más pequeña */}
                       <g style={{ transform: `translate3d(${bubbleOffsets[3].x}px, ${bubbleOffsets[3].y}px, 0)` }}>
                         <g className="svg-bubble-s3-4">
                           <ellipse
-                            cx="20%" cy="93%"
-                            rx={isMobile ? "32" : "64"}
-                            ry={isMobile ? "28" : "56"}
+                            cx="45%" cy="81%"
+                            rx={isMobile ? "26" : "51"}
+                            ry={isMobile ? "22" : "45"}
                             fill="black"
                             className="bubble-s3-entrance-4"
-                            style={{ transformOrigin: '20% 93%' }}
+                            style={{ transformOrigin: '45% 81%' }}
                           />
                         </g>
                       </g>
@@ -430,8 +421,8 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                 
                 {/* Tag náutico superior */}
                 <motion.div
-                  initial={variant === 'home-7' ? {} : { opacity: 0, y: -15 }}
-                  whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: -15 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.1 }}
                 >
@@ -443,8 +434,8 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
                 {/* Título de la Sección 3 */}
                 <motion.h2
-                  initial={variant === 'home-7' ? {} : { opacity: 0, y: 30 }}
-                  whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: 30 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.7, delay: (variant === 'home-5' || variant === 'home-6') ? 0.1 : 0.18, type: 'spring', stiffness: 85, damping: 18 }}
                   className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.12] mb-5 sm:mb-6 break-words"
@@ -455,8 +446,8 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
                 {/* Separador artesanal náutico con ancla / símbolo náutico */}
                 <motion.div
-                  initial={variant === 'home-7' ? {} : { scaleX: 0, opacity: 0 }}
-                  whileInView={variant === 'home-7' ? {} : { scaleX: 1, opacity: 1 }}
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 0, opacity: 0 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 1, opacity: 1 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.65, delay: (variant === 'home-5' || variant === 'home-6') ? 0.12 : 0.28 }}
                   className="flex items-center gap-3 w-40 my-6 origin-left"
@@ -469,8 +460,8 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                 {/* Texto de contenido exacto */}
                 <div className="space-y-4 mb-8 text-left">
                   <motion.p
-                    initial={variant === 'home-7' ? {} : { opacity: 0, x: 25 }}
-                    whileInView={variant === 'home-7' ? {} : { opacity: 1, x: 0 }}
+                    initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, x: 25 }}
+                    whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, x: 0 }}
                     viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                     transition={{ duration: 0.75, delay: (variant === 'home-5' || variant === 'home-6') ? 0.15 : 0.35 }}
                     className="text-lg sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-5 py-1"
@@ -482,19 +473,19 @@ Tú eliges cómo quieres navegar.`}
                   </motion.p>
                 </div>
 
-                {/* Botón "LEER MÁS" centrado en móvil y con respiro inferior completo para sombras y resplandor */}
+                {/* Botón "LEER MÁS" centrado en móvil y desktop con respiro inferior completo para sombras y resplandor */}
                 <motion.div
-                  initial={variant === 'home-7' ? {} : { opacity: 0, y: 20 }}
-                  whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: 20 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.2 : 0.55 }}
-                  className="w-full flex justify-center lg:justify-start pt-2 pb-6"
+                  className="w-full flex justify-center pt-2 pb-6"
                 >
                   <GlowButton
                     onClick={() => setIsModalOpen(true)}
                     color="coral"
                     size="md"
-                    className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto lg:mx-0"
+                    className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto"
                   >
                     LEER MÁS
                   </GlowButton>
@@ -613,19 +604,19 @@ Tú eliges cómo quieres navegar.`}
 
         .svg-bubble-s3-1 {
           animation: svgFloatS3_1 14s infinite ease-in-out;
-          transform-origin: 18% 15%;
+          transform-origin: 54% 14%;
         }
         .svg-bubble-s3-2 {
           animation: svgFloatS3_2 16s infinite ease-in-out;
-          transform-origin: 75% 25%;
+          transform-origin: 78% 82%;
         }
         .svg-bubble-s3-3 {
           animation: svgFloatS3_3 13s infinite ease-in-out;
-          transform-origin: 35% 93%;
+          transform-origin: 75% 46%;
         }
         .svg-bubble-s3-4 {
           animation: svgFloatS3_4 15s infinite ease-in-out;
-          transform-origin: 80% 80%;
+          transform-origin: 45% 81%;
         }
 
         /* Movimientos acuáticos visibles y elegantes en reposo (±18-24px) */

@@ -13,7 +13,7 @@ const ReviewsSection = dynamic(() => import('@/components/sections/Reviews/Revie
 const BlogSection = dynamic(() => import('@/components/sections/Blog/BlogSection'), { ssr: true })
 
 interface HomePrototypeLayoutProps {
-  variant?: 'home-1' | 'home-2' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
+  variant?: 'home-1' | 'home-2' | 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8' | 'home-9' | 'home-10' | 'home-11' | 'home-12'
   waveVariant?: WaveBandVariant
   blobsElevated?: boolean | number
 }
@@ -27,38 +27,50 @@ export function HomePrototypeLayout({
     variant === 'home-5' ? 'floating-overlay' : undefined
   )
 
+  const isParchmentVariant = variant === 'home-10' || variant === 'home-11' || variant === 'home-12'
+  const curvedBaseVariant = (variant === 'home-2' || variant === 'home-9' || isParchmentVariant) ? 'home-8' : (variant || 'home-8')
+
+  const parchmentEffect = 
+    variant === 'home-10' ? 'classic' :
+    variant === 'home-11' ? 'cylindrical' :
+    variant === 'home-12' ? 'spring' :
+    'none'
+
   return (
     <div className="w-full min-h-screen bg-[#0D2137] text-white flex flex-col relative overflow-x-hidden">
 
       {/* Sección 1: Hero original idéntico */}
-      <section className="relative w-full">
+      <section 
+        className="relative w-full z-10 overflow-hidden"
+        style={{ isolation: 'isolate', contain: 'paint', clipPath: 'inset(0)' }}
+      >
         <Section1Hero blobsElevated={blobsElevated} />
       </section>
 
       {/* Sección 2: Rediseño curvo con vídeo y zona beige */}
-      <section className="relative w-full">
+      <section className="relative w-full z-20" style={{ isolation: 'isolate' }}>
         {/* Franja beige ondulada divisoria flotante sin zona azul oscura detrás */}
         {resolvedWaveVariant && (
           <div className="absolute left-0 right-0 top-0 -translate-y-1/2 z-30 pointer-events-none">
             <Section1To2WaveBand variant={resolvedWaveVariant} />
           </div>
         )}
-        <Section2Curved variant={variant === 'home-2' ? 'home-8' : variant} />
+        <Section2Curved variant={curvedBaseVariant} />
       </section>
 
       {/* Sección 3: Inversión con vídeo a la izquierda y zona beige a la derecha */}
       <section className="relative w-full">
-        <Section3Curved variant={variant === 'home-2' ? 'home-8' : variant} />
+        <Section3Curved variant={curvedBaseVariant} />
       </section>
 
-      {/* Sección 4: Descubre tu camino (Cursos / árbol de formación intacto) */}
-      <section className="relative w-full bg-[#0D2137]">
-        <Section3Path />
+      {/* Sección 4: Nuestra Promesa / Por qué navegar con nosotros (Flip cards intactas) */}
+      <section className="relative w-full bg-[#0D2137] z-20 overflow-visible">
+        <Section4Why variant={variant} />
       </section>
 
-      {/* Sección 5: Nuestra Promesa / Por qué navegar con nosotros (Flip cards intactas) */}
+      {/* Sección 5: Descubre tu camino (Cursos / árbol de formación con pergamino interactivo) */}
       <section className="relative w-full bg-[#0D2137]">
-        <Section4Why />
+        <Section3Path parchmentVariant={parchmentEffect} />
       </section>
 
       {/* Sección Blog: Noticias y Eventos intacta */}

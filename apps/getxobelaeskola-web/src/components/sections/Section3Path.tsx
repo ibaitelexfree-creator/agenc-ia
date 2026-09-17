@@ -40,10 +40,16 @@ const COURSE_TREE = {
   },
 }
  
+import { ParchmentWrapper, ParchmentEffectType } from '@/components/home-prototypes/ParchmentWrapper'
+
 type Level = 'basic' | 'mid' | null
 type Profile = 'youth' | 'adult' | null
- 
-export function Section3Path() {
+
+export interface Section3PathProps {
+  parchmentVariant?: ParchmentEffectType
+}
+
+export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = {}) {
   const t = useTranslations('s3')
   const [selectedLevel, setSelectedLevel] = useState<Level>(null)
   const [selectedProfile, setSelectedProfile] = useState<Profile>(null)
@@ -130,25 +136,30 @@ export function Section3Path() {
         aria-hidden
       />
  
-      {/* Contenido */}
-      <motion.div
-        animate={{
-          y: (isPhone && isVisualCompact) ? 35 : 0
-        }}
-        transition={{
-          type: 'spring',
-          stiffness: 90,
-          damping: 18,
-          mass: 1.2
-        }}
-        style={{
-          position: 'relative',
-          zIndex: 10,
-          width: '100%',
-          maxWidth: '800px',
-          padding: 'clamp(1.5rem, 4vh, 3rem) clamp(1.5rem, 5vw, 3rem)',
-        }}
+      <ParchmentWrapper
+        variant={parchmentVariant}
+        triggerKey={`${selectedLevel}-${selectedProfile}`}
       >
+        {/* Contenido */}
+        <motion.div
+          animate={{
+            y: (isPhone && isVisualCompact) ? 35 : 0
+          }}
+          transition={{
+            type: 'spring',
+            stiffness: 90,
+            damping: 18,
+            mass: 1.2
+          }}
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            width: '100%',
+            maxWidth: '800px',
+            padding: 'clamp(1rem, 3vh, 2.5rem) clamp(1rem, 4vw, 2.5rem)',
+            margin: '0 auto',
+          }}
+        >
         {/* Header */}
         <motion.div
           style={{ marginBottom: '1.5rem', textAlign: 'center' }}
@@ -331,6 +342,7 @@ export function Section3Path() {
           )}
         </AnimatePresence>
       </motion.div>
+      </ParchmentWrapper>
 
       {/* Criatura — estrella de mar elevada para evitar solapamiento con el botón de accesibilidad */}
       <Starfish
