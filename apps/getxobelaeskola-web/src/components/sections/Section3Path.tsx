@@ -41,6 +41,7 @@ const COURSE_TREE = {
 }
  
 import { ParchmentWrapper, ParchmentEffectType } from '@/components/home-prototypes/ParchmentWrapper'
+import { Section4To5BeigeExtension } from '@/components/home-prototypes/Section4To5BeigeExtension'
 
 type Level = 'basic' | 'mid' | null
 type Profile = 'youth' | 'adult' | null
@@ -108,6 +109,29 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
   const pathProgress = selectedLevel ? (selectedProfile ? 1.0 : 0.5) : 0
   const hideHeader = selectedLevel === 'mid' && selectedProfile === 'adult'
 
+  const isParchment = parchmentVariant !== 'none'
+  const isHome12Or13 = parchmentVariant === 'home-12' || parchmentVariant === 'home-13' || parchmentVariant === 'home-10'
+  const isExpanded = Boolean(selectedLevel)
+
+  const contentTransition = 
+    (parchmentVariant === 'home-12' || parchmentVariant === 'home-10')
+      ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
+      : parchmentVariant === 'home-13'
+      ? { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
+      : { type: 'spring' as const, stiffness: 90, damping: 18, mass: 1.2 }
+
+  const isCompactPadding = isParchment
+  const sectionMinHeight = isParchment ? 'auto' : '100dvh'
+
+  // Reducción perfecta del espacio libre vertical (-75%)
+  const sectionPaddingY = isParchment ? 'clamp(1rem, 2vh, 1.8rem)' : 'clamp(3rem, 7vh, 5.5rem)'
+
+  // Blanco Cristalino Minimalista detrás del mapa en Home 10, 11, 12, 13
+  const isPureWhite = parchmentVariant === 'home-10' || parchmentVariant === 'home-11' || parchmentVariant === 'home-12' || parchmentVariant === 'home-13'
+  const sectionBgColor = isParchment 
+    ? (isPureWhite ? '#FFFFFF' : '#F6F2EC')
+    : 'var(--foam)'
+
   return (
     <section
       className="section-3-path"
@@ -115,48 +139,49 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
         gridArea: 's4',
         position: 'relative',
         width: '100%',
-        minHeight: '100dvh',
-        backgroundColor: 'var(--foam)',
+        minHeight: isExpanded ? 'auto' : sectionMinHeight,
+        paddingTop: isParchment ? sectionPaddingY : undefined,
+        paddingBottom: isParchment ? sectionPaddingY : undefined,
+        backgroundColor: sectionBgColor,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         boxSizing: 'border-box',
+        overflow: isParchment ? 'visible' : 'hidden',
+        transition: 'padding 0.5s ease, background-color 0.4s ease'
       }}
     >
-      <RoutePath progress={pathProgress} />
-      <NauticalCompassRose />
+      {/* Velo/onda envolvente que extiende la zona beige de Sección 5 sobre la Sección 4 previa */}
+      {parchmentVariant && <Section4To5BeigeExtension variant={parchmentVariant} />}
+
+      {/* Rosa de los vientos y ruta: se ocultan en pergamino para dejar el fondo beige limpio */}
+      {!isParchment && (
+        <>
+          <RoutePath progress={pathProgress} />
+          <NauticalCompassRose />
+        </>
+      )}
  
-      {/* Mapa náutico de fondo — muy sutil */}
-      <Image
-        src="/images/ai/section3-nautical-map.webp"
-        alt=""
-        fill
-        quality={60}
-        style={{ objectFit: 'cover', objectPosition: 'center', opacity: 0.2 }}
-        aria-hidden
-      />
+
  
       <ParchmentWrapper
         variant={parchmentVariant}
-        triggerKey={`${selectedLevel}-${selectedProfile}`}
+        isExpanded={isExpanded}
+        _hasCourses={courses.length > 0}
       >
         {/* Contenido */}
         <motion.div
+          layout
           animate={{
             y: (isPhone && isVisualCompact) ? 35 : 0
           }}
-          transition={{
-            type: 'spring',
-            stiffness: 90,
-            damping: 18,
-            mass: 1.2
-          }}
+          transition={contentTransition}
           style={{
             position: 'relative',
             zIndex: 10,
             width: '100%',
-            maxWidth: '800px',
-            padding: 'clamp(1rem, 3vh, 2.5rem) clamp(1rem, 4vw, 2.5rem)',
+            maxWidth: (parchmentVariant === 'home-12' || parchmentVariant === 'home-13' || parchmentVariant === 'home-10' || parchmentVariant === 'classic') ? '1100px' : parchmentVariant === 'home-11' ? '820px' : '800px',
+            padding: isCompactPadding ? 'clamp(0.4rem, 1.2vh, 1rem) clamp(1rem, 3vw, 2.5rem)' : 'clamp(0.8rem, 2.5vh, 2rem) clamp(1rem, 3vw, 2.5rem)',
             margin: '0 auto',
           }}
         >
@@ -344,11 +369,13 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
       </motion.div>
       </ParchmentWrapper>
 
-      {/* Criatura — estrella de mar elevada para evitar solapamiento con el botón de accesibilidad */}
-      <Starfish
-        style={{ position: 'absolute', bottom: 'clamp(140px, 22vh, 190px)', left: '8%', zIndex: 5 }}
-        enterDelay={1.0}
-      />
+      {/* Criatura — estrella de mar: eliminada en Home 12 y 13 */}
+      {!isHome12Or13 && (
+        <Starfish
+          style={{ position: 'absolute', bottom: 'clamp(140px, 22vh, 190px)', left: '8%', zIndex: 5 }}
+          enterDelay={1.0}
+        />
+      )}
     </section>
   )
 }

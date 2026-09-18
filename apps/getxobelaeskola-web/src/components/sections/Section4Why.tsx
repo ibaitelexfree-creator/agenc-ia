@@ -114,9 +114,10 @@ import { Section3To4CurvedExtension, S3ToS4CurveVariant } from '@/components/hom
 
 interface Section4WhyProps {
   variant?: S3ToS4CurveVariant
+  contentVariant?: string
 }
 
-export function Section4Why({ variant }: Section4WhyProps = {}) {
+export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) {
   const tHome = useTranslations('home.features')
   const [isPhone, setIsPhone] = useState(false)
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
@@ -176,7 +177,7 @@ export function Section4Why({ variant }: Section4WhyProps = {}) {
     }
   }, [])
 
-  const isSupportedWave = variant && ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12'].includes(variant)
+  const isSupportedWave = variant && ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant)
 
   return (
     <section 
@@ -281,6 +282,42 @@ export function Section4Why({ variant }: Section4WhyProps = {}) {
             shadowMode: 'pure-clean',
           },
           'home-9': {
+            scale: 1.0,
+            waveTop: '0px',
+            waveX: '5.7%',
+            waveY: '0.8%',
+            containerY: '0.4%',
+            objectPosition: 'center 55%',
+            shadowMode: 'pure-clean',
+          },
+          'home-10': {
+            scale: 1.0,
+            waveTop: '0px',
+            waveX: '5.7%',
+            waveY: '0.8%',
+            containerY: '0.4%',
+            objectPosition: 'center 55%',
+            shadowMode: 'pure-clean',
+          },
+          'home-11': {
+            scale: 1.0,
+            waveTop: '0px',
+            waveX: '5.7%',
+            waveY: '0.8%',
+            containerY: '0.4%',
+            objectPosition: 'center 55%',
+            shadowMode: 'pure-clean',
+          },
+          'home-12': {
+            scale: 1.0,
+            waveTop: '0px',
+            waveX: '5.7%',
+            waveY: '0.8%',
+            containerY: '0.4%',
+            objectPosition: 'center 55%',
+            shadowMode: 'pure-clean',
+          },
+          'home-13': {
             scale: 1.0,
             waveTop: '0px',
             waveX: '5.7%',
@@ -439,7 +476,17 @@ export function Section4Why({ variant }: Section4WhyProps = {}) {
       {variant && <Section3To4CurvedExtension variant={variant} />}
 
 
-      <div className="promise__inner" style={{ position: 'relative', zIndex: 2 }}>
+      <div 
+        className="promise__inner" 
+        style={{ 
+          position: 'relative', 
+          zIndex: 2,
+          transform: (contentVariant === 'home-10' || contentVariant === 'home-11' || contentVariant === 'home-12' || contentVariant === 'home-13') 
+            ? 'translateY(-10%)' 
+            : 'none',
+          transition: 'transform 0.4s ease'
+        }}
+      >
         {t('eyebrow') ? (
           <>
             <p className="promise__eyebrow" style={{ color: 'rgba(255, 255, 255, 0.95)', textShadow: '0 2px 8px rgba(13,33,55,0.7)' }}>{t('title')}</p>

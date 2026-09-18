@@ -28,11 +28,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title,
     description,
-    alternates: getSeoAlternates('', locale),
+    alternates: getSeoAlternates('home-13', locale),
   };
 }
 
-export default async function LandingPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function Home10Page({ params: { locale } }: { params: { locale: string } }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
@@ -51,7 +51,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
       "latitude": 43.3441,
       "longitude": -3.0135
     },
-    "url": "https://getxobelaeskola.cloud",
+    "url": "https://getxobelaeskola.cloud/home-13",
     "telephone": "+34000000000",
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -64,7 +64,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
     <div className="w-full">
       <JsonLd data={jsonLd} />
       <NativeAppRedirect locale={locale} />
-      <HomePrototypeLayout variant="home-12" waveVariant="animated-organic" blobsElevated={7} />
+      <HomePrototypeLayout variant="home-13" waveVariant="animated-organic" blobsElevated={7} />
 
       {/* SEO Hidden H1 */}
       <h1 className="sr-only">

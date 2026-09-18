@@ -1,151 +1,101 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 
-export type ParchmentEffectType = 'classic' | 'cylindrical' | 'spring' | 'none'
+export type ParchmentEffectType =
+  | 'home-10'
+  | 'home-11'
+  | 'home-12'
+  | 'home-13'
+  | 'classic'
+  | 'cylindrical'
+  | 'spring'
+  | 'none'
 
 interface ParchmentWrapperProps {
   variant?: ParchmentEffectType
   children: React.ReactNode
-  triggerKey?: string | number
-  onToggleRoll?: () => void
+  isExpanded?: boolean
+  _hasCourses?: boolean
 }
 
 export function ParchmentWrapper({
   variant = 'none',
   children,
-  triggerKey,
-  onToggleRoll,
+  isExpanded = false,
+  _hasCourses = false,
 }: ParchmentWrapperProps) {
-  const [isManualRolled, setIsManualRolled] = useState(false)
-  const [pulseCounter, setPulseCounter] = useState(0)
-
-  // Disparar animación de enrollado / desenrollado al cambiar de paso (nivel/perfil)
-  useEffect(() => {
-    if (triggerKey !== undefined && triggerKey !== null) {
-      setPulseCounter((prev) => prev + 1)
-    }
-  }, [triggerKey])
-
   if (variant === 'none') {
     return <>{children}</>
   }
 
-  const handleRollClick = () => {
-    setIsManualRolled((prev) => !prev)
-    setPulseCounter((prev) => prev + 1)
-    onToggleRoll?.()
-  }
+  const isHome10 = variant === 'home-10'
+  const isHome11 = variant === 'home-11'
+  const isHome12 = variant === 'home-12'
+  const isHome13 = variant === 'home-13'
+  const isParchmentSuite = isHome10 || isHome11 || isHome12 || isHome13
+  const isCylindrical = isParchmentSuite || variant === 'cylindrical'
 
-  // Animaciones según variante
-  const getContentAnimation = () => {
-    if (isManualRolled) {
-      return {
-        scaleY: 0.05,
-        opacity: 0,
-        height: '0px',
-        overflow: 'hidden',
-        transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as const },
-      }
-    }
+  // 1. Anchura: En Home 10, 11, 12 y 13 es tan ancho como la pantalla (100vw)
+  const isFullWidth = isParchmentSuite || variant === 'classic'
+  const widthClasses = isFullWidth
+    ? 'w-full max-w-[100vw] px-0'
+    : 'w-full max-w-4xl px-3 sm:px-6'
 
-    if (variant === 'classic') {
-      return {
-        scaleY: [0.93, 1],
-        opacity: [0.75, 1],
-        transition: {
-          duration: 0.65,
-          ease: [0.25, 1, 0.5, 1] as const,
-        },
-      }
-    }
+  // 2. Eliminación de cajas amarillas / bordes pesados en toda la suite moderna
+  const noYellowBox = isParchmentSuite
 
-    if (variant === 'cylindrical') {
-      return {
-        rotateX: [12, -4, 0],
-        scale: [0.96, 1],
-        opacity: [0.8, 1],
-        transition: {
-          duration: 0.75,
-          ease: [0.16, 1, 0.3, 1] as const,
-        },
-      }
-    }
+  // 3. Muelle ultra suave de Home 13 como base ganadora para todos
+  const containerTransition = isHome12
+    ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
+    : { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
 
-    // Spring
-    return {
-      scale: [0.92, 1.025, 0.99, 1],
-      y: [-10, 4, -1, 0],
-      opacity: [0.7, 1],
-      transition: {
-        type: 'spring' as const,
-        stiffness: 280,
-        damping: 18,
-        mass: 0.9,
-      },
-    }
-  }
+  const rollerTransition = isHome12
+    ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
+    : { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
 
-  const getTopRollerAnimation = () => {
-    if (variant === 'cylindrical') {
-      return {
-        rotateX: isManualRolled ? 180 : [0, -40, 10, 0],
-        y: isManualRolled ? 20 : [0, -4, 0],
-      }
-    }
-    if (variant === 'spring') {
-      return {
-        y: isManualRolled ? 20 : [-6, 3, 0],
-        scale: isManualRolled ? 0.98 : [1, 1.015, 1],
-      }
-    }
-    // Classic
-    return {
-      y: isManualRolled ? 20 : [-4, 2, 0],
-    }
-  }
+  const topRollerAnimate = isCylindrical
+    ? { rotateX: isExpanded ? -15 : 0 }
+    : { y: 0 }
 
-  const getBottomRollerAnimation = () => {
-    if (variant === 'cylindrical') {
-      return {
-        rotateX: isManualRolled ? -180 : [0, 40, -10, 0],
-        y: isManualRolled ? -20 : [0, 4, 0],
-      }
-    }
-    if (variant === 'spring') {
-      return {
-        y: isManualRolled ? -20 : [6, -3, 0],
-        scale: isManualRolled ? 0.98 : [1, 1.015, 1],
-      }
-    }
-    // Classic
-    return {
-      y: isManualRolled ? -20 : [4, -2, 0],
-    }
-  }
+  const bottomRollerAnimate = isCylindrical
+    ? { rotateX: isExpanded ? 15 : 0 }
+    : { y: 0 }
+
+  // 4. Variantes de sombra en el rodillo superior sobre el mapa:
+  // Home 10: Sombra estándar de referencia
+  // Home 11: Variante 1 - Sombra atenuada al 25% (micro-sombra)
+  // Home 12: Variante 2 - Sombra eliminada (drop-shadow: none)
+  // Home 13: Variante 3 - Sombra eliminada al 100% y sin relieve (plano inmaculado)
+  const topRollerShadow = 
+    variant === 'home-12' || variant === 'home-13' ? '' :
+    variant === 'home-11' ? 'drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)]' :
+    'drop-shadow-[0_4px_10px_rgba(0,0,0,0.22)]'
+
+  const bottomRollerShadow = 
+    variant === 'home-12' || variant === 'home-13' ? '' :
+    variant === 'home-11' ? 'drop-shadow-[0_-2px_4px_rgba(0,0,0,0.06)]' :
+    'drop-shadow-[0_-4px_10px_rgba(0,0,0,0.22)]'
 
   return (
     <div
-      className="relative w-full flex flex-col items-center justify-center my-2 select-none"
+      className={`relative mx-auto flex flex-col items-center justify-center my-0 select-none transition-all duration-300 ${widthClasses}`}
       style={{
-        perspective: variant === 'cylindrical' ? '1200px' : undefined,
+        perspective: isCylindrical ? '1200px' : undefined,
       }}
     >
-      {/* Barra de Rodillo Pergamino Superior - Altura muy estrecha */}
+      {/* ========================================================================= */}
+      {/* 1. RODILLO PERGAMINO SUPERIOR (Tan ancho como la pantalla)                */}
+      {/* ========================================================================= */}
       <motion.div
-        key={`top-${pulseCounter}-${isManualRolled}`}
-        animate={getTopRollerAnimation()}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        onClick={handleRollClick}
-        role="button"
-        tabIndex={0}
-        aria-label={isManualRolled ? 'Desenrollar pergamino' : 'Enrollar pergamino'}
-        className="relative z-30 w-full max-w-[960px] px-2 sm:px-4 cursor-pointer group"
-        title="Haz clic para enrollar / desenrollar el pergamino"
+        layout
+        animate={topRollerAnimate}
+        transition={rollerTransition}
+        className="relative z-30 w-full"
       >
-        <div className="relative w-full h-7 sm:h-9 md:h-11 lg:h-12 drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-transform duration-200 group-hover:scale-[1.008]">
+        <div className={`relative w-full h-8 sm:h-10 md:h-12 lg:h-14 ${topRollerShadow}`}>
           <picture>
             <source
               media="(max-width: 640px)"
@@ -154,87 +104,114 @@ export function ParchmentWrapper({
             />
             <Image
               src="/images/parchment/pergamino-superior.webp"
-              alt="Pergamino náutico superior enrollado"
+              alt="Pergamino náutico superior"
               fill
               priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 960px"
-              className="object-fill sm:object-cover pointer-events-none"
+              sizes="100vw"
+              className="object-fill pointer-events-none"
             />
           </picture>
-
-          {/* Indicador interactivo flotante sutil */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#0D2137]/80 text-[#D4AF37] text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none shadow-md flex items-center gap-1.5 whitespace-nowrap">
-            <span>📜</span>
-            <span>{isManualRolled ? 'Clic para desenrollar' : 'Clic para enrollar'}</span>
-          </div>
         </div>
       </motion.div>
 
-      {/* Cuerpo del Pergamino que se Enrolla / Desenrolla */}
-      <div className="relative w-full overflow-hidden flex flex-col items-center">
-        <motion.div
-          key={`content-${pulseCounter}-${isManualRolled}`}
-          animate={getContentAnimation()}
-          style={{
-            transformOrigin: 'top center',
-            transformStyle: variant === 'cylindrical' ? 'preserve-3d' : undefined,
-          }}
-          className="relative w-full flex flex-col items-center"
-        >
-          {/* Luz/Sombra ambiental sobre el papel náutico */}
-          {variant === 'cylindrical' && (
-            <motion.div
-              initial={{ opacity: 0.35 }}
-              animate={{ opacity: [0.45, 0] }}
-              transition={{ duration: 0.7 }}
-              className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-b from-amber-900/15 via-transparent to-amber-900/15"
-            />
-          )}
-
-          {variant === 'spring' && (
-            <motion.div
-              initial={{ opacity: 0.6, scale: 0.98 }}
-              animate={{ opacity: 0, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="absolute inset-0 z-20 pointer-events-none ring-2 ring-[#0A7EC8]/30 rounded-xl"
-            />
-          )}
-
-          {/* Contenido envuelto (Sección de Cursos y Línea Náutica) */}
-          <div className="relative w-full">{children}</div>
-        </motion.div>
-      </div>
-
-      {/* Si está enrollado manualmente, banner de aviso para reabrir */}
-      <AnimatePresence>
-        {isManualRolled && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            onClick={handleRollClick}
-            className="my-4 px-5 py-2.5 bg-[#D4AF37] hover:bg-[#c49f2b] text-[#0D2137] font-bold text-sm rounded-full shadow-lg transition-all duration-200 cursor-pointer flex items-center gap-2"
-          >
-            <span>📜</span>
-            <span>Desenrollar carta de navegación</span>
-            <span>⚓</span>
-          </motion.button>
-        )}
-      </AnimatePresence>
-
-      {/* Barra de Rodillo Pergamino Inferior - Altura muy estrecha */}
+      {/* ========================================================================= */}
+      {/* 2. CUERPO DEL PERGAMINO                                                   */}
+      {/* ========================================================================= */}
       <motion.div
-        key={`bot-${pulseCounter}-${isManualRolled}`}
-        animate={getBottomRollerAnimation()}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        onClick={handleRollClick}
-        role="button"
-        tabIndex={0}
-        aria-label={isManualRolled ? 'Desenrollar pergamino' : 'Enrollar pergamino'}
-        className="relative z-30 w-full max-w-[960px] px-2 sm:px-4 cursor-pointer group"
-        title="Haz clic para enrollar / desenrollar el pergamino"
+        layout
+        transition={containerTransition}
+        className={`relative w-full overflow-hidden flex flex-col items-center ${
+          noYellowBox ? '' : 'shadow-[inset_0_0_40px_rgba(180,140,90,0.15)]'
+        }`}
+        style={{
+          transformStyle: isCylindrical ? 'preserve-3d' : undefined,
+          // Manera de fondo interior:
+          // Home 10: Blanco Cristalino Minimalista (#FFFFFF)
+          // Home 11: Fondo totalmente transparente sobre el blanco puro con mapa náutico
+          // Home 12: Fondo blanco puro (#FFFFFF) con sombra sutil perimetral
+          // Home 13: Fondo blanco cristalino (#FFFFFF) directo sin sombras ni bordes
+          backgroundColor: isHome11 ? 'transparent' : '#FFFFFF',
+          borderLeft: noYellowBox ? 'none' : '2px solid rgba(190, 155, 110, 0.4)',
+          borderRight: noYellowBox ? 'none' : '2px solid rgba(190, 155, 110, 0.4)',
+          boxShadow: isHome12 ? '0 10px 30px -10px rgba(0, 32, 64, 0.08)' : undefined
+        }}
       >
-        <div className="relative w-full h-7 sm:h-9 md:h-11 lg:h-12 drop-shadow-[0_-4px_10px_rgba(0,0,0,0.35)] transition-transform duration-200 group-hover:scale-[1.008]">
+        {/* ================================================================= */}
+        {/* FONDO DEL MAPA / PERGAMINO: 3 POSIBILIDADES SIN FONDO BEIGE       */}
+        {/* ================================================================= */}
+
+        {/* POSIBILIDAD 1 (Home 11): PERGAMINO.png con fondo extraído por canal alpha (recorte puro de papel) */}
+        {isHome11 && (
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <Image
+              src="/images/parchment/pergamino-cuerpo-transparent.png"
+              alt="Cuerpo del pergamino sin fondo"
+              fill
+              quality={95}
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        )}
+
+        {/* POSIBILIDAD 2 (Home 12 y Home 10): PERGAMINO.png original directo con mix-blend-multiply sobre blanco puro (elimina 100% el fondo plano convirtiéndolo en blanco inmaculado) */}
+        {(isHome12 || isHome10) && (
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <Image
+              src="/images/parchment/pergamino-png-original.png"
+              alt="Pergamino original sobre blanco"
+              fill
+              quality={95}
+              sizes="100vw"
+              className="object-cover mix-blend-multiply opacity-95"
+            />
+          </div>
+        )}
+
+        {/* POSIBILIDAD 3 (Home 13): PERGAMINO.png con filtro de contraste/brillo balanceado que funde a blanco absoluto los tonos de fondo beige */}
+        {isHome13 && (
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <Image
+              src="/images/parchment/pergamino-png-original.png"
+              alt="Pergamino blanco cristalino sin fondo"
+              fill
+              quality={95}
+              sizes="100vw"
+              className="object-cover"
+              style={{
+                filter: 'brightness(1.06) contrast(1.08)',
+                mixBlendMode: 'multiply'
+              }}
+            />
+          </div>
+        )}
+
+        {/* Efecto de luz ambiental cilíndrico en Home 11 y 12 */}
+        {isCylindrical && isExpanded && !isHome13 && (
+          <motion.div
+            initial={{ opacity: 0.2 }}
+            animate={{ opacity: [0.25, 0] }}
+            transition={{ duration: 1.2 }}
+            className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-amber-900/10 via-transparent to-amber-900/10"
+          />
+        )}
+
+        {/* Contenido: Árbol de opciones de cursos náuticos */}
+        <div className="relative z-20 w-full py-4 sm:py-6">
+          {children}
+        </div>
+      </motion.div>
+
+      {/* ========================================================================= */}
+      {/* 3. RODILLO PERGAMINO INFERIOR (Tan ancho como la pantalla)                */}
+      {/* ========================================================================= */}
+      <motion.div
+        layout
+        animate={bottomRollerAnimate}
+        transition={rollerTransition}
+        className="relative z-30 w-full"
+      >
+        <div className={`relative w-full h-8 sm:h-10 md:h-12 lg:h-14 ${bottomRollerShadow}`}>
           <picture>
             <source
               media="(max-width: 640px)"
@@ -243,19 +220,13 @@ export function ParchmentWrapper({
             />
             <Image
               src="/images/parchment/pergamino-inferior.webp"
-              alt="Pergamino náutico inferior enrollado"
+              alt="Pergamino náutico inferior"
               fill
               priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 960px"
-              className="object-fill sm:object-cover pointer-events-none"
+              sizes="100vw"
+              className="object-fill pointer-events-none"
             />
           </picture>
-
-          {/* Indicador interactivo inferior */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#0D2137]/80 text-[#D4AF37] text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-full backdrop-blur-sm pointer-events-none shadow-md flex items-center gap-1.5 whitespace-nowrap">
-            <span>📜</span>
-            <span>{isManualRolled ? 'Clic para desenrollar' : 'Clic para enrollar'}</span>
-          </div>
         </div>
       </motion.div>
     </div>

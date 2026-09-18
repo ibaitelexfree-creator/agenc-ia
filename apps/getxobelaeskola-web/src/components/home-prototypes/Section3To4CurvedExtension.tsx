@@ -2,15 +2,15 @@
 
 import React from 'react'
 
-export type S3ToS4CurveVariant = 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8' | 'home-9' | 'home-10' | 'home-11' | 'home-12' | string
+export type S3ToS4CurveVariant = 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8' | 'home-9' | 'home-10' | 'home-11' | 'home-12' | 'home-13' | string
 
 interface Section3To4CurvedExtensionProps {
   variant: S3ToS4CurveVariant
 }
 
 export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensionProps) {
-  // Se renderiza para las variantes home-3 a home-12
-  const isSupported = ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12'].includes(variant)
+  // Se renderiza para las variantes home-3 a home-13
+  const isSupported = ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant)
   if (!isSupported) {
     return null
   }
@@ -20,12 +20,12 @@ export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensi
   // Home 5 (Método 1): Sin drop-shadow CSS ni sombra difusa interna
   // Home 6 (Método 2): Solape negativo vertical (-3px hacia arriba) para fusionar el empalme
   // Home 7 (Método 3): Sellado geométrico SVG (comienza en -4px hacia arriba, limpio sin capas translúcidas)
-  // Home 8-12 (Método 4): Fusión perfecta: Sin sombras, sin filtros, extendido -4px hacia arriba y con tono beige puro continuo
+  // Home 8-13 (Método 4): Fusión perfecta: Sin sombras, sin filtros, extendido -4px hacia arriba y con tono beige puro continuo
 
   const isHome5 = variant === 'home-5'
   const isHome6 = variant === 'home-6'
   const isHome7 = variant === 'home-7'
-  const isHome8 = ['home-8', 'home-9', 'home-10', 'home-11', 'home-12'].includes(variant)
+  const isHome8 = ['home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant)
 
   const topOffset = isHome6 ? '-3px' : isHome8 ? '-4px' : '0px'
   const dropShadowClass = (isHome5 || isHome7 || isHome8) ? '' : 'drop-shadow-[0_8px_18px_rgba(0,18,38,0.18)]'

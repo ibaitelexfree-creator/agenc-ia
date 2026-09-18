@@ -2,8 +2,18 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** 
-  1. Copied Home 8 (clean background, no top shadow on image) to Home 4, 5, 6, 7, and 8.
+- **Task:** Home 10 (Copia Completa de Home con Pergamino de Home 12 Implantado)
+  1. **Copia exacta de Home en Home 10:** Replicada la estructura completa de `page.tsx` original (metadatos multilingües en es/eu/en/fr, JsonLd, NativeAppRedirect, Hero con oleaje, todas las secciones y SEO).
+  2. **Implantación del pergamino de Home 12 en Home 10:**
+     - Rodillos de pergamino tan anchos como la pantalla (`100vw`).
+     - Eliminado el recuadro amarillo, bordes y sombras intermedias.
+     - Fondo beige puro `#F6F2EC` continuo con las secciones 2 y 3.
+     - Sin mapa náutico exterior y sin estrella de mar.
+     - **Mapa náutico interior**: Vive dentro del pergamino y se revela progresivamente según se desenrolla el rodillo inferior.
+     - Muelle pausado y suave con inercia profunda (`stiffness: 45, damping: 20, mass: 1.8`), sin saltos bruscos.
+     - Despliegue de opciones del árbol de cursos y avance de la línea náutica de puntos 100% sincronizados.
+  3. **Verificación:** Probado vía HTTP con respuesta 200 OK y 0 errores de ESLint.
+- **Status:** COMPLETED & VERIFIED.
   2. Implemented 4 distinct strategies to eradicate the 3px horizontal shadow/seam between Section 3 beige and Section 4 curved beige extension (`Section3To4CurvedExtension.tsx`):
      - Home 5: Removed SVG drop shadow and diffuse blur shadow layer.
      - Home 6: Negative vertical overlap (`top: -3px`) with upward coordinates.
