@@ -81,3 +81,5 @@ export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensi
     </>
   )
 }
+  )
+}

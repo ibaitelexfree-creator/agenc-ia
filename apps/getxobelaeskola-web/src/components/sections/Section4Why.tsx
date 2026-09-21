@@ -331,6 +331,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         const currentStrategy = (variant && strategies[variant]) || strategies['home-3']
 
         const waveConfig = {
+        const waveConfig = {
           sizeClass: 'w-[102%] sm:w-[78%] lg:w-[58%] h-[70px] sm:h-[151px] lg:h-[188px]',
           leftClass: 'left-[-14%]',
           clipId: 's4-wave-clip-form4',
