@@ -1028,6 +1028,13 @@ a:hover {
   overflow: visible;
 }
 
+@media (max-height: 420px) {
+  .s4-top-wave-container,
+  .s3-s4-extension-curve {
+    display: none !important;
+  }
+}
+
 .promise__inner {
   max-width: var(--gbe-container-max, 1400px);
   margin: 0 auto;

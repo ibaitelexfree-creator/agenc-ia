@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Crab } from '@/components/creatures/Crab'
+import { Section3To4CurvedExtension, S3ToS4CurveVariant } from '@/components/home-prototypes/Section3To4CurvedExtension'
 
 interface FlipCardProps {
   icon: React.ReactNode
@@ -110,8 +111,6 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.65, 0, 0.35, 1] as const } },
 }
 
-import { Section3To4CurvedExtension, S3ToS4CurveVariant } from '@/components/home-prototypes/Section3To4CurvedExtension'
-
 interface Section4WhyProps {
   variant?: S3ToS4CurveVariant
   contentVariant?: string
@@ -177,7 +176,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
     }
   }, [])
 
-  const isSupportedWave = variant && ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant)
+  const isSupportedWave = Boolean(variant && ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant))
 
   return (
     <section 
@@ -331,7 +330,6 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         const currentStrategy = (variant && strategies[variant]) || strategies['home-3']
 
         const waveConfig = {
-        const waveConfig = {
           sizeClass: 'w-[102%] sm:w-[78%] lg:w-[58%] h-[70px] sm:h-[151px] lg:h-[188px]',
           leftClass: 'left-[-14%]',
           clipId: 's4-wave-clip-form4',
@@ -469,13 +467,6 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
                 </div>
               </div>
             )}
-            <style jsx>{`
-              @media (max-height: 420px) {
-                .s4-top-wave-container {
-                  display: none !important;
-                }
-              }
-            `}</style>
           </>
         )
       })()}
