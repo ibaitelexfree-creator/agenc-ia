@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 import JsonLd from '@/components/shared/JsonLd';
 import dynamic from 'next/dynamic';
 import { HomePrototypeLayout } from '@/components/home-prototypes/HomePrototypeLayout';
@@ -28,11 +28,11 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   return {
     title,
     description,
-    alternates: getSeoAlternates('', locale),
+    alternates: getSeoAlternates('home-12', locale),
   };
 }
 
-export default async function LandingPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function Home12Page({ params: { locale } }: { params: { locale: string } }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
@@ -51,7 +51,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
       "latitude": 43.3441,
       "longitude": -3.0135
     },
-    "url": "https://getxobelaeskola.cloud",
+    "url": "https://getxobelaeskola.cloud/home-12",
     "telephone": "+34000000000",
     "aggregateRating": {
       "@type": "AggregateRating",

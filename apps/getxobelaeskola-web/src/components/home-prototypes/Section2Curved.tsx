@@ -9,7 +9,7 @@ import { GlowButton } from '@/components/ui/GlowButton'
 import { useScrollLock } from '@/hooks/useScrollLock'
 
 interface Section2CurvedProps {
-  variant: 'home-1' | 'home-2' | 'home-3' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
+  variant: 'home-1' | 'home-2' | 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'home-7' | 'home-8'
 }
 
 export function Section2Curved({ variant }: Section2CurvedProps) {
@@ -52,13 +52,13 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
   // Burbuja 3: cx 55%, cy 80%
   // Burbuja 4: cx 72%, cy 23%
   useEffect(() => {
-    if (variant !== 'home-7' && variant !== 'home-8') return
+    if (variant === 'home-1' || variant === 'home-2') return
 
     const basePositions = [
-      { xPct: 0.20, yPct: 0.10, radius: 60 },
-      { xPct: 0.80, yPct: 0.75, radius: 75 },
-      { xPct: 0.45, yPct: 0.80, radius: 55 },
-      { xPct: 0.72, yPct: 0.23, radius: 75 },
+      { xPct: 0.20, yPct: 0.11, radius: 55 },
+      { xPct: 0.79, yPct: 0.79, radius: 70 },
+      { xPct: 0.35, yPct: 0.78, radius: 50 },
+      { xPct: 0.74, yPct: 0.23, radius: 65 },
     ]
 
     let animFrame: number
@@ -83,10 +83,27 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
       if (!beigeZone) return
 
       const rect = beigeZone.getBoundingClientRect()
+
+      // Si el cursor no está sobre la zona beige donde están las burbujas, no repeler
+      if (
+        clientX < rect.left ||
+        clientX > rect.right ||
+        clientY < rect.top ||
+        clientY > rect.bottom
+      ) {
+        targetOffsets = [
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+        ]
+        return
+      }
+
       const mouseX = clientX - rect.left
       const mouseY = clientY - rect.top
 
-      const repelDist = 200 // Distancia de influencia de repulsión
+      const repelDist = 135 // Distancia de influencia de repulsión precisa
 
       targetOffsets = basePositions.map((bubble) => {
         const bubbleX = rect.width * bubble.xPct
@@ -96,8 +113,8 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
         const dist = Math.sqrt(dx * dx + dy * dy)
 
         if (dist < repelDist && dist > 0) {
-          // Fuerza de empuje proporcional a la cercanía (máximo ~75px)
-          const force = (1 - dist / repelDist) * 75
+          // Fuerza de empuje suave y natural
+          const force = (1 - dist / repelDist) * 60
           const angle = Math.atan2(dy, dx)
           return {
             x: Math.cos(angle) * force,
@@ -210,12 +227,32 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
   // Progreso de entrada de la sección (0 cuando empieza a asomarse por abajo, 1 cuando está centrada)
   const enterProgress = useTransform(scrollYProgress, [0.15, 0.45], [0, 1])
 
-  // Expansión horizontal del ancho beige en Desktop para home-1..6 (28% -> 56%)
-  const beigeWidth = useTransform(enterProgress, [0, 1], ['28%', '56%'])
-  // Desplazamiento de la curva separadora pegada al borde derecho del beige
-  const separatorLeft = useTransform(enterProgress, [0, 1], ['27.8%', '55.8%'])
+  // Hook responsivo para detectar móvil y pantallas estrechas (<400px)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isNarrowMobile, setIsNarrowMobile] = useState(false)
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+      setIsNarrowMobile(window.innerWidth < 400)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
-  // Desplazamiento lateral para Home 1 (Slide-in)
+  // En Desktop el ancho beige se expande con el scroll.
+  const desktopBeigeWidth = useTransform(enterProgress, [0, 1], ['28%', '56%'])
+  const beigeWidth = isMobile ? '84%' : desktopBeigeWidth
+
+  // En Móvil: TODA la pieza sólida beige (rectángulo + curva ya anclada) se desplaza unida desde fuera hacia la derecha
+  // S2 sale de izquierda hacia derecha (de -100% a 0)
+  const mobileSlideX = useTransform(enterProgress, [0, 1], ['-100%', '0%'])
+
+  // Opacidad del texto para que solo aparezca mágicamente cuando la zona beige ya ha llegado a su posición final
+  const textOpacity = useTransform(enterProgress, [0.82, 1], [0, 1])
+  const textTranslateY = useTransform(enterProgress, [0.82, 1], [15, 0])
+
+  // Desplazamiento lateral para Home 1 (Slide-in) en Desktop
   const slideX = useTransform(enterProgress, [0, 1], [-80, 0])
   const blurFilter = useTransform(enterProgress, [0, 1], ['blur(8px)', 'blur(0px)'])
 
@@ -224,12 +261,12 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
   const unfoldOpacity = useTransform(enterProgress, [0, 0.5], [0.4, 1])
 
   return (
-    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} flex flex-col justify-center`}>
+    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} -mt-[1px] flex flex-col justify-stretch items-stretch`}>
       {/* Estructura Desktop Split & Mobile Stacked */}
-      <div className={`relative w-full ${variant === 'home-5' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
+      <div className={`relative w-full h-full flex-1 ${variant === 'home-5' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
         
         {/* ===================== VÍDEO DE FONDO ===================== */}
-        {variant === 'home-7' || variant === 'home-8' ? (
+        {variant !== 'home-1' && variant !== 'home-2' ? (
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0D2137]">
             <video
               autoPlay
@@ -258,279 +295,195 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
           </div>
         )}
 
-        {/* ===================== ZONA IZQUIERDA: BEIGE DINÁMICO / EDITORIAL ===================== */}
+        {/* ===================== ZONA IZQUIERDA: BEIGE + CURVA VERTICAL ===================== */}
         <motion.div
           style={{
             ...(variant !== 'home-7' ? { width: beigeWidth } : {}),
-            ...(variant === 'home-1' ? { x: slideX, filter: blurFilter } : {}),
+            x: isMobile ? mobileSlideX : (variant === 'home-1' ? slideX : 0),
+            ...(variant === 'home-1' ? { filter: blurFilter } : {}),
             ...(variant === 'home-2' ? { scaleY: unfoldScaleY, opacity: unfoldOpacity, transformOrigin: 'top center' } : {})
           }}
-          className={`relative z-10 w-full lg:w-[56%] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:pl-16 lg:pr-24 ${variant === 'home-5' ? 'py-12 sm:py-16 lg:py-20' : 'py-16 sm:py-24 lg:py-28'} overflow-hidden ${(variant === 'home-7' || variant === 'home-8') ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
+          className={`relative z-10 w-[84%] sm:w-[86%] lg:w-[56%] h-full min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
         >
-          {/* Capa beige con máscara SVG para Home-7 y Home-8 que perfora las ventanas hacia el vídeo de fondo */}
-          {(variant === 'home-7' || variant === 'home-8') && (
-            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-              <svg className="w-full h-full absolute inset-0" preserveAspectRatio="none">
-                <defs>
-                  <mask id="s2-bubble-mask">
-                    <rect x="0" y="0" width="100%" height="100%" fill="white" />
-                    
-                    {/* Burbuja 1: cx 20%, cy 10% */}
-                    <g style={{ transform: `translate3d(${bubbleOffsets[0].x}px, ${bubbleOffsets[0].y}px, 0)` }}>
-                      {variant === 'home-8' ? (
-                        <g className="svg-bubble-1">
-                          <motion.ellipse
-                            cx="20%" cy="10%" rx="55" ry="48" fill="black"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: false, amount: 0.65 }}
-                            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ transformOrigin: '20% 10%' }}
-                          />
-                        </g>
-                      ) : (
-                        <ellipse cx="20%" cy="10%" rx="55" ry="48" fill="black" className="svg-bubble-1" />
-                      )}
-                    </g>
-
-                    {/* Burbuja 2: cx 80%, cy 75% */}
-                    <g style={{ transform: `translate3d(${bubbleOffsets[1].x}px, ${bubbleOffsets[1].y}px, 0)` }}>
-                      {variant === 'home-8' ? (
-                        <g className="svg-bubble-2">
-                          <motion.ellipse
-                            cx="80%" cy="75%" rx="70" ry="60" fill="black"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: false, amount: 0.65 }}
-                            transition={{ duration: 0.85, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ transformOrigin: '80% 75%' }}
-                          />
-                        </g>
-                      ) : (
-                        <ellipse cx="80%" cy="75%" rx="70" ry="60" fill="black" className="svg-bubble-2" />
-                      )}
-                    </g>
-
-                    {/* Burbuja 3: cx 45%, cy 80% */}
-                    <g style={{ transform: `translate3d(${bubbleOffsets[2].x}px, ${bubbleOffsets[2].y}px, 0)` }}>
-                      {variant === 'home-8' ? (
-                        <g className="svg-bubble-3">
-                          <motion.ellipse
-                            cx="45%" cy="80%" rx="50" ry="46" fill="black"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: false, amount: 0.65 }}
-                            transition={{ duration: 0.8, delay: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ transformOrigin: '45% 80%' }}
-                          />
-                        </g>
-                      ) : (
-                        <ellipse cx="45%" cy="80%" rx="50" ry="46" fill="black" className="svg-bubble-3" />
-                      )}
-                    </g>
-
-                    {/* Burbuja 4: cx 72%, cy 23% */}
-                    <g style={{ transform: `translate3d(${bubbleOffsets[3].x}px, ${bubbleOffsets[3].y}px, 0)` }}>
-                      {variant === 'home-8' ? (
-                        <g className="svg-bubble-4">
-                          <motion.ellipse
-                            cx="72%" cy="23%" rx="69" ry="60" fill="black"
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: false, amount: 0.65 }}
-                            transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                            style={{ transformOrigin: '72% 23%' }}
-                          />
-                        </g>
-                      ) : (
-                        <ellipse cx="72%" cy="23%" rx="69" ry="60" fill="black" className="svg-bubble-4" />
-                      )}
-                    </g>
-                  </mask>
-                </defs>
-                <rect x="0" y="0" width="100%" height="100%" fill="#F6F2EC" mask="url(#s2-bubble-mask)" />
-              </svg>
-            </div>
-          )}
-
-          {/* ===================== CONTENIDO EDITORIAL CON ANIMACIONES DIFERENCIADAS ===================== */}
-          <div className="max-w-xl mx-auto lg:mx-0 relative z-20 w-full">
-            
-            {/* Tag náutico superior */}
-            <motion.div
-              initial={variant === 'home-7' ? {} : { opacity: 0, y: -15 }}
-              whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.35em] text-xs font-mono font-semibold mb-6">
-                <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
-                Identidad & Comunidad
-              </span>
-            </motion.div>
-
-            {/* Título de la Sección 2 según variante de animación */}
-            {variant === 'home-3' ? (
-              /* Home 3: Split words stagger náutico */
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.3 }}
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: { staggerChildren: 0.12 }
-                  }
+          {/* Bloque beige con contenido y máscaras de burbujas */}
+          <div
+            className={`relative z-10 w-full h-full min-h-[85vh] lg:min-h-screen self-stretch flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:pl-16 lg:pr-24 ${variant === 'home-5' ? 'py-12 sm:py-16 lg:py-20' : 'py-16 sm:py-24 lg:py-28'} overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
+          >
+            {/* Capa beige con máscara SVG que perfora las ventanas hacia el vídeo de fondo */}
+            {variant !== 'home-1' && variant !== 'home-2' && (
+              <div
+                className="absolute inset-0 pointer-events-none z-0 overflow-hidden"
+                style={{
+                  WebkitBackfaceVisibility: 'hidden',
+                  WebkitTransform: 'translate3d(0,0,0)',
+                  transform: 'translateZ(0)'
                 }}
-                className="text-3xl sm:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.08] mb-6 flex flex-wrap gap-x-3 gap-y-1"
               >
-                {['¿Qué', 'es', 'Getxo', 'Bela', 'Eskola?'].map((word, wIdx) => (
-                  <motion.span
-                    key={wIdx}
-                    variants={{
-                      hidden: { opacity: 0, y: 25, rotate: -2 },
-                      visible: { opacity: 1, y: 0, rotate: 0, transition: { duration: 0.6 } }
-                    }}
-                    className="inline-block"
-                  >
-                    {word}
-                  </motion.span>
-                ))}
-              </motion.h2>
-            ) : (
-              /* Home 6, 5, 1, 2 y 7: Cascada stagger fluida / muelle */
-              <motion.h2
-                initial={variant === 'home-7' ? {} : { opacity: 0, y: 30 }}
-                whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.7, delay: 0.18, type: 'spring', stiffness: 85, damping: 18 }}
-                className="text-3xl sm:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.08] mb-6"
-              >
-                ¿Qué es<br />
-                Getxo Bela Eskola?
-              </motion.h2>
+                <svg className="w-full h-full absolute inset-0" preserveAspectRatio="none">
+                  <defs>
+                    <mask id="s2-bubble-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="100%" height="100%">
+                      <rect x="0" y="0" width="100%" height="100%" fill="white" />
+                      
+                      {/* Burbuja 1: cx 20%, cy 11% (1% abajo desde 10%) */}
+                      <g style={{ transform: `translate3d(${bubbleOffsets[0].x}px, ${bubbleOffsets[0].y}px, 0)` }}>
+                        <g className="svg-bubble-1">
+                          <ellipse
+                            cx="20%" cy="11%"
+                            rx={isMobile ? "28" : "55"}
+                            ry={isMobile ? "24" : "48"}
+                            fill="black"
+                            className="bubble-entrance-1"
+                            style={{ transformOrigin: '20% 11%' }}
+                          />
+                        </g>
+                      </g>
+
+                      {/* Burbuja 2: cx 79% (4% derecha), cy 79% (6% arriba) */}
+                      <g style={{ transform: `translate3d(${bubbleOffsets[1].x}px, ${bubbleOffsets[1].y}px, 0)` }}>
+                        <g className="svg-bubble-2">
+                          <ellipse
+                            cx="79%" cy="79%"
+                            rx={isMobile ? "35" : "70"}
+                            ry={isMobile ? "30" : "60"}
+                            fill="black"
+                            className="bubble-entrance-2"
+                            style={{ transformOrigin: '79% 79%' }}
+                          />
+                        </g>
+                      </g>
+
+                      {/* Burbuja 3: cx 35% (o 20% en <400px), cy 78% (7% más arriba desde 85%) */}
+                      <g style={{ transform: `translate3d(${bubbleOffsets[2].x}px, ${bubbleOffsets[2].y}px, 0)` }}>
+                        <g className="svg-bubble-3">
+                          <ellipse
+                            cx={isNarrowMobile ? "20%" : "35%"}
+                            cy="78%"
+                            rx={isMobile ? "26" : "50"}
+                            ry={isMobile ? "23" : "46"}
+                            fill="black"
+                            className="bubble-entrance-3"
+                            style={{ transformOrigin: isNarrowMobile ? '20% 78%' : '35% 78%' }}
+                          />
+                        </g>
+                      </g>
+
+                      {/* Burbuja 4: cx 74% (81% en <400px, 2% a la derecha), cy 23% */}
+                      <g style={{ transform: `translate3d(${bubbleOffsets[3].x}px, ${bubbleOffsets[3].y}px, 0)` }}>
+                        <g className="svg-bubble-4">
+                          <ellipse
+                            cx={isNarrowMobile ? "81%" : "74%"}
+                            cy="23%"
+                            rx={isMobile ? "34" : "69"}
+                            ry={isMobile ? "30" : "60"}
+                            fill="black"
+                            className="bubble-entrance-4"
+                            style={{ transformOrigin: isNarrowMobile ? '81% 23%' : '74% 23%' }}
+                          />
+                        </g>
+                      </g>
+                    </mask>
+                  </defs>
+                  <rect x="0" y="0" width="100%" height="100%" fill="#F6F2EC" mask="url(#s2-bubble-mask)" />
+                </svg>
+              </div>
             )}
 
-            {/* Separador artesanal náutico con estrella */}
-            <motion.div
-              initial={variant === 'home-7' ? {} : { scaleX: 0, opacity: 0 }}
-              whileInView={variant === 'home-7' ? {} : { scaleX: 1, opacity: 1 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.65, delay: 0.28 }}
-              className="flex items-center gap-3 w-40 my-6 origin-left"
-            >
-              <div className="h-[1.5px] flex-1 bg-gradient-to-r from-[#9E7F41] to-transparent" />
-              <span className="text-[#E63900] text-xl font-bold">✦</span>
-              <div className="h-[1.5px] flex-1 bg-gradient-to-l from-[#9E7F41] to-transparent" />
-            </motion.div>
+            {/* ===================== CONTENIDO EDITORIAL CON ANIMACIONES DIFERENCIADAS ===================== */}
+            {/* Zona invisible responsiva que encapsula todo el contenido con suficiente holgura inferior para halos y sombras */}
+            <div className="relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-8 sm:pb-10">
+              <motion.div
+                style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
+                className="max-w-xl mx-auto lg:mx-0 w-full pb-4"
+              >
+                
+                {/* Tag náutico superior */}
+                <motion.div
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: -15 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                  <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-4 sm:mb-6">
+                    <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
+                    Identidad & Comunidad
+                  </span>
+                </motion.div>
 
-            {/* Frases editoriales con jerarquía fiel */}
-            <div className="space-y-6 mb-10 text-left">
-              <motion.p
-                initial={variant === 'home-7' ? {} : { opacity: 0, x: -25 }}
-                whileInView={variant === 'home-7' ? {} : { opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.75, delay: 0.35 }}
-                className="text-xl sm:text-2xl lg:text-[1.7rem] font-light text-[#0D2137]/90 leading-snug border-l-2 border-[#9E7F41] pl-5 py-1"
-              >
-                No somos una escuela convencional, sino una comunidad cercana y con valores.
-              </motion.p>
-              <motion.p
-                initial={variant === 'home-7' ? {} : { opacity: 0, x: -20 }}
-                whileInView={variant === 'home-7' ? {} : { opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.75, delay: 0.45 }}
-                className="text-base sm:text-lg lg:text-xl font-normal text-[#0D2137]/75 leading-relaxed pl-5"
-              >
-                Un lugar donde aprender a navegar, compartir y disfrutar de la mar.
-              </motion.p>
-            </div>
+                {/* Título de sección h2 náutico */}
+                <motion.div
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: 25 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                  <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif tracking-tight text-[#0D2137] leading-[1.12] mb-5 sm:mb-6 break-words">
+                    Más que una escuela,{' '}
+                    <span className="italic font-light text-[#9E7F41]">una forma de vivir el mar.</span>
+                  </h2>
+                </motion.div>
 
-            {/* Botón "LEER MÁS" idéntico a la identidad */}
-            <motion.div
-              initial={variant === 'home-7' ? {} : { opacity: 0, y: 20 }}
-              whileInView={variant === 'home-7' ? {} : { opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.55 }}
-            >
-              <GlowButton
-                onClick={() => setIsModalOpen(true)}
-                color="coral"
-                size="md"
-                className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer"
+              {/* Divisor dorado sutil */}
+              <motion.div
+                initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 0 }}
+                whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 1 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="w-24 h-[1.5px] bg-[#9E7F41] mb-8 origin-left"
+              />
+
+              {/* Texto de contenido exacto */}
+              <div className="space-y-4 mb-8 text-left">
+                <motion.p
+                  initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, x: -20 }}
+                  whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ duration: 0.7, delay: 0.35 }}
+                  className="text-lg sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-5 py-1"
+                >
+                  {`No importa tu edad ni tu experiencia previa.
+Navegar es aprender a escuchar el viento,
+sentir el mar y disfrutar en equipo.`}
+                </motion.p>
+              </div>
+
+              {/* Botón "LEER MÁS" idéntico a la identidad centrado en móvil y desktop con respiro inferior completo para sombras y resplandor */}
+              <motion.div
+                initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, y: 20 }}
+                whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: 0.55 }}
+                className="w-full flex justify-center pt-2 pb-6"
               >
-                LEER MÁS
-              </GlowButton>
+                <GlowButton
+                  onClick={() => setIsModalOpen(true)}
+                  color="coral"
+                  size="md"
+                  className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto"
+                >
+                  LEER MÁS
+                </GlowButton>
+              </motion.div>
             </motion.div>
           </div>
-        </motion.div>
-
-        {/* ===================== SEPARADORES ORGÁNICOS SEGÚN VARIANTE ===================== */}
-        {/* Desktop Separators (Vertical Wave / Curve) que acompaña la apertura de la zona beige */}
-        <motion.div
-          style={variant !== 'home-7' ? { left: separatorLeft } : {}}
-          className={`hidden lg:block absolute left-[55.8%] top-0 bottom-0 z-20 pointer-events-none ${variant === 'home-6' ? 'w-[16vw] max-w-[280px]' : 'w-[9vw] max-w-[150px]'}`}
-        >
-          {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3') && (
-            /* Curva S náutica suave, elegante y minimalista */
-            <svg
-              className="h-full w-full fill-[#F6F2EC]"
-              viewBox="0 0 100 800"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,0 L0,800 C30,730 80,630 35,460 C-5,310 75,150 0,0 Z" />
-            </svg>
-          )}
-
-          {variant === 'home-6' && (
-            /* Home-6: Formas MUCHO más locas, orgánicas, con curvas entrantes y salientes como gotas de agua */
-            <svg
-              className="h-full w-full fill-[#F6F2EC] overflow-visible"
-              viewBox="0 0 200 800"
-              preserveAspectRatio="none"
-            >
-              {/* Frontera líquida sinuosa de gran penetración */}
-              <path d="M0,0 L0,800 C60,780 140,750 150,710 C165,660 70,640 40,600 C-10,540 160,530 185,460 C210,380 90,360 45,310 C-15,250 170,220 160,150 C150,80 70,60 0,0 Z" />
-              {/* Gotas líquidas y protuberancias orgánicas desprendidas */}
-              <circle cx="175" cy="270" r="14" fill="#F6F2EC" opacity="0.95" />
-              <path d="M150,380 C175,370 190,400 175,420 C160,430 140,410 150,380 Z" fill="#F6F2EC" opacity="0.9" />
-              <circle cx="160" cy="590" r="18" fill="#F6F2EC" opacity="0.92" />
-              <path d="M135,660 C150,650 165,670 150,685 C135,695 125,675 135,660 Z" fill="#F6F2EC" opacity="0.85" />
-            </svg>
-          )}
-
-          {(variant === 'home-7' || variant === 'home-8') && (
-            /* Home-7 y Home-8: Curva sinuosa fluida con orillas orgánicas */
-            <svg
-              className="h-full w-full fill-[#F6F2EC]"
-              viewBox="0 0 100 800"
-              preserveAspectRatio="none"
-            >
-              <path d="M0,0 L0,800 C40,710 80,560 15,390 C-10,240 60,110 0,0 Z" />
-            </svg>
-          )}
-        </motion.div>
-
-        {/* Mobile Separators (Horizontal Wave / Curve between Beige & Video) */}
-        <div className="block lg:hidden w-full h-[65px] relative -mt-[1px] z-20 pointer-events-none bg-[#F6F2EC]">
-          <svg
-            className="w-full h-full fill-[#0D2137]"
-            viewBox="0 0 1000 100"
-            preserveAspectRatio="none"
-          >
-            {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3') && (
-              <path d="M0,100 L1000,100 L1000,40 C700,95 350,10 0,60 Z" />
-            )}
-            {variant === 'home-6' && (
-              /* Versión móvil loca con protuberancias de gota */
-              <path d="M0,100 L1000,100 L1000,20 C880,95 820,10 720,80 C600,130 520,-20 400,70 C300,120 200,-10 100,75 C50,100 0,30 0,30 Z" />
-            )}
-            {(variant === 'home-7' || variant === 'home-8') && (
-              <path d="M0,100 L1000,100 L1000,30 C750,90 400,20 0,70 Z" />
-            )}
-          </svg>
         </div>
+
+          {/* ===================== CURVA VERTICAL ORGÁNICA ===================== */}
+          {/* Anclada directamente al borde derecho del bloque beige: coincide exactamente en altura (top 0 a bottom 0) */}
+          <div
+            className={`absolute left-[calc(100%-2px)] top-0 bottom-0 z-20 pointer-events-none ${variant === 'home-6' ? 'w-[16vw] max-w-[280px]' : 'w-[14vw] sm:w-[12vw] lg:w-[9vw] max-w-[150px]'}`}
+          >
+            {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3' || variant === 'home-4' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8') && (
+              /* Curva S náutica suave, elegante y minimalista */
+              <svg
+                className="h-full w-full fill-[#F6F2EC]"
+                viewBox="0 0 100 800"
+                preserveAspectRatio="none"
+              >
+                <path d="M0,0 L0,800 C30,730 80,630 35,460 C-5,310 75,150 0,0 Z" />
+              </svg>
+            )}
+          </div>
+        </motion.div>
 
       </div>
 
@@ -615,21 +568,45 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
       {/* ===================== ESTILOS ESPECÍFICOS PARA HOME-7 BURBUJAS ===================== */}
       <style jsx>{`
         /* Animación fluida de deriva orgánica continua en reposo (claramente perceptible) */
+        .bubble-entrance-1 {
+          animation: bubbleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s backwards;
+        }
+        .bubble-entrance-2 {
+          animation: bubbleIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.28s backwards;
+        }
+        .bubble-entrance-3 {
+          animation: bubbleIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.38s backwards;
+        }
+        .bubble-entrance-4 {
+          animation: bubbleIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.22s backwards;
+        }
+
+        @keyframes bubbleIn {
+          0% {
+            transform: scale(0);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+        }
+
         .svg-bubble-1 {
           animation: svgFloat1 13s infinite ease-in-out;
-          transform-origin: 20% 10%;
+          transform-origin: 20% 11%;
         }
         .svg-bubble-2 {
           animation: svgFloat2 15s infinite ease-in-out;
-          transform-origin: 80% 75%;
+          transform-origin: 79% 79%;
         }
         .svg-bubble-3 {
           animation: svgFloat3 12s infinite ease-in-out;
-          transform-origin: 45% 80%;
+          transform-origin: 35% 78%;
         }
         .svg-bubble-4 {
           animation: svgFloat4 14s infinite ease-in-out;
-          transform-origin: 72% 23%;
+          transform-origin: 74% 23%;
         }
 
         /* Movimientos acuáticos visibles y elegantes en reposo (±18-24px) */
