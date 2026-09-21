@@ -403,8 +403,8 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                 >
-                  <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-4 sm:mb-6">
-                    <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
+                  <span className="inline-flex items-center gap-1.5 sm:gap-2 text-[#9E7F41] uppercase tracking-[0.15em] xs:tracking-[0.2em] sm:tracking-[0.35em] text-[9px] xs:text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#9E7F41]" />
                     Identidad & Comunidad
                   </span>
                 </motion.div>
@@ -416,7 +416,7 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.7, delay: 0.2 }}
                 >
-                  <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif tracking-tight text-[#0D2137] leading-[1.12] mb-5 sm:mb-6 break-words">
+                  <h2 className="text-lg xs:text-xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-serif tracking-tight text-[#0D2137] leading-[1.12] mb-3 sm:mb-6 break-words">
                     Más que una escuela,{' '}
                     <span className="italic font-light text-[#9E7F41]">una forma de vivir el mar.</span>
                   </h2>
@@ -428,17 +428,17 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
                 whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 1 }}
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="w-24 h-[1.5px] bg-[#9E7F41] mb-8 origin-left"
+                className="w-16 sm:w-24 h-[1.5px] bg-[#9E7F41] mb-4 sm:mb-8 origin-left"
               />
 
               {/* Texto de contenido exacto */}
-              <div className="space-y-4 mb-8 text-left">
+              <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-8 text-left">
                 <motion.p
                   initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, x: -20 }}
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, x: 0 }}
                   viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 0.7, delay: 0.35 }}
-                  className="text-lg sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-5 py-1"
+                  className="text-xs xs:text-sm sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-snug sm:leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-3 sm:pl-5 py-0.5 sm:py-1"
                 >
                   {`No importa tu edad ni tu experiencia previa.
 Navegar es aprender a escuchar el viento,
@@ -452,13 +452,13 @@ sentir el mar y disfrutar en equipo.`}
                 whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: false, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.55 }}
-                className="w-full flex justify-center pt-2 pb-6"
+                className="w-full flex justify-center pt-1 sm:pt-2 pb-3 sm:pb-6"
               >
                 <GlowButton
                   onClick={() => setIsModalOpen(true)}
                   color="coral"
                   size="md"
-                  className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto"
+                  className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto !py-1.5 !px-4 sm:!py-2 sm:!px-6 text-xs sm:text-base"
                 >
                   LEER MÁS
                 </GlowButton>

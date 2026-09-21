@@ -269,9 +269,9 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const unfoldOpacity = useTransform(enterProgress, [0, 0.5], [0.4, 1])
 
   return (
-    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} -mt-[1px] flex flex-col justify-stretch items-stretch`}>
+    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] lg:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] lg:min-h-screen'} -mt-[1px] flex flex-col justify-stretch items-stretch`}>
       {/* Inversión total de la composición: Vídeo Izquierda, Beige Derecha */}
-      <div className={`relative w-full h-full flex-1 ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[75vh] lg:min-h-[88vh]' : 'min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
+      <div className={`relative w-full h-full flex-1 ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] lg:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
         
         {/* ===================== VÍDEO DE FONDO ===================== */}
         {variant !== 'home-1' && variant !== 'home-2' ? (
@@ -311,7 +311,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
             ...(variant === 'home-1' ? { filter: blurFilter } : {}),
             ...(variant === 'home-2' ? { scaleY: unfoldScaleY, opacity: unfoldOpacity, transformOrigin: 'top center' } : {})
           }}
-          className={`relative z-10 w-[84%] sm:w-[86%] lg:w-[56%] ml-auto h-full min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
+          className={`relative z-10 w-[84%] sm:w-[86%] lg:w-[56%] ml-auto h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
         >
           {/* ===================== CURVA VERTICAL ORGÁNICA INVERTIDA ===================== */}
           {/* Anclada directamente al borde izquierdo del bloque beige: coincide exactamente en altura (top 0 a bottom 0) */}
@@ -332,7 +332,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
           {/* Bloque beige con contenido y máscaras de burbujas */}
           <div
-            className={`relative z-10 w-full h-full min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-16 sm:py-24 lg:py-28'} px-6 sm:px-12 md:px-16 lg:pl-24 lg:pr-16 overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
+            className={`relative z-10 w-full h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-8 sm:py-16 lg:py-28'} px-5 sm:px-12 md:px-16 lg:pl-24 lg:pr-16 overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
           >
             {/* Capa beige con máscara SVG que perfora las ventanas hacia el vídeo de fondo */}
             {variant !== 'home-1' && variant !== 'home-2' && (
@@ -413,10 +413,10 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
             {/* ===================== CONTENIDO EDITORIAL DE LA SECCIÓN 3 ===================== */}
             {/* Zona invisible responsiva que encapsula todo el contenido con holgura inferior para sombras y halos */}
-            <div className="relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-8 sm:pb-10">
+            <div className="relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-4 sm:pb-10">
               <motion.div
                 style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
-                className="max-w-xl mx-auto lg:mx-0 w-full pb-4"
+                className="max-w-xl mx-auto lg:mx-0 w-full pb-2 sm:pb-4"
               >
                 
                 {/* Tag náutico superior */}
@@ -426,7 +426,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.1 }}
                 >
-                  <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-4 sm:mb-6">
+                  <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6">
                     <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
                     Experiencia & Adaptación
                   </span>
@@ -438,7 +438,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.7, delay: (variant === 'home-5' || variant === 'home-6') ? 0.1 : 0.18, type: 'spring', stiffness: 85, damping: 18 }}
-                  className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.12] mb-5 sm:mb-6 break-words"
+                  className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.12] mb-3 sm:mb-6 break-words"
                 >
                   Cursos y Navegación<br />
                   a tu Medida
@@ -450,7 +450,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 1, opacity: 1 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.65, delay: (variant === 'home-5' || variant === 'home-6') ? 0.12 : 0.28 }}
-                  className="flex items-center gap-3 w-40 my-6 origin-left"
+                  className="flex items-center gap-3 w-40 my-3 sm:my-6 origin-left"
                 >
                   <div className="h-[1.5px] flex-1 bg-gradient-to-r from-[#9E7F41] to-transparent" />
                   <span className="text-[#0D2137] text-xl font-bold">⚓</span>
@@ -458,13 +458,13 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                 </motion.div>
 
                 {/* Texto de contenido exacto */}
-                <div className="space-y-4 mb-8 text-left">
+                <div className="space-y-4 mb-4 sm:mb-8 text-left">
                   <motion.p
                     initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, x: 25 }}
                     whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, x: 0 }}
                     viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                     transition={{ duration: 0.75, delay: (variant === 'home-5' || variant === 'home-6') ? 0.15 : 0.35 }}
-                    className="text-lg sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-5 py-1"
+                    className="text-base sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-4 sm:pl-5 py-1"
                   >
                     {`Veleros pequeños o grandes,
 días de calma o de acción,
@@ -479,7 +479,7 @@ Tú eliges cómo quieres navegar.`}
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.2 : 0.55 }}
-                  className="w-full flex justify-center pt-2 pb-6"
+                  className="w-full flex justify-center pt-1 pb-3 sm:pb-6"
                 >
                   <GlowButton
                     onClick={() => setIsModalOpen(true)}

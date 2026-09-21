@@ -331,7 +331,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         const currentStrategy = (variant && strategies[variant]) || strategies['home-3']
 
         const waveConfig = {
-          sizeClass: 'w-[102%] sm:w-[78%] lg:w-[58%] h-[116px] sm:h-[151px] lg:h-[188px]',
+          sizeClass: 'w-[102%] sm:w-[78%] lg:w-[58%] h-[70px] sm:h-[151px] lg:h-[188px]',
           leftClass: 'left-[-14%]',
           clipId: 's4-wave-clip-form4',
         }
@@ -398,7 +398,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
             {/* ========================================================================= */}
             {isSupportedWave && (
               <div
-                className={`absolute bottom-[100%] ${waveConfig.leftClass} z-20 pointer-events-none select-none overflow-hidden ${waveConfig.sizeClass} ${currentStrategy.shadowMode === 'negative-overlap' ? 'translate-y-[4px]' : ''}`}
+                className={`absolute bottom-[100%] ${waveConfig.leftClass} z-20 pointer-events-none select-none overflow-hidden ${waveConfig.sizeClass} s4-top-wave-container ${currentStrategy.shadowMode === 'negative-overlap' ? 'translate-y-[4px]' : ''}`}
                 style={{
                   clipPath: `url(#${waveConfig.clipId})`,
                   WebkitClipPath: `url(#${waveConfig.clipId})`,
@@ -468,6 +468,13 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
                 </div>
               </div>
             )}
+            <style jsx>{`
+              @media (max-height: 420px) {
+                .s4-top-wave-container {
+                  display: none !important;
+                }
+              }
+            `}</style>
           </>
         )
       })()}

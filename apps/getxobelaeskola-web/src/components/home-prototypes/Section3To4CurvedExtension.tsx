@@ -31,44 +31,53 @@ export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensi
   const dropShadowClass = (isHome5 || isHome7 || isHome8) ? '' : 'drop-shadow-[0_8px_18px_rgba(0,18,38,0.18)]'
 
   return (
-    <div
-      className="absolute right-0 z-10 pointer-events-none select-none overflow-visible w-[84%] sm:w-[86%] lg:w-[56%]"
-      style={{ top: topOffset }}
-      aria-hidden="true"
-    >
-      {/* ========================================================================= */}
-      {/* CURVA BEIGE SUPERIOR DERECHA (SECCIÓN 4 PROLONGANDO SECCIÓN 3)            */}
-      {/* ========================================================================= */}
-      <div className="w-full relative h-[100px] sm:h-[125px] lg:h-[150px]">
-        <svg
-          viewBox="0 0 600 150"
-          preserveAspectRatio="none"
-          className={`w-full h-full block overflow-visible ${dropShadowClass}`}
-        >
-          {/* Estela náutica translúcida (omitida en Home 7 y Home 8 para máxima limpieza) */}
-          {!isHome7 && !isHome8 && (
-            <path
-              d={isHome6 || isHome8 ? "M 0,-4 L 0,4 C 35,70 120,128 245,108 C 345,88 465,132 600,70 L 600,-4 Z" : "M 0,-2 L 0,4 C 35,70 120,128 245,108 C 345,88 465,132 600,70 L 600,-2 Z"}
-              fill="rgba(246, 242, 236, 0.28)"
-            />
-          )}
+    <>
+      <div
+        className="absolute right-0 z-10 pointer-events-none select-none overflow-visible w-[84%] sm:w-[86%] lg:w-[56%] s3-s4-extension-curve"
+        style={{ top: topOffset }}
+        aria-hidden="true"
+      >
+        {/* ========================================================================= */}
+        {/* CURVA BEIGE SUPERIOR DERECHA (SECCIÓN 4 PROLONGANDO SECCIÓN 3)            */}
+        {/* ========================================================================= */}
+        <div className="w-full relative h-[60px] sm:h-[125px] lg:h-[150px]">
+          <svg
+            viewBox="0 0 600 150"
+            preserveAspectRatio="none"
+            className={`w-full h-full block overflow-visible ${dropShadowClass}`}
+          >
+            {/* Estela náutica translúcida (omitida en Home 7 y Home 8 para máxima limpieza) */}
+            {!isHome7 && !isHome8 && (
+              <path
+                d={isHome6 || isHome8 ? "M 0,-4 L 0,4 C 35,70 120,128 245,108 C 345,88 465,132 600,70 L 600,-4 Z" : "M 0,-2 L 0,4 C 35,70 120,128 245,108 C 345,88 465,132 600,70 L 600,-2 Z"}
+                fill="rgba(246, 242, 236, 0.28)"
+              />
+            )}
 
-          {/* Sombra difusa marina (omitida en Home 5, 7 y 8 para evitar la sombra de 3px) */}
-          {!isHome5 && !isHome7 && !isHome8 && (
-            <path
-              d="M 0,-2 L 0,5 C 25,62 105,118 230,98 C 330,78 450,122 600,59 L 600,-2 Z"
-              fill="rgba(8, 25, 45, 0.24)"
-              filter="blur(5px)"
-            />
-          )}
+            {/* Sombra difusa marina (omitida en Home 5, 7 y 8 para evitar la sombra de 3px) */}
+            {!isHome5 && !isHome7 && !isHome8 && (
+              <path
+                d="M 0,-2 L 0,5 C 25,62 105,118 230,98 C 330,78 450,122 600,59 L 600,-2 Z"
+                fill="rgba(8, 25, 45, 0.24)"
+                filter="blur(5px)"
+              />
+            )}
 
-          {/* Masa beige principal continua que empalma con la Sección 3 */}
-          <path
-            d={isHome7 || isHome8 ? "M 0,-6 L 0,0 C 25,58 105,112 230,92 C 330,72 450,118 600,54 L 600,-6 Z" : "M 0,-1 L 0,0 C 25,58 105,112 230,92 C 330,72 450,118 600,54 L 600,-1 Z"}
-            fill="#F6F2EC"
-          />
-        </svg>
+            {/* Masa beige principal continua que empalma con la Sección 3 */}
+            <path
+              d={isHome7 || isHome8 ? "M 0,-6 L 0,0 C 25,58 105,112 230,92 C 330,72 450,118 600,54 L 600,-6 Z" : "M 0,-1 L 0,0 C 25,58 105,112 230,92 C 330,72 450,118 600,54 L 600,-1 Z"}
+              fill="#F6F2EC"
+            />
+          </svg>
+        </div>
       </div>
-    </div>
+      <style jsx>{`
+        @media (max-height: 420px) {
+          .s3-s4-extension-curve {
+            display: none !important;
+          }
+        }
+      `}</style>
+    </>
   )
 }
