@@ -479,8 +479,8 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         className="promise__inner" 
         style={{ 
           position: 'relative', 
-          zIndex: 2,
-          transform: (contentVariant === 'home-10' || contentVariant === 'home-11' || contentVariant === 'home-12' || contentVariant === 'home-13') 
+          zIndex: 50,
+          transform: (contentVariant === 'home-10' || contentVariant === 'contentVariant' || contentVariant === 'home-11' || contentVariant === 'home-12' || contentVariant === 'home-13') 
             ? 'translateY(-10%)' 
             : 'none',
           transition: 'transform 0.4s ease'

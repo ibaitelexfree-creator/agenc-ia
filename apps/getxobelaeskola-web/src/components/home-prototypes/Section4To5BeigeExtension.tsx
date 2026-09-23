@@ -113,12 +113,12 @@ export function Section4To5BeigeExtension({ variant = 'none' }: Section4To5Beige
     variant === 'home-11' ? 'drop-shadow-[0_-3px_8px_rgba(0,18,38,0.05)]' :
     'drop-shadow-[0_-7px_18px_rgba(0,18,38,0.13)]'
 
-  // Calibración perfecta del agua: -10% (-89%)
-  const waterOffsetY = '-89%'
+  // Calibración perfecta del agua: อยู่ที่ขอบล่างพอดี ไม่ล้ำซ้อนทับการ์ด
+  const waterOffsetY = '-82%'
 
   return (
     <div
-      className="absolute top-0 left-0 right-0 w-full pointer-events-none select-none z-20 overflow-visible"
+      className="absolute top-0 left-0 right-0 w-full pointer-events-none select-none z-20 overflow-visible s4-s5-wave-extension"
       style={{
         transform: `translateY(${waterOffsetY})`,
         transition: 'transform 0.4s ease'

@@ -123,8 +123,8 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
   const isCompactPadding = isParchment
   const sectionMinHeight = isParchment ? 'auto' : '100dvh'
 
-  // Reducción perfecta del espacio libre vertical (-75%)
-  const sectionPaddingY = isParchment ? 'clamp(1rem, 2vh, 1.8rem)' : 'clamp(3rem, 7vh, 5.5rem)'
+  // Reducción del margen/espacio libre vertical (-10% extra en padding inferior)
+  const sectionPaddingY = isParchment ? 'clamp(1.1rem, 2.2vh, 2rem)' : 'clamp(3.3rem, 7.7vh, 6rem)'
 
   // Blanco Cristalino Minimalista detrás del mapa en Home 10, 11, 12, 13
   const isPureWhite = parchmentVariant === 'home-10' || parchmentVariant === 'home-11' || parchmentVariant === 'home-12' || parchmentVariant === 'home-13'
@@ -180,9 +180,10 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
             position: 'relative',
             zIndex: 10,
             width: '100%',
-            maxWidth: (parchmentVariant === 'home-12' || parchmentVariant === 'home-13' || parchmentVariant === 'home-10' || parchmentVariant === 'classic') ? '1100px' : parchmentVariant === 'home-11' ? '820px' : '800px',
+            maxWidth: (parchmentVariant === 'home-12' || parchmentVariant === 'home-13' || parchmentVariant === 'home-10' || parchmentVariant === 'classic') ? '1235px' : parchmentVariant === 'home-11' ? '920px' : '900px',
             padding: isCompactPadding ? 'clamp(0.4rem, 1.2vh, 1rem) clamp(1rem, 3vw, 2.5rem)' : 'clamp(0.8rem, 2.5vh, 2rem) clamp(1rem, 3vw, 2.5rem)',
             margin: '0 auto',
+            transform: 'translateY(-8%)',
           }}
         >
         {/* Header */}
