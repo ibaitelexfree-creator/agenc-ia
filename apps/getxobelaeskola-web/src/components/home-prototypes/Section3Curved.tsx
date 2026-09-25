@@ -413,7 +413,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
             {/* ===================== CONTENIDO EDITORIAL DE LA SECCIÓN 3 ===================== */}
             {/* Zona invisible responsiva que encapsula todo el contenido con holgura inferior para sombras y halos */}
-            <div className="s3-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-4 sm:pb-10">
+            <div className="s3-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pt-20 sm:pt-24 lg:pt-4 pb-4 sm:pb-10">
               <motion.div
                 style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
                 className="max-w-xl mx-auto lg:mx-0 w-full pb-2 sm:pb-4"

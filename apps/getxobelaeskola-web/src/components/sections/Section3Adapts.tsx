@@ -71,8 +71,8 @@ export function Section3Adapts() {
           flex: 1,
           position: 'relative',
           padding: isPhone 
-            ? '2rem 1.5rem' 
-            : '2rem clamp(2rem, 6vw, 5rem)',
+            ? 'clamp(5.5rem, 16vh, 7.5rem) 1.5rem 2rem' 
+            : 'clamp(5.5rem, 16vh, 7.5rem) clamp(2rem, 6vw, 5rem) 2rem',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',

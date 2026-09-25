@@ -390,7 +390,7 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
 
             {/* ===================== CONTENIDO EDITORIAL CON ANIMACIONES DIFERENCIADAS ===================== */}
             {/* Zona invisible responsiva que encapsula todo el contenido con suficiente holgura inferior para halos y sombras */}
-            <div className="s2-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-8 sm:pb-10">
+            <div className="s2-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pt-20 sm:pt-24 lg:pt-8 pb-8 sm:pb-10">
               <motion.div
                 style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
                 className="max-w-xl mx-auto lg:mx-0 w-full pb-4"
