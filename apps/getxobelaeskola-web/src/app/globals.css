@@ -1825,3 +1825,14 @@ section {
   padding: clamp(1.25rem, 4vw, 3rem) !important;
   margin: auto !important;
 }
+
+/* 4. Mobile Top Clearance for Section 2 (Prevents Navbar / Page Logo Overlap) */
+@media (max-width: 767px) {
+  .section-2-identity {
+    padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
+  }
+  .s2-identity-container,
+  .s2-curved-content {
+    margin-top: clamp(1rem, 5vh, 2.5rem) !important;
+  }
+}

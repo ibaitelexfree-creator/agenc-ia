@@ -248,9 +248,9 @@ export function Section2Curved({ variant }: Section2CurvedProps) {
   // S2 sale de izquierda hacia derecha (de -100% a 0)
   const mobileSlideX = useTransform(enterProgress, [0, 1], ['-100%', '0%'])
 
-  // Opacidad del texto para que solo aparezca mágicamente cuando la zona beige ya ha llegado a su posición final
-  const textOpacity = useTransform(enterProgress, [0.82, 1], [0, 1])
-  const textTranslateY = useTransform(enterProgress, [0.82, 1], [15, 0])
+  // Opacidad del texto para que sea siempre visible y fluido en móvil y desktop
+  const textOpacity = useTransform(enterProgress, [0, 0.4], [0.9, 1])
+  const textTranslateY = useTransform(enterProgress, [0, 0.4], [10, 0])
 
   // Desplazamiento lateral para Home 1 (Slide-in) en Desktop
   const slideX = useTransform(enterProgress, [0, 1], [-80, 0])
