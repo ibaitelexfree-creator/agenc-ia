@@ -2,7 +2,19 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Home 10 (Copia Completa de Home con Pergamino de Home 12 Implantado)
+- **Task:** Mobile Landscape Optimization for Section 2 (Identity) and Section 3 (Adapts)
+  1. **Section 2 & 3 Responsive Media Queries:** Added `@media (max-width: 767px) and (orientation: landscape)` and `@media (max-height: 500px) and (orientation: landscape)` rules in `src/app/globals.css`.
+  2. **Vertical Spacing & Font Scaling:**
+     - Reduced excessive vertical margins, line-heights, gaps, and section paddings on small height landscape viewports (e.g. 586 x 320px).
+     - Scaled font sizes dynamically using `clamp()` with `vh` units so titles, subtitles, text blocks, and "LEER MÁS" buttons fit compactly in a single view without overflowing.
+     - Shifted text content blocks down by 10% (`transform: translateY(10%)`) in mobile landscape view as requested by user.
+  3. **Components Updated:**
+     - `src/components/sections/Section2Identity.tsx`
+     - `src/components/home-prototypes/Section2Curved.tsx`
+     - `src/components/sections/Section3Adapts.tsx`
+     - `src/components/home-prototypes/Section3Curved.tsx`
+     - `src/app/globals.css`
+- **Status:** COMPLETED & VERIFIED.
   1. **Copia exacta de Home en Home 10:** Replicada la estructura completa de `page.tsx` original (metadatos multilingües en es/eu/en/fr, JsonLd, NativeAppRedirect, Hero con oleaje, todas las secciones y SEO).
   2. **Implantación del pergamino de Home 12 en Home 10:**
      - Rodillos de pergamino tan anchos como la pantalla (`100vw`).

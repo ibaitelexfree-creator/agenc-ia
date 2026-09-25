@@ -1733,3 +1733,166 @@ section {
   transform: translate(-50%, -7vh) !important;
   margin-bottom: 0 !important;
 }
+
+/* ==========================================================================
+   MOBILE LANDSCAPE TEXT SPACING OPTIMIZATION (Section 2 Identity / Curved)
+   ========================================================================== */
+@media (max-width: 767px) and (orientation: landscape),
+       (max-height: 500px) and (orientation: landscape) {
+  .section-2-identity {
+    min-height: auto !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .s2-identity-container {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .s2-identity-title {
+    font-size: clamp(1.15rem, 5vh, 1.75rem) !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .s2-identity-separator {
+    margin-bottom: 0.25rem !important;
+    width: 90px !important;
+  }
+
+  .s2-identity-text-wrapper {
+    gap: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .s2-identity-p {
+    font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
+    line-height: 1.25 !important;
+  }
+
+  .s2-identity-cta {
+    margin-top: 0.2rem !important;
+  }
+
+  .s2-curved-content {
+    padding-bottom: 0.5rem !important;
+  }
+
+  .s2-curved-title {
+    font-size: clamp(1.1rem, 5vh, 1.55rem) !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .s2-curved-divider {
+    margin-bottom: 0.3rem !important;
+    height: 1px !important;
+  }
+
+  .s2-curved-text-container {
+    margin-bottom: 0.5rem !important;
+    row-gap: 0.25rem !important;
+  }
+
+  .s2-curved-p {
+    font-size: clamp(0.72rem, 3.6vh, 0.92rem) !important;
+    line-height: 1.25 !important;
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
+  }
+
+  .s2-curved-cta {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  /* Modal in Mobile Landscape */
+  .s2-modal-card {
+    padding: 1.25rem 1.5rem !important;
+    max-height: 88vh !important;
+  }
+
+  /* Section 3 Adapts & Section 3 Curved in Mobile Landscape */
+  .section-3-adapts {
+    min-height: auto !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .s3-adapts-container {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .s3-adapts-title {
+    font-size: clamp(1.15rem, 5vh, 1.75rem) !important;
+    margin-bottom: 0.35rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .s3-adapts-subtitle {
+    font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
+    margin-bottom: 0.6rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .s3-adapts-cta {
+    padding: 0.4rem 1.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .s3-curved-content {
+    padding-bottom: 0.5rem !important;
+  }
+
+  .s3-curved-tag {
+    margin-bottom: 0.2rem !important;
+  }
+
+  .s3-curved-title {
+    font-size: clamp(1.15rem, 5vh, 1.65rem) !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .s3-curved-divider {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+    width: 100px !important;
+  }
+
+  .s3-curved-text-container {
+    margin-bottom: 0.5rem !important;
+  }
+
+  .s3-curved-p {
+    font-size: clamp(0.72rem, 3.6vh, 0.92rem) !important;
+    line-height: 1.25 !important;
+    padding-top: 0.1rem !important;
+    padding-bottom: 0.1rem !important;
+    padding-left: 0.5rem !important;
+  }
+
+  .s3-curved-cta {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.4rem !important;
+  }
+
+  /* Mobile Landscape 10% Vertical Shift */
+  .s2-identity-container,
+  .s2-curved-content,
+  .s3-adapts-container,
+  .s3-curved-content {
+    transform: translateY(10%) !important;
+  }
+
+  .s3-modal-card {
+    padding: 1.25rem 1.5rem !important;
+    max-height: 88vh !important;
+  }
+}

@@ -413,7 +413,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
             {/* ===================== CONTENIDO EDITORIAL DE LA SECCIÓN 3 ===================== */}
             {/* Zona invisible responsiva que encapsula todo el contenido con holgura inferior para sombras y halos */}
-            <div className="relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-4 sm:pb-10">
+            <div className="s3-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pb-4 sm:pb-10">
               <motion.div
                 style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
                 className="max-w-xl mx-auto lg:mx-0 w-full pb-2 sm:pb-4"
@@ -426,9 +426,9 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.1 }}
                 >
-                  <span className="inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6">
+                  <span className="s3-curved-tag inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6">
                     <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
-                    Experiencia & Adaptación
+                    {_t('title') ? _t('title').replace('<br/>', ' ') : 'Experiencia & Adaptación'}
                   </span>
                 </motion.div>
 
@@ -438,10 +438,16 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.7, delay: (variant === 'home-5' || variant === 'home-6') ? 0.1 : 0.18, type: 'spring', stiffness: 85, damping: 18 }}
-                  className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.12] mb-3 sm:mb-6 break-words"
+                  className="s3-curved-title text-2xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-serif font-black tracking-tight text-[#0D2137] leading-[1.12] mb-3 sm:mb-6 break-words"
                 >
-                  Cursos y Navegación<br />
-                  a tu Medida
+                  {_t('title') ? (
+                    <span dangerouslySetInnerHTML={{ __html: _t('title') }} />
+                  ) : (
+                    <>
+                      Cursos y Navegación<br />
+                      a tu Medida
+                    </>
+                  )}
                 </motion.h2>
 
                 {/* Separador artesanal náutico con ancla / símbolo náutico */}
@@ -450,7 +456,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { scaleX: 1, opacity: 1 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.65, delay: (variant === 'home-5' || variant === 'home-6') ? 0.12 : 0.28 }}
-                  className="flex items-center gap-3 w-40 my-3 sm:my-6 origin-left"
+                  className="s3-curved-divider flex items-center gap-3 w-40 my-3 sm:my-6 origin-left"
                 >
                   <div className="h-[1.5px] flex-1 bg-gradient-to-r from-[#9E7F41] to-transparent" />
                   <span className="text-[#0D2137] text-xl font-bold">⚓</span>
@@ -458,18 +464,22 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                 </motion.div>
 
                 {/* Texto de contenido exacto */}
-                <div className="space-y-4 mb-4 sm:mb-8 text-left">
+                <div className="s3-curved-text-container space-y-4 mb-4 sm:mb-8 text-left">
                   <motion.p
                     initial={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 0, x: 25 }}
                     whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, x: 0 }}
                     viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                     transition={{ duration: 0.75, delay: (variant === 'home-5' || variant === 'home-6') ? 0.15 : 0.35 }}
-                    className="text-base sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-4 sm:pl-5 py-1"
+                    className="s3-curved-p text-base sm:text-xl lg:text-2xl text-[#0D2137]/85 font-light leading-relaxed whitespace-pre-line border-l-2 border-[#9E7F41] pl-4 sm:pl-5 py-1"
                   >
-                    {`Veleros pequeños o grandes,
+                    {_t('subtitle') ? (
+                      <span dangerouslySetInnerHTML={{ __html: _t('subtitle') }} />
+                    ) : (
+                      `Veleros pequeños o grandes,
 días de calma o de acción,
 aguas tranquilas o mar abierta.
-Tú eliges cómo quieres navegar.`}
+Tú eliges cómo quieres navegar.`
+                    )}
                   </motion.p>
                 </div>
 
@@ -479,7 +489,7 @@ Tú eliges cómo quieres navegar.`}
                   whileInView={(variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-7' || variant === 'home-8') ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.2 : 0.55 }}
-                  className="w-full flex justify-center pt-1 pb-3 sm:pb-6"
+                  className="s3-curved-cta w-full flex justify-center pt-1 pb-3 sm:pb-6"
                 >
                   <GlowButton
                     onClick={() => setIsModalOpen(true)}

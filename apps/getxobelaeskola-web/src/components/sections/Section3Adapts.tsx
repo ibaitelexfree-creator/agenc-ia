@@ -104,8 +104,9 @@ export function Section3Adapts() {
         </div>
 
         {/* Content */}
-        <div style={{ position: 'relative', zIndex: 3, maxWidth: '800px' }}>
+        <div className="s3-adapts-container" style={{ position: 'relative', zIndex: 3, maxWidth: '800px' }}>
           <h2
+            className="s3-adapts-title"
             style={{
               fontSize: 'clamp(2rem, 5vw, 4rem)',
               fontWeight: 800,
@@ -119,6 +120,7 @@ export function Section3Adapts() {
           />
           
           <p
+            className="s3-adapts-subtitle"
             style={{
               color: 'var(--gbe-text)',
               fontSize: 'clamp(1.1rem, 2vw, 1.4rem)',
@@ -131,6 +133,7 @@ export function Section3Adapts() {
 
           <button
             onClick={() => setIsModalOpen(true)}
+            className="s3-adapts-cta"
             style={{
               backgroundColor: 'var(--gbe-navy-900)',
               color: 'white',

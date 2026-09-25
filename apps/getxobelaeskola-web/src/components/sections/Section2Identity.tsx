@@ -223,6 +223,7 @@ export function Section2Identity() {
         whileInView="visible"
         viewport={{ once: false, margin: '-50px' }}
         transition={{ staggerChildren: 0.15 }}
+        className="s2-identity-container"
         style={{
           position: 'relative',
           zIndex: 10,
@@ -238,6 +239,7 @@ export function Section2Identity() {
       >
         {/* Título de la sección con Shimmer en el logo e historia */}
         <h2
+          className="s2-identity-title"
           style={{
             fontSize: 'clamp(1.5rem, 4vw, 3.8rem)',
             fontWeight: 700,
@@ -289,6 +291,7 @@ export function Section2Identity() {
         {/* Separador de Estrella Giratoria */}
         <motion.div
           variants={lineVariants}
+          className="s2-identity-separator"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -309,9 +312,13 @@ export function Section2Identity() {
         </motion.div>
 
         {/* Frases de valores y comunidad */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1.5vh, 1.2rem)', marginBottom: 'clamp(1rem, 3vh, 2.2rem)' }}>
+        <div 
+          className="s2-identity-text-wrapper"
+          style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.5rem, 1.5vh, 1.2rem)', marginBottom: 'clamp(1rem, 3vh, 2.2rem)' }}
+        >
           <motion.p
             variants={lineVariants}
+            className="s2-identity-p"
             style={{
               fontSize: 'clamp(0.85rem, 2.2vw, 1.35rem)',
               lineHeight: 1.45,
@@ -335,6 +342,7 @@ export function Section2Identity() {
 
           <motion.p
             variants={lineVariants}
+            className="s2-identity-p"
             style={{
               fontSize: 'clamp(0.85rem, 2.2vw, 1.35rem)',
               lineHeight: 1.45,
@@ -362,6 +370,7 @@ export function Section2Identity() {
 
         {/* CTA "Leer más" con spring de entrada */}
         <motion.div
+          className="s2-identity-cta"
           variants={{
             hidden: { scale: 0.95, opacity: 1 },
             visible: { scale: 1, opacity: 1, transition: { type: 'spring', stiffness: 200, damping: 15 } }
