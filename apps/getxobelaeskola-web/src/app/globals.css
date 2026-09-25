@@ -1813,6 +1813,15 @@ section {
     font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
     line-height: 1.3 !important;
   }
+
+  /* 📱 Small Mobile Landscape 10% Vertical Text Shift */
+  .s2-identity-container,
+  .s2-curved-content,
+  .s3-adapts-container,
+  .s3-curved-content,
+  .promise__inner {
+    transform: translateY(10%) !important;
+  }
 }
 
 /* 3. Global Modal Responsiveness (All Viewports) */
