@@ -221,7 +221,7 @@ export function Section2Identity() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: '-50px' }}
+        viewport={{ once: true, amount: 0.05 }}
         transition={{ staggerChildren: 0.15 }}
         className="s2-identity-container"
         style={{
