@@ -2,12 +2,12 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Mobile Landscape Optimization for Section 2 (Identity) and Section 3 (Adapts)
-  1. **Section 2 & 3 Responsive Media Queries:** Added `@media (max-width: 767px) and (orientation: landscape)` and `@media (max-height: 500px) and (orientation: landscape)` rules in `src/app/globals.css`.
+- **Task:** Mobile Optimization for Section 2 (Identity) and Section 3 (Adapts)
+  1. **Section 2 & 3 Responsive Media Queries:** Added `@media (max-width: 767px)` rules in `src/app/globals.css`.
   2. **Vertical Spacing & Font Scaling:**
-     - Reduced excessive vertical margins, line-heights, gaps, and section paddings on small height landscape viewports (e.g. 586 x 320px).
+     - Reduced excessive vertical margins, line-heights, gaps, and section paddings on landscape/mobile viewports.
      - Scaled font sizes dynamically using `clamp()` with `vh` units so titles, subtitles, text blocks, and "LEER MÁS" buttons fit compactly in a single view without overflowing.
-     - Shifted text content blocks down by 10% (`transform: translateY(10%)`) in mobile landscape view as requested by user.
+     - Shifted text content blocks down by 10% (`transform: translateY(10%)`) for Section 2 & Section 3 across mobile portrait & landscape viewports as requested.
   3. **Components Updated:**
      - `src/components/sections/Section2Identity.tsx`
      - `src/components/home-prototypes/Section2Curved.tsx`

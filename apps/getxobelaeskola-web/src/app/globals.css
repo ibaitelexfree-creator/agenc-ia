@@ -1883,7 +1883,7 @@ section {
     padding-bottom: 0.4rem !important;
   }
 
-  /* Mobile Landscape 10% Vertical Shift */
+  /* Mobile 10% Vertical Shift for Section 2 & 3 */
   .s2-identity-container,
   .s2-curved-content,
   .s3-adapts-container,
@@ -1894,5 +1894,15 @@ section {
   .s3-modal-card {
     padding: 1.25rem 1.5rem !important;
     max-height: 88vh !important;
+  }
+}
+
+/* General Mobile (Portrait & Landscape) 10% Shift */
+@media (max-width: 767px) {
+  .s2-identity-container,
+  .s2-curved-content,
+  .s3-adapts-container,
+  .s3-curved-content {
+    transform: translateY(10%) !important;
   }
 }
