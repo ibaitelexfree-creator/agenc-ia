@@ -1735,174 +1735,75 @@ section {
 }
 
 /* ==========================================================================
-   MOBILE LANDSCAPE TEXT SPACING OPTIMIZATION (Section 2 Identity / Curved)
+   GLOBAL FLUID RESPONSIVE SYSTEM (9 BREAKPOINTS PORTRAIT & LANDSCAPE)
    ========================================================================== */
-@media (max-width: 767px) and (orientation: landscape),
-       (max-height: 500px) and (orientation: landscape) {
-  .section-2-identity {
+
+/* 1. Fluid Layout System & Section Heights */
+.global-section,
+.section-1-hero,
+.promise,
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(320px, 75vh, 900px);
+  height: auto;
+  max-height: none;
+  padding-top: var(--gbe-section-py, clamp(1.5rem, 4vh, 4.5rem));
+  padding-bottom: var(--gbe-section-py, clamp(1.5rem, 4vh, 4.5rem));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* 2. Short Landscape Viewports (Mobile & Small Tablet Landscape: height <= 600px) */
+@media (orientation: landscape) and (max-height: 600px) {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
     min-height: auto !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
+    height: auto !important;
+    padding-top: clamp(1rem, 3vh, 2rem) !important;
+    padding-bottom: clamp(1rem, 3vh, 2rem) !important;
   }
 
-  .s2-identity-container {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  .s2-identity-title {
-    font-size: clamp(1.15rem, 5vh, 1.75rem) !important;
-    margin-bottom: 0.25rem !important;
-    line-height: 1.15 !important;
-  }
-
-  .s2-identity-separator {
-    margin-bottom: 0.25rem !important;
-    width: 90px !important;
-  }
-
-  .s2-identity-text-wrapper {
-    gap: 0.25rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .s2-identity-p {
-    font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
-    line-height: 1.25 !important;
-  }
-
-  .s2-identity-cta {
-    margin-top: 0.2rem !important;
-  }
-
-  .s2-curved-content {
-    padding-bottom: 0.5rem !important;
-  }
-
-  .s2-curved-title {
-    font-size: clamp(1.1rem, 5vh, 1.55rem) !important;
-    margin-bottom: 0.25rem !important;
-    line-height: 1.15 !important;
-  }
-
-  .s2-curved-divider {
-    margin-bottom: 0.3rem !important;
-    height: 1px !important;
-  }
-
-  .s2-curved-text-container {
-    margin-bottom: 0.5rem !important;
-    row-gap: 0.25rem !important;
-  }
-
-  .s2-curved-p {
-    font-size: clamp(0.72rem, 3.6vh, 0.92rem) !important;
-    line-height: 1.25 !important;
-    padding-top: 0.1rem !important;
-    padding-bottom: 0.1rem !important;
-  }
-
-  .s2-curved-cta {
-    padding-top: 0.2rem !important;
-    padding-bottom: 0.4rem !important;
-  }
-
-  /* Modal in Mobile Landscape */
-  .s2-modal-card {
-    padding: 1.25rem 1.5rem !important;
-    max-height: 88vh !important;
-  }
-
-  /* Section 3 Adapts & Section 3 Curved in Mobile Landscape */
-  .section-3-adapts {
-    min-height: auto !important;
-    padding-top: 1rem !important;
-    padding-bottom: 1rem !important;
-  }
-
-  .s3-adapts-container {
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-
-  .s3-adapts-title {
+  .s2-identity-title,
+  .s2-curved-title,
+  .s3-adapts-title,
+  .s3-curved-title {
     font-size: clamp(1.15rem, 5vh, 1.75rem) !important;
     margin-bottom: 0.35rem !important;
     line-height: 1.15 !important;
   }
 
-  .s3-adapts-subtitle {
-    font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
-    margin-bottom: 0.6rem !important;
-    line-height: 1.3 !important;
-  }
-
-  .s3-adapts-cta {
-    padding: 0.4rem 1.5rem !important;
-    font-size: 0.8rem !important;
-  }
-
-  .s3-curved-content {
-    padding-bottom: 0.5rem !important;
-  }
-
-  .s3-curved-tag {
-    margin-bottom: 0.2rem !important;
-  }
-
-  .s3-curved-title {
-    font-size: clamp(1.15rem, 5vh, 1.65rem) !important;
-    margin-bottom: 0.25rem !important;
-    line-height: 1.15 !important;
-  }
-
-  .s3-curved-divider {
-    margin-top: 0.25rem !important;
-    margin-bottom: 0.25rem !important;
-    width: 100px !important;
-  }
-
-  .s3-curved-text-container {
-    margin-bottom: 0.5rem !important;
-  }
-
+  .s2-identity-p,
+  .s2-curved-p,
+  .s3-adapts-subtitle,
   .s3-curved-p {
-    font-size: clamp(0.72rem, 3.6vh, 0.92rem) !important;
-    line-height: 1.25 !important;
-    padding-top: 0.1rem !important;
-    padding-bottom: 0.1rem !important;
-    padding-left: 0.5rem !important;
-  }
-
-  .s3-curved-cta {
-    padding-top: 0.2rem !important;
-    padding-bottom: 0.4rem !important;
-  }
-
-  /* Mobile 10% Vertical Shift for Section 2 & 3 */
-  .s2-identity-container,
-  .s2-curved-content,
-  .s3-adapts-container,
-  .s3-curved-content {
-    transform: translateY(10%) !important;
-  }
-
-  .s3-modal-card {
-    padding: 1.25rem 1.5rem !important;
-    max-height: 88vh !important;
+    font-size: clamp(0.75rem, 3.8vh, 0.95rem) !important;
+    line-height: 1.3 !important;
   }
 }
 
-/* General Mobile (Portrait & Landscape) 10% Shift */
-@media (max-width: 767px) {
-  .s2-identity-container,
-  .s2-curved-content,
-  .s3-adapts-container,
-  .s3-curved-content {
-    transform: translateY(10%) !important;
-  }
+/* 3. Global Modal Responsiveness (All Viewports) */
+.s2-modal-card,
+.s3-modal-card,
+[class*="modal-card"] {
+  max-height: calc(100vh - 2rem) !important;
+  max-height: 90dvh !important;
+  overflow-y: auto !important;
+  padding: clamp(1.25rem, 4vw, 3rem) !important;
+  margin: auto !important;
 }
