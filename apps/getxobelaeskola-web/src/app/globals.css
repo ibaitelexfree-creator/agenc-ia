@@ -1815,12 +1815,17 @@ section {
   }
 
   /* 📱 Small Mobile Landscape 10% Vertical Text Shift */
+  .section-2-identity {
+    padding-top: clamp(3rem, 12vh, 5rem) !important;
+  }
+
   .s2-identity-container,
   .s2-curved-content,
   .s3-adapts-container,
   .s3-curved-content,
   .promise__inner {
     transform: translateY(10%) !important;
+    margin-top: clamp(0.75rem, 5vh, 2rem) !important;
   }
 }
 
@@ -1836,7 +1841,7 @@ section {
 }
 
 /* 4. Mobile Top Clearance for Section 2 (Prevents Navbar / Page Logo Overlap) */
-@media (max-width: 767px) {
+@media (max-width: 950px) {
   .section-2-identity {
     padding-top: clamp(2.5rem, 8vh, 4.5rem) !important;
   }
