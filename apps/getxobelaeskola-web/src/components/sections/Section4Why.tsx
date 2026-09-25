@@ -480,9 +480,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         style={{ 
           position: 'relative', 
           zIndex: 50,
-          transform: (contentVariant === 'home-10' || contentVariant === 'contentVariant' || contentVariant === 'home-11' || contentVariant === 'home-12' || contentVariant === 'home-13') 
-            ? 'translateY(-10%)' 
-            : 'none',
+          transform: 'none',
           transition: 'transform 0.4s ease'
         }}
       >
