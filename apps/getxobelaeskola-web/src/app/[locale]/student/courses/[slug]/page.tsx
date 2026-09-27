@@ -46,7 +46,7 @@ export default async function MobileCourseDetailPage({
                 precio: 150,
                 duracion_h: 20,
                 nivel: 'iniciacion',
-                imagen_url: '/images/courses/IniciacionJ80.webp',
+                imagen_url: '/images/courses/IniciacionJ80_v6.webp',
                 detalles: {
                     es: ['Maniobras básicas a vela', 'Seguridad en puerto y mar'],
                     eu: ['Oinarrizko bela maniobrak', 'Segurtasuna portuan eta itsasoan']

@@ -91,7 +91,7 @@ export default async function CoursesPage({
             nivel: 'iniciacion',
             categoria_id: 'cat-adultos',
             categoria: { id: 'cat-adultos', slug: 'cursos-adultos', nombre_es: 'Cursos para Adultas', nombre_eu: 'Helduentzako Ikastaroak' },
-            imagen_url: '/images/courses/IniciacionJ80.webp'
+            imagen_url: '/images/courses/IniciacionJ80_v6.webp'
         },
         {
             id: 'c-crucero-perfeccionamiento',

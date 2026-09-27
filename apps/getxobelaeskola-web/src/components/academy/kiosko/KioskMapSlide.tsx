@@ -52,15 +52,16 @@ export default function KioskMapSlide() {
             {/* Overlay Gradient */}
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-nautical-black via-transparent to-transparent opacity-80" />
 
-            <div className="absolute top-12 left-12 z-[1000] bg-nautical-black/80 backdrop-blur-md p-8 rounded-3xl border border-white/10 shadow-2xl">
-                 <h2 className="text-4xl font-display text-white mb-2">Rutas Comunes</h2>
-                 <p className="text-accent text-sm uppercase tracking-[0.2em] font-bold">Explora el Abra y la Ría de Bilbao</p>
+            {/* Header Overlay Panel */}
+            <div className="absolute top-6 left-6 md:top-12 md:left-12 lg:top-16 lg:left-16 z-[1000] bg-nautical-black/80 backdrop-blur-md p-5 sm:p-8 rounded-2xl md:rounded-3xl border border-white/10 shadow-2xl max-w-[calc(100vw-3rem)] sm:max-w-md">
+                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display text-white mb-1.5 sm:mb-2 leading-tight">Rutas Comunes</h2>
+                 <p className="text-accent text-xs sm:text-sm uppercase tracking-[0.2em] font-bold">Explora el Abra y la Ría de Bilbao</p>
 
-                 <div className="mt-6 space-y-4">
+                 <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
                      {MOCK_SESSIONS.map((session, idx) => (
-                         <div key={idx} className="flex items-center gap-4 text-white/60">
-                             <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" />
-                             <span>{session.zona_nombre}</span>
+                         <div key={idx} className="flex items-center gap-3 sm:gap-4 text-white/70 text-xs sm:text-base">
+                             <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-blue-500 animate-pulse flex-shrink-0" />
+                             <span className="font-medium">{session.zona_nombre}</span>
                          </div>
                      ))}
                  </div>

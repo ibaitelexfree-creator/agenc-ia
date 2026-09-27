@@ -57,7 +57,7 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                             alt={name}
                             fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover w-full h-full inset-0 transition-transform duration-[2s] ease-out group-hover:scale-110 grayscale-[0.2] group-hover:grayscale-0"
+                            className="object-cover w-full h-full inset-0 transition-transform duration-[2s] ease-out group-hover:scale-110"
                         />
                         {/* Overlays */}
                         <div className="absolute inset-0 premium-gradient-overlay z-10" />

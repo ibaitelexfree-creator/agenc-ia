@@ -31,7 +31,7 @@ export async function generateMetadata({
 
     // Re-use fallback logic for metadata
     const fallbacks: Record<string, any> = {
-        'crucero-iniciacion': { nombre_es: 'Iniciación J80', nombre_eu: 'J80 Hastapena', imagen_url: '/images/courses/IniciacionJ80.webp' },
+        'crucero-iniciacion': { nombre_es: 'Iniciación J80', nombre_eu: 'J80 Hastapena', imagen_url: '/images/courses/IniciacionJ80_v6.webp' },
         'crucero-perfeccionamiento': { nombre_es: 'Crucero perfeccionamiento', nombre_eu: 'Gurutzaontzi hobekuntza', imagen_url: '/images/courses/PerfeccionamientoVela.webp' },
         'crucero-gennaker': { nombre_es: 'Crucero con gennaker', nombre_eu: 'Gurutzaontzia gennakerrarekin', imagen_url: '/images/J80.webp' },
         'entrenamientos-adultas': { nombre_es: 'Entrenamientos para adultas', nombre_eu: 'Helduentzako entrenamenduak', imagen_url: '/images/ai/hero-deck-getxo.webp' },
@@ -213,7 +213,7 @@ export default async function CourseDetailPage({
             precio: 180,
             duracion_h: 12,
             nivel: 'iniciacion',
-            imagen_url: '/images/courses/IniciacionJ80.webp',
+            imagen_url: '/images/courses/IniciacionJ80_v6.webp',
             detalles: {
                 es: ['Maniobras básicas', 'Funcionamiento de las velas y barco', 'Meteorología y lectura de la mar', 'Seguridad a bordo · Flota J80'],
                 eu: ['Oinarrizko maniobrak', 'Belen eta ontziaren funtzionamendua', 'Meteorologia eta itsasoaren irakurketa', 'Segurtasuna ontzian · J80 flota']
