@@ -50,8 +50,8 @@ export async function fetchSeaState(): Promise<SeaStateData> {
  * Returns tide predictions for a given date.
  * Currently simulated for Getxo area.
  */
-export function getTidePredictions(date: Date = new Date()): any[] {
-    const predictions: any[] = [];
+export function getTidePredictions(date: Date = new Date()): Record<string, unknown>[] {
+    const predictions: Record<string, unknown>[] = [];
     const day = new Date(date);
     day.setHours(0, 0, 0, 0);
 
@@ -80,7 +80,7 @@ export function getTideLevel(date: Date = new Date()): number {
 /**
  * Returns simulated tide state summary.
  */
-export function getTideState(date: Date = new Date()): any {
+export function getTideState(date: Date = new Date()): Record<string, unknown> {
     const level = getTideLevel(date);
     const nextLevel = getTideLevel(new Date(date.getTime() + 30 * 60000));
     const trend = nextLevel > level ? 'rising' : 'falling';
