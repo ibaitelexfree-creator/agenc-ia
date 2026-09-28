@@ -34,7 +34,7 @@ export async function generateMetadata({
         'crucero-iniciacion': { nombre_es: 'Iniciación J80', nombre_eu: 'J80 Hastapena', imagen_url: '/images/courses/IniciacionJ80_v6.webp' },
         'crucero-perfeccionamiento': { nombre_es: 'Crucero perfeccionamiento', nombre_eu: 'Gurutzaontzi hobekuntza', imagen_url: '/images/courses/PerfeccionamientoVela.webp' },
         'crucero-gennaker': { nombre_es: 'Crucero con gennaker', nombre_eu: 'Gurutzaontzia gennakerrarekin', imagen_url: '/images/J80.webp' },
-        'entrenamientos-adultas': { nombre_es: 'Entrenamientos para adultas', nombre_eu: 'Helduentzako entrenamenduak', imagen_url: '/images/ai/hero-deck-getxo.webp' },
+        'entrenamientos-adultas': { nombre_es: 'Entrenamientos para adultas', nombre_eu: 'Helduentzako entrenamenduak', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
         'vela-ligera-iniciacion': { nombre_es: 'Vela ligera iniciación', nombre_eu: 'Bela arina hastapena', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'vela-ligera-avanzado': { nombre_es: 'Vela ligera avanzado', nombre_eu: 'Bela arina aurreratua', imagen_url: '/images/alquiler-laser.webp' },
         'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/course-raquero-students.webp' },
@@ -258,7 +258,7 @@ export default async function CourseDetailPage({
             precio: 100,
             duracion_h: 12,
             nivel: 'intermedio',
-            imagen_url: '/images/ai/hero-deck-getxo.webp',
+            imagen_url: '/images/courses/entrenamientos-adultas.jpg',
             detalles: {
                 es: ['Programa continuo anual o mensual', 'Autonomía y trabajo en equipo', 'Navegación en diversas condiciones', 'Puesta a punto y maniobra'],
                 eu: ['Urteko edo hileko programa jarraitua', 'Autonomia eta talde-lana', 'Nabigazioa askotariko baldintzetan', 'Puntuan jartzea eta maniobrak']
