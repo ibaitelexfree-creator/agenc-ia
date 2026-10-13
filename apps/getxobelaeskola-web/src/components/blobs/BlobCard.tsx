@@ -277,7 +277,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
 
   // Intersection Observer para activar en mobile al estar al centro de la pantalla
   useEffect(() => {
-    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
+    const card = cardRef.current
     if (!card) return
 
     const observer = new IntersectionObserver(
@@ -288,7 +288,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     )
     observer.observe(card)
     return () => observer.disconnect()
-  }, [title])
+  }, [])
 
   // Estado para los parámetros de movimiento aleatorio generados en el cliente
   const [motionParams, setMotionParams] = useState<{
