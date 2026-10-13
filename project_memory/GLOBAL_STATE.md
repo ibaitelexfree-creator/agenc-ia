@@ -2,11 +2,11 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Integración de la Sección de Blog Ganadora (Home 3) en Home Principal
-  1. **Ganadora elegida (Home 3):** Formato compacto con imagen clara (`aspect-[2.4/1]`) y micro-píldora translúcida (`backdrop-blur-[2px]`, `bg-black/35`) que envuelve únicamente el texto sin oscurecer la fotografía de fondo de cada artículo.
-  2. **Aplicada a la Home principal (`/` y `/es/`):** Configurado en `HomePrototypeLayout.tsx` para que `home-12` (la home oficial) y los accesos raíz rendericen este diseño.
-  3. **Verificación:** Transpilación verificada con éxito.
+- **Task:** Aumento del 20% en tipografía del Pie de Página (Horario, Ubicación y Contacto)
+  1. **Ajuste en Footer y FooterClient:** Aumentado el tamaño de letra un +20% (`text-[10px]` -> `text-[12px] sm:text-[13px]`, títulos y datos correspondientes) en las columnas de Horario, Ubicación y Contacto.
+  2. **Enlaces funcionales:** Enlaces a teléfono (`tel:`) y correo (`mailto:`) plenamente activos y responsivos.
 - **Status:** COMPLETED & VERIFIED.
+
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
   1. **Direct Component Top Padding:** Applied `pt-20 sm:pt-24 lg:pt-8` (and `clamp(5.5rem, 16vh, 7.5rem)`) directly inside `Section2Identity.tsx`, `Section2Curved.tsx`, `Section3Adapts.tsx`, and `Section3Curved.tsx`.

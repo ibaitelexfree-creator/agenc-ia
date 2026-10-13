@@ -128,33 +128,33 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
                 </div>
 
-                {/* Horario, Contacto y Ubicación Column */}
-                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <Clock className="w-3.5 h-3.5" />
+                {/* Horario, Contacto y Ubicación Column (+20% tamaño de fuente) */}
+                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[12px] sm:text-[13px] uppercase tracking-wider text-sea-foam/50 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <Clock className="w-4 h-4" />
                             <span>Horario</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">Lunes a Domingo</span>
-                        <span className="text-sea-foam/60 font-medium">09:00 — 20:00</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Lunes a Domingo</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">09:00 — 20:00</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <MapPin className="w-3.5 h-3.5" />
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <MapPin className="w-4 h-4" />
                             <span>Ubicación</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">Muelle Arriluzea, s/n</span>
-                        <span className="text-sea-foam/60 font-medium">48990 Getxo, Vizcaya</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Muelle Arriluzea, s/n</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">48990 Getxo, Vizcaya</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <Phone className="w-3.5 h-3.5" />
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <Phone className="w-4 h-4" />
                             <span>Contacto</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">(+34) 944 916 632</span>
-                        <span className="text-sea-foam/60 font-medium">info@getxobelaeskola.com</span>
+                        <a href="tel:+34944916632" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors">(+34) 944 916 632</a>
+                        <a href="mailto:info@getxobelaeskola.com" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors lowercase tracking-normal">info@getxobelaeskola.com</a>
                     </div>
                 </div>
 

@@ -31,33 +31,33 @@ export default function FooterClient({ locale }: { locale: string }) {
             </div>
           </div>
 
-          {/* Horario, Contacto y Ubicación Column */}
-          <div className="flex flex-col md:flex-row justify-center gap-4 md:gap-12 text-center md:text-left mb-6 text-[9px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-4 w-full max-w-3xl">
-            <div className="flex flex-col items-center md:items-start gap-1 flex-1">
-              <div className="flex items-center gap-2 text-accent font-black">
-                <Clock className="w-3 h-3" />
+          {/* Horario, Contacto y Ubicación Column (+20% tamaño de fuente) */}
+          <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-14 text-center md:text-left mb-8 text-[11px] sm:text-[12px] uppercase tracking-wider text-sea-foam/50 border-y border-sea-foam/10 py-6 w-full max-w-3xl">
+            <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+              <div className="flex items-center gap-2 text-accent font-black text-[12px] sm:text-[13px]">
+                <Clock className="w-3.5 h-3.5" />
                 <span>Horario</span>
               </div>
-              <span className="text-sea-foam/60 font-medium">Lunes a Domingo</span>
-              <span className="text-sea-foam/60 font-medium">09:00 — 20:00</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">Lunes a Domingo</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">09:00 — 20:00</span>
             </div>
 
-            <div className="flex flex-col items-center md:items-start gap-1 flex-1">
-              <div className="flex items-center gap-2 text-accent font-black">
-                <MapPin className="w-3 h-3" />
+            <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+              <div className="flex items-center gap-2 text-accent font-black text-[12px] sm:text-[13px]">
+                <MapPin className="w-3.5 h-3.5" />
                 <span>Ubicación</span>
               </div>
-              <span className="text-sea-foam/60 font-medium">Muelle Arriluzea, s/n</span>
-              <span className="text-sea-foam/60 font-medium">48990 Getxo, Vizcaya</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">Muelle Arriluzea, s/n</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">48990 Getxo, Vizcaya</span>
             </div>
 
-            <div className="flex flex-col items-center md:items-start gap-1 flex-1">
-              <div className="flex items-center gap-2 text-accent font-black">
-                <Phone className="w-3 h-3" />
+            <div className="flex flex-col items-center md:items-start gap-2 flex-1">
+              <div className="flex items-center gap-2 text-accent font-black text-[12px] sm:text-[13px]">
+                <Phone className="w-3.5 h-3.5" />
                 <span>Contacto</span>
               </div>
-              <span className="text-sea-foam/60 font-medium">(+34) 944 916 632</span>
-              <span className="text-sea-foam/60 font-medium">info@getxobelaeskola.com</span>
+              <a href="tel:+34944916632" className="text-sea-foam/75 hover:text-white font-semibold text-[11px] sm:text-[12px] leading-relaxed transition-colors">(+34) 944 916 632</a>
+              <a href="mailto:info@getxobelaeskola.com" className="text-sea-foam/75 hover:text-white font-semibold text-[11px] sm:text-[12px] leading-relaxed transition-colors lowercase tracking-normal">info@getxobelaeskola.com</a>
             </div>
           </div>
 
