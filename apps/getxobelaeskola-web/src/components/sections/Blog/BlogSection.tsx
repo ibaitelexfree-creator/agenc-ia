@@ -216,7 +216,8 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 2: Glassmorphism / Frosted Glass Bar al pie de la imagen (Aspect 2.2:1)
+  // HOME 2: Basado en Home 1 con Imagen 100% Clara + Tipografía con Sombra Proyectada Nítida (Sin degradado oscuro)
+  // La imagen se ve completamente limpia y luminosa; el texto destaca por drop-shadow/text-stroke suave.
   if (layoutVariant === 'home-2') {
     return (
       <section 
@@ -226,14 +227,14 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
             <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#0A7EC8]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2EC4B6]" />
               <h2 id="blog-home2-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
                 {titleText}
               </h2>
             </div>
             <a 
               href={`/${locale}/blog/noticias`}
-              className="text-xs sm:text-sm font-semibold text-[#0A7EC8] hover:text-white transition-colors"
+              className="text-xs sm:text-sm font-semibold text-[#2EC4B6] hover:text-white transition-colors"
             >
               {ctaLabel} →
             </a>
@@ -246,23 +247,22 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.2/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/15 block"
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
                 >
+                  {/* Imagen 100% clara y limpia, sin overlay oscuro general */}
                   <img
                     src={post.image}
                     alt={title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
                   />
-                  {/* Sutil viñeta para contraste */}
-                  <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
-                  {/* Franja translúcida de cristal esmerilado dentro de la imagen */}
-                  <div className="absolute inset-x-0 bottom-0 bg-[#091C2E]/80 backdrop-blur-md p-2.5 sm:p-3 border-t border-white/15 pointer-events-none">
-                    <span className="text-[9px] uppercase font-bold text-[#64B5F6] tracking-wider block mb-0.5">
+                  {/* Contenido directo sobre la imagen limpia con sombras de texto nítidas */}
+                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
+                    <span className="text-[9.5px] uppercase font-black text-[#2EC4B6] tracking-wider mb-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
                       {post.category}
                     </span>
-                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#64B5F6] transition-colors line-clamp-1 leading-snug">
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
                       {title}
                     </h3>
                   </div>
@@ -275,7 +275,8 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 3: Tarjeta Flotante Compacta Interior con Margen / Inset (Aspect 2.3:1)
+  // HOME 3: Basado en Home 1 con Mini-Píldora Translúcida Ultrafina solo alrededor del texto
+  // Toda la imagen superior, media y lateral se ve nítida y luminosa; solo las letras tienen una ligera gasa de apoyo.
   if (layoutVariant === 'home-3') {
     return (
       <section 
@@ -285,14 +286,14 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
             <div className="flex items-center gap-2.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#F4A623]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2EC4B6]" />
               <h2 id="blog-home3-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
                 {titleText}
               </h2>
             </div>
             <a 
               href={`/${locale}/blog/noticias`}
-              className="text-xs sm:text-sm font-semibold text-[#F4A623] hover:text-white transition-colors"
+              className="text-xs sm:text-sm font-semibold text-[#2EC4B6] hover:text-white transition-colors"
             >
               {ctaLabel} →
             </a>
@@ -305,23 +306,22 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.3/1] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2.5 sm:p-3 flex flex-col justify-end"
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2.5 sm:p-3 flex flex-col justify-end"
                 >
+                  {/* Imagen clara al 100% */}
                   <img
                     src={post.image}
                     alt={title}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
                   />
-                  {/* Capa de contraste total suave */}
-                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
-                  {/* Pastilla flotante interior suspendida dentro de la imagen */}
-                  <div className="relative z-10 bg-[#0A1A2B]/90 backdrop-blur-sm rounded-lg p-2.5 border border-white/15 pointer-events-none">
-                    <span className="text-[8.5px] uppercase font-bold text-[#F4A623] tracking-wider block mb-0.5">
+                  {/* Micro-píldora translúcida de baja opacidad pegada solo al texto, dejando visible todo el fondo */}
+                  <div className="relative z-10 bg-black/35 backdrop-blur-[2px] rounded-lg p-2 border border-white/15 pointer-events-none">
+                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider block mb-0.5 drop-shadow">
                       {post.category}
                     </span>
-                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#F4A623] transition-colors line-clamp-2 leading-tight">
+                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-1 leading-tight drop-shadow">
                       {title}
                     </h3>
                   </div>
@@ -334,60 +334,58 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 4: Panorámico Ultra-Cinemático con Text Overlay Minimalista (Aspect 2.7:1 - Mínima Altura Vertical)
+  // HOME 4: Basado en Home 1 con Degradado Mínimo Ultra-Sutil (Solo 20% inferior al 40% de opacidad)
+  // Conserva la limpieza total de la foto con un 80% del marco completamente transparente y puro.
   if (layoutVariant === 'home-4') {
     return (
       <section 
-        className="w-full bg-[#0D2137] py-3.5 sm:py-5 border-t border-white/10"
+        className="w-full bg-[#0D2137] py-4 sm:py-6 border-t border-white/10"
         aria-labelledby="blog-home4-heading"
       >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
-          <div className="flex items-center justify-between gap-4 mb-3">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
-              <h2 id="blog-home4-heading" className="font-display font-semibold text-base sm:text-xl text-white">
+          <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2EC4B6]" />
+              <h2 id="blog-home4-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
                 {titleText}
               </h2>
             </div>
             <a 
               href={`/${locale}/blog/noticias`}
-              className="text-xs font-semibold text-[#8B5CF6] hover:text-white transition-colors"
+              className="text-xs sm:text-sm font-semibold text-[#2EC4B6] hover:text-white transition-colors"
             >
               {ctaLabel} →
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             {blogPosts.slice(0, 3).map((post) => {
               const title = locale === 'eu' ? post.titleEu : locale === 'en' ? post.titleEn : locale === 'fr' ? post.titleFr : post.titleEs;
               return (
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.7/1] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all border border-white/15 block"
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
                 >
+                  {/* Imagen luminosa */}
                   <img
                     src={post.image}
                     alt={title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
                   />
-                  {/* Degradado lateral/inferior de alto contraste para máxima legibilidad */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
 
-                  {/* Texto dentro de la imagen con diseño ultra-compacto */}
-                  <div className="absolute inset-x-0 bottom-0 p-2.5 sm:p-3 pointer-events-none flex items-end justify-between gap-2">
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[8.5px] uppercase font-bold text-[#A78BFA] tracking-wider block mb-0.5">
-                        {post.category}
-                      </span>
-                      <h3 className="font-display font-semibold text-xs text-white group-hover:text-[#A78BFA] transition-colors line-clamp-1 leading-tight">
-                        {title}
-                      </h3>
-                    </div>
-                    <span className="text-white/60 group-hover:text-white text-xs font-bold shrink-0 transition-colors">
-                      →
+                  {/* Degradado mínimo casi imperceptible: solo sube un 25% y con un máximo suave del 45% */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
+
+                  {/* Texto dentro de la imagen con badges elegantes */}
+                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
+                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider mb-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                      {post.category}
                     </span>
+                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                      {title}
+                    </h3>
                   </div>
                 </a>
               );

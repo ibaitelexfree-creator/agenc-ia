@@ -2,14 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** 4 Variantes de Entradas de Blog con Texto Dentro de la Imagen (Home 1, 2, 3, 4)
-  1. **Objetivo:** Reducir drásticamente la altura vertical de la sección de blog integrando el texto (categoría, título y enlace) dentro de la propia imagen en lugar de colocarlo debajo.
-  2. **4 Variantes de Diseño implementadas:**
-     - **Home 1 (Dark Bottom Gradient Overlay):** Proporción `2.4:1`, degradado inferior profundo integrado con contraste náutico `#2EC4B6` y badge.
-     - **Home 2 (Frosted Glass / Cristal Esmerilado):** Proporción `2.2:1`, franja inferior de cristal esmerilado translúcido (`backdrop-blur-md`, `bg-[#091C2E]/80`) al pie de la imagen.
-     - **Home 3 (Pastilla Flotante Interior Inset):** Proporción `2.3:1`, tarjeta flotante con margen perimetral interior (`rounded-2xl`, pastilla `bg-[#0A1A2B]/90`, detalle `#F4A623`).
-     - **Home 4 (Panorámica Ultra-Cinemática Minimalista):** Proporción `2.7:1` (mínima altura vertical posible), degradado completo con tipografía compacta en una sola línea y flecha de acción directa.
-  3. **Verificación:** Transpilación verificada con éxito y rutas accesibles en `/es/home-1`, `/es/home-2`, `/es/home-3`, `/es/home-4`.
+- **Task:** Variaciones de Home 1 con Imagen Clara y Sin Zona Inferior Oscura (Home 2, 3, 4)
+  1. **Base elegida:** La proporción y encuadre compacto de **Home 1** (`2.4:1`), pero eliminando la zona oscura inferior para que la fotografía se aprecie limpia y luminosa:
+     - **Home 1:** Diseño de referencia original (degradado inferior profundo integrado).
+     - **Home 2:** Imagen 100% clara y limpia, sin overlay; texto nítido con `drop-shadow` de contorno pronunciado.
+     - **Home 3:** Imagen clara con micro-píldora translúcida (`backdrop-blur-[2px]`, `bg-black/35`) envolviendo únicamente el texto sin tapar el fondo.
+     - **Home 4:** Degradado mínimo ultraligero (solo 25% inferior al 45% de opacidad), con máxima luminosidad en la imagen y lectura perfecta.
+  2. **Verificación:** Transpilación verificada con éxito.
 - **Status:** COMPLETED & VERIFIED.
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
