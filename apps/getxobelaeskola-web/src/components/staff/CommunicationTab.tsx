@@ -101,7 +101,7 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    const parts = [];
+    const parts: string[] = [];
     if (days > 0) parts.push(`${days}d`);
     parts.push(`${hours.toString().padStart(2, '0')}h`);
     parts.push(`${minutes.toString().padStart(2, '0')}m`);

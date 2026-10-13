@@ -47,14 +47,9 @@ export function ParchmentWrapper({
   // 2. Eliminación de cajas amarillas / bordes pesados en toda la suite moderna
   const noYellowBox = isParchmentSuite
 
-  // 3. Muelle ultra suave de Home 13 como base ganadora para todos
-  const containerTransition = isHome12
-    ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
-    : { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
-
-  const rollerTransition = isHome12
-    ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
-    : { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
+  // 3. Muelle ultra rápido y suave
+  const containerTransition = { type: 'spring' as const, stiffness: 280, damping: 28, mass: 0.6 }
+  const rollerTransition = { type: 'spring' as const, stiffness: 280, damping: 28, mass: 0.6 }
 
   const topRollerAnimate = isCylindrical
     ? { rotateX: isExpanded ? -15 : 0 }

@@ -2,12 +2,32 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Update Course Image for Txikigune (Sábados de navegación)
+  1. **User Photo Integration:** Converted user's Optimist photo (`Optimist (6).jpg`) into optimized high-resolution WebP (`public/images/courses/Txikigune.webp`, 1920x1440, 270KB).
+  2. **Catalog & Detail Page Update:** Updated course `imagen_url` in both `src/app/[locale]/courses/page.tsx` and `src/app/[locale]/courses/[slug]/page.tsx`.
+  3. **Cache Clearance:** Flushed Next.js image cache (`.next/cache/images`) to serve the new photo immediately.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Update Course Image for Vela Ligera Iniciación (150€)
+  1. **User Photo Integration:** Converted user's Optimist photo (`IMG20211024121831.jpg`) into optimized high-resolution WebP (`public/images/courses/CursodeVelaLigera.webp`).
+  2. **Cache Clearance:** Flushed Next.js image cache (`.next/cache/images`) to serve the new photo immediately.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Vercel Build & TypeScript Type Errors Resolution
+  1. **Service Module Extraction:** Extracted newsletter background processing out of Next.js Route Handler `src/app/api/cron/process-newsletters/route.ts` into a standalone service module (`src/lib/services/newsletter.ts`) to comply with Next.js App Router route export requirements.
+  2. **TypeScript & Nullability Fixes:** Resolved all strict TypeScript type errors across route handlers (`process-newsletters`, `auth/callback`, `checkout`), components (`BookingSelector`, `RegistrationFormFields`, `CommunicationTab`, `Section3Curved`), and unit test files (`HistoricalRegattas.test`, `CheckpointQuestion.test`, `VideoWithCheckpoints.test`).
+  3. **Verification:** Executed `npx tsc --noEmit` (exited code 0 with 0 type errors) and `npx next build` (exited code 0, 100% successful SSG & static page compilation across all 718 locale routes).
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Aumento del 20% en tipografía del Pie de Página (Horario, Ubicación y Contacto)
   1. **Ajuste en Footer y FooterClient:** Aumentado el tamaño de letra un +20% (`text-[10px]` -> `text-[12px] sm:text-[13px]`, títulos y datos correspondientes) en las columnas de Horario, Ubicación y Contacto.
   2. **Enlaces funcionales:** Enlaces a teléfono (`tel:`) y correo (`mailto:`) plenamente activos y responsivos.
 - **Status:** COMPLETED & VERIFIED.
 
-
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
   1. **Direct Component Top Padding:** Applied `pt-20 sm:pt-24 lg:pt-8` (and `clamp(5.5rem, 16vh, 7.5rem)`) directly inside `Section2Identity.tsx`, `Section2Curved.tsx`, `Section3Adapts.tsx`, and `Section3Curved.tsx`.
   2. **Result:** Overrides inline style defaults and physically shifts Section 2 and Section 3 text blocks down by 80px–96px on mobile viewports, guaranteeing the floating Navbar logo never obscures the title text.

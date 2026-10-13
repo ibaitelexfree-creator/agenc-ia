@@ -183,7 +183,7 @@ export default async function CoursesPage({
             nivel: 'iniciacion',
             categoria_id: 'cat-jovenes',
             categoria: { id: 'cat-jovenes', slug: 'cursos-jovenes', nombre_es: 'Cursos para Jóvenes', nombre_eu: 'Gazteentzako Ikastaroak' },
-            imagen_url: '/images/course-raquero-students.webp'
+            imagen_url: '/images/courses/Txikigune.webp'
         },
         {
             id: 'c-udalekuak-campamentos',

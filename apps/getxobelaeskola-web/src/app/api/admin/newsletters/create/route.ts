@@ -1,6 +1,6 @@
 import { requireInstructor } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
-import { processScheduledNewsletters } from '@/app/api/cron/process-newsletters/route';
+import { processScheduledNewsletters } from '@/lib/services/newsletter';
 
 export async function POST(request: Request) {
     try {

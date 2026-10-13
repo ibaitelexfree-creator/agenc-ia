@@ -27,7 +27,7 @@ export async function GET(request: Request) {
     const code = searchParams.get('code');
     
     // Read redirect cookie using next/headers
-    let nextCookie = null;
+    let nextCookie: string | null = null;
     try {
         const cookieStore = cookies();
         nextCookie = cookieStore.get('sb-redirect-to')?.value || null;

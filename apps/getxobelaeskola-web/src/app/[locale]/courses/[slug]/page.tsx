@@ -37,7 +37,7 @@ export async function generateMetadata({
         'entrenamientos-adultas': { nombre_es: 'Entrenamientos para adultas', nombre_eu: 'Helduentzako entrenamenduak', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
         'vela-ligera-iniciacion': { nombre_es: 'Vela ligera iniciación', nombre_eu: 'Bela arina hastapena', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'vela-ligera-avanzado': { nombre_es: 'Vela ligera avanzado', nombre_eu: 'Bela arina aurreratua', imagen_url: '/images/alquiler-laser.webp' },
-        'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/course-raquero-students.webp' },
+        'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/courses/Txikigune.webp' },
         'udalekuak-campamentos': { nombre_es: 'Udalekuak (Campamentos)', nombre_eu: 'Udalekuak (Campamentos)', imagen_url: '/images/course-raquero-students.webp' },
         'entrenamientos-infantiles-continuos': { nombre_es: 'Entrenamientos infantiles continuos', nombre_eu: 'Haurrentzako entrenamendu jarraituak', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/course-detail-header-sailing.webp' },
@@ -303,7 +303,7 @@ export default async function CourseDetailPage({
             precio: 35,
             duracion_h: 3,
             nivel: 'iniciacion',
-            imagen_url: '/images/course-raquero-students.webp',
+            imagen_url: '/images/courses/Txikigune.webp',
             detalles: {
                 es: ['Días sueltos los sábados sin compromiso', 'Juegos marineros y aprendizaje activo', 'Convivencia y trabajo en equipo', 'Edades de 5 a 21 años'],
                 eu: ['Egun solteak larunbatetan konpromisorik gabe', 'Itsas jolasak eta ikaskuntza aktiboa', 'Elkarbizitza eta talde-lana', '5 eta 21 urte bitartekoentzat']

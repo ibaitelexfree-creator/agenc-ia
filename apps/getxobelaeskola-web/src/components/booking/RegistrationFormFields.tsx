@@ -80,7 +80,7 @@ export function PremiumDatePicker({
         let startDayOfWeek = firstDayOfMonth.getDay();
         startDayOfWeek = startDayOfWeek === 0 ? 6 : startDayOfWeek - 1;
         
-        const dayArr = [];
+        const dayArr: (Date | null)[] = [];
         for (let i = 0; i < startDayOfWeek; i++) {
             dayArr.push(null);
         }
@@ -307,6 +307,22 @@ interface RegistrationFormFieldsProps {
     formData: any;
     onChange: (data: any) => void;
     errors: Record<string, string>;
+}
+
+function parseDateString(dateStr: string) {
+    if (!dateStr) return { day: '', month: '', year: '' };
+    const parts = dateStr.split('-');
+    if (parts.length === 3) {
+        return { year: parts[0], month: parts[1], day: parts[2] };
+    }
+    return { day: '', month: '', year: '' };
+}
+
+function getDaysInMonth(month: string, year: string) {
+    const m = parseInt(month, 10);
+    const y = parseInt(year, 10) || new Date().getFullYear();
+    if (isNaN(m) || m < 1 || m > 12) return 31;
+    return new Date(y, m, 0).getDate();
 }
 
 export default function RegistrationFormFields({
@@ -653,7 +669,7 @@ export default function RegistrationFormFields({
             const showTutors = isAnyStudentMinor();
 
             const renderStudentFlow = () => {
-                const elements = [];
+                const elements: React.ReactNode[] = [];
                 let currentIdx = 2;
                 let showNextCheckbox = true;
 

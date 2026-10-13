@@ -240,7 +240,7 @@ export async function POST(request: Request) {
                 }
             } else {
                 // If not the parent, check the children list
-                let childMatch = null;
+                let childMatch: any = null;
                 if (profile?.avatar_url && profile.avatar_url.startsWith('children_json:')) {
                     try {
                         const children = JSON.parse(profile.avatar_url.replace('children_json:', ''));

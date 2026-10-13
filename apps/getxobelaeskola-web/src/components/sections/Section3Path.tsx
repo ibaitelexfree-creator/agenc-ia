@@ -113,12 +113,7 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
   const isHome12Or13 = parchmentVariant === 'home-12' || parchmentVariant === 'home-13' || parchmentVariant === 'home-10'
   const isExpanded = Boolean(selectedLevel)
 
-  const contentTransition = 
-    (parchmentVariant === 'home-12' || parchmentVariant === 'home-10')
-      ? { type: 'spring' as const, stiffness: 45, damping: 20, mass: 1.8 }
-      : parchmentVariant === 'home-13'
-      ? { type: 'spring' as const, stiffness: 35, damping: 24, mass: 2.2 }
-      : { type: 'spring' as const, stiffness: 90, damping: 18, mass: 1.2 }
+  const contentTransition = { type: 'spring' as const, stiffness: 300, damping: 28, mass: 0.5 }
 
   const isCompactPadding = isParchment
   const sectionMinHeight = isParchment ? 'auto' : '100dvh'
@@ -148,7 +143,7 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
         justifyContent: 'center',
         boxSizing: 'border-box',
         overflow: isParchment ? 'visible' : 'hidden',
-        transition: 'padding 0.5s ease, background-color 0.4s ease'
+        transition: 'padding 0.2s ease, background-color 0.2s ease'
       }}
     >
       {/* Velo/onda envolvente que extiende la zona beige de Sección 5 sobre la Sección 4 previa */}
@@ -226,13 +221,12 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
             <motion.button
               key={level}
               onClick={() => handleLevelClick(level)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               transition={{
                 type: 'spring',
-                stiffness: 120,
-                damping: 20,
-                mass: 1.2
+                stiffness: 400,
+                damping: 25
               }}
               style={{
                 flex: '1 1 auto',
@@ -263,14 +257,12 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
         <AnimatePresence>
           {selectedLevel && (
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
+              exit={{ opacity: 0, y: -6 }}
               transition={{
-                type: 'spring',
-                stiffness: 120,
-                damping: 20,
-                mass: 1.2
+                duration: 0.15,
+                ease: 'easeOut'
               }}
               style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center', marginBottom: '1.5rem' }}
             >
@@ -278,26 +270,13 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
                 <motion.button
                   key={profile}
                   onClick={() => handleProfileClick(profile)}
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  animate={isFlashing ? {
-                    backgroundColor: [
-                      'rgba(255, 255, 255, 0)',
-                      'rgba(255, 255, 255, 0.45)',
-                      'rgba(255, 255, 255, 0)'
-                    ],
-                    boxShadow: [
-                      '0 0 0px rgba(255, 255, 255, 0)',
-                      '0 0 12px rgba(255, 255, 255, 0.9), 0 0 4px rgba(10, 126, 200, 0.3)',
-                      '0 0 0px rgba(255, 255, 255, 0)'
-                    ],
-                    scale: [1, 1.025, 1]
-                  } : {}}
-                  transition={isFlashing ? {
-                    duration: 1.2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  } : {}}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 400,
+                    damping: 25
+                  }}
                   style={{
                     padding: '0.7rem 1.25rem',
                     borderRadius: '50px',
@@ -310,7 +289,7 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
                     fontWeight: 600,
                     cursor: 'pointer',
                     fontFamily: 'inherit',
-                    transition: 'border 0.2s ease, color 0.2s ease',
+                    transition: 'border 0.15s ease, color 0.15s ease, background-color 0.15s ease',
                   }}
                 >
                   {profile === 'youth' ? `🧒 ${t('youth')}` : `🧑 ${t('adult')}`}
@@ -324,17 +303,16 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
         <AnimatePresence>
           {courses.length > 0 && (
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{
                 opacity: 0,
-                y: 80,
-                transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }
+                y: 10,
+                transition: { duration: 0.15 }
               }}
               transition={{
-                duration: 1.0,
-                ease: [0.25, 0.1, 0.25, 1] as const,
-                delay: hideHeader ? 1.0 : 0
+                duration: 0.2,
+                ease: 'easeOut'
               }}
               style={{
                 display: 'grid',
@@ -347,14 +325,13 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
               {courses.map((course, i) => (
                 <motion.div
                   key={course.key}
-                  initial={{ opacity: 0, y: 24, rotateY: -15, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, rotateY: 0, scale: 1 }}
+                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
-                    delay: hideHeader ? 1.0 + (i * 0.1) : i * 0.08,
-                    duration: 0.8,
-                    ease: [0.25, 0.1, 0.25, 1] as const,
+                    delay: i * 0.04,
+                    duration: 0.2,
+                    ease: 'easeOut',
                   }}
-                  style={{ perspective: '600px' }}
                 >
                   <CourseCard
                     name={t(`course.${course.key}`)}

@@ -1,5 +1,6 @@
 
 import { render, screen, act, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import VideoWithCheckpoints from './VideoWithCheckpoints';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import React from 'react';
