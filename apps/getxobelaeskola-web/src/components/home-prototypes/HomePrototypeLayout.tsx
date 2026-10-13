@@ -78,18 +78,18 @@ export function HomePrototypeLayout({
       </section>
 
       {/* Sección Blog: Formatos según prototipo */}
-      {/* Home ganadora (Home 3): aplicada a la Home principal (home-12) y prototipo home-3 */}
-      {/* Prototipos restantes: home-1, home-2, home-4 */}
+      {/* Home ganadora (Home 2): aplicada a la Home principal (home-12) y prototipo home-2 */}
+      {/* Prototipos restantes: home-1, home-3, home-4 */}
       {/* Home 11: Ticker Marquee con movimiento permanente continuo */}
       {/* Home 13: Strip Interactivo de perfil bajo en 1 línea */}
       <section className="relative w-full bg-[#0D2137]">
         <BlogSection 
           layoutVariant={
-            (variant === 'home-12' || variant === 'home-3' || variant === 'home-10' || !variant) ? 'home-3' :
-            (variant === 'home-1' || variant === 'home-2' || variant === 'home-4') ? variant :
+            (variant === 'home-12' || variant === 'home-2' || variant === 'home-10' || !variant) ? 'home-2' :
+            (variant === 'home-1' || variant === 'home-3' || variant === 'home-4') ? variant :
             variant === 'home-11' ? 'ticker-marquee' :
             variant === 'home-13' ? 'interactive-strip' :
-            'home-3'
+            'home-2'
           } 
         />
       </section>

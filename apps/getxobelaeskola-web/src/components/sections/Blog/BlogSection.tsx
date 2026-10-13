@@ -157,7 +157,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
   // VARIANTES PROTOTIPO CON TEXTO DENTRO DE LA IMAGEN (MENOS ALTURA VERTICAL)
   // =========================================================================
 
-  // HOME 1: Overlay con Degradado Inferior Flotante + Badge Náutico (Aspect 2.4:1)
+  // HOME 1: Texto dentro de la imagen con overlay sutil y letra en negrita (aspect-[2.4/1])
   if (layoutVariant === 'home-1') {
     return (
       <section 
@@ -200,10 +200,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
 
                   {/* Contenido dentro de la imagen en la parte inferior */}
                   <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
-                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider mb-0.5">
-                      {post.category}
-                    </span>
-                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-md">
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-md">
                       {title}
                     </h3>
                   </div>
@@ -216,8 +213,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 2: Basado en Home 1 con Imagen 100% Clara + Tipografía con Sombra Proyectada Nítida (Sin degradado oscuro)
-  // La imagen se ve completamente limpia y luminosa; el texto destaca por drop-shadow/text-stroke suave.
+  // HOME 2: Texto debajo de la imagen ocupando muy poco espacio vertical
   if (layoutVariant === 'home-2') {
     return (
       <section 
@@ -247,22 +243,21 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
+                  className="group flex flex-col rounded-xl overflow-hidden bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2EC4B6]/50 transition-all shadow-sm"
                 >
-                  {/* Imagen 100% clara y limpia, sin overlay oscuro general */}
-                  <img
-                    src={post.image}
-                    alt={title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
-                  />
+                  {/* Miniatura compacta */}
+                  <div className="relative w-full aspect-[2.6/1] overflow-hidden">
+                    <img
+                      src={post.image}
+                      alt={title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
+                    />
+                  </div>
 
-                  {/* Contenido directo sobre la imagen limpia con sombras de texto nítidas */}
-                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
-                    <span className="text-[9.5px] uppercase font-black text-[#2EC4B6] tracking-wider mb-0.5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.95)]">
-                      {post.category}
-                    </span>
-                    <h3 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
+                  {/* Zona de texto abajo de la imagen ultra-compacta */}
+                  <div className="px-3 py-2">
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-1 leading-tight">
                       {title}
                     </h3>
                   </div>
@@ -275,8 +270,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 3: Basado en Home 1 con Mini-Píldora Translúcida Ultrafina solo alrededor del texto
-  // Toda la imagen superior, media y lateral se ve nítida y luminosa; solo las letras tienen una ligera gasa de apoyo.
+  // HOME 3: Franja blanca sólida abajo dentro de cada tarjeta con texto oscuro en negrita y altura mínima
   if (layoutVariant === 'home-3') {
     return (
       <section 
@@ -306,22 +300,19 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2.5 sm:p-3 flex flex-col justify-end"
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
                 >
-                  {/* Imagen clara al 100% */}
+                  {/* Imagen de fondo */}
                   <img
                     src={post.image}
                     alt={title}
-                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
                   />
 
-                  {/* Micro-píldora translúcida de baja opacidad pegada solo al texto, dejando visible todo el fondo */}
-                  <div className="relative z-10 bg-black/35 backdrop-blur-[2px] rounded-lg p-2 border border-white/15 pointer-events-none">
-                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider block mb-0.5 drop-shadow">
-                      {post.category}
-                    </span>
-                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-1 leading-tight drop-shadow">
+                  {/* Franja blanca sólida abajo ocupando el ancho completo de la miniatura con perfil bajo */}
+                  <div className="absolute inset-x-0 bottom-0 bg-white/95 backdrop-blur-sm px-3 py-2 border-t border-slate-200 pointer-events-none transition-colors group-hover:bg-white">
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-[#0D2137] group-hover:text-[#0A7EC8] transition-colors line-clamp-1 leading-snug">
                       {title}
                     </h3>
                   </div>
@@ -334,8 +325,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
     );
   }
 
-  // HOME 4: Basado en Home 1 con Degradado Mínimo Ultra-Sutil (Solo 20% inferior al 40% de opacidad)
-  // Conserva la limpieza total de la foto con un 80% del marco completamente transparente y puro.
+  // HOME 4: Franja blanca tipo cápsula flotante / pill en el tercio inferior con margen y bordes redondeados
   if (layoutVariant === 'home-4') {
     return (
       <section 
@@ -365,25 +355,19 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
                 <a
                   key={post.id}
                   href={`/${locale}/blog/noticias`}
-                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2 sm:p-2.5 flex flex-col justify-end"
                 >
-                  {/* Imagen luminosa */}
+                  {/* Imagen luminosa completa */}
                   <img
                     src={post.image}
                     alt={title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
                   />
 
-                  {/* Degradado mínimo casi imperceptible: solo sube un 25% y con un máximo suave del 45% */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none" />
-
-                  {/* Texto dentro de la imagen con badges elegantes */}
-                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
-                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider mb-0.5 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                      {post.category}
-                    </span>
-                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
+                  {/* Franja blanca flotante con sombra suave dentro de la imagen ocupando mínimo espacio */}
+                  <div className="relative z-10 bg-white/90 backdrop-blur-md rounded-lg px-2.5 py-1.5 shadow-md border border-white/40 pointer-events-none group-hover:bg-white transition-colors">
+                    <h3 className="font-display font-bold text-xs sm:text-sm text-[#0D2137] group-hover:text-[#0A7EC8] transition-colors line-clamp-1 leading-tight">
                       {title}
                     </h3>
                   </div>

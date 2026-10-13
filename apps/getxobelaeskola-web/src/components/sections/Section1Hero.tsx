@@ -224,7 +224,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
     scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
   )
 
-  const isCustomBlobsVariant = blobsVariant === 'home-1'
+  const isCustomBlobsVariant = !blobsVariant || blobsVariant === 'home-12' || blobsVariant === 'home-1' || blobsVariant === 'home-2' || blobsVariant === 'home-3' || blobsVariant === 'home-4'
 
   const CARDS = isCustomBlobsVariant ? [
     {
