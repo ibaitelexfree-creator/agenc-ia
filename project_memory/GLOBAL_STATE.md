@@ -2,13 +2,10 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Variaciones de Home 1 con Imagen Clara y Sin Zona Inferior Oscura (Home 2, 3, 4)
-  1. **Base elegida:** La proporción y encuadre compacto de **Home 1** (`2.4:1`), pero eliminando la zona oscura inferior para que la fotografía se aprecie limpia y luminosa:
-     - **Home 1:** Diseño de referencia original (degradado inferior profundo integrado).
-     - **Home 2:** Imagen 100% clara y limpia, sin overlay; texto nítido con `drop-shadow` de contorno pronunciado.
-     - **Home 3:** Imagen clara con micro-píldora translúcida (`backdrop-blur-[2px]`, `bg-black/35`) envolviendo únicamente el texto sin tapar el fondo.
-     - **Home 4:** Degradado mínimo ultraligero (solo 25% inferior al 45% de opacidad), con máxima luminosidad en la imagen y lectura perfecta.
-  2. **Verificación:** Transpilación verificada con éxito.
+- **Task:** Integración de la Sección de Blog Ganadora (Home 3) en Home Principal
+  1. **Ganadora elegida (Home 3):** Formato compacto con imagen clara (`aspect-[2.4/1]`) y micro-píldora translúcida (`backdrop-blur-[2px]`, `bg-black/35`) que envuelve únicamente el texto sin oscurecer la fotografía de fondo de cada artículo.
+  2. **Aplicada a la Home principal (`/` y `/es/`):** Configurado en `HomePrototypeLayout.tsx` para que `home-12` (la home oficial) y los accesos raíz rendericen este diseño.
+  3. **Verificación:** Transpilación verificada con éxito.
 - **Status:** COMPLETED & VERIFIED.
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
