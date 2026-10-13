@@ -2,15 +2,11 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Morfología Ondulante SVG con Espesor Creciente Hacia Arriba (Home 1, Home 2, Home 3, Home 4)
-  1. **Base ganadora replicada de Home 4:** Todas las variantes adoptan la mecánica de ondulación/morfología de la opción 4 (`<animate attributeName="d">`), ancladas rígidamente en extremos sin desplazamiento en bloque.
-  2. **Espesor extra proyectado hacia ARRIBA sobre el vídeo:**
-     - **Home 1:** Doble de espesor hacia arriba (`dTop = -0.16`), ciclo de 5.2s.
-     - **Home 2:** Doble + extra moderado hacia arriba (`dTop = -0.26`), ciclo de 5.0s.
-     - **Home 3:** Doble + extra generoso hacia arriba (`dTop = -0.36`), ciclo de 4.8s.
-     - **Home 4:** Gran cresta prominente invasiva hacia el vídeo (`dTop = -0.48`), ciclo de 4.5s.
-  3. **Verificación:** Transpilación y bundling verificados con éxito mediante esbuild y Next.js.
-- **Status:** COMPLETED & VERIFIED.
+- **Task:** Integración de la Curvatura Ganadora (Home 1) en Home Principal y Push a Develop
+  1. **Ganadora elegida (Home 1):** Espesor doble hacia arriba sobre el vídeo (`dTop = -0.16`) con ondulación líquida viva e in-situ (ciclo 5.2s, sin desplazamientos en bloque).
+  2. **Aplicada a la Home principal (`/` y `/es/`):** Configurado como comportamiento por defecto en `Section4TopWaveBorder.tsx` tanto para `home-12` (layout de la home viva) como para cualquier variante base.
+  3. **Git Add, Commit & Push:** Guardado con commit `feat(home): integrar curvatura beige ganadora de Home 1 en Home principal y prototipos` y subido a `origin/develop` (commit `121fd81f`).
+- **Status:** COMPLETED & PUSHED.
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
   1. **Direct Component Top Padding:** Applied `pt-20 sm:pt-24 lg:pt-8` (and `clamp(5.5rem, 16vh, 7.5rem)`) directly inside `Section2Identity.tsx`, `Section2Curved.tsx`, `Section3Adapts.tsx`, and `Section3Curved.tsx`.
