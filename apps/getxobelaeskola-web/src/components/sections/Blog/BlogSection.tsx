@@ -32,7 +32,7 @@ const ctaLabels = {
 };
 
 interface BlogSectionProps {
-  layoutVariant?: 'default' | 'ticker-marquee' | 'horizontal-feed' | 'interactive-strip' | 'compact' | 'ultra-compact'
+  layoutVariant?: 'default' | 'ticker-marquee' | 'horizontal-feed' | 'interactive-strip' | 'compact' | 'ultra-compact' | 'home-1' | 'home-2' | 'home-3' | 'home-4'
 }
 
 export default function BlogSection({ layoutVariant = 'default' }: BlogSectionProps = {}) {
@@ -148,6 +148,251 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               );
             })}
           </motion.div>
+        </div>
+      </section>
+    );
+  }
+
+  // =========================================================================
+  // VARIANTES PROTOTIPO CON TEXTO DENTRO DE LA IMAGEN (MENOS ALTURA VERTICAL)
+  // =========================================================================
+
+  // HOME 1: Overlay con Degradado Inferior Flotante + Badge Náutico (Aspect 2.4:1)
+  if (layoutVariant === 'home-1') {
+    return (
+      <section 
+        className="w-full bg-[#0D2137] py-4 sm:py-6 border-t border-white/10"
+        aria-labelledby="blog-home1-heading"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#2EC4B6]" />
+              <h2 id="blog-home1-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
+                {titleText}
+              </h2>
+            </div>
+            <a 
+              href={`/${locale}/blog/noticias`}
+              className="text-xs sm:text-sm font-semibold text-[#2EC4B6] hover:text-white transition-colors"
+            >
+              {ctaLabel} →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {blogPosts.slice(0, 3).map((post) => {
+              const title = locale === 'eu' ? post.titleEu : locale === 'en' ? post.titleEn : locale === 'fr' ? post.titleFr : post.titleEs;
+              return (
+                <a
+                  key={post.id}
+                  href={`/${locale}/blog/noticias`}
+                  className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/15 block"
+                >
+                  <img
+                    src={post.image}
+                    alt={title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
+                  />
+                  {/* Degradado oscuro inferior integrado en la imagen */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#061423]/95 via-[#061423]/50 to-transparent pointer-events-none" />
+
+                  {/* Contenido dentro de la imagen en la parte inferior */}
+                  <div className="absolute inset-x-0 bottom-0 p-3 sm:p-3.5 flex flex-col justify-end pointer-events-none">
+                    <span className="text-[9px] uppercase font-bold text-[#2EC4B6] tracking-wider mb-0.5">
+                      {post.category}
+                    </span>
+                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#2EC4B6] transition-colors line-clamp-2 leading-snug drop-shadow-md">
+                      {title}
+                    </h3>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // HOME 2: Glassmorphism / Frosted Glass Bar al pie de la imagen (Aspect 2.2:1)
+  if (layoutVariant === 'home-2') {
+    return (
+      <section 
+        className="w-full bg-[#0D2137] py-4 sm:py-6 border-t border-white/10"
+        aria-labelledby="blog-home2-heading"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#0A7EC8]" />
+              <h2 id="blog-home2-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
+                {titleText}
+              </h2>
+            </div>
+            <a 
+              href={`/${locale}/blog/noticias`}
+              className="text-xs sm:text-sm font-semibold text-[#0A7EC8] hover:text-white transition-colors"
+            >
+              {ctaLabel} →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {blogPosts.slice(0, 3).map((post) => {
+              const title = locale === 'eu' ? post.titleEu : locale === 'en' ? post.titleEn : locale === 'fr' ? post.titleFr : post.titleEs;
+              return (
+                <a
+                  key={post.id}
+                  href={`/${locale}/blog/noticias`}
+                  className="group relative w-full aspect-[2.2/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/15 block"
+                >
+                  <img
+                    src={post.image}
+                    alt={title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
+                  />
+                  {/* Sutil viñeta para contraste */}
+                  <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+
+                  {/* Franja translúcida de cristal esmerilado dentro de la imagen */}
+                  <div className="absolute inset-x-0 bottom-0 bg-[#091C2E]/80 backdrop-blur-md p-2.5 sm:p-3 border-t border-white/15 pointer-events-none">
+                    <span className="text-[9px] uppercase font-bold text-[#64B5F6] tracking-wider block mb-0.5">
+                      {post.category}
+                    </span>
+                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#64B5F6] transition-colors line-clamp-1 leading-snug">
+                      {title}
+                    </h3>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // HOME 3: Tarjeta Flotante Compacta Interior con Margen / Inset (Aspect 2.3:1)
+  if (layoutVariant === 'home-3') {
+    return (
+      <section 
+        className="w-full bg-[#0D2137] py-4 sm:py-6 border-t border-white/10"
+        aria-labelledby="blog-home3-heading"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4 mb-3 sm:mb-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#F4A623]" />
+              <h2 id="blog-home3-heading" className="font-display font-semibold text-lg sm:text-2xl text-white">
+                {titleText}
+              </h2>
+            </div>
+            <a 
+              href={`/${locale}/blog/noticias`}
+              className="text-xs sm:text-sm font-semibold text-[#F4A623] hover:text-white transition-colors"
+            >
+              {ctaLabel} →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {blogPosts.slice(0, 3).map((post) => {
+              const title = locale === 'eu' ? post.titleEu : locale === 'en' ? post.titleEn : locale === 'fr' ? post.titleFr : post.titleEs;
+              return (
+                <a
+                  key={post.id}
+                  href={`/${locale}/blog/noticias`}
+                  className="group relative w-full aspect-[2.3/1] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2.5 sm:p-3 flex flex-col justify-end"
+                >
+                  <img
+                    src={post.image}
+                    alt={title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
+                  />
+                  {/* Capa de contraste total suave */}
+                  <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+
+                  {/* Pastilla flotante interior suspendida dentro de la imagen */}
+                  <div className="relative z-10 bg-[#0A1A2B]/90 backdrop-blur-sm rounded-lg p-2.5 border border-white/15 pointer-events-none">
+                    <span className="text-[8.5px] uppercase font-bold text-[#F4A623] tracking-wider block mb-0.5">
+                      {post.category}
+                    </span>
+                    <h3 className="font-display font-semibold text-xs sm:text-sm text-white group-hover:text-[#F4A623] transition-colors line-clamp-2 leading-tight">
+                      {title}
+                    </h3>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // HOME 4: Panorámico Ultra-Cinemático con Text Overlay Minimalista (Aspect 2.7:1 - Mínima Altura Vertical)
+  if (layoutVariant === 'home-4') {
+    return (
+      <section 
+        className="w-full bg-[#0D2137] py-3.5 sm:py-5 border-t border-white/10"
+        aria-labelledby="blog-home4-heading"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#8B5CF6]" />
+              <h2 id="blog-home4-heading" className="font-display font-semibold text-base sm:text-xl text-white">
+                {titleText}
+              </h2>
+            </div>
+            <a 
+              href={`/${locale}/blog/noticias`}
+              className="text-xs font-semibold text-[#8B5CF6] hover:text-white transition-colors"
+            >
+              {ctaLabel} →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3.5">
+            {blogPosts.slice(0, 3).map((post) => {
+              const title = locale === 'eu' ? post.titleEu : locale === 'en' ? post.titleEn : locale === 'fr' ? post.titleFr : post.titleEs;
+              return (
+                <a
+                  key={post.id}
+                  href={`/${locale}/blog/noticias`}
+                  className="group relative w-full aspect-[2.7/1] rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all border border-white/15 block"
+                >
+                  <img
+                    src={post.image}
+                    alt={title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-90 group-hover:brightness-100"
+                    onError={(e) => { (e.target as HTMLImageElement).src = "/images/ai/section4-community.webp" }}
+                  />
+                  {/* Degradado lateral/inferior de alto contraste para máxima legibilidad */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
+
+                  {/* Texto dentro de la imagen con diseño ultra-compacto */}
+                  <div className="absolute inset-x-0 bottom-0 p-2.5 sm:p-3 pointer-events-none flex items-end justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[8.5px] uppercase font-bold text-[#A78BFA] tracking-wider block mb-0.5">
+                        {post.category}
+                      </span>
+                      <h3 className="font-display font-semibold text-xs text-white group-hover:text-[#A78BFA] transition-colors line-clamp-1 leading-tight">
+                        {title}
+                      </h3>
+                    </div>
+                    <span className="text-white/60 group-hover:text-white text-xs font-bold shrink-0 transition-colors">
+                      →
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
         </div>
       </section>
     );

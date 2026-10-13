@@ -78,14 +78,16 @@ export function HomePrototypeLayout({
       </section>
 
       {/* Sección Blog: Formatos según prototipo */}
+      {/* Home 1, 2, 3, 4: 4 variantes de texto dentro de la imagen con altura reducida */}
       {/* Home 10 y 12: Feed Horizontal panorámico flotante con fondo blanco */}
       {/* Home 11: Ticker Marquee con movimiento permanente continuo */}
       {/* Home 13: Strip Interactivo de perfil bajo en 1 línea */}
       <section className="relative w-full bg-[#0D2137]">
         <BlogSection 
           layoutVariant={
+            (variant === 'home-1' || variant === 'home-2' || variant === 'home-3' || variant === 'home-4') ? variant :
             variant === 'home-11' ? 'ticker-marquee' :
-            (variant === 'home-12' || variant === 'home-10' || isTargetWaveVariant) ? 'horizontal-feed' :
+            (variant === 'home-12' || variant === 'home-10') ? 'horizontal-feed' :
             variant === 'home-13' ? 'interactive-strip' :
             'default'
           } 

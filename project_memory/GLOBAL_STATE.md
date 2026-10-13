@@ -2,14 +2,14 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Actualización de Textos y Enlaces de los 5 Blobs en Home 1
-  1. **Configuración específica de Home 1 (`/es/home-1`):**
-     - Blob 1: **Cursos** → `/[locale]/servicios/cursos`
-     - Blob 2: **Club Socias** → `/[locale]/servicios/socias`
-     - Blob 3: **Equipos de entrenamiento** → `/[locale]/servicios/equipos`
-     - Blob 4: **Udalekuak** con **Campamentos** debajo en segunda línea → `/[locale]/servicios/udalekuak`
-     - Blob 5: **Entidades** → `/[locale]/servicios/centros-escolares`
-  2. **Diseño y videos:** Conservados intactos todos los videos, thumbnails y animaciones SVG de los 5 blobs.
+- **Task:** 4 Variantes de Entradas de Blog con Texto Dentro de la Imagen (Home 1, 2, 3, 4)
+  1. **Objetivo:** Reducir drásticamente la altura vertical de la sección de blog integrando el texto (categoría, título y enlace) dentro de la propia imagen en lugar de colocarlo debajo.
+  2. **4 Variantes de Diseño implementadas:**
+     - **Home 1 (Dark Bottom Gradient Overlay):** Proporción `2.4:1`, degradado inferior profundo integrado con contraste náutico `#2EC4B6` y badge.
+     - **Home 2 (Frosted Glass / Cristal Esmerilado):** Proporción `2.2:1`, franja inferior de cristal esmerilado translúcido (`backdrop-blur-md`, `bg-[#091C2E]/80`) al pie de la imagen.
+     - **Home 3 (Pastilla Flotante Interior Inset):** Proporción `2.3:1`, tarjeta flotante con margen perimetral interior (`rounded-2xl`, pastilla `bg-[#0A1A2B]/90`, detalle `#F4A623`).
+     - **Home 4 (Panorámica Ultra-Cinemática Minimalista):** Proporción `2.7:1` (mínima altura vertical posible), degradado completo con tipografía compacta en una sola línea y flecha de acción directa.
+  3. **Verificación:** Transpilación verificada con éxito y rutas accesibles en `/es/home-1`, `/es/home-2`, `/es/home-3`, `/es/home-4`.
 - **Status:** COMPLETED & VERIFIED.
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
