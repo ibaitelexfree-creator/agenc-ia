@@ -2,10 +2,35 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Morfología Ondulante SVG con Espesor Creciente Hacia Arriba (Home 1, Home 2, Home 3, Home 4)
+  1. **Base ganadora replicada de Home 4:** Todas las variantes adoptan la mecánica de ondulación/morfología de la opción 4 (`<animate attributeName="d">`), ancladas rígidamente en extremos sin desplazamiento en bloque.
+  2. **Espesor extra proyectado hacia ARRIBA sobre el vídeo:**
+     - **Home 1:** Doble de espesor hacia arriba (`dTop = -0.16`), ciclo de 5.2s.
+     - **Home 2:** Doble + extra moderado hacia arriba (`dTop = -0.26`), ciclo de 5.0s.
+     - **Home 3:** Doble + extra generoso hacia arriba (`dTop = -0.36`), ciclo de 4.8s.
+     - **Home 4:** Gran cresta prominente invasiva hacia el vídeo (`dTop = -0.48`), ciclo de 4.5s.
+  3. **Verificación:** Transpilación y bundling verificados con éxito mediante esbuild y Next.js.
+- **Status:** COMPLETED & VERIFIED.
+
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
   1. **Direct Component Top Padding:** Applied `pt-20 sm:pt-24 lg:pt-8` (and `clamp(5.5rem, 16vh, 7.5rem)`) directly inside `Section2Identity.tsx`, `Section2Curved.tsx`, `Section3Adapts.tsx`, and `Section3Curved.tsx`.
   2. **Result:** Overrides inline style defaults and physically shifts Section 2 and Section 3 text blocks down by 80px–96px on mobile viewports, guaranteeing the floating Navbar logo never obscures the title text.
 - **Status:** COMPLETED & VERIFIED.
+
+- **Task:** Escala Tipográfica Global (+20% pequeñas, +15% medianas, +10% grandes)
+  1. **Tokens Tailwind (`tailwind.config.js`):**
+     - Pequeñas (+20%): `2xs` (0.825rem), `xs` (0.9rem), `sm` (1.05rem).
+     - Medianas (+15%): `base` (1.15rem), `lg` (1.294rem).
+     - Grandes (+10%): `xl` (1.375rem), `2xl` (1.65rem), `3xl` (2.0625rem), `4xl` (2.475rem), `5xl` (3.3rem), `6xl` (4.125rem), `7xl` (4.95rem).
+  2. **Tokens Fluidos (`src/styles/tokens.css`):**
+     - Escalados con fluid clamp los tokens `--gbe-text-xs` y `--gbe-text-sm` (+20%), `--gbe-text-base` y `--gbe-text-lg` (+15%), y `--gbe-text-xl`, `--gbe-text-2xl`, `--gbe-text-3xl`, `--gbe-text-hero` (+10%).
+  3. **Estilos Globales (`src/app/globals.css`):**
+     - `html, body` font-size base aumentado un +15% de manera fluida y en todas las media queries (desde 1.0925rem base hasta resoluciones 4K/8K).
+     - Encabezados `h1`, `h2`, `h3` aumentados un +10% en sus clamp mínimos, fluidos y máximos.
+     - Elementos y clases de texto pequeño (`.text-technical`, `.btn`) aumentados un +20%.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Previous Task:** Home 10 (Copia Completa de Home con Pergamino de Home 12 Implantado)
   1. **Copia exacta de Home en Home 10:** Replicada la estructura completa de `page.tsx` original (metadatos multilingües en es/eu/en/fr, JsonLd, NativeAppRedirect, Hero con oleaje, todas las secciones y SEO).
   2. **Implantación del pergamino de Home 12 en Home 10:**
      - Rodillos de pergamino tan anchos como la pantalla (`100vw`).

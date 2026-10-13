@@ -7,6 +7,7 @@ import { useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { Crab } from '@/components/creatures/Crab'
 import { Section3To4CurvedExtension, S3ToS4CurveVariant } from '@/components/home-prototypes/Section3To4CurvedExtension'
+import { Section4TopWaveBorder } from '@/components/home-prototypes/Section4TopWaveBorder'
 
 interface FlipCardProps {
   icon: React.ReactNode
@@ -465,6 +466,19 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
                     )}
                   </div>
                 </div>
+              </div>
+            )}
+
+            {/* Borde / curvatura beige superior como separador entre la imagen y el vídeo superior (fuera del clipPath para que no se recorte) */}
+            {isSupportedWave && variant && (
+              <div
+                className={`absolute bottom-[100%] ${waveConfig.leftClass} z-30 pointer-events-none select-none overflow-visible ${waveConfig.sizeClass}`}
+                style={{
+                  transform: `translateY(${currentStrategy.containerY})`,
+                }}
+                aria-hidden="true"
+              >
+                <Section4TopWaveBorder variant={contentVariant || variant} />
               </div>
             )}
           </>

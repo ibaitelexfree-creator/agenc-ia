@@ -27,14 +27,12 @@ export function HomePrototypeLayout({
     variant === 'home-5' ? 'floating-overlay' : undefined
   )
 
-  const isParchmentVariant = variant === 'home-10' || variant === 'home-11' || variant === 'home-12' || variant === 'home-13'
-  const curvedBaseVariant = (variant === 'home-2' || variant === 'home-9' || isParchmentVariant) ? 'home-8' : (variant || 'home-8')
+  const isTargetWaveVariant = variant === 'home-1' || variant === 'home-2' || variant === 'home-3' || variant === 'home-4'
+  const isParchmentVariant = variant === 'home-10' || variant === 'home-11' || variant === 'home-12' || variant === 'home-13' || isTargetWaveVariant
+  const curvedBaseVariant = (isTargetWaveVariant || variant === 'home-9' || isParchmentVariant) ? 'home-8' : (variant || 'home-8')
 
   const parchmentEffect = 
-    variant === 'home-10' ? 'home-10' :
-    variant === 'home-11' ? 'home-11' :
-    variant === 'home-12' ? 'home-12' :
-    variant === 'home-13' ? 'home-13' :
+    (variant === 'home-10' || variant === 'home-11' || variant === 'home-12' || variant === 'home-13' || isTargetWaveVariant) ? 'home-12' :
     'none'
 
   return (
@@ -73,9 +71,7 @@ export function HomePrototypeLayout({
       <section 
         className="relative w-full z-30 overflow-visible"
         style={{
-          backgroundColor: (variant === 'home-10' || variant === 'home-11' || variant === 'home-12' || variant === 'home-13') 
-            ? '#FFFFFF' 
-            : (isParchmentVariant ? '#F6F2EC' : '#0D2137')
+          backgroundColor: '#FFFFFF'
         }}
       >
         <Section3Path parchmentVariant={parchmentEffect} />
@@ -89,7 +85,7 @@ export function HomePrototypeLayout({
         <BlogSection 
           layoutVariant={
             variant === 'home-11' ? 'ticker-marquee' :
-            (variant === 'home-12' || variant === 'home-10') ? 'horizontal-feed' :
+            (variant === 'home-12' || variant === 'home-10' || isTargetWaveVariant) ? 'horizontal-feed' :
             variant === 'home-13' ? 'interactive-strip' :
             'default'
           } 
@@ -100,7 +96,7 @@ export function HomePrototypeLayout({
       <section className="relative w-full bg-[#0D2137]">
         <ReviewsSection 
           layoutVariant={
-            (variant === 'home-10' || variant === 'home-12') ? 'compact' : 
+            (variant === 'home-10' || variant === 'home-12' || isTargetWaveVariant) ? 'compact' : 
             variant === 'home-13' ? 'ultra-compact' : 
             'default'
           } 

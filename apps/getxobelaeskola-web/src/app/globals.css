@@ -116,7 +116,7 @@ body {
   background-color: #0D2137;
   color: var(--sea-foam);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 1.0925rem; /* +15% (era 0.95rem) */
   scrollbar-gutter: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -131,42 +131,42 @@ body {
 @media (min-width: 768px) {
   html,
   body {
-    font-size: 1rem;
+    font-size: 1.15rem; /* +15% (era 1rem) */
   }
 }
 
 @media (min-width: 1024px) {
   html,
   body {
-    font-size: 1.05rem;
+    font-size: 1.2075rem; /* +15% (era 1.05rem) */
   }
 }
 
 @media (min-width: 2560px) {
   html,
   body {
-    font-size: 1.25rem;
+    font-size: 1.4375rem; /* +15% (era 1.25rem) */
   }
 }
 
 @media (min-width: 3840px) {
   html,
   body {
-    font-size: 1.5rem;
+    font-size: 1.725rem; /* +15% (era 1.5rem) */
   }
 }
 
 @media (min-width: 5120px) {
   html,
   body {
-    font-size: 1.85rem;
+    font-size: 2.1275rem; /* +15% (era 1.85rem) */
   }
 }
 
 @media (min-width: 7680px) {
   html,
   body {
-    font-size: 2.25rem;
+    font-size: 2.5875rem; /* +15% (era 2.25rem) */
   }
 }
 
@@ -185,15 +185,15 @@ h6,
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 5.5vw, 4.95rem); /* +10% */
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-size: clamp(1.76rem, 3.85vw, 3.3rem); /* +10% */
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-size: clamp(1.375rem, 2.75vw, 2.2rem); /* +10% */
 }
 
 h4 {
@@ -265,20 +265,20 @@ h6 {
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  font-size: 0.65rem;
+  font-size: 0.78rem; /* +20% (era 0.65rem) */
   font-weight: 800;
   color: rgba(26, 26, 26, 0.4);
 }
 
 @media (min-width: 768px) {
   .text-technical {
-    font-size: 0.7rem;
+    font-size: 0.84rem; /* +20% (era 0.7rem) */
   }
 }
 
 @media (min-width: 1024px) {
   .text-technical {
-    font-size: 0.75rem;
+    font-size: 0.9rem; /* +20% (era 0.75rem) */
   }
 }
 
@@ -312,7 +312,7 @@ h6 {
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 0.7rem;
+  font-size: 0.84rem; /* +20% (era 0.7rem) */
   font-weight: 600;
   padding: 0.8rem 1.6rem;
   border: 1px solid var(--accent);
