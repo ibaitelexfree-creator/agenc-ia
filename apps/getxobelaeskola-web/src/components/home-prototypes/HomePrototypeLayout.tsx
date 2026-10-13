@@ -43,7 +43,7 @@ export function HomePrototypeLayout({
         className="relative w-full z-10 overflow-hidden"
         style={{ isolation: 'isolate', contain: 'paint', clipPath: 'inset(0)' }}
       >
-        <Section1Hero blobsElevated={blobsElevated} />
+        <Section1Hero blobsElevated={blobsElevated} blobsVariant={variant} />
       </section>
 
       {/* Sección 2: Rediseño curvo con vídeo y zona beige */}

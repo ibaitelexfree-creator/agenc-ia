@@ -182,8 +182,8 @@ function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { vide
 }
 
 interface BlobCardProps {
-  title: string
-  subtitle: string
+  title: React.ReactNode
+  subtitle?: React.ReactNode
   color: string         // color del título
   videoSrc: string      // ruta del video
   imageSrc: string      // fallback imagen
@@ -202,7 +202,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
   const [inView, setInView] = useState(false)         // para mobile
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const cardRef = useRef<HTMLAnchorElement>(null)
-  const clipId = `clip-${title.replace(/\s/g, '')}`
+  const safeIdStr = typeof title === 'string' ? title.replace(/\s/g, '') : `card-${index}`
+  const clipId = `clip-${safeIdStr}`
 
   const [loadVideo, setLoadVideo] = useState(true)
   const [videoReady, setVideoReady] = useState(false)
@@ -388,7 +389,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
   return (
     <motion.a
       ref={cardRef}
-      id={`blob-card-${title.replace(/\s/g, '')}`}
+      id={`blob-card-${safeIdStr}`}
       href={href}
       className="relative flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}

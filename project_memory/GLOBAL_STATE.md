@@ -2,11 +2,15 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Integración de la Curvatura Ganadora (Home 1) en Home Principal y Push a Develop
-  1. **Ganadora elegida (Home 1):** Espesor doble hacia arriba sobre el vídeo (`dTop = -0.16`) con ondulación líquida viva e in-situ (ciclo 5.2s, sin desplazamientos en bloque).
-  2. **Aplicada a la Home principal (`/` y `/es/`):** Configurado como comportamiento por defecto en `Section4TopWaveBorder.tsx` tanto para `home-12` (layout de la home viva) como para cualquier variante base.
-  3. **Git Add, Commit & Push:** Guardado con commit `feat(home): integrar curvatura beige ganadora de Home 1 en Home principal y prototipos` y subido a `origin/develop` (commit `121fd81f`).
-- **Status:** COMPLETED & PUSHED.
+- **Task:** Actualización de Textos y Enlaces de los 5 Blobs en Home 1
+  1. **Configuración específica de Home 1 (`/es/home-1`):**
+     - Blob 1: **Cursos** → `/[locale]/servicios/cursos`
+     - Blob 2: **Club Socias** → `/[locale]/servicios/socias`
+     - Blob 3: **Equipos de entrenamiento** → `/[locale]/servicios/equipos`
+     - Blob 4: **Udalekuak** con **Campamentos** debajo en segunda línea → `/[locale]/servicios/udalekuak`
+     - Blob 5: **Entidades** → `/[locale]/servicios/centros-escolares`
+  2. **Diseño y videos:** Conservados intactos todos los videos, thumbnails y animaciones SVG de los 5 blobs.
+- **Status:** COMPLETED & VERIFIED.
 
 - **Task:** Explicit Top Padding Clearance for Section 2 & 3 (Zero Logo Overlap)
   1. **Direct Component Top Padding:** Applied `pt-20 sm:pt-24 lg:pt-8` (and `clamp(5.5rem, 16vh, 7.5rem)`) directly inside `Section2Identity.tsx`, `Section2Curved.tsx`, `Section3Adapts.tsx`, and `Section3Curved.tsx`.

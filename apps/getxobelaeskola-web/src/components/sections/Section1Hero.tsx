@@ -45,9 +45,10 @@ const BLOB_POSITIONS = [
 
 interface Section1HeroProps {
   blobsElevated?: boolean | number
+  blobsVariant?: string
 }
 
-export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
+export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1HeroProps) {
   const t = useTranslations('s1')
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
@@ -223,7 +224,60 @@ export function Section1Hero({ blobsElevated = false }: Section1HeroProps) {
     scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
   )
 
-  const CARDS = [
+  const isCustomBlobsVariant = blobsVariant === 'home-1'
+
+  const CARDS = isCustomBlobsVariant ? [
+    {
+      title: 'Cursos',
+      subtitle: '',
+      color: '#2EC4B6',
+      videoSrc: '/videos/cursos_optimized.webm',
+      imageSrc: '/images/cursos_thumb.webp',
+      paths: BLOB_PATHS.cursos,
+      href: `/${locale}/servicios/cursos`,
+    },
+    {
+      title: 'Club Socias',
+      subtitle: '',
+      color: '#F4A623',
+      videoSrc: '/videos/club_optimized.webm',
+      imageSrc: '/images/club_thumb.webp',
+      paths: BLOB_PATHS.clubSocias,
+      href: `/${locale}/servicios/socias`,
+    },
+    {
+      title: 'Equipos de entrenamiento',
+      subtitle: '',
+      color: '#1D6FA4',
+      videoSrc: '/videos/equipos_optimized.webm',
+      imageSrc: '/images/equipos_thumb.webp',
+      paths: BLOB_PATHS.equipos,
+      href: `/${locale}/servicios/equipos`,
+    },
+    {
+      title: (
+        <span className="block leading-[1.15]">
+          <span className="block">Udalekuak</span>
+          <span className="block text-[0.88em] font-medium tracking-normal opacity-90">Campamentos</span>
+        </span>
+      ),
+      subtitle: '',
+      color: '#8B5CF6',
+      videoSrc: '/videos/udalekuak_optimized.webm',
+      imageSrc: '/images/udalekuak_thumb.webp',
+      paths: BLOB_PATHS.udalekuak,
+      href: `/${locale}/servicios/udalekuak`,
+    },
+    {
+      title: 'Entidades',
+      subtitle: '',
+      color: '#0A0A0A',
+      videoSrc: '/videos/entidades_optimized.webm',
+      imageSrc: '/images/entidades_thumb.webp',
+      paths: BLOB_PATHS.entidades,
+      href: `/${locale}/servicios/centros-escolares`,
+    },
+  ] : [
     {
       title: t('card_cursos_title'),
       subtitle: t('card_cursos_subtitle'),
