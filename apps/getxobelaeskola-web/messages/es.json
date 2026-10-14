@@ -2319,5 +2319,27 @@
       "modern_2": "Hoy podemos prever las condiciones con mucha precisión.",
       "modern_3": "La vela sigue siendo auténtica, pero ahora también es más consciente, accesible y, sobre todo, adaptable a cada persona."
     }
+  },
+  "cookies_banner": {
+    "title": "Valoramos tu privacidad náutica",
+    "description": "Utilizamos cookies técnicas necesarias para el funcionamiento y seguridad de la web. Opcionalmente, solicitamos tu consentimiento para cookies de análisis y rendimiento que nos ayudan a mejorar la experiencia de navegación.",
+    "more_info": "Ver política de cookies",
+    "accept_all": "Aceptar todas",
+    "reject_all": "Rechazar no necesarias",
+    "configure": "Configurar",
+    "banner_aria_label": "Gestión de consentimiento de cookies",
+    "footer_configure_link": "Configurar cookies",
+    "modal_title": "Preferencias de Cookies",
+    "modal_description": "Puedes personalizar tus preferencias de cookies a continuación. Las cookies técnicas son imprescindibles para el funcionamiento y no pueden desactivarse.",
+    "close": "Cerrar",
+    "always_active": "Siempre activas",
+    "category_essential_title": "Cookies Técnicas y Esenciales",
+    "category_essential_desc": "Permiten la navegación segura, autenticación con Supabase, gestión de sesiones y memorización del idioma. Son estrictamente necesarias (exentas de consentimiento según art. 22.2 LSSI).",
+    "category_analytics_title": "Cookies de Análisis (Vercel Web Analytics)",
+    "category_analytics_desc": "Nos permiten comprender de forma agregada y anónima cómo interactúan los usuarios con nuestra escuela y contenidos náuticos para optimizarlos.",
+    "category_performance_title": "Métricas de Rendimiento (Speed Insights)",
+    "category_performance_desc": "Miden los tiempos de carga y las métricas web vitales (Core Web Vitals) en dispositivos reales para mejorar la velocidad del sitio.",
+    "save_preferences": "Guardar preferencias",
+    "read_full_policy": "Consultar inventario detallado en la Política de Cookies"
   }
 }

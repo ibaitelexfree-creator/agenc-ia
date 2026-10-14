@@ -1880,5 +1880,27 @@
       "modern_2": "Aujourd'hui, nous pouvons prévoir les conditions avec une grande précision.",
       "modern_3": "La voile reste authentique, mais elle est maintenant aussi plus consciente, accessible et, surtout, adaptable à chaque personne."
     }
+  },
+  "cookies_banner": {
+    "title": "Nous respectons votre vie privée",
+    "description": "Nous utilisons des cookies techniques indispensables au bon fonctionnement et à la sécurité du site. Nous sollicitons votre accord pour des cookies d analyse et de performance visant à améliorer votre expérience.",
+    "more_info": "Voir la politique de cookies",
+    "accept_all": "Tout accepter",
+    "reject_all": "Refuser non essentiels",
+    "configure": "Personnaliser",
+    "banner_aria_label": "Gestion du consentement aux cookies",
+    "footer_configure_link": "Paramètres des cookies",
+    "modal_title": "Préférences des Cookies",
+    "modal_description": "Vous pouvez personnaliser vos choix ci-dessous. Les cookies techniques sont indispensables et ne peuvent pas être désactivés.",
+    "close": "Fermer",
+    "always_active": "Toujours actifs",
+    "category_essential_title": "Cookies Techniques et Essentiels",
+    "category_essential_desc": "Permettent la navigation sécurisée, l authentification Supabase, la gestion de session et la mémorisation de la langue.",
+    "category_analytics_title": "Cookies d Analyse (Vercel Web Analytics)",
+    "category_analytics_desc": "Permettent de comprendre de manière agrégée et anonyme comment nos membres interagissent avec le site nautique.",
+    "category_performance_title": "Mesures de Performance (Speed Insights)",
+    "category_performance_desc": "Mesurent les temps de chargement et les Core Web Vitals sur des appareils réels pour fluidifier l expérience.",
+    "save_preferences": "Enregistrer mes choix",
+    "read_full_policy": "Consulter l inventaire complet dans la Politique de Cookies"
   }
 }

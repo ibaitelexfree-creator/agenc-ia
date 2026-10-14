@@ -2311,5 +2311,27 @@
       "modern_2": "Gaur egun baldintzak zehaztasun handiz aurreikus ditzakegu.",
       "modern_3": "Belak benetakoa izaten jarraitzen du, baina orain kontzienteagoa, eskuragarriagoa eta, batez ere, pertsona bakoitzari moldagarriagoa da."
     }
+  },
+  "cookies_banner": {
+    "title": "Zure nabigazio-pribatutasuna baloratzen dugu",
+    "description": "Webgunearen funtzionamendurako eta segurtasunerako beharrezkoak diren cookie teknikoak erabiltzen ditugu. Aukeran, zure baimena eskatzen dugu azterketa eta errendimendu cookieetarako, nabigazio esperientzia hobetzeko.",
+    "more_info": "Ikusi cookie politika",
+    "accept_all": "Guztiak onartu",
+    "reject_all": "Ez-beharrezkoak baztertu",
+    "configure": "Konfiguratu",
+    "banner_aria_label": "Cookien baimenen kudeaketa",
+    "footer_configure_link": "Cookieak konfiguratu",
+    "modal_title": "Cookien Hobespenak",
+    "modal_description": "Zure cookien hobespenak pertsonaliza ditzakezu behean. Cookie teknikoak ezinbestekoak dira eta ezin dira desgaitu.",
+    "close": "Itxi",
+    "always_active": "Beti aktibo",
+    "category_essential_title": "Cookie Teknikoak eta Beharrezkoak",
+    "category_essential_desc": "Nabigazio segurua, Supabase bidezko autentifikazioa, saioak eta hizkuntza gogoratzea ahalbidetzen dute. Behar-beharrezkoak dira.",
+    "category_analytics_title": "Analisi Cookieak (Vercel Web Analytics)",
+    "category_analytics_desc": "Erabiltzaileek gure eskola eta edukiekin nola elkarreragiten duten modu agregatu eta anonimoan ulertzeko aukera ematen digute.",
+    "category_performance_title": "Errendimendu Metrikak (Speed Insights)",
+    "category_performance_desc": "Karga-denborak eta Core Web Vitals metrikak neurtzen dituzte gailu errealetan gunearen abiadura hobetzeko.",
+    "save_preferences": "Hobespenak gorde",
+    "read_full_policy": "Xehetasunak kontsultatu Cookie Politikan"
   }
 }

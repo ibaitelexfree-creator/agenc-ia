@@ -2259,5 +2259,27 @@
       "modern_2": "Today we can foresee conditions with great precision.",
       "modern_3": "Sailing remains authentic, but now it is also more conscious, accessible, and, above all, adaptable to each person."
     }
+  },
+  "cookies_banner": {
+    "title": "We value your privacy",
+    "description": "We use essential cookies strictly necessary for web operation and security. Optionally, we request your consent for analytics and performance cookies to help us improve your sailing academy experience.",
+    "more_info": "View cookie policy",
+    "accept_all": "Accept all",
+    "reject_all": "Reject non-essential",
+    "configure": "Customize",
+    "banner_aria_label": "Cookie consent management",
+    "footer_configure_link": "Cookie Settings",
+    "modal_title": "Cookie Preferences",
+    "modal_description": "You can customize your cookie preferences below. Technical cookies are strictly necessary for the site to function and cannot be disabled.",
+    "close": "Close",
+    "always_active": "Always active",
+    "category_essential_title": "Technical & Essential Cookies",
+    "category_essential_desc": "Enable secure navigation, Supabase authentication, session handling, and language preferences. Strictly necessary.",
+    "category_analytics_title": "Analytics Cookies (Vercel Web Analytics)",
+    "category_analytics_desc": "Help us understand anonymously and in aggregate how visitors interact with our sailing platform to improve content.",
+    "category_performance_title": "Performance Metrics (Speed Insights)",
+    "category_performance_desc": "Measure loading speeds and Core Web Vitals across real devices to optimize platform responsiveness.",
+    "save_preferences": "Save preferences",
+    "read_full_policy": "Read the detailed inventory in our Cookie Policy"
   }
 }

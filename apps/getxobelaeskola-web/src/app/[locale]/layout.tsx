@@ -14,8 +14,7 @@ import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false });
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false });
+import { CookieConsentProvider, CookieBanner, AnalyticsConsentGate } from '@/components/cookies';
 const AccessibilityScript = dynamic(() => import('@/components/shared/AccessibilityScript'), { ssr: false });
 const ScrollManager = dynamic(() => import('@/components/shared/ScrollManager'), { ssr: false });
 
@@ -61,25 +60,27 @@ export default async function LocaleLayout({
       </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
-          <FramerProvider>
-            <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-0 mx-auto overflow-x-clip bg-[#0D2137]">
-              <Navbar locale={locale} initialUser={initialUser} />
-                <ConditionalLayout>
-                  {children}
-                </ConditionalLayout>
-                <FooterWrapper>
-                  <Footer locale={locale} />
-                </FooterWrapper>
-              </div>
-              <ScrollUpButton />
-              <WhatsAppButton />
+          <CookieConsentProvider>
+            <FramerProvider>
+              <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-0 mx-auto overflow-x-clip bg-[#0D2137]">
+                <Navbar locale={locale} initialUser={initialUser} />
+                  <ConditionalLayout>
+                    {children}
+                  </ConditionalLayout>
+                  <FooterWrapper>
+                    <Footer locale={locale} />
+                  </FooterWrapper>
+                </div>
+                <ScrollUpButton />
+                <WhatsAppButton />
 
-              <StatusToast />
-              <Analytics />
-              <SpeedInsights />
-              <AccessibilityScript />
-              <ScrollManager />
-            </FramerProvider>
+                <StatusToast />
+                <AnalyticsConsentGate />
+                <CookieBanner locale={locale} />
+                <AccessibilityScript />
+                <ScrollManager />
+              </FramerProvider>
+          </CookieConsentProvider>
         </NextIntlClientProvider>
       </body>
     </html>

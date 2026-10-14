@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
 import CollaboratorsGrid from '@/components/shared/CollaboratorsGrid';
+import { CookieFooterTrigger } from '@/components/cookies/CookieFooterTrigger';
 
 
 const SalesianasLogo = () => (
@@ -211,6 +212,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     <Link href={`/${locale}/aviso-legal`} className="hover:text-accent transition-premium break-words">{t('legal_notice')}</Link>
                     <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium break-words">{t('privacy')}</Link>
                     <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium break-words">{t('cookies')}</Link>
+                    <CookieFooterTrigger className="hover:text-accent transition-premium break-words" />
                     <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium break-words">{t('accessibility')}</Link>
                 </div>
 
