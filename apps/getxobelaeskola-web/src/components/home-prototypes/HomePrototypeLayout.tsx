@@ -63,7 +63,7 @@ export function HomePrototypeLayout({
       </section>
 
       {/* Sección 4: Nuestra Promesa / Por qué navegar con nosotros (Flip cards intactas) */}
-      <section className="relative w-full bg-[#0D2137] z-20 overflow-visible">
+      <section className="relative w-full bg-[#0D2137] z-20 overflow-visible -mt-[2px]">
         <Section4Why variant={curvedBaseVariant} contentVariant={variant} />
       </section>
 

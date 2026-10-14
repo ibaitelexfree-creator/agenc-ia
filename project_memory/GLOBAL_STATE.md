@@ -2,6 +2,21 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Section 4 Seam Elimination and Square Cards Overhaul
+  1. **Seam Elimination above Section 4 (`HomePrototypeLayout.tsx`):**
+     - Resolved sub-pixel rendering seam gap visible between Section 3 (`Section3Curved.tsx`) and Section 4 (`Section4Why.tsx`) at small/portrait viewports by adding `-mt-[2px]` negative overlap on Section 4.
+     - Preserved all SVG wave clip paths, beige extensions, and background sunset imagery intact.
+  2. **Square Cards Geometry (`globals.css`):**
+     - Transformed all 3 flip-cards (`.flip-card`) from wide rectangles into perfect 1:1 squares (`aspect-ratio: 1 / 1 !important; height: auto !important;`) across all viewports.
+     - Medium/tablet screens (586px - 767px): Cards display side-by-side in 3 columns (`repeat(3, 1fr)`) with scaled typography, icons, and paddings so front and back faces fit completely within the 179px × 179px squares without text clipping or scrollbars.
+     - Mobile screens (< 586px): Displayed in 1 column with centered proportional width (`max-width: clamp(240px, 68vw, 300px)`), remaining true squares with well-balanced margins.
+     - Desktop screens (>= 768px): Maintained square geometry (1:1) in 3 columns.
+  3. **Verification:**
+     - Verified zero horizontal overflow (`hasHScroll: false`) across 360px, 375px, 414px, 586px, 768px, 1024px, 1280px, 1440px, 1920px.
+     - Verified both front and back faces (flipped state) via high-fidelity headless browser rendering.
+     - `npx tsc --noEmit` exited code 0 with 0 errors.
+- **Status:** COMPLETED & VERIFIED.
+
 - **Task:** 4 Real Blog Articles & Multilingual Localization (ES, EU, EN, FR)
   1. Converted the 3 home articles into real, comprehensive nautical articles with verified local/scientific accuracy (Abra de Getxo, J80 tactics, IHM/IALA Region A charts).
   2. Seeded remote Supabase DB (`blog_posts`) with all 4 articles.

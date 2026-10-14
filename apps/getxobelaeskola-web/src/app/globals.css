@@ -915,20 +915,20 @@ a:hover {
   }
 }
 
-/* 📱 มือถือใหญ่ - มือถือใหญ่พิเศษ (390px - 585px) */
-@media (min-width: 390px) and (max-width: 585px) {
+/* 📱 มือถือใหญ่ - แท็บเล็ตขนาดเล็ก (390px - 767px) */
+@media (min-width: 390px) and (max-width: 767px) {
   :root {
     --card-w: 100%;
-    --card-h: clamp(180px, 24vh, 220px);
+    --card-h: clamp(180px, 24vh, 230px);
     --fs-card-title-front: 1.15rem;
-    --fs-hook: 0.8rem;
-    --fs-body: 0.82rem;
+    --fs-hook: 0.85rem;
+    --fs-body: 0.85rem;
     --fs-eyebrow: 0.75rem;
   }
 }
 
-/* 📲 Tablet & Desktop (>= 586px) */
-@media (min-width: 586px) {
+/* 📲 Tablet & Desktop (>= 768px) */
+@media (min-width: 768px) {
   :root {
     --card-w: 100%;
     --card-h: clamp(210px, 26vh, 275px);
@@ -1106,7 +1106,7 @@ a:hover {
   }
 }
 
-@media (min-width: 586px) {
+@media (min-width: 768px) {
   .promise__grid {
     grid-template-columns: repeat(3, 1fr) !important;
   }
@@ -1176,82 +1176,142 @@ a:hover {
     padding-left: clamp(1rem, 3vw, 2rem) !important;
     padding-right: clamp(1rem, 3vw, 2rem) !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
     position: relative !important;
   }
 }
 
+/* 📱 Very Small Screens (e.g. < 586px Portrait) */
 @media (max-width: 585px) and (orientation: portrait) {
   .promise {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding-top: clamp(1.5rem, 3.5vh, 3rem) !important;
-    padding-bottom: clamp(1.5rem, 3.5vh, 3rem) !important;
-    padding-left: clamp(0.75rem, 3vw, 1.5rem) !important;
-    padding-right: clamp(0.75rem, 3vw, 1.5rem) !important;
+    padding: clamp(1.5rem, 3.5vh, 2.5rem) 16px !important;
     box-sizing: border-box !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
   .promise__title {
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem) !important;
-    margin-bottom: clamp(4px, 1vh, 8px) !important;
+    font-size: clamp(1.1rem, 4.2vw, 1.45rem) !important;
+    margin-bottom: clamp(12px, 2.5vh, 18px) !important;
+    text-align: center !important;
   }
   .promise__grid {
     grid-template-columns: 1fr !important;
-    gap: clamp(6px, 1.2vh, 10px) !important;
+    gap: clamp(12px, 2.5vh, 20px) !important;
     width: 100% !important;
+    max-width: clamp(240px, 68vw, 300px) !important;
     margin: 0 auto !important;
   }
   .flip-card {
-    height: calc(101% * clamp(112px, 20.5vh, 138px)) !important;
     width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
   }
   .flip-card__face {
-    padding: clamp(8px, 1.2vh, 12px) clamp(10px, 2.5vw, 16px) !important;
+    padding: clamp(10px, 2.5vw, 16px) clamp(10px, 2.5vw, 16px) !important;
     justify-content: center !important;
-  }
-  .flip-card__face--back {
-    padding-top: clamp(10px, 1.5vh, 16px) !important;
+    border-radius: var(--card-radius) !important;
+    box-sizing: border-box !important;
   }
   .flip-card__icon {
-    width: 28px !important;
-    height: 28px !important;
-    margin-bottom: 4px !important;
+    width: clamp(34px, 7vw, 44px) !important;
+    height: clamp(34px, 7vw, 44px) !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
   }
   .flip-card__icon svg {
-    width: 16px !important;
-    height: 16px !important;
+    width: clamp(18px, 4vw, 24px) !important;
+    height: clamp(18px, 4vw, 24px) !important;
   }
   .flip-card__title {
-    font-size: clamp(0.78rem, 3.2vw, 0.9rem) !important;
+    font-size: clamp(0.88rem, 2.8vw, 1.05rem) !important;
+    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
+    line-height: 1.15 !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.72rem, 2.2vw, 0.82rem) !important;
+    line-height: 1.3 !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.66rem, 2vw, 0.74rem) !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.7rem, 2.2vw, 0.82rem) !important;
+    margin-bottom: clamp(3px, 0.8vh, 6px) !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.68rem, 2.1vw, 0.78rem) !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* 📱 Tablet Portrait & Medium Screens (586px - 767px): 3 Square Cards side-by-side */
+@media (min-width: 586px) and (max-width: 767px) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-bottom: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-left: clamp(10px, 2.5vw, 20px) !important;
+    padding-right: clamp(10px, 2.5vw, 20px) !important;
+  }
+  .promise__title {
+    font-size: clamp(1.15rem, 3.2vw, 1.45rem) !important;
+    margin-bottom: clamp(12px, 2.5vh, 20px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: clamp(8px, 1.8vw, 14px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .flip-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(6px, 1.2vw, 10px) clamp(6px, 1.2vw, 10px) !important;
+    justify-content: center !important;
+  }
+  .flip-card__icon {
+    width: clamp(26px, 4.5vw, 34px) !important;
+    height: clamp(26px, 4.5vw, 34px) !important;
+    margin-bottom: clamp(2px, 0.5vw, 5px) !important;
+  }
+  .flip-card__icon svg {
+    width: clamp(14px, 2.5vw, 18px) !important;
+    height: clamp(14px, 2.5vw, 18px) !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.74rem, 1.8vw, 0.88rem) !important;
     margin-bottom: 2px !important;
     line-height: 1.15 !important;
   }
   .flip-card__hook {
-    font-size: clamp(0.68rem, 2.8vw, 0.76rem) !important;
+    font-size: clamp(0.58rem, 1.4vw, 0.7rem) !important;
     line-height: 1.2 !important;
-    margin-bottom: 4px !important;
+    margin-bottom: clamp(2px, 0.6vw, 5px) !important;
   }
   .flip-card__cta {
-    font-size: clamp(0.6rem, 2.4vw, 0.68rem) !important;
+    font-size: clamp(0.55rem, 1.2vw, 0.64rem) !important;
   }
   .flip-card__label {
-    font-size: clamp(0.62rem, 2.6vw, 0.72rem) !important;
+    font-size: clamp(0.6rem, 1.3vw, 0.7rem) !important;
     margin-bottom: 2px !important;
   }
   .flip-card__desc {
-    font-size: clamp(0.65rem, 2.8vw, 0.75rem) !important;
-    line-height: 1.25 !important;
-  }
-}
-/* 📱 Mobile Portrait: Responsive card */
-@media (max-width: 768px) and (orientation: portrait) {
-  .flip-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: clamp(160px, 24vh, 220px) !important;
-    margin: 0 auto !important;
+    font-size: clamp(0.56rem, 1.3vw, 0.66rem) !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -1266,11 +1326,12 @@ a:hover {
 
   width: 100%;
   max-width: var(--card-w);
-  height: calc(var(--card-h) * 1.01);
+  aspect-ratio: 1 / 1;
+  height: auto;
   perspective: 1600px;
 }
 
-@media (min-width: 586px) {
+@media (min-width: 768px) {
   .flip-card {
     aspect-ratio: 1 / 1 !important;
     height: auto !important;
