@@ -63,20 +63,17 @@ export default function FooterClient({ locale }: { locale: string }) {
 
           <CollaboratorsGrid />
 
-          {/* Legal Links & Copyright */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 w-full pt-4 border-t border-sea-foam/10 text-[9px] text-sea-foam/40">
-            <div className="flex items-center gap-6">
-              <Link href={`/${locale}/privacy`} className="hover:text-sea-foam transition-colors">
-                Privacidad
-              </Link>
-              <Link href={`/${locale}/cookies`} className="hover:text-sea-foam transition-colors">
-                Cookies
-              </Link>
-              <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-sea-foam transition-colors">
-                Accesibilidad
-              </Link>
-            </div>
-            <div>© 2026 Getxo Bela Eskola · Experiencia Náutica Premium</div>
+          {/* Legal Links */}
+          <div className="flex flex-wrap items-center justify-center gap-6 w-full pt-4 border-t border-sea-foam/10 text-[9px] text-sea-foam/40">
+            <Link href={`/${locale}/privacy`} className="hover:text-sea-foam transition-colors">
+              Privacidad
+            </Link>
+            <Link href={`/${locale}/cookies`} className="hover:text-sea-foam transition-colors">
+              Cookies
+            </Link>
+            <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-sea-foam transition-colors">
+              Accesibilidad
+            </Link>
           </div>
         </div>
       </div>

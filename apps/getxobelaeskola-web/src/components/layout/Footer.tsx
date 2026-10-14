@@ -166,28 +166,45 @@ export default async function Footer({ locale }: { locale: string }) {
                 <CollaboratorsGrid />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-4 sm:px-6">
-                    {/* NextGenerationEU Logo */}
-                    <div className="h-6 sm:h-8 md:h-10 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
-                        <Image
-                            src="/images/logo-nextgen.svg"
-                            alt="Financiado por la Unión Europea - NextGenerationEU"
-                            width={180}
-                            height={40}
-                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
-                        />
+                <div className="flex flex-col items-center gap-4 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-4 sm:px-6">
+                    <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 w-full">
+                        {/* NextGenerationEU Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/logo-nextgen.svg"
+                                alt="Financiado por la Unión Europea - NextGenerationEU"
+                                width={180}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
+
+                        {/* Kit Digital Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/collaborators/logo-kit-digital.svg"
+                                alt="Programa Kit Digital"
+                                width={140}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
+                        
+                        {/* Plan de Recuperación Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/logo-plan-recuperacion.svg"
+                                alt="Plan de Recuperación, Transformación y Resiliencia"
+                                width={160}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
                     </div>
-                    
-                    {/* Plan de Recuperación Logo */}
-                    <div className="h-5 sm:h-7 md:h-8 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
-                        <Image
-                            src="/images/logo-plan-recuperacion.svg"
-                            alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={140}
-                            height={26}
-                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
-                        />
-                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-sea-foam/60 text-center font-medium max-w-2xl leading-relaxed mt-2">
+                        Financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia y el Programa Kit Digital.
+                    </p>
                 </div>
 
                 <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-3 text-[9px] md:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/20 mb-12 text-center max-w-full px-4">
@@ -197,9 +214,7 @@ export default async function Footer({ locale }: { locale: string }) {
                 </div>
 
                 <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">
-                    {t('copyright')}
-                    <br />
-                    <span className="mt-6 block text-sea-foam/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
+                    <span className="block text-sea-foam/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
                         {t('slogan')}
                     </span>
                 </div>
