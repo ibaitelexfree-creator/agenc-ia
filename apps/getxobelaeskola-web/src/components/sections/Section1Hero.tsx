@@ -705,7 +705,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
               }}
             >
               {CARDS.map((card, idx) => (
-                <BlobCard key={card.title} {...card} index={idx} />
+                <BlobCard key={typeof card.title === 'string' ? card.title : idx} {...card} index={idx} />
               ))}
             </motion.div>
           )}

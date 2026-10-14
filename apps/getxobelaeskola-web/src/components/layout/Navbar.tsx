@@ -402,18 +402,14 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 >
                     <motion.div
                         animate={{
-                            y: isAtHero ? 21 : 6,
+                            y: isAtHero ? 2 : 0,
                             x: 0,
                             scale: 0.99,
                         }}
                         transition={{ type: 'spring', stiffness: 50, damping: 15 }}
                         className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
-                        {/* Wrapper for subtle vertical floating animation - stopped and positioned 5px higher */}
-                        <div
-                            className="absolute inset-0 w-full h-full"
-                            style={{ transform: 'translateY(-7px)' }}
-                        >
+                        <div className="absolute inset-0 w-full h-full">
                             <Image
                                 src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
                                 alt="Getxo Bela Eskola"

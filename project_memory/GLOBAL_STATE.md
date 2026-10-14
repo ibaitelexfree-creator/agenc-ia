@@ -2,16 +2,25 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Responsive Fixes for Home Logo and Login Page
+  1. **Home Page Logo Alignment (`Navbar.tsx`):**
+     - Corrected vertical alignment by updating Framer Motion `y: isAtHero ? 2 : 0` (previously `y: isAtHero ? 21 : 6`), eliminating the arbitrary legacy 21px downward shift.
+     - Removed the compensating inline `translateY(-7px)` style.
+     - The logo is now consistently and vertically centered with the header navigation links, search, and action buttons across desktop, laptop, tablet, and mobile viewports.
+  2. **Login Page Responsive Overhaul (`LoginPageClient.tsx`):**
+     - Replaced absolute overlay hack with responsive CSS Grid/Flexbox (`flex flex-col md:grid md:grid-cols-2`).
+     - Preserves the authentic 2-column split-screen layout down to tablets (`>= 768px`).
+     - On mobile (`< 768px`), smoothly arranges the Captain hero graphic as a non-overlapping top banner followed cleanly in-flow by the login card.
+     - Replaced raw `<img>` with Next.js `<Image fill priority>` for high performance and zero ESLint warnings.
+     - Preserved all original texts, translations, brand typography, and authentication flow.
+     - Resolved type-checking key issue in `Section1Hero.tsx`.
+     - Verified with `npx tsc --noEmit` (0 errors).
+- **Status:** COMPLETED & VERIFIED.
+
 - **Task:** Integración de la Opción Ganadora de Blog (Home 2) en la Home Principal
   1. **Opción Ganadora (Home 2):** Tarjetas de blog con la zona de texto debajo de la miniatura (`aspect-[2.6/1]`), con altura mínima optimizada (`px-3 py-2`), títulos en negrita (`font-bold`) y sin el texto "noticias-eventos".
   2. **Aplicada a Home Principal:** Configurada en `HomePrototypeLayout.tsx` para que `home-12` (la Home principal `/` y `/[locale]`) renderice este diseño compacto.
   3. **Verificación:** Transpilación verificada con éxito.
-- **Status:** COMPLETED & VERIFIED.
-
-- **Task:** Update Course Image for Txikigune (Sábados de navegación)
-  1. **User Photo Integration:** Converted user's Optimist photo (`Optimist (6).jpg`) into optimized high-resolution WebP (`public/images/courses/Txikigune.webp`, 1920x1440, 270KB).
-  2. **Catalog & Detail Page Update:** Updated course `imagen_url` in both `src/app/[locale]/courses/page.tsx` and `src/app/[locale]/courses/[slug]/page.tsx`.
-  3. **Cache Clearance:** Flushed Next.js image cache (`.next/cache/images`) to serve the new photo immediately.
 - **Status:** COMPLETED & VERIFIED.
 
 - **Task:** Update Course Image for Vela Ligera Iniciación (150€)
