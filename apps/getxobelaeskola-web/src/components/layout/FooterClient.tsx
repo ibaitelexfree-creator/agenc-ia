@@ -65,6 +65,9 @@ export default function FooterClient({ locale }: { locale: string }) {
 
           {/* Legal Links */}
           <div className="flex flex-wrap items-center justify-center gap-6 w-full pt-4 border-t border-sea-foam/10 text-[9px] text-sea-foam/40">
+            <Link href={`/${locale}/aviso-legal`} className="hover:text-sea-foam transition-colors">
+              Aviso Legal
+            </Link>
             <Link href={`/${locale}/privacy`} className="hover:text-sea-foam transition-colors">
               Privacidad
             </Link>

@@ -208,6 +208,7 @@ export default async function Footer({ locale }: { locale: string }) {
                 </div>
 
                 <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-3 text-[9px] md:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/20 mb-12 text-center max-w-full px-4">
+                    <Link href={`/${locale}/aviso-legal`} className="hover:text-accent transition-premium break-words">{t('legal_notice')}</Link>
                     <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium break-words">{t('privacy')}</Link>
                     <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium break-words">{t('cookies')}</Link>
                     <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium break-words">{t('accessibility')}</Link>

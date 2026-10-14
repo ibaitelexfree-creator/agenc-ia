@@ -35,7 +35,7 @@ export default async function PrivacyPage({ params: { locale } }: { params: { lo
                     <div>
                         <h2 className="text-xl sm:text-2xl font-display font-bold text-black mb-2">1. Responsable del Tratamiento</h2>
                         <p className="text-black">
-                            El responsable del tratamiento de tus datos es Getxo Bela Eskola, con dirección en Muelle Arriluzea s/n, 48990 Getxo. Puedes contactar con nosotros en <a href="mailto:info@getxobelaeskola.com" className="text-red-600 hover:text-red-800 font-bold underline transition-colors">info@getxobelaeskola.com</a>.
+                            El responsable del tratamiento de tus datos es la <strong>Asociación club deportivo vela Pakea munduari itzulia</strong> (nombre comercial: <strong>Getxo Bela Eskola</strong>), con CIF <strong>G95526299</strong> y domicilio social en Marqués de Arriluce e Ibarra Kalea, 3D, 48992 Getxo, Bizkaia. Puedes contactar con nosotros en el teléfono <a href="tel:+34944916632" className="text-red-600 font-bold hover:underline">94 491 66 32</a> o en el email <a href="mailto:info@getxobelaeskola.com" className="text-red-600 hover:text-red-800 font-bold underline transition-colors">info@getxobelaeskola.com</a>.
                         </p>
                     </div>
 
