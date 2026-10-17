@@ -1,7 +1,7 @@
 // TeamCard.tsx
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import styles from "../EquiposEntrenamiento.module.css";
 import { Team } from "../data/teams";
@@ -13,6 +13,8 @@ interface TeamCardProps {
   isActive: boolean;
   onToggle: () => void;
   entryDelay?: number;
+  index?: number;
+  total?: number;
 }
 
 // Design Tokens (Matching Section 3 and 4 premium styles)
@@ -29,11 +31,27 @@ const FONTS = {
   sans: 'Inter, Manrope, "DM Sans", sans-serif',
 }
 
-export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: TeamCardProps) {
+export default function TeamCard({ team, isActive, onToggle, entryDelay = 0, index = 0, total = 3 }: TeamCardProps) {
   const { id: teamKey, emoji, accentColor, embarcaciones } = team;
   const t = useTranslations('equipos_entrenamiento.teams');
   
   const [isHovered, setIsHovered] = useState(false);
+  const [isDesktopOrLandscape, setIsDesktopOrLandscape] = useState(false);
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+      const isWide = window.innerWidth >= 600;
+      setIsDesktopOrLandscape(isLandscape || isWide);
+    };
+
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    return () => window.removeEventListener('resize', checkOrientation);
+  }, []);
+
+  // In horizontal / desktop screens, first card (index === 0) opens to the right
+  const opensRight = isDesktopOrLandscape && index === 0;
 
   const activeOpen = isActive || isHovered;
 
@@ -49,7 +67,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
     return e;
   });
 
-  // Short descriptive values for Left Inside Page
+  // Short descriptive values for Left/Right Inside Page
   const shortQuotes: Record<string, string> = {
     infantil: "Confianza en el agua y aprendizaje a través del juego.",
     jovenes: "Navegación estable, amistad y responsabilidad compartida.",
@@ -90,7 +108,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
         }}
         transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
       >
-        {/* RIGHT INSIDE PAGE (Content revealed on the right side) */}
+        {/* INSIDE BASE PAGE (Revealed behind the cover) */}
         <div
           style={{
             position: 'absolute',
@@ -98,21 +116,29 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             backgroundColor: COLORS.paperWhite,
             backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.015) 1px, transparent 0)',
             backgroundSize: '16px 16px',
-            borderRadius: activeOpen ? '0 18px 18px 0' : '18px',
-            borderLeft: activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`,
-            padding: 'clamp(0.35rem, 1.2vw, 1.1rem)',
-            borderRight: `1px solid ${COLORS.navyCover}`,
+            borderRadius: activeOpen 
+              ? (opensRight ? '18px 0 0 18px' : '0 18px 18px 0') 
+              : '18px',
+            borderLeft: opensRight
+              ? `1px solid ${COLORS.navyCover}`
+              : (activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`),
+            borderRight: opensRight
+              ? (activeOpen ? '2px solid rgba(10, 25, 45, 0.15)' : `1px solid ${COLORS.navyCover}`)
+              : `1px solid ${COLORS.navyCover}`,
             borderTop: `1px solid ${COLORS.navyCover}`,
             borderBottom: `1px solid ${COLORS.navyCover}`,
+            padding: 'clamp(0.35rem, 1.2vw, 1.1rem)',
             boxShadow: activeOpen 
-              ? '8px 12px 28px rgba(10, 25, 45, 0.12), inset 12px 0 16px rgba(0,0,0,0.02)' 
+              ? (opensRight 
+                  ? '-8px 12px 28px rgba(10, 25, 45, 0.12), inset -12px 0 16px rgba(0,0,0,0.02)'
+                  : '8px 12px 28px rgba(10, 25, 45, 0.12), inset 12px 0 16px rgba(0,0,0,0.02)') 
               : 'none',
             zIndex: 1,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
             backfaceVisibility: 'hidden',
-            transition: 'border-radius 0.4s ease, border-left 0.4s ease, box-shadow 0.4s ease',
+            transition: 'border-radius 0.4s ease, border-left 0.4s ease, border-right 0.4s ease, box-shadow 0.4s ease',
             overflowY: 'auto',
             scrollbarWidth: 'thin',
           }}
@@ -212,11 +238,11 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             width: '100%',
             height: '100%',
             transformStyle: 'preserve-3d',
-            transformOrigin: 'left center',
+            transformOrigin: opensRight ? 'right center' : 'left center',
             zIndex: 2,
           }}
           animate={{
-            rotateY: activeOpen ? -180 : 0,
+            rotateY: activeOpen ? (opensRight ? 180 : -180) : 0,
           }}
           transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
         >
@@ -283,7 +309,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
             </div>
           </div>
 
-          {/* Cover Back Face (Left Inside Page) */}
+          {/* Cover Back Face (Inside Page when turned) */}
           <div
             style={{
               position: 'absolute',
@@ -293,13 +319,13 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0 }: T
               backgroundColor: COLORS.paperWhite,
               backgroundImage: 'radial-gradient(rgba(18, 62, 99, 0.02) 1px, transparent 0)',
               backgroundSize: '16px 16px',
-              borderRadius: '18px 0 0 18px',
-              borderRight: `3px solid ${COLORS.goldFoil}`,
+              borderRadius: opensRight ? '0 18px 18px 0' : '18px 0 0 18px',
+              borderLeft: opensRight ? `3px solid ${COLORS.goldFoil}` : `2px solid ${COLORS.navyCover}`,
+              borderRight: opensRight ? `2px solid ${COLORS.navyCover}` : `3px solid ${COLORS.goldFoil}`,
               padding: 'clamp(0.5rem, 1.5vw, 2rem) clamp(0.4rem, 1vw, 1.5rem)',
               borderTop: `2px solid ${COLORS.navyCover}`,
               borderBottom: `2px solid ${COLORS.navyCover}`,
-              borderLeft: `2px solid ${COLORS.navyCover}`,
-              boxShadow: '-10px 15px 35px rgba(10, 25, 45, 0.1)',
+              boxShadow: opensRight ? '10px 15px 35px rgba(10, 25, 45, 0.1)' : '-10px 15px 35px rgba(10, 25, 45, 0.1)',
               transform: 'rotateY(180deg)',
               backfaceVisibility: 'hidden',
               display: 'flex',

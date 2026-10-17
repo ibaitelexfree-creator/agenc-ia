@@ -7,6 +7,8 @@ import { Sailboat, ChevronRight } from 'lucide-react';
 interface ComingSoonPlaceholderProps {
     title: string;
     description: string;
+    locale?: string;
+    inDevelopmentLabel?: string;
     backHref?: string;
     backLabel?: string;
 }
@@ -14,9 +16,18 @@ interface ComingSoonPlaceholderProps {
 export default function ComingSoonPlaceholder({ 
     title, 
     description, 
-    backHref = "/", 
-    backLabel = "Volver a Inicio" 
+    locale = 'es',
+    inDevelopmentLabel,
+    backHref, 
+    backLabel 
 }: ComingSoonPlaceholderProps) {
+    const isEu = locale === 'eu';
+    const isEn = locale === 'en';
+    const isFr = locale === 'fr';
+
+    const defaultHref = backHref || `/${locale}`;
+    const defaultBackLabel = backLabel || (isEu ? 'Itzuli Hasierara' : isEn ? 'Back to Home' : isFr ? 'Retour à l\'accueil' : 'Volver a Inicio');
+    const badgeDev = inDevelopmentLabel || (isEu ? 'garapenean' : isEn ? 'under development' : isFr ? 'en cours de développement' : 'en desarrollo');
     return (
         <main className="h-[100dvh] max-h-[100dvh] w-full bg-nautical-black text-sea-foam flex flex-col justify-center items-center px-4 py-4 sm:px-6 sm:py-8 relative selection:bg-accent selection:text-nautical-black overflow-hidden box-border">
             {/* Background Decor */}
@@ -30,17 +41,17 @@ export default function ComingSoonPlaceholder({
                 <span className="text-accent uppercase tracking-[0.15em] sm:tracking-[0.3em] md:tracking-[0.5em] text-[9px] sm:text-xs font-black block">Getxo Bela Eskola</span>
                 <h1 className="text-xl sm:text-3xl md:text-5xl font-display uppercase tracking-tight text-sea-foam leading-tight">
                     {title}{' '}
-                    <span className="italic font-light text-brass-gold/90 font-sans lowercase text-base sm:text-2xl md:text-4xl block sm:inline mt-0.5 sm:mt-0">en desarrollo</span>
+                    <span className="italic font-light text-brass-gold/90 font-sans lowercase text-base sm:text-2xl md:text-4xl block sm:inline mt-0.5 sm:mt-0">{badgeDev}</span>
                 </h1>
                 <p className="text-sea-foam/70 text-xs sm:text-sm md:text-base font-light leading-snug sm:leading-relaxed max-w-sm sm:max-w-md md:max-w-lg mx-auto px-1 sm:px-0">
                     {description}
                 </p>
                 <div className="pt-2 sm:pt-4">
                     <Link
-                        href={backHref}
+                        href={defaultHref}
                         className="inline-flex items-center gap-2 sm:gap-3 border border-sea-foam/20 bg-sea-foam/5 px-4 py-2.5 sm:px-6 sm:py-3 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.25em] font-black text-sea-foam hover:bg-sea-foam hover:text-nautical-black transition-premium shadow-lg shadow-sea-foam/5 group"
                     >
-                        {backLabel}
+                        {defaultBackLabel}
                         <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                 </div>

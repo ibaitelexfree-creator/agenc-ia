@@ -38,8 +38,10 @@ export default function FooterClient({ locale }: { locale: string }) {
                 <Clock className="w-3.5 h-3.5" />
                 <span>Horario</span>
               </div>
-              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">Lunes a Domingo</span>
-              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">09:00 — 20:00</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed whitespace-pre-line">
+                {'L - V: 10:00 — 14:00\ny 16:00 — 20:00'}
+              </span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">S y D: 10:00 — 15:00</span>
             </div>
 
             <div className="flex flex-col items-center md:items-start gap-2 flex-1">
@@ -47,8 +49,8 @@ export default function FooterClient({ locale }: { locale: string }) {
                 <MapPin className="w-3.5 h-3.5" />
                 <span>Ubicación</span>
               </div>
-              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">Muelle Arriluzea, s/n</span>
-              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">48990 Getxo, Vizcaya</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">Marqués de Arriluce e Ibarra Kalea, 3D</span>
+              <span className="text-sea-foam/75 font-semibold text-[11px] sm:text-[12px] leading-relaxed">48992 Getxo, Bizkaia</span>
             </div>
 
             <div className="flex flex-col items-center md:items-start gap-2 flex-1">

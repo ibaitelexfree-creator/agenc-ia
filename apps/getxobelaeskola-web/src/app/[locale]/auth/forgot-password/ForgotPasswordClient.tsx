@@ -94,7 +94,7 @@ export default function ForgotPasswordClient({ locale }: { locale: string }) {
                                     {...register('email')}
                                     type="email"
                                     className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
-                                    placeholder="tu@email.com"
+                                    placeholder={tForm('email_placeholder')}
                                 />
                                 {errors.email && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.email.message}</p>}
                             </div>

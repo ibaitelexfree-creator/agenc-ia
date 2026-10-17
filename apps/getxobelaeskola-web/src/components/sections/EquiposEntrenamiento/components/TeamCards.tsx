@@ -47,6 +47,8 @@ export default function TeamCards() {
             isActive={activeTeam === team.id}
             onToggle={() => toggle(team.id)}
             entryDelay={i * 0.12}
+            index={i}
+            total={TEAMS.length}
           />
         ))}
       </div>

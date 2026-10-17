@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Search, X, Sparkles } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import collaboratorsData from '@/data/collaborators.json';
 
 interface Collaborator {
@@ -13,6 +14,7 @@ interface Collaborator {
 }
 
 export default function CollaboratorsGrid() {
+    const t = useTranslations('footer');
     const [searchQuery, setSearchQuery] = useState('');
     const trackRef = useRef<HTMLDivElement>(null);
     const animFrameRef = useRef<number | null>(null);
@@ -121,7 +123,7 @@ export default function CollaboratorsGrid() {
                 <div className="flex items-center justify-center gap-2 sm:gap-3 flex-nowrap whitespace-nowrap shrink-0 w-full md:w-auto">
                     <span className="text-[11px] min-[360px]:text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/80 flex items-center gap-1.5 sm:gap-2 shrink-0">
                         <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-accent animate-pulse shrink-0" />
-                        Colaboradores
+                        {t('collaborators')}
                     </span>
                     <span className="px-2 py-0.5 sm:px-2.5 text-[10px] sm:text-[11px] font-bold rounded-full bg-accent/10 text-accent border border-accent/20 shrink-0">
                         {filteredCollaborators.length}
@@ -135,14 +137,14 @@ export default function CollaboratorsGrid() {
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Buscar colaborador..."
+                        placeholder={t('search_collaborator')}
                         className="w-full pl-9 pr-8 py-1.5 text-xs bg-sea-foam/5 border border-sea-foam/15 rounded-xl text-sea-foam placeholder:text-sea-foam/30 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/40 transition-all"
                     />
                     {searchQuery && (
                         <button
                             onClick={() => setSearchQuery('')}
                             className="absolute right-2.5 top-1/2 -translate-y-1/2 text-sea-foam/40 hover:text-accent transition-colors"
-                            aria-label="Limpiar búsqueda"
+                            aria-label={t('clear_search')}
                         >
                             <X className="w-3.5 h-3.5" />
                         </button>
@@ -157,8 +159,8 @@ export default function CollaboratorsGrid() {
                     <button
                         onClick={handleScrollLeft}
                         className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
-                        aria-label="Desplazar a la izquierda"
-                        title="Anterior"
+                        aria-label={t('scroll_left')}
+                        title={t('previous')}
                     >
                         <ChevronLeft className="w-5 h-5 stroke-[2.5]" />
                     </button>
@@ -181,7 +183,7 @@ export default function CollaboratorsGrid() {
                     {/* Empty Search State */}
                     {filteredCollaborators.length === 0 ? (
                         <div className="py-12 text-center text-neutral-500 text-xs sm:text-sm font-medium">
-                            No se encontraron colaboradores que coincidan con &quot;<span className="text-accent font-semibold">{searchQuery}</span>&quot;
+                            {t('no_collaborators')} &quot;<span className="text-accent font-semibold">{searchQuery}</span>&quot;
                         </div>
                     ) : (
                         /* Marquee Track Container */
@@ -222,8 +224,8 @@ export default function CollaboratorsGrid() {
                     <button
                         onClick={handleScrollRight}
                         className="flex-shrink-0 p-3 sm:p-3.5 rounded-full bg-accent text-nautical-deep font-bold hover:bg-buoy-orange hover:text-white border-2 border-white/20 shadow-lg shadow-accent/20 hover:shadow-buoy-orange/30 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
-                        aria-label="Desplazar a la derecha"
-                        title="Siguiente"
+                        aria-label={t('scroll_right')}
+                        title={t('next')}
                     >
                         <ChevronRight className="w-5 h-5 stroke-[2.5]" />
                     </button>

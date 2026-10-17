@@ -53,7 +53,7 @@ export default function BlogCard({ post }: BlogCardProps) {
 
   return (
     <motion.a
-      href={`/${locale}/blog/noticias`}
+      href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
       className={styles.card}
       variants={staggerItem}
       onMouseMove={handleMouseMove}

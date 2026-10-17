@@ -1,5 +1,6 @@
 export interface BlogPost {
   id: string;
+  slug?: string;
   category: "noticias-eventos";
   pinned: boolean;
   image: string;
@@ -17,6 +18,7 @@ export interface BlogPost {
 export const blogPosts: BlogPost[] = [
   {
     id: "1",
+    slug: "como-leer-una-carta-nautica-en-5-pasos",
     category: "noticias-eventos",
     pinned: true,
     image: "/images/home-hero-sailing-action.webp",
@@ -32,6 +34,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: "2",
+    slug: "tacticas-de-regata-domina-las-salidas-con-viento-fuerte",
     category: "noticias-eventos",
     pinned: true,
     image: "/images/course-detail-header-sailing.webp",
@@ -47,6 +50,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     id: "3",
+    slug: "los-mejores-rincones-para-fondear-en-el-abra-de-getxo",
     category: "noticias-eventos",
     pinned: true,
     image: "/images/course-raquero-students.webp",
@@ -59,5 +63,21 @@ export const blogPosts: BlogPost[] = [
     dateEu: "2026-06-05",
     dateEn: "Jun 5, 2026",
     dateFr: "05 juin 2026",
+  },
+  {
+    id: "4",
+    slug: "getxo-bela-eskola-impulsa-una-nueva-temporada-para-acercar-la-vela-a-todas-las-edades",
+    category: "noticias-eventos",
+    pinned: false,
+    image: "https://xbledhifomblirxurtyv.supabase.co/storage/v1/object/public/blog-images/posts/4c94cd15-c6c8-4061-b8fa-f2b86bf87a99.jpg",
+    author: "Getxo Bela Eskola",
+    titleEs: "Getxo Bela Eskola impulsa una nueva temporada para acercar la vela a todas las edades",
+    titleEu: "Getxo Bela Eskolak bela adin guztietara hurbiltzeko denboraldi berria bultzatzen du",
+    titleEn: "Getxo Bela Eskola launches a new season to bring sailing to all ages",
+    titleFr: "Getxo Bela Eskola lance une nouvelle saison pour ouvrir la voile à tous les âges",
+    dateEs: "29 jul 2026",
+    dateEu: "2026-07-29",
+    dateEn: "Jul 29, 2026",
+    dateFr: "29 juil 2026",
   },
 ];

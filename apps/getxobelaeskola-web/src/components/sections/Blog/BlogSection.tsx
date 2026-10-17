@@ -127,7 +127,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={`${post.id}-${idx}`}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3.5 py-2 shrink-0 transition-all hover:border-[#0A7EC8]/50 max-w-[340px]"
                 >
                   <img
@@ -186,7 +186,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/15 block"
                 >
                   <img
@@ -242,7 +242,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group flex flex-col rounded-xl overflow-hidden bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#2EC4B6]/50 transition-all shadow-sm"
                 >
                   {/* Miniatura compacta */}
@@ -299,7 +299,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block"
                 >
                   {/* Imagen de fondo */}
@@ -354,7 +354,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group relative w-full aspect-[2.4/1] rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-white/20 block p-2 sm:p-2.5 flex flex-col justify-end"
                 >
                   {/* Imagen luminosa completa */}
@@ -414,7 +414,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group flex flex-col bg-white rounded-xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all overflow-hidden"
                 >
                   <div className="relative w-full aspect-[21/9] overflow-hidden">
@@ -474,7 +474,7 @@ export default function BlogSection({ layoutVariant = 'default' }: BlogSectionPr
               return (
                 <a
                   key={post.id}
-                  href={`/${locale}/blog/noticias`}
+                  href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`}
                   className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg p-2 transition-all hover:border-[#0A7EC8]/60"
                 >
                   <img

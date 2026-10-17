@@ -162,7 +162,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="absolute bottom-1.5 left-2 min-[480px]:bottom-2 min-[480px]:left-2.5 sm:bottom-6 sm:left-8 z-20 flex items-center gap-1 min-[480px]:gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                     <span className="text-[7px] min-[480px]:text-[8px] sm:text-[9px] uppercase tracking-[0.1em] min-[480px]:tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
-                        {service.categoria}
+                        {t.has(`categories.${service.categoria}`) ? t(`categories.${service.categoria}`) : service.categoria}
                     </span>
                 </div>
             </div>
@@ -187,7 +187,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                         </div>
                         <div className="w-px h-5 min-[480px]:h-6 sm:h-8 bg-sea-foam/10" />
                         <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">Price/h</span>
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t.has('price_per_hour') ? t('price_per_hour') : 'Price/h'}</span>
                             <div className="flex items-center gap-1 text-sea-foam/70 text-xs min-[480px]:text-sm sm:text-lg">
                                 <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
                             </div>

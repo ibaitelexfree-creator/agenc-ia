@@ -1,5 +1,6 @@
 // CtaSection.tsx
 import { motion, useReducedMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { fadeUp, staggerContainer } from '@/lib/motionPresets';
 import styles from '../CentrosEscolares.module.css';
 
@@ -9,11 +10,7 @@ interface CtaSectionProps {
 
 export default function CtaSection({ onReserveClick }: CtaSectionProps) {
   const shouldReduceMotion = useReducedMotion();
-
-  const handleDownloadDossier = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // We can also trigger a visual micro-interaction/toast if needed
-    console.log("Downloading dossier...");
-  };
+  const t = useTranslations('centros_escolares.cta');
 
   return (
     <section className={styles['cta-section']}>
@@ -25,7 +22,7 @@ export default function CtaSection({ onReserveClick }: CtaSectionProps) {
           viewport={{ once: false }}
           transition={{ duration: 0.5 }}
         >
-          PROPUESTA EDUCATIVA UNICA
+          {t('eyebrow')}
         </motion.span>
 
         <motion.h2
@@ -35,7 +32,7 @@ export default function CtaSection({ onReserveClick }: CtaSectionProps) {
           viewport={{ once: false }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          ¿Lista para reservar la fecha para tu centro?
+          {t('title')}
         </motion.h2>
 
         <motion.p
@@ -45,7 +42,7 @@ export default function CtaSection({ onReserveClick }: CtaSectionProps) {
           viewport={{ once: false }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          Escríbenos indicando el número estimado de alumnos, el curso escolar y las posibles fechas que os vengan mejor. Nos encargaremos de organizar toda la logística de la jornada náutica.
+          {t('description')}
         </motion.p>
 
         <motion.div
@@ -62,25 +59,9 @@ export default function CtaSection({ onReserveClick }: CtaSectionProps) {
             onClick={onReserveClick}
             className={styles['btn-primary']}
           >
-            📧 Reservar fecha
+            {t('btn_reserve')}
           </motion.button>
-
-          <motion.a
-            href="/docs/actividades-nauticas-centros-escolares.pdf"
-            download
-            onClick={handleDownloadDossier}
-            variants={shouldReduceMotion ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : fadeUp}
-            whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-            className={styles['btn-secondary']}
-          >
-            📄 Descargar dossier PDF
-          </motion.a>
         </motion.div>
-
-        <p className={styles['cta-note']}>
-          Dossier informativo detallado: "Actividades náuticas para centros escolares y asociaciones"
-        </p>
       </div>
     </section>
   );

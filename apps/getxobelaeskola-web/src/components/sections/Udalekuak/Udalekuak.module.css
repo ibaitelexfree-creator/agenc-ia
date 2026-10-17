@@ -130,9 +130,9 @@
 .heroSubtitle {
   font-family: var(--font-accent);
   font-size: clamp(1.1rem, 3.2vw, 2.75rem);
-  color: #000000;
+  color: var(--color-white);
   margin: 0;
-  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 4px rgba(0, 0, 0, 0.5);
   padding: 0 0.5rem;
   line-height: 1.2;
 }
@@ -147,16 +147,17 @@
   border-radius: 100px;
   text-decoration: none;
   box-shadow: 0 10px 30px rgba(10, 61, 107, 0.2);
-  transition: transform 0.3s, background-color 0.3s;
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), background-color 0.25s ease;
   white-space: nowrap;
-  margin-top: clamp(0.5rem, 7vh, 2.5rem);
-  transform: translateY(7vh);
+  margin-top: calc(clamp(0.5rem, 7vh, 2.5rem) + 7vh);
+  transform: scale(1);
+  transform-origin: center center;
   max-width: 90vw;
 }
 
 .heroCta:hover {
   background-color: var(--color-white);
-  transform: translateY(7vh) scale(1.05);
+  transform: scale(1.05);
 }
 
 /* ──────────────────────────────────────────────

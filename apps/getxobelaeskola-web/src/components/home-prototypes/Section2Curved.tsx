@@ -458,9 +458,9 @@ sentir el mar y disfrutar en equipo.`}
                   onClick={() => setIsModalOpen(true)}
                   color="coral"
                   size="md"
-                  className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto !py-1.5 !px-4 sm:!py-2 sm:!px-6 text-xs sm:text-base"
+                  className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto !py-1.5 !px-4 sm:!py-2 sm:!px-6 text-xs sm:text-base uppercase"
                 >
-                  LEER MÁS
+                  {_t('cta') || 'LEER MÁS'}
                 </GlowButton>
               </motion.div>
             </motion.div>

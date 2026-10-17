@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import NauticalImage from '@/components/ui/NauticalImage';
 import { useTranslations } from 'next-intl';
-import { Compass, Users, Clock, ArrowRight, Star } from 'lucide-react';
+import { Compass, Users, Clock, ArrowRight } from 'lucide-react';
 
 interface ExperienceCardProps {
     experience: {
@@ -45,14 +45,6 @@ export default function ExperienceCard({ experience, locale }: ExperienceCardPro
 
     return (
         <div className="group relative bg-sea-foam/[0.02] border border-sea-foam/10 overflow-hidden transition-all duration-700 hover:border-accent/30 hover:bg-sea-foam/[0.04] flex flex-col h-full rounded-2xl w-full max-w-full">
-            {/* Top-Left Premium Badge Decor */}
-            <div className="absolute top-1.5 left-1.5 sm:top-3 sm:left-3 z-30">
-                <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-3 py-0.5 sm:py-1 bg-nautical-deep/80 backdrop-blur-md rounded-full border border-sea-foam/10">
-                    <Star className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-brass-gold fill-brass-gold shrink-0" />
-                    <span className="text-[6px] sm:text-[7.5px] uppercase tracking-[0.08em] sm:tracking-[0.2em] font-black text-sea-foam/80 whitespace-nowrap">{t('premium_experience')}</span>
-                </div>
-            </div>
-
             {/* Top-Right Duration Badge (e.g. 4h) */}
             {experience.duracion && (
                 <div className="absolute top-1.5 right-1.5 sm:top-3 sm:right-3 z-30">

@@ -84,7 +84,7 @@ export default function ContactForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit(debouncedSubmit)} className="space-y-5 sm:space-y-6 md:space-y-8 animate-fade-in w-full">
+        <form onSubmit={handleSubmit(debouncedSubmit)} className="space-y-5 sm:space-y-6 md:space-y-8 w-full">
             <StaggeredEntrance type="slide" staggerDelay={0.08} className="space-y-5 sm:space-y-6 md:space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     <div className="space-y-1.5 sm:space-y-2">

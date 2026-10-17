@@ -124,20 +124,20 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 animate-fade-in">
             <div className="space-y-1.5">
-                <label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('email')}</label>
+                <label htmlFor="email" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('email')}</label>
                 <input
                     id="email"
                     {...register('email')}
                     type="email"
                     autoComplete="email"
                     className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
-                    placeholder="tu@email.com"
+                    placeholder={t('email_placeholder')}
                 />
                 {errors.email && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.email.message}</p>}
             </div>
 
             <div className="space-y-1.5">
-                <label htmlFor="password" className="text-[10px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('password')}</label>
+                <label htmlFor="password" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('password')}</label>
                 <input
                     id="password"
                     {...register('password')}
@@ -220,7 +220,7 @@ export default function LoginForm({ locale = 'es' }: { locale?: string }) {
                 <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-white/10"></div>
                 </div>
-                <div className="relative flex justify-center text-[10px] uppercase tracking-widest">
+                <div className="relative flex justify-center text-[13.5px] uppercase tracking-widest">
                     <span className="bg-[#0D2137] px-4 text-white/50 font-bold italic">{t('or_divider')}</span>
                 </div>
             </div>

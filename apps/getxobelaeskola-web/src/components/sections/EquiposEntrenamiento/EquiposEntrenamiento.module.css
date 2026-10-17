@@ -658,7 +658,7 @@
   box-shadow: 0 0 6px var(--color-buoy);
 }
 
-.cal-day--rest .cal-day__num { color: rgba(240, 244, 248, 0.25); }
+.cal-day--rest .cal-day__num { color: var(--color-sail); opacity: 0.85; }
 
 /* Leyenda */
 .cal-legend {
@@ -686,7 +686,8 @@
 }
 
 .cal-legend__dot--rest {
-  background: rgba(240, 244, 248, 0.2);
+  background: var(--color-sail);
+  opacity: 0.35;
   box-shadow: none;
 }
 

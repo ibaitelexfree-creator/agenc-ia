@@ -228,7 +228,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
 
   const CARDS = isCustomBlobsVariant ? [
     {
-      title: 'Cursos',
+      title: t('blob_cursos'),
       subtitle: '',
       color: '#2EC4B6',
       videoSrc: '/videos/cursos_optimized.webm',
@@ -237,7 +237,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       href: `/${locale}/servicios/cursos`,
     },
     {
-      title: 'Club Socias',
+      title: t('blob_club'),
       subtitle: '',
       color: '#F4A623',
       videoSrc: '/videos/club_optimized.webm',
@@ -246,7 +246,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       href: `/${locale}/servicios/socias`,
     },
     {
-      title: 'Equipos de entrenamiento',
+      title: t('blob_equipos'),
       subtitle: '',
       color: '#1D6FA4',
       videoSrc: '/videos/equipos_optimized.webm',
@@ -257,8 +257,8 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
     {
       title: (
         <span className="block leading-[1.15]">
-          <span className="block">Udalekuak</span>
-          <span className="block text-[0.88em] font-medium tracking-normal opacity-90">Campamentos</span>
+          <span className="block">{t('blob_udalekuak')}</span>
+          <span className="block text-[0.88em] font-medium tracking-normal opacity-90">{t('blob_udalekuak_sub')}</span>
         </span>
       ),
       subtitle: '',
@@ -269,7 +269,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       href: `/${locale}/servicios/udalekuak`,
     },
     {
-      title: 'Entidades',
+      title: t('blob_entidades'),
       subtitle: '',
       color: '#0A0A0A',
       videoSrc: '/videos/entidades_optimized.webm',

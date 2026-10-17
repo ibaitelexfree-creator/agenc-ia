@@ -48,7 +48,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 xl:gap-24 items-start">
 
                     {/* Info Column */}
-                    <div className="animate-fade-in w-full" style={{ animationDelay: '0.2s' }}>
+                    <div className="w-full">
                         <header className="mb-10 sm:mb-14 lg:mb-16">
                             <span className="text-accent uppercase tracking-[0.4em] sm:tracking-[0.6em] text-xs sm:text-sm font-bold mb-4 sm:mb-6 block">
                                 {t('header_badge')}
@@ -94,7 +94,7 @@ export default async function ContactPage({ params: { locale } }: { params: { lo
                     {/* Form Column */}
                     <div className="relative group lg:sticky lg:top-36 w-full">
                         <div className="absolute -inset-1 bg-gradient-to-br from-accent/20 to-brass-gold/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
-                        <div className="relative glass-panel p-6 sm:p-8 md:p-12 border-foreground/10 bg-foreground/[0.02] animate-fade-in rounded-2xl" style={{ animationDelay: '0.4s' }}>
+                        <div className="relative glass-panel p-6 sm:p-8 md:p-12 border-foreground/10 bg-foreground/[0.02] rounded-2xl">
                             <ContactForm />
                         </div>
                     </div>

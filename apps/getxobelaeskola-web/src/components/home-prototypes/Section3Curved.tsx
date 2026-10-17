@@ -495,9 +495,9 @@ Tú eliges cómo quieres navegar.`
                     onClick={() => setIsModalOpen(true)}
                     color="coral"
                     size="md"
-                    className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto"
+                    className="!text-[#0D2137] !border-[#0D2137]/30 hover:!border-[#9E7F41] !bg-[#EFE7DC] hover:!bg-[#E6DECE] shadow-md hover:shadow-lg transition-all cursor-pointer mx-auto uppercase"
                   >
-                    LEER MÁS
+                    {_t('leer_mas') || 'LEER MÁS'}
                   </GlowButton>
                 </motion.div>
               </motion.div>

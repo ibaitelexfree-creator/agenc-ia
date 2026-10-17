@@ -171,19 +171,6 @@ export default function VelaSelectorExperiencia() {
                 </span>
               ))}
             </div>
-
-            {/* CTA Link */}
-            <Link
-              href={`/${locale}/courses`}
-              className="inline-flex items-center gap-2 font-medium text-xs sm:text-sm font-sans"
-              style={{
-                color: data.accentColor,
-                textDecoration: "underline",
-                textUnderlineOffset: "4px",
-              }}
-            >
-              {data.cta}
-            </Link>
           </motion.div>
         </AnimatePresence>
 

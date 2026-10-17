@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Calendar, Search, BookOpen, ChevronLeft } from 'lucide-react';
+import { Calendar, Search, ChevronLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { localizedArticles } from '@/components/sections/Blog/blog-articles.data';
 
 interface BlogPost {
     id: string;
+    slug?: string;
     title: string;
     excerpt: string;
     content: string;
@@ -16,69 +18,70 @@ interface BlogPost {
     tags: string[];
 }
 
-const defaultPosts: BlogPost[] = [
-    {
-        id: '1',
-        title: 'Cómo leer una carta náutica en 5 pasos',
-        excerpt: 'Guía práctica para entender las cartas marinas, interpretar las sondas de profundidad y trazar tu rumbo con seguridad.',
-        content: 'Las cartas náuticas son el mapa de carreteras del marino. En esta guía práctica te enseñamos a interpretar la escala de latitudes y longitudes, a leer los números de sonda que indican el relieve submarino, a reconocer la simbología oficial de faros, boyas e instalaciones portuarias, y a trazar rumbos verdaderos corregidos con la declinación magnética para una travesía 100% segura.',
-        date: '2026-05-28',
-        author: 'Urko Santillán',
-        image: '/images/home-hero-sailing-action.webp',
-        tags: ['Formación', 'Navegación']
-    },
-    {
-        id: '2',
-        title: 'Tácticas de regata: Domina las salidas con viento fuerte',
-        excerpt: 'Aprende a gestionar la presión de la flota en la línea de salida y a configurar el trimado de tus velas con vientos duros.',
-        content: 'La línea de salida es donde se ganan y pierden la mayoría de las regatas, especialmente cuando el anemómetro sube de los 20 nudos. En este artículo detallamos la técnica para mantener el barco en stand-by (parado con control), la forma óptima de cazar velas para arrancar en el último segundo y cómo distribuir el peso de la tripulación en la banda para mantener el barco plano.',
-        date: '2026-06-02',
-        author: 'Ana de Lara',
-        image: '/images/course-detail-header-sailing.webp',
-        tags: ['Regatas', 'Competición']
-    },
-    {
-        id: '3',
-        title: 'Los mejores rincones para fondear en el Abra de Getxo',
-        excerpt: 'Explora los fondeaderos más pintorescos y protegidos de nuestra costa, con consejos sobre tenedero y vientos predominantes.',
-        content: 'Fondease en el Abra de Getxo es una experiencia maravillosa si sabes dónde hacerlo. Te revelamos las mejores coordenadas al resguardo del viento de componente Norte y Noroeste, los detalles sobre el fondo de arena para asegurar el agarre del ancla (tenedero), y las precauciones necesarias según la carrera de marea de ese día.',
-        date: '2026-06-05',
-        author: 'Angharad Arambalza',
-        image: '/images/course-raquero-students.webp',
-        tags: ['Rutas', 'Getxo']
-    }
-];
-
 export default function NoticiasClient({
     locale,
     initialDbPosts,
+    initialArticleSlug,
 }: {
     locale: string;
     initialDbPosts: any[];
+    initialArticleSlug?: string;
 }) {
+    const lang = (['es', 'eu', 'en', 'fr'].includes(locale) ? locale : 'es') as 'es' | 'eu' | 'en' | 'fr';
     const isEu = locale === 'eu';
     const isEn = locale === 'en';
     const isFr = locale === 'fr';
 
-    // Map DB posts to component format, or fallback to default mock posts
-    const posts: BlogPost[] = initialDbPosts.length > 0
-        ? initialDbPosts.map((p) => ({
+    // Map DB posts to component format with complete 4-language support
+    const posts: BlogPost[] = initialDbPosts.map((p) => {
+        const slug = p.slug as string;
+        const loc = slug && localizedArticles[slug] ? localizedArticles[slug][lang] : null;
+
+        let title = p.titulo_es;
+        let excerpt = p.contenido_es?.slice(0, 160) + '...';
+        let content = p.contenido_es;
+        let author = 'Getxo Bela Eskola';
+
+        if (loc) {
+            title = loc.title;
+            excerpt = loc.excerpt;
+            content = loc.content;
+            author = loc.author;
+        } else {
+            if (isEu && p.titulo_eu) {
+                title = p.titulo_eu;
+                content = p.contenido_eu || p.contenido_es;
+                excerpt = p.contenido_eu?.slice(0, 160) + '...' || excerpt;
+            }
+        }
+
+        return {
             id: p.id,
-            title: isEu ? (p.titulo_eu || p.titulo_es) : p.titulo_es,
-            excerpt: isEu ? (p.contenido_eu || p.contenido_es) : p.contenido_es,
-            content: isEu ? (p.contenido_eu || p.contenido_es) : p.contenido_es,
+            slug: p.slug,
+            title,
+            excerpt,
+            content,
             date: p.created_at,
-            author: 'Getxo Bela Eskola',
+            author,
             image: p.image_url || '/images/home-hero-sailing-action.webp',
             tags: ['Bitácora']
-        }))
-        : defaultPosts.map(p => ({
-            ...p,
-            title: isEu && p.id === '1' ? 'Nola irakurri itsas karta bat 5 urratsetan' : p.title
-        }));
+        };
+    });
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+    const [selectedPost, setSelectedPost] = useState<BlogPost | null>(() => {
+        if (initialArticleSlug) {
+            return posts.find(p => p.slug === initialArticleSlug) || null;
+        }
+        return null;
+    });
+
+    useEffect(() => {
+        if (initialArticleSlug) {
+            const found = posts.find(p => p.slug === initialArticleSlug);
+            if (found) setSelectedPost(found);
+        }
+    }, [initialArticleSlug]);
 
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -94,10 +97,10 @@ export default function NoticiasClient({
                 <div className="container mx-auto px-6 max-w-4xl">
                     <button
                         onClick={() => setSelectedPost(null)}
-                        className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-6"
+                        className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-6 cursor-pointer"
                     >
                         <ChevronLeft className="w-3.5 h-3.5" />
-                        <span>{isEu ? 'Itzuli' : isEn ? 'Back' : 'Volver al listado'}</span>
+                        <span>{isEu ? 'Itzuli zerrendara' : isEn ? 'Back to list' : isFr ? 'Retour à la liste' : 'Volver al listado'}</span>
                     </button>
 
                     <article className="glass-card p-5 md:p-8 rounded-3xl border-black/10 bg-white">
@@ -136,7 +139,7 @@ export default function NoticiasClient({
                 {/* Header */}
                 <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
                     <span className="text-[9px] uppercase tracking-[0.3em] font-black text-accent block">
-                        {isEu ? 'Getxo Bela Eskolako Aldizkaria' : isEn ? 'Journal' : 'Bitácora & Noticias'}
+                        {isEu ? 'Getxo Bela Eskolako Aldizkaria' : isEn ? 'Journal' : isFr ? 'Journal & Actualités' : 'Bitácora & Noticias'}
                     </span>
                     <h1 className="text-2xl md:text-3xl font-display text-[#1A1A1A] leading-tight">
                         {pageTitle}
@@ -175,10 +178,6 @@ export default function NoticiasClient({
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full flex items-center gap-1 text-[7px] uppercase tracking-wider text-accent font-black">
-                                    <BookOpen className="w-2 h-2" />
-                                    <span>{isEu ? 'Koadernoa' : isEn ? 'Logbook' : 'Bitácora'}</span>
-                                </div>
                             </div>
 
                             <div className="p-3 flex flex-col justify-between flex-grow gap-3">
@@ -200,7 +199,7 @@ export default function NoticiasClient({
                                 </div>
 
                                 <div className="flex items-center gap-1 text-[7.5px] uppercase tracking-widest text-accent font-black pt-2.5 border-t border-black/5">
-                                    <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : 'Leer publicación'}</span>
+                                    <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : isFr ? 'Lire l’article' : 'Leer publicación'}</span>
                                 </div>
                             </div>
                         </article>

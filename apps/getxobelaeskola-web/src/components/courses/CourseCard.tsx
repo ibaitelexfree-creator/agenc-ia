@@ -61,13 +61,6 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                         />
                         {/* Overlays */}
                         <div className="absolute inset-0 premium-gradient-overlay z-10" />
-
-                        {/* Vertical Text Accent */}
-                        <div className="hidden sm:block absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 opacity-20 group-hover:opacity-100 transition-opacity duration-1000 rotate-90 origin-right pointer-events-none">
-                            <span className="text-[9px] sm:text-xs uppercase tracking-[0.25em] text-sea-foam/50 whitespace-nowrap font-light group-hover:text-accent group-hover:font-medium transition-all">
-                                {course.duracion_h} HOURS
-                            </span>
-                        </div>
                     </div>
 
                     {/* Content Area - Generous Padding & Readable Typography */}

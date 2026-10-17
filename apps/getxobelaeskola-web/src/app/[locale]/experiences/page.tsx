@@ -3,7 +3,6 @@ import { createClient } from '@/lib/supabase/server';
 import { getTranslations } from 'next-intl/server';
 import { Metadata } from 'next';
 import ExperiencesClient from '@/components/experiences/ExperiencesClient';
-import ExperienceDisclaimerCard from '@/components/shared/ExperienceDisclaimerCard';
 import { getSeoAlternates, siteUrl } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -98,40 +97,58 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                 }));
             }
         } else {
-            experiences = (data || []).map(item => ({
-                id: item.id,
-                nombre: item.nombre_es,
-                nombre_eu: item.nombre_eu || item.nombre_es,
-                nombre_en: item.nombre_en || item.nombre_es,
-                nombre_fr: item.nombre_fr || item.nombre_es,
-                slug: item.slug,
-                descripcion: item.descripcion_es,
-                descripcion_eu: item.descripcion_eu || item.descripcion_es,
-                descripcion_en: item.descripcion_en || item.descripcion_es,
-                descripcion_fr: item.descripcion_fr || item.descripcion_es,
-                categoria: item.tipo || 'evento',
-                precio: item.precio,
-                imagen_url: item.slug === 'cumpleanos-navegacion'
-                    ? '/images/IMG_20241016_114549.jpg'
-                    : (item.slug === 'cumpleanos-bigsub' || item.nombre_es?.toLowerCase().includes('bigsup') || item.nombre_en?.toLowerCase().includes('bigsup'))
-                    ? '/images/experiences/birthday-bigsub.jpg'
-                    : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
-                    ? '/images/experiences/birthday-space-rental.jpg'
-                    : (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre_es?.toLowerCase().includes('bono navegación') || item.nombre_es?.toLowerCase().includes('bono navegacion') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
-                    ? '/images/experiences/navigation-voucher.jpg'
-                    : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_en?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
-                    ? '/images/experiences/windsurf-voucher.jpg'
-                    : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
-                    ? '/images/experiences/windsurf-mooring.jpg'
-                    : (item.slug === 'sailboat-mooring' || item.slug?.includes('sailboat') || item.nombre_es?.toLowerCase().includes('velero') || item.nombre_es?.toLowerCase().includes('sailboat') || item.nombre_en?.toLowerCase().includes('sailboat'))
-                    ? '/images/experiences/sailboat-mooring.jpg'
-                    : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre_es?.toLowerCase().includes('canoe') || item.nombre_es?.toLowerCase().includes('piragua') || item.nombre_es?.toLowerCase().includes('atraque'))
-                    ? '/images/about-patio.jpg'
-                    : (item.imagen_url || '/images/home-hero-sailing-action.webp'),
-                duracion: item.duracion_h ? `${item.duracion_h}h` : null,
-                min_participantes: item.min_participantes || item.edad_minima, // Fallback to age or pax if needed
-                activo: true,
-            }));
+            experiences = (data || []).map(item => {
+                const slug = (item.slug || '').toLowerCase();
+                const nombre = (item.nombre_es || item.nombre || '').toLowerCase();
+                let categoria = item.tipo;
+
+                if (!categoria || categoria === 'evento' || categoria === 'all') {
+                    if (slug.startsWith('cumplean') || slug.includes('birthday') || nombre.includes('cumplea')) {
+                        categoria = 'cumpleanos';
+                    } else if (slug.startsWith('atraque') || slug.includes('mooring') || nombre.includes('atraque')) {
+                        categoria = 'atraque';
+                    } else if (slug.startsWith('bono') || slug.includes('voucher') || nombre.includes('bono')) {
+                        categoria = 'bono';
+                    } else {
+                        categoria = 'cumpleanos';
+                    }
+                }
+
+                return {
+                    id: item.id,
+                    nombre: item.nombre_es,
+                    nombre_eu: item.nombre_eu || item.nombre_es,
+                    nombre_en: item.nombre_en || item.nombre_es,
+                    nombre_fr: item.nombre_fr || item.nombre_es,
+                    slug: item.slug,
+                    descripcion: item.descripcion_es,
+                    descripcion_eu: item.descripcion_eu || item.descripcion_es,
+                    descripcion_en: item.descripcion_en || item.descripcion_es,
+                    descripcion_fr: item.descripcion_fr || item.descripcion_es,
+                    categoria,
+                    precio: item.precio,
+                    imagen_url: item.slug === 'cumpleanos-navegacion'
+                        ? '/images/IMG_20241016_114549.jpg'
+                        : (item.slug === 'cumpleanos-bigsub' || item.nombre_es?.toLowerCase().includes('bigsup') || item.nombre_en?.toLowerCase().includes('bigsup'))
+                        ? '/images/experiences/birthday-bigsub.jpg'
+                        : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
+                        ? '/images/experiences/birthday-space-rental.jpg'
+                        : (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre_es?.toLowerCase().includes('bono navegación') || item.nombre_es?.toLowerCase().includes('bono navegacion') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
+                        ? '/images/experiences/navigation-voucher.jpg'
+                        : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_es?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
+                        ? '/images/experiences/windsurf-voucher.jpg'
+                        : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
+                        ? '/images/experiences/windsurf-mooring.jpg'
+                        : (item.slug === 'sailboat-mooring' || item.slug?.includes('sailboat') || item.nombre_es?.toLowerCase().includes('velero') || item.nombre_es?.toLowerCase().includes('sailboat') || item.nombre_en?.toLowerCase().includes('sailboat'))
+                        ? '/images/experiences/sailboat-mooring.jpg'
+                        : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre_es?.toLowerCase().includes('canoe') || item.nombre_es?.toLowerCase().includes('piragua') || item.nombre_es?.toLowerCase().includes('atraque'))
+                        ? '/images/about-patio.jpg'
+                        : (item.imagen_url || '/images/home-hero-sailing-action.webp'),
+                    duracion: item.duracion_h ? `${item.duracion_h}h` : null,
+                    min_participantes: item.min_participantes || item.edad_minima, // Fallback to age or pax if needed
+                    activo: true,
+                };
+            });
         }
     } catch (err) {
         console.error('Network error fetching experiences:', err);
@@ -192,14 +209,19 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
             </section>
 
             {/* Experiences Grid */}
-            <section className="pb-12 sm:pb-32 md:pb-48 relative">
+            <section className="pb-8 sm:pb-12 md:pb-16 relative">
                 <div className="w-full max-w-7xl mx-auto px-2 landscape:px-3 sm:px-6 relative z-10">
                     <ExperiencesClient experiences={experiences} locale={locale} />
                 </div>
 
                 {/* Bottom Note */}
-                <div className="container mx-auto px-4 sm:px-6 mt-16 sm:mt-24 md:mt-32">
-                    <ExperienceDisclaimerCard noteText={t('footer_note')} locale={locale} />
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-14 md:mt-16">
+                    <div className="relative group p-4 sm:p-6 md:p-8 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
+                        <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700" />
+                        <p className="text-sea-foam/60 font-light italic text-xs sm:text-sm md:text-base leading-relaxed max-w-4xl">
+                            {t('footer_note')}
+                        </p>
+                    </div>
                 </div>
             </section>
 

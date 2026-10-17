@@ -125,7 +125,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">Escuela Náutica Oficial</span>
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">{t('official_school')}</span>
                     </div>
                 </div>
 
@@ -134,25 +134,25 @@ export default async function Footer({ locale }: { locale: string }) {
                     <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
                             <Clock className="w-4 h-4" />
-                            <span>Horario</span>
+                            <span>{t('schedule')}</span>
                         </div>
-                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Lunes a Domingo</span>
-                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">09:00 — 20:00</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed whitespace-pre-line">{t('hours_weekdays')}</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">{t('hours_weekend')}</span>
                     </div>
 
                     <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
                             <MapPin className="w-4 h-4" />
-                            <span>Ubicación</span>
+                            <span>{t('location')}</span>
                         </div>
-                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Muelle Arriluzea, s/n</span>
-                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">48990 Getxo, Vizcaya</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Marqués de Arriluce e Ibarra Kalea, 3D</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">48992 Getxo, Bizkaia</span>
                     </div>
 
                     <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
                         <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
                             <Phone className="w-4 h-4" />
-                            <span>Contacto</span>
+                            <span>{t('contact')}</span>
                         </div>
                         <a href="tel:+34944916632" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors">(+34) 944 916 632</a>
                         <a href="mailto:info@getxobelaeskola.com" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors lowercase tracking-normal">info@getxobelaeskola.com</a>
@@ -173,7 +173,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                             <Image
                                 src="/images/logo-nextgen.svg"
-                                alt="Financiado por la Unión Europea - NextGenerationEU"
+                                alt={t('nextgen_alt')}
                                 width={180}
                                 height={36}
                                 className="object-contain h-full w-auto transition-transform duration-500 ease-out"
@@ -184,7 +184,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                             <Image
                                 src="/images/collaborators/logo-kit-digital.svg"
-                                alt="Programa Kit Digital"
+                                alt={t('kit_digital_alt')}
                                 width={140}
                                 height={36}
                                 className="object-contain h-full w-auto transition-transform duration-500 ease-out"
@@ -195,7 +195,7 @@ export default async function Footer({ locale }: { locale: string }) {
                         <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
                             <Image
                                 src="/images/logo-plan-recuperacion.svg"
-                                alt="Plan de Recuperación, Transformación y Resiliencia"
+                                alt={t('plan_recuperacion_alt')}
                                 width={160}
                                 height={36}
                                 className="object-contain h-full w-auto transition-transform duration-500 ease-out"
@@ -204,7 +204,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     </div>
 
                     <p className="text-[11px] sm:text-xs text-sea-foam/60 text-center font-medium max-w-2xl leading-relaxed mt-2">
-                        Financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia y el Programa Kit Digital.
+                        {t('sponsors_text')}
                     </p>
                 </div>
 

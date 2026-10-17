@@ -2,6 +2,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 
 type CourseCardProps = {
   name: string
@@ -12,28 +13,10 @@ type CourseCardProps = {
 }
 
 export function CourseCard({ name, duration, href = '#', highlight = false, ctaLabel }: CourseCardProps) {
-  return (
-    <motion.a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      whileHover={{ scale: 1.03, y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ duration: 0.2, ease: 'easeInOut' }}
-      style={{
-        display: 'block',
-        backgroundColor: highlight ? 'var(--ocean-bright)' : 'white',
-        color: highlight ? 'white' : 'var(--ocean-deep)',
-        borderRadius: '12px',
-        padding: '0.85rem 1rem',
-        border: highlight ? 'none' : '1px solid rgba(10, 126, 200, 0.2)',
-        textDecoration: 'none',
-        boxShadow: highlight
-          ? '0 4px 20px rgba(10, 126, 200, 0.3)'
-          : '0 2px 8px rgba(0,0,0,0.06)',
-        marginBottom: '0.5rem',
-      }}
-    >
+  const isExternal = href.startsWith('http://') || href.startsWith('https://')
+
+  const cardContent = (
+    <>
       <p
         style={{
           fontSize: '0.9rem',
@@ -66,6 +49,48 @@ export function CourseCard({ name, duration, href = '#', highlight = false, ctaL
       >
         {ctaLabel}
       </p>
-    </motion.a>
+    </>
+  )
+
+  const cardStyle = {
+    display: 'block',
+    backgroundColor: highlight ? 'var(--ocean-bright)' : 'white',
+    color: highlight ? 'white' : 'var(--ocean-deep)',
+    borderRadius: '12px',
+    padding: '0.85rem 1rem',
+    border: highlight ? 'none' : '1px solid rgba(10, 126, 200, 0.2)',
+    textDecoration: 'none',
+    boxShadow: highlight
+      ? '0 4px 20px rgba(10, 126, 200, 0.3)'
+      : '0 2px 8px rgba(0,0,0,0.06)',
+    marginBottom: '0.5rem',
+  }
+
+  if (isExternal) {
+    return (
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.03, y: -2 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}
+        style={cardStyle}
+      >
+        {cardContent}
+      </motion.a>
+    )
+  }
+
+  return (
+    <motion.div
+      whileHover={{ scale: 1.03, y: -2 }}
+      whileTap={{ scale: 0.97 }}
+      transition={{ duration: 0.2, ease: 'easeInOut' }}
+    >
+      <Link href={href} style={cardStyle}>
+        {cardContent}
+      </Link>
+    </motion.div>
   )
 }

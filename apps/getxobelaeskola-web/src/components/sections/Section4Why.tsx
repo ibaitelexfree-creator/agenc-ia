@@ -62,7 +62,7 @@ function FlipCard({ icon, title, hook, label, description, isPhone = false, isFl
             {hook}
           </p>
           <span className="flip-card__cta">
-            Descubrir más ↻
+            {t('cta')}
           </span>
         </div>
 
@@ -118,29 +118,9 @@ interface Section4WhyProps {
 }
 
 export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) {
-  const tHome = useTranslations('home.features')
+  const t = useTranslations('s4')
   const [isPhone, setIsPhone] = useState(false)
   const [activeCardIndex, setActiveCardIndex] = useState<number | null>(null)
-
-  const t = (key: string) => {
-    switch (key) {
-      case 'title': return tHome('title') || 'Por qué elegirnos'
-      case 'eyebrow': return ''
-      case 'pillar1.title': return 'Económico'
-      case 'pillar1.body': return 'Creemos que la vela debe estar al alcance de todo el mundo.'
-      case 'pillar1.backTitle': return 'Vela para todos'
-      case 'pillar1.backBody': return 'Al ser una escuela municipal, trabajamos para democratizarla con precios accesibles. Si navegas con asiduidad y te haces socio/a, puedes salir a navegar desde 52,5€ al mes.'
-      case 'pillar2.title': return 'Comunidad'
-      case 'pillar2.body': return 'No somos solo una escuela, somos una comunidad muy cercana y con valores.'
-      case 'pillar2.backTitle': return 'Nuestra familia'
-      case 'pillar2.backBody': return 'Un lugar donde conocer gente con las mismas ganas de mar, compartir experiencias y crecer navegando juntos. Aquí vienes a aprender, pero también a formar parte de algo.'
-      case 'pillar3.title': return 'A tu medida'
-      case 'pillar3.body': return 'Cada persona es diferente, y aquí lo tenemos muy en cuenta.'
-      case 'pillar3.backTitle': return 'Tu experiencia'
-      case 'pillar3.backBody': return 'No todo el mundo busca lo mismo al salir al mar, por eso adaptamos la experiencia a ti desde el primer momento. Cuéntanos qué te apetece, cuál es tu ritmo y tus objetivos, y te ayudamos a encontrar la forma de navegar que mejor encaje contigo.'
-      default: return key
-    }
-  }
 
   const [windowWidth, setWindowWidth] = useState(1440)
 

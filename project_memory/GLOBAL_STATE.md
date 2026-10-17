@@ -2,6 +2,21 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** 4 Real Blog Articles & Multilingual Localization (ES, EU, EN, FR)
+  1. Converted the 3 home articles into real, comprehensive nautical articles with verified local/scientific accuracy (Abra de Getxo, J80 tactics, IHM/IALA Region A charts).
+  2. Seeded remote Supabase DB (`blog_posts`) with all 4 articles.
+  3. Created `blog-articles.data.ts` and updated `blog.data.ts` + `NoticiasClient.tsx` with full 4-language support (ES, EU, EN, FR), rich markdown content, and `?article=[slug]` deep-linking.
+  4. Localized `/blog/aprendizaje` with dynamic multi-language dictionary for titles, descriptions, badges, and back buttons in ES, EU, EN, and FR.
+  5. Verified live rendering via HTTP for all 4 locales.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Update contact details on Voluntariado page (`/contacto/voluntaria`)
+  1. Updated email address in `CTAFinal.tsx` to `info@getxobelaeskola.com`.
+  2. Removed redundant "WhatsApp directo →" link and separator next to the email in `CTAFinal.tsx`.
+  3. Verified build with `npm run build` (status code 0).
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Responsive Fixes for Home Logo and Login Page
   1. **Home Page Logo Alignment (`Navbar.tsx`):**
      - Corrected vertical alignment by updating Framer Motion `y: isAtHero ? 2 : 0` (previously `y: isAtHero ? 21 : 6`), eliminating the arbitrary legacy 21px downward shift.

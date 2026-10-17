@@ -390,12 +390,12 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     </div>
                 </div>
  
-                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
+                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
                     prefetch={false}
-                    className="flex items-center group transition-premium relative z-[110] xl:justify-self-start"
+                    className="flex items-center group transition-premium relative z-[110] flex-shrink-0"
                     onClick={() => setIsMenuOpen(false)}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
@@ -423,7 +423,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 </Link>
  
                 {/* Desktop Menu - Custom Framer Motion dropdowns */}
-                <div className="hidden xl:flex gap-8 items-center text-xs uppercase tracking-[0.25em] font-black h-full xl:justify-self-center">
+                <div className="hidden xl:flex gap-4 2xl:gap-8 items-center text-xs uppercase tracking-[0.18em] 2xl:tracking-[0.25em] font-black h-full flex-1 justify-center xl:pl-6 xl:pr-4 2xl:px-0">
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
@@ -504,7 +504,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 </div>
  
                 {/* Right Side Actions */}
-                <div className="flex gap-4 items-center relative z-[110] xl:justify-self-end">
+                <div className="flex gap-4 items-center relative z-[110] flex-shrink-0">
 
 
                     {loading ? (
@@ -537,11 +537,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             </Link>
                         </motion.div>
                     ) : user ? (
-                        <div className="hidden xl:flex gap-8 items-center">
+                        <div className="hidden xl:flex gap-3 2xl:gap-6 items-center flex-shrink-0 whitespace-nowrap">
                             {user.status_socio === 'activo' && (
-                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_10px_rgba(197,160,89,0.1)] transition-premium hover:border-brass-gold/60 group/member">
+                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_10px_rgba(197,160,89,0.1)] transition-premium hover:border-brass-gold/60 group/member flex-shrink-0">
                                     <Sparkles className="w-3 h-3 text-brass-gold transition-premium group-hover:rotate-45" />
-                                    <span className="text-brass-gold text-[8px] font-black uppercase tracking-[0.2em]">
+                                    <span className="text-brass-gold text-[8px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
                                         MEMBER
                                     </span>
                                 </div>
@@ -549,14 +549,14 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             <Link
                                 href={user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`}
                                 prefetch={false}
-                                className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium"
+                                className="text-[10px] uppercase tracking-[0.2em] 2xl:tracking-[0.3em] font-black text-accent border border-accent/20 px-4 2xl:px-6 py-2.5 2xl:py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium whitespace-nowrap flex-shrink-0"
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className={`text-xs uppercase tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 text-black`}
+                                className={`text-xs uppercase tracking-[0.2em] 2xl:tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 text-black whitespace-nowrap flex-shrink-0`}
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {getLabel('logout')}

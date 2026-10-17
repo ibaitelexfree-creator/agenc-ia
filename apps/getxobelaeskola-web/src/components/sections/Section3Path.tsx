@@ -4,7 +4,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { CourseCard } from '@/components/ui/CourseCard'
 import { Starfish } from '@/components/creatures/Starfish'
 import { RoutePath } from '@/components/decorative/RoutePath'
@@ -12,30 +12,30 @@ import { NauticalCompassRose } from '@/components/decorative/NauticalCompassRose
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow'
  
 // Estructura de datos del árbol de cursos
-// href: URL de la sección correspondiente en getxobelaeskola.cloud/es/
+// href: Página en construcción temporal mientras se completan las fichas detalladas
 const COURSE_TREE = {
   basic: {
     youth: [
-      { key: 'txikigune', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'udalekuak', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'continuous_kids', href: 'https://getxobelaeskola.cloud/es/' },
+      { key: 'txikigune', href: '/en-construccion' },
+      { key: 'udalekuak', href: '/en-construccion' },
+      { key: 'continuous_kids', href: '/en-construccion' },
     ],
     adult: [
-      { key: 'cruiser_init', href: 'https://getxobelaeskola.cloud/es/', highlight: true },
+      { key: 'cruiser_init', href: '/en-construccion' },
     ],
   },
   mid: {
     youth: [
-      { key: 'txikigune', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'udalekuak', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'continuous_kids', href: 'https://getxobelaeskola.cloud/es/' },
+      { key: 'txikigune', href: '/en-construccion' },
+      { key: 'udalekuak', href: '/en-construccion' },
+      { key: 'continuous_kids', href: '/en-construccion' },
     ],
     adult: [
-      { key: 'vl_init', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'vl_advanced', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'cruiser_perf', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'gennaker', href: 'https://getxobelaeskola.cloud/es/' },
-      { key: 'tech_team', href: 'https://getxobelaeskola.cloud/es/', highlight: true },
+      { key: 'vl_init', href: '/en-construccion' },
+      { key: 'vl_advanced', href: '/en-construccion' },
+      { key: 'cruiser_perf', href: '/en-construccion' },
+      { key: 'gennaker', href: '/en-construccion' },
+      { key: 'tech_team', href: '/en-construccion' },
     ],
   },
 }
@@ -52,6 +52,7 @@ export interface Section3PathProps {
 
 export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = {}) {
   const t = useTranslations('s3')
+  const locale = useLocale()
   const [selectedLevel, setSelectedLevel] = useState<Level>(null)
   const [selectedProfile, setSelectedProfile] = useState<Profile>(null)
   const [isPhone, setIsPhone] = useState(false)
@@ -335,7 +336,7 @@ export function Section3Path({ parchmentVariant = 'none' }: Section3PathProps = 
                 >
                   <CourseCard
                     name={t(`course.${course.key}`)}
-                    href={course.href}
+                    href={course.href.startsWith('/') ? `/${locale}${course.href}` : course.href}
                     highlight={'highlight' in course ? course.highlight as boolean : false}
                     ctaLabel={t('cta_course')}
                   />

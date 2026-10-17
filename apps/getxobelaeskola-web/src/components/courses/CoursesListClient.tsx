@@ -1,6 +1,8 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import CourseCard from './CourseCard';
 import CourseFilters from './CourseFilters';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -21,18 +23,53 @@ interface CourseListClientProps {
 export default function CoursesListClient({ initialCourses, categories, locale }: CourseListClientProps) {
     const searchParams = useSearchParams();
     const activeCategory = searchParams.get('category');
+    const tCourses = useTranslations('courses_page');
 
     // Client-side filtering with fail-safe fallback
-    const filtered = activeCategory
-        ? initialCourses.filter(course => 
+    const filtered = useMemo(() => {
+        if (!activeCategory) return null;
+        return initialCourses.filter(course => 
             course.categoria_id === activeCategory ||
             course.categoria?.id === activeCategory ||
             course.categoria?.slug === activeCategory ||
             course.categoria?.nombre_es?.toLowerCase() === activeCategory?.toLowerCase()
-          )
-        : initialCourses;
+        );
+    }, [activeCategory, initialCourses]);
 
-    const displayCourses = (filtered && filtered.length > 0) ? filtered : initialCourses;
+    const isAllSelected = !activeCategory;
+    const displayCourses = filtered !== null ? filtered : initialCourses;
+
+    // Group courses by category for the "All" view matching top filter categories order
+    const groupedSections = useMemo(() => {
+        if (!isAllSelected) return [];
+
+        return (categories || []).map((cat, index) => {
+            const courses = initialCourses.filter(course =>
+                course.categoria_id === cat.id ||
+                course.categoria?.id === cat.id ||
+                course.categoria?.slug === cat.slug ||
+                course.categoria?.nombre_es?.toLowerCase() === cat.nombre_es?.toLowerCase()
+            );
+
+            const titleKey = `category_sections.${cat.id}_title`;
+            const catName = tCourses.has(titleKey)
+                ? tCourses(titleKey)
+                : locale === 'eu'
+                ? `${cat.nombre_eu} Ikastaroak`
+                : `Cursos de ${cat.nombre_es.toLowerCase()}`;
+
+            const descKey = `category_sections.${cat.id}_desc`;
+            const catDesc = tCourses.has(descKey) ? tCourses(descKey) : '';
+
+            return {
+                id: cat.id,
+                slug: cat.slug,
+                title: catName,
+                desc: catDesc,
+                courses
+            };
+        }).filter(sec => sec.courses.length > 0);
+    }, [isAllSelected, categories, initialCourses, locale, tCourses]);
 
     return (
         <section className="pb-16 sm:pb-24 lg:pb-36 relative overflow-hidden">
@@ -53,9 +90,52 @@ export default function CoursesListClient({ initialCourses, categories, locale }
                             </p>
                         </div>
                     </div>
+                ) : isAllSelected ? (
+                    /* "All" View: Ordered by categories matching top filter with clean separator headers */
+                    <div className="space-y-16 sm:space-y-20 lg:space-y-24 mt-6 sm:mt-10">
+                        {groupedSections.map((sec) => (
+                            <div key={sec.id} className="relative">
+                                {/* Section Separator Header */}
+                                <div className="border-b border-sea-foam/15 pb-5 sm:pb-6 mb-6 sm:mb-8">
+                                    <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+                                        <div>
+                                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display text-sea-foam tracking-tight">
+                                                {sec.title}
+                                            </h2>
+                                        </div>
+                                        {sec.desc && (
+                                            <p className="text-sea-foam/60 text-xs sm:text-sm max-w-md font-light leading-relaxed">
+                                                {sec.desc}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Courses Grid for this section */}
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 w-full">
+                                    <AnimatePresence initial={false} mode="popLayout">
+                                        {sec.courses.map((course) => (
+                                            <motion.div
+                                                key={course.id}
+                                                layout="position"
+                                                initial={{ opacity: 0 }}
+                                                animate={{ opacity: 1 }}
+                                                exit={{ opacity: 0 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="w-full h-full flex flex-col"
+                                            >
+                                                <CourseCard course={course} locale={locale} />
+                                            </motion.div>
+                                        ))}
+                                    </AnimatePresence>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 ) : (
+                    /* Specific Category View (e.g. windsurf, jovenes, etc.): standard grid without section separators */
                     <div 
-                        className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-4 sm:mt-8 md:mt-12 courses-grid-system w-full max-w-full"
+                        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 mt-4 sm:mt-8 md:mt-12 courses-grid-system w-full max-w-full"
                     >
                         <AnimatePresence initial={false} mode="popLayout">
                             {displayCourses.map((course) => (

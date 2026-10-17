@@ -10,7 +10,7 @@ interface CTAFinalProps {
   locale: string;
 }
 
-const EMAIL = "info@getxobelaeskola.cloud";
+const EMAIL = "info@getxobelaeskola.com";
 
 export function CTAFinal({ locale }: CTAFinalProps) {
   const t = voluntariadoTranslations[locale] || voluntariadoTranslations.es;
@@ -66,10 +66,6 @@ export function CTAFinal({ locale }: CTAFinalProps) {
       >
         <a href={`mailto:${EMAIL}`} className={styles['cta-link']}>
           ✉ {EMAIL}
-        </a>
-        <span className={styles['cta-separator']}>·</span>
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${styles['cta-link']} ${styles['cta-link-whatsapp']}`}>
-          WhatsApp directo →
         </a>
       </motion.div>
     </motion.div>
