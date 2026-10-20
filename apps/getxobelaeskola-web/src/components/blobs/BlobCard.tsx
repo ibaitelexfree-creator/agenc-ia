@@ -3,57 +3,213 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMagneticCursor } from '@/hooks/useMagneticCursor'
 
+function CanvasBlobVideo({ videoSrc, imageSrc, paths, color, isHovered }: { videoSrc: string; imageSrc: string; paths: string[]; color: string; isHovered: boolean }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+
+  // Pre-tokenize SVG path numbers once on mount/props update to eliminate regex overhead in 60fps loop
+  const parsedPaths = useRef<{ d: string; nums: number[] }[]>([])
+  useEffect(() => {
+    parsedPaths.current = paths.map(d => ({
+      d,
+      nums: d.match(/-?\d+(\.\d+)?/g)?.map(Number) || []
+    }))
+  }, [paths])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const fallbackImg = new Image()
+    if (imageSrc) {
+      fallbackImg.src = imageSrc
+    }
+
+    const video = document.createElement('video')
+    const canPlayWebm = video.canPlayType('video/webm')
+    video.src = (canPlayWebm && videoSrc.endsWith('.webm')) ? videoSrc : (videoSrc.endsWith('.webm') ? videoSrc.replace('.webm', '.mp4') : videoSrc)
+    video.autoplay = true
+    video.loop = true
+    video.muted = true
+    // @ts-ignore
+    video.playsInline = true
+    // @ts-ignore
+    video['webkit-playsinline'] = true
+    video.preload = 'metadata'
+    video.setAttribute('muted', '')
+    video.setAttribute('playsinline', '')
+    video.setAttribute('webkit-playsinline', '')
+    video.setAttribute('autoplay', '')
+    video.setAttribute('loop', '')
+    video.style.display = 'none'
+    document.body.appendChild(video)
+    videoRef.current = video
+
+    let isVisible = true
+    const startPlay = () => {
+      if (isVisible) {
+        video.play().catch(() => {})
+      }
+    }
+    video.addEventListener('canplay', startPlay, { once: true })
+
+    // IntersectionObserver: Pause video and animation frame loop when off-screen
+    const canvasEl = canvasRef.current
+    let observer: IntersectionObserver | null = null
+    if (canvasEl && 'IntersectionObserver' in window) {
+      observer = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting
+        if (isVisible) {
+          video.play().catch(() => {})
+        } else {
+          video.pause()
+        }
+      }, { threshold: 0.1 })
+      observer.observe(canvasEl)
+    } else {
+      video.play().catch(() => {})
+    }
+
+    let animationFrameId: number
+    const startTime = performance.now()
+    let lastRender = 0
+    const frameInterval = 1000 / 30 // Throttle loop to 30fps max for fluid rendering without main thread strain
+
+    const render = (now: number) => {
+      animationFrameId = requestAnimationFrame(render)
+
+      if (!isVisible) return
+
+      const elapsed = now - lastRender
+      if (elapsed < frameInterval) return
+      lastRender = now - (elapsed % frameInterval)
+
+      const canvas = canvasRef.current
+      if (!canvas) return
+      const ctx = canvas.getContext('2d', { alpha: true })
+      if (!ctx) return
+
+      ctx.clearRect(0, 0, 100, 100)
+
+      const cycleMs = 8000
+      const progress = ((now - startTime) % cycleMs) / cycleMs
+      
+      const pData = parsedPaths.current
+      if (!pData || pData.length < 3) return
+
+      let fromObj = pData[0]
+      let toObj = pData[1]
+      let blend = 0
+
+      if (progress < 0.333) {
+        fromObj = pData[0]
+        toObj = pData[1]
+        blend = progress / 0.333
+      } else if (progress < 0.666) {
+        fromObj = pData[1]
+        toObj = pData[2]
+        blend = (progress - 0.333) / 0.333
+      } else {
+        fromObj = pData[2]
+        toObj = pData[0]
+        blend = (progress - 0.666) / 0.334
+      }
+
+      const fromNums = fromObj.nums
+      const toNums = toObj.nums
+      
+      let interpolatedD = fromObj.d
+      if (fromNums.length > 0 && fromNums.length === toNums.length) {
+        let numIdx = 0
+        interpolatedD = fromObj.d.replace(/-?\d+(\.\d+)?/g, () => {
+          const startVal = fromNums[numIdx]
+          const endVal = toNums[numIdx]
+          numIdx++
+          return (startVal + (endVal - startVal) * blend).toFixed(2)
+        })
+      }
+
+      if (typeof Path2D !== 'undefined') {
+        const p = new Path2D(interpolatedD)
+
+        // LAYER 1: VIDEO OR THUMBNAIL (Clipped to interpolated morphing path)
+        ctx.save()
+        ctx.clip(p)
+        if (video.readyState >= 2) {
+          ctx.drawImage(video, 0, 3, 100, 100)
+        } else if (fallbackImg.complete && fallbackImg.naturalWidth > 0) {
+          ctx.drawImage(fallbackImg, 0, 3, 100, 100)
+        } else {
+          ctx.fillStyle = `${color}55`
+          ctx.fill(p)
+        }
+        ctx.restore()
+
+        // LAYER 2: MORPHING STROKE BORDER
+        ctx.save()
+        if (isHovered) {
+          ctx.fillStyle = `${color}33`
+          ctx.fill(p)
+        }
+        ctx.strokeStyle = color
+        ctx.lineWidth = 2.5
+        ctx.stroke(p)
+        ctx.restore()
+      }
+    }
+
+    animationFrameId = requestAnimationFrame(render)
+
+    return () => {
+      cancelAnimationFrame(animationFrameId)
+      if (observer && canvasEl) {
+        observer.unobserve(canvasEl)
+      }
+      if (video.parentNode) {
+        video.parentNode.removeChild(video)
+      }
+    }
+  }, [videoSrc, imageSrc, color, isHovered])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      width={100}
+      height={100}
+      className="w-full h-full block"
+      style={{ width: '100%', height: '100%' }}
+    />
+  )
+}
+
 interface BlobCardProps {
-  title: string
-  subtitle: string
+  title: React.ReactNode
+  subtitle?: React.ReactNode
   color: string         // color del título
   videoSrc: string      // ruta del video
   imageSrc: string      // fallback imagen
   paths: string[]       // las 3 rutas de morphing
   href: string
   index?: number
+  isSceneReady?: boolean
 }
 
-export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [], href, index = 0 }: BlobCardProps) {
+export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [], href, index = 0, isSceneReady }: BlobCardProps) {
   const d0 = paths[0] || "M50,10 C80,5 95,30 90,55 C85,80 65,95 45,90 C25,85 5,70 10,45 C15,20 20,15 50,10Z"
   const d1 = paths[1] || d0
   const d2 = paths[2] || d0
 
   const [isHovered, setIsHovered] = useState(false)
   const [inView, setInView] = useState(false)         // para mobile
-  const videoRef = useRef<HTMLVideoElement>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
   const cardRef = useRef<HTMLAnchorElement>(null)
-  const clipId = `clip-${title.replace(/\s/g, '')}`
+  const safeIdStr = typeof title === 'string' ? title.replace(/\s/g, '') : `card-${index}`
+  const clipId = `clip-${safeIdStr}`
 
-  const [pageLoaded, setPageLoaded] = useState(false)
-  const [loadVideo, setLoadVideo] = useState(false)
+  const [loadVideo, setLoadVideo] = useState(true)
   const [videoReady, setVideoReady] = useState(false)
-  const [timeToReveal, setTimeToReveal] = useState(false)
-  const [startReveal, setStartReveal] = useState(false)
   const [revealComplete, setRevealComplete] = useState(false)
 
-  // Detect page load event or readyState to ensure videos load last
-  useEffect(() => {
-    const handleLoad = () => {
-      setPageLoaded(true)
-    }
-
-    if (document.readyState === 'complete') {
-      setPageLoaded(true)
-    } else {
-      window.addEventListener('load', handleLoad)
-      // Fallback timer to make sure cards reveal even if page load event gets blocked/delayed
-      const fallbackTimer = setTimeout(() => {
-        setPageLoaded(true)
-      }, 3500)
-      return () => {
-        window.removeEventListener('load', handleLoad)
-        clearTimeout(fallbackTimer)
-      }
-    }
-  }, [])
-
-  // Check if the video is already cached/loaded when loadVideo triggers
+  // Check if the video is already cached/loaded
   useEffect(() => {
     if (loadVideo && videoRef.current) {
       if (videoRef.current.readyState >= 2) { // HAVE_CURRENT_DATA or higher
@@ -62,52 +218,19 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     }
   }, [loadVideo])
 
-  // Resolve which video format to use (avoid double downloads from <source> tags)
-  const [videoUrl, setVideoUrl] = useState<string | null>(null)
+  // Resolve which video format to use (mp4 as reliable fallback or direct videoSrc)
+  const [videoUrl, setVideoUrl] = useState<string>(videoSrc)
   useEffect(() => {
-    const v = document.createElement('video')
-    const canPlayWebm = v.canPlayType('video/webm; codecs="vp8, vorbis"') !== ''
-    if (canPlayWebm && videoSrc.endsWith('.webm')) {
-      setVideoUrl(videoSrc)
-    } else {
-      setVideoUrl(videoSrc.replace('.webm', '.mp4'))
+    if (typeof window !== 'undefined') {
+      const v = document.createElement('video')
+      const canPlayWebm = v.canPlayType('video/webm')
+      if (!canPlayWebm && videoSrc.endsWith('.webm')) {
+        setVideoUrl(videoSrc.replace('.webm', '.mp4'))
+      } else {
+        setVideoUrl(videoSrc)
+      }
     }
   }, [videoSrc])
-
-  // Lazy-load videos based on interaction (hover on desktop, inView on mobile) to save bandwidth
-  useEffect(() => {
-    const isMobile = window.innerWidth < 1280
-    if (isMobile) {
-      if (inView) {
-        setLoadVideo(true)
-      }
-    } else {
-      if (isHovered) {
-        setLoadVideo(true)
-      }
-    }
-  }, [isHovered, inView])
-
-  // Quick staggered reveal timeline (no pageLoaded dependency to fix LCP)
-  useEffect(() => {
-    let cumulativeDelay = 100; // Fast base buffer
-    for (let i = 1; i <= index; i++) {
-      cumulativeDelay += 150; // Fast stagger per card
-    }
-
-    const timer = setTimeout(() => {
-      setTimeToReveal(true)
-    }, cumulativeDelay)
-
-    return () => clearTimeout(timer)
-  }, [index])
-
-  // Trigger the reveal as soon as the staggered time slot has arrived (no video block)
-  useEffect(() => {
-    if (timeToReveal) {
-      setStartReveal(true)
-    }
-  }, [timeToReveal])
 
   // Atracción magnética muy suave y lenta (como fluido/líquido)
   const { x: magX, y: magY } = useMagneticCursor(cardRef, { 
@@ -118,18 +241,43 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     mass: 1.2
   })
 
-  // Control de reproducción del video (play automatically once loaded/ready)
+  // Control de reproducción del video (play automatically once loaded/ready with iOS/Safari fallbacks)
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    if (loadVideo) {
-      video.play().catch(() => {})
+    
+    // Ensure video is muted for iOS autoplay policy
+    video.muted = true
+    video.defaultMuted = true
+
+    const playVideo = () => {
+      if (video) {
+        const promise = video.play()
+        if (promise !== undefined) {
+          promise.catch(() => {
+            // Fallback for strict iOS power saving mode
+          })
+        }
+      }
     }
-  }, [loadVideo, videoReady])
+
+    playVideo()
+
+    // Add event listeners for iOS touch interaction fallback
+    const handleTouch = () => {
+      playVideo()
+      window.removeEventListener('touchstart', handleTouch)
+    }
+    window.addEventListener('touchstart', handleTouch, { passive: true })
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouch)
+    }
+  }, [loadVideo, videoReady, videoUrl])
 
   // Intersection Observer para activar en mobile al estar al centro de la pantalla
   useEffect(() => {
-    const card = document.getElementById(`blob-card-${title.replace(/\s/g, '')}`)
+    const card = cardRef.current
     if (!card) return
 
     const observer = new IntersectionObserver(
@@ -140,7 +288,7 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
     )
     observer.observe(card)
     return () => observer.disconnect()
-  }, [title])
+  }, [])
 
   // Estado para los parámetros de movimiento aleatorio generados en el cliente
   const [motionParams, setMotionParams] = useState<{
@@ -241,9 +389,9 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
   return (
     <motion.a
       ref={cardRef}
-      id={`blob-card-${title.replace(/\s/g, '')}`}
+      id={`blob-card-${safeIdStr}`}
       href={href}
-      className="relative flex flex-col items-center gap-2 group cursor-pointer shrink-0"
+      className="relative flex flex-col items-center gap-1.5 sm:gap-2 group cursor-pointer shrink-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       variants={{
@@ -260,12 +408,12 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           }
         }
       }}
-      initial="hidden"
-      animate={startReveal ? "visible" : "hidden"}
-    >
-      {/* El charco SVG (อยู่นิ่งกับที่ ไม่ลอยหรือสั่นไหว) */}
+      initial="visible"
+      animate="visible">
+
+      {/* 🌊 UNIFIED SINGLE-SOURCE ARCHITECTURE (100% MATCHED MORPHING VIDEO & FRAME) */}
       <motion.div
-        className="relative w-14 h-14 min-[380px]:w-16 min-[380px]:h-16 sm:w-20 sm:h-20 md:w-[96px] md:h-[96px] lg:w-36 lg:h-36"
+        className="relative w-[46.00px] h-[46.00px] min-[360px]:w-[53.07px] min-[360px]:h-[53.07px] min-[410px]:w-[63.69px] min-[410px]:h-[63.69px] sm:w-[79.62px] sm:h-[79.62px] md:w-[97.31px] md:h-[97.31px] lg:w-[102.00px] lg:h-[102.00px] xl:w-[112.00px] xl:h-[112.00px] [@media(orientation:landscape)_and_(max-height:500px)]:!w-[41.16px] [@media(orientation:landscape)_and_(max-height:500px)]:!h-[41.16px]"
         animate={{
           scale: isHovered ? 1.08 : 1.0,
         }}
@@ -273,127 +421,20 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
           scale: { type: 'spring', stiffness: 200, damping: 15 }
         }}
       >
-        {/* SVG Defs para clipPath */}
-        <svg
-          viewBox="0 0 100 100"
-          className="absolute inset-0 w-full h-full"
-          style={{ overflow: 'visible' }}
-        >
-          <defs>
-            {/* Máscara al 90% para la imagen y el video */}
-            <clipPath id={clipId}>
-              <path
-                d={d0}
-                transform="translate(50 50) scale(0.90) translate(-50 -50)"
-              >
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
-            {/* Máscara al 100% para el brillo del hover */}
-            <clipPath id={`${clipId}-full`}>
-              <path d={d0}>
-                <animate
-                  attributeName="d"
-                  dur="8s"
-                  repeatCount="indefinite"
-                  values={`${d0}; ${d1}; ${d2}; ${d0}`}
-                />
-              </path>
-            </clipPath>
-            <linearGradient id={`${clipId}-gradient`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="rgba(255,255,255,0.45)" />
-              <stop offset="70%" stopColor="rgba(255,255,255,0)" />
-            </linearGradient>
-          </defs>
-
-          {/* Forma visible de fondo que respira e interactúa al hover */}
-          <motion.path
-            d={d0}
-            animate={{
-              scale: isHovered ? 1.06 : 1.0,
-              fill: isHovered ? `${color}44` : `${color}22`
-            }}
-            transition={{
-              scale: { type: 'spring', stiffness: 300, damping: 20 },
-              fill: { duration: 0.3 }
-            }}
-            stroke={color}
-            strokeWidth="0.8"
-            style={{ transformOrigin: 'center' }}
-          >
-            <animate
-              attributeName="d"
-              dur="8s"
-              repeatCount="indefinite"
-              values={`${d0}; ${d1}; ${d2}; ${d0}`}
-            />
-          </motion.path>
-
-          {/* Imagen recortada */}
-          <g clipPath={`url(#${clipId})`}>
-            <image
-              href={imageSrc}
-              x="0"
-              y="0"
-              width="100"
-              height="100"
-              preserveAspectRatio="xMidYMid slice"
-              style={{
-                opacity: videoReady ? 0 : 1,
-                transition: 'opacity 0.4s'
-              }}
-            />
-          </g>
-
-          {/* Video recortado */}
-          <g clipPath={`url(#${clipId})`}>
-            <foreignObject x="0" y="0" width="100" height="100">
-              {loadVideo && videoUrl && (
-                <video
-                  ref={videoRef}
-                  preload="none"
-                  loop
-                  muted
-                  playsInline
-                  onLoadedData={() => setVideoReady(true)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    opacity: videoReady ? 1 : 0,
-                    transition: 'opacity 0.4s',
-                  }}
-                >
-                  <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />
-                  <track kind="captions" src="data:text/vtt," label="No captions" default />
-                </video>
-              )}
-            </foreignObject>
-          </g>
-
-          {/* Brillo al pasar el cursor */}
-          <motion.rect
-            x="0"
-            y="0"
-            width="100"
-            height="100"
-            clipPath={`url(#${clipId}-full)`}
-            fill={`url(#${clipId}-gradient)`}
-            pointerEvents="none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
+        {/* 🌊 SINGLE UNIFIED CANVAS ARCHITECTURE (Video, Morphing Stroke & Shimmer on same Canvas 2D Render Loop) */}
+        <div className="absolute inset-0 w-full h-full pointer-events-none select-none">
+          <CanvasBlobVideo
+            videoSrc={videoSrc}
+            imageSrc={imageSrc}
+            paths={[d0, d1, d2]}
+            color={color}
+            isHovered={isHovered}
           />
-        </svg>
+        </div>
 
         {/* Portal de Teletransportación Mágica */}
         <AnimatePresence>
-          {!revealComplete && startReveal && (
+          {!revealComplete && (
             <>
               {/* Resplandor de luz central */}
               <motion.div
@@ -461,10 +502,10 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </AnimatePresence>
       </motion.div>
 
-      {/* ข้อความกำกับ — เพิ่มความคมชัด (Text Shadow + Font Weight) ชัดเจน 100% */}
-      <div className="text-center max-w-[90px] min-[380px]:max-w-[110px] sm:max-w-[130px] md:max-w-[150px] lg:max-w-[200px]">
+      {/* ข้อความกำกับ — เพิ่มความคมชัดด้วย Drop Shadow โดยไม่มีกรอบพื้นหลังสีดำ */}
+      <div className="text-center w-full max-w-[clamp(85px,14vw,186px)] [@media(orientation:landscape)_and_(max-height:500px)]:!max-w-[78px] z-20 pointer-events-none px-0.5">
         <motion.p
-          className="font-extrabold tracking-[0.03em] text-[10px] min-[380px]:text-xs sm:text-xs md:text-sm lg:text-lg select-none uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] leading-tight"
+          className="font-extrabold tracking-[0.02em] text-[clamp(10px,1.1vw,15px)] [@media(orientation:landscape)_and_(max-height:500px)]:!text-[9px] select-none uppercase drop-shadow-[0_2px_10px_rgba(0,0,0,0.98)] leading-snug text-white"
           style={{ color: '#ffffff' }}
           animate={{ y: isHovered ? -2 : 0 }}
           transition={{ type: 'spring', stiffness: 400 }}
@@ -473,8 +514,8 @@ export function BlobCard({ title, subtitle, color, videoSrc, imageSrc, paths = [
         </motion.p>
         {subtitle && (
           <motion.p
-            className="text-[9px] min-[380px]:text-[10px] sm:text-[11px] md:text-xs lg:text-sm font-medium text-white/95 mt-[1px] drop-shadow-[0_1px_5px_rgba(0,0,0,0.9)] leading-tight"
-            animate={{ opacity: isHovered ? 1 : 0.85, y: isHovered ? -1 : 0 }}
+            className="text-[clamp(8.5px,0.9vw,12.5px)] [@media(orientation:landscape)_and_(max-height:500px)]:!text-[7.8px] font-semibold text-white mt-[2px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.98)] leading-tight opacity-95"
+            animate={{ opacity: isHovered ? 1 : 0.95, y: isHovered ? -1 : 0 }}
           >
             {subtitle}
           </motion.p>

@@ -12,17 +12,25 @@ export const RegattaGame = () => {
     const { opponents, matchStatus, isConnected, broadcastState } = useRegattaSocket(matchId, userId, null);
 
     useEffect(() => {
-        // Fetch user
+        // Fetch user or generate guest ID
         const supabase = createClient();
         supabase.auth.getUser().then(({ data }: any) => {
             if (data.user) {
                 setUserId(data.user.id);
+            } else {
+                setUserId(`guest-${Math.random().toString(36).substring(2, 9)}`);
             }
+        }).catch(() => {
+            setUserId(`guest-${Math.random().toString(36).substring(2, 9)}`);
         });
     }, []);
 
     if (!userId) {
-        return <div className="text-white text-center mt-20">Cargando usuario...</div>;
+        return (
+            <div className="w-full h-screen bg-slate-900 flex items-center justify-center text-cyan-400 font-bold">
+                Cargando regata...
+            </div>
+        );
     }
 
     if (!matchId) {

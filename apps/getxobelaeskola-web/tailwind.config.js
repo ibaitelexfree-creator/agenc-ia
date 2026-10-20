@@ -6,13 +6,35 @@ module.exports = {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     ],
     theme: {
+        screens: {
+            'xs': '320px',
+            'vsm': '320px',
+            'sm': '360px',
+            'md': '768px',
+            'tab-sm': '768px',
+            'tab': '820px',
+            'lg': '1024px',
+            'tab-lg': '1024px',
+            'xl': '1280px',
+            'laptop': '1280px',
+            'desktop': '1440px',
+            '2xl': '1536px',
+            'desktop-xl': '1920px',
+        },
         extend: {
             fontSize: {
-                '2xs': ['0.6875rem', { lineHeight: '1rem' }], // ~11px
-                'xs': ['0.75rem', { lineHeight: '1.125rem' }], // ~12px
-                'sm': ['0.875rem', { lineHeight: '1.25rem' }], // ~14px
-                'base': ['1rem', { lineHeight: '1.5rem' }], // ~16px
-                'lg': ['1.125rem', { lineHeight: '1.75rem' }], // ~18px
+                '2xs': ['0.825rem', { lineHeight: '1.2rem' }], // +20% (era 0.6875rem / 11px -> ~13.2px)
+                'xs': ['0.9rem', { lineHeight: '1.35rem' }], // +20% (era 0.75rem / 12px -> ~14.4px)
+                'sm': ['1.05rem', { lineHeight: '1.5rem' }], // +20% (era 0.875rem / 14px -> ~16.8px)
+                'base': ['1.15rem', { lineHeight: '1.725rem' }], // +15% (era 1rem / 16px -> ~18.4px)
+                'lg': ['1.294rem', { lineHeight: '2.01rem' }], // +15% (era 1.125rem / 18px -> ~20.7px)
+                'xl': ['1.375rem', { lineHeight: '1.925rem' }], // +10% (era 1.25rem -> ~22px)
+                '2xl': ['1.65rem', { lineHeight: '2.2rem' }], // +10% (era 1.5rem -> ~26.4px)
+                '3xl': ['2.0625rem', { lineHeight: '2.475rem' }], // +10% (era 1.875rem -> ~33px)
+                '4xl': ['2.475rem', { lineHeight: '2.75rem' }], // +10% (era 2.25rem -> ~39.6px)
+                '5xl': ['3.3rem', { lineHeight: '1' }], // +10% (era 3rem -> ~52.8px)
+                '6xl': ['4.125rem', { lineHeight: '1' }], // +10% (era 3.75rem -> ~66px)
+                '7xl': ['4.95rem', { lineHeight: '1' }], // +10% (era 4.5rem -> ~79.2px)
             },
             colors: {
                 brand: {

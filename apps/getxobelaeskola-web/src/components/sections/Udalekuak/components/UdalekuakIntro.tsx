@@ -40,10 +40,8 @@ export default function UdalekuakIntro() {
           className={styles.introParagraph}
         >
           {t('subtitle1')}{' '}
-          <span className="text-[var(--color-seaweed)] font-semibold">{t('subtitle2')}</span>,
-          {' '}{t('subtitle3')}{' '}
-          <span className="text-[var(--color-sky)] font-semibold">{t('subtitle3')}</span>{' '}
-          {t('subtitle4')}{' '}
+          <span className="text-[var(--color-seaweed)] font-semibold">{t('subtitle2')}</span>,{' '}
+          <span className="text-[var(--color-sky)] font-semibold">{t('subtitle3')}</span> y{' '}
           <span className="text-[var(--color-sun)] font-semibold">{t('subtitle4')}</span>{' '}
           {t('subtitle5')}
         </motion.p>
@@ -66,7 +64,6 @@ export default function UdalekuakIntro() {
           viewport={{ once: false }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
           className={styles.decoratorLine}
-          style={{ marginTop: '2.5rem' }}
         />
 
       </div>

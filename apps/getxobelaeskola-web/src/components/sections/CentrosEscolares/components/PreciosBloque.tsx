@@ -1,21 +1,23 @@
 // PreciosBloque.tsx
 import { useEffect, useRef } from 'react';
 import { motion, useInView, useMotionValue, useTransform, animate, useReducedMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { fadeUp, staggerContainer } from '@/lib/motionPresets';
 import styles from '../CentrosEscolares.module.css';
-
-const CHECKLIST_ITEMS = [
-  "Las 3 actividades completas",
-  "Todo el material homologado necesario",
-  "Uso de embarcaciones colectivas",
-  "Monitorado titulado por la FVV",
-  "Seguros de responsabilidad civil y accidentes"
-];
 
 export default function PreciosBloque() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations('centros_escolares.precios');
+
+  const CHECKLIST_ITEMS = [
+    t('checklist_1'),
+    t('checklist_2'),
+    t('checklist_3'),
+    t('checklist_4'),
+    t('checklist_5')
+  ];
 
   const count = useMotionValue(0);
   const rounded = useTransform(count, Math.round);
@@ -36,7 +38,7 @@ export default function PreciosBloque() {
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5 }}
         >
-          TRANSPARENCIA TOTAL
+          {t('eyebrow')}
         </motion.span>
 
         <motion.h2
@@ -45,7 +47,7 @@ export default function PreciosBloque() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          Todo incluido por
+          {t('title')}
         </motion.h2>
 
         {/* Count-Up Price Display */}
@@ -54,7 +56,7 @@ export default function PreciosBloque() {
             <motion.span className={styles['price-num']}>
               {rounded}
             </motion.span>
-            <span className={styles['price-unit']}>€ / alumno</span>
+            <span className={styles['price-unit']}>{t('price_unit')}</span>
           </div>
         </div>
 
@@ -90,13 +92,13 @@ export default function PreciosBloque() {
         <div className={styles['precios-info-grid']}>
           <div className={styles['info-box']}>
             <span className={styles['info-icon']}>📅</span>
-            <h4 className={styles['info-heading']}>Septiembre a Junio</h4>
-            <p className={styles['info-text']}>La temporada perfecta. Recomendamos reservar primavera y otoño con suficiente antelación por alta demanda.</p>
+            <h4 className={styles['info-heading']}>{t('season_heading')}</h4>
+            <p className={styles['info-text']}>{t('season_text')}</p>
           </div>
           <div className={styles['info-box']}>
             <span className={styles['info-icon']}>👨‍🏫</span>
-            <h4 className={styles['info-heading']}>Ratio Profesorado</h4>
-            <p className={styles['info-text']}>Por cada 10-12 alumnos asignamos un instructor titulado para cumplir los más altos estándares.</p>
+            <h4 className={styles['info-heading']}>{t('ratio_heading')}</h4>
+            <p className={styles['info-text']}>{t('ratio_text')}</p>
           </div>
         </div>
 
@@ -110,8 +112,8 @@ export default function PreciosBloque() {
         >
           <span className={styles['weather-icon']}>🌦️</span>
           <div className={styles['weather-content']}>
-            <h4 className={styles['weather-heading']}>Nos tomamos el mar en serio</h4>
-            <p className={styles['weather-text']}>Si las condiciones meteorológicas no son aptas o seguras para realizar las actividades en el agua, adaptaremos la jornada con actividades alternativas en tierra o coordinaremos un cambio de fecha sin coste alguno. La seguridad de los alumnos es siempre lo primero.</p>
+            <h4 className={styles['weather-heading']}>{t('weather_heading')}</h4>
+            <p className={styles['weather-text']}>{t('weather_text')}</p>
           </div>
         </motion.div>
 

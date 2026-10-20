@@ -52,26 +52,30 @@ export default function MicroLeccionesWidget({ locale, translations, preloadedLe
     if (lessons.length === 0) return null;
 
     return (
-        <section className="mb-12">
-            <div className="flex justify-between items-end mb-6">
-                <h2 className="text-xs uppercase tracking-widest text-accent font-bold">
+        <section className="mb-8 md:mb-12">
+            <div className="flex justify-between items-end mb-3 md:mb-6">
+                <h2 className="text-[10px] sm:text-xs md:text-sm uppercase tracking-widest text-accent font-normal sm:font-medium">
                     {translations.title || 'Micro-Lecciones'}
                 </h2>
             </div>
 
-            <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-                {lessons.map((lesson, index) => (
+            {/* Layout:
+               - Mobile Portrait (< 640px): 3 + 2 layout (Row 1 has 3 items, Row 2 has 2 centered items)
+               - Landscape / Tablets / Larger screens: Grid 5 columns (1 2 3 4 5)
+            */}
+            <div className="flex flex-wrap max-sm:justify-center sm:grid sm:grid-cols-5 gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 pb-4">
+                {lessons.slice(0, 5).map((lesson, index) => (
                     <div
                         key={lesson.id}
                         onClick={() => setSelectedLessonIndex(index)}
-                        className="flex-shrink-0 w-32 md:w-40 aspect-[9/16] relative group cursor-pointer rounded-sm overflow-hidden border border-white/5 hover:border-accent/50 transition-all snap-start bg-nautical-black"
+                        className="max-sm:w-[calc(33.333%-0.375rem)] max-sm:[&:nth-child(4)]:w-[calc(40%-0.375rem)] max-sm:[&:nth-child(5)]:w-[calc(40%-0.375rem)] w-full aspect-[9/16] relative group cursor-pointer rounded-sm overflow-hidden border border-white/5 hover:border-accent/50 transition-all bg-nautical-black"
                     >
                         {/* Thumbnail */}
                         <Image
                             src={lesson.thumbnail_url || '/images/placeholder-vertical.jpg'}
                             alt={locale === 'es' ? lesson.titulo_es : lesson.titulo_eu}
                             fill
-                            sizes="(max-width: 768px) 128px, 160px"
+                            sizes="(max-width: 640px) 33vw, 20vw"
                             priority={index < 2}
                             className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100"
                         />
@@ -81,18 +85,18 @@ export default function MicroLeccionesWidget({ locale, translations, preloadedLe
 
                         {/* Play Icon */}
                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="w-10 h-10 bg-accent/90 rounded-full flex items-center justify-center text-nautical-black shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-75">
-                                <Play size={16} fill="currentColor" />
+                            <div className="w-7 h-7 sm:w-9 sm:h-9 bg-accent/90 rounded-full flex items-center justify-center text-nautical-black shadow-lg transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-75">
+                                <Play size={12} className="sm:w-3.5 sm:h-3.5" fill="currentColor" />
                             </div>
                         </div>
 
                         {/* Content */}
-                        <div className="absolute bottom-0 left-0 right-0 p-3">
-                            <div className="flex items-center gap-1 text-[9px] text-accent font-bold uppercase tracking-wider mb-1">
-                                <Clock size={10} />
+                        <div className="absolute bottom-0 left-0 right-0 p-1.5 sm:p-2.5">
+                            <div className="flex items-center gap-1 text-[8px] sm:text-[9px] text-accent font-normal uppercase tracking-wider mb-0.5">
+                                <Clock size={8} className="sm:w-2.5 sm:h-2.5" />
                                 {Math.floor(lesson.duracion_segundos / 60)}:{(lesson.duracion_segundos % 60).toString().padStart(2, '0')}
                             </div>
-                            <h3 className="text-xs font-bold text-white leading-tight line-clamp-2">
+                            <h3 className="text-[9px] sm:text-xs md:text-sm font-normal text-white/90 leading-tight line-clamp-2">
                                 {locale === 'es' ? lesson.titulo_es : lesson.titulo_eu}
                             </h3>
                         </div>

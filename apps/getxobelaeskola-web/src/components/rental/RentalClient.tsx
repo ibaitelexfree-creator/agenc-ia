@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import LegalConsentModal from '../shared/LegalConsentModal';
 import { createClient } from '@/lib/supabase/client';
 import RentalCard from './RentalCard';
@@ -122,7 +122,7 @@ export default function RentalClient({
     const dayRef = useRef<HTMLInputElement>(null);
     const datePickerRef = useRef<HTMLInputElement>(null);
 
-    const categories = [
+    const categories = useMemo(() => [
         { id: 'all', name: t('categories.all') },
         { id: 'alquileres', name: t('categories.alquileres') },
         { id: 'veleros', name: t('categories.veleros') },
@@ -134,7 +134,13 @@ export default function RentalClient({
         { id: 'membresias', name: t('categories.membresias') },
         { id: 'bonos', name: t('categories.bonos') },
         { id: 'eventos', name: t('categories.eventos') }
-    ];
+    ], [t]);
+
+    const displayCategories = useMemo(() => [
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set1-${c.id}-${i}` })),
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set2-${c.id}-${i}` })),
+        ...categories.map((c, i) => ({ ...c, uniqueId: `set3-${c.id}-${i}` }))
+    ], [categories]);
 
     const filteredServices = selectedCategory === 'all'
         ? services
@@ -293,6 +299,124 @@ export default function RentalClient({
         }
     };
 
+    const filterScrollRef = useRef<HTMLDivElement>(null);
+    const [isDraggingFilter, setIsDraggingFilter] = useState(false);
+    const [filterStartX, setFilterStartX] = useState(0);
+    const [filterScrollLeft, setFilterScrollLeft] = useState(0);
+
+    const [isFilterInteracting, setIsFilterInteracting] = useState(false);
+    const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+    const pauseFilterAutoScroll = (duration = 4000) => {
+        setIsFilterInteracting(true);
+        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+        interactionTimeoutRef.current = setTimeout(() => {
+            setIsFilterInteracting(false);
+        }, duration);
+    };
+
+    const handleScrollBoundary = () => {
+        const container = filterScrollRef.current;
+        if (!container) return;
+        const singleSetWidth = container.scrollWidth / 3;
+        if (singleSetWidth <= 0) return;
+
+        if (container.scrollLeft >= singleSetWidth * 2) {
+            container.scrollLeft -= singleSetWidth;
+        } else if (container.scrollLeft <= 2) {
+            container.scrollLeft += singleSetWidth;
+        }
+    };
+
+    // Continuous single-direction smooth auto-scrolling (left-to-right infinite loop)
+    useEffect(() => {
+        if (isFilterInteracting) return;
+
+        const interval = setInterval(() => {
+            const container = filterScrollRef.current;
+            if (!container) return;
+
+            const singleSetWidth = container.scrollWidth / 3;
+            if (singleSetWidth <= 0) return;
+
+            if (container.scrollLeft >= singleSetWidth * 2) {
+                container.scrollLeft -= singleSetWidth;
+            } else {
+                container.scrollLeft += 1;
+            }
+        }, 30);
+
+        return () => clearInterval(interval);
+    }, [isFilterInteracting]);
+
+    // Initial position set to middle set for seamless backward/forward scrolling
+    useEffect(() => {
+        const container = filterScrollRef.current;
+        if (container) {
+            const singleSetWidth = container.scrollWidth / 3;
+            if (singleSetWidth > 0 && container.scrollLeft === 0) {
+                container.scrollLeft = singleSetWidth;
+            }
+        }
+    }, []);
+
+    // Auto-scroll selected category into center view smoothly
+    useEffect(() => {
+        if (!filterScrollRef.current) return;
+        const container = filterScrollRef.current;
+        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="set2-${selectedCategory}"]`)
+            || container.querySelector<HTMLButtonElement>(`[data-category-id*="-${selectedCategory}"]`);
+        if (activeBtn) {
+            const containerWidth = container.clientWidth;
+            const btnLeft = activeBtn.offsetLeft;
+            const btnWidth = activeBtn.offsetWidth;
+            const targetScrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+            container.scrollTo({
+                left: Math.max(0, targetScrollLeft),
+                behavior: 'smooth'
+            });
+            pauseFilterAutoScroll(5000);
+        }
+    }, [selectedCategory]);
+
+    const scrollFilters = (direction: 'left' | 'right') => {
+        pauseFilterAutoScroll(5000);
+        if (filterScrollRef.current) {
+            const amount = filterScrollRef.current.clientWidth * 0.6;
+            filterScrollRef.current.scrollBy({
+                left: direction === 'left' ? -amount : amount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleFilterWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+        pauseFilterAutoScroll(4000);
+        if (filterScrollRef.current && e.deltaY !== 0) {
+            filterScrollRef.current.scrollLeft += e.deltaY;
+            handleScrollBoundary();
+        }
+    };
+
+    const handleFilterMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!filterScrollRef.current) return;
+        pauseFilterAutoScroll(6000);
+        setIsDraggingFilter(false);
+        setFilterStartX(e.pageX - filterScrollRef.current.offsetLeft);
+        setFilterScrollLeft(filterScrollRef.current.scrollLeft);
+    };
+
+    const handleFilterMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!filterScrollRef.current || e.buttons !== 1) return;
+        const x = e.pageX - filterScrollRef.current.offsetLeft;
+        const walk = (x - filterStartX) * 1.5;
+        if (Math.abs(walk) > 5) {
+            setIsDraggingFilter(true);
+            filterScrollRef.current.scrollLeft = filterScrollLeft - walk;
+            handleScrollBoundary();
+        }
+    };
+
     const bookingRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         if (bookingService && bookingRef.current) {
@@ -301,17 +425,56 @@ export default function RentalClient({
     }, [bookingService]);
 
     return (
-        <div className="space-y-16 pb-48">
+        <div className="space-y-4 sm:space-y-8 md:space-y-12 landscape:space-y-6 pb-6 sm:pb-12 md:pb-20 landscape:pb-10 w-full max-w-full overflow-hidden">
             {/* Filter Section */}
-            <div className="relative animate-fade-in">
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-nautical-deep to-transparent z-10 pointer-events-none" />
-                <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10">
-                    {categories.map(cat => (
+            <div className="relative animate-fade-in group w-full max-w-full overflow-hidden">
+                {/* Left Scroll Button */}
+                <button
+                    type="button"
+                    onClick={() => scrollFilters('left')}
+                    className="absolute left-1 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-nautical-black/90 border border-sea-foam/30 text-sea-foam hover:text-accent hover:border-accent active:scale-95 transition-all duration-300 shadow-2xl backdrop-blur-md"
+                    aria-label="Scroll left"
+                >
+                    <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+
+                {/* Right Scroll Button */}
+                <button
+                    type="button"
+                    onClick={() => scrollFilters('right')}
+                    className="absolute right-1 top-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-nautical-black/90 border border-sea-foam/30 text-sea-foam hover:text-accent hover:border-accent active:scale-95 transition-all duration-300 shadow-2xl backdrop-blur-md"
+                    aria-label="Scroll right"
+                >
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
+
+                {/* Left & Right Gradient Overlays */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-nautical-deep via-nautical-deep/80 to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-nautical-deep via-nautical-deep/80 to-transparent z-10 pointer-events-none" />
+
+                {/* Scrollable Container */}
+                <div
+                    ref={filterScrollRef}
+                    onScroll={handleScrollBoundary}
+                    onWheel={handleFilterWheel}
+                    onMouseDown={handleFilterMouseDown}
+                    onMouseMove={handleFilterMouseMove}
+                    onMouseUp={() => setTimeout(() => setIsDraggingFilter(false), 50)}
+                    onMouseEnter={() => setIsFilterInteracting(true)}
+                    onMouseLeave={() => setIsFilterInteracting(false)}
+                    onTouchStart={() => pauseFilterAutoScroll(6000)}
+                    onTouchEnd={() => pauseFilterAutoScroll(4000)}
+                    className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
+                >
+                    {displayCategories.map(cat => (
                         <button
-                            key={cat.id}
+                            key={cat.uniqueId}
+                            data-category-id={cat.uniqueId}
                             type="button"
-                            onClick={() => setSelectedCategory(cat.id)}
-                            className={`whitespace-nowrap px-8 py-3 rounded-sm text-[10px] font-black uppercase tracking-[0.3em] transition-all duration-500 border ${selectedCategory === cat.id
+                            onClick={() => {
+                                if (!isDraggingFilter) setSelectedCategory(cat.id);
+                            }}
+                            className={`shrink-0 whitespace-nowrap px-4 py-2.5 sm:px-8 sm:py-3 rounded-sm text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] transition-all duration-500 border ${selectedCategory === cat.id
                                 ? 'bg-accent text-nautical-black border-accent shadow-[0_0_25px_rgba(255,77,0,0.25)]'
                                 : 'bg-sea-foam/[0.02] text-sea-foam/50 border-sea-foam/10 hover:border-sea-foam/20 hover:text-sea-foam'
                                 }`}
@@ -322,13 +485,18 @@ export default function RentalClient({
                 </div>
             </div>
 
-            {/* Grid - FIXED to use RentalCard with AnimatePresence */}
+            {/* Grid - Responsive across portrait and landscape */}
             <motion.div 
                 layout
-                className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
+                className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10 rentals-grid-system w-full max-w-full"
+                style={{
+                    display: 'grid',
+                    width: '100%',
+                    maxWidth: '100%'
+                }}
             >
                 <AnimatePresence mode="popLayout">
-                    {filteredServices.map((service, index) => (
+                    {filteredServices.map((service) => (
                         <motion.div
                             key={service.id}
                             layout
@@ -340,7 +508,6 @@ export default function RentalClient({
                             <RentalCard
                                 service={service}
                                 locale={locale}
-                                index={index + 1}
                                 onBook={(id) => setBookingService(id)}
                             />
                         </motion.div>

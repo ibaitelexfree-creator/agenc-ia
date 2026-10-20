@@ -67,69 +67,300 @@ export default async function CoursesPage({
         // Fallback or empty - handled by client empty state or fallback below
     }
 
-    // Fallback data reflecting the new catalog
+    const fallbackCategories = [
+        { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
+        { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+        { id: 'cat-windsurf', slug: 'windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf' },
+        { id: 'cat-mantenimiento', slug: 'mantenimiento', nombre_es: 'Mantenimiento', nombre_eu: 'Mantentzea' }
+    ];
+
+    // Catálogo oficial exclusivo solicitado clasificado por: Crucero, Vela ligera, Windsurf, Mantenimiento
     const fallbackCourses = [
+        // 1. CURSOS DE CRUCERO
         {
-            id: '1',
-            slug: 'iniciacion-adultos',
-            nombre_es: 'Iniciación Adultos',
-            nombre_eu: 'Helduentzako Hasiera',
-            descripcion_es: 'Curso de iniciación a la navegación para adultos. 12 horas de formación práctica.',
-            descripcion_eu: 'Helduentzako nabigazio ikastaroa (hasiera). 12 orduko prestakuntza praktikoa.',
+            id: 'c-crucero-iniciacion',
+            slug: 'crucero-iniciacion',
+            nombre_es: 'Iniciación J80',
+            nombre_eu: 'J80 Hastapena',
+            descripcion_es: 'Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…',
+            descripcion_eu: 'Gurutzaontzian nabigatzeko lehen kontaktua pertsona bakoitzari egokitua, ikastaro osoa: oinarrizko maniobrak, belen eta ontziaren funtzionamendua, meteorologia, segurtasuna…',
             precio: 180,
+            precio_texto: '180 €',
             duracion_h: 12,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Cursos Adultos', nombre_eu: 'Helduentzako Ikastaroak' },
+            categoria_id: 'cat-crucero',
+            categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
+            imagen_url: '/images/courses/IniciacionJ80_v6.webp'
+        },
+        {
+            id: 'c-crucero-perfeccionamiento',
+            slug: 'crucero-perfeccionamiento',
+            nombre_es: 'Crucero perfeccionamiento',
+            nombre_eu: 'Gurutzaontzi hobekuntza',
+            descripcion_es: 'Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.',
+            descripcion_eu: 'Dagoeneko nabigatzen dutenentzat eta aurrera egin nahi dutenentzat: trimatzea, maniobra zehatzak, ontziaren kontrola eta itsasoaren irakurketa.',
+            precio: 180,
+            precio_texto: '180 €',
+            duracion_h: 12,
+            nivel: 'intermedio',
+            categoria_id: 'cat-crucero',
+            categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
+            imagen_url: '/images/courses/PerfeccionamientoVela.webp'
+        },
+        {
+            id: 'c-crucero-gennaker',
+            slug: 'crucero-gennaker',
+            nombre_es: 'Crucero con gennaker',
+            nombre_eu: 'Gurutzaontzia gennakerrarekin',
+            descripcion_es: 'Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.',
+            descripcion_eu: 'Ikastaro tekniko eta dinamikoa haize aldeko belak segurtasunez eta konfiantzaz erabiltzen ikasteko.',
+            precio: 180,
+            precio_texto: '180 €',
+            duracion_h: 12,
+            nivel: 'avanzado',
+            categoria_id: 'cat-crucero',
+            categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
             imagen_url: '/images/J80.webp'
         },
         {
-            id: '2',
-            slug: 'campus-verano-getxo',
-            nombre_es: 'Campus Verano (Haurrak)',
-            nombre_eu: 'Udako Campusa (Haurrak)',
-            descripcion_es: 'Campus de verano para niños de 5 a 21 años. 20 horas de diversión y vela.',
-            descripcion_eu: '5 eta 21 urte bitarteko haurrendako udako campusa. 20 orduko dibertsioa eta bela.',
+            id: 'c-entrenamientos-adultas',
+            slug: 'entrenamientos-adultas',
+            nombre_es: 'Entrenamientos en crucero J80',
+            nombre_eu: 'J80 gurutzaontzian entrenamenduak',
+            descripcion_es: 'Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.',
+            descripcion_eu: 'Ohiko saioak teknika hobetzeko, autonomia irabazteko eta hainbat baldintzatan taldean nabigatzeko.',
+            precio: 100,
+            precio_texto: '100 € / mes',
+            duracion_h: 12,
+            nivel: 'intermedio',
+            categoria_id: 'cat-crucero',
+            categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
+            imagen_url: '/images/courses/entrenamientos-adultas.jpg'
+        },
+        {
+            id: 'c-regata-corporativa',
+            slug: 'regata-corporativa',
+            nombre_es: 'Regata corporativa en crucero',
+            nombre_eu: 'Enpresa estropada gurutzaontzian',
+            descripcion_es: 'Experiencia para empresas y grupos: navegación en flota J80, trabajo en equipo y convivencia en el mar.',
+            descripcion_eu: 'Enpresa eta taldeentzako esperientzia: nabigazioa, talde-lana eta elkarbizitza ingurune ezberdin eta susgarrirako batean.',
+            precio: 0,
+            precio_texto: 'A medida',
+            duracion_h: 4,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-crucero',
+            categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
+            imagen_url: '/images/ai/section4-community.webp'
+        },
+
+        // 2. CURSOS DE VELA LIGERA
+        {
+            id: 'c-vela-ligera-iniciacion',
+            slug: 'vela-ligera-iniciacion',
+            nombre_es: 'Vela ligera iniciación',
+            nombre_eu: 'Bela arina hastapena',
+            descripcion_es: 'Un primer paso ideal para descubrir la navegación en veleros pequeños donde el contacto con las sensaciones del barco y con el viento son muchos mayores.',
+            descripcion_eu: 'Lehen pauso ezin hobea belaontzi txikietan nabigazioa ezagutzeko, non ontziaren eta haizearen sentsazioekiko kontaktua askoz handiagoa den.',
+            precio: 150,
+            precio_texto: '150 €',
+            duracion_h: 12,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/courses/CursodeVelaLigera.webp'
+        },
+        {
+            id: 'c-vela-ligera-avanzado',
+            slug: 'vela-ligera-avanzado',
+            nombre_es: 'Vela ligera avanzado',
+            nombre_eu: 'Bela arina aurreratua',
+            descripcion_es: 'Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.',
+            descripcion_eu: 'Sakontzea bilatzen dutenentzat: maniobra zehatzagoak, autonomia osoa eta itsasoarekin harreman finagoa.',
+            precio: 180,
+            precio_texto: '180 €',
+            duracion_h: 12,
+            nivel: 'avanzado',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/alquiler-laser.webp'
+        },
+        {
+            id: 'c-txikigune-sabados',
+            slug: 'txikigune-sabados',
+            nombre_es: 'Txikigune (Sábados de vela ligera)',
+            nombre_eu: 'Txikigune (Larunbateko nabigazioa)',
+            descripcion_es: 'Espacio semanal para niñas y niños que quieren disfrutar de la mar en vela ligera días sueltos sin compromisos.',
+            descripcion_eu: 'Konpromisorik gabe egun solteetan itsasoaz gozatu nahi duten neska-mutilentzako asteroko espazioa. Nabigazioa, jolasa, ikaskuntza eta elkarbizitza.',
+            precio: 35,
+            precio_texto: 'Desde 35 €',
+            duracion_h: 3,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/courses/Txikigune.webp'
+        },
+        {
+            id: 'c-udalekuak-campamentos',
+            slug: 'udalekuak-campamentos',
+            nombre_es: 'Udalekuak (Campamentos de vela)',
+            nombre_eu: 'Udalekuak (Campamentos)',
+            descripcion_es: 'Campamentos de verano donde la navegación en vela ligera se combina con actividades acuáticas y trabajo en equipo.',
+            descripcion_eu: 'Udako kanpamentuak, non nabigazioa ur-jarduerekin, talde-lanarekin eta bizitza osorako oroitzen diren esperientziekin uztartzen den.',
             precio: 130,
+            precio_texto: '130 €',
             duracion_h: 20,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Cursos Infantiles', nombre_eu: 'Haurrentzako Ikastaroak' },
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
             imagen_url: '/images/course-raquero-students.webp'
         },
         {
-            id: '3',
-            slug: 'windsurf-iniciacion',
-            nombre_es: 'Iniciación Windsurf',
-            nombre_eu: 'Windsurf Hasiera',
-            descripcion_es: 'Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.',
-            descripcion_eu: 'Ikasi windsurfeko oinarriak 5 saiotan (2 ordu saio bakoitzeko).',
-            precio: 150,
+            id: 'c-entrenamientos-infantiles-continuos',
+            slug: 'entrenamientos-infantiles-continuos',
+            nombre_es: 'Entrenamientos infantiles en vela ligera',
+            nombre_eu: 'Haurrentzako entrenamendu jarraituak',
+            descripcion_es: 'Grupos estables para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
+            descripcion_eu: 'Gehiago ikasi, teknikan aurrera egin eta urte osoan itsasoaz gozatu nahi duten neska-mutilentzako talde egonkorrak.',
+            precio: 85,
+            precio_texto: '85 € / mes',
+            duracion_h: 12,
+            nivel: 'intermedio',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/courses/CursodeVelaLigera.webp'
+        },
+        {
+            id: 'c-entrenamientos-continuos-jovenes',
+            slug: 'entrenamientos-continuos-jovenes',
+            nombre_es: 'Entrenamientos continuos vela ligera',
+            nombre_eu: 'Gazteentzako entrenamendu jarraituak',
+            descripcion_es: 'Grupos estables para jóvenes que buscan seguir creciendo en técnica, autonomía y navegación avanzada en vela ligera.',
+            descripcion_eu: 'Teknikan, autonomian eta talde-lanean ikasi edo hazten jarraitu nahi duten gazteentzako talde egonkorrak.',
+            precio: 95,
+            precio_texto: '95 € / mes',
+            duracion_h: 12,
+            nivel: 'avanzado',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/course-detail-header-sailing.webp'
+        },
+        {
+            id: 'c-bautismos',
+            slug: 'bautismos',
+            nombre_es: 'Bautismos de vela ligera',
+            nombre_eu: 'Bela arineko bataioak',
+            descripcion_es: 'Una primera experiencia en la mar, pensada para disfrutar sin presión y descubrir la navegación de manera sencilla y acompañada.',
+            descripcion_eu: 'Itsasoko lehen esperientzia bat, presiorik gabe gozatzeko eta nabigazioa modu erraz eta gidatuan ezagutzeko pentsatua.',
+            precio: 45,
+            precio_texto: '45 €',
+            duracion_h: 2,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/ai/section2-calm-bay.webp'
+        },
+        {
+            id: 'c-familia',
+            slug: 'familia',
+            nombre_es: 'Vela en familia',
+            nombre_eu: 'Familia bela',
+            descripcion_es: 'Sesiones pensadas para compartir en familia en raquero o velero colectivo, con ritmos tranquilos y navegación segura.',
+            descripcion_eu: 'Familian partekatzeko pentsatutako saioak, erritmo lasaiekin, dinamika dibertigarriekin eta nabigazio seguruarekin.',
+            precio: 160,
+            precio_texto: 'Desde 160 €',
+            duracion_h: 3,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/course-raquero-students.webp'
+        },
+        {
+            id: 'c-cursos-personalizados',
+            slug: 'cursos-personalizados',
+            nombre_es: 'Clases particulares de vela',
+            nombre_eu: 'Bela klase partikularrak',
+            descripcion_es: 'Formaciones a medida según objetivos, nivel y disponibilidad: instructor exclusivo a bordo.',
+            descripcion_eu: 'Helburuen, mailaren eta eskuragarritasunaren araberako prestakuntza pertsonalizatua: irakasle esklusiboa.',
+            precio: 0,
+            precio_texto: 'A medida',
+            duracion_h: 4,
+            nivel: 'intermedio',
+            categoria_id: 'cat-vela-ligera',
+            categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
+            imagen_url: '/images/ai/section2-action-sea.webp'
+        },
+
+        // 3. CURSO DE WINDSURF
+        {
+            id: 'c-windsurf-iniciacion-perfeccionamiento',
+            slug: 'windsurf-iniciacion-perfeccionamiento',
+            nombre_es: 'Windsurf: Iniciación y perfeccionamiento',
+            nombre_eu: 'Windsurfa: Hastapena eta hobekuntza',
+            descripcion_es: 'Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica. Trabajo de equilibrio, maniobras, lectura del viento y autonomía en la tabla.',
+            descripcion_eu: 'Ikaskuntza progresiboa hutsetik hasten denarentzat edo teknikan aurrera egin nahi duenarentzat. Oreka, maniobrak, haizearen irakurketa eta ohol gaineko autonomia.',
+            precio: 45,
+            precio_texto: 'Desde 45 €',
             duracion_h: 10,
             nivel: 'iniciacion',
-            categoria: { nombre_es: 'Windsurf', nombre_eu: 'Windsurfa' },
-            imagen_url: '/images/courses/PerfeccionamientoVela.webp'
+            categoria_id: 'cat-windsurf',
+            categoria: { id: 'cat-windsurf', slug: 'windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf' },
+            imagen_url: '/images/experiences/windsurf-mooring.jpg'
+        },
+
+        // 4. CURSOS DE MANTENIMIENTO
+        {
+            id: 'c-mantenimiento-embarcaciones',
+            slug: 'mantenimiento-embarcaciones',
+            nombre_es: 'Mantenimiento de embarcaciones',
+            nombre_eu: 'Ontzien mantentzea',
+            descripcion_es: 'Curso teórico-práctico de mantenimiento en general, enfocado principalmente a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.',
+            descripcion_eu: 'Mantentze-lanei buruzko ikastaro teoriko-praktikoa oro har, batez ere bela arineko eta gurutzaontzietako ontziak zaintzen, berrikusten eta mantentzen ikastera bideratua.',
+            precio: 100,
+            precio_texto: '100 €',
+            duracion_h: 8,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-mantenimiento',
+            categoria: { id: 'cat-mantenimiento', slug: 'mantenimiento', nombre_es: 'Mantenimiento', nombre_eu: 'Mantentzea' },
+            imagen_url: '/images/facilities-hero-desktop.webp'
+        },
+        {
+            id: 'c-costura-reparacion-velas',
+            slug: 'costura-reparacion-velas',
+            nombre_es: 'Costura y reparación de velas',
+            nombre_eu: 'Belen jostura eta konponketa',
+            descripcion_es: 'Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.',
+            descripcion_eu: 'Belen eta itsas material ehungileen bizitza erabilgarria josten, konpontzen eta luzatzen ikasteko lantegi espezializatua.',
+            precio: 90,
+            precio_texto: '90 €',
+            duracion_h: 6,
+            nivel: 'iniciacion',
+            categoria_id: 'cat-mantenimiento',
+            categoria: { id: 'cat-mantenimiento', slug: 'mantenimiento', nombre_es: 'Mantenimiento', nombre_eu: 'Mantentzea' },
+            imagen_url: '/images/about-own-pontoon.webp'
         }
     ];
 
-    const displayCourses = (allCourses && allCourses.length > 0) ? allCourses : fallbackCourses;
+    // Usar catálogo estructurado como fuente de verdad garantizada y ordenada
+    const displayCategories = fallbackCategories;
+    const displayCourses = fallbackCourses;
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             {/* Cinematic Header Section */}
-            <section className="relative pt-36 sm:pt-40 md:pt-44 lg:pt-48 xl:pt-52 pb-8 md:pb-12 lg:pb-16 overflow-hidden">
+            <section className="courses-header-section relative pt-[clamp(7.5rem,14vh,11rem)] pb-2 sm:pb-4 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10 text-center md:text-left">
-                    <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10 text-left">
+                    <header className="w-full max-w-4xl">
+                        <span className="text-accent uppercase tracking-[0.6em] text-[clamp(0.65rem,0.8vw,0.875rem)] font-bold mb-2 sm:mb-4 block animate-fade-in-up">
                             {t('header_badge')}
                         </span>
-                        <h1 className="text-[clamp(2rem,4.5vw,5rem)] font-display leading-[0.95] text-sea-foam mb-4 sm:mb-6 animate-reveal relative">
-                            {t('header_title')} <br />
-                            <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
+                        <h1 className="text-[clamp(2rem,4.5vw,4.5rem)] font-display leading-[0.95] text-sea-foam mb-2 sm:mb-6 animate-reveal relative">
+                            {t('header_title')} <span className="italic font-light text-brass-gold/90">{t('header_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-base sm:text-lg md:text-xl leading-relaxed border-l-2 border-sea-foam/10 pl-4 sm:pl-6 md:pl-8 mt-4 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-[clamp(0.9rem,1.3vw,1.25rem)] leading-relaxed border-l-2 border-sea-foam/20 pl-4 sm:pl-6 md:pl-8 mt-3 sm:mt-6">
                             {t('header_desc')}
                         </p>
                     </header>
@@ -139,11 +370,11 @@ export default async function CoursesPage({
             {/* Client-side Course List Area */}
             <CoursesListClient
                 initialCourses={displayCourses}
-                categories={categories}
+                categories={displayCategories}
                 locale={locale}
             />
 
-            {/* Minimal Background Background Decoration */}
+            {/* Minimal Background Decoration */}
             <div className="fixed inset-0 bg-mesh opacity-10 pointer-events-none z-0" />
         </main>
     );

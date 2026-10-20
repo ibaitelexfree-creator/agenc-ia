@@ -69,7 +69,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
             {t('description')}
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto items-stretch sm:items-center">
             <motion.button
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -80,7 +80,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
               }}
               whileTap={{ scale: 0.97 }}
               onClick={onScrollToForm}
-              className="bg-[#C9A84C] text-[#0A1628] text-base font-semibold tracking-wide rounded-full px-8 py-4 w-full sm:w-auto shadow-md transition-shadow duration-300"
+              className="bg-[#C9A84C] text-[#0A1628] text-xs sm:text-sm md:text-base font-semibold tracking-wide rounded-full px-4 py-2.5 sm:px-8 sm:py-4 w-full sm:w-auto shadow-md transition-shadow duration-300"
             >
               {t('cta')}
             </motion.button>
@@ -92,7 +92,7 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
               whileHover={{ scale: 1.02, x: 5 }}
               whileTap={{ scale: 0.98 }}
               onClick={onScrollToTimeline}
-              className="border-b border-[#0A1628] text-[#0A1628] hover:text-[#005F8A] hover:border-[#005F8A] font-semibold text-base py-4 px-2 sm:w-auto text-left self-start sm:self-center transition-colors duration-200"
+              className="border-b border-[#0A1628] text-[#0A1628] hover:text-[#005F8A] hover:border-[#005F8A] font-semibold text-xs sm:text-sm md:text-base py-2 sm:py-4 px-2 sm:w-auto text-left self-start sm:self-center transition-colors duration-200"
             >
               {t('cta_sub')}
             </motion.button>
@@ -103,19 +103,30 @@ export default function TeamHero({ onScrollToForm, onScrollToTimeline }: TeamHer
         <div className="lg:col-span-6 relative flex justify-center w-full h-[380px] sm:h-[500px] lg:h-[580px]">
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            animate={{ 
+              opacity: 1, 
+              scale: 1, 
+              y: [0, -10, 0, 8, 0],
+              rotate: [0, 0.8, 0, -0.8, 0]
+            }}
+            transition={{ 
+              opacity: { delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+              scale: { delay: 0.8, duration: 0.9, ease: [0.16, 1, 0.3, 1] },
+              y: { repeat: Infinity, duration: 5.5, ease: "easeInOut", delay: 1.7 },
+              rotate: { repeat: Infinity, duration: 6.5, ease: "easeInOut", delay: 1.7 }
+            }}
             className="w-full h-full relative rounded-2xl overflow-hidden shadow-2xl bg-slate-100"
           >
             <Image
-              src="/images/team-building-j80-hero-20201129.jpg"
+              src="/images/team-building-j80-hero-20201129.jpg?v=6"
               alt="J80 sailboat under sail"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+            {/* Subtle natural vignette shadow */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
           </motion.div>
         </div>
       </div>

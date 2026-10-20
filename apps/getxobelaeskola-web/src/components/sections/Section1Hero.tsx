@@ -43,7 +43,12 @@ const BLOB_POSITIONS = [
   { left: '88%', top: '50%' },
 ]
 
-export function Section1Hero() {
+interface Section1HeroProps {
+  blobsElevated?: boolean | number
+  blobsVariant?: string
+}
+
+export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1HeroProps) {
   const t = useTranslations('s1')
   const locale = useLocale()
   const scrollCtx = useContext(ScrollContext)
@@ -52,10 +57,12 @@ export function Section1Hero() {
   const [nubesLoaded, setNubesLoaded] = useState(false)
   const [barcoLoaded, setBarcoLoaded] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
-  const [isMobile, setIsMobile] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const [isTabletPortrait, setIsTabletPortrait] = useState(false)
   const [isTabletLandscape, setIsTabletLandscape] = useState(false)
   const [isPhone, setIsPhone] = useState(false)
+  const [isLandscape, setIsLandscape] = useState(false)
+  const [viewportScale, setViewportScale] = useState(1)
 
   const [mounted, setMounted] = useState(false)
 
@@ -67,11 +74,30 @@ export function Section1Hero() {
     const checkMobile = () => {
       const w = window.innerWidth
       const h = window.innerHeight
-      const isTabletSize = (w >= 768 && w <= 1024) || (h >= 768 && h <= 1024)
-      setIsMobile(w < 1280) // 1280px matches the xl layout breakpoint
-      setIsTabletPortrait(isTabletSize && h > w)
-      setIsTabletLandscape(isTabletSize && w >= h)
-      setIsPhone(w < 768)   // 768px covers mobile and small phone sizes
+      const landscapeMode = w > h
+      
+      const effW = Math.min(w, h)
+      const isTabletSize = (effW >= 600 && effW <= 1024)
+      
+      setIsMobile(w < 768)
+      setIsTabletPortrait(isTabletSize && !landscapeMode)
+      setIsTabletLandscape(isTabletSize && landscapeMode)
+      setIsPhone(effW < 600 && !landscapeMode)
+      setIsLandscape(landscapeMode)
+
+      if (landscapeMode) {
+        if (h < 500) {
+          setViewportScale(Math.max(0.48, h / 620))
+        } else if (h < 750) {
+          setViewportScale(Math.max(0.65, h / 780))
+        } else if (h < 1200) {
+          setViewportScale(Math.max(0.72, h / 1100))
+        } else {
+          setViewportScale(1)
+        }
+      } else {
+        setViewportScale(1)
+      }
     }
     checkMobile()
     window.addEventListener('resize', checkMobile, { passive: true })
@@ -109,7 +135,17 @@ export function Section1Hero() {
       } else {
         actualH = canvasH
         actualW = canvasH * imgRatio
-        left = (canvasW - actualW) / 2
+        // Shift factor for centering alignment: smooth transition for iPad/Tablet screens
+        let shiftFactor = 0.5
+        if (containerW <= 1024 && containerW >= 600) {
+          // Smooth fluid scaling between tablet and desktop aspect ratios
+          const progress = (containerW - 600) / (1024 - 600)
+          shiftFactor = 0.65 - (progress * 0.15)
+        } else if (containerW < 600) {
+          shiftFactor = 0.72
+        }
+        left = (canvasW - actualW) * shiftFactor
+        top = (canvasH - actualH) / 2
       }
 
       setAspect({ width: actualW, height: actualH, left: left - bleedLeft, top: top - bleedTop })
@@ -185,10 +221,63 @@ export function Section1Hero() {
   const layer3Y = useTransform(
     activeScroll,
     scrollCtx ? [0, 0.20, 1] : [0, 1],
-    scrollCtx ? ['0%', '35%', '35%'] : ['0%', '35%']
+    scrollCtx ? ['0%', '25%', '25%'] : ['0%', '25%']
   )
 
-  const CARDS = [
+  const isCustomBlobsVariant = !blobsVariant || blobsVariant === 'home-12' || blobsVariant === 'home-1' || blobsVariant === 'home-2' || blobsVariant === 'home-3' || blobsVariant === 'home-4'
+
+  const CARDS = isCustomBlobsVariant ? [
+    {
+      title: t('blob_cursos'),
+      subtitle: '',
+      color: '#2EC4B6',
+      videoSrc: '/videos/cursos_optimized.webm',
+      imageSrc: '/images/cursos_thumb.webp',
+      paths: BLOB_PATHS.cursos,
+      href: `/${locale}/servicios/cursos`,
+    },
+    {
+      title: t('blob_club'),
+      subtitle: '',
+      color: '#F4A623',
+      videoSrc: '/videos/club_optimized.webm',
+      imageSrc: '/images/club_thumb.webp',
+      paths: BLOB_PATHS.clubSocias,
+      href: `/${locale}/servicios/socias`,
+    },
+    {
+      title: t('blob_equipos'),
+      subtitle: '',
+      color: '#1D6FA4',
+      videoSrc: '/videos/equipos_optimized.webm',
+      imageSrc: '/images/equipos_thumb.webp',
+      paths: BLOB_PATHS.equipos,
+      href: `/${locale}/servicios/equipos`,
+    },
+    {
+      title: (
+        <span className="block leading-[1.15]">
+          <span className="block">{t('blob_udalekuak')}</span>
+          <span className="block text-[0.88em] font-medium tracking-normal opacity-90">{t('blob_udalekuak_sub')}</span>
+        </span>
+      ),
+      subtitle: '',
+      color: '#8B5CF6',
+      videoSrc: '/videos/udalekuak_optimized.webm',
+      imageSrc: '/images/udalekuak_thumb.webp',
+      paths: BLOB_PATHS.udalekuak,
+      href: `/${locale}/servicios/udalekuak`,
+    },
+    {
+      title: t('blob_entidades'),
+      subtitle: '',
+      color: '#0A0A0A',
+      videoSrc: '/videos/entidades_optimized.webm',
+      imageSrc: '/images/entidades_thumb.webp',
+      paths: BLOB_PATHS.entidades,
+      href: `/${locale}/servicios/centros-escolares`,
+    },
+  ] : [
     {
       title: t('card_cursos_title'),
       subtitle: t('card_cursos_subtitle'),
@@ -246,85 +335,42 @@ export function Section1Hero() {
         maxWidth: '1920px',
         minWidth: '320px',
         margin: '0 auto',
-        height: '100vh',
+        minHeight: '100dvh',
         overflow: 'hidden',
+        clipPath: 'inset(0)',
+        WebkitClipPath: 'inset(0)',
+        isolation: 'isolate',
+        contain: 'paint layout',
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: '0px',
+        boxSizing: 'border-box',
+        backgroundColor: '#0D2137',
       }}
     >
-      {/* Capa 2: Costa y mar (con parallax de scroll, escala y balanceo sincronizado de oleaje) - CARGA 1º */}
+      {/* Capa 1: Cielo y Video de Nubes (Fondo) */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: tierraLoaded ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
         style={{
           position: 'absolute',
           inset: 0,
-          y: layer2Y,
-          width: '100%',
-          height: '100%',
-          zIndex: 2,
-          scale: 1.015,
-        }}
-      >
-        <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, 18, 0, -18, 0],
-            x: [0, -5, 0, 5, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        >
-          <img
-            ref={tierraRef}
-            src="/images/home/parallax/tierra.webp?v=5"
-            alt="Costa y mar del Abra de Getxo"
-            fetchPriority="high"
-            onLoad={() => setTierraLoaded(true)}
-            style={{
-              position: 'absolute',
-              left: '-10px',
-              right: '-15px',
-              top: '-10px',
-              bottom: '-10px',
-              width: 'calc(100% + 25px)',
-              height: 'calc(100% + 20px)',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
-          />
-        </motion.div>
-      </motion.div>
-
-      {/* Capa 1: Cielo (con parallax de scroll y balanceo de cámara sincronizado) - CARGA 2º */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: nubesLoaded ? 1 : 0 }}
-        transition={{ duration: 0.6 }}
-        style={{
-          position: 'absolute',
-          inset: 0,
+          top: 0,
           y: layer1Y,
           width: '100%',
           height: '100%',
           zIndex: 1,
         }}
       >
-        <motion.div
-          style={{ width: '100%', height: '100%', position: 'relative' }}
-          animate={{
-            y: [0, 10, 0, -10, 0],
-            x: [0, -3, 0, 3, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: 'easeInOut',
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            backgroundImage: 'url("/images/home/parallax/cielo%20extendido%20v2.webp?v=3")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         >
           <img
@@ -332,29 +378,97 @@ export function Section1Hero() {
             src="/images/home/parallax/cielo%20extendido%20v2.webp?v=3"
             alt="Cielo Abra de Getxo"
             fetchPriority="high"
+            decoding="sync"
             onLoad={() => setNubesLoaded(true)}
             style={{
               position: 'absolute',
-              left: '-112px',
-              right: '-112px',
-              top: '-20px',
-              bottom: '-20px',
-              width: 'calc(100% + 224px)',
-              height: 'calc(100% + 40px)',
+              inset: 0,
+              width: '100%',
+              height: '100%',
               objectFit: 'cover',
               objectPosition: 'center',
               zIndex: 1,
-              transform: 'translateX(105px)',
             }}
           />
-        </motion.div>
+
+          {/* Step 2: Video de nubes */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            onCanPlay={() => setVideoLoaded(true)}
+            onLoadedData={(e) => { e.currentTarget.play().catch(() => {}) }}
+            style={{
+              position: 'absolute',
+              top: '0%',
+              left: 0,
+              width: '100%',
+              height: '75%',
+              objectFit: 'cover',
+              objectPosition: 'center',
+              zIndex: 2,
+              opacity: 0.85,
+              mixBlendMode: 'screen',
+              pointerEvents: 'none',
+              transform: 'translate3d(0,0,0)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 75%, rgba(0,0,0,0) 100%)',
+            }}
+          >
+            <source src="/images/home/parallax/Fluffy_clouds_drifting_across_sky_202606160528.mp4" type="video/mp4" />
+          </video>
+        </div>
       </motion.div>
 
-      {/* Capa 3: Velero (con parallax de scroll y balanceo de cabeceo contrario al mar) - CARGA 3º */}
+      {/* Capa 2: Costa,ภูเขา และทะเล */}
       <motion.div
         style={{
           position: 'absolute',
           inset: 0,
+          top: 0,
+          y: layer2Y,
+          width: '100%',
+          height: '100%',
+          zIndex: 2,
+        }}
+      >
+        <div
+          style={{
+            width: '100%',
+            height: '100%',
+            position: 'relative',
+            backgroundImage: 'url("/images/home/parallax/tierra.webp?v=5")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'bottom center',
+          }}
+        >
+          <img
+            ref={tierraRef}
+            src="/images/home/parallax/tierra.webp?v=5"
+            alt="Costa y mar del Abra de Getxo"
+            fetchPriority="high"
+            decoding="sync"
+            onLoad={() => setTierraLoaded(true)}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'bottom center',
+            }}
+          />
+        </div>
+      </motion.div>
+
+      {/* Capa 3: Velero */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          top: 0,
           y: layer3Y,
           width: '100%',
           height: '100%',
@@ -364,9 +478,9 @@ export function Section1Hero() {
         <motion.div
           style={{ width: '100%', height: '100%', position: 'relative' }}
           animate={{
-            y: [0, -35, 0, 35, 0],
-            x: [0, 6, 0, -6, 0],
-            rotate: [0, 0.8, 0, -0.8, 0],
+            y: [0, 18, 0, -18, 0],
+            x: [0, -5, 0, 5, 0],
+            rotate: [0, 0.5, 0, -0.5, 0],
           }}
           transition={{
             duration: 12,
@@ -378,16 +492,12 @@ export function Section1Hero() {
             <div
               style={{
                 position: 'absolute',
-                left: isTabletLandscape 
-                  ? `calc(${aspect.left}px + 2.25vw)` 
-                  : isTabletPortrait 
-                  ? `calc(${aspect.left}px + 1.5vw)` 
-                  : `${aspect.left}px`,
+                left: `${aspect.left}px`,
                 top: `${aspect.top}px`,
                 width: `${aspect.width}px`,
                 height: `${aspect.height}px`,
-                transform: isPhone ? 'translateX(-100px) scale(0.9)' : 'translateX(-100px)',
-                transformOrigin: 'center center',
+                transform: 'translateX(0px)',
+                transformOrigin: 'top center',
               }}
             >
               <picture>
@@ -408,6 +518,7 @@ export function Section1Hero() {
                   src="/images/home/parallax/velero_desktop.webp?v=1"
                   alt="Velero navegando en Getxo"
                   fetchPriority="high"
+                  decoding="sync"
                   onLoad={() => setBarcoLoaded(true)}
                   style={{
                     width: '100%',
@@ -434,202 +545,169 @@ export function Section1Hero() {
         }}
       />
 
-
-
-      {/* Contenido principal — alineado con container fluido para evitar desbordamientos */}
+      {/* Contenido principal — Título, Subtítulo y CTA */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate={mounted ? 'visible' : 'hidden'}
+        className="hero-text-container"
         style={{
           position: 'relative',
           zIndex: 10,
           textAlign: 'left',
-          padding: '0 clamp(1rem, 4vw, 4rem)',
+          padding: isPhone ? '0 1.2rem' : '0 clamp(1rem, 4vw, 4rem)',
           width: '100%',
-          maxWidth: 'min(1400px, 90vw)',
+          maxWidth: 'min(1800px, 94vw)',
           margin: '0 auto',
           color: 'var(--white)',
           y: layer3Y,
-          marginTop: isPhone ? '-90px' : '-60px', // Slightly higher position
-          top: isPhone ? '15px' : '0px',
         }}
       >
-        {/* Eyebrow — ubicación */}
-        <div
-          style={{
-            display: 'inline-flex',
-            justifyContent: 'flex-start',
-            marginBottom: isPhone ? '0.2rem' : '0.75rem',
-            marginTop: isPhone ? '4px' : '0px',
-          }}
-        >
-          <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={isPhone ? '0.78rem' : '0.95rem'} />
-        </div>
- 
-        {/* Logo / Nombre de la escuela */}
-        <div style={{ marginBottom: isPhone ? '0.3rem' : '1rem' }}>
-          <LogoGBE isPhone={isPhone} />
-        </div>
-  
-        {/* Título principal */}
-        <h1
-          style={{
-            fontSize: isPhone ? 'clamp(1.3rem, 5.6vw, 2.1rem)' : 'clamp(2rem, 4.2vw, 3.8rem)',
-            fontWeight: 700,
-            lineHeight: isPhone ? 1.05 : 1.12,
-            color: 'var(--white)',
-            marginBottom: isPhone ? '0.3rem' : '0.85rem',
-            textAlign: 'left',
-          }}
-        >
-          {t('title').split('|').map((part, index) => {
-            return (
-              <span key={index} style={{ display: 'block', whiteSpace: isMobile ? 'normal' : 'nowrap' }}>
+        <style jsx global>{`
+          .hero-text-container {
+            margin-top: -10vh !important;
+          }
+          .hero-video-blobs-container {
+            bottom: calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)) !important;
+          }
+          @media (max-width: 600px) {
+            .hero-text-container {
+              margin-top: -24vh !important;
+            }
+            .hero-video-blobs-container {
+              bottom: calc(clamp(4px, 1vh, 12px) - 3vh + env(safe-area-inset-bottom, 0px)) !important;
+            }
+          }
+        `}</style>
+        <div className={isLandscape ? "flex flex-row items-center justify-between gap-4 w-full" : "flex flex-col text-left"}>
+          <div className="flex flex-col text-left">
+            {/* Eyebrow — ubicación */}
+            <div
+              style={{
+                display: 'inline-flex',
+                justifyContent: 'flex-start',
+                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.5rem',
+                marginTop: '0px',
+              }}
+            >
+              <SectionEyebrow text={t('eyebrow')} color="var(--ocean-light)" fontSize={(isPhone || isLandscape) ? '0.77rem' : 'clamp(0.9rem, 1.2vw, 1.6rem)'} />
+            </div>
+
+            {/* Logo / Nombre de la escuela */}
+            <div style={{ marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.1rem' : '0.75rem' }}>
+              <LogoGBE isPhone={isPhone || isLandscape} />
+            </div>
+    
+            {/* Título principal */}
+            <h1
+              style={{
+                fontSize: isLandscape ? 'clamp(1.2rem, 3.8vw, 2.2rem)' : isPhone ? 'clamp(1.15rem, 4.2vw, 1.6rem)' : 'clamp(2.25rem, 4.5vw, 5.5rem)',
+                fontWeight: 700,
+                lineHeight: (isPhone || isLandscape) ? 1.06 : 1.05,
+                color: 'var(--white)',
+                marginBottom: isLandscape ? '0.1rem' : isPhone ? '0.15rem' : '0.85rem',
+                textAlign: 'left',
+              }}
+            >
+              {t('title').split('|').map((part, index) => {
+                return (
+                  <span key={index} style={{ display: 'block', whiteSpace: 'nowrap' }}>
+                    <AnimatedText
+                      text={part.trim()}
+                      effect="falling"
+                      delay={0.6 + index * 0.45}
+                    />
+                  </span>
+                );
+              })}
+            </h1>
+    
+            {/* Subtítulo */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'stretch',
+                gap: (isPhone || isLandscape) ? '6px' : 'clamp(12px, 1.2vw, 24px)',
+                maxWidth: 'min(1600px, 92vw)',
+                margin: isLandscape ? '0 0 0.15rem' : isPhone ? '0 0 0.25rem' : '0 0 1.25rem',
+                textAlign: 'left',
+              }}
+            >
+              {/* Línea vertical color granate del logotipo */}
+              <motion.div
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
+                style={{
+                  width: (isPhone || isLandscape) ? '3px' : 'clamp(4px, 0.4vw, 8px)',
+                  backgroundColor: '#A91D22', // Granate del logo
+                  transformOrigin: 'top',
+                  flexShrink: 0,
+                }}
+              />
+              <div
+                style={{
+                  fontSize: isLandscape ? 'clamp(0.75rem, 2vw, 0.9rem)' : isPhone ? 'clamp(0.75rem, 2.8vw, 0.88rem)' : 'clamp(1.1rem, 1.8vw, 2.2rem)',
+                  fontWeight: 400,
+                  lineHeight: (isPhone || isLandscape) ? 1.15 : 1.35,
+                  color: 'rgba(255,255,255,0.92)',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <AnimatedText
-                  text={part.trim()}
+                  text={t('subtitle')}
                   effect="falling"
-                  delay={0.6 + index * 0.45}
+                  delay={1.5}
                 />
-              </span>
-            );
-          })}
-        </h1>
-  
-        {/* Subtítulo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'stretch',
-            gap: isPhone ? '8px' : '16px',
-            maxWidth: '710px',
-            margin: isPhone ? '0 0 0.4rem' : '0 0 1.25rem',
-            textAlign: 'left',
-          }}
-        >
-          {/* Línea vertical color granate del logotipo */}
-          <motion.div
-            initial={{ scaleY: 0, opacity: 0 }}
-            animate={{ scaleY: 1, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 90, damping: 13, delay: 1.4 }}
-            style={{
-              width: isPhone ? '3px' : '4px',
-              backgroundColor: '#A91D22', // Granate del logo
-              transformOrigin: 'top',
-              flexShrink: 0,
-            }}
-          />
-          <div
-            style={{
-              fontSize: isPhone ? 'clamp(0.75rem, 3.1vw, 0.92rem)' : 'clamp(1rem, 1.8vw, 1.25rem)',
-              fontWeight: 400,
-              lineHeight: isPhone ? 1.18 : 1.35,
-              color: 'rgba(255,255,255,0.92)',
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <AnimatedText
-              text={t('subtitle')}
-              effect="falling"
-              delay={1.5}
-            />
+              </div>
+            </div>
+
+            {/* CTA con atracción magnética — ซ่อนเฉพาะมือถือขนาดเล็กแนวนอน (Landscape เช่น 586x320px) */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
+              className={(isLandscape && viewportScale < 0.65) ? "hidden" : "mt-4 md:mt-6"}
+            >
+              <GlowButton href="#" color="garnet" size="md">
+                {t('cta')}
+              </GlowButton>
+            </motion.div>
           </div>
         </div>
-  
-        {/* CTA con atracción magnética */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 2.6 }}
-        >
-          <GlowButton href="#" color="garnet" size={isPhone ? "md" : "lg"}>
-            {t('cta')}
-          </GlowButton>
-        </motion.div>
       </motion.div>
 
-      {/* Los 5 blobs/videos interactivos */}
       <div
+        className={`hero-video-blobs-container ${blobsElevated ? 'blobs-elevated' : ''}`}
         style={{
           position: 'absolute',
-          bottom: isPhone ? '6px' : isTabletPortrait ? '16px' : isTabletLandscape ? '12px' : '20px',
+          bottom: 'var(--hero-blobs-bottom, calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)))',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: blobsElevated ? 'translate(-50%, -7vh)' : 'translateX(-50%)',
           width: '100%',
           maxWidth: '1280px',
-          padding: isPhone ? '0 6px' : '0 20px',
+          padding: '0 16px',
           zIndex: 15,
         }}
       >
         <AnimatePresence>
           {mounted && (
-            isPhone ? (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '2px',
-                  width: '100%',
-                }}
-              >
-                {/* Fila superior: 3 blobs centrados */}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    width: '100%',
-                  }}
-                >
-                  {CARDS.slice(0, 3).map((card, idx) => (
-                    <BlobCard key={card.title} {...card} index={idx} />
-                  ))}
-                </div>
-                {/* Fila inferior: 2 blobs centrados olímpicamente */}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    width: '100%',
-                  }}
-                >
-                  {CARDS.slice(3, 5).map((card, idx) => (
-                    <BlobCard key={card.title} {...card} index={idx + 3} />
-                  ))}
-                </div>
-              </motion.div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: isTabletLandscape 
-                    ? 'clamp(6px, 1.5vw, 18px)' 
-                    : isTabletPortrait 
-                    ? 'clamp(8px, 2vw, 24px)' 
-                    : 'clamp(14px, 3.2vw, 42px)',
-                  width: '100%',
-                  transform: (isTabletLandscape || isTabletPortrait) ? 'scale(0.88)' : 'none',
-                  transformOrigin: 'bottom center',
-                }}
-              >
-                {CARDS.map((card, idx) => (
-                  <BlobCard key={card.title} {...card} index={idx} />
-                ))}
-              </motion.div>
-            )
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="hero-blobs-grid"
+              style={{
+                width: '100%',
+                transformOrigin: 'center bottom',
+              }}
+            >
+              {CARDS.map((card, idx) => (
+                <BlobCard key={typeof card.title === 'string' ? card.title : idx} {...card} index={idx} />
+              ))}
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
@@ -638,10 +716,10 @@ export function Section1Hero() {
       <Seagull
         style={{
           position: 'absolute',
-          top: '15%',
-          right: isPhone ? '10%' : '-10%', // 20% más a la izquierda (de -10% a 10%)
+          top: isPhone ? '12%' : '15%',
+          right: isPhone ? '43%' : '-10%',
           zIndex: 2, // Detrás del barco (zIndex 3) y delante del cielo (zIndex 1)
-          transform: isPhone ? 'scale(0.8)' : 'none', // 20% más pequeña
+          transform: isPhone ? 'scale(0.8)' : 'none',
         }}
         enterDelay={1.5}
         direction="left"
@@ -657,12 +735,16 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
       style={{
         display: 'inline-flex',
         alignItems: 'center',
-        gap: isPhone ? '6px' : '10px',
+        gap: isPhone ? '8px' : 'clamp(11px, 0.88vw, 26px)',
+        maxWidth: '100%',
       }}
     >
       <motion.svg 
-        width={isPhone ? "24" : "33"} 
-        height={isPhone ? "24" : "33"} 
+        style={{ 
+          width: isPhone ? "24px" : "clamp(32px, 2.5vw, 64px)",
+          height: isPhone ? "24px" : "clamp(32px, 2.5vw, 64px)",
+          flexShrink: 0 
+        }} 
         viewBox="0 0 36 36" 
         fill="none" 
         aria-hidden="true"
@@ -674,18 +756,21 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
         <path d="M18 8 L32 28 L18 26 Z" fill="white" opacity="0.5" />
         <line x1="4" y1="30" x2="32" y2="30" stroke="white" strokeWidth="2" />
       </motion.svg>
-      <AnimatedText
-        text="Getxo Bela Eskola"
-        effect="falling"
-        delay={0.35}
-        style={{
-          fontSize: isPhone ? '0.92rem' : '1.18rem',
-          fontWeight: 700,
-          letterSpacing: '0.08em',
-          textTransform: 'uppercase',
-          color: 'white',
-        }}
-      />
+      <div style={{ position: 'relative', display: 'inline-block' }}>
+        <AnimatedText
+          text="Getxo Bela Eskola"
+          effect="falling"
+          delay={0.35}
+          style={{
+            fontSize: isPhone ? '0.96rem' : 'clamp(1.1rem, 1.8vw, 2.8rem)',
+            fontWeight: 700,
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            color: 'white',
+            whiteSpace: 'nowrap',
+          }}
+        />
+      </div>
     </div>
   )
 }
@@ -695,7 +780,7 @@ function LogoGBE({ isPhone }: { isPhone?: boolean }) {
 // ── Componente interno: botón de Acceso flotando en el velero ─────────────────
 function SailboatAccesoButton() {
   const locale = useLocale()
-  const [showButton, setShowButton] = useState(false)
+  const [showButton, setShowButton] = useState(true)
 
   // Dictionary matching Navbar labels for Acceso Socias (split into two lines)
   const labels: Record<string, { top: string; bottom: string }> = {
@@ -708,23 +793,11 @@ function SailboatAccesoButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY < 200)
+      setShowButton(window.scrollY < 250)
     }
 
-    if ((window as any).__navbarAuthLoaded) {
-      setShowButton(window.scrollY < 200)
-      window.addEventListener('scroll', handleScroll, { passive: true })
-    } else {
-      const handler = () => {
-        setShowButton(window.scrollY < 200)
-        window.addEventListener('scroll', handleScroll, { passive: true })
-      }
-      window.addEventListener('auth-loaded', handler)
-      return () => {
-        window.removeEventListener('auth-loaded', handler)
-        window.removeEventListener('scroll', handleScroll)
-      }
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -746,6 +819,7 @@ function SailboatAccesoButton() {
             pointerEvents: 'auto',
             zIndex: 50,
           }}
+          className="scale-75 sm:scale-90 md:scale-100"
         >
           <Link
             href={`/${locale}/auth/login`}
@@ -756,13 +830,13 @@ function SailboatAccesoButton() {
               whiteSpace: 'nowrap',
               border: 'none',
               background: 'rgba(0, 0, 0, 0.001)',
-              padding: locale === 'eu' ? 'clamp(8px, 1.1vw, 18px) clamp(15px, 2.2vw, 38px)' : 'clamp(10px, 1.4vw, 23px) clamp(20px, 3vw, 50px)',
+              padding: locale === 'eu' ? 'clamp(6px, 1vw, 16px) clamp(12px, 2vw, 34px)' : 'clamp(8px, 1.2vw, 20px) clamp(16px, 2.5vw, 44px)',
               display: 'inline-block'
             }}
           >
             <motion.div
               style={{
-                fontSize: locale === 'eu' ? 'clamp(11px, 1.25vw, 19px)' : 'clamp(13px, 1.5vw, 23px)'
+                fontSize: locale === 'eu' ? 'clamp(10px, 1.2vw, 18px)' : 'clamp(11px, 1.5vw, 22px)'
               }}
               className="flex flex-col items-center justify-center leading-[0.85] font-black tracking-[0.12em] text-center"
               animate={{

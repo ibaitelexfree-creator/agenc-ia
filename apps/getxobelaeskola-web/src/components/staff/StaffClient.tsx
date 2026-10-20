@@ -122,17 +122,23 @@ export default function StaffClient({
     const [activeTab, setActiveTab] = useState<'overview' | 'rentals' | 'courses' | 'academia' | 'blog' | 'catalog' | 'fleet' | 'sessions' | 'communication' | 'staff_mgmt' | 'financials' | 'bi' | 'explorer'>('overview');
     const [financialsViewMode, setFinancialsViewMode] = useState<'today' | 'month' | 'year' | undefined>('year');
 
-    // Sync tab from URL
+    // Sync tab from URL or sessionStorage
     useEffect(() => {
         const tabParam = searchParams.get('tab');
+        const savedTab = typeof window !== 'undefined' ? sessionStorage.getItem('staff_activeTab') : null;
+        
         if (tabParam) {
             setActiveTab(tabParam as any);
+        } else if (savedTab) {
+            setActiveTab(savedTab as any);
         }
     }, [searchParams]);
 
-    // Scroll to top when tab changes
+    // Save tab to sessionStorage when it changes
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'instant' });
+        if (typeof window !== 'undefined') {
+            sessionStorage.setItem('staff_activeTab', activeTab);
+        }
     }, [activeTab]);
 
     const [rentals, setRentals] = useState<Rental[]>(initialRentals || []);
@@ -387,14 +393,6 @@ export default function StaffClient({
     // Fetch Newsletters & Subscribers Count
     const fetchNewsletters = useCallback(async () => {
         try {
-            const nowIso = new Date().toISOString();
-            // Automatically publish any scheduled newsletter whose scheduled time has passed
-            await supabase
-                .from('newsletters')
-                .update({ status: 'sent', sent_at: nowIso })
-                .eq('status', 'scheduled')
-                .lte('scheduled_for', nowIso);
-
             // Fetch total active subscribers count from newsletter_subscriptions
             const { count: subCount } = await supabase
                 .from('newsletter_subscriptions')
@@ -839,7 +837,7 @@ export default function StaffClient({
                             { id: 'financials', label: 'INGRESOS' },
                             { id: 'courses', label: t('tabs.courses') },
                             { id: 'academia', label: 'ACADEMIA' },
-                            { id: 'blog', label: 'BLOG' },
+                            { id: 'blog', label: t('tabs.blog') },
                             { id: 'catalog', label: 'CATÁLOGO' },
                             { id: 'fleet', label: 'FLOTA' },
                             { id: 'sessions', label: 'SESIONES' },

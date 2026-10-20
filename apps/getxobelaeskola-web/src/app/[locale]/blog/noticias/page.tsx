@@ -2,7 +2,13 @@ import React from 'react';
 import { createClient } from '@/lib/supabase/server';
 import NoticiasClient from './NoticiasClient';
 
-export default async function NoticiasPage({ params: { locale } }: { params: { locale: string } }) {
+export default async function NoticiasPage({ 
+    params: { locale },
+    searchParams
+}: { 
+    params: { locale: string };
+    searchParams?: { article?: string };
+}) {
     const supabase = createClient();
     
     // Consultar artículos desde Supabase
@@ -16,6 +22,7 @@ export default async function NoticiasPage({ params: { locale } }: { params: { l
         <NoticiasClient 
             locale={locale} 
             initialDbPosts={dbPosts || []} 
+            initialArticleSlug={searchParams?.article}
         />
     );
 }

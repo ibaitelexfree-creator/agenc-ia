@@ -9,13 +9,14 @@ import Footer from '@/components/layout/Footer';
 import ConditionalLayout from '@/components/layout/ConditionalLayout';
 import FooterWrapper from '@/components/layout/FooterWrapper';
 const ScrollUpButton = dynamic(() => import('@/components/shared/ScrollToTop'), { ssr: false });
+const WhatsAppButton = dynamic(() => import('@/components/shared/WhatsAppButton'), { ssr: false });
 import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Viewport } from 'next';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
-const Analytics = dynamic(() => import('@vercel/analytics/react').then(mod => mod.Analytics), { ssr: false });
-const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false });
+import { CookieConsentProvider, CookieBanner, AnalyticsConsentGate } from '@/components/cookies';
 const AccessibilityScript = dynamic(() => import('@/components/shared/AccessibilityScript'), { ssr: false });
+const ScrollManager = dynamic(() => import('@/components/shared/ScrollManager'), { ssr: false });
 
 export const viewport: Viewport = {
   themeColor: '#001B3A', // Nautical Black
@@ -43,7 +44,7 @@ export default async function LocaleLayout({
   const { createClient } = await import('@/lib/supabase/server');
   const supabase = createClient();
   const { data: { user: authUser } } = await supabase.auth.getUser();
-  let initialUser = null;
+  let initialUser: any = null;
   
   if (authUser) {
       const { data: profile } = await supabase.from('profiles').select('rol, status_socio').eq('id', authUser.id).single();
@@ -52,28 +53,34 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className={`${cormorantGaramond.variable} ${outfit.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <head />
+      <head>
+        <link rel="preload" href="/images/home/parallax/cielo%20extendido%20v2.webp?v=3" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/tierra.webp?v=5" as="image" type="image/webp" fetchPriority="high" />
+        <link rel="preload" href="/images/home/parallax/velero_desktop.webp?v=1" as="image" type="image/webp" fetchPriority="high" />
+      </head>
       <body suppressHydrationWarning>
         <NextIntlClientProvider messages={messages} locale={locale} timeZone="Europe/Madrid">
-          <FramerProvider>
-            <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-[320px] mx-auto overflow-x-clip">
-              <Navbar locale={locale} initialUser={initialUser} />
-                <ConditionalLayout>
-                  {children}
-                </ConditionalLayout>
-                <FooterWrapper>
-                  <Footer locale={locale} />
-                </FooterWrapper>
-              </div>
-              <ScrollUpButton />
+          <CookieConsentProvider>
+            <FramerProvider>
+              <div className="min-h-screen flex flex-col relative w-full max-w-[1920px] min-w-0 mx-auto overflow-x-clip bg-[#0D2137]">
+                <Navbar locale={locale} initialUser={initialUser} />
+                  <ConditionalLayout>
+                    {children}
+                  </ConditionalLayout>
+                  <FooterWrapper>
+                    <Footer locale={locale} />
+                  </FooterWrapper>
+                </div>
+                <ScrollUpButton />
+                <WhatsAppButton />
 
-              <Suspense fallback={null}>
                 <StatusToast />
-              </Suspense>
-              <Analytics />
-              <SpeedInsights />
-              <AccessibilityScript />
-            </FramerProvider>
+                <AnalyticsConsentGate />
+                <CookieBanner locale={locale} />
+                <AccessibilityScript />
+                <ScrollManager />
+              </FramerProvider>
+          </CookieConsentProvider>
         </NextIntlClientProvider>
       </body>
     </html>

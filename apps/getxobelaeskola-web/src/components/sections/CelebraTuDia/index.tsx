@@ -11,7 +11,6 @@ import InteractiveBigSUP from './components/InteractiveBigSUP';
 import CateringCards from './components/CateringCards';
 import ClosingBalloons from './components/ClosingBalloons';
 
-import ScenaPanoramica from './components/ScenaPanoramica';
 const HorizontalTimeline = dynamic(() => import('./components/HorizontalTimeline'), { ssr: false });
 const ChillOutSection = dynamic(() => import('./components/ChillOutSection'), { ssr: false });
 
@@ -26,9 +25,6 @@ export default function CelebraTuDia() {
     <div className={styles.container}>
       {/* Fase 1: Hero */}
       <HeroSection onCtaClick={scrollToContact} />
-
-      {/* Fase 2: Escena Panorámica */}
-      <ScenaPanoramica />
 
       {/* Fase 3: Cards Flotantes */}
       <FloatingCards />

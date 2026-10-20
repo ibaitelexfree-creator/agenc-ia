@@ -117,112 +117,78 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
         >
-            {/* Design Decor - Nautical Numbers */}
-            <div className="absolute top-4 right-6 text-[120px] font-black text-sea-foam/[0.03] select-none pointer-events-none group-hover:text-accent/[0.05] transition-colors duration-1000 leading-none">
-                {index !== undefined ? String(index).padStart(2, '0') : service.categoria.substring(0, 2).toUpperCase()}
-            </div>
-
-            {/* Image Header with Clip Path */}
-            <div className={`relative w-full overflow-hidden ${isWindsurfRental ? 'h-[380px]' : 'h-[300px]'}`}>
+            {/* Image Header with Responsive Aspect Ratio */}
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
                     alt={name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 ${
+                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.3] brightness-[1.06] contrast-[1.08] ${
                         isBigsub
-                            ? 'object-[center_60%] scale-100'
+                            ? 'object-[center_60%]'
                             : isTransientLt8m
                                 ? 'object-center'
                                 : isTransientGt8m
-                                    ? 'object-[52%_85%] scale-[1.38] saturate-[1.65] brightness-[1.12] contrast-[1.2]'
+                                    ? 'object-[52%_85%]'
                                     : isCanoeMooring
-                                        ? 'object-[45%_42%] scale-[1.35] saturate-[1.85] brightness-[1.12] contrast-[1.22]'
-                                          : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                              ? (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper'))
-                                                  ? 'object-[center_65%] object-cover scale-105 saturate-[1.45] brightness-[1.15] contrast-[1.18]'
-                                                  : 'object-[center_65%] object-cover scale-100'
-                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
+                                        ? 'object-[45%_42%]'
+                                        : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
+                                            ? 'object-[center_65%]'
+                                            : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
-                                                    ? 'object-[50%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
-                                                    : 'object-[35%_center] saturate-[1.4] brightness-[1.08] contrast-[1.12] hue-rotate-[15deg]'
+                                                    ? 'object-[50%_center]'
+                                                    : 'object-[35%_center]'
                                                 : isWindsurfMooring
-                                                    ? 'object-[center_85%] contrast-[1.1]'
-                                                     : isWindsurfRental
-                                                        ? 'object-[center_65%] scale-[1.12] contrast-[1.05] brightness-[1.02]'
-                                                        : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420')
-                                                            ? 'object-center scale-100 contrast-[1.1]'
-                                                            : (service.nombre_es.toLowerCase().includes('optimist') 
-                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'                                                         : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser')
-                                                                 ? 'object-[center_35%] scale-[1.02] contrast-[1.08] brightness-[1.05]'
-                                                                 : 'object-center contrast-[1.1]')))
+                                                    ? 'object-[center_85%]'
+                                                    : isWindsurfRental
+                                                        ? 'object-[center_65%]'
+                                                        : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
+                                                            ? 'object-center'
+                                                            : service.nombre_es.toLowerCase().includes('optimist')
+                                                                ? 'object-center'
+                                                                : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
+                                                                    ? 'object-[center_35%]'
+                                                                    : 'object-center'
                     }`}
                 />
 
-                {(isCanoeMooring || isTransientGt8m) && (
-                    <>
-                        {/* Vibrant Turquoise / Azure Sea Boost */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/35 via-sky-500/20 to-teal-400/25 mix-blend-color-dodge pointer-events-none z-10" />
-                        {/* Warm Sunlit Glow Accent */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-amber-400/15 via-transparent to-amber-600/20 mix-blend-overlay pointer-events-none z-10" />
-                    </>
-                )}
-                {/* Vibrant ocean overlay for Raquero without skipper */}
-                {(service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero')) && (service.precio_base === 140 || service.nombre_es.toLowerCase().includes('without skipper') || service.slug.includes('without-skipper')) && (
-                    <>
-                        <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/25 via-sky-400/20 to-teal-400/20 mix-blend-color-dodge pointer-events-none z-10" />
-                        <div className="absolute inset-0 bg-gradient-to-b from-sky-300/10 via-transparent to-cyan-600/15 mix-blend-overlay pointer-events-none z-10" />
-                    </>
-                )}
-                {(service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80')) && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/30 via-sky-500/20 to-blue-600/25 mix-blend-color-dodge pointer-events-none z-10" />
-                )}
-                {(service.slug.includes('laser') || service.nombre_es.toLowerCase().includes('laser')) && (
-                    <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-sky-400/15 to-blue-500/15 mix-blend-color-dodge pointer-events-none z-10" />
-                )}
+                {/* Global warm-natural overlay for all images */}
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-300/10 via-transparent to-amber-500/8 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
-                {/* Float Number & Category Badge */}
-                <div className="absolute top-6 left-6 z-20 flex items-center gap-2 bg-nautical-black/80 backdrop-blur-md px-3 py-1.5 rounded-sm border border-sea-foam/10">
-                    {index !== undefined && (
-                        <span className="text-xs font-mono font-bold text-accent">
-                            #{index}
-                        </span>
-                    )}
-                </div>
-
                 {/* Float Category Label */}
-                <div className="absolute bottom-6 left-8 z-20 flex items-center gap-2">
+                <div className="absolute bottom-1.5 left-2 min-[480px]:bottom-2 min-[480px]:left-2.5 sm:bottom-6 sm:left-8 z-20 flex items-center gap-1 min-[480px]:gap-1.5">
                     <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[9px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
-                        {service.categoria}
+                    <span className="text-[7px] min-[480px]:text-[8px] sm:text-[9px] uppercase tracking-[0.1em] min-[480px]:tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
+                        {t.has(`categories.${service.categoria}`) ? t(`categories.${service.categoria}`) : service.categoria}
                     </span>
                 </div>
             </div>
 
             {/* Content Area */}
-            <div className="p-8 md:p-10 flex flex-col flex-1 relative z-20">
-                <div className="mb-8">
-                    <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-3xl font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500">
-                            {index !== undefined ? `${index}. ` : ''}{name}
+            <div className="p-3 min-[480px]:p-4 sm:p-6 md:p-8 landscape:p-4 flex flex-col flex-1 relative z-20">
+                <div className="mb-1.5 min-[480px]:mb-2 sm:mb-6 landscape:mb-3">
+                    <div className="flex justify-between items-start mb-1 min-[480px]:mb-1.5 sm:mb-3 landscape:mb-1.5">
+                        <h3 className="text-xs min-[480px]:text-sm sm:text-xl md:text-2xl landscape:text-base font-display text-sea-foam italic leading-tight group-hover:text-accent transition-colors duration-500 line-clamp-2">
+                            {name}
                         </h3>
                     </div>
 
                     {/* Specs Row */}
-                    <div className="flex gap-6 py-4 border-y border-sea-foam/10 mb-6">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">{t('crew_label')}</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70">
-                                <Users className="w-3.5 h-3.5" />
-                                <span className="text-xs font-bold font-mono">{getCapacity()}</span>
+                    <div className="flex gap-2 min-[480px]:gap-3 sm:gap-6 py-1 min-[480px]:py-1.5 sm:py-4 border-y border-sea-foam/10 mb-1.5 min-[480px]:mb-2 sm:mb-6">
+                        <div className="flex flex-col gap-0.5 sm:gap-1">
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t('crew_label')}</span>
+                            <div className="flex items-center gap-1 text-sea-foam/70">
+                                <Users className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
+                                <span className="text-[10px] min-[480px]:text-xs font-bold font-mono">{getCapacity()}</span>
                             </div>
                         </div>
-                        <div className="w-px h-8 bg-sea-foam/10" />
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[8px] uppercase tracking-widest text-sea-foam/40">Price/h</span>
-                            <div className="flex items-center gap-1.5 text-sea-foam/70 text-lg">
+                        <div className="w-px h-5 min-[480px]:h-6 sm:h-8 bg-sea-foam/10" />
+                        <div className="flex flex-col gap-0.5 sm:gap-1">
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t.has('price_per_hour') ? t('price_per_hour') : 'Price/h'}</span>
+                            <div className="flex items-center gap-1 text-sea-foam/70 text-xs min-[480px]:text-sm sm:text-lg">
                                 <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
                             </div>
                         </div>
@@ -230,15 +196,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 </div>
 
                 {/* Footer Actions */}
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-1 min-[480px]:pt-1.5 sm:pt-4">
                     <button
                         onClick={() => onBook(service.id)}
-                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
+                        className="group/btn relative w-full overflow-hidden bg-sea-foam/[0.02] border border-sea-foam/10 p-1.5 min-[480px]:p-2.5 sm:p-5 rounded-sm hover:border-accent transition-all duration-500 flex items-center justify-between"
                     >
-                        <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-2 transition-all">
+                        <span className="text-[8px] min-[480px]:text-[9px] sm:text-[10px] uppercase tracking-[0.15em] min-[480px]:tracking-[0.3em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover/btn:text-accent group-hover/btn:translate-x-1.5 transition-all">
                             {t('booking.book_now')}
                         </span>
-                        <ArrowRight className="w-4 h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-2 transition-all" />
+                        <ArrowRight className="w-3 h-3 min-[480px]:w-3.5 min-[480px]:h-3.5 sm:w-4 sm:h-4 text-sea-foam/30 group-hover/btn:text-accent group-hover/btn:-translate-x-1.5 transition-all" />
 
                         {/* Glow effect on hover */}
                         <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover/btn:opacity-100 transition-opacity" />

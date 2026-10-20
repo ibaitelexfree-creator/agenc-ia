@@ -119,48 +119,56 @@ export default function RegisterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 animate-fade-in">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 animate-fade-in">
             <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                    <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('name')}</label>
+                <div className="space-y-1.5">
+                    <label htmlFor="nombre" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('name')}</label>
                     <input
+                        id="nombre"
                         {...register('nombre')}
-                        className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
+                        autoComplete="given-name"
+                        className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
                         placeholder="Ana"
                     />
-                    {errors.nombre && <p className="text-3xs text-red-500 uppercase mt-1">{errors.nombre.message}</p>}
+                    {errors.nombre && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.nombre.message}</p>}
                 </div>
-                <div className="space-y-1">
-                    <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('apellidos') || 'Apellidos'}</label>
+                <div className="space-y-1.5">
+                    <label htmlFor="apellidos" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('apellidos') || 'Apellidos'}</label>
                     <input
+                        id="apellidos"
                         {...register('apellidos')}
-                        className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
+                        autoComplete="family-name"
+                        className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
                         placeholder="López"
                     />
-                    {errors.apellidos && <p className="text-3xs text-red-500 uppercase mt-1">{errors.apellidos.message}</p>}
+                    {errors.apellidos && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.apellidos.message}</p>}
                 </div>
             </div>
 
-            <div className="space-y-1">
-                <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('email')}</label>
+            <div className="space-y-1.5">
+                <label htmlFor="email" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('email')}</label>
                 <input
+                    id="email"
                     {...register('email')}
                     type="email"
-                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
-                    placeholder="tu@email.com"
+                    autoComplete="email"
+                    className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
+                    placeholder={t('email_placeholder')}
                 />
-                {errors.email && <p className="text-3xs text-red-500 uppercase mt-1">{errors.email.message}</p>}
+                {errors.email && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.email.message}</p>}
             </div>
 
-            <div className="space-y-1">
-                <label className="text-3xs uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('password')}</label>
+            <div className="space-y-1.5">
+                <label htmlFor="password" className="text-[13.5px] uppercase tracking-[0.2em] text-accent font-bold ml-1">{t('password')}</label>
                 <input
+                    id="password"
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
-                    className="w-full bg-transparent border-b border-black/15 p-4 outline-none focus:border-accent transition-colors font-light text-sea-foam placeholder:text-black/40"
+                    autoComplete="new-password"
+                    className="w-full h-12 bg-white/5 border border-white/10 rounded-xl px-4 outline-none focus:border-accent focus:bg-white/10 transition-all font-light text-white placeholder:text-white/40"
                     placeholder="••••••••"
                 />
-                {errors.password && <p className="text-3xs text-red-500 uppercase mt-1">{errors.password.message}</p>}
+                {errors.password && <p className="text-[10px] text-red-500 uppercase tracking-widest mt-1">{errors.password.message}</p>}
 
                 <div className="flex items-center space-x-2 mt-2 ml-1">
                     <input
@@ -168,46 +176,46 @@ export default function RegisterForm() {
                         id="show-password"
                         checked={showPassword}
                         onChange={(e) => setShowPassword(e.target.checked)}
-                        className="w-3 h-3 rounded border-black/20 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
+                        className="w-3.5 h-3.5 rounded border-white/20 bg-transparent text-accent focus:ring-accent accent-accent cursor-pointer"
                     />
                     <label
                         htmlFor="show-password"
-                        className="text-[9px] uppercase tracking-widest text-sea-foam/60 cursor-pointer hover:text-accent transition-colors"
+                        className="text-[10px] uppercase tracking-widest text-white/70 cursor-pointer hover:text-accent transition-colors"
                     >
                         {t('show_password')}
                     </label>
                 </div>
             </div>
 
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-1">
                 <input
                     {...register('subscribeNewsletter')}
                     type="checkbox"
                     id="subscribeNewsletter"
-                    className="w-4 h-4 accent-accent border-black/20 rounded-sm cursor-pointer"
+                    className="w-4 h-4 accent-accent border-white/20 bg-transparent rounded-sm cursor-pointer"
                 />
-                <label htmlFor="subscribeNewsletter" className="text-3xs uppercase tracking-widest text-black/50 hover:text-black transition-colors cursor-pointer select-none">
+                <label htmlFor="subscribeNewsletter" className="text-[10px] uppercase tracking-widest text-white/70 hover:text-white transition-colors cursor-pointer select-none">
                     {t('newsletter_checkbox')}
                 </label>
             </div>
 
             {error && (
-                <div className="space-y-3">
-                    <p className="text-2xs text-red-500 text-center leading-relaxed">
+                <div className="bg-red-500/10 border border-red-500/20 p-6 rounded-sm animate-fade-in space-y-3">
+                    <p className="text-xs text-red-500 text-center font-medium leading-relaxed">
                         {error}
                         {isEmailNotConfirmed && (
                             <button
                                 type="button"
                                 onClick={handleResendEmail}
                                 disabled={resendStatus === 'loading'}
-                                className="ml-2 text-blue-500 underline hover:text-blue-400 transition-colors font-bold inline-block"
+                                className="ml-2 text-blue-400 underline hover:text-blue-300 transition-colors font-bold inline-block"
                             >
                                 {resendStatus === 'loading' ? '...' : t('resend_email')}
                             </button>
                         )}
                     </p>
                     {resendStatus === 'success' && (
-                        <p className="text-[10px] text-green-500 text-center uppercase tracking-widest animate-fade-in">
+                        <p className="text-[10px] text-green-400 text-center uppercase tracking-widest animate-fade-in">
                             {t('resend_success')}
                         </p>
                     )}
@@ -216,17 +224,17 @@ export default function RegisterForm() {
 
             <button
                 disabled={loading}
-                className="w-full btn mt-8 disabled:opacity-50"
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-accent to-accent/80 text-neutral-950 font-black uppercase tracking-widest text-xs mt-4 disabled:opacity-50 hover:shadow-[0_0_30px_rgba(184,134,11,0.3)] transition-all active:scale-[0.98]"
             >
                 {loading ? t('registering') : t('register_btn')}
             </button>
 
             <div className="relative my-8">
                 <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-black/10"></div>
+                    <div className="w-full border-t border-white/10"></div>
                 </div>
-                <div className="relative flex justify-center text-[10px] uppercase tracking-widest">
-                    <span className="bg-white px-4 text-black/50 font-bold italic">{t('or_divider')}</span>
+                <div className="relative flex justify-center text-[13.5px] uppercase tracking-widest">
+                    <span className="bg-[#0D2137] px-4 text-white/50 font-bold italic">{t('or_divider')}</span>
                 </div>
             </div>
 

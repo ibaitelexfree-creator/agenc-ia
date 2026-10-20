@@ -4,6 +4,7 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import styles from '../CelebraTuDia.module.css';
 
 export default function ChillOutSection() {
@@ -84,44 +85,22 @@ export default function ChillOutSection() {
           CHILL OUT
         </span>
 
-        {/* Sofa Interactive Scene */}
-        <div
-          className={styles.chillSceneIllust}
-          onMouseEnter={() => setShowCat(true)}
-          onMouseLeave={() => setShowCat(false)}
-        >
-          {/* Main Sofa */}
-          <svg viewBox="0 0 160 100" className="w-full h-full">
-            {/* Sofa back */}
-            <rect x="20" y="30" width="120" height="50" rx="15" fill="#0D2B45" stroke="#F5E6C8" strokeWidth="2" />
-            {/* Cushion */}
-            <rect x="25" y="55" width="110" height="25" rx="8" fill="#1B8FCF" stroke="#0D2B45" strokeWidth="2" />
-            {/* Armrests */}
-            <rect x="10" y="45" width="18" height="35" rx="6" fill="#0D2B45" stroke="#F5E6C8" strokeWidth="1.5" />
-            <rect x="132" y="45" width="18" height="35" rx="6" fill="#0D2B45" stroke="#F5E6C8" strokeWidth="1.5" />
-            
-            {/* Easter Egg Gato sleeping */}
-            {showCat && (
-              <g transform="translate(80, 50)" className="cursor-pointer">
-                {/* Cat Body */}
-                <ellipse cx="0" cy="5" rx="14" ry="9" fill="#FFD166" stroke="#0D2B45" strokeWidth="1.5" />
-                {/* Cat Head */}
-                <circle cx="10" cy="-2" r="7" fill="#FFD166" stroke="#0D2B45" strokeWidth="1.5" />
-                {/* Ears */}
-                <path d="M6,-8 L9,-14 L12,-8 Z" fill="#EF6351" stroke="#0D2B45" strokeWidth="1" />
-                <path d="M12,-8 L15,-13 L17,-6 Z" fill="#EF6351" stroke="#0D2B45" strokeWidth="1" />
-                {/* Tail curled */}
-                <path d="M -12,6 C -18,10 -15,1 -12,2" fill="none" stroke="#0D2B45" strokeWidth="2.5" strokeLinecap="round" />
-              </g>
-            )}
-          </svg>
+        {/* Sofa / Chill Out Image */}
+        <div className={styles.chillSceneIllust}>
+          <Image
+            src="/images/chill-out.png"
+            alt="Chill Out Zone"
+            width={600}
+            height={400}
+            className="w-full h-auto object-cover rounded-2xl shadow-xl border-4 border-white/20"
+          />
 
           {/* Floating musical notes */}
           {!prefersReducedMotion && (
             <>
-              <motion.span className={styles.musicNote} style={{ left: '30%', top: '20%' }} variants={noteVariants(0)} animate="animate">♩</motion.span>
-              <motion.span className={styles.musicNote} style={{ left: '70%', top: '15%' }} variants={noteVariants(1.2)} animate="animate">♪</motion.span>
-              <motion.span className={styles.musicNote} style={{ left: '50%', top: '25%' }} variants={noteVariants(2.4)} animate="animate">♫</motion.span>
+              <motion.span className={styles.musicNote} style={{ left: '5%', top: '-5%' }} variants={noteVariants(0)} animate="animate">♩</motion.span>
+              <motion.span className={styles.musicNote} style={{ left: '90%', top: '-10%' }} variants={noteVariants(1.2)} animate="animate">♪</motion.span>
+              <motion.span className={styles.musicNote} style={{ left: '50%', top: '-15%' }} variants={noteVariants(2.4)} animate="animate">♫</motion.span>
             </>
           )}
         </div>

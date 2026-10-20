@@ -7,50 +7,73 @@ import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 
+import { Anchor } from 'lucide-react';
+
 function RegisterPageContent({ locale }: { locale: string }) {
     const t = useTranslations('auth');
     const searchParams = useSearchParams();
     const returnTo = searchParams.get('returnTo');
 
     return (
-        <main className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
-            {/* Form Column - Left on Register for variety */}
-            <div className="flex items-center justify-center p-8 pt-48 md:p-24 md:pt-56 lg:pt-24 relative order-2 lg:order-1">
-                <div className="bg-mesh opacity-50 absolute inset-0 -z-10" />
+        <main className="min-h-screen bg-[#0D2137] text-white flex flex-col md:grid md:grid-cols-2 relative">
+            {/* Background Ambient Glow Effects */}
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
+            <div className="fixed bottom-0 right-0 w-[300px] h-[300px] bg-brass-gold/5 blur-[120px] rounded-full pointer-events-none" />
 
-                <div className="w-full max-w-md">
-                    <header className="mb-12">
-                        <h1 className="text-5xl font-display mb-2 text-sea-foam">{t('register_title')}</h1>
-                        <p className="text-foreground/60 font-light">{t('register_desc')}</p>
+            {/* Visual Hero Column: Split Screen on md+ (>= 768px), Branded Header Banner on mobile (< 768px) */}
+            <div className="relative overflow-hidden w-full h-44 sm:h-56 md:h-auto md:min-h-screen flex flex-col justify-end p-6 sm:p-8 md:p-12 lg:p-16 select-none flex-shrink-0">
+                <Image
+                    src="/images/login-page-captain.jpeg"
+                    alt="Experiencia de Vela"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                    className="object-cover opacity-30 md:opacity-35 grayscale"
+                />
+                {/* Gradient: bottom-to-top on mobile, left-to-right on tablet/desktop */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0D2137] via-[#0D2137]/60 to-transparent md:bg-gradient-to-r md:from-[#0D2137]/80 md:via-transparent md:to-[#0D2137]" />
+
+                <div className="relative z-10">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display mb-1 md:mb-3 italic text-white leading-tight">
+                        {t('hero_text')}
+                    </h2>
+                    <p className="text-accent uppercase tracking-widest text-[9px] sm:text-[10px] md:text-xs font-bold">
+                        Getxo Bela Eskola · Est. 1992
+                    </p>
+                </div>
+            </div>
+
+            {/* Form Column: In-flow and centered, fully scrollable on any viewport */}
+            <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-8 sm:px-8 sm:py-12 md:p-12 lg:p-16 w-full">
+                <div className="w-full max-w-sm sm:max-w-md my-auto">
+                    {/* Brand Header */}
+                    <header className="text-center mb-8 sm:mb-10">
+                        <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-accent/10 border border-accent/20 mb-4 sm:mb-5">
+                            <Anchor className="w-7 h-7 sm:w-8 sm:h-8 text-accent" />
+                        </div>
+                        <h1 className="text-3xl lg:text-4xl font-display text-white mb-2">
+                            {t('register_title')}
+                        </h1>
+                        <p className="text-white/60 text-xs sm:text-sm">
+                            {t('register_desc')}
+                        </p>
                     </header>
 
+                    {/* Register Form */}
                     <RegisterForm />
 
-                    <footer className="mt-12 text-center text-[10px] uppercase tracking-widest">
-                        <p className="text-foreground/60">
+                    {/* Login Link */}
+                    <footer className="mt-8 text-center">
+                        <p className="text-white/60 text-xs">
                             {t('has_account')}{' '}
-                            <Link href={`/${locale}/auth/login${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ''}`} className="text-accent hover:text-sea-foam transition-colors font-bold">
+                            <Link
+                                href={`/${locale}/auth/login${returnTo ? `?returnTo=${encodeURIComponent(returnTo)}` : ''}`}
+                                className="text-accent hover:text-white transition-colors font-bold"
+                            >
                                 {t('login_here')}
                             </Link>
                         </p>
                     </footer>
-                </div>
-            </div>
-
-            {/* Decorative Column */}
-            <div className="hidden lg:block relative overflow-hidden bg-nautical-black order-1 lg:order-2">
-                <Image
-                    src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200"
-                    alt="Experiencia de Vela"
-                    fill
-                    sizes="50vw"
-                    className="object-cover grayscale opacity-40 scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-l from-nautical-black via-transparent to-transparent" />
-
-                <div className="absolute bottom-20 right-20 z-10 text-right">
-                    <h2 className="text-6xl font-display mb-4 italic text-sea-foam">{t('hero_text')}</h2>
-                    <p className="text-accent uppercase tracking-widest text-[10px] font-bold">Getxo Bela Eskola · Est. 1992</p>
                 </div>
             </div>
         </main>
@@ -63,7 +86,7 @@ export default function RegisterPage({
     params: { locale: string }
 }) {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-nautical-black" />}>
+        <Suspense fallback={<div className="min-h-screen bg-[#0D2137]" />}>
             <RegisterPageContent locale={locale} />
         </Suspense>
     );

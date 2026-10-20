@@ -73,47 +73,49 @@ export default function LogbookRequirements() {
         <div className={styles['logbook__divider']} />
 
         {/* Entradas */}
-        {REQUIREMENTS.map((req, i) => {
-          const reqKey = req.id;
-          const title = t(`${reqKey}.title`);
-          const body = t(`${reqKey}.body`);
-          const highlight = req.highlight ? t(`${reqKey}.highlight`) : undefined;
+        <div className={styles['logbook__entries-grid']}>
+          {REQUIREMENTS.map((req, i) => {
+            const reqKey = req.id;
+            const title = t(`${reqKey}.title`);
+            const body = t(`${reqKey}.body`);
+            const highlight = req.highlight ? t(`${reqKey}.highlight`) : undefined;
 
-          return (
-            <motion.div
-              key={req.id}
-              className={styles['logbook__entry']}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Número de entrada */}
-              <span className={styles['logbook__entry-num']}>[{req.number}]</span>
+            return (
+              <motion.div
+                key={req.id}
+                className={styles['logbook__entry']}
+                initial={{ opacity: 0, x: -20 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {/* Número de entrada */}
+                <span className={styles['logbook__entry-num']}>[{req.number}]</span>
 
-              {/* Contenido */}
-              <div className={styles['logbook__entry-body']}>
-                <div className={styles['logbook__entry-header']}>
-                  <span className={styles['logbook__entry-icon']} aria-hidden="true">
-                    {req.icon}
-                  </span>
-                  <span className={styles['logbook__entry-title']}>{title}</span>
+                {/* Contenido */}
+                <div className={styles['logbook__entry-body']}>
+                  <div className={styles['logbook__entry-header']}>
+                    <span className={styles['logbook__entry-icon']} aria-hidden="true">
+                      {req.icon}
+                    </span>
+                    <span className={styles['logbook__entry-title']}>{title}</span>
+                  </div>
+                  <p className={styles['logbook__entry-text']}>{body}</p>
+                  {highlight && (
+                    <span className={styles['logbook__highlight']}>{highlight}</span>
+                  )}
                 </div>
-                <p className={styles['logbook__entry-text']}>{body}</p>
-                {highlight && (
-                  <span className={styles['logbook__highlight']}>{highlight}</span>
-                )}
-              </div>
 
-              {/* Check animado */}
-              <div className={styles['logbook__check']}>
-                <AnimatedCheck
-                  delay={0.5 + i * 0.12}
-                  isVisible={isInView}
-                />
-              </div>
-            </motion.div>
-          );
-        })}
+                {/* Check animado */}
+                <div className={styles['logbook__check']}>
+                  <AnimatedCheck
+                    delay={0.5 + i * 0.12}
+                    isVisible={isInView}
+                  />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
 
         {/* Firma del logbook */}
         <div className={styles['logbook__signature']}>

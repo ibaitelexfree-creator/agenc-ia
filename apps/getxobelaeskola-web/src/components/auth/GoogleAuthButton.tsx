@@ -62,7 +62,7 @@ export default function GoogleAuthButton() {
             type="button"
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="w-full h-12 rounded-xl bg-white border border-black/10 flex items-center justify-center gap-3 text-sea-foam font-bold text-xs uppercase tracking-widest hover:bg-black/[0.03] transition-all active:scale-[0.98] disabled:opacity-50 group"
+            className="w-full h-12 rounded-xl bg-white border border-black/10 flex items-center justify-center gap-3 text-sea-foam hover:text-white font-bold text-xs uppercase tracking-widest hover:bg-black/[0.03] transition-all active:scale-[0.98] disabled:opacity-50 group"
         >
             {loading ? (
                 <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
@@ -87,7 +87,7 @@ export default function GoogleAuthButton() {
                         />
                         <path fill="none" d="M0 0h24v24H0z" />
                     </svg>
-                    <span>{t('google_btn') || 'Continuar con Google'}</span>
+                    <span className="transition-colors group-hover:text-white">{t('google_btn') || 'Continuar con Google'}</span>
                 </>
             )}
         </button>

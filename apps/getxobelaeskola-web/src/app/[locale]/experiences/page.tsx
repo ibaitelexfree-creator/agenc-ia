@@ -97,40 +97,58 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
                 }));
             }
         } else {
-            experiences = (data || []).map(item => ({
-                id: item.id,
-                nombre: item.nombre_es,
-                nombre_eu: item.nombre_eu || item.nombre_es,
-                nombre_en: item.nombre_en || item.nombre_es,
-                nombre_fr: item.nombre_fr || item.nombre_es,
-                slug: item.slug,
-                descripcion: item.descripcion_es,
-                descripcion_eu: item.descripcion_eu || item.descripcion_es,
-                descripcion_en: item.descripcion_en || item.descripcion_es,
-                descripcion_fr: item.descripcion_fr || item.descripcion_es,
-                categoria: item.tipo || 'evento',
-                precio: item.precio,
-                imagen_url: item.slug === 'cumpleanos-navegacion'
-                    ? '/images/IMG_20241016_114549.jpg'
-                    : (item.slug === 'cumpleanos-bigsub' || item.nombre_es?.toLowerCase().includes('bigsup') || item.nombre_en?.toLowerCase().includes('bigsup'))
-                    ? '/images/experiences/birthday-bigsub.jpg'
-                    : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
-                    ? '/images/experiences/birthday-space-rental.jpg'
-                    : (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre_es?.toLowerCase().includes('bono navegación') || item.nombre_es?.toLowerCase().includes('bono navegacion') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
-                    ? '/images/experiences/navigation-voucher.jpg'
-                    : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_en?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
-                    ? '/images/experiences/windsurf-voucher.jpg'
-                    : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
-                    ? '/images/experiences/windsurf-mooring.jpg'
-                    : (item.slug === 'sailboat-mooring' || item.slug?.includes('sailboat') || item.nombre_es?.toLowerCase().includes('velero') || item.nombre_es?.toLowerCase().includes('sailboat') || item.nombre_en?.toLowerCase().includes('sailboat'))
-                    ? '/images/experiences/sailboat-mooring.jpg'
-                    : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre_es?.toLowerCase().includes('canoe') || item.nombre_es?.toLowerCase().includes('piragua') || item.nombre_es?.toLowerCase().includes('atraque'))
-                    ? '/images/about-patio.jpg'
-                    : (item.imagen_url || '/images/home-hero-sailing-action.webp'),
-                duracion: item.duracion_h ? `${item.duracion_h}h` : null,
-                min_participantes: item.min_participantes || item.edad_minima, // Fallback to age or pax if needed
-                activo: true,
-            }));
+            experiences = (data || []).map(item => {
+                const slug = (item.slug || '').toLowerCase();
+                const nombre = (item.nombre_es || item.nombre || '').toLowerCase();
+                let categoria = item.tipo;
+
+                if (!categoria || categoria === 'evento' || categoria === 'all') {
+                    if (slug.startsWith('cumplean') || slug.includes('birthday') || nombre.includes('cumplea')) {
+                        categoria = 'cumpleanos';
+                    } else if (slug.startsWith('atraque') || slug.includes('mooring') || nombre.includes('atraque')) {
+                        categoria = 'atraque';
+                    } else if (slug.startsWith('bono') || slug.includes('voucher') || nombre.includes('bono')) {
+                        categoria = 'bono';
+                    } else {
+                        categoria = 'cumpleanos';
+                    }
+                }
+
+                return {
+                    id: item.id,
+                    nombre: item.nombre_es,
+                    nombre_eu: item.nombre_eu || item.nombre_es,
+                    nombre_en: item.nombre_en || item.nombre_es,
+                    nombre_fr: item.nombre_fr || item.nombre_es,
+                    slug: item.slug,
+                    descripcion: item.descripcion_es,
+                    descripcion_eu: item.descripcion_eu || item.descripcion_es,
+                    descripcion_en: item.descripcion_en || item.descripcion_es,
+                    descripcion_fr: item.descripcion_fr || item.descripcion_es,
+                    categoria,
+                    precio: item.precio,
+                    imagen_url: item.slug === 'cumpleanos-navegacion'
+                        ? '/images/IMG_20241016_114549.jpg'
+                        : (item.slug === 'cumpleanos-bigsub' || item.nombre_es?.toLowerCase().includes('bigsup') || item.nombre_en?.toLowerCase().includes('bigsup'))
+                        ? '/images/experiences/birthday-bigsub.jpg'
+                        : (item.slug?.includes('space') || item.nombre_es?.toLowerCase().includes('espacio') || item.nombre_en?.toLowerCase().includes('space') || item.nombre_es?.toLowerCase().includes('rental'))
+                        ? '/images/experiences/birthday-space-rental.jpg'
+                        : (item.slug === 'bono-navegacion' || item.slug === 'navigation-voucher' || item.nombre_es?.toLowerCase().includes('bono navegación') || item.nombre_es?.toLowerCase().includes('bono navegacion') || item.nombre_en?.toLowerCase().includes('navigation voucher'))
+                        ? '/images/experiences/navigation-voucher.jpg'
+                        : (item.slug === 'bono-windsurf-5' || item.slug === 'windsurf-voucher' || item.nombre_es?.toLowerCase().includes('bono windsurf') || item.nombre_es?.toLowerCase().includes('windsurf voucher') || item.nombre_es?.toLowerCase().includes('windsurf voucher'))
+                        ? '/images/experiences/windsurf-voucher.jpg'
+                        : (item.slug === 'atraque-windsurf' || item.nombre_es?.toLowerCase().includes('atraque windsurf') || item.nombre_en?.toLowerCase().includes('windsurf mooring'))
+                        ? '/images/experiences/windsurf-mooring.jpg'
+                        : (item.slug === 'sailboat-mooring' || item.slug?.includes('sailboat') || item.nombre_es?.toLowerCase().includes('velero') || item.nombre_es?.toLowerCase().includes('sailboat') || item.nombre_en?.toLowerCase().includes('sailboat'))
+                        ? '/images/experiences/sailboat-mooring.jpg'
+                        : (item.slug?.includes('canoe') || item.slug?.includes('atraque') || item.nombre_es?.toLowerCase().includes('canoe') || item.nombre_es?.toLowerCase().includes('piragua') || item.nombre_es?.toLowerCase().includes('atraque'))
+                        ? '/images/about-patio.jpg'
+                        : (item.imagen_url || '/images/home-hero-sailing-action.webp'),
+                    duracion: item.duracion_h ? `${item.duracion_h}h` : null,
+                    min_participantes: item.min_participantes || item.edad_minima, // Fallback to age or pax if needed
+                    activo: true,
+                };
+            });
         }
     } catch (err) {
         console.error('Network error fetching experiences:', err);
@@ -163,27 +181,27 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
     };
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black overflow-x-hidden">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black overflow-x-hidden">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
             {/* Cinematic Header */}
-            <section className="relative pt-20 sm:pt-24 md:pt-32 pb-6 sm:pb-8 overflow-hidden">
+            <section className="relative pt-16 min-[480px]:pt-20 sm:pt-28 md:pt-36 pb-3 min-[480px]:pb-4 sm:pb-8 overflow-hidden w-full">
                 <div className="absolute top-0 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-accent/5 blur-[80px] sm:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-brass-gold/5 blur-[60px] sm:blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+                <div className="container mx-auto px-3 sm:px-6 relative z-10">
                     <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.6em] text-xs sm:text-sm font-bold mb-3 sm:mb-4 block animate-fade-in-up">
+                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.6em] text-[10px] sm:text-sm font-bold mb-1.5 sm:mb-4 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1] sm:leading-[0.95] text-sea-foam mb-4 sm:mb-6 animate-reveal relative z-20 break-words">
-                            {t('title_prefix')} <br />
+                        <h1 className="text-2xl min-[480px]:text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display leading-[1] sm:leading-[0.95] text-sea-foam mb-2 sm:mb-6 animate-reveal relative z-20 break-words">
+                            {t('title_prefix')}{' '}
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-sm sm:text-base md:text-lg leading-relaxed border-l border-sea-foam/10 pl-4 sm:pl-6 md:pl-8 mt-4 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="max-w-2xl text-sea-foam/60 font-light text-xs min-[480px]:text-sm sm:text-base md:text-lg leading-relaxed border-l border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>
@@ -191,16 +209,16 @@ export default async function ExperiencesPage({ params: { locale } }: { params: 
             </section>
 
             {/* Experiences Grid */}
-            <section className="pb-20 sm:pb-32 md:pb-48 relative">
-                <div className="container mx-auto px-4 sm:px-6 relative z-10">
+            <section className="pb-8 sm:pb-12 md:pb-16 relative">
+                <div className="w-full max-w-7xl mx-auto px-2 landscape:px-3 sm:px-6 relative z-10">
                     <ExperiencesClient experiences={experiences} locale={locale} />
                 </div>
 
                 {/* Bottom Note */}
-                <div className="container mx-auto px-4 sm:px-6 mt-16 sm:mt-24 md:mt-32">
-                    <div className="relative group p-6 sm:p-10 md:p-16 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-10 sm:mt-14 md:mt-16">
+                    <div className="relative group p-4 sm:p-6 md:p-8 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
                         <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700" />
-                        <p className="text-sea-foam/60 font-light italic text-sm sm:text-base md:text-lg leading-relaxed max-w-4xl">
+                        <p className="text-sea-foam/60 font-light italic text-xs sm:text-sm md:text-base leading-relaxed max-w-4xl">
                             {t('footer_note')}
                         </p>
                     </div>

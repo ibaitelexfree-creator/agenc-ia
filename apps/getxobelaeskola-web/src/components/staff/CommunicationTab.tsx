@@ -67,6 +67,11 @@ function isoToSpainDatetimeLocal(isoStr?: string): string {
     return formatted.replace(', ', 'T').replace(' ', 'T');
 }
 
+function getSpainNowDatetimeLocal(addMinutes: number = 30): string {
+    const d = new Date(Date.now() + addMinutes * 60 * 1000);
+    return isoToSpainDatetimeLocal(d.toISOString());
+}
+
 function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }: { targetDate?: string; className?: string; theme?: 'dark' | 'light'; onClick?: () => void }) {
     const [now, setNow] = React.useState(() => Date.now());
 
@@ -83,7 +88,7 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
         return (
             <span 
                 onClick={onClick}
-                className={`px-2.5 py-1 text-2xs font-mono font-bold rounded-xs animate-pulse flex items-center gap-1.5 ${onClick ? 'cursor-pointer hover:scale-105 transition-all' : ''} ${theme === 'light' ? 'bg-amber-100 text-amber-900 border border-amber-300' : 'bg-amber-500/30 text-amber-300 border border-amber-500/50'} ${className}`}
+                className={`px-2.5 py-1 text-2xs font-mono font-black rounded-xs animate-pulse flex items-center gap-1.5 ${onClick ? 'cursor-pointer hover:scale-105 transition-all' : ''} bg-amber-400 text-nautical-black border border-amber-500 ${className}`}
                 title={onClick ? '📅 Haz clic para editar la fecha y hora de programación' : undefined}
             >
                 ⏳ Enviando ahora...
@@ -96,7 +101,7 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    const parts = [];
+    const parts: string[] = [];
     if (days > 0) parts.push(`${days}d`);
     parts.push(`${hours.toString().padStart(2, '0')}h`);
     parts.push(`${minutes.toString().padStart(2, '0')}m`);
@@ -110,11 +115,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
         return (
             <span 
                 onClick={onClick}
-                className={`px-2.5 py-1 bg-amber-50 text-amber-900 border border-amber-300 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-xs ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-500 transition-all' : ''} ${className}`} 
+                className={`px-2.5 py-1 bg-amber-400 text-nautical-black border border-amber-500 text-2xs font-mono font-black rounded-xs flex items-center gap-1.5 shadow-xs ${onClick ? 'cursor-pointer hover:scale-105 hover:bg-amber-300 transition-all' : ''} ${className}`} 
                 title={titleTooltip}
             >
                 <span className="animate-pulse">⏳</span>
-                <span>Faltan: <strong className="font-extrabold text-amber-950">{parts.join(' ')}</strong></span>
+                <span>Faltan: <strong className="font-black text-nautical-black">{parts.join(' ')}</strong></span>
             </span>
         );
     }
@@ -122,11 +127,11 @@ function CountdownBadge({ targetDate, className = '', theme = 'dark', onClick }:
     return (
         <span 
             onClick={onClick}
-            className={`px-2.5 py-1 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-2xs font-mono font-bold rounded-xs flex items-center gap-1.5 shadow-sm ${onClick ? 'cursor-pointer hover:scale-105 hover:border-amber-300 transition-all' : ''} ${className}`} 
+            className={`px-2.5 py-1 bg-amber-400 text-nautical-black border border-amber-500 text-2xs font-mono font-black rounded-xs flex items-center gap-1.5 shadow-sm ${onClick ? 'cursor-pointer hover:scale-105 hover:bg-amber-300 transition-all' : ''} ${className}`} 
             title={titleTooltip}
         >
             <span className="animate-pulse">⏳</span>
-            <span>Faltan: <strong className="font-extrabold text-amber-200">{parts.join(' ')}</strong></span>
+            <span>Faltan: <strong className="font-black text-nautical-black">{parts.join(' ')}</strong></span>
         </span>
     );
 }
@@ -141,6 +146,25 @@ interface CommunicationTabProps {
 }
 
 export default function CommunicationTab({ newsletters = [], onSendMessage, isSending, onRefreshNewsletters, subscribersCount = 0 }: CommunicationTabProps) {
+    // Polling effect: if there are newsletters currently "sending" (scheduled but past the scheduled time),
+    // refresh the list every 15 seconds to catch the updated status from the cron job.
+    React.useEffect(() => {
+        if (!onRefreshNewsletters) return;
+        
+        const hasPendingNewsletters = newsletters.some(msg => {
+            if (msg.status !== 'scheduled') return false;
+            if (!msg.scheduled_for) return true; // Scheduled but no date means ASAP
+            return new Date(msg.scheduled_for).getTime() <= Date.now();
+        });
+
+        if (hasPendingNewsletters) {
+            const interval = setInterval(() => {
+                onRefreshNewsletters();
+            }, 15000);
+            return () => clearInterval(interval);
+        }
+    }, [newsletters, onRefreshNewsletters]);
+
     const t = useTranslations('staff_panel');
     
     // New Message Form State
@@ -401,7 +425,17 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="text-3xs uppercase tracking-[0.3em] text-white/30 font-bold">{t('communication.schedule')}</label>
+                            <div className="flex justify-between items-center">
+                                <label className="text-3xs uppercase tracking-[0.3em] text-white/30 font-bold">{t('communication.schedule')}</label>
+                                <button
+                                    type="button"
+                                    onClick={() => setScheduledFor(getSpainNowDatetimeLocal(30))}
+                                    className="text-[10px] text-accent hover:underline font-mono uppercase font-bold"
+                                    title="Sugerir hora oficial de España (Madrid) en +30 min"
+                                >
+                                    🇪🇸 Usar Hora España (+30m)
+                                </button>
+                            </div>
                             <input
                                 type="datetime-local"
                                 value={scheduledFor}
@@ -410,7 +444,7 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                             />
                             {scheduledFor && (
                                 <p className="text-[10px] text-accent font-mono">
-                                    ⏱️ El mensaje quedará programado y podrás editarlo o enviarlo en cualquier momento antes de la fecha.
+                                    ⏱️ El mensaje quedará programado en horario peninsular (España / Madrid) y podrás editarlo antes de la fecha.
                                 </p>
                             )}
                         </div>
@@ -480,8 +514,8 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         {filteredNewsletters.length > 0 ? filteredNewsletters.map((msg) => {
                             const isScheduled = msg.status === 'scheduled' || (!!msg.scheduled_for && new Date(msg.scheduled_for).getTime() > Date.now() && msg.status !== 'sent');
                             const recipientsCount = (msg.recipients_count && msg.recipients_count > 0) ? msg.recipients_count : subscribersCount;
-                            const deliveredCount = msg.delivered_count ?? (msg.status === 'sent' ? Math.max(0, recipientsCount) : 0);
-                            const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 100;
+                            const deliveredCount = msg.delivered_count ?? 0;
+                            const deliveryRate = recipientsCount > 0 ? Math.round((deliveredCount / recipientsCount) * 100) : 0;
 
                             return (
                                 <div 
@@ -498,14 +532,14 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                 {isScheduled ? (
                                                     <span 
                                                         onClick={(e) => { e.stopPropagation(); handleOpenEdit(msg); }}
-                                                        className="px-2.5 py-0.5 bg-amber-500/20 hover:bg-amber-500/40 border border-amber-500/40 hover:border-amber-400 text-amber-400 text-[9px] uppercase tracking-widest font-bold rounded-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
+                                                        className="px-2.5 py-0.5 bg-amber-400 hover:bg-amber-300 border border-amber-500 text-nautical-black text-[9px] uppercase tracking-widest font-black rounded-xs flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105"
                                                         title="📅 Haz clic para editar la fecha y hora de programación"
                                                     >
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-nautical-black animate-ping" />
                                                         Programado ✏️
                                                     </span>
                                                 ) : (
-                                                    <span className="px-2.5 py-0.5 bg-green-500/20 border border-green-500/40 text-green-400 text-[9px] uppercase tracking-widest font-bold rounded-xs">
+                                                    <span className="px-2.5 py-0.5 bg-emerald-400 border border-emerald-500 text-nautical-black text-[9px] uppercase tracking-widest font-black rounded-xs">
                                                         Enviado
                                                     </span>
                                                 )}
@@ -573,17 +607,17 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                                 <span className="underline decoration-red-400/50">
                                                     <ClientDate date={msg.scheduled_for || msg.created_at} format="short" />
                                                 </span>
-                                                <span className="text-[10px] text-amber-300 font-extrabold ml-1 bg-amber-500/20 px-1.5 py-0.5 rounded-xs border border-amber-500/40">✏️ Editar</span>
+                                                <span className="text-[10px] text-white font-black ml-1 bg-white/20 hover:bg-white/30 px-1.5 py-0.5 rounded-xs border border-white/30 transition-colors">✏️ Editar</span>
                                             </div>
                                         ) : (
                                             <div className="flex flex-wrap items-center gap-3 text-white/60">
-                                                <div className="flex items-center gap-2 text-green-400 font-bold bg-green-500/10 border border-green-500/30 px-3 py-1 rounded-xs">
+                                                <div className="flex items-center gap-2 text-nautical-black font-black bg-emerald-400 border border-emerald-500 px-3 py-1 rounded-xs">
                                                     <span>✅ ENVIADO:</span>
                                                     <span><ClientDate date={msg.sent_at || msg.created_at} format="short" /></span>
                                                 </div>
-                                                <div className="flex items-center gap-2 px-3.5 py-1.5 bg-emerald-500/20 border border-emerald-500/50 text-emerald-300 font-mono text-xs font-bold rounded-xs shadow-sm">
+                                                <div className="flex items-center gap-2 px-3.5 py-1.5 bg-emerald-400 border border-emerald-500 text-nautical-black font-mono text-xs font-black rounded-xs shadow-sm">
                                                     <span>📊 {deliveredCount}/{recipientsCount} entregados</span>
-                                                    <span className="text-accent font-black">({deliveryRate}%)</span>
+                                                    <span className="text-nautical-black font-black">({deliveryRate}%)</span>
                                                 </div>
                                             </div>
                                         )}
@@ -653,8 +687,8 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                         {/* Audience / Reach & Metrics Summary */}
                         {(() => {
                             const viewingRecipientsCount = (viewingMsg.recipients_count && viewingMsg.recipients_count > 0) ? viewingMsg.recipients_count : subscribersCount;
-                            const viewingDeliveredCount = viewingMsg.delivered_count ?? (viewingMsg.status === 'sent' ? viewingRecipientsCount : 0);
-                            const viewingDeliveryRate = viewingRecipientsCount > 0 ? Math.round((viewingDeliveredCount / viewingRecipientsCount) * 100) : 100;
+                            const viewingDeliveredCount = viewingMsg.delivered_count ?? 0;
+                            const viewingDeliveryRate = viewingRecipientsCount > 0 ? Math.round((viewingDeliveredCount / viewingRecipientsCount) * 100) : 0;
 
                             return (
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -672,10 +706,10 @@ export default function CommunicationTab({ newsletters = [], onSendMessage, isSe
                                     </div>
                                     <div className="p-6 bg-slate-50 border border-slate-200 rounded-sm">
                                         <span className="text-3xs uppercase tracking-widest text-slate-500 block font-bold mb-2">Tasa de Efectividad</span>
-                                        <span className="text-3xl font-display italic text-red-600 font-bold">
+                                        <span className="text-3xl font-display italic text-slate-900 font-bold">
                                             {viewingDeliveryRate}%
                                         </span>
-                                        <span className="text-[10px] text-red-700 block mt-1 font-semibold">Confirmaciones recibidas</span>
+                                        <span className="text-[10px] text-slate-500 block mt-1 font-semibold">Confirmaciones recibidas</span>
                                     </div>
                                 </div>
                             );

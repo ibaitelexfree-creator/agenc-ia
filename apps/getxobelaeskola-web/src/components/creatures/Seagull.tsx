@@ -32,38 +32,46 @@ export function Seagull({ style, enterDelay = 0, direction = 'left' }: SeagullPr
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
         >
-          {/* Ala izquierda */}
-          <motion.g
-            animate={{ rotateZ: [15, -25], scaleY: [1, 0.6] }}
-            transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-            style={{ transformOrigin: '40px 20px' }}
-          >
-            <path
-              d="M40 20 C30 15 15 10 0 18"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </motion.g>
-          {/* Ala derecha */}
-          <motion.g
-            animate={{ rotateZ: [-15, 25], scaleY: [1, 0.6] }}
-            transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
-            style={{ transformOrigin: '40px 20px' }}
-          >
-            <path
-              d="M40 20 C50 15 65 10 80 18"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              fill="none"
-            />
-          </motion.g>
-          {/* Cuerpo */}
-          <ellipse cx="40" cy="22" rx="5" ry="3" fill="white" opacity="0.9" />
-          {/* Pico */}
-          <path d="M45 22 L50 23 L45 24 Z" fill="var(--gold)" />
+          {/* Unificación completa 100% Geometría y Animación: Alas + Cuerpo + Pico */}
+          <g style={{ transform: 'rotate(-3deg)', transformOrigin: '40px 20px' }}>
+            <motion.g
+              animate={{ y: [0, -3.5, 0] }}
+              transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+            >
+              {/* Ala izquierda (conectada geométricamente al cuerpo) */}
+              <motion.path
+                d="M 37 20 C 25 12 12 8 0 16"
+                stroke="white"
+                strokeWidth="2.8"
+                strokeLinecap="round"
+                fill="none"
+                animate={{ rotateZ: [-12, 10], scaleY: [0.75, 1] }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+                style={{ transformOrigin: '37px 20px' }}
+              />
+
+              {/* Ala derecha (conectada geométricamente al cuerpo) */}
+              <motion.path
+                d="M 43 20 C 55 12 68 8 80 16"
+                stroke="white"
+                strokeWidth="2.8"
+                strokeLinecap="round"
+                fill="none"
+                animate={{ rotateZ: [12, -10], scaleY: [0.75, 1] }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+                style={{ transformOrigin: '43px 20px' }}
+              />
+
+              {/* Cuerpo y Pico (se hunden en sincronía cuando las alas suben) */}
+              <motion.g
+                animate={{ y: [1.8, 0] }}
+                transition={{ duration: 0.6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+              >
+                <ellipse cx="40" cy="20" rx="7.5" ry="4.5" fill="white" opacity="0.98" />
+                <path d="M 47.5 20 L 52.5 21.2 L 47.5 22.4 Z" fill="var(--gold)" />
+              </motion.g>
+            </motion.g>
+          </g>
         </svg>
       </motion.div>
     </motion.div>

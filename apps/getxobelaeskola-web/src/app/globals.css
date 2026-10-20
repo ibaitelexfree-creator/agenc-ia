@@ -47,6 +47,53 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+img,
+video,
+iframe,
+canvas,
+svg,
+object {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+/* iOS Safari Video Fullscreen, Border-Radius Clipping & Controls Fixes */
+video {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Fix iOS Safari bug where video breaks out of rounded/circular frames (rounded-full / border-radius) */
+.overflow-hidden {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  isolation: isolate;
+}
+
+.video-container-rounded,
+.rounded-full,
+div[class*="rounded-full"] {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  overflow: hidden !important;
+  isolation: isolate;
+}
+
+.rounded-full video,
+div[class*="rounded"] > video {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  isolation: isolate;
+  border-radius: inherit;
+}
+
 *:focus {
   outline: none;
 }
@@ -59,18 +106,22 @@
 html,
 body {
   width: 100%;
-  min-width: 192px;
-  max-width: 1920px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
   overflow-x: clip;
   position: relative;
-  background-color: var(--nautical-deep);
+  background-color: #0D2137;
   color: var(--sea-foam);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  scrollbar-gutter: stable;
+  font-size: 1.0925rem; /* +15% (era 0.95rem) */
+  scrollbar-gutter: auto;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   -webkit-overflow-scrolling: touch;
   overflow-wrap: break-word;
   word-break: break-word;
@@ -78,18 +129,44 @@ body {
 
 
 @media (min-width: 768px) {
-
   html,
   body {
-    font-size: 1rem;
+    font-size: 1.15rem; /* +15% (era 1rem) */
   }
 }
 
 @media (min-width: 1024px) {
-
   html,
   body {
-    font-size: 1.05rem;
+    font-size: 1.2075rem; /* +15% (era 1.05rem) */
+  }
+}
+
+@media (min-width: 2560px) {
+  html,
+  body {
+    font-size: 1.4375rem; /* +15% (era 1.25rem) */
+  }
+}
+
+@media (min-width: 3840px) {
+  html,
+  body {
+    font-size: 1.725rem; /* +15% (era 1.5rem) */
+  }
+}
+
+@media (min-width: 5120px) {
+  html,
+  body {
+    font-size: 2.1275rem; /* +15% (era 1.85rem) */
+  }
+}
+
+@media (min-width: 7680px) {
+  html,
+  body {
+    font-size: 2.5875rem; /* +15% (era 2.25rem) */
   }
 }
 
@@ -97,6 +174,8 @@ h1,
 h2,
 h3,
 h4,
+h5,
+h6,
 .font-display {
   font-family: var(--font-display);
   font-weight: 400;
@@ -106,15 +185,27 @@ h4,
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-size: clamp(2.2rem, 5.5vw, 4.95rem); /* +10% */
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-size: clamp(1.76rem, 3.85vw, 3.3rem); /* +10% */
 }
 
 h3 {
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-size: clamp(1.375rem, 2.75vw, 2.2rem); /* +10% */
+}
+
+h4 {
+  font-size: clamp(1.1rem, 2vw, 1.75rem);
+}
+
+h5 {
+  font-size: clamp(1rem, 1.5vw, 1.5rem);
+}
+
+h6 {
+  font-size: clamp(0.875rem, 1.2vw, 1.25rem);
 }
 
 .font-mono {
@@ -149,9 +240,8 @@ h3 {
 .premium-gradient-overlay {
   background: linear-gradient(to bottom,
       transparent 0%,
-      rgba(255, 255, 255, 0.2) 40%,
-      rgba(255, 255, 255, 0.8) 80%,
-      var(--nautical-deep) 100%);
+      transparent 60%,
+      rgba(10, 25, 47, 0.4) 100%);
 }
 
 .text-glimmer {
@@ -175,20 +265,20 @@ h3 {
   font-family: var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.25em;
-  font-size: 0.65rem;
+  font-size: 0.78rem; /* +20% (era 0.65rem) */
   font-weight: 800;
   color: rgba(26, 26, 26, 0.4);
 }
 
 @media (min-width: 768px) {
   .text-technical {
-    font-size: 0.7rem;
+    font-size: 0.84rem; /* +20% (era 0.7rem) */
   }
 }
 
 @media (min-width: 1024px) {
   .text-technical {
-    font-size: 0.75rem;
+    font-size: 0.9rem; /* +20% (era 0.75rem) */
   }
 }
 
@@ -222,7 +312,7 @@ h3 {
   font-family: var(--font-sans);
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  font-size: 0.7rem;
+  font-size: 0.84rem; /* +20% (era 0.7rem) */
   font-weight: 600;
   padding: 0.8rem 1.6rem;
   border: 1px solid var(--accent);
@@ -731,7 +821,42 @@ a:hover {
   color: rgba(26, 26, 26, 0.4) !important;
 }
 
-/* Removed CSS override that forced weather-widget-dark text to white */
+.scroll-engine-root {
+  height: 800dvh;
+  background-color: #0D2137;
+}
+.scroll-engine-inner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #0D2137;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 800dvh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(8, minmax(100svh, 100dvh));
+  background-color: #0D2137;
+  grid-template-areas:
+    "s1"
+    "s2"
+    "s3"
+    "s4"
+    "s5"
+    "blog"
+    "reviews"
+    "cta";
+}
 
 /* 3D Flip Card classes for Section4Why (Nuestra Promesa) */
 :root {
@@ -749,16 +874,16 @@ a:hover {
   --font-body-promise: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
 
   --fs-eyebrow: 0.8125rem;
-  --fs-card-title-front: 1.35rem;
-  --fs-body: 0.92rem;
-  --fs-hook: 0.88rem;
+  --fs-card-title-front: clamp(1.1rem, 1.4vw + 0.5rem, 1.4rem);
+  --fs-body: clamp(0.85rem, 0.8vw + 0.5rem, 0.95rem);
+  --fs-hook: clamp(0.8rem, 0.7vw + 0.5rem, 0.9rem);
 
-  /* Card dimensions made wider and shorter to prevent vertical text overflow */
-  --card-w: 360px;
-  --card-h: 260px;
+  /* Card dimensions with smooth fluid scaling and proportional gap reductions (~15%) */
+  --card-w: 100%;
+  --card-h: clamp(190px, 20vh, 260px);
   --card-radius: 20px;
   --section-max-w: 1240px;
-  --gap: 24px;
+  --gap: clamp(10px, 1.7vw, 24px);
   --flip-duration: 1.2s;
   --flip-easing: cubic-bezier(0.65, 0, 0.35, 1);
 
@@ -766,32 +891,130 @@ a:hover {
   --shadow-hover: 0 20px 40px rgba(0, 27, 58, 0.16);
 }
 
-@media (max-width: 1200px) {
+/* 📱 มือถือเล็ก (320px - 359px) */
+@media (max-width: 359px) {
   :root {
-    --card-w: 290px;
+    --card-w: 100%;
+    --card-h: clamp(160px, 22vh, 200px);
+    --fs-card-title-front: 1.05rem;
+    --fs-hook: 0.75rem;
+    --fs-body: 0.78rem;
+    --fs-eyebrow: 0.7rem;
+  }
+}
+
+/* 📱 มือถือทั่วไป - มือถือมาตรฐาน (360px - 389px) */
+@media (min-width: 360px) and (max-width: 389px) {
+  :root {
+    --card-w: 100%;
+    --card-h: clamp(170px, 23vh, 210px);
+    --fs-card-title-front: 1.1rem;
+    --fs-hook: 0.78rem;
+    --fs-body: 0.8rem;
+    --fs-eyebrow: 0.72rem;
+  }
+}
+
+/* 📱 มือถือใหญ่ - แท็บเล็ตขนาดเล็ก (390px - 767px) */
+@media (min-width: 390px) and (max-width: 767px) {
+  :root {
+    --card-w: 100%;
+    --card-h: clamp(180px, 24vh, 230px);
+    --fs-card-title-front: 1.15rem;
+    --fs-hook: 0.85rem;
+    --fs-body: 0.85rem;
+    --fs-eyebrow: 0.75rem;
+  }
+}
+
+/* 📲 Tablet & Desktop (>= 768px) */
+@media (min-width: 768px) {
+  :root {
+    --card-w: 100%;
+    --card-h: clamp(210px, 26vh, 275px);
+    --gap: clamp(10px, 1.5vw, 20px);
+    --fs-card-title-front: clamp(1.05rem, 1.6vw, 1.25rem);
+    --fs-hook: clamp(0.75rem, 1vw, 0.82rem);
+    --fs-body: clamp(0.72rem, 0.95vw, 0.82rem);
+  }
+
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .promise__item {
+    width: 100%;
+    max-width: 100%;
+    transform: scale(1.03);
+    transform-origin: center center;
+  }
+
+  .flip-card__face--back {
+    padding: 16px 14px !important;
+    justify-content: center !important;
+  }
+
+  .flip-card__label {
+    margin-bottom: 8px !important;
+  }
+
+  .flip-card__desc {
+    line-height: 1.35 !important;
+  }
+}
+
+/* 💻 Laptop Full HD & Desktop Full HD (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  :root {
+    --card-w: 100%;
     --card-h: 250px;
-    --gap: 16px;
+    --gap: 20px;
+    --fs-card-title-front: 1.35rem;
+    --fs-hook: 0.88rem;
+    --fs-body: 0.92rem;
+  }
+}
+
+/* 🖥️ 2K / QHD (2560px - 3839px) */
+@media (min-width: 2560px) and (max-width: 3839px) {
+  :root {
+    --card-w: 100%;
+    --card-h: 280px;
+    --gap: 28px;
+    --fs-card-title-front: 1.55rem;
+    --fs-hook: 1.05rem;
+    --fs-body: 1.1rem;
+    --fs-eyebrow: 0.95rem;
+  }
+}
+
+/* 🖥️ 4K (3840px+) */
+@media (min-width: 3840px) {
+  :root {
+    --card-w: 100%;
+    --card-h: 340px;
+    --gap: 40px;
+    --fs-card-title-front: 1.95rem;
+    --fs-hook: 1.3rem;
+    --fs-body: 1.35rem;
+    --fs-eyebrow: 1.15rem;
   }
 }
 
 /* Height-based scaling to prevent overflow on smaller displays/zooms */
-@media (max-height: 850px) {
+@media (max-height: 850px) and (min-width: 768px) {
   :root {
-    --card-w: 310px;
-    --card-h: 230px;
-    --gap: 16px;
-    --fs-card-title-front: 1.2rem;
-    --fs-hook: 0.82rem;
+    --card-h: 220px;
+    --fs-card-title-front: 1.15rem;
+    --fs-hook: 0.8rem;
   }
 }
 
-@media (max-height: 720px) {
+@media (max-height: 720px) and (min-width: 768px) {
   :root {
-    --card-w: 280px;
-    --card-h: 210px;
-    --gap: 12px;
-    --fs-card-title-front: 1.1rem;
-    --fs-hook: 0.78rem;
+    --card-h: 200px;
+    --fs-card-title-front: 1.05rem;
+    --fs-hook: 0.76rem;
   }
 }
 
@@ -804,18 +1027,29 @@ a:hover {
 .promise {
   grid-area: s5;
   background: var(--color-off-white);
-  padding: clamp(16px, 4vh, 48px) 24px;
+  padding: clamp(1.5rem, 4vh, 3rem) clamp(1rem, 4vw, 3rem);
   position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  width: 100%;
+  min-height: clamp(450px, 80vh, 900px);
+  height: auto;
+  max-height: none;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  overflow: visible;
+}
+
+@media (max-height: 420px) {
+  .s4-top-wave-container,
+  .s3-s4-extension-curve {
+    display: none !important;
+  }
 }
 
 .promise__inner {
-  max-width: var(--section-max-w);
+  max-width: var(--gbe-container-max, 1400px);
   margin: 0 auto;
   text-align: center;
   width: 100%;
@@ -842,33 +1076,242 @@ a:hover {
 
 .promise__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gap);
+  grid-template-columns: 1fr;
+  gap: calc(1% + var(--gap, 16px));
   justify-items: center;
+  align-items: stretch;
   width: 100%;
 }
 
-@media (max-width: 900px) {
+.promise__item {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1023px) {
+  .promise {
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding: clamp(1.25rem, 3vh, 2.5rem) 16px;
+  }
   .promise__grid { 
     grid-template-columns: 1fr;
-    gap: 16px;
-    max-height: calc(100vh - 160px);
-    overflow-y: auto;
-    padding: 8px;
-  }
-  .promise {
-    padding: 32px 16px;
+    gap: clamp(12px, 2vw, 24px);
   }
   .promise__title {
-    margin-bottom: 16px;
+    margin-bottom: clamp(12px, 2.5vh, 24px);
   }
 }
 
-@media (max-width: 768px) {
-  .flip-card-wrapper {
-    width: 80vw !important;
-    max-width: 80vw !important;
+@media (min-width: 768px) {
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* 📱 Small Landscape / Low Height screens (e.g. 586x320px) */
+@media (max-height: 480px) and (orientation: landscape) {
+  .promise {
+    min-height: auto !important;
+    height: auto !important;
+    padding-top: clamp(0.25rem, 1vh, 0.5rem) !important;
+    padding-bottom: clamp(0.25rem, 1vh, 0.5rem) !important;
+  }
+  .promise__title {
+    font-size: clamp(0.85rem, 3vh, 1.1rem) !important;
+    margin-bottom: clamp(2px, 0.8vh, 6px) !important;
+  }
+  .promise__grid {
+    gap: clamp(4px, 1vw, 10px) !important;
+  }
+  .flip-card {
+    height: clamp(120px, 38vh, 150px) !important;
+  }
+  .flip-card__face {
+    padding: clamp(4px, 1vh, 8px) clamp(6px, 1vw, 10px) !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.78rem, 2.5vh, 0.9rem) !important;
+    margin-bottom: 1px !important;
+  }
+  .flip-card__hook,
+  .flip-card__desc {
+    font-size: clamp(0.62rem, 2vh, 0.72rem) !important;
+    line-height: 1.2 !important;
+  }
+  .flip-card__icon {
+    width: 22px !important;
+    height: 22px !important;
+    margin-bottom: 1px !important;
+  }
+  .flip-card__icon svg {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  .promise__inner {
+    position: relative !important;
+    z-index: 10 !important;
+  }
+  .s4-s5-wave-extension {
+    position: absolute !important;
+    top: 0 !important;
+    bottom: auto !important;
+    transform: translateY(-82%) !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+}
+
+/* 📱 Very Small & Mobile Screens (< 768px) */
+@media (max-width: 767px) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(1.5rem, 4vh, 3rem) !important;
+    padding-bottom: clamp(1.5rem, 4vh, 3rem) !important;
+    padding-left: clamp(1rem, 3vw, 2rem) !important;
+    padding-right: clamp(1rem, 3vw, 2rem) !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    position: relative !important;
+  }
+}
+
+/* 📱 Very Small Screens (e.g. < 586px Portrait) */
+@media (max-width: 585px) and (orientation: portrait) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding: clamp(1.5rem, 3.5vh, 2.5rem) 16px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+  .promise__title {
+    font-size: clamp(1.1rem, 4.2vw, 1.45rem) !important;
+    margin-bottom: clamp(12px, 2.5vh, 18px) !important;
+    text-align: center !important;
+  }
+  .promise__grid {
+    grid-template-columns: 1fr !important;
+    gap: clamp(12px, 2.5vh, 20px) !important;
+    width: 100% !important;
+    max-width: clamp(240px, 68vw, 300px) !important;
     margin: 0 auto !important;
+  }
+  .flip-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(10px, 2.5vw, 16px) clamp(10px, 2.5vw, 16px) !important;
+    justify-content: center !important;
+    border-radius: var(--card-radius) !important;
+    box-sizing: border-box !important;
+  }
+  .flip-card__icon {
+    width: clamp(34px, 7vw, 44px) !important;
+    height: clamp(34px, 7vw, 44px) !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
+  }
+  .flip-card__icon svg {
+    width: clamp(18px, 4vw, 24px) !important;
+    height: clamp(18px, 4vw, 24px) !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.88rem, 2.8vw, 1.05rem) !important;
+    margin-bottom: clamp(2px, 0.5vh, 4px) !important;
+    line-height: 1.15 !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.72rem, 2.2vw, 0.82rem) !important;
+    line-height: 1.3 !important;
+    margin-bottom: clamp(4px, 1vh, 8px) !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.66rem, 2vw, 0.74rem) !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.7rem, 2.2vw, 0.82rem) !important;
+    margin-bottom: clamp(3px, 0.8vh, 6px) !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.68rem, 2.1vw, 0.78rem) !important;
+    line-height: 1.3 !important;
+  }
+}
+
+/* 📱 Tablet Portrait & Medium Screens (586px - 767px): 3 Square Cards side-by-side */
+@media (min-width: 586px) and (max-width: 767px) {
+  .promise {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-bottom: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-left: clamp(10px, 2.5vw, 20px) !important;
+    padding-right: clamp(10px, 2.5vw, 20px) !important;
+  }
+  .promise__title {
+    font-size: clamp(1.15rem, 3.2vw, 1.45rem) !important;
+    margin-bottom: clamp(12px, 2.5vh, 20px) !important;
+  }
+  .promise__grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: clamp(8px, 1.8vw, 14px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .flip-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+    min-height: auto !important;
+    margin: 0 auto !important;
+  }
+  .flip-card__face {
+    padding: clamp(6px, 1.2vw, 10px) clamp(6px, 1.2vw, 10px) !important;
+    justify-content: center !important;
+  }
+  .flip-card__icon {
+    width: clamp(26px, 4.5vw, 34px) !important;
+    height: clamp(26px, 4.5vw, 34px) !important;
+    margin-bottom: clamp(2px, 0.5vw, 5px) !important;
+  }
+  .flip-card__icon svg {
+    width: clamp(14px, 2.5vw, 18px) !important;
+    height: clamp(14px, 2.5vw, 18px) !important;
+  }
+  .flip-card__title {
+    font-size: clamp(0.74rem, 1.8vw, 0.88rem) !important;
+    margin-bottom: 2px !important;
+    line-height: 1.15 !important;
+  }
+  .flip-card__hook {
+    font-size: clamp(0.58rem, 1.4vw, 0.7rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: clamp(2px, 0.6vw, 5px) !important;
+  }
+  .flip-card__cta {
+    font-size: clamp(0.55rem, 1.2vw, 0.64rem) !important;
+  }
+  .flip-card__label {
+    font-size: clamp(0.6rem, 1.3vw, 0.7rem) !important;
+    margin-bottom: 2px !important;
+  }
+  .flip-card__desc {
+    font-size: clamp(0.56rem, 1.3vw, 0.66rem) !important;
+    line-height: 1.2 !important;
   }
 }
 
@@ -883,8 +1326,23 @@ a:hover {
 
   width: 100%;
   max-width: var(--card-w);
-  height: var(--card-h);
+  aspect-ratio: 1 / 1;
+  height: auto;
   perspective: 1600px;
+}
+
+@media (min-width: 768px) {
+  .flip-card {
+    aspect-ratio: 1 / 1 !important;
+    height: auto !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .promise__grid {
+    max-width: 75% !important;
+    margin: 0 auto !important;
+  }
 }
 
 .flip-card__inner {
@@ -926,15 +1384,13 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 20px; /* reduced padding to fit more text */
+  padding: clamp(14px, 2vw, 24px) clamp(12px, 1.8vw, 20px);
   box-shadow: var(--shadow-rest);
   transition: box-shadow var(--flip-duration) var(--flip-easing);
-  /* contexto 3D propio para que los hijos puedan "despegarse" con translateZ */
   transform-style: preserve-3d;
+  box-sizing: border-box;
 }
 
-/* Efecto de profundidad: el icono y el texto flotan por delante
-   del fondo de la tarjeta (igual que el ejemplo de referencia). */
 .flip-card__icon,
 .flip-card__title,
 .flip-card__hook,
@@ -957,20 +1413,21 @@ a:hover {
 .flip-card__face--back {
   background: linear-gradient(160deg, var(--color-navy-900) 0%, var(--color-navy-700) 100%);
   transform: rotateY(180deg);
-  justify-content: flex-start;
-  padding-top: 32px; /* reduced padding for description */
+  justify-content: center;
+  padding: clamp(14px, 2vw, 24px) clamp(12px, 1.8vw, 20px);
 }
 
 .flip-card__icon {
-  width: 64px; /* slightly smaller icon */
-  height: 64px;
+  width: clamp(44px, 4.5vw, 64px);
+  height: clamp(44px, 4.5vw, 64px);
+  flex-shrink: 0;
   border-radius: 50%;
   background: var(--color-gold-soft);
   color: var(--color-navy-900);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: clamp(10px, 1.5vw, 24px);
   transition: transform var(--flip-duration) var(--flip-easing);
 }
 
@@ -983,16 +1440,18 @@ a:hover {
   font-family: var(--font-display-promise);
   font-size: var(--fs-card-title-front);
   color: var(--color-navy-900);
-  margin: 0 0 12px;
+  margin: 0 0 clamp(6px, 0.8vw, 12px);
   font-weight: 600;
+  text-align: center;
 }
 
 .flip-card__hook {
   font-family: var(--font-body-promise);
   font-size: var(--fs-hook);
   color: var(--color-ink-soft);
-  line-height: 1.5;
-  margin: 0 0 20px;
+  line-height: 1.45;
+  margin: 0 0 clamp(10px, 1.4vw, 20px);
+  text-align: center;
 }
 
 .flip-card__cta {
@@ -1001,6 +1460,7 @@ a:hover {
   font-weight: 600;
   color: var(--color-gold);
   letter-spacing: 0.02em;
+  text-align: center;
 }
 
 .flip-card__label {
@@ -1009,7 +1469,8 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--color-gold);
-  margin: 0 0 16px;
+  margin: 0 0 clamp(8px, 1.2vw, 16px);
+  text-align: center;
 }
 
 .flip-card__desc {
@@ -1017,7 +1478,7 @@ a:hover {
   font-size: var(--fs-body);
   color: var(--color-white);
   opacity: 0.92;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
   text-align: center;
 }
@@ -1074,4 +1535,399 @@ iframe[id*="equalweb"] {
 .equalweb-wrapper *,
 .interdeal-wrapper * {
   pointer-events: auto !important;
+}
+
+/* Clean responsive adjustments for hero 5 video blobs and hero text container */
+@media (min-width: 1367px) and (max-width: 3200px) {
+  .hero-video-blobs-container {
+    transform: translate(-50%, 0px);
+  }
+}
+
+/* 🛡️ Safeguard: Prevent hero video blobs from overlapping text on height-constrained viewports */
+@media (max-height: 740px) and (min-width: 600px) {
+  .hero-blobs-grid {
+    transform: scale(clamp(0.45, 65vw / 1024, 0.70)) !important;
+    transform-origin: center bottom !important;
+  }
+  .hero-text-container {
+    margin-top: -15px !important;
+  }
+}
+
+/* ==========================================================================
+   🌐 UNIFIED GLOBAL RESPONSIVE SYSTEM (VIEWPORT RANGE BASED)
+   ========================================================================== */
+
+/* 📱 Layout for 5 Hero Video Blobs - Fluid Viewport System */
+.hero-blobs-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(6.84px, 1.71vw, 30.78px);
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  transform: none;
+}
+
+/* 📱 3+2 Grid Layout for Mobile & Tablet Screens (< 1024px Portrait): 3 items top row, 2 items bottom row */
+@media (max-width: 1023px) and (orientation: portrait) {
+  div.hero-blobs-grid,
+  .hero-blobs-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    row-gap: 14px !important;
+    column-gap: 10px !important;
+    justify-items: center !important;
+    align-items: center !important;
+    max-width: min(520px, 96vw) !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(1),
+  div.hero-blobs-grid > *:nth-child(2),
+  div.hero-blobs-grid > *:nth-child(3),
+  .hero-blobs-grid > *:nth-child(1),
+  .hero-blobs-grid > *:nth-child(2),
+  .hero-blobs-grid > *:nth-child(3) {
+    grid-column: span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(4),
+  .hero-blobs-grid > *:nth-child(4) {
+    grid-column: 2 / span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+
+  div.hero-blobs-grid > *:nth-child(5),
+  .hero-blobs-grid > *:nth-child(5) {
+    grid-column: 4 / span 2 !important;
+    width: 100% !important;
+    justify-self: center !important;
+  }
+}
+
+/* 📱 Specific 320px - 586px Small Mobile Viewport System (Strict 3+2 Layout Alignment in Portrait) */
+@media (min-width: 320px) and (max-width: 586px) and (orientation: portrait) {
+  div.hero-video-blobs-container,
+  .hero-video-blobs-container {
+    bottom: calc(clamp(12px, 3vh, 36px) + env(safe-area-inset-bottom, 0px)) !important;
+    padding: 0 8px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
+  div.hero-blobs-grid,
+  .hero-blobs-grid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important;
+    row-gap: clamp(8px, 2vh, 12px) !important;
+    column-gap: clamp(4px, 1.5vw, 8px) !important;
+    justify-items: center !important;
+    align-items: center !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+}
+
+/* 📐 RANGE 4: Tablet / iPad System (iPad Gen 10/11, Air, Pro - 768px to 1366px Portrait): */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: portrait) {
+  .hero-text-container {
+    transform: translateY(-2vh) !important;
+  }
+
+  .hero-video-blobs-container {
+    bottom: calc(clamp(24px, 4vh, 60px) + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+/* 🖥️ Fluid Viewport System for Hero & Landing Sections: Pure CSS Grid/Flexbox without scale() hacks */
+.hero-text-container {
+  width: 100%;
+  max-width: var(--gbe-container-max, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.hero-video-blobs-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-blobs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  width: 100%;
+}
+
+
+.whatsapp-button-floating {
+  position: fixed !important;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px)) !important;
+  right: calc(24px + env(safe-area-inset-right, 0px)) !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 99999 !important;
+  transform: translateZ(0) !important;
+  will-change: transform !important;
+}
+
+/* 📱 Floating WhatsApp Button Rule: Hide on mobile (< 768px), show on tablet & desktop (>= 768px) */
+@media (max-width: 767px) {
+  .whatsapp-button-floating {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL RESPONSIVE ARCHITECTURE & UNIFIED CONTAINER SYSTEM
+   ========================================================================== */
+html,
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+#main-content {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Global Container Utility: Enforces uniform width and horizontal margins across all pages & sections */
+.global-container {
+  width: 100%;
+  max-width: var(--gbe-container-max, 1400px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
+  padding-right: var(--gbe-container-px, clamp(1rem, 4vw, 3rem));
+  box-sizing: border-box;
+}
+
+/* Fluid Global Section System: Eliminates rigid 100dvh capping to prevent content clipping */
+.global-section,
+.section-1-hero,
+.promise,
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(350px, 75vh, 900px);
+  height: auto;
+  max-height: none;
+  padding-top: var(--gbe-section-py, clamp(1.5rem, 3.5vh, 4.5rem));
+  padding-bottom: var(--gbe-section-py, clamp(1.5rem, 3.5vh, 4.5rem));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+}
+
+@media (max-width: 767px) {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    min-height: auto;
+    padding-top: clamp(1.25rem, 3vh, 3rem);
+    padding-bottom: clamp(1.25rem, 3vh, 3rem);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 700px) {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    min-height: auto;
+    height: auto;
+    max-height: none;
+    padding-top: clamp(2rem, 6vh, 3.5rem) !important;
+    padding-bottom: clamp(0.5rem, 2vh, 1.25rem) !important;
+    overflow: visible;
+  }
+}
+
+section {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ==========================================================================
+   COURSES & RENTALS RESPONSIVE GRID SYSTEM (REAL DEVICE GUARANTEE)
+   ========================================================================== */
+.courses-grid-system,
+.rentals-grid-system {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 1.25rem !important;
+}
+
+@media screen and (min-width: 586px) {
+  .courses-grid-system,
+  .rentals-grid-system {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+
+
+@media screen and (max-height: 500px) and (min-aspect-ratio: 1/1) {
+  .courses-header-section {
+    padding-top: clamp(6rem, 10vh, 8rem) !important;
+    padding-bottom: 0.5rem !important;
+  }
+  .courses-container-padding {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+/* 🌊 Elevated Blobs (7% / 7vh elevation for primary Home) */
+.hero-video-blobs-container.blobs-elevated {
+  transform: translate(-50%, -7vh) !important;
+  margin-bottom: 0 !important;
+}
+
+/* ==========================================================================
+   GLOBAL FLUID RESPONSIVE SYSTEM (9 BREAKPOINTS PORTRAIT & LANDSCAPE)
+   ========================================================================== */
+
+/* 1. Fluid Layout System & Section Heights */
+.global-section,
+.section-1-hero,
+.promise,
+.section-cta,
+.section-2-identity,
+.section-3-adapts,
+.section-3-path,
+[class*="Blog_section"],
+[class*="Reviews_section"] {
+  width: 100%;
+  max-width: 100%;
+  min-height: clamp(320px, 75vh, 900px);
+  height: auto;
+  max-height: none;
+  padding-top: var(--gbe-section-py, clamp(1.5rem, 4vh, 4.5rem));
+  padding-bottom: var(--gbe-section-py, clamp(1.5rem, 4vh, 4.5rem));
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* 2. Short Landscape Viewports (Mobile & Small Tablet Landscape: height <= 600px) */
+@media (orientation: landscape) and (max-height: 600px) {
+  .global-section,
+  .section-1-hero,
+  .promise,
+  .section-cta,
+  .section-2-identity,
+  .section-3-adapts,
+  .section-3-path,
+  [class*="Blog_section"],
+  [class*="Reviews_section"] {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(3.8rem, 14vh, 5rem) !important;
+    padding-bottom: clamp(1rem, 3vh, 2rem) !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .s2-identity-container,
+  .s2-curved-content,
+  .s3-adapts-container,
+  .s3-curved-content,
+  .promise__inner {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .s2-identity-title,
+  .s2-curved-title,
+  .s3-adapts-title,
+  .s3-curved-title {
+    font-size: clamp(1.1rem, 4.8vh, 1.6rem) !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .s2-identity-p,
+  .s2-curved-p,
+  .s3-adapts-subtitle,
+  .s3-curved-p {
+    font-size: clamp(0.72rem, 3.5vh, 0.9rem) !important;
+    line-height: 1.25 !important;
+  }
+}
+
+/* 3. Global Modal Responsiveness (All Viewports) */
+.s2-modal-card,
+.s3-modal-card,
+[class*="modal-card"] {
+  max-height: calc(100vh - 2rem) !important;
+  max-height: 90dvh !important;
+  overflow-y: auto !important;
+  padding: clamp(1.25rem, 4vw, 3rem) !important;
+  margin: auto !important;
+}
+
+/* 4. Mobile Navbar Logo Clearance (< 950px: Guaranteed Zero Overlap & Strict Top/Bottom Bounds) */
+@media (max-width: 950px) {
+  .section-2-identity,
+  .section-3-adapts {
+    padding-top: clamp(4rem, 12vh, 5.5rem) !important;
+    padding-bottom: clamp(1.5rem, 4vh, 2.5rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  .s2-identity-container,
+  .s2-curved-content,
+  .s3-adapts-container,
+  .s3-curved-content {
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
 }

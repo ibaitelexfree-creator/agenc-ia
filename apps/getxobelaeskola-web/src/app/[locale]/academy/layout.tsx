@@ -16,7 +16,7 @@ export default function AcademyLayout({
     params: { locale: string };
 }) {
     return (
-        <div className="min-h-screen bg-nautical-black relative">
+        <div className="min-h-screen bg-[#0D2137] text-white relative">
             {children}
             <Chatbot />
         </div>

@@ -50,30 +50,33 @@ export default function ScrollToTop() {
             onClick={scrollToTop}
             style={{
                 position: 'fixed',
-                bottom: '24px',
-                right: '24px',
+                bottom: 'calc(80px + env(safe-area-inset-bottom, 0px))',
+                right: 'calc(24px + env(safe-area-inset-right, 0px))',
                 zIndex: 9999,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: '60px',
-                height: '60px',
+                width: '44px',
+                height: '44px',
                 borderRadius: '50%',
                 backgroundColor: '#A91D22', // Rojo granate corporativo
                 boxShadow: '0 4px 16px rgba(169, 29, 34, 0.3)',
                 cursor: 'pointer',
                 border: 'none',
                 color: 'white',
+                contain: 'layout paint style',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                overflow: 'hidden',
             }}
             className={`transition-all duration-500 hover:scale-110 group ${isVisible && !isExternallyHidden ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-50 pointer-events-none'
                 }`}
             aria-label="Volver al inicio de la página"
         >
-            <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-25 group-hover:opacity-40" />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="26"
-                height="26"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

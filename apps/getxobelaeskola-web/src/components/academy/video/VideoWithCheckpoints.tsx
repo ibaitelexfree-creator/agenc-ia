@@ -217,12 +217,12 @@ export default function VideoWithCheckpoints({
     return (
         <div className="relative w-full aspect-video bg-black rounded-lg overflow-hidden shadow-2xl border border-white/10 group" ref={containerRef}>
             {videoType === 'youtube' ? (
-                <div id="youtube-player" className="w-full h-full" />
+                <div id="youtube-player" className="w-full h-full object-contain" />
             ) : (
                 <video
                     ref={playerRef}
                     src={videoUrl}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     controls
                     playsInline
                     poster={poster}

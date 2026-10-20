@@ -39,20 +39,43 @@ const content = {
   }
 };
 
-export default function ReviewsHeader() {
+interface ReviewsHeaderProps {
+  layoutVariant?: 'default' | 'compact' | 'ultra-compact'
+}
+
+export default function ReviewsHeader({ layoutVariant = 'default' }: ReviewsHeaderProps = {}) {
   const locale = useLocale() as 'es' | 'eu' | 'en' | 'fr';
   const activeContent = content[locale] || content.es;
 
+  const isCompact = layoutVariant === 'compact' || layoutVariant === 'ultra-compact';
+  const isUltra = layoutVariant === 'ultra-compact';
+
   return (
-    <div className={styles.headerGrid}>
-      <h2 className={styles.headline}>
+    <div 
+      className={styles.headerGrid}
+      style={isCompact ? {
+        gap: isUltra ? 'clamp(12px, 2vw, 20px)' : 'clamp(16px, 2.5vw, 28px)',
+      } : undefined}
+    >
+      <h2 
+        className={styles.headline}
+        style={isCompact ? {
+          fontSize: isUltra ? 'clamp(17px, 2.3vw, 26px)' : 'clamp(18px, 2.6vw, 30px)',
+          lineHeight: 1.15,
+        } : undefined}
+      >
         {activeContent.headline}
       </h2>
-      <div className={styles.headerLines}>
-        <p>{activeContent.line1}</p>
-        <p>{activeContent.line2}</p>
-        <p>{activeContent.line3}</p>
-        <p>
+      <div 
+        className={styles.headerLines}
+        style={isCompact ? {
+          fontSize: isUltra ? '12px' : '13px',
+        } : undefined}
+      >
+        <p style={isCompact ? { marginBottom: '2px' } : undefined}>{activeContent.line1}</p>
+        <p style={isCompact ? { marginBottom: '2px' } : undefined}>{activeContent.line2}</p>
+        <p style={isCompact ? { marginBottom: '2px' } : undefined}>{activeContent.line3}</p>
+        <p style={isCompact ? { marginBottom: '0' } : undefined}>
           {activeContent.line4Pre}
           <CountUp to={100} suffix="%" />
           {activeContent.line4Post}

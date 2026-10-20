@@ -1,17 +1,22 @@
 // CentrosHero.tsx
 import { motion, useReducedMotion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { fadeUp, staggerContainer, scaleIn } from '@/lib/motionPresets';
 import styles from '../CentrosEscolares.module.css';
 
 interface CentrosHeroProps {
-  onLearnMoreClick: () => void;
   onReserveClick: () => void;
 }
 
-export default function CentrosHero({ onLearnMoreClick, onReserveClick }: CentrosHeroProps) {
+export default function CentrosHero({ onReserveClick }: CentrosHeroProps) {
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations('centros_escolares.hero');
 
-  const titleLines = ["La mar como", "herramienta", "educativa."];
+  const titleLines = [
+    t('title_line_1'),
+    t('title_line_2'),
+    t('title_line_3')
+  ];
 
   return (
     <section className={styles['hero-section']}>
@@ -23,7 +28,7 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          CENTROS ESCOLARES · ASOCIACIONES
+          {t('eyebrow')}
         </motion.span>
 
         {/* Staggered Title */}
@@ -51,7 +56,7 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          Acercamos la mar a los centros educativos y asociaciones a través de experiencias vivenciales donde deporte, ciencia y trabajo en equipo se unen en un entorno real y de confianza.
+          {t('subtitle')}
         </motion.p>
 
         {/* CTAs */}
@@ -68,17 +73,7 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
             onClick={onReserveClick}
             className={styles['btn-primary']}
           >
-            📧 Reservar fecha
-          </motion.button>
-
-          <motion.button
-            variants={shouldReduceMotion ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : fadeUp}
-            whileHover={shouldReduceMotion ? {} : { scale: 1.04, y: -2 }}
-            whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
-            onClick={onLearnMoreClick}
-            className={styles['btn-secondary']}
-          >
-            ↓ Saber más
+            {t('btn_reserve')}
           </motion.button>
         </motion.div>
 
@@ -95,8 +90,8 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
             whileHover={shouldReduceMotion ? {} : { y: -4 }}
             className={styles['stat-pill']}
           >
-            <span className={styles['pill-num']}>👥 Hasta 60</span>
-            <span className={styles['pill-label']}>Alumnos por día</span>
+            <span className={styles['pill-num']}>{t('pill_students_num')}</span>
+            <span className={styles['pill-label']}>{t('pill_students_label')}</span>
           </motion.div>
 
           <motion.div
@@ -104,8 +99,8 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
             whileHover={shouldReduceMotion ? {} : { y: -4 }}
             className={styles['stat-pill']}
           >
-            <span className={styles['pill-num']}>⏱️ 3 Horas</span>
-            <span className={styles['pill-label']}>De jornada vivencial</span>
+            <span className={styles['pill-num']}>{t('pill_duration_num')}</span>
+            <span className={styles['pill-label']}>{t('pill_duration_label')}</span>
           </motion.div>
 
           <motion.div
@@ -113,8 +108,8 @@ export default function CentrosHero({ onLearnMoreClick, onReserveClick }: Centro
             whileHover={shouldReduceMotion ? {} : { y: -4 }}
             className={styles['stat-pill']}
           >
-            <span className={styles['pill-num']}>🪙 15 €</span>
-            <span className={styles['pill-label']}>Por alumno</span>
+            <span className={styles['pill-num']}>{t('pill_price_num')}</span>
+            <span className={styles['pill-label']}>{t('pill_price_label')}</span>
           </motion.div>
         </motion.div>
       </div>

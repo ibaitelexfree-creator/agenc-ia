@@ -89,16 +89,10 @@ export default function UdalekuakCTA() {
           className={styles.ctaButtons}
         >
           <Link
-            href={`/${locale}/contacto?motivo=udalekuak`}
+            href={`/${locale}/contacto/localizacion`}
             className={styles.btnPrimary}
           >
             {t('btn_enroll')}
-          </Link>
-          <Link
-            href={`/${locale}/contacto`}
-            className={styles.btnSecondary}
-          >
-            {t('btn_info')}
           </Link>
         </motion.div>
       </div>

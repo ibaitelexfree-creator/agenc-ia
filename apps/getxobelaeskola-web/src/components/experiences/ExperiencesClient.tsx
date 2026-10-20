@@ -23,7 +23,7 @@ interface Experience {
     activo: boolean;
 }
 
-const CATEGORIES = ['all', 'evento', 'taller', 'cumpleanos', 'atraque', 'bono', 'visita'] as const;
+const CATEGORIES = ['all', 'cumpleanos', 'atraque', 'bono'] as const;
 type Category = typeof CATEGORIES[number];
 
 export default function ExperiencesClient({
@@ -37,8 +37,14 @@ export default function ExperiencesClient({
     const [selectedCategory, setSelectedCategory] = useState<Category>('all');
     const [searchQuery, setSearchQuery] = useState('');
 
+    const CATEGORY_ORDER: Record<string, number> = {
+        cumpleanos: 1,
+        atraque: 2,
+        bono: 3,
+    };
+
     const filteredExperiences = useMemo(() => {
-        return experiences.filter(exp => {
+        const list = experiences.filter(exp => {
             const matchesCategory = selectedCategory === 'all' || exp.categoria === selectedCategory;
 
             const name = (locale === 'eu' ? exp.nombre_eu : locale === 'en' ? exp.nombre_en : exp.nombre) || exp.nombre;
@@ -50,6 +56,19 @@ export default function ExperiencesClient({
 
             return matchesCategory && matchesSearch;
         });
+
+        if (selectedCategory === 'all') {
+            return [...list].sort((a, b) => {
+                const orderA = CATEGORY_ORDER[a.categoria] ?? 99;
+                const orderB = CATEGORY_ORDER[b.categoria] ?? 99;
+                if (orderA !== orderB) {
+                    return orderA - orderB;
+                }
+                return (a.precio || 0) - (b.precio || 0);
+            });
+        }
+
+        return list;
     }, [experiences, selectedCategory, searchQuery, locale]);
 
     if (experiences.length === 0) {
@@ -93,17 +112,17 @@ export default function ExperiencesClient({
                 {/* Filters */}
                 <div className="w-full lg:w-auto flex items-center lg:ml-auto lg:mr-6 xl:mr-12 max-w-full overflow-hidden">
                     <div className="w-full flex items-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-sea-foam/[0.02] backdrop-blur-xl border border-sea-foam/10 rounded-2xl sm:rounded-full max-w-full overflow-x-auto no-scrollbar">
-                        <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 shrink-0">
-                            <Filter className="w-3.5 h-3.5 text-accent" />
-                            <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 border-r border-sea-foam/10 pr-2.5 sm:pr-3">Filtrar</span>
+                        <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1 shrink-0 border-r border-sea-foam/10">
+                            <Filter className="w-3.5 h-3.5 text-accent shrink-0" />
+                            <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-sea-foam/40 pr-1">Filtrar</span>
                         </div>
-                        <div className="flex items-center gap-1 sm:gap-1.5 shrink-0 overflow-x-auto no-scrollbar py-0.5">
+                        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 overflow-x-auto no-scrollbar py-1 px-1">
                             {CATEGORIES.map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat)}
-                                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.1em] sm:tracking-[0.15em] font-black transition-all duration-500 whitespace-nowrap shrink-0 ${selectedCategory === cat
-                                            ? 'bg-accent text-nautical-black shadow-lg shadow-accent/20 scale-105'
+                                    className={`px-3 sm:px-4 py-1.5 rounded-full text-[9px] uppercase tracking-[0.1em] sm:tracking-[0.15em] font-black transition-all duration-300 whitespace-nowrap shrink-0 ${selectedCategory === cat
+                                            ? 'bg-accent text-nautical-black shadow-lg shadow-accent/20'
                                             : 'text-sea-foam/40 hover:text-sea-foam hover:bg-sea-foam/[0.05]'
                                         }`}
                                 >
@@ -119,7 +138,14 @@ export default function ExperiencesClient({
             <div className="flex items-center gap-4">
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent" />
                 <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.4em] text-sea-foam/40 font-medium text-center">
-                    {filteredExperiences.length} {locale === 'eu' ? 'esperientzia' : locale === 'en' ? 'experiences' : 'experiencias'} {locale === 'eu' ? 'aurkitu dira' : 'encontradas'}
+                    {filteredExperiences.length}{' '}
+                    {locale === 'eu'
+                        ? 'esperientzia aurkitu dira'
+                        : locale === 'en'
+                            ? (filteredExperiences.length === 1 ? 'experience found' : 'experiences found')
+                            : locale === 'fr'
+                                ? (filteredExperiences.length === 1 ? 'expérience trouvée' : 'expériences trouvées')
+                                : (filteredExperiences.length === 1 ? 'experiencia encontrada' : 'experiencias encontradas')}
                 </span>
                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-sea-foam/10 to-transparent" />
             </div>
@@ -127,9 +153,11 @@ export default function ExperiencesClient({
             {/* Grid with Staggered Entrance */}
             {filteredExperiences.length > 0 ? (
                 <StaggeredEntrance
+                    key={`${selectedCategory}-${searchQuery}`}
                     type="recombine"
-                    staggerDelay={0.15}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12"
+                    staggerDelay={0.08}
+                    inView={false}
+                    className="w-full grid grid-cols-1 min-[480px]:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 lg:gap-10"
                 >
                     {filteredExperiences.map((exp) => (
                         <div key={exp.id} className="h-full">
@@ -146,20 +174,34 @@ export default function ExperiencesClient({
                         <Search className="w-8 h-8 text-sea-foam/20" />
                     </div>
                     <h3 className="text-2xl font-display italic text-sea-foam/60 mb-4">
-                        {locale === 'eu' ? 'Ez dugu ezer aurkitu' : locale === 'en' ? 'No results found' : 'No hemos encontrado nada'}
+                        {locale === 'eu'
+                            ? 'Ez dugu ezer aurkitu'
+                            : locale === 'en'
+                                ? 'No results found'
+                                : locale === 'fr'
+                                    ? 'Aucun résultat trouvé'
+                                    : 'No hemos encontrado nada'}
                     </h3>
                     <p className="text-sea-foam/40 max-w-sm mx-auto text-sm leading-relaxed">
                         {locale === 'eu'
                             ? 'Saiatu beste bilaketa bat egiten edo kategoria aldatzen.'
                             : locale === 'en'
                                 ? 'Try adjusting your search terms or filters to find what you are looking for.'
-                                : 'Prueba a ajustar tus términos de búsqueda o filtros para encontrar lo que buscas.'}
+                                : locale === 'fr'
+                                    ? 'Essayez d\'ajuster vos termes de recherche ou vos filtres.'
+                                    : 'Prueba a ajustar tus términos de búsqueda o filtros para encontrar lo que buscas.'}
                     </p>
                     <button
                         onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
                         className="mt-12 px-8 py-3 bg-sea-foam/[0.05] hover:bg-sea-foam/[0.1] rounded-full text-[10px] uppercase tracking-[0.2em] font-black text-accent transition-all"
                     >
-                        {locale === 'eu' ? 'Garbitu dena' : locale === 'en' ? 'Clear all filters' : 'Limpiar todos los filtros'}
+                        {locale === 'eu'
+                            ? 'Garbitu dena'
+                            : locale === 'en'
+                                ? 'Clear all filters'
+                                : locale === 'fr'
+                                    ? 'Effacer tous les filtres'
+                                    : 'Limpiar todos los filtros'}
                     </button>
                 </div>
             )}

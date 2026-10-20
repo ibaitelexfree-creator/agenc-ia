@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Calendar, User, Search, BookOpen, ChevronLeft } from 'lucide-react';
+import { Calendar, Search, ChevronLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { localizedArticles } from '@/components/sections/Blog/blog-articles.data';
 
 interface BlogPost {
     id: string;
+    slug?: string;
     title: string;
     excerpt: string;
     content: string;
@@ -16,69 +18,70 @@ interface BlogPost {
     tags: string[];
 }
 
-const defaultPosts: BlogPost[] = [
-    {
-        id: '1',
-        title: 'Cómo leer una carta náutica en 5 pasos',
-        excerpt: 'Guía práctica para entender las cartas marinas, interpretar las sondas de profundidad y trazar tu rumbo con seguridad.',
-        content: 'Las cartas náuticas son el mapa de carreteras del marino. En esta guía práctica te enseñamos a interpretar la escala de latitudes y longitudes, a leer los números de sonda que indican el relieve submarino, a reconocer la simbología oficial de faros, boyas e instalaciones portuarias, y a trazar rumbos verdaderos corregidos con la declinación magnética para una travesía 100% segura.',
-        date: '2026-05-28',
-        author: 'Urko Santillán',
-        image: '/images/home-hero-sailing-action.webp',
-        tags: ['Formación', 'Navegación']
-    },
-    {
-        id: '2',
-        title: 'Tácticas de regata: Domina las salidas con viento fuerte',
-        excerpt: 'Aprende a gestionar la presión de la flota en la línea de salida y a configurar el trimado de tus velas con vientos duros.',
-        content: 'La línea de salida es donde se ganan y pierden la mayoría de las regatas, especialmente cuando el anemómetro sube de los 20 nudos. En este artículo detallamos la técnica para mantener el barco en stand-by (parado con control), la forma óptima de cazar velas para arrancar en el último segundo y cómo distribuir el peso de la tripulación en la banda para mantener el barco plano.',
-        date: '2026-06-02',
-        author: 'Ana de Lara',
-        image: '/images/course-detail-header-sailing.webp',
-        tags: ['Regatas', 'Competición']
-    },
-    {
-        id: '3',
-        title: 'Los mejores rincones para fondear en el Abra de Getxo',
-        excerpt: 'Explora los fondeaderos más pintorescos y protegidos de nuestra costa, con consejos sobre tenedero y vientos predominantes.',
-        content: 'Fondease en el Abra de Getxo es una experiencia maravillosa si sabes dónde hacerlo. Te revelamos las mejores coordenadas al resguardo del viento de componente Norte y Noroeste, los detalles sobre el fondo de arena para asegurar el agarre del ancla (tenedero), y las precauciones necesarias según la carrera de marea de ese día.',
-        date: '2026-06-05',
-        author: 'Angharad Arambalza',
-        image: '/images/course-raquero-students.webp',
-        tags: ['Rutas', 'Getxo']
-    }
-];
-
 export default function NoticiasClient({
     locale,
     initialDbPosts,
+    initialArticleSlug,
 }: {
     locale: string;
     initialDbPosts: any[];
+    initialArticleSlug?: string;
 }) {
+    const lang = (['es', 'eu', 'en', 'fr'].includes(locale) ? locale : 'es') as 'es' | 'eu' | 'en' | 'fr';
     const isEu = locale === 'eu';
     const isEn = locale === 'en';
     const isFr = locale === 'fr';
 
-    // Map DB posts to component format, or fallback to default mock posts
-    const posts: BlogPost[] = initialDbPosts.length > 0
-        ? initialDbPosts.map((p) => ({
+    // Map DB posts to component format with complete 4-language support
+    const posts: BlogPost[] = initialDbPosts.map((p) => {
+        const slug = p.slug as string;
+        const loc = slug && localizedArticles[slug] ? localizedArticles[slug][lang] : null;
+
+        let title = p.titulo_es;
+        let excerpt = p.contenido_es?.slice(0, 160) + '...';
+        let content = p.contenido_es;
+        let author = 'Getxo Bela Eskola';
+
+        if (loc) {
+            title = loc.title;
+            excerpt = loc.excerpt;
+            content = loc.content;
+            author = loc.author;
+        } else {
+            if (isEu && p.titulo_eu) {
+                title = p.titulo_eu;
+                content = p.contenido_eu || p.contenido_es;
+                excerpt = p.contenido_eu?.slice(0, 160) + '...' || excerpt;
+            }
+        }
+
+        return {
             id: p.id,
-            title: isEu ? (p.titulo_eu || p.titulo_es) : p.titulo_es,
-            excerpt: isEu ? (p.contenido_eu || p.contenido_es) : p.contenido_es,
-            content: isEu ? (p.contenido_eu || p.contenido_es) : p.contenido_es,
+            slug: p.slug,
+            title,
+            excerpt,
+            content,
             date: p.created_at,
-            author: 'Getxo Bela Eskola',
+            author,
             image: p.image_url || '/images/home-hero-sailing-action.webp',
             tags: ['Bitácora']
-        }))
-        : defaultPosts.map(p => ({
-            ...p,
-            title: isEu && p.id === '1' ? 'Nola irakurri itsas karta bat 5 urratsetan' : p.title
-        }));
+        };
+    });
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+    const [selectedPost, setSelectedPost] = useState<BlogPost | null>(() => {
+        if (initialArticleSlug) {
+            return posts.find(p => p.slug === initialArticleSlug) || null;
+        }
+        return null;
+    });
+
+    useEffect(() => {
+        if (initialArticleSlug) {
+            const found = posts.find(p => p.slug === initialArticleSlug);
+            if (found) setSelectedPost(found);
+        }
+    }, [initialArticleSlug]);
 
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -90,18 +93,18 @@ export default function NoticiasClient({
 
     if (selectedPost) {
         return (
-            <main className="min-h-screen bg-[#F7FAFC] pt-28 pb-20 selection:bg-accent selection:text-[#1A1A1A]">
+            <main className="min-h-[100dvh] w-full bg-[#F7FAFC] pt-32 pb-16 selection:bg-accent selection:text-[#1A1A1A]">
                 <div className="container mx-auto px-6 max-w-4xl">
                     <button
                         onClick={() => setSelectedPost(null)}
-                        className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-8"
+                        className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] font-black text-accent hover:text-[#1A1A1A] transition-colors mb-6 cursor-pointer"
                     >
-                        <ChevronLeft className="w-4 h-4" />
-                        <span>{isEu ? 'Itzuli' : isEn ? 'Back' : 'Volver al listado'}</span>
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <span>{isEu ? 'Itzuli zerrendara' : isEn ? 'Back to list' : isFr ? 'Retour à la liste' : 'Volver al listado'}</span>
                     </button>
 
-                    <article className="glass-card p-6 md:p-12 rounded-3xl border-black/10 bg-white">
-                        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-8">
+                    <article className="glass-card p-5 md:p-8 rounded-3xl border-black/10 bg-white">
+                        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-6">
                             <Image
                                 src={selectedPost.image}
                                 alt={selectedPost.title}
@@ -110,22 +113,18 @@ export default function NoticiasClient({
                             />
                         </div>
 
-                        <div className="flex items-center gap-4 text-xs uppercase tracking-widest text-[#1A1A1A]/40 font-bold mb-4">
+                        <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold mb-3">
                             <span className="flex items-center gap-1">
-                                <Calendar className="w-4 h-4 text-accent" />
+                                <Calendar className="w-3.5 h-3.5 text-accent" />
                                 {new Date(selectedPost.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
-                            </span>
-                            <span className="flex items-center gap-1">
-                                <User className="w-4 h-4 text-accent" />
-                                {selectedPost.author}
                             </span>
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl font-display text-[#1A1A1A] leading-tight mb-8">
+                        <h1 className="text-2xl md:text-4xl font-display text-[#1A1A1A] leading-tight mb-6">
                             {selectedPost.title}
                         </h1>
 
-                        <div className="prose prose-lg max-w-none text-[#1A1A1A]/80 leading-relaxed font-light">
+                        <div className="prose prose-sm md:prose-base max-w-none text-[#1A1A1A]/80 leading-relaxed font-light">
                             <ReactMarkdown>{selectedPost.content}</ReactMarkdown>
                         </div>
                     </article>
@@ -135,80 +134,72 @@ export default function NoticiasClient({
     }
 
     return (
-        <main className="min-h-screen bg-[#F7FAFC] pt-28 pb-20 selection:bg-accent selection:text-[#1A1A1A]">
-            <div className="container mx-auto px-6 max-w-6xl">
+        <main className="min-h-[100dvh] w-full bg-[#F7FAFC] pt-28 pb-16 selection:bg-accent selection:text-[#1A1A1A]">
+            <div className="container mx-auto px-6 max-w-4xl">
                 {/* Header */}
-                <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                    <span className="text-xs uppercase tracking-[0.3em] font-black text-accent block">
-                        {isEu ? 'Getxo Bela Eskolako Aldizkaria' : isEn ? 'Journal' : 'Bitácora & Noticias'}
+                <div className="text-center max-w-xl mx-auto mb-6 space-y-1.5">
+                    <span className="text-[9px] uppercase tracking-[0.3em] font-black text-accent block">
+                        {isEu ? 'Getxo Bela Eskolako Aldizkaria' : isEn ? 'Journal' : isFr ? 'Journal & Actualités' : 'Bitácora & Noticias'}
                     </span>
-                    <h1 className="text-4xl md:text-6xl font-display text-[#1A1A1A] leading-tight">
+                    <h1 className="text-2xl md:text-3xl font-display text-[#1A1A1A] leading-tight">
                         {pageTitle}
                     </h1>
-                    <p className="text-[#1A1A1A]/60 text-sm leading-relaxed">
+                    <p className="text-[#1A1A1A]/60 text-[11px] leading-relaxed max-w-lg mx-auto">
                         {pageSubtitle}
                     </p>
                 </div>
 
                 {/* Search Bar */}
-                <div className="max-w-md mx-auto mb-12">
-                    <div className="relative flex items-center bg-white border border-black/10 rounded-full px-4 py-2.5 shadow-sm focus-within:border-accent transition-colors">
-                        <Search className="w-4 h-4 text-[#1A1A1A]/40 mr-3" />
+                <div className="max-w-sm mx-auto mb-6">
+                    <div className="relative flex items-center bg-white border border-black/10 rounded-full px-3 py-1 shadow-sm focus-within:border-accent transition-colors">
+                        <Search className="w-3 h-3 text-[#1A1A1A]/40 mr-2" />
                         <input
                             type="text"
                             placeholder={isEu ? 'Bilatu artikuluak...' : isEn ? 'Search posts...' : 'Buscar noticias o artículos...'}
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="bg-transparent border-none outline-none text-sm text-[#1A1A1A] w-full focus:ring-0 placeholder:text-[#1A1A1A]/30"
+                            className="bg-transparent border-none outline-none text-[11px] text-[#1A1A1A] w-full focus:ring-0 placeholder:text-[#1A1A1A]/30"
                         />
                     </div>
                 </div>
 
                 {/* Posts List Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {filteredPosts.map((post) => (
                         <article
                             key={post.id}
                             onClick={() => setSelectedPost(post)}
-                            className="flex flex-col bg-white border border-black/10 rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group"
+                            className="flex flex-col bg-white border border-black/10 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 group"
                         >
-                            <div className="relative aspect-[16/10] overflow-hidden bg-nautical-deep">
+                            <div className="relative aspect-[16/9] overflow-hidden bg-nautical-deep">
                                 <Image
                                     src={post.image}
                                     alt={post.title}
                                     fill
                                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 />
-                                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full flex items-center gap-1 text-[8px] uppercase tracking-wider text-accent font-black">
-                                    <BookOpen className="w-2.5 h-2.5" />
-                                    <span>{isEu ? 'Koadernoa' : isEn ? 'Logbook' : 'Bitácora'}</span>
-                                </div>
                             </div>
 
-                            <div className="p-6 flex flex-col justify-between flex-grow gap-6">
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-4 text-[9px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
+                            <div className="p-3 flex flex-col justify-between flex-grow gap-3">
+                                <div className="space-y-1.5">
+                                    <div className="flex items-center gap-2 text-[7.5px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
                                         <span className="flex items-center gap-1">
-                                            <Calendar className="w-3 h-3 text-accent" />
+                                            <Calendar className="w-2.5 h-2.5 text-accent" />
                                             {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short' })}
-                                        </span>
-                                        <span className="flex items-center gap-1">
-                                            <User className="w-3 h-3 text-accent" />
-                                            {post.author}
                                         </span>
                                     </div>
 
-                                    <h3 className="text-lg font-display text-[#1A1A1A] leading-snug group-hover:text-accent transition-colors">
+                                    <h3 className="text-sm font-display text-[#1A1A1A] leading-snug group-hover:text-accent transition-colors line-clamp-2">
                                         {post.title}
                                     </h3>
 
-                                    <p className="text-[#1A1A1A]/60 text-xs leading-relaxed line-clamp-3">
+                                    <p className="text-[#1A1A1A]/60 text-[10px] leading-relaxed line-clamp-2">
                                         {post.excerpt}
                                     </p>
                                 </div>
 
-                                <div className="flex items-center gap-1 text-[9px] uppercase tracking-widest text-accent font-black pt-4 border-t border-black/5">
-                                    <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : 'Leer publicación'}</span>
+                                <div className="flex items-center gap-1 text-[7.5px] uppercase tracking-widest text-accent font-black pt-2.5 border-t border-black/5">
+                                    <span>{isEu ? 'Irakurri gehiago' : isEn ? 'Read post' : isFr ? 'Lire l’article' : 'Leer publicación'}</span>
                                 </div>
                             </div>
                         </article>
@@ -216,7 +207,7 @@ export default function NoticiasClient({
                 </div>
 
                 {filteredPosts.length === 0 && (
-                    <p className="text-center text-[#1A1A1A]/40 py-12 text-sm">
+                    <p className="text-center text-[#1A1A1A]/40 py-8 text-xs">
                         {isEu ? 'Ez da artikulurik aurkitu.' : isEn ? 'No posts found.' : 'No se encontraron artículos.'}
                     </p>
                 )}

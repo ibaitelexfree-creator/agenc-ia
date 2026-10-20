@@ -25,7 +25,7 @@
     "membership": "Membership",
     "events": "Events",
     "summer_camp": "Summer Camp",
-    "adult_initiation": "Adult Beginner",
+    "adult_initiation": "Adult Initiation",
     "adult_advanced": "Advanced",
     "windsurf_courses": "Windsurf Courses",
     "sailboat_rental": "Sailboat Rental",
@@ -76,7 +76,7 @@
     "duration": "Duration",
     "view_more": "View Details",
     "levels": {
-      "iniciacion": "Beginner",
+      "iniciacion": "Initiation",
       "intermedio": "Intermediate",
       "avanzado": "Advanced",
       "profesional": "Professional"
@@ -93,6 +93,7 @@
     "title_highlight": "Rental",
     "description": "Discover the sea up close and at your own pace in agile and fun boats. Perfect to enjoy sailing in freedom. Dinghy Sailing, Cruiser, Windsurf or Big SUP.",
     "crew_label": "Crew",
+    "price_per_hour": "Price/h",
     "footer_note": "* Sailboat rental requires a minimum qualification. Basic handling training is included for Paddle Surf with turbine.",
     "categories": {
       "all": "All",
@@ -173,11 +174,11 @@
       "licencia_title": "Youth (Basic / Intermediate)",
       "licencia_price": "Consult",
       "licencia_desc": "Txikigune (Single days), Udalekuak (5 days) and continuous training 3 days a month.",
-      "j80_title": "Adults (Beginner)",
+      "j80_title": "Adults (Initiation)",
       "j80_price": "Consult",
-      "j80_desc": "Beginner cruise. First contact with cruise sailing adapted to each person.",
+      "j80_desc": "Initiation cruise. First contact with cruise sailing adapted to each person.",
       "rental_title": "Adults (Intermediate)",
-      "rental_desc": "Dinghy sailing beginner/advanced, Cruise perfection, Cruise with gennaker and technification.",
+      "rental_desc": "Dinghy sailing initiation/advanced, Cruise perfection, Cruise with gennaker and technification.",
       "price_rental": "Consult"
     },
     "fleet_cta": {
@@ -210,14 +211,24 @@
     "header_badge": "OUR OFFER",
     "header_title": "Sailing",
     "header_highlight": "Courses",
-    "header_desc": "At Getxo Bela Eskola we offer courses for all ages and levels, always from a close, progressive approach adapted to each person. Our goal is for everyone to find their place in the sea and learn to sail with safety, calm and confidence.",
+    "header_desc": "At Getxo Bela Eskola we offer courses for all ages and levels, always from a close, progressive approach adapted to each person.",
     "duration": "h",
-    "price_from": "From"
+    "price_from": "From",
+    "category_sections": {
+      "cat-crucero_title": "Keelboat Courses",
+      "cat-crucero_desc": "Sailing on J80 boats, maneuvers, trimming, spinnaker/gennaker, and team training sessions.",
+      "cat-vela-ligera_title": "Dinghy Sailing Courses",
+      "cat-vela-ligera_desc": "From the first touch with wind to advanced sailing, camps, and dinghy regattas.",
+      "cat-windsurf_title": "Windsurfing Courses",
+      "cat-windsurf_desc": "Learn and master balance, planing, maneuvers, and wind autonomy on the board.",
+      "cat-mantenimiento_title": "Maintenance Courses",
+      "cat-mantenimiento_desc": "Hands-on workshops in boat maintenance, rigging, fiberglass, and sail repair and sewing."
+    }
   },
   "about_page": {
     "header_badge": "KNOW US",
-    "header_title": "History of the",
-    "header_highlight": "Club",
+    "header_title": "",
+    "header_highlight": "The Club & Sailing",
     "header_suffix": "Getxo Bela Eskola",
     "since": "Founded in Getxo",
     "desc1": "More than 15 years ago we were born in Getxo with a clear goal: to bring the sea closer to everyone from a human, educational and accessible approach. We are a non-profit association and a social project that understands sailing as a tool for learning, coexistence and personal transformation.",
@@ -243,23 +254,64 @@
       "member3_role": "Members",
       "member3_desc": "The eskola works with a simple and human relationship: the instructors listen, observe rhythms, accompany fears and encourage autonomy; the team shares decisions and the members' voice is part of the project's life."
     },
-    "commitment_title": "Committed to the",
-    "commitment_highlight": "Sea Culture",
+    "commitment_title": "HISTORY OF THE CLUB",
+    "commitment_highlight": "",
     "define_badge": "Our Essence",
     "define_title": "What defines us",
     "cta_title": "Ready to set sail?",
     "cta_desc": "Join our school and discover why we are the sailing reference in the Cantabrian Sea.",
-    "cta_button": "View Available Courses"
+    "cta_button": "View Available Courses",
+    "short_desc1": "More than 15 years bringing the sea closer to everyone through a social, human, and accessible project. We are a non-profit association that reinvests all revenue back into the eskola, and our approach stems from a simple premise: people first.",
+    "short_desc2": "The Eskola remains a welcoming, grounded space shaped by people who believe in the value of learning together on the water.",
+    "read_more": "READ MORE",
+    "modal": {
+      "title": "HISTORY OF THE CLUB",
+      "p1": "More than 15 years ago we were born in Getxo with a clear goal: to bring the sea closer to everyone from a human, educational and accessible approach. We are a non-profit association and a social project that understands sailing as a tool for learning, coexistence and personal transformation.",
+      "p2": "Over the years we have grown, professionalized and expanded activities, always with the same foundation: putting people at the center. The Eskola remains a close, simple place built from the community, and our path remains focused on accompanying people to experience the sea in a simple, safe and authentic way.",
+      "p3": "We are not a company, and we do not act as such. As a non-profit association, everything that comes in is reinvested in improving the project: renewing boats, training instructors, maintaining the facilities and expanding activities."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "OUR SPACE",
+    "header_title": "Our",
+    "header_highlight": "Facilities",
+    "header_desc": "In the heart of Getxo Marina, with direct access to the Abra bay and steps away from Ereaga beach. Designed to learn, share and live the Cantabrian sea in complete comfort.",
+    "cta_title": "Come Visit the School",
+    "cta_desc": "Discover our nautical facilities, try out a boat, or just feel the ocean breeze on the pontoon.",
+    "btn_about": "About us",
+    "btn_courses": "View Courses",
+    "items": {
+      "instalaciones": {
+        "title": "Our Facilities",
+        "badge": "Getxo Marina",
+        "desc": "Located in a prime area of Getxo Marina, steps from Ereaga beach with direct bay access. We feature audiovisual classrooms, well-kept lockers, outdoor terrace, workshop, and chill-out zone."
+      },
+      "pantalan": {
+        "title": "Private Pontoon",
+        "badge": "Direct Sea Access",
+        "desc": "The pontoon is our gateway to the open sea. Our versatile fleet includes dinghies, cruisers, windsurfs, big SUPs, paddle surfs, canoes and rescue boats."
+      },
+      "aulas": {
+        "title": "Classrooms & Workshop",
+        "badge": "Theory & Practical",
+        "desc": "Equipped spaces with interactive media, chart simulations and technical repair workshops for boat tuning and theory courses."
+      },
+      "aseos": {
+        "title": "Restrooms & Lockers",
+        "badge": "Comfort & Care",
+        "desc": "Full changing rooms, hot showers, secure storage lockers, and relaxing chill-out facilities after your sailing session."
+      }
+    }
   },
   "contact_page": {
     "header_badge": "Contact",
     "header_title": "Let's Talk About",
     "header_highlight": "Sailing",
     "location_label": "Location",
-    "location_val": "Arriluzea Quay, s/n\n48990 Getxo, Biscay",
+    "location_val": "Marqués de Arriluce e Ibarra Kalea, 3D\n48992 Getxo, Bizkaia",
     "contact_label": "Email & Phone",
     "hours_label": "Hours",
-    "hours_val": "Monday to Sunday\n09:00 — 20:00"
+    "hours_val": "Mon - Fri: 10:00 — 14:00\nand 16:00 — 20:00\nSat and Sun: 10:00 — 15:00"
   },
   "newsletter": {
     "eyebrow": "Welcome aboard",
@@ -309,6 +361,7 @@
     "name": "Name",
     "apellidos": "Surnames",
     "email": "Email",
+    "email_placeholder": "your@email.com",
     "password": "Password",
     "login_btn": "Log In",
     "logging_in": "Logging in...",
@@ -360,6 +413,7 @@
       "rentals": "Departures",
       "courses": "Courses Mgmt",
       "academia": "Online Academy",
+      "blog": "Blog & News",
       "communication": "Communication",
       "staff_mgmt": "Staff Mgmt"
     },
@@ -713,6 +767,24 @@
     "rental": "Rental",
     "school": "The School",
     "contact": "Contact",
+    "schedule": "Hours",
+    "location": "Location",
+    "official_school": "Official Nautical School",
+    "hours_weekdays": "Mon - Fri: 10:00 — 14:00\nand 16:00 — 20:00",
+    "hours_weekend": "Sat & Sun: 10:00 — 15:00",
+    "collaborators": "Collaborators",
+    "search_collaborator": "Search collaborator...",
+    "no_collaborators": "No collaborators found matching",
+    "scroll_left": "Scroll left",
+    "scroll_right": "Scroll right",
+    "previous": "Previous",
+    "next": "Next",
+    "clear_search": "Clear search",
+    "sponsors_text": "Funded by the European Union – NextGenerationEU under the Recovery, Transformation and Resilience Plan and the Kit Digital Programme.",
+    "nextgen_alt": "Funded by the European Union - NextGenerationEU",
+    "kit_digital_alt": "Kit Digital Programme",
+    "plan_recuperacion_alt": "Recovery, Transformation and Resilience Plan",
+    "legal_notice": "Legal Notice",
     "privacy": "Privacy",
     "cookies": "Cookies",
     "accessibility": "Accessibility",
@@ -985,49 +1057,11 @@
     }
   },
   "tools": {
-    "index": {
-      "eyebrow": "Nautical Tools",
-      "title": "Digital Bridge",
-      "description": "A collection of essential tools for navigation, planning, and safety at sea. Designed for sailors by sailors.",
-      "converter": {
-        "title": "Nautical Converter",
-        "description": "Professional unit converter for speed, distance, depth, and pressure. Includes history and quick presets.",
-        "cta": "Launch Converter"
-      },
-      "plotter": {
-        "title": "Chart Plotter",
-        "description": "Practice your navigation skills with our interactive chart plotter. Plot courses, measure distances, and more.",
-        "cta": "Open Plotter"
-      }
-    },
-    "nautical_converter": {
-      "eyebrow": "Utility",
+    "title": "Nautical Utilities",
+    "nautical_converter": "Nautical Converter",
+    "converter": {
       "title": "Nautical Converter",
-      "description": "Precision tool for converting between maritime and standard units.",
-      "input": "Input Value",
-      "result": "Result",
-      "history": "Recent Conversions",
-      "clear_history": "Clear History",
-      "speed": "Speed",
-      "distance": "Distance",
-      "depth": "Depth",
-      "temperature": "Temp",
-      "pressure": "Pressure",
-      "units": {
-        "knots": "Knots",
-        "kmh": "km/h",
-        "ms": "m/s",
-        "meters": "Meters",
-        "feet": "Feet",
-        "nautical_miles": "Nautical Miles",
-        "km": "Kilometers",
-        "fathoms": "Fathoms",
-        "celsius": "Celsius",
-        "fahrenheit": "Fahrenheit",
-        "hpa": "hPa",
-        "mb": "Millibars",
-        "inhg": "inHg"
-      }
+      "subtitle": "Precision tool for converting between maritime and standard units."
     }
   },
   "validation": {
@@ -1061,6 +1095,26 @@
   "legal": {
     "privacy_title": "Privacy Policy",
     "cookies_title": "Cookies Policy",
+    "privacy_intro": "At Getxo Bela Eskola we take the privacy of your data very seriously. We strictly comply with the General Data Protection Regulation (GDPR) and the Organic Law on Data Protection and Guarantee of Digital Rights (LOPDGDD).",
+    "privacy_sec1_title": "1. Data Controller",
+    "privacy_sec1_p1": "The entity responsible for processing your data is",
+    "privacy_sec1_company": "Asociación club deportivo vela Pakea munduari itzulia",
+    "privacy_sec1_trade_name": "Getxo Bela Eskola",
+    "privacy_sec1_cif": "G95526299",
+    "privacy_sec1_address": "Marqués de Arriluce e Ibarra Kalea, 3D, 48992 Getxo, Bizkaia",
+    "privacy_sec1_contact_phone": "You can reach us by telephone at",
+    "privacy_sec1_contact_email": "or by email at",
+    "privacy_sec2_title": "2. Purpose of Data Processing",
+    "privacy_sec2_desc": "Data collected via registration and contact forms is used to:",
+    "privacy_sec2_item1": "Manage your registration in courses, try-sails, and nautical rentals.",
+    "privacy_sec2_item2": "Keep you informed about news, events, and school activities (if you have opted in to communications).",
+    "privacy_sec2_item3": "Comply with legal obligations concerning maritime safety and passenger registration.",
+    "privacy_sec3_title": "3. Data Retention",
+    "privacy_sec3_desc": "We will keep your personal data as long as the contractual and instructional relationship remains active, or during the period required by applicable legal and fiscal obligations.",
+    "privacy_sec4_title": "4. Your Rights",
+    "privacy_sec4_p1": "You have the right to access, rectify, restrict processing, request data portability, or delete your personal data at any time.",
+    "privacy_sec4_p2": "To exercise these rights, please send an email to",
+    "privacy_sec4_p3": "attaching a copy or verification of your identity document.",
     "rental_contract": "NAUTICAL EQUIPMENT RENTAL CONTRACT - GETXO BELA ESKOLA\n\n1. LESSEE REQUIREMENTS: The client declares to possess the necessary technical knowledge for the safe handling of the rented material. In the case of recreational sailboats, the corresponding minimum qualification is required.\n\n2. CONDITION AND RETURN: The material is delivered in perfect working condition. The client agrees to return it in the same condition. Any damage caused by negligence will be the exclusive responsibility of the client.\n\n3. NAVIGATION ZONES: Navigation will be limited to authorized zones and agreed times. The client agrees to respect the rules of the Getxo Marina and the regulations of the Maritime Captaincy.\n\n4. SAFETY: The use of a life jacket is mandatory and personal at all times while in the water.\n\n5. RESCUE AND ASSISTANCE: If the client requires assistance or rescue due to imprudence or leaving the permitted zones, the resulting costs will be at their expense.\n\n6. DIGITAL SIGNATURE: By checking the acceptance box, the client ratifies that they have understood all the previous points and assume their legal responsibility.",
     "course_contract": "GENERAL TERMS AND CONDITIONS OF CONTRACTING - GETXO BELA ESKOLA\n\n1. OBJECT AND SCOPE OF APPLICATION: This document establishes the legal conditions for enrollment in the courses taught by Getxo Bela Eskola.\n\n2. PHYSICAL FITNESS AND SAFETY: The student declares that they are in suitable physical condition for navigation and do not suffer from any preventing illnesses. The use of a life jacket is mandatory, and following the instructions of the skipper or instructor is required at all times.\n\n3. LIABILITY: Getxo Bela Eskola is not responsible for students' personal belongings. The school has the mandatory civil liability and accident insurance required by law.\n\n4. METEOROLOGICAL CONDITIONS: The school reserves the right to cancel or postpone sessions if sea or wind conditions represent a risk to the safety of students and equipment.\n\n5. CANCELLATION POLICY: Cancellations by the student must be communicated at least 48 hours in advance to be entitled to relocation to another date (subject to availability).\n\n6. ACCEPTANCE: Clicking \"Accept\" constitutes a binding electronic signature under the current legislation on information society services.",
     "consent_acceptance": "I have read and expressly accept the legal conditions detailed above. I understand that this acceptance is equivalent to a binding digital signature.",
@@ -1193,7 +1247,7 @@
     "title": "Members Club",
     "subtitle": "A space to sail in community, at your own pace and unhurried.",
     "description1": "Being part of Getxo Bela Eskola is belonging to a community that shares the sea with closeness, calm and camaraderie. People are the heart of the Eskola, and here sailing is experienced without rush or distance.",
-    "description2": "We make sailing accessible to all audiences and budgets, at an unbeatable price, in a close, careful and human environment. Being a member allows you to sail and train, proving that sailing has never been so accessible.",
+    "description2": "We make sailing accessible to all audiences and budgets, at an unbeatable price, in a close, careful and human environment.",
     "basic": {
       "title": "Basic Member",
       "price": "630€/year (or 350€ half year)",
@@ -1228,6 +1282,7 @@
       "b6_title": "Federation and Insurance",
       "b6_desc": "In both options it is necessary to federate in the Basque Sailing Federation, providing insurance and access to regattas (approx 64€)."
     },
+    "hero_title": "JOIN THE CLUB AS A MEMBER",
     "hero_title_part1": "Become part of",
     "hero_title_part2": "our crew",
     "section_title_part1": "Much more than sailing,",
@@ -1244,25 +1299,25 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Sailing Club in Getxo",
-    "subtitle": "Sail, learn and share",
+    "title": "Sail, learn and share",
+    "subtitle": "Sailing Club in Getxo",
     "cta": "Become a Member",
-    "scroll_hint": "Keep sailing",
-    "word1": "Sail.",
-    "word2": "Learn.",
-    "word3": "Share.",
-    "tu_mar_tu_club": "Your sea. Your club.",
-    "todo_lo_que_ofrecemos": "Everything we offer",
-    "card_cursos_title": "Courses",
-    "card_cursos_subtitle": "Learn to sail",
-    "card_club_title": "Club Members",
-    "card_club_subtitle": "Join the community",
-    "card_equipos_title": "Teams",
-    "card_equipos_subtitle": "Compete and improve",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Summer camps",
-    "card_entidades_title": "Entities",
-    "card_entidades_subtitle": "Partner with us"
+    "card_cursos_title": "Learn to sail",
+    "card_cursos_subtitle": "Dinghy & yacht sailing courses",
+    "card_club_title": "Join the community",
+    "card_club_subtitle": "Sail all year with members",
+    "card_equipos_title": "Progress sailing",
+    "card_equipos_subtitle": "Racing teams & technification",
+    "card_udalekuak_title": "Sailing camps",
+    "card_udalekuak_subtitle": "Summer camps for youth",
+    "card_entidades_title": "Partner with us",
+    "card_entidades_subtitle": "Team building & corporate",
+    "blob_cursos": "Courses",
+    "blob_club": "Members Club",
+    "blob_equipos": "Training Teams",
+    "blob_udalekuak": "Camps",
+    "blob_udalekuak_sub": "Summer Camps",
+    "blob_entidades": "Organizations"
   },
   "s2": {
     "eyebrow": "The experience",
@@ -1298,7 +1353,7 @@
   "s3": {
     "eyebrow": "Training",
     "title": "Find your path",
-    "subtitle": "What's your level and how much time do you have?",
+    "subtitle": "What's your level?",
     "level_basic": "Basic level",
     "level_mid": "Intermediate level",
     "youth": "Youth",
@@ -1736,9 +1791,13 @@
     "title_line1": "What is",
     "title_line2": "Getxo Bela Eskola?",
     "value1_prefix": "We are not a conventional school, but a ",
-    "value1_highlight": "close community with values.",
+    "value1_highlight": "close-knit community built on values.",
     "value2": "A place to <gold>learn to sail</gold>, share, and <gold>enjoy</gold> the sea.",
-    "cta": "Read more"
+    "cta": "Read more",
+    "modal_p1": "We are not a conventional school, but a close community built around the sea and the values that accompany it.",
+    "modal_p2": "A place where learning to sail goes hand in hand with sharing, enjoying, and growing as a group. Here, sailing is not just experienced as a sport, but as an experience that connects people with each other and with the environment.",
+    "modal_p3": "We believe in natural, accessible, and pressure-free learning, where each person finds their rhythm and their way of experiencing sailing. From those taking their first steps to those looking to keep advancing, everyone has their space.",
+    "modal_p4": "Beyond the water, we are a meeting point where bonds and trust are generated, and a way of understanding the sea that invites you to return."
   },
   "s3_adapts": {
     "eyebrow": "The experience",
@@ -1767,172 +1826,206 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "J80 Initiation",
-      "description": "Learn the basics of navigation on our J80 fleet.",
+      "description": "First contact with cruising adapted to each person, a truly complete course: basic maneuvers, sail & boat dynamics, meteorology, safety…",
       "details": [
-        "Sailing fundamentals",
         "Basic maneuvers",
-        "12 class hours",
-        "J80 fleet"
+        "Sails & boat dynamics",
+        "Meteorology and weather reading",
+        "Safety on board · J80 fleet"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Windsurf 1 Session",
-      "description": "Individual 2-hour windsurfing session. Perfect to try.",
+    "crucero-perfeccionamiento": {
+      "name": "Cruiser Advanced",
+      "description": "For those who already sail and want to advance: sail trimming, fine maneuvers, boat control and sea reading.",
       "details": [
-        "2-hour trial",
-        "Equipment included",
-        "Dedicated instructor",
-        "First contact"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Summer Campus (Registered Residents)",
-      "description": "Summer campus for children and youth from 5 to 21 years registered in Getxo.",
-      "details": [
-        "Group sailing",
-        "Safety at sea",
-        "Games and activities",
-        "20 hours per week"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Summer Campus (Non-Residents)",
-      "description": "Summer campus for children and youth from 5 to 21 years not registered in Getxo.",
-      "details": [
-        "Group sailing",
-        "Safety at sea",
-        "Games and activities",
-        "20 hours per week"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Adult Initiation",
-      "description": "Initiation sailing course for adults.",
-      "details": [
-        "Sailing fundamentals",
-        "Basic maneuvers",
-        "12 hours of class",
-        "Adult groups"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Advanced Sailing",
-      "description": "Improve your trimming and maneuvering technique.",
-      "details": [
-        "Sail trimming",
+        "Fine sail trimming",
+        "Boat control & helm",
         "Advanced maneuvers",
-        "Efficient sailing",
-        "Open water practice"
+        "Wind and wave reading"
       ]
     },
-    "vela-ligera": {
-      "name": "Dinghy Sailing",
-      "description": "Learn the fundamentals of dinghy sailing in Getxo.",
+    "crucero-gennaker": {
+      "name": "Cruiser with Gennaker",
+      "description": "Technical and dynamic course to learn how to handle downwind sails safely and with confidence.",
       "details": [
-        "Optimist, Laser and 420",
-        "October to June",
-        "3 Sundays per month",
-        "Instructor and equipment included"
+        "Hoisting, gybing and dousing gennaker",
+        "Downwind angles and apparent wind",
+        "Safety and crew coordination",
+        "J80 sailing dynamics"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Adult Technification",
-      "description": "Advanced training and technification course for adults.",
+    "entrenamientos-adultas": {
+      "name": "Adult Training Sessions",
+      "description": "Regular sessions to sharpen technique, gain autonomy and sail as a team in varied conditions.",
       "details": [
-        "Race tactics",
-        "Precision maneuvers",
-        "Fine-tuning",
-        "J80 training"
+        "Continuous annual or monthly program",
+        "Autonomy and teamwork",
+        "Sailing in varied conditions",
+        "Fine-tuning and precision maneuvers"
       ]
     },
-    "otros": {
-      "name": "Others / Miscellaneous",
-      "description": "Various uncategorized sessions and events.",
-      "details": [
-        "Special events",
-        "Custom sessions",
-        "Consult options"
-      ]
-    },
-    "licencia-navegacion": {
-      "name": "Sailing License",
-      "description": "Obtain your official sailing license in one morning.",
-      "details": [
-        "Official license without exam",
-        "Navigation of boats up to 6m",
-        "Jet skis up to 55HP",
-        "Daytime navigation (2 miles)"
-      ]
-    },
-    "konpondu": {
-      "name": "Konpondu (Repair)",
-      "description": "Specialized course in boat maintenance and repair.",
-      "details": [
-        "Engine maintenance",
-        "Fiber and resin",
-        "Onboard electricity",
-        "Rigging and deck hardware"
-      ]
-    },
-    "windsurf-iniciacion": {
-      "name": "Windsurf Initiation Course",
-      "description": "Learn the fundamentals of windsurfing in 5 sessions of 2 hours.",
-      "details": [
-        "Balance and position",
-        "Steering and turns",
-        "5 sessions of 2h",
-        "Adapted equipment"
-      ]
-    },
-    "windsurf-campus": {
-      "name": "Windsurf Campus",
-      "description": "15-hour intensive windsurfing camp.",
-      "details": [
-        "Advanced sail control",
-        "Planing and harness",
-        "15 total hours",
-        "Fun at sea"
-      ]
-    },
-    "windsurf-3-sesiones": {
-      "name": "Windsurf 3 Sessions",
-      "description": "Pack of 3 windsurfing sessions of 2 hours each. Ideal to practice and improve.",
-      "details": [
-        "3 sessions of 2h",
-        "Technique consolidation",
-        "Improve course",
-        "Complete gear"
-      ]
-    },
-    "iniciacion-vela-ligera": {
+    "vela-ligera-iniciacion": {
       "name": "Dinghy Sailing Initiation",
-      "description": "First contact with sailing. Learn the basic fundamentals of sailing on light boats.",
+      "description": "An ideal first step to discover sailing on small boats where contact with boat feel and wind is much greater.",
       "details": [
-        "Optimist, Laser and 420",
-        "Basic wind concepts",
-        "Autonomous sailing",
-        "Instructor and gear"
+        "Direct responsiveness on helm and sheet",
+        "Balance and wind dynamics",
+        "Rigging and basic maneuvers",
+        "Specialized instructors"
+      ]
+    },
+    "vela-ligera-avanzado": {
+      "name": "Advanced Dinghy Sailing",
+      "description": "For those looking to deepen their skills: more precise maneuvers, total autonomy and a finer bond with the sea.",
+      "details": [
+        "Precision maneuvers and boat speed",
+        "Total autonomy on board",
+        "Course tactics and fine trimming",
+        "Wind shifts and current reading"
+      ]
+    },
+    "txikigune-sabados": {
+      "name": "Txikigune (Saturday Sailing)",
+      "description": "Weekly space for children and teens wanting to enjoy the sea on flexible days with no commitment. Sailing, play, learning and camaraderie.",
+      "details": [
+        "Flexible drop-in Saturdays",
+        "Seafaring games and active learning",
+        "Camaraderie and teamwork",
+        "Ages 5 to 21 years"
+      ]
+    },
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Summer Camps)",
+      "description": "Summer camps combining sailing with water activities, teamwork and unforgettable memories.",
+      "details": [
+        "Weekly summer camps",
+        "Sailing, paddle surf, kayak and games",
+        "Certified instructors and small ratios",
+        "Lifelong seafaring experiences"
+      ]
+    },
+    "entrenamientos-infantiles-continuos": {
+      "name": "Continuous Junior Training",
+      "description": "Stable groups for boys and girls looking to learn more, advance technically and enjoy the sea all year round.",
+      "details": [
+        "Regular school-year training",
+        "Pedagogical and technical coaching",
+        "Progression in Optimist and dinghies",
+        "Community and formative sport"
+      ]
+    },
+    "entrenamientos-continuos-jovenes": {
+      "name": "Continuous Youth Training",
+      "description": "Stable groups for youth aiming to learn and continuously grow in technique, autonomy and teamwork.",
+      "details": [
+        "Youth up to 21 years",
+        "Technical refinement across fleet",
+        "Autonomy and tactical decisions",
+        "Sport sailing and developmental regattas"
+      ]
+    },
+    "bautismos": {
+      "name": "Sea Baptisms",
+      "description": "A first sea experience designed to enjoy pressure-free and discover sailing easily accompanied by an instructor.",
+      "details": [
+        "Gentle and accessible introduction",
+        "No previous experience needed",
+        "Attentive instructor guidance",
+        "Vistas and feeling of the Abra"
+      ]
+    },
+    "familia": {
+      "name": "Family Sailing",
+      "description": "Sessions tailored for families to share, featuring calm pacing, fun dynamics and safe navigation.",
+      "details": [
+        "Activity for all ages",
+        "Dynamics adapted for kids and adults",
+        "Exclusive boat with skipper",
+        "Unforgettable memories together"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Custom Courses",
+      "description": "Bespoke training based on goals, level and availability: from targeted maneuvers to project-based offshore sailing.",
+      "details": [
+        "100% tailored training",
+        "Flexible scheduling and dates",
+        "Specific technical or passage goals",
+        "Individual or private groups"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Corporate Regatta",
+      "description": "Experience for corporate teams and groups: sailing, teamwork and camaraderie in an inspiring maritime setting.",
+      "details": [
+        "Team building and team cohesion",
+        "Dynamic and engaging regatta",
+        "Matched fleet of sailboats",
+        "Coordination and marine briefing"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Windsurf: Initiation & Progression",
+      "description": "Progressive learning for beginners or advancing windsurfers. Balance work, maneuvers, wind reading and board autonomy.",
+      "details": [
+        "Single session (2.5h): 45 €",
+        "4-session pack (10h): 150 € (37.5 €/session)",
+        "Continuous camp (5 fixed 3h sessions, 15h): 250 €",
+        "Board, rig, wetsuit and vest included"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Boat Maintenance",
+      "description": "Theoretical-practical maintenance course, mainly focused on learning to care for, inspect and maintain dinghies and cruising yachts.",
+      "details": [
+        "8 total hours (2 days · 4h/day) · 100 €",
+        "Hull, fiberglass, antifouling & gelcoat",
+        "Rigging, deck fittings and ropes",
+        "Basic engine and electrical systems"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Sailmaking & Canvas Repair",
+      "description": "Specialized workshop learning how to stitch, repair and extend the lifespan of sails and marine canvas.",
+      "details": [
+        "Sailmaker stitches and machine use",
+        "Tears, patches and reinforcements",
+        "Care and maintenance of sailcloth",
+        "Sailmaker tools and needles"
       ]
     }
   },
   "rentals_data": {
     "bono-vela-ligera": "Dinghy Sailing Voucher",
     "alquiler-420": "420 (Double)",
+    "alquiler-420-pro": "420",
     "alquiler-raquero-omega": "Raquero / Omega (Collective)",
+    "alquiler-raquero": "Raquero",
+    "alquiler-optimist": "Optimist",
+    "alquiler-laser": "Laser",
+    "alquiler-laser-pro": "Laser",
     "atraque-transeunte-8m": "Transient Mooring (< 8m)",
     "atraque-transeunte-12m": "Transient Mooring (> 8m)",
+    "atraque-velero": "Sailboat Mooring",
     "alquiler-omega-sin-patron": "Omega/Raquero without skipper",
+    "alquiler-omega-patron": "Omega with skipper",
+    "alquiler-tarpon-patron": "Tarpon with skipper",
     "atraque-windsurf": "Windsurf Board Mooring",
     "atraque-piragua": "Canoe Mooring",
     "alquiler-windsurf": "Windsurf",
+    "alquiler-windsurf-pro": "Windsurf",
     "alquiler-j80": "J80 Sailboats",
+    "alquiler-j80-sin-patron": "J-80 without skipper",
+    "alquiler-j80-patron": "J-80 with skipper",
     "alquiler-paddlesurf": "Paddle Surf",
     "alquiler-kayak-1": "Kayak (1 Person)",
     "alquiler-kayak-2": "Kayak (2 People)",
     "alquiler-piragua-1": "Canoe (1 Person)",
-    "alquiler-piragua-2": "Canoe (2 People)"
+    "alquiler-piragua-2": "Canoe (2 People)",
+    "alquiler-bigsub-group": "Bigsub (Group)",
+    "socia-premium": "Premium Member"
   },
   "registration_form": {
     "student_data": "Student / Participant Details",
@@ -2183,6 +2276,7 @@
     "eyebrow": "Utility",
     "title": "Nautical Converter",
     "subtitle": "Precision tool for converting between maritime and standard units.",
+    "description": "Precision tool for converting between maritime and standard units.",
     "input": "Input Value",
     "result": "Result",
     "history": "Recent Conversions",
@@ -2210,12 +2304,147 @@
     "mb": "Millibars",
     "inhg": "inHg"
   },
-  "tools": {
-    "title": "Nautical Utilities",
-    "nautical_converter": "Nautical Converter",
-    "converter": {
-      "title": "Nautical Converter",
-      "subtitle": "Precision tool for converting between maritime and standard units."
+  "s3_adapts_new": {
+    "title": "SAILING<br/>ADAPTS TO YOU",
+    "subtitle": "Small or large sailboats,<br/>calm or action-packed days,<br/>sheltered waters or open sea.<br/>You choose how you want to sail.",
+    "leer_mas": "READ MORE",
+    "modal": {
+      "title": "Sailing à la carte, according to how you want to experience the sea.",
+      "intro1": "Sailing is not a rigid sport. It is a way of experiencing the sea that adapts to you, your time, and what you feel like doing each day.",
+      "intro2": "Today we have very precise weather forecasts and clear wind patterns. In our courses, you learn not only to sail but to understand and anticipate conditions. Thus, you can choose with fairly high certainty when and how to go out.",
+      "experience_title": "You choose the type of experience",
+      "experience_1": "Calm: heading out after work, disconnecting on a small or shared sailboat, sailing unhurriedly.",
+      "experience_2": "Action: windy days, more intensity, dynamic maneuvers, and strong sensations.",
+      "experience_3": "Sailing allows you both.",
+      "scenario_title": "You choose the setting",
+      "scenario_1": "Inner Abra: protected and calm waters, ideal for learning or relaxing.",
+      "scenario_2": "Outer Abra: open sea, waves, and a more lively and exciting navigation.",
+      "who_title": "You choose who to sail with",
+      "who_1": "Small sailboats: solo or in groups of 2 to 6 people, with active participation.",
+      "who_2": "Large sailboats (cruisers): up to 8 people, although the ideal is between 2 and 6 for a dynamic experience.",
+      "modern_title": "A modern way to sail",
+      "modern_1": "In the past, great sailors were forged because they knew how they went out, but not how they would return.",
+      "modern_2": "Today we can foresee conditions with great precision.",
+      "modern_3": "Sailing remains authentic, but now it is also more conscious, accessible, and, above all, adaptable to each person."
     }
+  },
+  "cookies_banner": {
+    "title": "We value your privacy",
+    "description": "We use essential cookies strictly necessary for web operation and security. Optionally, we request your consent for analytics and performance cookies to help us improve your sailing academy experience.",
+    "more_info": "View cookie policy",
+    "accept_all": "Accept all",
+    "reject_all": "Reject non-essential",
+    "configure": "Customize",
+    "banner_aria_label": "Cookie consent management",
+    "footer_configure_link": "Cookie Settings",
+    "modal_title": "Cookie Preferences",
+    "modal_description": "You can customize your cookie preferences below. Technical cookies are strictly necessary for the site to function and cannot be disabled.",
+    "close": "Close",
+    "always_active": "Always active",
+    "category_essential_title": "Technical & Essential Cookies",
+    "category_essential_desc": "Enable secure navigation, Supabase authentication, session handling, and language preferences. Strictly necessary.",
+    "category_analytics_title": "Analytics Cookies (Vercel Web Analytics)",
+    "category_analytics_desc": "Help us understand anonymously and in aggregate how visitors interact with our sailing platform to improve content.",
+    "category_performance_title": "Performance Metrics (Speed Insights)",
+    "category_performance_desc": "Measure loading speeds and Core Web Vitals across real devices to optimize platform responsiveness.",
+    "save_preferences": "Save preferences",
+    "read_full_policy": "Read the detailed inventory in our Cookie Policy"
+  },
+  "centros_escolares": {
+    "hero": {
+      "eyebrow": "SCHOOLS · ASSOCIATIONS",
+      "title_line_1": "The sea as an",
+      "title_line_2": "educational",
+      "title_line_3": "tool.",
+      "subtitle": "We bring the sea closer to schools and associations through experiential learning where sports, science, and teamwork unite in a safe, authentic environment.",
+      "btn_reserve": "📧 Book a date",
+      "btn_learn_more": "↓ Learn more",
+      "pill_students_num": "👥 Up to 60",
+      "pill_students_label": "Students per day",
+      "pill_duration_num": "⏱️ 3 Hours",
+      "pill_duration_label": "Of experiential workshop",
+      "pill_price_num": "🪙 €15",
+      "pill_price_label": "Per student"
+    },
+    "como_funciona": {
+      "eyebrow": "EDUCATIONAL LOGISTICS",
+      "title": "How is the day organized?",
+      "subtitle": "We split students into three coordinated rotating groups to ensure everyone enjoys each activity with complete safety and personalized guidance.",
+      "group_a": "Group A",
+      "group_b": "Group B",
+      "group_c": "Group C",
+      "rotation_badge": "🔄 Rotation every 50-60 min",
+      "activity_sailing": "⛵ Sailing Discovery",
+      "activity_bigsup": "🏄 Team Big SUP",
+      "activity_awareness": "🐧 Awareness Workshop",
+      "timeline_0900_event": "Reception at the Marina",
+      "timeline_1030_event": "First Rotations",
+      "timeline_1200_event": "End of Day",
+      "card_groups_icon": "👥 3 Stable Groups",
+      "card_groups_heading": "Small Groups",
+      "card_groups_text": "We foster small group settings to provide 100% safe, direct attention to every participant.",
+      "card_time_icon": "⏱️ 50-60 Minutes",
+      "card_time_heading": "Per Activity",
+      "card_time_text": "The ideal timeframe to grasp core sailing concepts on the water while maintaining high focus.",
+      "card_material_icon": "⛵ All-Inclusive",
+      "card_material_heading": "Life Vests & Wetsuits",
+      "card_material_text": "We provide all certified equipment necessary to perform activities with total safety and comfort."
+    },
+    "actividades": {
+      "eyebrow": "EXPERIENTIAL LEARNING",
+      "title": "Learning means living together.",
+      "swipe_hint": "← Swipe to see more →",
+      "act_01_title": "Sailboat Navigation",
+      "act_01_subtitle": "Sailing discovery",
+      "act_01_desc": "Take to the sea alongside certified instructors. Students learn how a boat works, points of sail, basic maneuvers, and safety protocols, strengthening self-confidence and decision-making.",
+      "act_01_tags": ["Autonomy", "Safety", "Teamwork"],
+      "act_02_title": "Big SUP",
+      "act_02_subtitle": "Giant collective paddleboard",
+      "act_02_desc": "Around 10 students paddle in sync. Balance, authentic cooperation, and active listening are developed in an energetic, engaging group activity.",
+      "act_02_tags": ["Coordination", "Cooperation", "Active Listening"],
+      "act_03_title": "Antarctica Workshop",
+      "act_03_subtitle": "Science & environmental awareness",
+      "act_03_desc": "Through the documentary of our expedition to Antarctica, students discover polar ecosystems, marine wildlife, and the realities of climate change.",
+      "act_03_tags": ["Environment", "Science", "Climate Change"]
+    },
+    "precios": {
+      "eyebrow": "TOTAL TRANSPARENCY",
+      "title": "All-inclusive for",
+      "price_unit": "€ / student",
+      "checklist_1": "All 3 full activities included",
+      "checklist_2": "All certified gear and equipment provided",
+      "checklist_3": "Collective boat usage",
+      "checklist_4": "FVV-certified instructors",
+      "checklist_5": "Civil liability and accident insurance",
+      "season_heading": "September to June",
+      "season_text": "The perfect sailing season. We strongly advise booking spring and autumn dates well in advance due to high demand.",
+      "ratio_heading": "Instructor Ratio",
+      "ratio_text": "For every 10-12 students we assign a certified instructor to uphold the highest safety standards.",
+      "weather_heading": "We take the sea seriously",
+      "weather_text": "If weather conditions are unsuitable or unsafe for water activities, we adapt the day with alternative land-based educational activities or coordinate a date reschedule at no extra charge. Student safety is always our priority."
+    },
+    "cta": {
+      "eyebrow": "UNIQUE EDUCATIONAL OFFER",
+      "title": "Ready to reserve dates for your school?",
+      "description": "Send us a message with the estimated number of students, school grade, and tentative dates that work best. We will manage the complete nautical logistics.",
+      "btn_reserve": "📧 Book a date",
+      "btn_pdf": "📄 Download PDF brochure",
+      "note": "Detailed educational brochure: \"Nautical activities for schools and associations\""
+    },
+    "email": {
+      "subject": "School Sailing Booking Request - Getxo Bela Eskola",
+      "body": "Hello!\n\nWe would like to request information or book a school sailing day for our educational center.\n\n- School/Center name:\n- Approximate number of students:\n- Grade or age group:\n- Preferred/tentative dates:\n- Contact phone and person:\n\nThank you very much!"
+    }
+  },
+  "en_construccion": {
+    "badge": "Under Construction",
+    "title": "We're preparing this section",
+    "apology": "Sorry for the inconvenience. We are actively working to have full details for this program available very soon.",
+    "question": "Have questions or want to sign up now?",
+    "prompt": "You can reach out directly via your preferred channel:",
+    "email_btn": "Send Email",
+    "whatsapp_btn": "Direct WhatsApp",
+    "contact_btn": "Contact Form",
+    "back_home": "Back to Home"
   }
 }

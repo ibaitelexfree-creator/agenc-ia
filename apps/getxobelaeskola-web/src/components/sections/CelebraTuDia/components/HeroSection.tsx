@@ -99,15 +99,22 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
           animate={isInView ? 'visible' : 'hidden'}
         >
           <span className={styles.heroTitleLetters}>
-            {letters.map((char: string, i: number) => (
-              <motion.span
-                key={i}
-                className={styles.heroTitleLetter}
-                variants={VARIANTS.letter}
-                whileHover={prefersReducedMotion ? {} : { scale: 1.15, rotate: [0, -5, 5, 0], color: '#1B8FCF' }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
+            {titleText.split(' ').map((word: string, wordIdx: number) => (
+              <span key={wordIdx} className={styles.heroWord}>
+                {word.split('').map((char: string, charIdx: number) => (
+                  <motion.span
+                    key={charIdx}
+                    className={styles.heroTitleLetter}
+                    variants={VARIANTS.letter}
+                    whileHover={prefersReducedMotion ? {} : { scale: 1.15, rotate: [0, -5, 5, 0], color: '#1B8FCF' }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+                {wordIdx < titleText.split(' ').length - 1 && (
+                  <span className={styles.heroTitleLetter}>&nbsp;</span>
+                )}
+              </span>
             ))}
           </span>
         </motion.h1>
@@ -133,36 +140,6 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
           {t('cta')}
         </motion.button>
       </div>
-
-      {/* Niña saltando en la ola */}
-      <motion.div
-        className={styles.jumpingGirl}
-        animate={floatTransition}
-        onClick={spinGirl}
-        whileHover={prefersReducedMotion ? {} : { rotate: 15 }}
-      >
-        <svg viewBox="0 0 100 120" className={styles.svgIcon}>
-          {/* Flag */}
-          <path d="M 40,20 L 75,30 L 40,40 Z" fill="#FFD166" stroke="#0D2B45" strokeWidth="2" />
-          <line x1="40" y1="20" x2="40" y2="100" stroke="#0D2B45" strokeWidth="3" />
-          {/* Girl Silhouette / Cartoon */}
-          <circle cx="50" cy="50" r="12" fill="#EF6351" stroke="#0D2B45" strokeWidth="2" /> {/* Head */}
-          <path d="M 44,62 Q 50,68 56,62 L 62,90 L 50,80 L 38,90 Z" fill="#1B8FCF" stroke="#0D2B45" strokeWidth="2" /> {/* Dress/Body */}
-          <line x1="38" y1="62" x2="25" y2="45" stroke="#0D2B45" strokeWidth="2" strokeLinecap="round" /> {/* Arms */}
-          <line x1="62" y1="62" x2="75" y2="45" stroke="#0D2B45" strokeWidth="2" strokeLinecap="round" />
-          <line x1="45" y1="90" x2="40" y2="110" stroke="#0D2B45" strokeWidth="2" strokeLinecap="round" /> {/* Legs */}
-          <line x1="55" y1="90" x2="60" y2="110" stroke="#0D2B45" strokeWidth="2" strokeLinecap="round" />
-          {/* Confetti bubble if active */}
-          {isConfettiActive && (
-            <>
-              <circle cx="20" cy="30" r="3" fill="#6BBF59" />
-              <circle cx="80" cy="25" r="4" fill="#FFD166" />
-              <circle cx="90" cy="60" r="3.5" fill="#EF6351" />
-              <path d="M10,80 L15,85" stroke="#1B8FCF" strokeWidth="2" />
-            </>
-          )}
-        </svg>
-      </motion.div>
 
       {/* Wave container bottom */}
       <div className={styles.waveContainer}>

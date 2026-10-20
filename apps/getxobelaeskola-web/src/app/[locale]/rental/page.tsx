@@ -155,28 +155,28 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
     };
 
     return (
-        <main className="min-h-screen bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
+        <main className="min-h-[100dvh] w-full bg-nautical-black text-sea-foam selection:bg-accent selection:text-nautical-black">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
             {/* Cinematic Header Section */}
-            <section className="relative pt-48 pb-32 overflow-hidden">
+            <section className="rental-header-section relative pt-[clamp(7.5rem,14vh,11rem)] pb-2 sm:pb-4 overflow-hidden w-full">
                 {/* Background Decor */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
-                <div className="container mx-auto px-6 relative z-10">
-                    <header className="max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.6em] text-sm font-bold mb-8 block animate-fade-in-up">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+                    <header className="w-full max-w-4xl">
+                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-1.5 sm:mb-4 landscape:mb-2 block animate-fade-in-up">
                             {t('header_eyebrow')}
                         </span>
-                        <h1 className="text-5xl md:text-7xl lg:text-9xl font-display leading-[0.9] text-sea-foam mb-12 animate-reveal relative z-20">
-                            {t('title_prefix')} <br />
+                        <h1 className="text-[clamp(1.5rem,5vw,5rem)] font-display leading-[1.05] text-sea-foam mb-2 sm:mb-6 md:mb-8 landscape:mb-4 animate-reveal relative z-20 whitespace-normal">
+                            <span>{t('title_prefix')}</span>{' '}
                             <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
                         </h1>
-                        <p className="max-w-2xl text-sea-foam/60 font-light text-xl leading-relaxed border-l border-sea-foam/10 pl-12 mt-12 animate-fade-in" style={{ animationDelay: '0.8s' }}>
+                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-xs sm:text-base md:text-lg leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 landscape:mt-3 animate-fade-in" style={{ animationDelay: '0.8s' }}>
                             {t('description')}
                         </p>
                     </header>
@@ -184,16 +184,16 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             </section>
 
             {/* Main Interactive Fleet Section */}
-            <section className="pb-48 relative">
-                <div className="container mx-auto px-6 relative z-10">
+            <section className="pb-8 sm:pb-16 md:pb-24 landscape:pb-12 relative">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
                     <RentalClient services={(services as any[]) || []} locale={locale} />
                 </div>
 
                 {/* Bottom Note / Disclosure */}
-                <div className="container mx-auto px-6 mt-32">
-                    <div className="relative group p-12 md:p-16 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden">
+                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-16 md:mt-20 landscape:mt-8">
+                    <div className="relative group p-4 sm:p-8 md:p-12 landscape:p-6 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
                         <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700" />
-                        <p className="text-sea-foam/60 font-light italic text-lg leading-relaxed max-w-4xl">
+                        <p className="text-sea-foam/60 font-light italic text-xs sm:text-base md:text-lg leading-relaxed max-w-4xl">
                             {t('footer_note')}
                         </p>
                     </div>

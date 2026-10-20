@@ -65,7 +65,7 @@ export default function ClosingBalloons() {
     const eventDate = date || 'Sin fecha definida';
     const textMessage = `Hola Getxo Bela Eskola! Queremos celebrar un día especial con vosotras. Fecha propuesta: ${eventDate}, Grupo: ${peopleCount} personas.`;
     const encoded = encodeURIComponent(textMessage);
-    window.open(`https://wa.me/34688688688?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/34634405624?text=${encoded}`, '_blank');
   };
 
   return (
@@ -73,10 +73,11 @@ export default function ClosingBalloons() {
       {/* Floating balloons fields */}
       {!prefersReducedMotion && (
         <div className={styles.balloonsField}>
-          {balloons.map((b) => (
-            <AnimatePresence key={b.id}>
-              {!b.isPopped && (
+          <AnimatePresence>
+            {balloons.map((b) => (
+              !b.isPopped ? (
                 <motion.div
+                  key={`balloon-${b.id}`}
                   className={styles.balloon}
                   style={{
                     left: `${b.left}%`,
@@ -104,10 +105,9 @@ export default function ClosingBalloons() {
                   {/* Balloon String */}
                   <div className={styles.balloonString} />
                 </motion.div>
-              )}
-              {b.isPopped && (
+              ) : (
                 <motion.div
-                  key="poppedText"
+                  key={`poppedText-${b.id}`}
                   className={styles.balloonText}
                   style={{ left: `${b.left}%`, bottom: '40%' }}
                   initial={{ scale: 0.8, opacity: 1 }}
@@ -117,9 +117,9 @@ export default function ClosingBalloons() {
                 >
                   {b.popText}
                 </motion.div>
-              )}
-            </AnimatePresence>
-          ))}
+              )
+            ))}
+          </AnimatePresence>
         </div>
       )}
 

@@ -22,8 +22,8 @@ export function Windsurfer({ style, enterDelay = 0 }: WindsurferProps) {
         transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
       >
         <svg
-          width="80"
-          height="100"
+          width="44"
+          height="56"
           viewBox="0 0 80 100"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

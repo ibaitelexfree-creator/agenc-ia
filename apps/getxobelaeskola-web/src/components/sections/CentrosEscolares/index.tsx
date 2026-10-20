@@ -1,52 +1,36 @@
 'use client';
 
 // index.tsx
-import { useRef } from 'react';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 import CentrosHero from './components/CentrosHero';
-const ComoFunciona = dynamic(() => import('./components/ComoFunciona'), { ssr: false });
+import ComoFunciona from './components/ComoFunciona';
 import ActividadesCards from './components/ActividadesCards';
 import PreciosBloque from './components/PreciosBloque';
 import CtaSection from './components/CtaSection';
 import WaveDivider from './components/WaveDivider';
 
 export default function CentrosEscolaresSection() {
-  const scrollTargetRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const locale = useLocale();
 
-  const scrollToMoreInfo = () => {
-    if (scrollTargetRef.current) {
-      scrollTargetRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleReserveEmail = () => {
-    const email = "info@getxobelaeskola.com";
-    const subject = encodeURIComponent("Reserva Jornada Escolar - Getxo Bela Eskola");
-    const body = encodeURIComponent(
-      "¡Hola!\n\nNos gustaría solicitar información o reservar una jornada de vela escolar para nuestro centro.\n\n" +
-      "- Nombre del centro educativo:\n" +
-      "- Número aproximado de alumnos:\n" +
-      "- Curso o rango de edad:\n" +
-      "- Fechas tentativas o de interés:\n" +
-      "- Teléfono y persona de contacto:\n\n" +
-      "¡Muchas gracias!"
-    );
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  const handleReserveClick = () => {
+    router.push(`/${locale}/contacto/localizacion`);
   };
 
   return (
     <div>
       {/* Hero Section */}
       <CentrosHero 
-        onLearnMoreClick={scrollToMoreInfo} 
-        onReserveClick={handleReserveEmail} 
+        onReserveClick={handleReserveClick} 
       />
 
       {/* Wave transition from Hero (White) to Como Funciona (Off-white) */}
       <WaveDivider fillColor="var(--color-offwhite)" />
 
       {/* Section target anchor for 'Saber más' scroll */}
-      <div ref={scrollTargetRef} id="descubre-centros">
+      <div id="descubre-centros">
         {/* Como Funciona Section */}
         <ComoFunciona />
       </div>
@@ -67,7 +51,7 @@ export default function CentrosEscolaresSection() {
       <WaveDivider fillColor="var(--color-offwhite)" inverse={true} />
 
       {/* CTA Section */}
-      <CtaSection onReserveClick={handleReserveEmail} />
+      <CtaSection onReserveClick={handleReserveClick} />
     </div>
   );
 }

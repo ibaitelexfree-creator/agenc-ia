@@ -344,7 +344,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                             <select
                                 onChange={(e) => {
                                     const val = e.target.value;
-                                    let nextParticipant = null;
+                                    let nextParticipant: any = null;
                                     if (val === 'self') {
                                         nextParticipant = null;
                                     } else {
@@ -420,7 +420,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                 onClose={() => setIsLegalModalOpen(false)}
                 onConfirm={handleLegalConfirm}
                 activityType={activityType}
-                initialData={user ? {
+                initialData={user ? ({
                     fullName: selectedParticipant 
                         ? `${selectedParticipant.nombre} ${selectedParticipant.apellidos}` 
                         : ((profile?.nombre || user.user_metadata?.nombre) 
@@ -444,7 +444,7 @@ export default function BookingSelector({ editions, coursePrice, courseId, activ
                     parentDni: profile?.dni || '',
                     parentTelefono: profile?.telefono || '',
                     parentEmail: user.email || ''
-                } : undefined}
+                } as any) : undefined}
                 legalText={tLegal('course_contract')}
             />
         </div>

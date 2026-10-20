@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { Clock, MapPin, Phone } from 'lucide-react';
 import CollaboratorsGrid from '@/components/shared/CollaboratorsGrid';
+import { CookieFooterTrigger } from '@/components/cookies/CookieFooterTrigger';
 
 
 const SalesianasLogo = () => (
@@ -110,49 +111,51 @@ export default async function Footer({ locale }: { locale: string }) {
     }
 
     return (
-        <footer className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative">
+        <footer
+            className="bg-nautical-deep border-t border-sea-foam/10 selection:bg-accent selection:text-nautical-black relative z-20"
+        >
             <div className="absolute inset-0 bg-maps opacity-10 pointer-events-none" />
-            <HomeStats />
             {!isSubscribed && <Newsletter locale={locale} />}
+            <HomeStats />
 
-            <div className="py-24 container mx-auto px-6 flex flex-col items-center">
+            <div className="py-24 global-container flex flex-col items-center">
                 {/* Logo Section */}
                 <div className="flex flex-col items-center gap-6 mb-12 group">
                     <div className="flex flex-col items-center">
                         <span className="font-display text-3xl md:text-5xl text-sea-foam uppercase tracking-tight leading-none">
                             GETXO <span className="italic font-light text-accent">BELA</span>
                         </span>
-                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">Escuela Náutica Oficial</span>
+                        <span className="text-[9px] md:text-[10px] uppercase tracking-[0.6em] text-sea-foam/30 font-black mt-3">{t('official_school')}</span>
                     </div>
                 </div>
 
-                {/* Horario, Contacto y Ubicación Column */}
-                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[10px] uppercase tracking-widest text-sea-foam/40 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <Clock className="w-3.5 h-3.5" />
-                            <span>Horario</span>
+                {/* Horario, Contacto y Ubicación Column (+20% tamaño de fuente) */}
+                <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-16 text-center md:text-left mb-12 text-[12px] sm:text-[13px] uppercase tracking-wider text-sea-foam/50 border-y border-sea-foam/10 py-8 w-full max-w-3xl">
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <Clock className="w-4 h-4" />
+                            <span>{t('schedule')}</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">Lunes a Domingo</span>
-                        <span className="text-sea-foam/60 font-medium">09:00 — 20:00</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed whitespace-pre-line">{t('hours_weekdays')}</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">{t('hours_weekend')}</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <MapPin className="w-3.5 h-3.5" />
-                            <span>Ubicación</span>
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <MapPin className="w-4 h-4" />
+                            <span>{t('location')}</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">Muelle Arriluzea, s/n</span>
-                        <span className="text-sea-foam/60 font-medium">48990 Getxo, Vizcaya</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">Marqués de Arriluce e Ibarra Kalea, 3D</span>
+                        <span className="text-sea-foam/75 font-semibold text-[12px] sm:text-[13px] leading-relaxed">48992 Getxo, Bizkaia</span>
                     </div>
 
-                    <div className="flex flex-col items-center md:items-start gap-2 flex-1">
-                        <div className="flex items-center gap-2 text-accent font-black">
-                            <Phone className="w-3.5 h-3.5" />
-                            <span>Contacto</span>
+                    <div className="flex flex-col items-center md:items-start gap-2.5 flex-1">
+                        <div className="flex items-center gap-2 text-accent font-black text-[13px] sm:text-[14px]">
+                            <Phone className="w-4 h-4" />
+                            <span>{t('contact')}</span>
                         </div>
-                        <span className="text-sea-foam/60 font-medium">(+34) 944 916 632</span>
-                        <span className="text-sea-foam/60 font-medium">info@getxobelaeskola.com</span>
+                        <a href="tel:+34944916632" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors">(+34) 944 916 632</a>
+                        <a href="mailto:info@getxobelaeskola.com" className="text-sea-foam/75 hover:text-white font-semibold text-[12px] sm:text-[13px] leading-relaxed transition-colors lowercase tracking-normal">info@getxobelaeskola.com</a>
                     </div>
                 </div>
 
@@ -164,40 +167,57 @@ export default async function Footer({ locale }: { locale: string }) {
                 <CollaboratorsGrid />
 
                 {/* Sponsor Collaborators section */}
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-6">
-                    {/* NextGenerationEU Logo */}
-                    <div className="h-8 md:h-10 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
-                        <Image
-                            src="/images/logo-nextgen.svg"
-                            alt="Financiado por la Unión Europea - NextGenerationEU"
-                            width={180}
-                            height={40}
-                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
-                        />
+                <div className="flex flex-col items-center gap-4 mb-12 border-t border-sea-foam/10 pt-8 w-full max-w-4xl px-4 sm:px-6">
+                    <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8 md:gap-12 w-full">
+                        {/* NextGenerationEU Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/logo-nextgen.svg"
+                                alt={t('nextgen_alt')}
+                                width={180}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
+
+                        {/* Kit Digital Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/collaborators/logo-kit-digital.svg"
+                                alt={t('kit_digital_alt')}
+                                width={140}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
+                        
+                        {/* Plan de Recuperación Logo */}
+                        <div className="h-6 sm:h-8 md:h-9 w-auto flex items-center justify-center relative opacity-80 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-110 transition-all duration-500 ease-out cursor-pointer group">
+                            <Image
+                                src="/images/logo-plan-recuperacion.svg"
+                                alt={t('plan_recuperacion_alt')}
+                                width={160}
+                                height={36}
+                                className="object-contain h-full w-auto transition-transform duration-500 ease-out"
+                            />
+                        </div>
                     </div>
-                    
-                    {/* Plan de Recuperación Logo */}
-                    <div className="h-4.5 md:h-6 w-auto flex items-center justify-center relative opacity-70 hover:opacity-100 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-500 ease-out cursor-pointer group">
-                        <Image
-                            src="/images/logo-plan-recuperacion.svg"
-                            alt="Plan de Recuperación, Transformación y Resiliencia"
-                            width={140}
-                            height={26}
-                            className="object-contain h-full w-auto transition-transform duration-500 ease-out"
-                        />
-                    </div>
+
+                    <p className="text-[11px] sm:text-xs text-sea-foam/60 text-center font-medium max-w-2xl leading-relaxed mt-2">
+                        {t('sponsors_text')}
+                    </p>
                 </div>
 
                 <div className="flex flex-wrap justify-center items-center gap-x-4 sm:gap-x-8 md:gap-x-10 gap-y-3 text-[9px] md:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.3em] font-black text-sea-foam/20 mb-12 text-center max-w-full px-4">
+                    <Link href={`/${locale}/aviso-legal`} className="hover:text-accent transition-premium break-words">{t('legal_notice')}</Link>
                     <Link href={`/${locale}/privacy`} className="hover:text-accent transition-premium break-words">{t('privacy')}</Link>
                     <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium break-words">{t('cookies')}</Link>
+                    <CookieFooterTrigger className="hover:text-accent transition-premium break-words" />
                     <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium break-words">{t('accessibility')}</Link>
                 </div>
 
                 <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">
-                    {t('copyright')}
-                    <br />
-                    <span className="mt-6 block text-sea-foam/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
+                    <span className="block text-sea-foam/20 hover:text-accent transition-premium cursor-default font-black tracking-[0.5em]">
                         {t('slogan')}
                     </span>
                 </div>

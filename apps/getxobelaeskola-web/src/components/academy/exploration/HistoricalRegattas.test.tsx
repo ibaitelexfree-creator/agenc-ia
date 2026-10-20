@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import HistoricalRegattas from './HistoricalRegattas';
 import { HISTORICAL_REGATTAS } from '@/data/academy/historicalRegattas';
 import { vi } from 'vitest';

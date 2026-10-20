@@ -489,18 +489,18 @@ export function LandingSidebar() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          gap: '8px',
-                          padding: '8px',
-                          borderRadius: '20px',
+                          gap: '6px',
+                          padding: '5px 10px',
+                          borderRadius: '16px',
                           backgroundColor: 'rgba(255,255,255,0.04)',
                           border: '1px solid rgba(197, 160, 89, 0.3)',
-                          boxShadow: '0 0 15px rgba(197, 160, 89, 0.1)',
+                          boxShadow: '0 0 10px rgba(197, 160, 89, 0.1)',
                           color: '#c5a059',
-                          fontSize: '0.75rem',
+                          fontSize: '0.7rem',
                           fontWeight: 900,
-                          letterSpacing: '0.15em',
+                          letterSpacing: '0.12em',
                         }}>
-                          <Sparkles className="w-3.5 h-3.5" />
+                          <Sparkles className="w-3 h-3" />
                           MEMBER
                         </div>
                       )}

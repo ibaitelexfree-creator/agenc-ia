@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
+import { Calendar, ArrowRight, BookOpen } from 'lucide-react';
 import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import { hoverLift } from '@/lib/animations/variants';
 import { motion } from 'framer-motion';
@@ -94,15 +94,15 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                 </div>
 
                 {/* Staggered Grid */}
-                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <StaggeredEntrance type="slide" staggerDelay={0.15} className="grid grid-cols-1 min-[586px]:grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-8 blog-grid-system w-full max-w-full">
                     {displayPosts.map((post) => (
                         <motion.article
                             key={post.id}
                             {...hoverLift}
                             className="flex flex-col bg-sea-foam/[0.01] border border-sea-foam/10 rounded-2xl overflow-hidden backdrop-blur-sm group/card cursor-pointer shadow-lg hover:shadow-black/10"
                         >
-                            <Link href={`/${locale}/blog/noticias`} className="flex flex-col h-full">
-                                <div className="relative aspect-[16/10] overflow-hidden bg-nautical-deep">
+                            <Link href={`/${locale}/blog/noticias${post.slug ? `?article=${post.slug}` : ''}`} className="flex flex-col h-full">
+                                <div className="relative aspect-square overflow-hidden bg-nautical-deep">
                                     <Image
                                         src={post.image}
                                         alt={post.title}
@@ -124,10 +124,6 @@ export default function LatestBlogPosts({ locale, posts }: LatestBlogPostsProps)
                                             <span className="flex items-center gap-1.5">
                                                 <Calendar className="w-3.5 h-3.5" />
                                                 {new Date(post.date).toLocaleDateString(locale, { day: '2-digit', month: 'short', year: 'numeric' })}
-                                            </span>
-                                            <span className="flex items-center gap-1.5">
-                                                <User className="w-3.5 h-3.5" />
-                                                {post.author}
                                             </span>
                                         </div>
                                         {/* Title */}

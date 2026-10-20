@@ -93,6 +93,7 @@
     "title_highlight": "Material",
     "description": "Descubre la mar de cerca y a tu ritmo en embarcaciones ágiles y divertidas. Perfecto para disfrutar navegando en libertad. Vela Ligera, Crucero, Windsurf o Big SUP.",
     "crew_label": "Tripulación",
+    "price_per_hour": "Precio/h",
     "footer_note": "* El alquiler de veleros requiere titulación mínima. Para Paddle Surf con turbina se incluye formación básica de manejo.",
     "categories": {
       "all": "Todos",
@@ -210,14 +211,24 @@
     "header_badge": "NUESTRA OFERTA",
     "header_title": "Cursos de",
     "header_highlight": "Navegación",
-    "header_desc": "En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona. Nuestro objetivo es que cada una encuentre su lugar en la mar y aprenda a navegar con seguridad, calma y confianza.",
+    "header_desc": "En Getxo Bela Eskola ofrecemos cursos para todas las edades y niveles, siempre desde un enfoque cercano, progresivo y adaptado a cada persona.",
     "duration": "h",
-    "price_from": "Desde"
+    "price_from": "Desde",
+    "category_sections": {
+      "cat-crucero_title": "Cursos de Crucero",
+      "cat-crucero_desc": "Navegación en veleros J80, maniobras, trimado, spinnaker/gennaker y entrenamientos en equipo.",
+      "cat-vela-ligera_title": "Cursos de Vela Ligera",
+      "cat-vela-ligera_desc": "Desde el primer contacto con el viento hasta perfeccionamiento, campamentos y regatas en veleros ligeros.",
+      "cat-windsurf_title": "Cursos de Windsurf",
+      "cat-windsurf_desc": "Aprende y perfecciona equilibrio, planeo, maniobras y autonomía con el viento sobre la tabla.",
+      "cat-mantenimiento_title": "Cursos de Mantenimiento",
+      "cat-mantenimiento_desc": "Talleres prácticos de cuidado de embarcaciones, jarcia, fibra y costura y reparación de velas."
+    }
   },
   "about_page": {
     "header_badge": "CONÓCENOS",
-    "header_title": "Historia del",
-    "header_highlight": "Club",
+    "header_title": "",
+    "header_highlight": "El Club y la Vela",
     "header_suffix": "Getxo Bela Eskola",
     "since": "Fundada en Getxo",
     "desc1": "Hace más de 15 años nacimos en Getxo con un objetivo claro: acercar la mar a todas las personas desde un enfoque humano, educativo y accesible. Somos una asociación sin ánimo de lucro y un proyecto social que entiende la vela como una herramienta de aprendizaje, de convivencia y de transformación personal.",
@@ -243,23 +254,64 @@
       "member3_role": "Socias",
       "member3_desc": "La eskola funciona con una relación sencilla y humana: las monitoras escuchan, observan ritmos, acompañan miedos y fomentan autonomía; el equipo comparte decisiones y la voz de las socias forma parte de la vida del proyecto."
     },
-    "commitment_title": "Comprometidos con la",
-    "commitment_highlight": "Cultura del Mar",
+    "commitment_title": "HISTORIA DEL CLUB",
+    "commitment_highlight": "",
     "define_badge": "Nuestra Esencia",
     "define_title": "Lo que nos define",
     "cta_title": "¿Listo para zarpar?",
     "cta_desc": "Únete a nuestra escuela y descubre por qué somos el referente de navegación en el Cantábrico.",
-    "cta_button": "Ver Cursos Disponibles"
+    "cta_button": "Ver Cursos Disponibles",
+    "short_desc1": "Más de 15 años acercando la mar a todas las personas desde un proyecto social, humano y accesible. Somos una asociación sin ánimo de lucro que reinvierte todo el beneficio en la propia eskola y nuestra manera de proceder parte de una idea sencilla: las personas primero.",
+    "short_desc2": "La Eskola sigue siendo un espacio cercano, sencillo y construido por personas que creen en el valor de aprender juntas en la mar.",
+    "read_more": "LEER MÁS",
+    "modal": {
+      "title": "HISTORIA DEL CLUB",
+      "p1": "Hace más de 15 años nacimos en Getxo con un objetivo claro: acercar la mar a todas las personas desde un enfoque humano, educativo y accesible. Somos una asociación sin ánimo de lucro y un proyecto social que entiende la vela como una herramienta de aprendizaje, de convivencia y de transformación personal.",
+      "p2": "Con los años hemos ido creciendo, profesionalizándonos y ampliando actividades, siempre con la misma base: poner a las personas en el centro. La Eskola sigue siendo un lugar cercano, sencillo y construido desde la comunidad, y nuestro camino sigue centrado en acompañar a las personas para que vivan la mar de forma sencilla, segura y auténtica.",
+      "p3": "No somos una empresa, y no actuamos como tal. Como asociación sin ánimo de lucro, todo lo que entra se reinvierte en mejorar el proyecto: renovar embarcaciones, formar monitoras, cuidar las instalaciones y ampliar actividades."
+    }
+  },
+  "facilities_page": {
+    "header_badge": "NUESTRO ESPACIO",
+    "header_title": "Nuestras",
+    "header_highlight": "Instalaciones",
+    "header_desc": "En el corazón del Puerto Deportivo de Getxo, con salida directa al Abra y a pocos pasos de la playa de Ereaga. Un espacio diseñado para aprender, compartir y vivir el Cantábrico con total confort.",
+    "cta_title": "Ven a Conocer la Escuela",
+    "cta_desc": "Descubre nuestros espacios náuticos, prueba una embarcación o asómate a sentir la brisa en el pantalán.",
+    "btn_about": "Conócenos",
+    "btn_courses": "Ver Cursos",
+    "items": {
+      "instalaciones": {
+        "title": "Nuestras Instalaciones",
+        "badge": "Puerto de Getxo",
+        "desc": "Ubicadas en una zona privilegiada del Puerto Deportivo de Getxo, a pocos metros de la playa de Ereaga y con salida directa al Abra. Contamos con aula audiovisual, vestuarios cuidados, amplio espacio exterior, taller y zona chill-out."
+      },
+      "pantalan": {
+        "title": "Pantalán Propio",
+        "badge": "Acceso Directo",
+        "desc": "El pantalán es nuestro enlace directo con la mar. La flota es variada: vela ligera, cruceros, windsurf, big SUP, paddle surf, piraguas y lanchas de apoyo."
+      },
+      "aulas": {
+        "title": "Aulas y Taller",
+        "badge": "Teoría & Maniobra",
+        "desc": "Espacios formativos con recursos audiovisuales interactivos, cartas náuticas y taller técnico para el cuidado y trimado de embarcaciones."
+      },
+      "aseos": {
+        "title": "Aseos y Vestuarios",
+        "badge": "Confort & Cuidados",
+        "desc": "Vestuarios completos, duchas de agua caliente, casilleros seguros y zona de descanso pensados para reconfortarte al terminar tu jornada en el mar."
+      }
+    }
   },
   "contact_page": {
     "header_badge": "Contacto",
     "header_title": "Hablemos de",
     "header_highlight": "Navegar",
     "location_label": "Ubicación",
-    "location_val": "Muelle Arriluzea, s/n\n48990 Getxo, Vizcaya",
+    "location_val": "Marqués de Arriluce e Ibarra Kalea, 3D\n48992 Getxo, Bizkaia",
     "contact_label": "Email & Teléfono",
     "hours_label": "Horario",
-    "hours_val": "Lunes a Domingo\n09:00 — 20:00"
+    "hours_val": "L - V: 10:00 — 14:00\ny 16:00 — 20:00\nS y D: 10:00 — 15:00"
   },
   "newsletter": {
     "eyebrow": "Súbete a bordo",
@@ -309,6 +361,7 @@
     "name": "Nombre",
     "apellidos": "Apellidos",
     "email": "Email",
+    "email_placeholder": "tu@email.com",
     "password": "Contraseña",
     "login_btn": "Iniciar Sesión",
     "logging_in": "Accediendo...",
@@ -714,6 +767,24 @@
     "rental": "Alquiler",
     "school": "La Escuela",
     "contact": "Contacto",
+    "schedule": "Horario",
+    "location": "Ubicación",
+    "official_school": "Escuela Náutica Oficial",
+    "hours_weekdays": "L - V: 10:00 — 14:00\ny 16:00 — 20:00",
+    "hours_weekend": "S y D: 10:00 — 15:00",
+    "collaborators": "Colaboradores",
+    "search_collaborator": "Buscar colaborador...",
+    "no_collaborators": "No se encontraron colaboradores que coincidan con",
+    "scroll_left": "Desplazar a la izquierda",
+    "scroll_right": "Desplazar a la derecha",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "clear_search": "Limpiar búsqueda",
+    "sponsors_text": "Financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia y el Programa Kit Digital.",
+    "nextgen_alt": "Financiado por la Unión Europea - NextGenerationEU",
+    "kit_digital_alt": "Programa Kit Digital",
+    "plan_recuperacion_alt": "Plan de Recuperación, Transformación y Resiliencia",
+    "legal_notice": "Aviso Legal",
     "privacy": "Privacidad",
     "cookies": "Cookies",
     "accessibility": "Accesibilidad",
@@ -1007,49 +1078,11 @@
     }
   },
   "tools": {
-    "index": {
-      "eyebrow": "Herramientas Náuticas",
-      "title": "Puente Digital",
-      "description": "Una colección de herramientas esenciales para la navegación, planificación y seguridad en el mar. Diseñado por navegantes para navegantes.",
-      "converter": {
-        "title": "Convertidor Náutico",
-        "description": "Convertidor profesional de unidades para velocidad, distancia, profundidad y presión. Incluye historial y preajustes rápidos.",
-        "cta": "Lanzar Convertidor"
-      },
-      "plotter": {
-        "title": "Plotter de Cartas",
-        "description": "Practica tus habilidades de navegación con nuestro plotter interactivo. Traza rumbos, mide distancias y más.",
-        "cta": "Abrir Plotter"
-      }
-    },
-    "nautical_converter": {
-      "eyebrow": "Utilidad",
-      "title": "Convertidor Náutico",
-      "description": "Herramienta de precisión para convertir entre unidades marítimas y estándar.",
-      "input": "Valor de Entrada",
-      "result": "Resultado",
-      "history": "Conversiones Recientes",
-      "clear_history": "Borrar Historial",
-      "speed": "Velocidad",
-      "distance": "Distancia",
-      "depth": "Profundidad",
-      "temperature": "Temp",
-      "pressure": "Presión",
-      "units": {
-        "knots": "Nudos",
-        "kmh": "km/h",
-        "ms": "m/s",
-        "meters": "Metros",
-        "feet": "Pies",
-        "nautical_miles": "Millas Náuticas",
-        "km": "Kilómetros",
-        "fathoms": "Brazas",
-        "celsius": "Celsius",
-        "fahrenheit": "Fahrenheit",
-        "hpa": "hPa",
-        "mb": "Milibares",
-        "inhg": "inHg"
-      }
+    "title": "Utilidades Náuticas",
+    "nautical_converter": "Conversor Náutico",
+    "converter": {
+      "title": "Conversor Náutico",
+      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
     }
   },
   "validation": {
@@ -1083,6 +1116,26 @@
   "legal": {
     "privacy_title": "Política de Privacidad",
     "cookies_title": "Política de Cookies",
+    "privacy_intro": "En Getxo Bela Eskola nos tomamos muy en serio la privacidad de tus datos. Cumplimos estrictamente con el Reglamento General de Protección de Datos (RGPD) y la Ley Orgánica de Protección de Datos y Garantía de Derechos Digitales (LOPDGDD).",
+    "privacy_sec1_title": "1. Responsable del Tratamiento",
+    "privacy_sec1_p1": "El responsable del tratamiento de tus datos es la",
+    "privacy_sec1_company": "Asociación club deportivo vela Pakea munduari itzulia",
+    "privacy_sec1_trade_name": "Getxo Bela Eskola",
+    "privacy_sec1_cif": "G95526299",
+    "privacy_sec1_address": "Marqués de Arriluce e Ibarra Kalea, 3D, 48992 Getxo, Bizkaia",
+    "privacy_sec1_contact_phone": "Puedes contactar con nosotros en el teléfono",
+    "privacy_sec1_contact_email": "o en el email",
+    "privacy_sec2_title": "2. Finalidad de los Datos",
+    "privacy_sec2_desc": "Los datos proporcionados a través de formularios de contacto o registro se utilizan para:",
+    "privacy_sec2_item1": "Gestionar tu inscripción en cursos, bautismos y alquileres náuticos.",
+    "privacy_sec2_item2": "Mantenerte informado sobre novedades, eventos y actividades de la escuela (si has aceptado las comunicaciones informativas).",
+    "privacy_sec2_item3": "Cumplir con las obligaciones legales de seguridad y registro marítimo de navegantes.",
+    "privacy_sec3_title": "3. Conservación de los Datos",
+    "privacy_sec3_desc": "Conservaremos tus datos personales mientras se mantenga la relación comercial y formativa o durante los años necesarios para cumplir con las obligaciones legales y tributarias aplicables.",
+    "privacy_sec4_title": "4. Tus Derechos",
+    "privacy_sec4_p1": "Tienes derecho a acceder, rectificar, limitar el tratamiento, solicitar la portabilidad o suprimir tus datos personales en cualquier momento.",
+    "privacy_sec4_p2": "Para ejercer estos derechos, envía un correo a",
+    "privacy_sec4_p3": "adjuntando copia o documento acreditativo de tu identidad.",
     "rental_contract": "CONTRATO DE ARRENDAMIENTO DE MATERIAL NÁUTICO - GETXO BELA ESKOLA\n\n1. REQUISITOS DEL ARRENDATARIO: El cliente declara poseer los conocimientos técnicos necesarios para el manejo seguro del material alquilado. En caso de veleros de recreo, se requiere la titulación mínima correspondiente.\n\n2. ESTADO Y DEVOLUCIÓN: El material se entrega en perfecto estado de funcionamiento. El cliente se compromete a devolverlo en el mismo estado. Cualquier daño causado por negligencia será responsabilidad exclusiva del cliente.\n\n3. ZONAS DE NAVEGACIÓN: La navegación se limitará a las zonas autorizadas y tiempos acordados. El cliente se compromete a respetar las normas del Puerto Deportivo de Getxo y la normativa de Capitanía Marítima.\n\n4. SEGURIDAD: El uso del chaleco salvavidas es obligatorio y personal durante todo el tiempo que se permanezca en el agua.\n\n5. RESCATE Y ASISTENCIA: Si el cliente requiere asistencia o rescate por imprudencia o salida de las zonas permitidas, los costes derivados correrán a su cargo.\n\n6. FIRMA DIGITAL: Al marcar la casilla de aceptación, el cliente ratifica que ha comprendido todos los puntos anteriores y asume su responsabilidad legal.",
     "course_contract": "CONDICIONES GENERALES DE CONTRATACIÓN - GETXO BELA ESKOLA\n\n1. OBJETO Y ÁMBITO DE APLICACIÓN: El presente documento establece las condiciones legales para la inscripción en los cursos impartidos por Getxo Bela Eskola.\n\n2. APTITUD FÍSICA Y SEGURIDAD: El alumno declara estar en condiciones físicas adecuadas para la práctica de la navegación y no padecer enfermedades que lo impidan. Es obligatorio el uso de chaleco salvavidas y seguir las instrucciones del patrón o instructor en todo momento.\n\n3. RESPONSABILIDAD: Getxo Bela Eskola no se hace responsable de las pertenencias personales de los alumnos. La escuela cuenta con los seguros de responsabilidad civil y accidentes obligatorios por ley.\n\n4. CONDICIONES METEOROLÓGICAS: La escuela se reserva el derecho de cancelar o aplazar las sesiones si las condiciones del mar o el viento representan un riesgo para la seguridad de los alumnos y el material.\n\n5. POLÍTICA DE CANCELACIÓN: Las cancelaciones por parte del alumno deberán comunicarse con al menos 48 horas de antelación para tener derecho a reubicación en otra fecha (sujeto a disponibilidad).\n\n6. ACEPTACIÓN: El click en \"Acepto\" constituye una firma electrónica vinculante bajo la legislación vigente de servicios de la sociedad de la información.",
     "consent_acceptance": "He leído y acepto expresamente las condiciones legales detalladas anteriormente. Entiendo que esta aceptación equivale a una firma digital vinculante.",
@@ -1254,7 +1307,7 @@
     "title": "Club de Socias",
     "subtitle": "Un espacio para navegar en comunidad, a tu ritmo y sin prisas.",
     "description1": "Ser parte de Getxo Bela Eskola es pertenecer a una comunidad que comparte la mar desde la cercanía, la calma y el compañerismo. Las personas son el corazón de la Eskola, y aquí la navegación se vive sin prisas y sin distancias.",
-    "description2": "Hacemos la vela accesible a todos los públicos y bolsillos, a un precio inmejorable, en un entorno cercano, cuidado y humano. Ser socia permite navegar y entrenar demostrando que navegar nunca había sido tan accesible.",
+    "description2": "Hacemos la vela accesible a todos los públicos y bolsillos, a un precio inmejorable, en un entorno cercano, cuidado y humano.",
     "basic": {
       "title": "Socia Básica",
       "price": "630€/año (o 350€ medio año)",
@@ -1289,8 +1342,9 @@
       "b6_title": "Federación y Seguro",
       "b6_desc": "En ambas opciones es necesario federarse en la Federación Vasca de Vela, aportando seguro y acceso a regatas (aprox 64€)."
     },
-    "hero_title_part1": "Forma parte de",
-    "hero_title_part2": "nuestra tripulación",
+    "hero_title": "HAZTE SOCIA DEL CLUB",
+    "hero_title_part1": "HAZTE SOCIA DEL CLUB",
+    "hero_title_part2": "",
     "section_title_part1": "Mucho más que navegar,",
     "section_title_part2": "un estilo de vida compartido",
     "benefits_eyebrow": "Beneficios Exclusivos",
@@ -1305,25 +1359,25 @@
   },
   "s1": {
     "eyebrow": "Getxo · Bizkaia",
-    "title": "Club de Navegación a Vela en Getxo",
-    "subtitle": "Navega, aprende y comparte",
+    "title": "Navega, aprende y comparte",
+    "subtitle": "Club de Navegación a Vela en Getxo",
     "cta": "Hazte Socia",
-    "scroll_hint": "Sigue navegando",
-    "word1": "Navega.",
-    "word2": "Aprende.",
-    "word3": "Comparte.",
-    "tu_mar_tu_club": "Tu mar. Tu club.",
-    "todo_lo_que_ofrecemos": "Todo lo que ofrecemos",
-    "card_cursos_title": "Cursos",
-    "card_cursos_subtitle": "Aprende a navegar",
-    "card_club_title": "Club Socias",
-    "card_club_subtitle": "Únete a la comunidad",
-    "card_equipos_title": "Equipos",
-    "card_equipos_subtitle": "Compite y supérate",
-    "card_udalekuak_title": "Udalekuak",
-    "card_udalekuak_subtitle": "Campamentos de vela",
-    "card_entidades_title": "Entidades",
-    "card_entidades_subtitle": "Colabora con nosotros"
+    "card_cursos_title": "Aprende a navegar",
+    "card_cursos_subtitle": "Cursos de vela ligera y crucero",
+    "card_club_title": "Únete a la comunidad",
+    "card_club_subtitle": "Navega todo el año con socias",
+    "card_equipos_title": "Compite y supérate",
+    "card_equipos_subtitle": "Equipos de regata y tecnificación",
+    "card_udalekuak_title": "Campamentos de vela",
+    "card_udalekuak_subtitle": "Campus de verano para jóvenes",
+    "card_entidades_title": "Colabora con nosotros",
+    "card_entidades_subtitle": "Team building e instituciones",
+    "blob_cursos": "Cursos",
+    "blob_club": "Club Socias",
+    "blob_equipos": "Equipos de entrenamiento",
+    "blob_udalekuak": "Udalekuak",
+    "blob_udalekuak_sub": "Campamentos",
+    "blob_entidades": "Entidades"
   },
   "s2": {
     "eyebrow": "La experiencia",
@@ -1359,7 +1413,7 @@
   "s3": {
     "eyebrow": "Formación",
     "title": "Descubre tu camino",
-    "subtitle": "¿Cuál es tu nivel y cuánto tiempo tienes?",
+    "subtitle": "¿Cuál es tu nivel?",
     "level_basic": "Nivel básico",
     "level_mid": "Nivel medio",
     "youth": "Jóvenes",
@@ -1799,7 +1853,11 @@
     "value1_prefix": "No somos una escuela convencional, sino una ",
     "value1_highlight": "comunidad cercana y con valores.",
     "value2": "Un lugar donde <gold>aprender a navegar</gold>, compartir y <gold>disfrutar</gold> de la mar.",
-    "cta": "Leer más"
+    "cta": "Leer más",
+    "modal_p1": "No somos una escuela convencional, sino una comunidad cercana construida alrededor de la mar y los valores que la acompañan.",
+    "modal_p2": "Un lugar donde aprender a navegar va de la mano de compartir, disfrutar y crecer en grupo. Aquí la vela no se vive solo como un deporte, sino como una experiencia que conecta a las personas entre sí y con el entorno.",
+    "modal_p3": "Creemos en un aprendizaje natural, accesible y sin presión, donde cada persona encuentra su ritmo y su manera de vivir la navegación. Desde quienes dan sus primeros pasos hasta quienes buscan seguir avanzando, todas tienen su espacio.",
+    "modal_p4": "Más allá del agua, somos un punto de encuentro donde se generan vínculos, confianza y una forma de entender la mar que invita a volver."
   },
   "s3_adapts": {
     "eyebrow": "La experiencia",
@@ -1828,172 +1886,206 @@
     }
   },
   "courses_data": {
-    "iniciacion-j80": {
+    "crucero-iniciacion": {
       "name": "Iniciación J80",
-      "description": "Aprende los conceptos básicos de navegación en nuestra flota de J80.",
+      "description": "Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…",
       "details": [
-        "Fundamentos de vela",
         "Maniobras básicas",
-        "12 horas de clase",
-        "Flota J80"
+        "Funcionamiento de las velas y barco",
+        "Meteorología y lectura de la mar",
+        "Seguridad a bordo · Flota J80"
       ]
     },
-    "windsurf-1-sesion": {
-      "name": "Windsurf 1 Sesión",
-      "description": "Sesión individual de windsurf de 2 horas. Perfecto para probar.",
+    "crucero-perfeccionamiento": {
+      "name": "Crucero perfeccionamiento",
+      "description": "Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.",
       "details": [
-        "Prueba de 2 horas",
-        "Material incluido",
-        "Monitor dedicado",
-        "Primer contacto"
-      ]
-    },
-    "campus-verano-getxo": {
-      "name": "Campus Verano (Empadronados)",
-      "description": "Campus de verano para niños y jóvenes de 5 a 21 años empadronados en Getxo.",
-      "details": [
-        "Navegación en grupo",
-        "Seguridad en el mar",
-        "Juegos y actividades",
-        "20 horas semanales"
-      ]
-    },
-    "campus-verano-external": {
-      "name": "Campus Verano (No Empadronados)",
-      "description": "Campus de verano para niños y jóvenes de 5 a 21 años no empadronados en Getxo.",
-      "details": [
-        "Navegación en grupo",
-        "Seguridad en el mar",
-        "Juegos y actividades",
-        "20 horas semanales"
-      ]
-    },
-    "iniciacion-adultos": {
-      "name": "Iniciación Adultos",
-      "description": "Curso de iniciación a la navegación para adultos.",
-      "details": [
-        "Fundamentos de vela",
-        "Maniobras básicas",
-        "12 horas de clase",
-        "Grupos de adultos"
-      ]
-    },
-    "perfeccionamiento": {
-      "name": "Perfeccionamiento",
-      "description": "Mejora tu técnica de trimado y maniobra.",
-      "details": [
-        "Trimado de velas",
+        "Trimado fino de velas",
+        "Control y gobierno del barco",
         "Maniobras avanzadas",
-        "Navegación eficiente",
-        "Práctica en mar abierto"
+        "Lectura de viento y mar"
       ]
     },
-    "vela-ligera": {
-      "name": "Vela Ligera",
-      "description": "Aprende los fundamentos de la navegación a vela en Getxo.",
+    "crucero-gennaker": {
+      "name": "Crucero con gennaker",
+      "description": "Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.",
       "details": [
-        "Optimist, Laser y 420",
-        "Octubre a Junio",
-        "3 domingos al mes",
-        "Incluye monitor y equipo"
+        "Izada, trasluchada y arriada de gennaker",
+        "Rumbos portantes y ángulos de viento",
+        "Seguridad y coordinación en equipo",
+        "Dinámica en velero J80"
       ]
     },
-    "tecnificacion-adultos": {
-      "name": "Tecnificación Adultos",
-      "description": "Curso de perfeccionamiento y tecnificación para adultos.",
+    "entrenamientos-adultas": {
+      "name": "Entrenamientos para adultas",
+      "description": "Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.",
       "details": [
-        "Tácticas de regata",
-        "Maniobras de precisión",
-        "Puesta a punto",
-        "Entrenamiento en J80"
+        "Programa continuo anual o mensual",
+        "Autonomía y trabajo en equipo",
+        "Navegación en diversas condiciones",
+        "Puesta a punto y maniobra"
       ]
     },
-    "otros": {
-      "name": "Otros / Varios",
-      "description": "Sesiones y eventos varios no categorizados.",
+    "vela-ligera-iniciacion": {
+      "name": "Vela ligera iniciación",
+      "description": "Un primer paso ideal para descubrir la navegación en veleros pequeños donde el contacto con las sensaciones del barco y con el viento son muchos mayores.",
       "details": [
-        "Eventos especiales",
-        "Sesiones a medida",
-        "Consultar opciones"
+        "Sensibilidad directa al timón y escotas",
+        "Equilibrio y dinámica con el viento",
+        "Aparejo y maniobras básicas",
+        "Monitores especializados"
       ]
     },
-    "licencia-navegacion": {
-      "name": "Licencia de Navegación",
-      "description": "Obtén tu titulación oficial en una mañana.",
+    "vela-ligera-avanzado": {
+      "name": "Vela ligera avanzado",
+      "description": "Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.",
       "details": [
-        "Título oficial sin examen",
-        "Gobierno de barcos hasta 6m",
-        "Motos náuticas hasta 55CV",
-        "Navegación diurna (2 millas)"
+        "Maniobras de precisión y velocidad",
+        "Autonomía total a bordo",
+        "Táctica de rumbos y trimado fino",
+        "Lectura de rachas y corrientes"
       ]
     },
-    "konpondu": {
-      "name": "Konpondu",
-      "description": "Curso especializado en mantenimiento y reparación naviera.",
+    "txikigune-sabados": {
+      "name": "Txikigune (Sábados de navegación)",
+      "description": "Espacio semanal para niñas y niños que quieren disfrutar de la mar días sueltos sin compromisos. Navegación, juego, aprendizaje y convivencia.",
       "details": [
-        "Mantenimiento del motor",
-        "Fibra y resina",
-        "Electricidad a bordo",
-        "Jarcia y acastillaje"
+        "Días sueltos los sábados sin compromiso",
+        "Juegos marineros y aprendizaje activo",
+        "Convivencia y trabajo en equipo",
+        "Edades de 5 a 21 años"
       ]
     },
-    "windsurf-iniciacion": {
-      "name": "Curso Iniciación Windsurf",
-      "description": "Aprende los fundamentos del windsurf en 5 sesiones de 2 horas.",
+    "udalekuak-campamentos": {
+      "name": "Udalekuak (Campamentos)",
+      "description": "Campamentos de verano donde la navegación se combina con actividades acuáticas, trabajo en equipo y experiencias que se recuerdan toda la vida.",
       "details": [
-        "Equilibrio y posición",
-        "Dirección y giros",
-        "5 sesiones de 2h",
-        "Material adaptado"
+        "Campamentos estivales semanales",
+        "Vela, paddle surf, kayak y juegos",
+        "Monitores titulados y ratio reducida",
+        "Experiencias de vida en el mar"
       ]
     },
-    "windsurf-campus": {
-      "name": "Campus Windsurf",
-      "description": "Campamento intensivo de windsurf de 15 horas.",
+    "entrenamientos-infantiles-continuos": {
+      "name": "Entrenamientos infantiles continuos",
+      "description": "Grupos estables para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.",
       "details": [
-        "Uso avanzado de la vela",
-        "Planeo y arnés",
-        "15 horas totales",
-        "Diversión en el mar"
+        "Entrenamientos regulares escolares",
+        "Seguimiento pedagógico y técnico",
+        "Progresión en Optimist y flota ligera",
+        "Comunidad y deporte formativo"
       ]
     },
-    "windsurf-3-sesiones": {
-      "name": "Windsurf 3 Sesiones",
-      "description": "Pack de 3 sesiones de windsurf de 2 horas cada una. Ideal para practicar y mejorar.",
+    "entrenamientos-continuos-jovenes": {
+      "name": "Entrenamientos continuos para jóvenes",
+      "description": "Grupos estables para jóvenes que buscan aprender y/o seguir creciendo en técnica, autonomía y trabajo en equipo.",
       "details": [
-        "3 sesiones de 2h",
-        "Consolidación de técnica",
-        "Mejora de rumbo",
-        "Material completo"
+        "Jóvenes de hasta 21 años",
+        "Perfeccionamiento técnico en flota",
+        "Autonomía y toma de decisiones",
+        "Navegación deportiva y regatas formativas"
       ]
     },
-    "iniciacion-vela-ligera": {
-      "name": "Iniciación a la Vela Ligera",
-      "description": "Primer contacto con la navegación a vela. Aprende los fundamentos básicos de la vela en embarcaciones ligeras.",
+    "bautismos": {
+      "name": "Bautismos",
+      "description": "Una primera experiencia en la mar, pensada para disfrutar sin presión y descubrir la navegación de manera sencilla y acompañada.",
       "details": [
-        "Optimist, Laser y 420",
-        "Conceptos básicos de viento",
-        "Navegación autónoma",
-        "Monitor y equipo"
+        "Primer contacto suave y accesible",
+        "Sin necesidad de experiencia previa",
+        "Acompañamiento cercano por monitor",
+        "Vistas y sensaciones del Abra"
+      ]
+    },
+    "familia": {
+      "name": "Familia",
+      "description": "Sesiones pensadas para compartir en familia, con ritmos tranquilos, dinámicas divertidas y navegación segura.",
+      "details": [
+        "Actividad para todas las edades",
+        "Dinámicas adaptadas a niños y adultos",
+        "Barco en exclusiva con patrón",
+        "Recuerdos inolvidables juntos"
+      ]
+    },
+    "cursos-personalizados": {
+      "name": "Cursos personalizados",
+      "description": "Formaciones a medida según objetivos, nivel y disponibilidad: desde técnica concreta hasta navegación por proyectos.",
+      "details": [
+        "Formación 100% personalizada",
+        "Horarios y fechas a convenir",
+        "Objetivos técnicos o de travesía específicos",
+        "Atención individual o grupos cerrados"
+      ]
+    },
+    "regata-corporativa": {
+      "name": "Regata corporativa",
+      "description": "Experiencia para empresas y grupos: navegación, trabajo en equipo y convivencia en un entorno diferente y estimulante.",
+      "details": [
+        "Team building y cohesión de equipos",
+        "Regata dinámica y participativa",
+        "Flota homogénea de veleros",
+        "Coordinación y briefing marinero"
+      ]
+    },
+    "windsurf-iniciacion-perfeccionamiento": {
+      "name": "Windsurf: Iniciación y perfeccionamiento",
+      "description": "Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica. Trabajo de equilibrio, maniobras, lectura del viento y autonomía en la tabla.",
+      "details": [
+        "1 sesión suelta (2,5h): 45 €",
+        "Bono 4 sesiones (10h): 150 € (37,5 €/salida)",
+        "Campus continuo (5 sesiones fijas 3h, 15h): 250 €",
+        "Tabla, vela, neopreno y chaleco incluidos"
+      ]
+    },
+    "mantenimiento-embarcaciones": {
+      "name": "Mantenimiento de embarcaciones",
+      "description": "Curso teórico-práctico de mantenimiento en general, enfocado principalmente a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.",
+      "details": [
+        "8 horas totales (2 días · 4h/día) · 100 €",
+        "Casco, fibra, antifouling y gelcoat",
+        "Acastillaje, jarcia y cabuyería",
+        "Motor y electricidad básica"
+      ]
+    },
+    "costura-reparacion-velas": {
+      "name": "Costura y reparación de velas",
+      "description": "Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.",
+      "details": [
+        "Puntadas marineras y uso de máquina",
+        "Reparación de desgarros y refuerzos",
+        "Cuidado y mantenimiento de tejidos náuticos",
+        "Material y herramientas del velero"
       ]
     }
   },
   "rentals_data": {
     "bono-vela-ligera": "Bono Vela Ligera",
     "alquiler-420": "420 (Doble)",
+    "alquiler-420-pro": "420",
     "alquiler-raquero-omega": "Raquero / Omega (Colectivo)",
+    "alquiler-raquero": "Raquero",
+    "alquiler-optimist": "Optimist",
+    "alquiler-laser": "Laser",
+    "alquiler-laser-pro": "Laser",
     "atraque-transeunte-8m": "Atraque Transeúnte (< 8m)",
     "atraque-transeunte-12m": "Atraque Transeúnte (> 8m)",
+    "atraque-velero": "Atraque Velero",
     "alquiler-omega-sin-patron": "Omega/Raquero sin patrón",
+    "alquiler-omega-patron": "Omega con patrón",
+    "alquiler-tarpon-patron": "Tarpon con patrón",
     "atraque-windsurf": "Atraque Windsurf",
     "atraque-piragua": "Atraque Piragua",
     "alquiler-windsurf": "Windsurf",
+    "alquiler-windsurf-pro": "Windsurf",
     "alquiler-j80": "Veleros J80",
+    "alquiler-j80-sin-patron": "J-80 sin patrón",
+    "alquiler-j80-patron": "J-80 con patrón",
     "alquiler-paddlesurf": "Paddle Surf",
     "alquiler-kayak-1": "Kayak (1 Persona)",
     "alquiler-kayak-2": "Kayak (2 Personas)",
     "alquiler-piragua-1": "Piragua (1 Persona)",
-    "alquiler-piragua-2": "Piragua (2 Personas)"
+    "alquiler-piragua-2": "Piragua (2 Personas)",
+    "alquiler-bigsub-group": "Bigsub (Grupo)",
+    "socia-premium": "Socia Premium"
   },
   "registration_form": {
     "student_data": "Datos del Alumno/a / Participante",
@@ -2244,6 +2336,7 @@
     "eyebrow": "Utility",
     "title": "Nautical Converter",
     "subtitle": "Precision tool for converting between maritime and standard units.",
+    "description": "Precision tool for converting between maritime and standard units.",
     "input": "Input Value",
     "result": "Result",
     "history": "Recent Conversions",
@@ -2271,12 +2364,147 @@
     "mb": "Milibares",
     "inhg": "inHg"
   },
-  "tools": {
-    "title": "Utilidades Náuticas",
-    "nautical_converter": "Conversor Náutico",
-    "converter": {
-      "title": "Conversor Náutico",
-      "subtitle": "Herramienta de precisión para convertir entre unidades marítimas y estándar."
+  "s3_adapts_new": {
+    "title": "LA VELA SE<br/>ADAPTA A TI",
+    "subtitle": "Veleros pequeños o grandes,<br/>días de calma o de acción,<br/>aguas tranquilas o mar abierta.<br/>Tú eliges cómo quieres navegar.",
+    "leer_mas": "LEER MÁS",
+    "modal": {
+      "title": "Navegación a la carta, según cómo quieras vivir el mar.",
+      "intro1": "La vela no es un deporte rígido. Es una forma de vivir el mar que se adapta a ti, a tu tiempo y a lo que te apetece cada día.",
+      "intro2": "Hoy contamos con partes meteorológicos muy precisos y patrones de viento claros. En nuestros cursos aprendes no solo a navegar, sino a entender y anticipar las condiciones. Así, puedes elegir con bastante certeza cuándo y cómo salir.",
+      "experience_title": "Tú eliges el tipo de experiencia",
+      "experience_1": "Calma: salir después del trabajo, desconectar en un velero pequeño o compartido, navegando sin prisa.",
+      "experience_2": "Acción: días de viento, más intensidad, maniobras dinámicas y sensaciones fuertes.",
+      "experience_3": "La vela te permite ambas.",
+      "scenario_title": "Tú eliges el escenario",
+      "scenario_1": "Abra interior: aguas protegidas y tranquilas, ideales para aprender o relajarse.",
+      "scenario_2": "Abra exterior: mar abierto, olas y una navegación más viva y emocionante.",
+      "who_title": "Tú eliges con quién navegar",
+      "who_1": "Veleros pequeños: en solitario o en grupos de 2 a 6 personas, con participación activa.",
+      "who_2": "Veleros grandes (cruceros): hasta 8 personas, aunque lo ideal es entre 2 y 6 para una experiencia dinámica.",
+      "modern_title": "Una forma moderna de navegar",
+      "modern_1": "Antes se forjaban grandes marineros porque sabían cómo salían, pero no cómo volverían.",
+      "modern_2": "Hoy podemos prever las condiciones con mucha precisión.",
+      "modern_3": "La vela sigue siendo auténtica, pero ahora también es más consciente, accesible y, sobre todo, adaptable a cada persona."
     }
+  },
+  "cookies_banner": {
+    "title": "Valoramos tu privacidad náutica",
+    "description": "Utilizamos cookies técnicas necesarias para el funcionamiento y seguridad de la web. Opcionalmente, solicitamos tu consentimiento para cookies de análisis y rendimiento que nos ayudan a mejorar la experiencia de navegación.",
+    "more_info": "Ver política de cookies",
+    "accept_all": "Aceptar todas",
+    "reject_all": "Rechazar no necesarias",
+    "configure": "Configurar",
+    "banner_aria_label": "Gestión de consentimiento de cookies",
+    "footer_configure_link": "Configurar cookies",
+    "modal_title": "Preferencias de Cookies",
+    "modal_description": "Puedes personalizar tus preferencias de cookies a continuación. Las cookies técnicas son imprescindibles para el funcionamiento y no pueden desactivarse.",
+    "close": "Cerrar",
+    "always_active": "Siempre activas",
+    "category_essential_title": "Cookies Técnicas y Esenciales",
+    "category_essential_desc": "Permiten la navegación segura, autenticación con Supabase, gestión de sesiones y memorización del idioma. Son estrictamente necesarias (exentas de consentimiento según art. 22.2 LSSI).",
+    "category_analytics_title": "Cookies de Análisis (Vercel Web Analytics)",
+    "category_analytics_desc": "Nos permiten comprender de forma agregada y anónima cómo interactúan los usuarios con nuestra escuela y contenidos náuticos para optimizarlos.",
+    "category_performance_title": "Métricas de Rendimiento (Speed Insights)",
+    "category_performance_desc": "Miden los tiempos de carga y las métricas web vitales (Core Web Vitals) en dispositivos reales para mejorar la velocidad del sitio.",
+    "save_preferences": "Guardar preferencias",
+    "read_full_policy": "Consultar inventario detallado en la Política de Cookies"
+  },
+  "centros_escolares": {
+    "hero": {
+      "eyebrow": "CENTROS ESCOLARES · ASOCIACIONES",
+      "title_line_1": "La mar como",
+      "title_line_2": "herramienta",
+      "title_line_3": "educativa.",
+      "subtitle": "Acercamos la mar a los centros educativos y asociaciones a través de experiencias vivenciales donde deporte, ciencia y trabajo en equipo se unen en un entorno real y de confianza.",
+      "btn_reserve": "📧 Reservar fecha",
+      "btn_learn_more": "↓ Saber más",
+      "pill_students_num": "👥 Hasta 60",
+      "pill_students_label": "Alumnos por día",
+      "pill_duration_num": "⏱️ 3 Horas",
+      "pill_duration_label": "De jornada vivencial",
+      "pill_price_num": "🪙 15 €",
+      "pill_price_label": "Por alumno"
+    },
+    "como_funciona": {
+      "eyebrow": "LOGÍSTICA PEDAGÓGICA",
+      "title": "¿Cómo se organiza la jornada?",
+      "subtitle": "Dividimos al alumnado en tres grupos que rotan de forma coordinada para garantizar que todos disfruten de cada actividad con total seguridad y atención personalizada.",
+      "group_a": "Grupo A",
+      "group_b": "Grupo B",
+      "group_c": "Grupo C",
+      "rotation_badge": "🔄 Rotación cada 50-60 min",
+      "activity_sailing": "⛵ Bautismo Vela",
+      "activity_bigsup": "🏄 Big SUP Colectivo",
+      "activity_awareness": "🐧 Taller Conciencia",
+      "timeline_0900_event": "Recepción en Puerto",
+      "timeline_1030_event": "Primeras Rotaciones",
+      "timeline_1200_event": "Fin de Jornada",
+      "card_groups_icon": "👥 3 Grupos Estables",
+      "card_groups_heading": "Equipos Reducidos",
+      "card_groups_text": "Fomentamos equipos pequeños para dar una atención 100% segura y directa a cada participante.",
+      "card_time_icon": "⏱️ 50-60 Minutos",
+      "card_time_heading": "Por Actividad",
+      "card_time_text": "El tiempo perfecto para asimilar conceptos básicos en el agua y mantener la concentración a flote.",
+      "card_material_icon": "⛵ Todo Incluido",
+      "card_material_heading": "Chalecos y Neoprenos",
+      "card_material_text": "Facilitamos todo el material homologado necesario para realizar las actividades con máxima comodidad."
+    },
+    "actividades": {
+      "eyebrow": "EXPERIENCIAS VIVENCIALES",
+      "title": "Aprender es convivir.",
+      "swipe_hint": "← Desliza para ver más →",
+      "act_01_title": "Navegación en Velero",
+      "act_01_subtitle": "Bautismo de vela",
+      "act_01_desc": "Salida al mar con instructoras/es titulados. Aprenden cómo funciona un barco, rumbos, maniobras básicas y normas de seguridad, reforzando la autoestima y la toma de decisiones.",
+      "act_01_tags": ["Autonomía", "Seguridad", "Trabajo en equipo"],
+      "act_02_title": "Big SUP",
+      "act_02_subtitle": "Tabla gigante colectiva",
+      "act_02_desc": "Unos 10 alumnos reman de forma coordinada. Se trabajan el equilibrio, la cooperación real y la escucha activa en una actividad muy participativa.",
+      "act_02_tags": ["Coordinación", "Cooperación", "Escucha activa"],
+      "act_03_title": "Taller Antártida",
+      "act_03_subtitle": "Ciencia y conciencia",
+      "act_03_desc": "A través del documental de la travesía a la Antártida, el alumnado descubre el ecosistema polar, la fauna marina y los efectos del cambio climático.",
+      "act_03_tags": ["Medio ambiente", "Ciencia", "Cambio climático"]
+    },
+    "precios": {
+      "eyebrow": "TRANSPARENCIA TOTAL",
+      "title": "Todo incluido por",
+      "price_unit": "€ / alumno",
+      "checklist_1": "Las 3 actividades completas",
+      "checklist_2": "Todo el material homologado necesario",
+      "checklist_3": "Uso de embarcaciones colectivas",
+      "checklist_4": "Monitorado titulado por la FVV",
+      "checklist_5": "Seguros de responsabilidad civil y accidentes",
+      "season_heading": "Septiembre a Junio",
+      "season_text": "La temporada perfecta. Recomendamos reservar primavera y otoño con suficiente antelación por alta demanda.",
+      "ratio_heading": "Ratio Profesorado",
+      "ratio_text": "Por cada 10-12 alumnos asignamos un instructor titulado para cumplir los más altos estándares.",
+      "weather_heading": "Nos tomamos el mar en serio",
+      "weather_text": "Si las condiciones meteorológicas no son aptas o seguras para realizar las actividades en el agua, adaptaremos la jornada con actividades alternativas en tierra o coordinaremos un cambio de fecha sin coste alguno. La seguridad de los alumnos es siempre lo primero."
+    },
+    "cta": {
+      "eyebrow": "PROPUESTA EDUCATIVA ÚNICA",
+      "title": "¿Lista para reservar la fecha para tu centro?",
+      "description": "Escríbenos indicando el número estimado de alumnos, el curso escolar y las posibles fechas que os vengan mejor. Nos encargaremos de organizar toda la logística de la jornada náutica.",
+      "btn_reserve": "📧 Reservar fecha",
+      "btn_pdf": "📄 Descargar dossier PDF",
+      "note": "Dossier informativo detallado: \"Actividades náuticas para centros escolares y asociaciones\""
+    },
+    "email": {
+      "subject": "Reserva Jornada Escolar - Getxo Bela Eskola",
+      "body": "¡Hola!\n\nNos gustaría solicitar información o reservar una jornada de vela escolar para nuestro centro.\n\n- Nombre del centro educativo:\n- Número aproximado de alumnos:\n- Curso o rango de edad:\n- Fechas tentativas o de interés:\n- Teléfono y persona de contacto:\n\n¡Muchas gracias!"
+    }
+  },
+  "en_construccion": {
+    "badge": "Página en construcción",
+    "title": "Estamos preparando esta sección",
+    "apology": "Disculpe las molestias. Estamos trabajando para tener disponible la información detallada de este programa muy pronto.",
+    "question": "¿Tienes dudas o quieres inscribirte ya?",
+    "prompt": "Puedes contactarnos directamente por el canal que prefieras:",
+    "email_btn": "Escribir Email",
+    "whatsapp_btn": "WhatsApp Directo",
+    "contact_btn": "Formulario de Contacto",
+    "back_home": "Volver al inicio"
   }
 }

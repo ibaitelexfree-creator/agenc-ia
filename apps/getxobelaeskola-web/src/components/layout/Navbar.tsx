@@ -43,6 +43,7 @@ const localizedLabels: Record<string, Record<string, string>> = {
     home: { es: 'Inicio', eu: 'Hasiera', en: 'Home', fr: 'Accueil' },
     club: { es: 'Club', eu: 'Kluba', en: 'Club', fr: 'Club' },
     conocenos: { es: 'Conócenos', eu: 'Ezagutu gaitzazu', en: 'About us', fr: 'Qui sommes-nous' },
+    instalaciones: { es: 'Instalaciones', eu: 'Instalazioak', en: 'Facilities', fr: 'Installations' },
     club_de_socias: { es: 'Club de socias', eu: 'Bazkideen kluba', en: 'Members club', fr: 'Club des membres' },
     regatas: { es: 'Regatas', eu: 'Estropadak', en: 'Regattas', fr: 'Régates' },
     que_es_la_vela: { es: 'Qué es la vela', eu: 'Zer da bela', en: 'What is sailing', fr: 'Qu\'est-ce que la voile' },
@@ -192,6 +193,8 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         return null;
     }
 
+    const isAdmin = user?.rol === 'admin';
+
     // Restructured navigation tree according to requirements
     const navItems: NavItem[] = [
         {
@@ -205,6 +208,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
             icon: <Anchor className="w-3.5 h-3.5" />,
             dropdown: [
                 { href: 'club/conocenos', label: 'conocenos', icon: <Users className="w-4 h-4" /> },
+                { href: 'club/instalaciones', label: 'instalaciones', icon: <School className="w-4 h-4" /> },
                 { href: 'club/socias', label: 'club_de_socias', icon: <Sparkles className="w-4 h-4" /> },
                 { href: 'club/regatas', label: 'regatas', icon: <Sailboat className="w-4 h-4" /> },
                 { href: 'club/que-es-la-vela', label: 'que_es_la_vela', icon: <Wind className="w-4 h-4" /> },
@@ -224,7 +228,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 { href: 'servicios/team-building', label: 'team_building', icon: <Compass className="w-4 h-4" /> },
                 { href: 'servicios/cumpleanos', label: 'celebra_aqui_tu_dia', icon: <Sparkles className="w-4 h-4" /> },
                 { href: 'servicios/material', label: 'guarda_tu_material_deportivo', icon: <Anchor className="w-4 h-4" /> },
-                { href: 'servicios/tienda', label: 'tienda', icon: <ShoppingBag className="w-4 h-4" /> },
+                ...(isAdmin ? [{ href: 'servicios/tienda', label: 'tienda', icon: <ShoppingBag className="w-4 h-4" /> }] : []),
             ],
         },
         {
@@ -246,20 +250,23 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 { href: 'contacto/localizacion', label: 'horario_contacto_localizacion', icon: <Clock className="w-4 h-4" /> },
             ],
         },
-        {
+        ...(isAdmin ? [{
             href: 'tienda',
             label: 'tienda',
             icon: <ShoppingBag className="w-3.5 h-3.5" />,
-        },
+        }] : []),
     ];
 
     return (
         <>
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col">
                 {/* Top Utility Bar */}
-                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-4 md:px-12 flex justify-between items-center border-b border-white/5 relative select-none">
+                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative select-none">
                     {/* Left side: Social Links (in brand colors) */}
                     <div className="flex items-center gap-5">
+                        <a href="https://wa.me/34634405624" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
+                            <Phone className="w-4.5 h-4.5" />
+                        </a>
                         <a href="https://www.instagram.com/pakeabelaeskola/" target="_blank" rel="noopener noreferrer" className="text-[#ff5c97] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(255,92,151,0.3)]" title="Instagram">
                             <Instagram className="w-4.5 h-4.5" />
                         </a>
@@ -331,9 +338,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                         <span className="w-[1px] h-3 bg-white/10" />
  
                         {/* Shopping Cart */}
-                        <Link href={`/${locale}/tienda`} className="text-white hover:text-accent hover:scale-110 active:scale-95 transition-all duration-200 flex items-center drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" title="Cart">
-                            <ShoppingCart className="w-4.5 h-4.5" />
-                        </Link>
+                        {isAdmin && (
+                            <Link href={`/${locale}/tienda`} className="text-white hover:text-accent hover:scale-110 active:scale-95 transition-all duration-200 flex items-center drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]" title="Cart">
+                                <ShoppingCart className="w-4.5 h-4.5" />
+                            </Link>
+                        )}
  
                         {/* Profile / Login */}
                         <Link 
@@ -381,29 +390,26 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     </div>
                 </div>
  
-                <nav className="w-full px-4 md:px-12 py-2 md:py-3 flex xl:grid xl:grid-cols-[1fr_auto_1fr] justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
+                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
                     prefetch={false}
-                    className="flex items-center group transition-premium relative z-[110] xl:justify-self-start"
+                    className="flex items-center group transition-premium relative z-[110] flex-shrink-0"
                     onClick={() => setIsMenuOpen(false)}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     <motion.div
                         animate={{
-                            y: isAtHero ? 23 : 8,
+                            y: isAtHero ? 2 : 0,
                             x: 0,
+                            scale: 0.99,
                         }}
                         transition={{ type: 'spring', stiffness: 50, damping: 15 }}
                         className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
-                        {/* Wrapper for subtle vertical floating animation - stopped and positioned 5px higher */}
-                        <div
-                            className="absolute inset-0 w-full h-full"
-                            style={{ transform: 'translateY(-5px)' }}
-                        >
+                        <div className="absolute inset-0 w-full h-full">
                             <Image
                                 src={isAtHero && isHovered ? "/images/Logo_Bela_horizontal_white_text.png" : "/images/Logo Bela horizontal SIN FONDO.png"}
                                 alt="Getxo Bela Eskola"
@@ -417,7 +423,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 </Link>
  
                 {/* Desktop Menu - Custom Framer Motion dropdowns */}
-                <div className="hidden xl:flex gap-8 items-center text-xs uppercase tracking-[0.25em] font-black h-full xl:justify-self-center">
+                <div className="hidden xl:flex gap-4 2xl:gap-8 items-center text-xs uppercase tracking-[0.18em] 2xl:tracking-[0.25em] font-black h-full flex-1 justify-center xl:pl-6 xl:pr-4 2xl:px-0">
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
@@ -433,7 +439,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             {item.dropdown ? (
                                 <button
                                     type="button"
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -454,7 +460,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                 <Link
                                     href={`/${locale}/${item.href}`}
                                     prefetch={false}
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black ${isAtHero ? 'text-white' : 'text-sea-foam'} hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                 >
                                     {item.icon}
@@ -485,7 +491,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                                     prefetch={false}
                                                     className="flex items-center gap-3 px-6 py-4 text-[10px] uppercase tracking-[0.25em] font-bold text-sea-foam/75 hover:text-sea-foam hover:bg-sea-foam/5 transition-all duration-200 group/sub"
                                                 >
-                                                    <span className="text-accent/60 group-hover/sub:text-accent transition-colors">{sub.icon}</span>
+                                                    <span className="text-sea-foam/75 group-hover/sub:text-sea-foam transition-colors">{sub.icon}</span>
                                                     {getLabel(sub.label)}
                                                 </Link>
                                             ))}
@@ -498,7 +504,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 </div>
  
                 {/* Right Side Actions */}
-                <div className="flex gap-4 items-center relative z-[110] xl:justify-self-end">
+                <div className="flex gap-4 items-center relative z-[110] flex-shrink-0">
 
 
                     {loading ? (
@@ -531,11 +537,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             </Link>
                         </motion.div>
                     ) : user ? (
-                        <div className="hidden xl:flex gap-8 items-center">
+                        <div className="hidden xl:flex gap-3 2xl:gap-6 items-center flex-shrink-0 whitespace-nowrap">
                             {user.status_socio === 'activo' && (
-                                <div className="flex items-center gap-2.5 px-5 py-2 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-premium hover:border-brass-gold/60 group/member">
-                                    <Sparkles className="w-3.5 h-3.5 text-brass-gold transition-premium group-hover:rotate-45" />
-                                    <span className="text-brass-gold text-[9px] font-black uppercase tracking-[0.3em]">
+                                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-sea-foam/5 border border-brass-gold/30 shadow-[0_0_10px_rgba(197,160,89,0.1)] transition-premium hover:border-brass-gold/60 group/member flex-shrink-0">
+                                    <Sparkles className="w-3 h-3 text-brass-gold transition-premium group-hover:rotate-45" />
+                                    <span className="text-brass-gold text-[8px] font-black uppercase tracking-[0.2em] whitespace-nowrap">
                                         MEMBER
                                     </span>
                                 </div>
@@ -543,14 +549,14 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             <Link
                                 href={user.rol === 'admin' || user.rol === 'instructor' ? `/${locale}/staff` : `/${locale}/student/dashboard`}
                                 prefetch={false}
-                                className="text-[10px] uppercase tracking-[0.3em] font-black text-accent border border-accent/20 px-6 py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium"
+                                className="text-[10px] uppercase tracking-[0.2em] 2xl:tracking-[0.3em] font-black text-accent border border-accent/20 px-4 2xl:px-6 py-2.5 2xl:py-3 rounded-full hover:bg-accent hover:text-white shadow-lg shadow-accent/5 transition-premium whitespace-nowrap flex-shrink-0"
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {user.rol === 'admin' || user.rol === 'instructor' ? getLabel('admin_panel') : getLabel('dashboard')}
                             </Link>
                             <button
                                 onClick={handleLogout}
-                                className={`text-xs uppercase tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 ${isAtHero ? 'text-white' : 'text-sea-foam'}`}
+                                className={`text-xs uppercase tracking-[0.2em] 2xl:tracking-[0.25em] font-black hover:text-red-500 transition-premium border-b border-transparent hover:border-red-500/30 pb-1 text-black whitespace-nowrap flex-shrink-0`}
                                 style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                             >
                                 {getLabel('logout')}
@@ -614,7 +620,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 className={`fixed inset-0 z-[90] bg-nautical-deep transition-all duration-700 xl:hidden ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}`}
             >
                 <div className="absolute inset-0 bg-maps opacity-5 pointer-events-none" />
-                <div className="flex flex-col h-full pt-32 pb-12 px-8 overflow-y-auto">
+                <div className="flex flex-col h-full pt-24 sm:pt-32 pb-12 px-4 sm:px-8 max-w-lg mx-auto w-full overflow-y-auto">
                     <div className="flex flex-col gap-4 mb-12">
                         {navItems.map((item, idx) => (
                             <div key={item.label}>
@@ -626,7 +632,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                         style={{ transitionDelay: `${idx * 80}ms` }}
                                         onClick={() => { if (!item.dropdown) setIsMenuOpen(false); }}
                                     >
-                                        <span className="text-accent/60">{item.icon}</span>
+                                        <span className="text-sea-foam">{item.icon}</span>
                                         <span className={`text-3xl font-display italic text-sea-foam transition-all duration-500 ${isMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
                                             {getLabel(item.label)}
                                         </span>
@@ -660,7 +666,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                                     className="flex items-center gap-3 py-3 text-lg text-sea-foam/50 hover:text-sea-foam transition-colors"
                                                     onClick={() => setIsMenuOpen(false)}
                                                 >
-                                                    <span className="text-accent/50">{sub.icon}</span>
+                                                    <span className="text-sea-foam/50">{sub.icon}</span>
                                                     {getLabel(sub.label)}
                                                 </Link>
                                             ))}
@@ -721,3 +727,5 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         </>
     );
 }
+
+
