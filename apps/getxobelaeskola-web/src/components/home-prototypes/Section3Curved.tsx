@@ -17,9 +17,44 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  // Auto-play and keep playing video with iOS/Android mobile fallback
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.muted = true
+    video.defaultMuted = true
+
+    const playVideo = () => {
+      if (video) {
+        const promise = video.play()
+        if (promise !== undefined) {
+          promise.catch(() => {})
+        }
+      }
+    }
+
+    playVideo()
+
+    const handleTouch = () => {
+      playVideo()
+      window.removeEventListener('touchstart', handleTouch)
+      window.removeEventListener('scroll', handleTouch)
+    }
+
+    window.addEventListener('touchstart', handleTouch, { passive: true })
+    window.addEventListener('scroll', handleTouch, { passive: true })
+
+    return () => {
+      window.removeEventListener('touchstart', handleTouch)
+      window.removeEventListener('scroll', handleTouch)
+    }
   }, [])
 
   useScrollLock(modalRef, isModalOpen)
@@ -277,11 +312,13 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
         {variant !== 'home-1' && variant !== 'home-2' ? (
           <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#0D2137]">
             <video
+              ref={videoRef}
               autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
+              onLoadedData={(e) => { e.currentTarget.play().catch(() => {}) }}
               className="w-full h-full object-cover select-none pointer-events-none scale-105 filter brightness-[0.92] contrast-[1.05]"
             >
               <source src="/videos/sea-video-s3.mp4" type="video/mp4" />
@@ -290,11 +327,13 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
         ) : (
           <div className="relative lg:absolute lg:left-0 lg:top-0 lg:bottom-0 w-full lg:w-[75%] h-[48vh] lg:h-full z-0 overflow-hidden bg-[#0D2137]">
             <video
+              ref={videoRef}
               autoPlay
               loop
               muted
               playsInline
-              preload="metadata"
+              preload="auto"
+              onLoadedData={(e) => { e.currentTarget.play().catch(() => {}) }}
               className="w-full h-full object-cover select-none pointer-events-none scale-105 filter brightness-[0.92] contrast-[1.05]"
             >
               <source src="/videos/sea-video-s3.mp4" type="video/mp4" />
