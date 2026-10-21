@@ -459,21 +459,6 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
                 aria-hidden="true"
               >
                 <Section4TopWaveBorder variant={contentVariant || variant} />
-
-                {/* จุดสีแดงมาร์กตำแหน่งปลายช่องว่างแหลม (Pointy tip indicator) */}
-                <div
-                  className="absolute z-50 pointer-events-none"
-                  style={{
-                    left: '100%',
-                    top: '100%',
-                    transform: 'translate(-50%, -50%)',
-                  }}
-                >
-                  <span className="relative flex h-6 w-6">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-6 w-6 bg-red-600 border-2 border-white shadow-xl" />
-                  </span>
-                </div>
               </div>
             )}
           </>
