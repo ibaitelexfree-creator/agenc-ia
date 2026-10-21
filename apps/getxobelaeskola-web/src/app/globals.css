@@ -1858,7 +1858,6 @@ section {
 @media (orientation: landscape) and (max-height: 600px) {
   .global-section,
   .section-1-hero,
-  .promise,
   .section-cta,
   .section-2-identity,
   .section-3-adapts,
@@ -1872,6 +1871,16 @@ section {
     padding-bottom: clamp(1rem, 3vh, 2rem) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+  }
+
+  .promise {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(3.8rem, 14vh, 5rem) !important;
+    padding-bottom: clamp(1rem, 3vh, 2rem) !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
   .s2-identity-container,

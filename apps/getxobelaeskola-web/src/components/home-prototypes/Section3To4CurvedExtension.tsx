@@ -6,9 +6,10 @@ export type S3ToS4CurveVariant = 'home-3' | 'home-4' | 'home-5' | 'home-6' | 'ho
 
 interface Section3To4CurvedExtensionProps {
   variant: S3ToS4CurveVariant
+  width?: string
 }
 
-export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensionProps) {
+export function Section3To4CurvedExtension({ variant, width }: Section3To4CurvedExtensionProps) {
   // Se renderiza para las variantes home-3 a home-13
   const isSupported = ['home-3', 'home-4', 'home-5', 'home-6', 'home-7', 'home-8', 'home-9', 'home-10', 'home-11', 'home-12', 'home-13'].includes(variant)
   if (!isSupported) {
@@ -32,14 +33,17 @@ export function Section3To4CurvedExtension({ variant }: Section3To4CurvedExtensi
 
   return (
     <div
-      className="absolute right-0 z-10 pointer-events-none select-none overflow-visible w-[84%] sm:w-[86%] lg:w-[56%] s3-s4-extension-curve"
-      style={{ top: topOffset }}
+      className="absolute right-0 z-10 pointer-events-none select-none overflow-visible s3-s4-extension-curve"
+      style={{ 
+        top: topOffset,
+        width: width || '56%'
+      }}
       aria-hidden="true"
     >
       {/* ========================================================================= */}
       {/* CURVA BEIGE SUPERIOR DERECHA (SECCIÓN 4 PROLONGANDO SECCIÓN 3)            */}
       {/* ========================================================================= */}
-      <div className="w-full relative h-[60px] sm:h-[125px] lg:h-[150px]">
+      <div className="w-full relative h-[60px] md:h-[150px]">
         <svg
           viewBox="0 0 600 150"
           preserveAspectRatio="none"

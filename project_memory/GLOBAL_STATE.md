@@ -2,6 +2,24 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Short Landscape Viewport Overflow Fix (e.g. 587x586px)
+  1. **Overflow Visibility on Short Landscape Screens:**
+     - Resolved CSS bug in `globals.css` where `@media (orientation: landscape) and (max-height: 600px)` applied `overflow: hidden !important;` to `.promise` (Section 4).
+     - Because the sunset wave and cream extension are positioned at `bottom: 100%` above Section 4, the `overflow: hidden` rule cut them off completely at viewports like 587x586px.
+     - Separated `.promise` to guarantee `overflow: visible !important;` across all short landscape viewports.
+  2. **Verification:**
+     - Verified live HTTP response 200 on `http://localhost:3000/es/`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** iPad and Tablet Responsive Alignment for Section 3 & Section 4
+  1. **iPad/Tablet Seamless Seam Alignment:**
+     - Updated `Section3Curved.tsx` breakpoint threshold from `1024px` to `768px` (`md:`), allowing iPad / tablet devices (768px - 1024px) to share the clean 2-column horizontal split and exact 56% beige zone width aligned at 44%.
+     - Synchronized `Section4Why.tsx` and `Section3To4CurvedExtension.tsx` so the orange sky wave (58% with left -14%) and the cream extension (56% from right 0) meet precisely at the red dot (44%, aligned with the "y") on iPad just as on mobile and desktop.
+     - Synchronized wave and extension vertical heights at tablet viewports (`md:`), preventing height discrepancy and overlap.
+  2. **Verification:**
+     - Verified HTTP 200 on `http://localhost:3000/es/`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Section 4 Seam Elimination and Square Cards Overhaul
   1. **Seam Elimination above Section 4 (`HomePrototypeLayout.tsx`):**
      - Resolved sub-pixel rendering seam gap visible between Section 3 (`Section3Curved.tsx`) and Section 4 (`Section4Why.tsx`) at small/portrait viewports by adding `-mt-[2px]` negative overlap on Section 4.

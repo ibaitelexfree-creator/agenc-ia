@@ -271,7 +271,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const [isNarrowMobile, setIsNarrowMobile] = useState(false)
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024)
+      setIsMobile(window.innerWidth < 768)
       setIsNarrowMobile(window.innerWidth < 400)
     }
     checkMobile()
@@ -304,9 +304,9 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const unfoldOpacity = useTransform(enterProgress, [0, 0.5], [0.4, 1])
 
   return (
-    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] lg:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] lg:min-h-screen'} -mt-[1px] flex flex-col justify-stretch items-stretch`}>
+    <section ref={sectionRef} className={`relative w-full overflow-hidden bg-[#F6F2EC] text-[#0D2137] ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] md:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] md:min-h-screen'} -mt-[1px] flex flex-col justify-stretch items-stretch`}>
       {/* Inversión total de la composición: Vídeo Izquierda, Beige Derecha */}
-      <div className={`relative w-full h-full flex-1 ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] lg:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] lg:min-h-screen'} flex flex-col lg:flex-row items-stretch`}>
+      <div className={`relative w-full h-full flex-1 ${variant === 'home-5' || variant === 'home-6' ? 'min-h-[70vh] sm:min-h-[75vh] md:min-h-[88vh]' : 'min-h-0 sm:min-h-[85vh] md:min-h-screen'} flex flex-col md:flex-row items-stretch`}>
         
         {/* ===================== VÍDEO DE FONDO ===================== */}
         {variant !== 'home-1' && variant !== 'home-2' ? (
@@ -350,12 +350,12 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
             ...(variant === 'home-1' ? { filter: blurFilter } : {}),
             ...(variant === 'home-2' ? { scaleY: unfoldScaleY, opacity: unfoldOpacity, transformOrigin: 'top center' } : {})
           }}
-          className={`relative z-10 w-[84%] sm:w-[86%] lg:w-[56%] ml-auto h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
+          className={`relative z-10 w-[84%] md:w-[56%] ml-auto h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
         >
           {/* ===================== CURVA VERTICAL ORGÁNICA INVERTIDA ===================== */}
           {/* Anclada directamente al borde izquierdo del bloque beige: coincide exactamente en altura (top 0 a bottom 0) */}
           <div
-            className={`absolute right-[calc(100%-2px)] top-0 bottom-0 z-20 pointer-events-none ${variant === 'home-6' ? 'w-[16vw] max-w-[280px]' : 'w-[14vw] sm:w-[12vw] lg:w-[9vw] max-w-[150px]'}`}
+            className={`absolute right-[calc(100%-2px)] top-0 bottom-0 z-20 pointer-events-none ${variant === 'home-6' ? 'w-[16vw] max-w-[280px]' : 'w-[14vw] sm:w-[12vw] md:w-[9vw] max-w-[150px]'}`}
           >
             {(variant === 'home-5' || variant === 'home-1' || variant === 'home-2' || variant === 'home-3' || variant === 'home-4' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8') && (
               /* Curva S náutica suave inversa */
@@ -371,7 +371,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
           {/* Bloque beige con contenido y máscaras de burbujas */}
           <div
-            className={`relative z-10 w-full h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-8 sm:py-16 lg:py-28'} px-5 sm:px-12 md:px-16 lg:pl-24 lg:pr-16 overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
+            className={`relative z-10 w-full h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex flex-col ${variant === 'home-5' ? 'justify-start pt-6 sm:pt-8 lg:pt-10 pb-12 lg:pb-16' : 'justify-center py-8 sm:py-16 lg:py-28'} px-5 sm:px-12 md:px-16 md:pl-24 md:pr-16 overflow-hidden ${variant !== 'home-1' && variant !== 'home-2' ? 'home-bubble-masked-zone' : 'bg-[#F6F2EC]'}`}
           >
             {/* Capa beige con máscara SVG que perfora las ventanas hacia el vídeo de fondo */}
             {variant !== 'home-1' && variant !== 'home-2' && (
@@ -452,10 +452,10 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
 
             {/* ===================== CONTENIDO EDITORIAL DE LA SECCIÓN 3 ===================== */}
             {/* Zona invisible responsiva que encapsula todo el contenido con holgura inferior para sombras y halos */}
-            <div className="s3-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pt-20 sm:pt-24 lg:pt-4 pb-4 sm:pb-10">
+            <div className="s3-curved-content relative z-20 w-full max-w-full flex flex-col justify-center overflow-x-hidden overflow-y-visible pt-20 sm:pt-24 md:pt-4 pb-4 sm:pb-10">
               <motion.div
                 style={isMobile ? { opacity: textOpacity, y: textTranslateY } : {}}
-                className="max-w-xl mx-auto lg:mx-0 w-full pb-2 sm:pb-4"
+                className="max-w-xl mx-auto md:mx-0 w-full pb-2 sm:pb-4"
               >
                 
                 {/* Tag náutico superior */}

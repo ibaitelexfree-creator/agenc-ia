@@ -311,7 +311,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
         const currentStrategy = (variant && strategies[variant]) || strategies['home-3']
 
         const waveConfig = {
-          sizeClass: 'w-[102%] sm:w-[78%] lg:w-[58%] h-[70px] sm:h-[151px] lg:h-[188px]',
+          sizeClass: 'w-[58%] h-[70px] md:h-[188px]',
           leftClass: 'left-[-14%]',
           clipId: 's4-wave-clip-form4',
         }
@@ -459,6 +459,21 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
                 aria-hidden="true"
               >
                 <Section4TopWaveBorder variant={contentVariant || variant} />
+
+                {/* จุดสีแดงมาร์กตำแหน่งปลายช่องว่างแหลม (Pointy tip indicator) */}
+                <div
+                  className="absolute z-50 pointer-events-none"
+                  style={{
+                    left: '100%',
+                    top: '100%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <span className="relative flex h-6 w-6">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-6 w-6 bg-red-600 border-2 border-white shadow-xl" />
+                  </span>
+                </div>
               </div>
             )}
           </>
@@ -466,7 +481,7 @@ export function Section4Why({ variant, contentVariant }: Section4WhyProps = {}) 
       })()}
 
       {/* Prolongación curva de la zona beige de la Sección 3 en el cuadrante superior derecho de la Sección 4 (a la mitad de entrada, limpia sin línea amarilla) */}
-      {variant && <Section3To4CurvedExtension variant={variant} />}
+      {variant && <Section3To4CurvedExtension variant={variant} width="56%" />}
 
 
       <div 
