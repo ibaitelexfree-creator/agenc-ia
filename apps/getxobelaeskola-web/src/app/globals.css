@@ -1171,7 +1171,7 @@ a:hover {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding-top: clamp(1.5rem, 4vh, 3rem) !important;
+    padding-top: clamp(4.2rem, 9.5vh, 5.2rem) !important;
     padding-bottom: clamp(1.5rem, 4vh, 3rem) !important;
     padding-left: clamp(1rem, 3vw, 2rem) !important;
     padding-right: clamp(1rem, 3vw, 2rem) !important;
@@ -1187,7 +1187,10 @@ a:hover {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding: clamp(1.5rem, 3.5vh, 2.5rem) 16px !important;
+    padding-top: clamp(4.2rem, 9.5vh, 5.2rem) !important;
+    padding-bottom: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
     box-sizing: border-box !important;
     overflow: visible !important;
   }

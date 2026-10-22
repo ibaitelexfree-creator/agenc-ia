@@ -2,6 +2,18 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Section 3 Cream Container & Section 4 Pointy Wedge Gap Synchronization on Mobile
+  1. **Synchronized Cream Container with Red Dot Anchor:**
+     - Updated `Section3Curved.tsx` mobile cream container width from static `w-[84%]` to `w-[69%] md:w-[56%]` (and `beigeWidth = isMobile ? '69%' : desktopBeigeWidth`).
+     - Aligns Section 3's cream container left edge seamlessly with the Section 4 wave tip and red dot at `31%` (116px on 375px viewport).
+  2. **Restored Pointy Sea Video / Sky Gap:**
+     - By reducing the mobile cream block from 84% to 69%, the background sea video in Section 3 is now exposed from `0%` to `31%`.
+     - The pointy triangular wedge gap above Section 4's wave now clearly reveals the animated sea video and sky, with zero overlap across text or images.
+  3. **Verification:**
+     - Tested on mobile viewports (360px, 375px, 414px) using Puppeteer. Element hit testing confirms `video` element is directly visible through the pointy gap.
+     - `npx tsc --noEmit` passed with 0 errors.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Short Landscape Viewport Overflow Fix (e.g. 587x586px)
   1. **Overflow Visibility on Short Landscape Screens:**
      - Resolved CSS bug in `globals.css` where `@media (orientation: landscape) and (max-height: 600px)` applied `overflow: hidden !important;` to `.promise` (Section 4).
