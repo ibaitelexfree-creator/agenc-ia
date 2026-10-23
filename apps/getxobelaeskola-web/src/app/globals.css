@@ -1181,8 +1181,8 @@ a:hover {
   }
 }
 
-/* 📱 Very Small Screens (e.g. < 586px Portrait) */
-@media (max-width: 585px) and (orientation: portrait) {
+/* 📱 Very Small Screens (e.g. < 577px Portrait) */
+@media (max-width: 576px) and (orientation: portrait) {
   .promise {
     height: auto !important;
     min-height: auto !important;
@@ -1252,8 +1252,8 @@ a:hover {
   }
 }
 
-/* 📱 Tablet Portrait & Medium Screens (586px - 767px): 3 Square Cards side-by-side */
-@media (min-width: 586px) and (max-width: 767px) {
+/* 📱 Tablet Portrait & Medium Screens (577px - 767px): 3 Square Cards side-by-side */
+@media (min-width: 577px) and (max-width: 767px) {
   .promise {
     height: auto !important;
     min-height: auto !important;
