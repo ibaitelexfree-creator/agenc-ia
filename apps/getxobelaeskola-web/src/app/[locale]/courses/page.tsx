@@ -127,7 +127,7 @@ export default async function CoursesPage({
             nivel: 'intermedio',
             categoria_id: 'cat-crucero',
             categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
-            imagen_url: '/images/J80.webp'
+            imagen_url: '/images/courses/entrenamientos-adultas.jpg'
         },
         {
             id: 'c-entrenamientos-adultas',

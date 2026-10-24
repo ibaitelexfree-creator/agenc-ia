@@ -33,7 +33,7 @@ export async function generateMetadata({
     const fallbacks: Record<string, any> = {
         'crucero-iniciacion': { nombre_es: 'Crucero Iniciación', nombre_eu: 'Crucero Iniciación', imagen_url: '/images/courses/IniciacionJ80_v6.webp' },
         'crucero-perfeccionamiento': { nombre_es: 'Equipo Entrenamiento Adultos', nombre_eu: 'Equipo Entrenamiento Adultos', imagen_url: '/images/courses/PerfeccionamientoVela.webp' },
-        'crucero-gennaker': { nombre_es: 'Crucero Perfeccionamiento', nombre_eu: 'Crucero Perfeccionamiento', imagen_url: '/images/J80.webp' },
+        'crucero-gennaker': { nombre_es: 'Crucero Perfeccionamiento', nombre_eu: 'Crucero Perfeccionamiento', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
         'entrenamientos-adultas': { nombre_es: 'Gennaker', nombre_eu: 'Gennaker', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
         'vela-ligera-iniciacion': { nombre_es: 'Vela ligera iniciación', nombre_eu: 'Bela arina hastapena', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'vela-ligera-avanzado': { nombre_es: 'Vela ligera avanzado', nombre_eu: 'Bela arina aurreratua', imagen_url: '/images/alquiler-laser.webp' },
@@ -243,7 +243,7 @@ export default async function CourseDetailPage({
             precio: 140,
             duracion_h: 12,
             nivel: 'intermedio',
-            imagen_url: '/images/J80.webp',
+            imagen_url: '/images/courses/entrenamientos-adultas.jpg',
             detalles: {
                 es: ['Izada, trasluchada y arriada de gennaker', 'Rumbos portantes y ángulos de viento', 'Seguridad y coordinación en equipo', 'Dinámica en velero J80'],
                 eu: ['Gennakerra igotzea, biratzea eta jaistea', 'Haize aldeko norabideak eta angeluak', 'Segurtasuna eta talde-koordinazioa', 'Dinamika J80 belaontzian']

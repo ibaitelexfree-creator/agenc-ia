@@ -283,9 +283,9 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
   const desktopBeigeWidth = useTransform(
     enterProgress,
     [0, 1],
-    (variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8' || variant === 'home-9') ? ['44%', '56%'] : ['28%', '56%']
+    (variant === 'home-3' || variant === 'home-4' || variant === 'home-5' || variant === 'home-6' || variant === 'home-7' || variant === 'home-8' || variant === 'home-9') ? ['43.3%', '55.3%'] : ['27.3%', '55.3%']
   )
-  const beigeWidth = isMobile ? '69%' : desktopBeigeWidth
+  const beigeWidth = isMobile ? '68.3%' : desktopBeigeWidth
 
   // En Móvil: TODA la pieza sólida beige (curva invertida ya anclada + rectángulo) se desplaza unida desde la derecha hacia la izquierda
   // S3 sale desde la derecha (de +100% a 0)
@@ -350,7 +350,7 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
             ...(variant === 'home-1' ? { filter: blurFilter } : {}),
             ...(variant === 'home-2' ? { scaleY: unfoldScaleY, opacity: unfoldOpacity, transformOrigin: 'top center' } : {})
           }}
-          className={`relative z-10 w-[69%] md:w-[56%] ml-auto h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
+          className={`relative z-10 w-[68.3%] md:w-[55.3%] ml-auto h-full min-h-0 sm:min-h-[85vh] lg:min-h-screen self-stretch flex items-stretch`}
         >
           {/* ===================== CURVA VERTICAL ORGÁNICA INVERTIDA ===================== */}
           {/* Anclada directamente al borde izquierdo del bloque beige: coincide exactamente en altura (top 0 a bottom 0) */}
