@@ -144,7 +144,7 @@ export default async function CoursesPage({
             nivel: 'avanzado',
             categoria_id: 'cat-crucero',
             categoria: { id: 'cat-crucero', slug: 'crucero', nombre_es: 'Crucero', nombre_eu: 'Gurutzaontzia' },
-            imagen_url: '/images/courses/gennaker-j80-v3.jpg'
+            imagen_url: '/images/courses/gennaker-j80-v7.jpg'
         },
 
         // 2. CURSOS DE VELA LIGERA
