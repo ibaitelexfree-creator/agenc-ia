@@ -40,7 +40,7 @@ export async function generateMetadata({
         'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/courses/Txikigune.webp' },
         'udalekuak-campamentos': { nombre_es: 'Udalekuak (Campamentos)', nombre_eu: 'Udalekuak (Campamentos)', imagen_url: '/images/courses/udalekuak-campamentos.webp' },
         'entrenamientos-infantiles-continuos': { nombre_es: 'Entrenamientos infantiles continuos', nombre_eu: 'Haurrentzako entrenamendu jarraituak', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
-        'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/course-detail-header-sailing.webp' },
+        'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp' },
         'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/ai/section2-calm-bay.webp' },
         'familia': { nombre_es: 'Familia', nombre_eu: 'Familia', imagen_url: '/images/course-raquero-students.webp' },
         'cursos-personalizados': { nombre_es: 'Cursos personalizados', nombre_eu: 'Neurrira egindako ikastaroak', imagen_url: '/images/ai/section2-action-sea.webp' },
@@ -348,7 +348,7 @@ export default async function CourseDetailPage({
             precio: 95,
             duracion_h: 12,
             nivel: 'avanzado',
-            imagen_url: '/images/course-detail-header-sailing.webp',
+            imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp',
             detalles: {
                 es: ['Jóvenes de hasta 21 años', 'Perfeccionamiento técnico en flota', 'Autonomía y toma de decisiones', 'Navegación deportiva y regatas formativas'],
                 eu: ['21 urtera arteko gazteak', 'Hobekuntza teknikoa flotan', 'Autonomia eta erabaki-hartzea', 'Kirol-nabigazioa eta heziketa-estropadak']

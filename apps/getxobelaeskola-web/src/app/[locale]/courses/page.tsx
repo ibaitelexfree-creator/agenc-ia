@@ -236,7 +236,7 @@ export default async function CoursesPage({
             nivel: 'avanzado',
             categoria_id: 'cat-vela-ligera',
             categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
-            imagen_url: '/images/course-detail-header-sailing.webp'
+            imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp'
         },
         {
             id: 'c-bautismos',
