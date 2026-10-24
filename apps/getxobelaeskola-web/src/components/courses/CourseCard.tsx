@@ -16,6 +16,10 @@ interface CourseCardProps {
         duracion_h: number;
         nivel: string;
         imagen_url: string;
+        precio_texto?: string;
+        duracion_texto?: string;
+        edad_texto?: string;
+        nivel_badge?: string;
     };
     locale: string;
 }
@@ -30,27 +34,22 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
         : (locale === 'es' ? course.nombre_es : (locale === 'eu' ? course.nombre_eu : course.nombre_es)) || course.nombre_es || 'Curso sin nombre';
     const name = rawName.replace(/beginner/gi, '').trim();
 
-    const rawDescription = hasTranslation
-        ? tData(`${course.slug}.description`)
-        : (locale === 'es' ? course.descripcion_es : (locale === 'eu' ? course.descripcion_eu : course.descripcion_es)) || course.descripcion_es || '';
-    const description = rawDescription.replace(/beginner/gi, '').trim();
-
     const courseUrl = `/${locale}/servicios/cursos/${course.slug}`;
 
     return (
         <Link href={courseUrl} className="block w-full h-full">
             <motion.div 
-                whileHover={{ y: -8 }}
+                whileHover={{ y: -6 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                className="group relative glass-card overflow-hidden cursor-pointer flex flex-col w-full h-full min-h-[350px] sm:min-h-[380px] lg:min-h-[420px] justify-between rounded-xl border border-sea-foam/10"
+                className="group relative glass-card overflow-hidden cursor-pointer flex flex-col w-full h-full min-h-[290px] sm:min-h-[310px] lg:min-h-[330px] justify-between rounded-xl border border-sea-foam/10"
             >
                 {/* Top Border Reveal Accent */}
                 <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700 z-20" />
 
                 <div className="h-full flex flex-col justify-between w-full">
                     {/* Image Container with Cinematic Zoom */}
-                    <div className="relative w-full h-[45%] min-h-[140px] sm:min-h-[160px] overflow-hidden course-card-img-container flex-shrink-0">
+                    <div className="relative w-full h-[52%] min-h-[150px] sm:min-h-[170px] overflow-hidden course-card-img-container flex-shrink-0">
                         <NauticalImage
                             src={course.imagen_url}
                             category="veleros"
@@ -63,40 +62,53 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                         <div className="absolute inset-0 premium-gradient-overlay z-10" />
                     </div>
 
-                    {/* Content Area - Generous Padding & Readable Typography */}
-                    <div className="p-3.5 sm:p-5 lg:p-6 relative z-10 flex flex-col justify-between flex-grow overflow-hidden h-[55%] space-y-2">
-                        <div className="space-y-1">
-                            <div className="flex justify-between items-baseline border-b border-sea-foam/10 pb-1 gap-1">
-                                <span className="text-[11px] sm:text-xs text-technical truncate opacity-80">
-                                    {course.nivel ? t(`levels.${course.nivel}`, { defaultValue: course.nivel }) : 'Getxo Bela Eskola'}
+                    {/* Content Area - Close to image, Readable Typography */}
+                    <div className="pt-2 sm:pt-3 pb-3 sm:pb-3.5 px-3.5 sm:px-5 lg:px-6 relative z-10 flex flex-col justify-between flex-grow overflow-hidden h-[48%]">
+                        <div className="flex flex-col justify-start">
+                            {/* Standardized Header Row with Fixed Height so that text is centered and cards stay strictly aligned */}
+                            <div className="flex justify-between items-center border-b border-sea-foam/10 pb-1.5 gap-2 min-h-[52px] sm:min-h-[58px]">
+                                <span className="text-[10.5px] sm:text-[11.4px] font-mono uppercase tracking-[0.1em] font-bold text-sea-foam/80 truncate">
+                                    {course.nivel_badge || (course.nivel ? t(`levels.${course.nivel}`, { defaultValue: course.nivel }) : 'Getxo Bela Eskola')}
                                 </span>
-                                <div className="flex items-baseline gap-0.5 flex-shrink-0">
-                                    {(course as any).precio_texto ? (
-                                        <span className="text-sm sm:text-base lg:text-lg font-display text-accent italic font-semibold">
-                                            {(course as any).precio_texto}
-                                        </span>
-                                    ) : course.precio > 0 ? (
-                                        <span className="text-base sm:text-xl lg:text-2xl font-display text-sea-foam italic">
-                                            {course.precio}<span className="text-brass-gold text-xs sm:text-sm ml-0.5">€</span>
-                                        </span>
-                                    ) : (
-                                        <span className="text-xs sm:text-sm font-display text-accent italic uppercase tracking-wider">
-                                            {locale === 'eu' ? 'Kontsultatu' : 'A medida'}
-                                        </span>
+                                <div className="flex flex-col items-end justify-center flex-shrink-0">
+                                    <div className="flex items-baseline gap-0.5">
+                                        {course.precio_texto ? (
+                                            <span className="text-sm sm:text-base lg:text-lg font-display text-accent italic font-semibold">
+                                                {course.precio_texto}
+                                            </span>
+                                        ) : course.precio > 0 ? (
+                                            <span className="text-base sm:text-xl lg:text-2xl font-display text-sea-foam italic">
+                                                {course.precio}<span className="text-brass-gold text-xs sm:text-sm ml-0.5">€</span>
+                                            </span>
+                                        ) : (
+                                            <span className="text-xs sm:text-sm font-display text-accent italic uppercase tracking-wider">
+                                                {locale === 'eu' ? 'Kontsultatu' : 'A medida'}
+                                            </span>
+                                        )}
+                                    </div>
+                                    {(course.duracion_texto || course.edad_texto) && (
+                                        <div className="flex flex-col items-end text-[10px] sm:text-[11px] text-sea-foam/60 font-light leading-tight mt-0.5">
+                                            {course.duracion_texto && (
+                                                <span>{course.duracion_texto}</span>
+                                            )}
+                                            {course.edad_texto && (
+                                                <span className="text-brass-gold/90 font-medium">{course.edad_texto}</span>
+                                            )}
+                                        </div>
                                     )}
                                 </div>
                             </div>
 
-                            <h3 className="text-sm sm:text-base lg:text-lg font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-snug pt-1 line-clamp-2">
-                                {name}
-                            </h3>
+                            {/* Title area with fixed height for perfect vertical alignment across cards */}
+                            <div className="h-[48px] sm:h-[54px] flex items-center">
+                                <h3 className="text-base sm:text-lg lg:text-xl font-display text-sea-foam italic group-hover:text-accent transition-colors duration-500 leading-snug line-clamp-2">
+                                    {name}
+                                </h3>
+                            </div>
                         </div>
 
-                        <p className="text-sea-foam/70 font-light text-xs sm:text-sm leading-relaxed group-hover:text-sea-foam/90 transition-colors duration-500 line-clamp-2 my-auto">
-                            {description}
-                        </p>
-
-                        <div className="pt-1 relative z-10">
+                        {/* Bottom action anchored cleanly to bottom */}
+                        <div className="mt-auto pt-2 relative z-10">
                             <div className="w-full inline-flex items-center justify-between py-1 px-0 border-t border-sea-foam/10 group-hover:border-accent transition-all duration-700">
                                 <span className="text-xs uppercase tracking-[0.15em] font-bold text-sea-foam group-hover:text-accent transition-colors">
                                     {t('view_more')}

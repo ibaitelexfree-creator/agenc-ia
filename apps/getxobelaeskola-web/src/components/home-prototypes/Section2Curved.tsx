@@ -583,17 +583,17 @@ sentir el mar y disfrutar en equipo.`}
                 {/* Contenido del modal */}
                 <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.75rem', fontFamily: 'serif', fontWeight: 'bold', color: '#FAF8F5', lineHeight: 1.2 }}>
-                    Nuestra Filosofía y Valores
+                    {_t('modal_title')}
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#FAF8F5', opacity: 0.85, lineHeight: 1.6 }}>
                     <p>
-                      En Getxo Bela Eskola entendemos el mar como una escuela de vida. No buscamos únicamente formar patrones o regatistas, sino transmitir la pasión por el mar, el respeto por el medio ambiente y los valores de la navegación tradicional.
+                      {_t('modal_desc1')}
                     </p>
                     <p>
-                      Nuestra metodología combina la técnica rigurosa con un ambiente cercano y familiar. Creemos que la mejor manera de aprender es a través de la experiencia directa, la práctica constante y el compañerismo a bordo.
+                      {_t('modal_desc2')}
                     </p>
                     <p>
-                      Tanto si nunca has subido a un barco como si buscas perfeccionar tus habilidades o competir al más alto nivel, en nuestra escuela encontrarás un equipo apasionado dispuesto a acompañarte en cada milla náutica.
+                      {_t('modal_desc3')}
                     </p>
                   </div>
                 </div>

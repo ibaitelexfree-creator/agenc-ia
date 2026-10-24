@@ -68,12 +68,16 @@ export default function AboutStorySection({
                         </div>
 
                         <div className="space-y-3 sm:space-y-4">
-                            <p className="text-foreground/85 font-light text-sm sm:text-base md:text-lg leading-relaxed">
-                                {desc1}
-                            </p>
-                            <p className="text-foreground/80 font-light text-sm sm:text-base md:text-lg leading-relaxed">
-                                {desc2}
-                            </p>
+                            {desc1 && (
+                                <p className="text-foreground/85 font-light text-sm sm:text-base md:text-lg leading-relaxed">
+                                    {desc1}
+                                </p>
+                            )}
+                            {desc2 && (
+                                <p className="text-foreground/80 font-light text-sm sm:text-base md:text-lg leading-relaxed">
+                                    {desc2}
+                                </p>
+                            )}
                         </div>
 
                         <div className="pt-2 sm:pt-4">

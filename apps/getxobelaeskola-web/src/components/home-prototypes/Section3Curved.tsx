@@ -603,17 +603,17 @@ Tú eliges cómo quieres navegar.`
                 {/* Contenido del modal */}
                 <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.75rem', fontFamily: 'serif', fontWeight: 'bold', color: '#FAF8F5', lineHeight: 1.2 }}>
-                    Navegación a Tu Medida
+                    {_t('modal.custom_title')}
                   </h3>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', color: '#FAF8F5', opacity: 0.85, lineHeight: 1.6 }}>
                     <p>
-                      Creemos firmemente que no hay una única manera de vivir el mar. Para algunas personas, navegar es sinónimo de adrenalina, regatas y superación personal contra el viento y las olas.
+                      {_t('modal.custom_desc1')}
                     </p>
                     <p>
-                      Para otras, es la paz de fondear en una cala tranquila al atardecer, compartir una travesía en buena compañía o desconectar del ritmo acelerado de la vida diaria.
+                      {_t('modal.custom_desc2')}
                     </p>
                     <p>
-                      Por eso diseñamos programas flexibles y adaptados a tus objetivos y ritmos: cursos intensivos de fin de semana, prácticas continuadas a lo largo del año, salidas recreativas y entrenamientos de competición. Tú marcas el rumbo, nosotros ponemos el viento a tu favor.
+                      {_t('modal.custom_desc3')}
                     </p>
                   </div>
                 </div>

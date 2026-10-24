@@ -56,29 +56,26 @@ export default function VelaCTA() {
           {t("cta_subtitle")}
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
+          className="flex flex-col gap-4 justify-center items-center"
         >
+          {/* Texto en cursiva estilizado encima del botón */}
+          <p className="text-[#0071E3] italic text-base sm:text-lg font-medium tracking-wide">
+            {t("cta_button_start")}
+          </p>
+
+          {/* Botón azul principal */}
           <Link
             href={`/${locale}/courses`}
-            className="w-full sm:w-auto inline-block bg-[#0071E3] text-white font-medium text-xs sm:text-sm font-sans
-                       px-6 sm:px-8 py-3 rounded-full hover:bg-[#0077ED] 
+            className="w-full sm:w-auto inline-block bg-[#0071E3] text-white font-medium text-sm sm:text-base font-sans
+                       px-8 sm:px-10 py-3.5 rounded-full hover:bg-[#0077ED] 
                        transition-all duration-200 shadow-[0_4px_16px_rgba(0,113,227,0.3)]
                        hover:shadow-[0_6px_24px_rgba(0,113,227,0.4)] hover:scale-[1.02] text-center"
-          >
-            {t("cta_button_start")}
-          </Link>
-          <Link
-            href={`/${locale}/courses`}
-            className="w-full sm:w-auto inline-block bg-transparent text-[#0071E3] font-medium text-xs sm:text-sm font-sans
-                       px-6 sm:px-8 py-3 rounded-full border border-[#0071E3]/30
-                       hover:border-[#0071E3] hover:bg-[#E8F2FF]
-                       transition-all duration-200 text-center"
           >
             {t("cta_button_all")}
           </Link>

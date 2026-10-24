@@ -216,7 +216,7 @@
     "price_from": "Desde",
     "category_sections": {
       "cat-crucero_title": "Cursos de Crucero",
-      "cat-crucero_desc": "Navegación en veleros J80, maniobras, trimado, spinnaker/gennaker y entrenamientos en equipo.",
+      "cat-crucero_desc": "Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel",
       "cat-vela-ligera_title": "Cursos de Vela Ligera",
       "cat-vela-ligera_desc": "Desde el primer contacto con el viento hasta perfeccionamiento, campamentos y regatas en veleros ligeros.",
       "cat-windsurf_title": "Cursos de Windsurf",
@@ -243,6 +243,15 @@
       "v3_desc": "Aquí la técnica y el cuidado van juntas, porque entendemos que aprender a navegar es también aprender a confiar."
     },
     "team_section_title": "El Equipo",
+    "team_section_summary": "Un equipo que une técnica, sensibilidad social y pasión por la mar. Coordinamos y navegamos acompañando desde la calma y la cercanía. Aquí la técnica y el cuidado van juntas: aprender es también confiar.",
+    "team_expand_btn": "Conocer al equipo",
+    "team_collapse_btn": "Ver menos",
+    "team_expanded": {
+      "title": "EL EQUIPO",
+      "p1": "Nuestro equipo está formado por personas técnicas y con sensibilidad social, apasionadas por la enseñanza y por la mar. Al frente, Angharad y Urko coordinan la eskola y la operativa diaria, y además ejercen como técnicas deportivas: acompañan grupos, navegan con las usuarias y forman parte activa del día a día en el agua.",
+      "p2": "Junto a ellas y ellos, contamos con monitoras y técnicos especializados: responsables de mantenimiento y windsurf, entrenadores de Optimist, Laser/420 y J80, y personal de apoyo en limpieza y cuidado de espacios. Todas estas personas comparten una forma de trabajar cercana, tranquila y basada en el acompañamiento.",
+      "p3": "La eskola funciona con una relación sencilla y humana: las monitoras escuchan, observan ritmos, acompañan miedos y fomentan autonomía; el equipo comparte decisiones y la voz de las socias forma parte de la vida del proyecto. Aquí la técnica y el cuidado van juntas, porque entendemos que aprender a navegar es también aprender a confiar."
+    },
     "team": {
       "member1_name": "Angharad y Urko",
       "member1_role": "Coordinación",
@@ -261,8 +270,8 @@
     "cta_title": "¿Listo para zarpar?",
     "cta_desc": "Únete a nuestra escuela y descubre por qué somos el referente de navegación en el Cantábrico.",
     "cta_button": "Ver Cursos Disponibles",
-    "short_desc1": "Más de 15 años acercando la mar a todas las personas desde un proyecto social, humano y accesible. Somos una asociación sin ánimo de lucro que reinvierte todo el beneficio en la propia eskola y nuestra manera de proceder parte de una idea sencilla: las personas primero.",
-    "short_desc2": "La Eskola sigue siendo un espacio cercano, sencillo y construido por personas que creen en el valor de aprender juntas en la mar.",
+    "short_desc1": "Más de 15 años acercando la mar desde un proyecto social y accesible. Somos asociación sin ánimo de lucro y reinvertimos en la Eskola. Un espacio cercano y humano, donde lo primero son las personas y aprender juntas en la mar.",
+    "short_desc2": "",
     "read_more": "LEER MÁS",
     "modal": {
       "title": "HISTORIA DEL CLUB",
@@ -1650,8 +1659,8 @@
   "que_es_la_vela": {
     "hero_eyebrow": "GetxoBelaEskola · Getxo, Euskal Herria",
     "hero_line1": "Qué es",
-    "hero_line2": "vela.",
-    "hero_subtitle": "Un deporte maravilloso que combina técnica, calma y una conexión profunda con la mar. Para cada persona, algo diferente.",
+    "hero_line2": "la vela",
+    "hero_subtitle": "La vela es equilibrio entre sensibilidad y técnica, una forma de conectar de verdad con la mar. Puede ser suave o intensa, pero siempre transforma. En Euskal Herria es parte de nuestra memoria. Cada persona descubre su manera de vivir la mar.",
     "hero_discover": "Descubrir",
     "essencia_eyebrow": "la esencia",
     "philosophy_eyebrow": "filosofía",
@@ -1659,21 +1668,34 @@
     "philosophy_subtitle": "No tienes que adaptarte tú a la navegación. Puedes elegir en cada salida qué quieres vivir y cómo.",
     "cards": {
       "carta_title": "Navegación a la carta",
-      "carta_text": "Los partes meteorológicos actuales son precisos y accesibles para cualquiera. Puedes elegir navegar días tranquilos, días potentes o cualquier punto intermedio. Todas las opciones son válidas.",
+      "carta_text": "Los partes meteorológicos actuales son precisos y accesibles para cualquiera. Puedes elegir navegar días tranquilos, días potentes o cualquier punto intermedio.",
       "experiencia_title": "Elige tu experiencia",
       "experiencia_text": "Calma y meditación, o intensidad y adrenalina. Hay quien desconecta del trabajo con horas de silencio en el agua; hay quien busca el viento fuerte. La mar tiene todo eso.",
       "escenario_title": "Elige tu escenario",
       "escenario_text": "Abra interior: aguas protegidas para aprender y relajarse. Abra exterior: mar abierto y emocionante. Puedes empezar en uno y explorar el otro cuando quieras.",
       "compania_title": "Elige tu compañía",
-      "compania_text": "Veleros pequeños para 2–6 personas, muy activos y maniobrable. O cruceros para hasta 8 personas, ideales para dinámicas de equipo y grupos que quieran navegarlo juntos."
+      "compania_text": "Ven solo, trae a tu familia o amigos, o únete a otros socios de la escuela para disfrutar de la navegación y hacer nuevas amistades.",
+      "embarcacion_title": "Escoge tu embarcación",
+      "embarcacion_text": "Veleros pequeños y ágiles para 1-2 personas. O cruceros para hasta 6 personas, que ofrecen una navegación emocionante donde la colaboración y la aventura van de la mano.",
+      "autonomia_title": "Aprende, mejora y gana autonomía",
+      "autonomia_text": "En la vela nunca paras de aprender: desde descubrir cómo funciona el viento hasta aprender a maniobrar, tomar decisiones y gobernar tu propia embarcación."
     },
-    "history_eyebrow": "nuestra historia",
-    "history_p1": "La vela no es un deporte exclusivamente adrenalínico ni algo reservado para quienes buscan emociones fuertes. También puede ser una práctica suave, meditativa y profundamente relajante.",
-    "history_p1_highlight": "suave, meditativa y profundamente relajante.",
-    "history_p2": "Hay quien sale en un velero pequeño después del trabajo y, durante algunas horas, se abstrae por completo de las preocupaciones de tierra. En la mar, la cabeza se ordena sola: estás al viento, al rumbo, al sonido del agua, al movimiento del barco. Y nada más.",
-    "history_p3": "En Euskal Herria hemos tenido históricamente una relación profunda con la mar. Nuestros pueblos crecieron gracias a ella. Nuestros ancestros pescaban en pequeños veleros de madera, competían por llegar antes a puerto y vender su pescado al mejor precio.",
-    "history_p3_highlight": "relación profunda con la mar.",
-    "history_p4": "La vela forma parte de nuestra memoria colectiva, aunque a veces la hayamos olvidado. Hoy podemos recuperar esa relación desde lugares muy diferentes, cada una a su manera y según lo que busca en cada momento.",
+    "history_eyebrow": "qué es la vela",
+    "history_p1": "La vela es un deporte maravilloso que mezcla técnica, calma y una conexión profunda con la mar. Hoy podemos elegir cómo vivirla: días tranquilos, días potentes o algo intermedio.",
+    "history_p1_highlight": "técnica, calma y una conexión profunda",
+    "history_p2": "Es una práctica que relaja, acompaña, socializa y transforma. En Euskal Herria forma parte de nuestra memoria, y navegar es una forma de recuperarla.",
+    "history_p3": "Por eso la vela es tan especial: porque cada una puede encontrar en la mar su propio lugar.",
+    "history_p3_highlight": "encontrar en la mar su propio lugar.",
+    "leer_mas": "LEER MÁS",
+    "modal_title": "Qué es la Vela",
+    "modal_p1": "La vela es un deporte maravilloso. Único. Tiene algo que no se parece a nada más, porque combina técnica, calma, aventura, escucha y una conexión profunda con la mar. Para muchas personas es deporte; para otras, refugio; para otras, compañía; y para muchas, una forma de reencontrarse consigo mismas.",
+    "modal_p2": "Antiguamente se decía que en aquellos tiempos se forjaban grandes navegantes, ya que sabían con qué meteorología salían, pero nunca con la que volvían. Hoy en día tenemos partes muy precisos, accesibles para cualquiera, y eso ha transformado por completo la experiencia de navegar: ahora podemos elegir.",
+    "modal_p3": "Podemos navegar días tranquilos, días potentes o cualquier punto intermedio. Algunas personas vienen solo cuando el parte anuncia calma; otras disfrutan de la fuerza del viento; otras prefieren alternarlo todo. Y todas son opciones válidas y hermosas. La navegación es, en cierto modo, a la carta.",
+    "modal_p4": "La vela no es un deporte exclusivamente adrenalínico ni algo reservado para quienes buscan emociones fuertes. También puede ser una práctica suave, meditativa y profundamente relajante. Hay quien sale en un velero pequeño después del trabajo y, durante algunas horas, se abstrae por completo de las preocupaciones de tierra. En la mar, la cabeza se ordena sola: estás al viento, al rumbo, al sonido del agua, al movimiento del barco… y nada más. Ese efecto lo vive prácticamente todo el mundo que navega.",
+    "modal_p5": "Es también una herramienta potente para socializar, para trabajar miedos, para ganar confianza y para cuidarse. La mar es transformadora, terapéutica y generosa con quien la vive sin prisa.",
+    "modal_p6": "Además, aquí en Euskal Herria hemos tenido históricamente una relación profunda con la mar: nuestros pueblos crecieron gracias a ella. Nuestros ancestros pescaban en pequeños veleros de madera, competían por llegar antes a puerto y vender su pescado al mejor precio. La vela forma parte de nuestra memoria colectiva, aunque a veces la hayamos olvidado.",
+    "modal_p7": "Hoy podemos recuperar esa relación desde lugares muy diferentes, cada una a su manera y según lo que busca en cada momento. Y, sobre todo, se puede hacer de una manera realmente segura y muy controlada, eligiendo las condiciones que más encajan con cada una.",
+    "modal_p8": "Por eso la vela sigue siendo tan especial: porque nos permite encontrar nuestro propio lugar en la mar y disfrutarla de mil formas distintas.",
     "selector_eyebrow": "elige tu manera",
     "selector_title": "¿Cómo quieres navegar hoy?",
     "selector_calma": "Calma",
@@ -1854,6 +1876,10 @@
     "value1_highlight": "comunidad cercana y con valores.",
     "value2": "Un lugar donde <gold>aprender a navegar</gold>, compartir y <gold>disfrutar</gold> de la mar.",
     "cta": "Leer más",
+    "modal_title": "Nuestra Filosofía y Valores",
+    "modal_desc1": "En Getxo Bela Eskola entendemos el mar como una escuela de vida. No buscamos únicamente formar patrones o regatistas, sino transmitir la pasión por el mar, el respeto por el medio ambiente y los valores de la navegación tradicional.",
+    "modal_desc2": "Nuestra metodología combina la técnica rigurosa con un ambiente cercano y familiar. Creemos que la mejor manera de aprender es a través de la experiencia directa, la práctica constante y el compañerismo a bordo.",
+    "modal_desc3": "Tanto si nunca has subido a un barco como si buscas perfeccionar tus habilidades o competir al más alto nivel, en nuestra escuela encontrarás un equipo apasionado dispuesto a acompañarte en cada milla náutica.",
     "modal_p1": "No somos una escuela convencional, sino una comunidad cercana construida alrededor de la mar y los valores que la acompañan.",
     "modal_p2": "Un lugar donde aprender a navegar va de la mano de compartir, disfrutar y crecer en grupo. Aquí la vela no se vive solo como un deporte, sino como una experiencia que conecta a las personas entre sí y con el entorno.",
     "modal_p3": "Creemos en un aprendizaje natural, accesible y sin presión, donde cada persona encuentra su ritmo y su manera de vivir la navegación. Desde quienes dan sus primeros pasos hasta quienes buscan seguir avanzando, todas tienen su espacio.",
@@ -1887,7 +1913,7 @@
   },
   "courses_data": {
     "crucero-iniciacion": {
-      "name": "Iniciación J80",
+      "name": "Crucero Iniciación",
       "description": "Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…",
       "details": [
         "Maniobras básicas",
@@ -1897,7 +1923,7 @@
       ]
     },
     "crucero-perfeccionamiento": {
-      "name": "Crucero perfeccionamiento",
+      "name": "Equipo Entrenamiento Adultos",
       "description": "Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.",
       "details": [
         "Trimado fino de velas",
@@ -1907,7 +1933,7 @@
       ]
     },
     "crucero-gennaker": {
-      "name": "Crucero con gennaker",
+      "name": "Crucero Perfeccionamiento",
       "description": "Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.",
       "details": [
         "Izada, trasluchada y arriada de gennaker",
@@ -1917,7 +1943,7 @@
       ]
     },
     "entrenamientos-adultas": {
-      "name": "Entrenamientos para adultas",
+      "name": "Gennaker",
       "description": "Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.",
       "details": [
         "Programa continuo anual o mensual",
@@ -2369,6 +2395,10 @@
     "subtitle": "Veleros pequeños o grandes,<br/>días de calma o de acción,<br/>aguas tranquilas o mar abierta.<br/>Tú eliges cómo quieres navegar.",
     "leer_mas": "LEER MÁS",
     "modal": {
+      "custom_title": "Navegación a Tu Medida",
+      "custom_desc1": "Creemos firmemente que no hay una única manera de vivir el mar. Para algunas personas, navegar es sinónimo de adrenalina, regatas y superación personal contra el viento y las olas.",
+      "custom_desc2": "Para otras, es la paz de fondear en una cala tranquila al atardecer, compartir una travesía en buena compañía o desconectar del ritmo acelerado de la vida diaria.",
+      "custom_desc3": "Por eso diseñamos programas flexibles y adaptados a tus objetivos y ritmos: cursos intensivos de fin de semana, prácticas continuadas a lo largo del año, salidas recreativas y entrenamientos de competición. Tú marcas el rumbo, nosotros ponemos el viento a tu favor.",
       "title": "Navegación a la carta, según cómo quieras vivir el mar.",
       "intro1": "La vela no es un deporte rígido. Es una forma de vivir el mar que se adapta a ti, a tu tiempo y a lo que te apetece cada día.",
       "intro2": "Hoy contamos con partes meteorológicos muy precisos y patrones de viento claros. En nuestros cursos aprendes no solo a navegar, sino a entender y anticipar las condiciones. Así, puedes elegir con bastante certeza cuándo y cómo salir.",

@@ -31,10 +31,10 @@ export async function generateMetadata({
 
     // Re-use fallback logic for metadata
     const fallbacks: Record<string, any> = {
-        'crucero-iniciacion': { nombre_es: 'Iniciación J80', nombre_eu: 'J80 Hastapena', imagen_url: '/images/courses/IniciacionJ80_v6.webp' },
-        'crucero-perfeccionamiento': { nombre_es: 'Crucero perfeccionamiento', nombre_eu: 'Gurutzaontzi hobekuntza', imagen_url: '/images/courses/PerfeccionamientoVela.webp' },
-        'crucero-gennaker': { nombre_es: 'Crucero con gennaker', nombre_eu: 'Gurutzaontzia gennakerrarekin', imagen_url: '/images/J80.webp' },
-        'entrenamientos-adultas': { nombre_es: 'Entrenamientos para adultas', nombre_eu: 'Helduentzako entrenamenduak', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
+        'crucero-iniciacion': { nombre_es: 'Crucero Iniciación', nombre_eu: 'Crucero Iniciación', imagen_url: '/images/courses/IniciacionJ80_v6.webp' },
+        'crucero-perfeccionamiento': { nombre_es: 'Equipo Entrenamiento Adultos', nombre_eu: 'Equipo Entrenamiento Adultos', imagen_url: '/images/courses/PerfeccionamientoVela.webp' },
+        'crucero-gennaker': { nombre_es: 'Crucero Perfeccionamiento', nombre_eu: 'Crucero Perfeccionamiento', imagen_url: '/images/J80.webp' },
+        'entrenamientos-adultas': { nombre_es: 'Gennaker', nombre_eu: 'Gennaker', imagen_url: '/images/courses/entrenamientos-adultas.jpg' },
         'vela-ligera-iniciacion': { nombre_es: 'Vela ligera iniciación', nombre_eu: 'Bela arina hastapena', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'vela-ligera-avanzado': { nombre_es: 'Vela ligera avanzado', nombre_eu: 'Bela arina aurreratua', imagen_url: '/images/alquiler-laser.webp' },
         'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/courses/Txikigune.webp' },
@@ -206,8 +206,8 @@ export default async function CourseDetailPage({
     const fallbacks: Record<string, CourseFallback> = {
         'crucero-iniciacion': {
             id: 'c-crucero-iniciacion',
-            nombre_es: 'Iniciación J80',
-            nombre_eu: 'J80 Hastapena',
+            nombre_es: 'Crucero Iniciación',
+            nombre_eu: 'Crucero Iniciación',
             descripcion_es: 'Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…',
             descripcion_eu: 'Gurutzaontzian nabigatzeko lehen kontaktua pertsona bakoitzari egokitua, ikastaro osoa: oinarrizko maniobrak, belen eta ontziaren funtzionamendua, meteorologia, segurtasuna…',
             precio: 180,
@@ -221,13 +221,13 @@ export default async function CourseDetailPage({
         },
         'crucero-perfeccionamiento': {
             id: 'c-crucero-perfeccionamiento',
-            nombre_es: 'Crucero perfeccionamiento',
-            nombre_eu: 'Gurutzaontzi hobekuntza',
+            nombre_es: 'Equipo Entrenamiento Adultos',
+            nombre_eu: 'Equipo Entrenamiento Adultos',
             descripcion_es: 'Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.',
             descripcion_eu: 'Dagoeneko nabigatzen dutenentzat eta aurrera egin nahi dutenentzat: trimatzea, maniobra zehatzak, ontziaren kontrola eta itsasoaren irakurketa.',
-            precio: 180,
+            precio: 100,
             duracion_h: 12,
-            nivel: 'intermedio',
+            nivel: 'equipos-entrenamiento',
             imagen_url: '/images/courses/PerfeccionamientoVela.webp',
             detalles: {
                 es: ['Trimado fino de velas', 'Control y gobierno del barco', 'Maniobras avanzadas', 'Lectura de viento y mar'],
@@ -236,13 +236,13 @@ export default async function CourseDetailPage({
         },
         'crucero-gennaker': {
             id: 'c-crucero-gennaker',
-            nombre_es: 'Crucero con gennaker',
-            nombre_eu: 'Gurutzaontzia gennakerrarekin',
+            nombre_es: 'Crucero Perfeccionamiento',
+            nombre_eu: 'Crucero Perfeccionamiento',
             descripcion_es: 'Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.',
             descripcion_eu: 'Ikastaro tekniko eta dinamikoa haize aldeko belak segurtasunez eta konfiantzaz erabiltzen ikasteko.',
-            precio: 180,
+            precio: 140,
             duracion_h: 12,
-            nivel: 'avanzado',
+            nivel: 'intermedio',
             imagen_url: '/images/J80.webp',
             detalles: {
                 es: ['Izada, trasluchada y arriada de gennaker', 'Rumbos portantes y ángulos de viento', 'Seguridad y coordinación en equipo', 'Dinámica en velero J80'],
@@ -251,13 +251,13 @@ export default async function CourseDetailPage({
         },
         'entrenamientos-adultas': {
             id: 'c-entrenamientos-adultas',
-            nombre_es: 'Entrenamientos para adultas',
-            nombre_eu: 'Helduentzako entrenamenduak',
+            nombre_es: 'Gennaker',
+            nombre_eu: 'Gennaker',
             descripcion_es: 'Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.',
             descripcion_eu: 'Ohiko saioak teknika hobetzeko, autonomia irabazteko eta hainbat baldintzatan taldean nabigatzeko.',
-            precio: 100,
+            precio: 140,
             duracion_h: 12,
-            nivel: 'intermedio',
+            nivel: 'avanzado',
             imagen_url: '/images/courses/entrenamientos-adultas.jpg',
             detalles: {
                 es: ['Programa continuo anual o mensual', 'Autonomía y trabajo en equipo', 'Navegación en diversas condiciones', 'Puesta a punto y maniobra'],
