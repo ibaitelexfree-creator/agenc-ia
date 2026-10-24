@@ -221,7 +221,7 @@ export default async function CoursesPage({
             nivel: 'intermedio',
             categoria_id: 'cat-vela-ligera',
             categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
-            imagen_url: '/images/courses/CursodeVelaLigera.webp'
+            imagen_url: '/images/courses/entrenamientos-infantiles-continuos.webp'
         },
         {
             id: 'c-entrenamientos-continuos-jovenes',

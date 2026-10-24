@@ -333,7 +333,7 @@ export default async function CourseDetailPage({
             precio: 85,
             duracion_h: 12,
             nivel: 'intermedio',
-            imagen_url: '/images/courses/CursodeVelaLigera.webp',
+            imagen_url: '/images/courses/entrenamientos-infantiles-continuos.webp',
             detalles: {
                 es: ['Entrenamientos regulares escolares', 'Seguimiento pedagógico y técnico', 'Progresión en Optimist y flota ligera', 'Comunidad y deporte formativo'],
                 eu: ['Eskola-urteko ohiko entrenamenduak', 'Jarraipen pedagogiko eta teknikoa', 'Garapena Optimist eta ontzi arinetan', 'Komunitatea eta heziketa-kirola']
