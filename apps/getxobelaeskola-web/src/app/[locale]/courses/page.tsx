@@ -206,7 +206,7 @@ export default async function CoursesPage({
             nivel: 'iniciacion',
             categoria_id: 'cat-vela-ligera',
             categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
-            imagen_url: '/images/course-raquero-students.webp'
+            imagen_url: '/images/courses/udalekuak-campamentos.webp'
         },
         {
             id: 'c-entrenamientos-infantiles-continuos',

@@ -38,7 +38,7 @@ export async function generateMetadata({
         'vela-ligera-iniciacion': { nombre_es: 'Vela ligera iniciación', nombre_eu: 'Bela arina hastapena', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'vela-ligera-avanzado': { nombre_es: 'Vela ligera avanzado', nombre_eu: 'Bela arina aurreratua', imagen_url: '/images/alquiler-laser.webp' },
         'txikigune-sabados': { nombre_es: 'Txikigune (Sábados de navegación)', nombre_eu: 'Txikigune (Larunbateko nabigazioa)', imagen_url: '/images/courses/Txikigune.webp' },
-        'udalekuak-campamentos': { nombre_es: 'Udalekuak (Campamentos)', nombre_eu: 'Udalekuak (Campamentos)', imagen_url: '/images/course-raquero-students.webp' },
+        'udalekuak-campamentos': { nombre_es: 'Udalekuak (Campamentos)', nombre_eu: 'Udalekuak (Campamentos)', imagen_url: '/images/courses/udalekuak-campamentos.webp' },
         'entrenamientos-infantiles-continuos': { nombre_es: 'Entrenamientos infantiles continuos', nombre_eu: 'Haurrentzako entrenamendu jarraituak', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/course-detail-header-sailing.webp' },
         'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/ai/section2-calm-bay.webp' },
@@ -318,7 +318,7 @@ export default async function CourseDetailPage({
             precio: 130,
             duracion_h: 20,
             nivel: 'iniciacion',
-            imagen_url: '/images/course-raquero-students.webp',
+            imagen_url: '/images/courses/udalekuak-campamentos.webp',
             detalles: {
                 es: ['Campamentos estivales semanales', 'Vela, paddle surf, kayak y juegos', 'Monitores titulados y ratio reducida', 'Experiencias de vida en el mar'],
                 eu: ['Udako asteroko kanpamentuak', 'Bela, paddle surf, kayak eta jolasak', 'Monitore tituludunak eta talde txikiak', 'Itsasoko bizipen ahaztezinak']
