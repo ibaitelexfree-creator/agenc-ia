@@ -12,6 +12,7 @@ const ScrollUpButton = dynamic(() => import('@/components/shared/ScrollToTop'), 
 const WhatsAppButton = dynamic(() => import('@/components/shared/WhatsAppButton'), { ssr: false });
 import { FramerProvider } from '@/components/providers/FramerProvider';
 import { Viewport } from 'next';
+import { getSiteUrl } from '@/lib/seo';
 import { Suspense } from 'react';
 const StatusToast = dynamic(() => import('@/components/shared/StatusToast'), { ssr: false });
 import { CookieConsentProvider, CookieBanner, AnalyticsConsentGate } from '@/components/cookies';
@@ -107,7 +108,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
   }
 
   const ogLocale = isEu ? 'eu_ES' : isEn ? 'en_US' : isFr ? 'fr_FR' : 'es_ES';
-  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
+  const siteUrl = getSiteUrl();
 
   return {
     title: {
@@ -123,7 +124,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
     openGraph: {
       title,
       description,
-      url: siteUrl,
+      url: `${siteUrl}/${locale}`,
       siteName: 'Getxo Getxo Bela Eskola',
       images: [
         {

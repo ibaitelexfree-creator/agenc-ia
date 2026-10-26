@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
+import { getSiteUrl } from '../lib/seo';
 
 export default function robots(): MetadataRoute.Robots {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
+    const baseUrl = getSiteUrl();
 
     return {
         rules: {
@@ -11,7 +12,9 @@ export default function robots(): MetadataRoute.Robots {
                 '/private/',
                 '/api/',
                 '/admin/',
-                '/**/student/dashboard/' // Disallow dashboard in any locale
+                '/staff/',
+                '/**/student/dashboard/',
+                '/**/academy/module/'
             ],
         },
         sitemap: `${baseUrl}/sitemap.xml`,

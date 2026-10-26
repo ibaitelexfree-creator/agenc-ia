@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import JsonLd from '@/components/shared/JsonLd';
 import dynamic from 'next/dynamic';
 import { HomePrototypeLayout } from '@/components/home-prototypes/HomePrototypeLayout';
-import { getSeoAlternates } from '@/lib/seo';
+import { getSeoAlternates, getSiteUrl } from '@/lib/seo';
 
 const NativeAppRedirect = dynamic(() => import('@/components/shared/NativeAppRedirect'), { ssr: false });
 
@@ -37,7 +37,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
     "name": "Getxo Bela Eskola",
-    "image": "https://getxobelaeskola.cloud/images/home-hero-sailing-action.webp",
+    "image": `${getSiteUrl()}/images/home-hero-sailing-action.webp`,
     "description": locale === 'eu' ? 'Bela eskola Getxon. Ikasi nabigatzen.' : 'Escuela de vela en Getxo. Aprende a navegar.',
     "address": {
       "@type": "PostalAddress",
@@ -51,7 +51,7 @@ export default async function LandingPage({ params: { locale } }: { params: { lo
       "latitude": 43.3441,
       "longitude": -3.0135
     },
-    "url": "https://getxobelaeskola.cloud",
+    "url": `${getSiteUrl()}/${locale}`,
     "telephone": "+34000000000",
     "aggregateRating": {
       "@type": "AggregateRating",

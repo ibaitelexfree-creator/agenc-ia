@@ -8,6 +8,7 @@ import { listGoogleEvents } from '@/lib/google-calendar';
 
 const BookingSelector = dynamic(() => import('@/components/booking/BookingSelector'), { ssr: false });
 import JsonLd from '@/components/shared/JsonLd';
+import { getSeoAlternates, getSiteUrl } from '@/lib/seo';
 
 import { Metadata } from 'next';
 
@@ -67,9 +68,11 @@ export async function generateMetadata({
     return {
         title: name,
         description: description,
+        alternates: getSeoAlternates(`courses/${slug}`, locale),
         openGraph: {
             title: name,
             description: description,
+            url: `${getSiteUrl()}/${locale}/courses/${slug}`,
             images: [displayCourse.imagen_url || '/images/home-hero-sailing-action.webp']
         },
         twitter: {
@@ -494,9 +497,9 @@ export default async function CourseDetailPage({
         "provider": {
             "@type": "Organization",
             "name": "Getxo Bela Eskola",
-            "sameAs": "https://getxobelaeskola.cloud"
+            "sameAs": getSiteUrl()
         },
-        "image": displayCourse.imagen_url || 'https://getxobelaeskola.cloud/images/home-hero-sailing-action.webp',
+        "image": displayCourse.imagen_url || `${getSiteUrl()}/images/home-hero-sailing-action.webp`,
         "offers": {
             "@type": "Offer",
             "price": displayCourse.precio,
