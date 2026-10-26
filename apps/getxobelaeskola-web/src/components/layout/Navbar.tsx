@@ -423,11 +423,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 </Link>
  
                 {/* Desktop Menu - Custom Framer Motion dropdowns */}
-                <div className="hidden xl:flex gap-4 2xl:gap-8 items-center text-xs uppercase tracking-[0.18em] 2xl:tracking-[0.25em] font-black h-full flex-1 justify-center xl:pl-6 xl:pr-4 2xl:px-0">
+                <div className="hidden xl:flex gap-3 2xl:gap-8 items-center text-xs uppercase tracking-[0.12em] 2xl:tracking-[0.2em] font-black h-full flex-1 justify-center xl:px-2 2xl:px-0">
                     {navItems.map((item) => (
                         <div 
                             key={item.label} 
-                            className="relative h-full flex items-center nav-item-container"
+                            className="relative h-full flex items-center nav-item-container flex-shrink-0"
                             onMouseEnter={() => item.dropdown && setActiveDropdown(item.label)}
                             onMouseLeave={() => setActiveDropdown(null)}
                             onBlur={(e) => {
@@ -439,7 +439,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                             {item.dropdown ? (
                                 <button
                                     type="button"
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent border-none bg-transparent outline-none focus:ring-1 focus:ring-accent rounded px-1 whitespace-nowrap`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                     onClick={(e) => {
                                         e.preventDefault();
@@ -452,7 +452,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                     }}
                                 >
                                     {item.icon}
-                                    {getLabel(item.label)}
+                                    <span>{getLabel(item.label)}</span>
                                     <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${activeDropdown === item.label ? 'rotate-180 text-accent' : ''}`} />
                                     <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
                                 </button>
@@ -460,11 +460,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                 <Link
                                     href={`/${locale}/${item.href}`}
                                     prefetch={false}
-                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1`}
+                                    className={`relative py-2 transition-premium group/nav flex items-center gap-1.5 font-black text-black hover:text-accent outline-none focus:ring-1 focus:ring-accent rounded px-1 whitespace-nowrap`}
                                     style={{ textShadow: '0.5px 0 0 currentColor, -0.5px 0 0 currentColor' }}
                                 >
                                     {item.icon}
-                                    {getLabel(item.label)}
+                                    <span>{getLabel(item.label)}</span>
                                     <span className="absolute bottom-0 left-0 w-0 h-px bg-accent transition-premium group-hover/nav:w-full" />
                                 </Link>
                             )}
