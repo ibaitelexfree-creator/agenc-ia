@@ -41,7 +41,7 @@ export async function generateMetadata({
         'udalekuak-campamentos': { nombre_es: 'Udalekuak (Campamentos)', nombre_eu: 'Udalekuak (Campamentos)', imagen_url: '/images/courses/udalekuak-campamentos.webp' },
         'entrenamientos-infantiles-continuos': { nombre_es: 'Entrenamientos infantiles continuos', nombre_eu: 'Haurrentzako entrenamendu jarraituak', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp' },
-        'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/ai/section2-calm-bay.webp' },
+        'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/courses/bautismos.jpg?v=1792999877' },
         'familia': { nombre_es: 'Familia', nombre_eu: 'Familia', imagen_url: '/images/course-raquero-students.webp' },
         'cursos-personalizados': { nombre_es: 'Cursos personalizados', nombre_eu: 'Neurrira egindako ikastaroak', imagen_url: '/images/ai/section2-action-sea.webp' },
         'regata-corporativa': { nombre_es: 'Regata corporativa', nombre_eu: 'Enpresa estropada', imagen_url: '/images/ai/section4-community.webp' },
@@ -363,7 +363,7 @@ export default async function CourseDetailPage({
             precio: 45,
             duracion_h: 2,
             nivel: 'iniciacion',
-            imagen_url: '/images/ai/section2-calm-bay.webp',
+            imagen_url: '/images/courses/bautismos.jpg?v=1792999877',
             detalles: {
                 es: ['Primer contacto suave y accesible', 'Sin necesidad de experiencia previa', 'Acompañamiento cercano por monitor', 'Vistas y sensaciones del Abra'],
                 eu: ['Lehen kontaktu leun eta eskuragarria', 'Aurretiazko esperientziarik gabe', 'Monitorearen laguntza hurbila', 'Abrako bistak eta sentsazioak']

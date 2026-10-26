@@ -251,7 +251,7 @@ export default async function CoursesPage({
             nivel: 'iniciacion',
             categoria_id: 'cat-vela-ligera',
             categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
-            imagen_url: '/images/ai/section2-calm-bay.webp'
+            imagen_url: '/images/courses/bautismos.jpg?v=1792999877'
         },
         {
             id: 'c-familia',
