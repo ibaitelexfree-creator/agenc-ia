@@ -317,7 +317,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                                         transition={{ duration: 0.15 }}
                                         className="absolute top-full right-0 mt-1 bg-neutral-900 border border-white/10 rounded shadow-xl overflow-hidden py-1 w-20 z-[10001]"
                                     >
-                                        {['es', 'eu', 'en', 'fr'].map((lang) => (
+                                        {['es', 'en'].map((lang) => (
                                             <button
                                                 key={lang}
                                                 onClick={(e) => {
@@ -709,8 +709,8 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
 
                         <div className="flex flex-col gap-4 pb-12">
                             <span className="text-[10px] uppercase tracking-[0.4em] font-black text-sea-foam/30 ml-4">{getLabel('language_selector')}</span>
-                            <div className="grid grid-cols-4 gap-3 bg-sea-foam/5 border border-sea-foam/10 rounded-2xl p-2">
-                                {['es', 'eu', 'en', 'fr'].map((lang) => (
+                            <div className="grid grid-cols-2 gap-3 bg-sea-foam/5 border border-sea-foam/10 rounded-2xl p-2">
+                                {['es', 'en'].map((lang) => (
                                     <button
                                         key={lang}
                                         onClick={() => handleLanguageSwitch(lang)}
