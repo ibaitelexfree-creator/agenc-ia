@@ -42,7 +42,7 @@ export async function generateMetadata({
         'entrenamientos-infantiles-continuos': { nombre_es: 'Entrenamientos infantiles continuos', nombre_eu: 'Haurrentzako entrenamendu jarraituak', imagen_url: '/images/courses/CursodeVelaLigera.webp' },
         'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp' },
         'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/courses/bautismos.jpg?v=1792999877' },
-        'familia': { nombre_es: 'Familia', nombre_eu: 'Familia', imagen_url: '/images/course-raquero-students.webp' },
+        'familia': { nombre_es: 'Familia', nombre_eu: 'Familia', imagen_url: '/images/courses/familia-j80.webp?v=1793014010960' },
         'cursos-personalizados': { nombre_es: 'Cursos personalizados', nombre_eu: 'Neurrira egindako ikastaroak', imagen_url: '/images/ai/section2-action-sea.webp' },
         'regata-corporativa': { nombre_es: 'Regata corporativa', nombre_eu: 'Enpresa estropada', imagen_url: '/images/ai/section4-community.webp' },
         'windsurf-iniciacion-perfeccionamiento': { nombre_es: 'Windsurf: Iniciación y perfeccionamiento', nombre_eu: 'Windsurfa: Hastapena eta hobekuntza', imagen_url: '/images/experiences/windsurf-mooring.jpg' },
@@ -378,7 +378,7 @@ export default async function CourseDetailPage({
             precio: 160,
             duracion_h: 3,
             nivel: 'iniciacion',
-            imagen_url: '/images/course-raquero-students.webp',
+            imagen_url: '/images/courses/familia-j80.webp?v=1793014010960',
             detalles: {
                 es: ['Actividad para todas las edades', 'Dinámicas adaptadas a niños y adultos', 'Barco en exclusiva con patrón', 'Recuerdos inolvidables juntos'],
                 eu: ['Adin guztietarako jarduera', 'Haurrei eta helduei egokitutako dinamikak', 'Ontzi esklusiboa patroiarekin', 'Oroitzapen paregabeak elkarrekin']
