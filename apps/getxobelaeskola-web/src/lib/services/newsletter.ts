@@ -30,7 +30,7 @@ export async function processScheduledNewsletters() {
         return { success: true, processed: pendingNewsletters.length, totalSent: 0, message: 'No hay suscriptores en la lista.' };
     }
 
-    const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
+    const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || (process.env.NODE_ENV === 'production' ? 'https://getxobelaeskola.com' : 'http://localhost:3000');
     let totalSentCount = 0;
     let totalFailedCount = 0;
     const processResults: any[] = [];

@@ -2,6 +2,8 @@ import { createAdminClient } from '../supabase/admin';
 import { resend, DEFAULT_FROM_EMAIL } from '../resend';
 import { stripe } from '../stripe';
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || (process.env.NODE_ENV === 'production' ? 'https://getxobelaeskola.com' : 'http://localhost:3000');
+
 export async function processMarketingAutomations() {
     const supabase = createAdminClient();
 
@@ -160,7 +162,7 @@ async function sendAutomationEmail(email: string, name: string, campaign: any, d
                     <span style="font-family: 'Courier New', Courier, monospace; background: #ffffff; border: 2px solid #eee; padding: 10px 20px; border-radius: 6px; font-weight: bold; font-size: 20px; color: #333; display: inline-block;">${code}</span>
                 </div>
                 
-                <a href="https://getxobelaeskola.cloud/es/courses/${slug}" 
+                <a href="${BASE_URL}/es/courses/${encodeURIComponent(slug)}"
                    style="background: linear-gradient(135deg, #003366 0%, #0056b3 100%); color: white; padding: 16px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 16px; display: inline-block; box-shadow: 0 4px 15px rgba(0,51,102,0.3);">
                     RESERVAR AHORA
                 </a>
