@@ -43,20 +43,36 @@ export default function BeneficiarioPage() {
               </div>
             </div>
 
-            {/* NextGen EU Funding Section */}
-            <div className="w-full bg-white border-2 border-slate-200 hover:border-slate-300 transition-colors p-6 sm:p-8 rounded-2xl flex flex-col items-center justify-center gap-4 shadow-sm">
-              <div className="h-14 sm:h-16 w-full max-w-[280px] sm:max-w-[320px] relative flex items-center justify-center">
-                <Image
-                  src="/images/logo-nextgen.svg"
-                  alt="Financiado por la Unión Europea - NextGenerationEU"
-                  width={320}
-                  height={64}
-                  className="object-contain h-full w-auto"
-                  priority
-                />
+            {/* Funding Section: NextGen EU & Plan de Recuperación */}
+            <div className="w-full bg-white border-2 border-slate-200 hover:border-slate-300 transition-colors p-6 sm:p-8 rounded-2xl flex flex-col items-center justify-center gap-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 w-full">
+                {/* Logo Financiado por la Unión Europea - NextGenerationEU */}
+                <div className="h-14 sm:h-16 w-full max-w-[240px] sm:max-w-[280px] relative flex items-center justify-center">
+                  <Image
+                    src="/images/logo-nextgen.svg"
+                    alt="Financiado por la Unión Europea - NextGenerationEU"
+                    width={280}
+                    height={56}
+                    className="object-contain h-full w-auto"
+                    priority
+                  />
+                </div>
+
+                {/* Logo Plan de Recuperación, Transformación y Resiliencia */}
+                <div className="h-14 sm:h-16 w-full max-w-[240px] sm:max-w-[280px] relative flex items-center justify-center">
+                  <Image
+                    src="/images/logo-plan-recuperacion.svg"
+                    alt="Plan de Recuperación, Transformación y Resiliencia"
+                    width={280}
+                    height={56}
+                    className="object-contain h-full w-auto"
+                    priority
+                  />
+                </div>
               </div>
-              <p className="text-xs sm:text-sm font-sans text-slate-700 font-medium leading-relaxed max-w-md">
-                Financiado por la Unión Europea <span className="font-bold text-slate-900 block sm:inline">Next Generation EU</span>
+
+              <p className="text-xs sm:text-sm font-sans text-slate-700 font-medium leading-relaxed max-w-lg text-center">
+                Financiado por la Unión Europea <span className="font-bold text-slate-900">Next Generation EU</span> en el marco del <span className="font-bold text-slate-900">Plan de Recuperación, Transformación y Resiliencia</span>.
               </p>
             </div>
           </div>
