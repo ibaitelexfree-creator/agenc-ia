@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { createAdminClient } from '@/lib/supabase/admin';
+import { getSiteUrl } from '../lib/seo';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://getxobelaeskola.cloud';
+    const baseUrl = getSiteUrl();
     const locales = ['es', 'eu', 'en', 'fr'];
     const staticPaths = ['', '/courses', '/academy', '/rental', '/about', '/contact'];
 
@@ -23,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     try {
         const supabase = createAdminClient();
 
-        // Dynamic Course Paths
+        // Dynamic Course Paths (Publicly accessible and active courses)
         const { data: courses, error: coursesError } = await supabase
             .from('cursos')
             .select('slug, updated_at')
@@ -44,32 +45,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 });
             });
         }
-
-        // Dynamic Module Paths
-        // We use !inner to ensure we only get modules that belong to active and visible courses
-        const { data: modules, error: modulesError } = await supabase
-            .from('modulos')
-            .select('id, updated_at, curso:curso_id!inner(activo, visible)')
-            .eq('curso.activo', true)
-            .eq('curso.visible', true);
-
-        if (modulesError) {
-            console.error('Error fetching modules for sitemap:', modulesError);
-        } else if (modules) {
-            locales.forEach((locale) => {
-                modules.forEach((module: any) => {
-                    // Although modulos has a slug column, the current routing uses ID.
-                    // We stick to ID to ensure valid links.
-                    sitemapEntries.push({
-                        url: `${baseUrl}/${locale}/academy/module/${module.id}`,
-                        lastModified: module.updated_at ? new Date(module.updated_at) : new Date(),
-                        changeFrequency: 'weekly',
-                        priority: 0.6,
-                    });
-                });
-            });
-        }
-
     } catch (e) {
         console.error('Sitemap dynamic paths error:', e);
     }

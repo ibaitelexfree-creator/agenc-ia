@@ -1,7 +1,24 @@
-const rawUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://www.getxobelaeskola.cloud';
-export const siteUrl = rawUrl.includes('getxobelaeskola.cloud') && !rawUrl.includes('www.getxobelaeskola.cloud')
-    ? rawUrl.replace('getxobelaeskola.cloud', 'www.getxobelaeskola.cloud')
-    : rawUrl;
+/**
+ * Resolves the canonical base URL according to environment priority:
+ * 1. Explicit NEXT_PUBLIC_APP_URL
+ * 2. Vercel Production deployment (VERCEL_ENV === 'production') -> https://www.getxobelaeskola.com
+ * 3. Vercel Preview or local development without explicit URL -> https://getxobelaeskola.cloud
+ * 4. Fallback default
+ */
+export function getSiteUrl(): string {
+    if (process.env.NEXT_PUBLIC_APP_URL) {
+        return process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '');
+    }
+
+    if (process.env.VERCEL_ENV === 'production') {
+        return 'https://www.getxobelaeskola.com';
+    }
+
+    // Vercel preview (VERCEL_ENV === 'preview') or development
+    return 'https://getxobelaeskola.cloud';
+}
+
+export const siteUrl = getSiteUrl();
 
 /**
  * Generates SEO canonical and localized alternate URLs for a given page path.
@@ -10,16 +27,18 @@ export const siteUrl = rawUrl.includes('getxobelaeskola.cloud') && !rawUrl.inclu
  * @param locale The current active language locale (e.g. 'es', 'eu', etc.)
  */
 export function getSeoAlternates(path: string, locale: string) {
+    const base = getSiteUrl();
     const cleanPath = path.startsWith('/') ? path.substring(1) : path;
     const suffix = cleanPath ? `/${cleanPath}/` : '/';
     
     return {
-        canonical: `${siteUrl}/${locale}${suffix}`,
+        canonical: `${base}/${locale}${suffix}`,
         languages: {
-            'es-ES': `${siteUrl}/es${suffix}`,
-            'eu-ES': `${siteUrl}/eu${suffix}`,
-            'en-US': `${siteUrl}/en${suffix}`,
-            'fr-FR': `${siteUrl}/fr${suffix}`,
+            'es-ES': `${base}/es${suffix}`,
+            'eu-ES': `${base}/eu${suffix}`,
+            'en-US': `${base}/en${suffix}`,
+            'fr-FR': `${base}/fr${suffix}`,
         }
     };
 }
+
