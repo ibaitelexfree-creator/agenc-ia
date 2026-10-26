@@ -448,14 +448,14 @@ export function LandingSidebar() {
                   </span>
                   <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(4, 1fr)',
+                    gridTemplateColumns: 'repeat(2, 1fr)',
                     gap: '4px',
                     backgroundColor: 'rgba(255,255,255,0.03)',
                     border: '1.5px solid rgba(74, 175, 232, 0.25)',
                     borderRadius: '20px',
                     padding: '4px',
                   }}>
-                    {['es', 'eu', 'en', 'fr'].map((lang) => (
+                    {['es', 'en'].map((lang) => (
                       <button
                         key={lang}
                         onClick={() => handleLanguageSwitch(lang)}
