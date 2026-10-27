@@ -44,7 +44,7 @@ export async function generateMetadata({
         'entrenamientos-continuos-jovenes': { nombre_es: 'Entrenamientos continuos para jóvenes', nombre_eu: 'Gazteentzako entrenamendu jarraituak', imagen_url: '/images/courses/entrenamientos-continuos-jovenes.webp' },
         'bautismos': { nombre_es: 'Bautismos', nombre_eu: 'Bataioak', imagen_url: '/images/courses/bautismos.jpg?v=1792999877' },
         'familia': { nombre_es: 'Familia', nombre_eu: 'Familia', imagen_url: '/images/courses/familia-j80.webp?v=1793014010960' },
-        'cursos-personalizados': { nombre_es: 'Cursos personalizados', nombre_eu: 'Neurrira egindako ikastaroak', imagen_url: '/images/ai/section2-action-sea.webp' },
+        'cursos-personalizados': { nombre_es: 'Cursos personalizados', nombre_eu: 'Neurrira egindako ikastaroak', imagen_url: '/images/courses/cursos-personalizados.webp?v=1793102118417' },
         'regata-corporativa': { nombre_es: 'Regata corporativa', nombre_eu: 'Enpresa estropada', imagen_url: '/images/ai/section4-community.webp' },
         'windsurf-iniciacion-perfeccionamiento': { nombre_es: 'Windsurf: Iniciación y perfeccionamiento', nombre_eu: 'Windsurfa: Hastapena eta hobekuntza', imagen_url: '/images/experiences/windsurf-mooring.jpg' },
         'mantenimiento-embarcaciones': { nombre_es: 'Mantenimiento de embarcaciones', nombre_eu: 'Ontzien mantentzea', imagen_url: '/images/facilities-hero-desktop.webp' },
@@ -396,7 +396,7 @@ export default async function CourseDetailPage({
             precio: 0,
             duracion_h: 4,
             nivel: 'intermedio',
-            imagen_url: '/images/ai/section2-action-sea.webp',
+            imagen_url: '/images/courses/cursos-personalizados.webp?v=1793102118417',
             detalles: {
                 es: ['Formación 100% personalizada', 'Horarios y fechas a convenir', 'Objetivos técnicos o de travesía específicos', 'Atención individual o grupos cerrados'],
                 eu: ['%100 prestakuntza pertsonalizatua', 'Ordutegiak eta datak adosteko', 'Helburu tekniko edo zeharkaldi zehatzak', 'Banakako arreta edo talde itxiak']

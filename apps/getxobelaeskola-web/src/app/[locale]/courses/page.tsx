@@ -281,7 +281,7 @@ export default async function CoursesPage({
             nivel: 'intermedio',
             categoria_id: 'cat-vela-ligera',
             categoria: { id: 'cat-vela-ligera', slug: 'vela-ligera', nombre_es: 'Vela ligera', nombre_eu: 'Bela arina' },
-            imagen_url: '/images/ai/section2-action-sea.webp'
+            imagen_url: '/images/courses/cursos-personalizados.webp?v=1793102118417'
         },
 
         // 3. CURSO DE WINDSURF
