@@ -24,7 +24,7 @@
 .section-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: clamp(2.5rem, 6vh, 4rem) clamp(1rem, 3vw, 1.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,7 +62,7 @@
   line-height: 1.6;
   color: var(--color-muted);
   max-width: 700px;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(1.5rem, 3.5vh, 2.5rem);
 }
 
 /* Buttons Styling */
@@ -113,14 +113,14 @@
    ========================================================================== */
 .hero-section {
   background-color: var(--color-white);
-  padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(1rem, 3vh, 2rem) clamp(1rem, 3vw, 2.5rem);
   margin-top: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 10;
-  min-height: clamp(450px, 80vh, 850px);
+  min-height: calc(100vh - 134px);
   height: auto;
   max-height: none;
   box-sizing: border-box;
@@ -129,13 +129,13 @@
 
 @media (min-width: 640px) {
   .hero-section {
-    padding: 0 clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 4vw, 3rem);
   }
 }
 
 @media (min-width: 1024px) {
   .hero-section {
-    padding: 0 clamp(2rem, 5vw, 3.5rem);
+    padding: clamp(1.25rem, 2.5vh, 2rem) clamp(2rem, 5vw, 3.5rem);
   }
 }
 
@@ -147,6 +147,8 @@
   align-items: center;
   text-align: center;
   justify-content: center;
+  padding-top: clamp(0.5rem, 1.5vh, 1rem);
+  padding-bottom: clamp(0.5rem, 1.5vh, 1.5rem);
 }
 
 .hero-eyebrow {
@@ -187,7 +189,7 @@
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: clamp(1rem, 2.5vh, 1.75rem);
   width: 100%;
 }
 
@@ -258,7 +260,7 @@
   position: relative;
   width: 100%;
   max-width: 800px;
-  margin: 2rem auto 4rem auto;
+  margin: 1.5rem auto clamp(2rem, 4vh, 3.5rem) auto;
   min-height: 250px;
 }
 
@@ -355,7 +357,7 @@
 .timeline-container {
   width: 100%;
   max-width: 700px;
-  margin: 0 auto 5rem auto;
+  margin: 0 auto clamp(2.5rem, 5vh, 4rem) auto;
 }
 
 .timeline-track {
@@ -699,7 +701,7 @@
 }
 
 .price-display-wrapper {
-  margin: 1.5rem 0 3rem 0;
+  margin: 1rem 0 clamp(1.5rem, 3vh, 2.5rem) 0;
   display: flex;
   justify-content: center;
 }
@@ -742,7 +744,7 @@
   gap: 1rem;
   max-width: 500px;
   width: 100%;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto clamp(2rem, 4vh, 3.5rem) auto;
   text-align: left;
 }
 
@@ -774,10 +776,10 @@
 .precios-info-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
   max-width: 800px;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2rem, 4vh, 3.5rem);
 }
 
 @media (min-width: 640px) {
@@ -856,7 +858,7 @@
    ========================================================================== */
 .cta-section {
   background-color: var(--color-white);
-  padding: 6rem 1.5rem;
+  padding: clamp(3rem, 7vh, 5rem) clamp(1rem, 3vw, 1.5rem);
   display: flex;
   justify-content: center;
   position: relative;
