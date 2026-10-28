@@ -57,6 +57,11 @@ export default function CourseCard({ course, locale }: CourseCardProps) {
                             fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             className="object-cover w-full h-full inset-0 transition-transform duration-[2s] ease-out group-hover:scale-110"
+                            style={
+                                (course.slug === 'windsurf-iniciacion-perfeccionamiento' || course.imagen_url?.includes('windsurf-mooring'))
+                                    ? { objectPosition: '50% 65%' }
+                                    : undefined
+                            }
                         />
                         {/* Overlays */}
                         <div className="absolute inset-0 premium-gradient-overlay z-10" />
