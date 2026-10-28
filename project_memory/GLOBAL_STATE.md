@@ -2,6 +2,18 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Rental Category Filter Infinite Auto-scroll Speed and Jitter Optimization
+  1. **Sub-pixel Smooth Auto-scroll with rAF:**
+     - Replaced discrete setInterval with requestAnimationFrame timestamp-delta interpolation.
+     - Synchronized scrollPosRef to preserve exact sub-pixel positioning across 60Hz/120Hz/144Hz displays.
+  2. **Removed scroll-smooth Conflict:**
+     - Removed CSS class scroll-smooth from filter container which previously conflicted with continuous incremental scrolling, causing stutter at boundary nodes.
+  3. **Speed Calibration:**
+     - Set speed to 34.3 px/sec (calibrated ~3% faster than previous 33.3 px/sec as requested).
+  4. **Files Modified:** src/components/rental/RentalClient.tsx.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Section 3 Cream Container & Section 4 Pointy Wedge Gap Synchronization on Mobile
   1. **Synchronized Cream Container with Red Dot Anchor:**
      - Updated `Section3Curved.tsx` mobile cream container width from static `w-[84%]` to `w-[69%] md:w-[56%]` (and `beigeWidth = isMobile ? '69%' : desktopBeigeWidth`).

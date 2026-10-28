@@ -300,6 +300,7 @@ export default function RentalClient({
     };
 
     const filterScrollRef = useRef<HTMLDivElement>(null);
+    const scrollPosRef = useRef<number>(0);
     const [isDraggingFilter, setIsDraggingFilter] = useState(false);
     const [filterStartX, setFilterStartX] = useState(0);
     const [filterScrollLeft, setFilterScrollLeft] = useState(0);
@@ -323,30 +324,52 @@ export default function RentalClient({
 
         if (container.scrollLeft >= singleSetWidth * 2) {
             container.scrollLeft -= singleSetWidth;
+            scrollPosRef.current = container.scrollLeft;
         } else if (container.scrollLeft <= 2) {
             container.scrollLeft += singleSetWidth;
+            scrollPosRef.current = container.scrollLeft;
+        } else {
+            scrollPosRef.current = container.scrollLeft;
         }
     };
 
-    // Continuous single-direction smooth auto-scrolling (left-to-right infinite loop)
+    // Continuous single-direction smooth auto-scrolling (left-to-right infinite loop) with sub-pixel precision via rAF
+    useEffect(() => {
+        const container = filterScrollRef.current;
+        if (container) {
+            scrollPosRef.current = container.scrollLeft;
+        }
+    }, []);
+
     useEffect(() => {
         if (isFilterInteracting) return;
 
-        const interval = setInterval(() => {
+        let animationFrameId: number;
+        let lastTime = performance.now();
+        // Speed: 34.3 pixels per second (calibrated ~3% faster than previous 33.3 px/s and silky-smooth across 60Hz/120Hz/144Hz displays)
+        const SPEED_PIXELS_PER_SEC = 34.3;
+
+        const step = (now: number) => {
+            const dt = Math.min((now - lastTime) / 1000, 0.1);
+            lastTime = now;
+
             const container = filterScrollRef.current;
-            if (!container) return;
-
-            const singleSetWidth = container.scrollWidth / 3;
-            if (singleSetWidth <= 0) return;
-
-            if (container.scrollLeft >= singleSetWidth * 2) {
-                container.scrollLeft -= singleSetWidth;
-            } else {
-                container.scrollLeft += 1;
+            if (container) {
+                const singleSetWidth = container.scrollWidth / 3;
+                if (singleSetWidth > 0) {
+                    let nextPos = (scrollPosRef.current || container.scrollLeft) + SPEED_PIXELS_PER_SEC * dt;
+                    if (nextPos >= singleSetWidth * 2) {
+                        nextPos -= singleSetWidth;
+                    }
+                    scrollPosRef.current = nextPos;
+                    container.scrollLeft = nextPos;
+                }
             }
-        }, 30);
+            animationFrameId = requestAnimationFrame(step);
+        };
 
-        return () => clearInterval(interval);
+        animationFrameId = requestAnimationFrame(step);
+        return () => cancelAnimationFrame(animationFrameId);
     }, [isFilterInteracting]);
 
     // Initial position set to middle set for seamless backward/forward scrolling
@@ -464,7 +487,7 @@ export default function RentalClient({
                     onMouseLeave={() => setIsFilterInteracting(false)}
                     onTouchStart={() => pauseFilterAutoScroll(6000)}
                     onTouchEnd={() => pauseFilterAutoScroll(4000)}
-                    className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
+                    className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
                 >
                     {displayCategories.map(cat => (
                         <button
