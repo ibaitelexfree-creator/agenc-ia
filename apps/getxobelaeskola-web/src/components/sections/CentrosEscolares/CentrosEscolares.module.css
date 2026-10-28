@@ -114,7 +114,7 @@
 .hero-section {
   background-color: var(--color-white);
   padding: clamp(2rem, 5vh, 4rem) clamp(1rem, 3vw, 2.5rem);
-  margin-top: 79px;
+  margin-top: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
