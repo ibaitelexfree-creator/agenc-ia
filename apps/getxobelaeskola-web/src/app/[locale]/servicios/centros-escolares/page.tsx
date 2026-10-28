@@ -33,7 +33,7 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default function CentrosEscolaresPage() {
     return (
-        <main className="w-full selection:bg-[var(--nautical-blue)] selection:text-white">
+        <main className="w-full bg-white selection:bg-[var(--nautical-blue)] selection:text-white">
             <CentrosEscolaresSection />
         </main>
     );

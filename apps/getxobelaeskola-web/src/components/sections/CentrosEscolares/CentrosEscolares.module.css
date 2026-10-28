@@ -114,13 +114,14 @@
 .hero-section {
   background-color: var(--color-white);
   padding: clamp(1rem, 3vh, 2rem) clamp(1rem, 3vw, 2.5rem);
-  margin-top: 74px;
+  margin-top: 0;
+  padding-top: calc(74px + clamp(1rem, 3vh, 2rem));
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   z-index: 10;
-  min-height: calc(100vh - 134px);
+  min-height: calc(100vh - 60px);
   height: auto;
   max-height: none;
   box-sizing: border-box;
@@ -130,12 +131,14 @@
 @media (min-width: 640px) {
   .hero-section {
     padding: clamp(1rem, 2vh, 1.5rem) clamp(1.5rem, 4vw, 3rem);
+    padding-top: calc(74px + clamp(1rem, 2vh, 1.5rem));
   }
 }
 
 @media (min-width: 1024px) {
   .hero-section {
     padding: clamp(1.25rem, 2.5vh, 2rem) clamp(2rem, 5vw, 3.5rem);
+    padding-top: calc(74px + clamp(1.25rem, 2.5vh, 2rem));
   }
 }
 
