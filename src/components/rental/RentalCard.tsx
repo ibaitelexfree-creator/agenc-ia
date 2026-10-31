@@ -147,9 +147,9 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                         : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
                                                             ? 'object-center'
                                                             : (service.nombre_es.toLowerCase().includes('optimist') || service.slug.includes('optimist'))
-                                                                ? 'object-[center_0%] scale-110 translate-y-[35px]'
+                                                                ? 'object-top'
                                                                 : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
-                                                                    ? 'object-[center_30%]'
+                                                                    ? 'object-[center_35%]'
                                                                     : 'object-center'
                     }`}
                 />
