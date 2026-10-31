@@ -149,7 +149,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                             : (service.nombre_es.toLowerCase().includes('optimist') || service.slug.includes('optimist'))
                                                                 ? 'object-[center_40%]'
                                                                 : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
-                                                                    ? 'object-[center_25%]'
+                                                                    ? 'object-[center_30%]'
                                                                     : 'object-center'
                     }`}
                 />
