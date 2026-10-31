@@ -79,16 +79,21 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             console.error('Error fetching rental services:', error);
         } else {
             const priorityOrder = [
+                'alquiler-optimist',
+                'alquiler-laser',
+                'alquiler-laser-pro',
+                'alquiler-j80',
+                'alquiler-raquero',
+                'alquiler-raquero-omega',
+                'atraque-piragua',
+                'atraque-transeunte-8m',
                 'alquiler-kayak-1',
                 'alquiler-kayak-2',
                 'alquiler-paddlesurf',
                 'alquiler-piragua-1',
                 'alquiler-piragua-2',
                 'alquiler-windsurf',
-                'alquiler-optimist',
-                'alquiler-laser',
-                'alquiler-j80',
-                'alquiler-raquero'
+                'atraque-transeunte-12m'
             ];
 
             // Type assertion here because Supabase response might not perfectly match our strict interface
