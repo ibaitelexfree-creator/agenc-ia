@@ -70,8 +70,14 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
             src = '/images/J80.jpg';
         } else if (n.includes('420') || slug.includes('420')) {
             src = '/images/420.jpg';
+        } else if (slug.includes('omega') || n.includes('omega')) {
+            if (service.precio_base === 140 || n.includes('without skipper') || slug.includes('without-skipper') || n.includes('sin patrón') || n.includes('sin patron')) {
+                src = '/images/alquiler-raquero-without-skipper.jpg';
+            } else {
+                src = '/images/alquiler-raquero-omega.jpg';
+            }
         } else if (n.includes('raquero') || slug.includes('raquero')) {
-            src = '/images/course-raquero-students.webp';
+            src = '/images/alquiler-raquero.jpg';
         } else if (n.includes('optimist') || slug.includes('optimist')) {
             src = '/images/rental-optimist.webp';
         } else if (n.includes('laser') || slug.includes('laser')) {
