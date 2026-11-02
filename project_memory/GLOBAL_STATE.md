@@ -2,6 +2,17 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Update Raquero (35€) Image and Preserve 80€ Raquero/Omega Image
+  1. **New Vibrant Image for Raquero (35€):**
+     - Replaced `public/images/alquiler-raquero.jpg` with color-enhanced and sharpened high-resolution version of `IMG_5164.JPG`.
+     - Enhanced saturation (+22%), dynamic range/contrast, and sharpness for vibrant maritime look.
+  2. **Image Independence & Isolation:**
+     - Updated `RentalCard.tsx` to strictly distinguish between `alquiler-raquero` (35€) and `alquiler-raquero-omega` (80€).
+     - Restored original `alquiler-raquero-omega.jpg` for the 80€ item and `course-raquero-students.webp` for courses.
+     - Updated Supabase `servicios_alquiler` image URL references accordingly.
+  3. **Files Modified:** `public/images/alquiler-raquero.jpg`, `src/components/rental/RentalCard.tsx`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Rental Category Filter Infinite Auto-scroll Speed and Jitter Optimization
   1. **Sub-pixel Smooth Auto-scroll with rAF:**
      - Replaced discrete setInterval with requestAnimationFrame timestamp-delta interpolation.
