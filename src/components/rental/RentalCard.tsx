@@ -125,7 +125,7 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                     alt={name}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.3] brightness-[1.06] contrast-[1.08] ${
+                    className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.35] brightness-[1.14] contrast-[1.12] ${
                         isBigsub
                             ? 'object-[center_60%]'
                             : isTransientLt8m
@@ -149,13 +149,15 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                                                             : (service.nombre_es.toLowerCase().includes('optimist') || service.slug.includes('optimist'))
                                                                 ? 'object-top'
                                                                 : (service.nombre_es.toLowerCase().includes('laser') || service.slug.includes('laser'))
-                                                                    ? 'object-[center_35%]'
+                                                                    ? 'object-[center_65%] !saturate-[1.5] !brightness-[1.16] !contrast-[1.12]'
                                                                     : 'object-center'
                     }`}
                 />
 
                 {/* Global warm-natural overlay for all images */}
-                <div className="absolute inset-0 bg-gradient-to-b from-amber-300/10 via-transparent to-amber-500/8 mix-blend-overlay pointer-events-none z-10" />
+                                {/* Sky blue enhancement overlay (+20% vibrant blue sky) */}
+                <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-sky-300/10 to-transparent mix-blend-overlay pointer-events-none z-10" />
+                <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-500/5 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
                 {/* Float Category Label */}
