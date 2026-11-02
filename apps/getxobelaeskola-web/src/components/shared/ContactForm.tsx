@@ -92,7 +92,7 @@ export default function ContactForm() {
                         <input
                             id="nombre"
                             {...register('nombre')}
-                            className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
+                            className={`w-full bg-nautical-deep border-b ${errors.nombre ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-xs md:text-sm text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('name_placeholder')}
                         />
                         {errors.nombre && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.nombre.message}</p>}
@@ -102,7 +102,7 @@ export default function ContactForm() {
                         <input
                             id="email"
                             {...register('email')}
-                            className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
+                            className={`w-full bg-nautical-deep border-b ${errors.email ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-xs md:text-sm text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('email_placeholder')}
                         />
                         {errors.email && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.email.message}</p>}
@@ -115,7 +115,7 @@ export default function ContactForm() {
                         <input
                             id="telefono"
                             {...register('telefono')}
-                            className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm"
+                            className="w-full bg-nautical-deep border-b border-white/10 focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-xs md:text-sm text-sea-foam font-light transition-colors rounded-t-sm"
                             placeholder={t('phone_placeholder')}
                         />
                     </div>
@@ -124,7 +124,7 @@ export default function ContactForm() {
                         <input
                             id="asunto"
                             {...register('asunto')}
-                            className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors rounded-t-sm`}
+                            className={`w-full bg-nautical-deep border-b ${errors.asunto ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-xs md:text-sm text-sea-foam font-light transition-colors rounded-t-sm`}
                             placeholder={t('subject_placeholder')}
                         />
                         {errors.asunto && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.asunto.message}</p>}
@@ -137,7 +137,7 @@ export default function ContactForm() {
                         id="mensaje"
                         {...register('mensaje')}
                         rows={4}
-                        className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-sm md:text-base text-sea-foam font-light transition-colors resize-none rounded-t-sm`}
+                        className={`w-full bg-nautical-deep border-b ${errors.mensaje ? 'border-red-500' : 'border-white/10'} focus:border-accent outline-none p-3 sm:p-4 text-xs sm:text-xs md:text-sm text-sea-foam font-light transition-colors resize-none rounded-t-sm`}
                         placeholder={t('message_placeholder')}
                     />
                     {errors.mensaje && <p className="text-2xs sm:text-xs text-red-500 uppercase tracking-tighter">{errors.mensaje.message}</p>}
