@@ -92,7 +92,7 @@
     "title_prefix": "Alquiler de",
     "title_highlight": "Material",
     "description": "Descubre la mar de cerca y a tu ritmo en embarcaciones ágiles y divertidas. Perfecto para disfrutar navegando en libertad. Vela Ligera, Crucero, Windsurf o Big SUP.",
-    "crew_label": "Tripulación",
+    "crew_label": "Tripulación\nMínima",
     "price_per_hour": "Precio/h",
     "footer_note": "* El alquiler de veleros requiere titulación mínima. Para Paddle Surf con turbina se incluye formación básica de manejo.",
     "categories": {
@@ -215,14 +215,14 @@
     "duration": "h",
     "price_from": "Desde",
     "category_sections": {
-      "cat-crucero_title": "Cursos de Crucero",
-      "cat-crucero_desc": "Navegación en veleros J80, maniobras, trimado, spinnaker/gennaker y entrenamientos en equipo.",
-      "cat-vela-ligera_title": "Cursos de Vela Ligera",
-      "cat-vela-ligera_desc": "Desde el primer contacto con el viento hasta perfeccionamiento, campamentos y regatas en veleros ligeros.",
-      "cat-windsurf_title": "Cursos de Windsurf",
-      "cat-windsurf_desc": "Aprende y perfecciona equilibrio, planeo, maniobras y autonomía con el viento sobre la tabla.",
-      "cat-mantenimiento_title": "Cursos de Mantenimiento",
-      "cat-mantenimiento_desc": "Talleres prácticos de cuidado de embarcaciones, jarcia, fibra y costura y reparación de velas."
+      "cat-crucero_title": "Crucero",
+      "cat-crucero_desc": "Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel.",
+      "cat-vela-ligera_title": "Vela Ligera",
+      "cat-vela-ligera_desc": "Descubre la emoción de la vela ligera, siente el viento y aprende a dominar tu embarcación. Iníciate, perfecciona tu técnica y disfruta navegando.",
+      "cat-windsurf_title": "Windsurf",
+      "cat-windsurf_desc": "Descubre la emoción del windsurf y descubre nuevas formas de deslizarte sobre el agua. Perfecciona tu técnica, gana autonomía y sigue progresando con cada salida.",
+      "cat-mantenimiento_title": "Mantenimiento",
+      "cat-mantenimiento_desc": "Aprende a trabajar con tus propias manos y descubre los secretos del mantenimiento náutico. Adquiere recursos muy útiles para el mar y tu vida."
     }
   },
   "about_page": {
@@ -1888,19 +1888,32 @@
   },
   "courses_data": {
     "crucero-iniciacion": {
-      "name": "Iniciación J80",
+      "name": "Crucero Ini",
       "description": "Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…",
       "details": [
+        "Iniciación · 3 días · + de 15 años",
         "Maniobras básicas",
         "Funcionamiento de las velas y barco",
         "Meteorología y lectura de la mar",
         "Seguridad a bordo · Flota J80"
       ]
     },
+    "entrenamientos-adultas": {
+      "name": "Eq. Entren. Adulto",
+      "description": "Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.",
+      "details": [
+        "Equipo de Entrenamiento · + de 16 años",
+        "Programa continuo mensual",
+        "Autonomía y trabajo en equipo",
+        "Navegación en diversas condiciones",
+        "Puesta a punto y maniobra"
+      ]
+    },
     "crucero-perfeccionamiento": {
       "name": "Crucero perfeccionamiento",
       "description": "Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.",
       "details": [
+        "Avanzado · 2 días · + de 16 años",
         "Trimado fino de velas",
         "Control y gobierno del barco",
         "Maniobras avanzadas",
@@ -1908,69 +1921,32 @@
       ]
     },
     "crucero-gennaker": {
-      "name": "Crucero con gennaker",
+      "name": "Gennaker",
       "description": "Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.",
       "details": [
+        "Avanzado · 2 días · + de 16 años",
         "Izada, trasluchada y arriada de gennaker",
         "Rumbos portantes y ángulos de viento",
         "Seguridad y coordinación en equipo",
         "Dinámica en velero J80"
       ]
     },
-    "entrenamientos-adultas": {
-      "name": "Entrenamientos para adultas",
-      "description": "Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.",
-      "details": [
-        "Programa continuo anual o mensual",
-        "Autonomía y trabajo en equipo",
-        "Navegación en diversas condiciones",
-        "Puesta a punto y maniobra"
-      ]
-    },
     "vela-ligera-iniciacion": {
-      "name": "Vela ligera iniciación",
+      "name": "Iniciación",
       "description": "Un primer paso ideal para descubrir la navegación en veleros pequeños donde el contacto con las sensaciones del barco y con el viento son muchos mayores.",
       "details": [
+        "Iniciación · + de 15 años",
         "Sensibilidad directa al timón y escotas",
         "Equilibrio y dinámica con el viento",
         "Aparejo y maniobras básicas",
         "Monitores especializados"
       ]
     },
-    "vela-ligera-avanzado": {
-      "name": "Vela ligera avanzado",
-      "description": "Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.",
-      "details": [
-        "Maniobras de precisión y velocidad",
-        "Autonomía total a bordo",
-        "Táctica de rumbos y trimado fino",
-        "Lectura de rachas y corrientes"
-      ]
-    },
-    "txikigune-sabados": {
-      "name": "Txikigune (Sábados de navegación)",
-      "description": "Espacio semanal para niñas y niños que quieren disfrutar de la mar días sueltos sin compromisos. Navegación, juego, aprendizaje y convivencia.",
-      "details": [
-        "Días sueltos los sábados sin compromiso",
-        "Juegos marineros y aprendizaje activo",
-        "Convivencia y trabajo en equipo",
-        "Edades de 5 a 21 años"
-      ]
-    },
-    "udalekuak-campamentos": {
-      "name": "Udalekuak (Campamentos)",
-      "description": "Campamentos de verano donde la navegación se combina con actividades acuáticas, trabajo en equipo y experiencias que se recuerdan toda la vida.",
-      "details": [
-        "Campamentos estivales semanales",
-        "Vela, paddle surf, kayak y juegos",
-        "Monitores titulados y ratio reducida",
-        "Experiencias de vida en el mar"
-      ]
-    },
     "entrenamientos-infantiles-continuos": {
-      "name": "Entrenamientos infantiles continuos",
+      "name": "Eq. Entren. Infantiles",
       "description": "Grupos estables para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.",
       "details": [
+        "Equipo de Entrenamiento · 5 a 12/15 años",
         "Entrenamientos regulares escolares",
         "Seguimiento pedagógico y técnico",
         "Progresión en Optimist y flota ligera",
@@ -1978,88 +1954,70 @@
       ]
     },
     "entrenamientos-continuos-jovenes": {
-      "name": "Entrenamientos continuos para jóvenes",
+      "name": "Eq. Entren. Jóvenes",
       "description": "Grupos estables para jóvenes que buscan aprender y/o seguir creciendo en técnica, autonomía y trabajo en equipo.",
       "details": [
-        "Jóvenes de hasta 21 años",
+        "Equipo de Entrenamiento · +12/15 años",
         "Perfeccionamiento técnico en flota",
         "Autonomía y toma de decisiones",
         "Navegación deportiva y regatas formativas"
       ]
     },
-    "bautismos": {
-      "name": "Bautismos",
-      "description": "Una primera experiencia en la mar, pensada para disfrutar sin presión y descubrir la navegación de manera sencilla y acompañada.",
+    "vela-ligera-avanzado": {
+      "name": "Avanzado",
+      "description": "Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.",
       "details": [
-        "Primer contacto suave y accesible",
-        "Sin necesidad de experiencia previa",
-        "Acompañamiento cercano por monitor",
-        "Vistas y sensaciones del Abra"
+        "Avanzado · 3 días · + de 16 años",
+        "Maniobras de precisión y velocidad",
+        "Autonomía total a bordo",
+        "Táctica de rumbos y trimado fino",
+        "Lectura de rachas y corrientes"
       ]
     },
-    "familia": {
-      "name": "Familia",
-      "description": "Sesiones pensadas para compartir en familia, con ritmos tranquilos, dinámicas divertidas y navegación segura.",
+    "udalekuak-campamentos": {
+      "name": "Udaleku",
+      "description": "Campamentos de verano donde la navegación se combina con actividades acuáticas, trabajo en equipo y experiencias que se recuerdan toda la vida.",
       "details": [
-        "Actividad para todas las edades",
-        "Dinámicas adaptadas a niños y adultos",
-        "Barco en exclusiva con patrón",
-        "Recuerdos inolvidables juntos"
-      ]
-    },
-    "cursos-personalizados": {
-      "name": "Cursos personalizados",
-      "description": "Formaciones a medida según objetivos, nivel y disponibilidad: desde técnica concreta hasta navegación por proyectos.",
-      "details": [
-        "Formación 100% personalizada",
-        "Horarios y fechas a convenir",
-        "Objetivos técnicos o de travesía específicos",
-        "Atención individual o grupos cerrados"
-      ]
-    },
-    "regata-corporativa": {
-      "name": "Regata corporativa",
-      "description": "Experiencia para empresas y grupos: navegación, trabajo en equipo y convivencia en un entorno diferente y estimulante.",
-      "details": [
-        "Team building y cohesión de equipos",
-        "Regata dinámica y participativa",
-        "Flota homogénea de veleros",
-        "Coordinación y briefing marinero"
+        "+3 años · Semanal",
+        "Campamentos estivales semanales",
+        "Vela, paddle surf, kayak y juegos",
+        "Monitores titulados y ratio reducida",
+        "Experiencias de vida en el mar"
       ]
     },
     "windsurf-iniciacion-perfeccionamiento": {
-      "name": "Windsurf: Iniciación y perfeccionamiento",
+      "name": "Iniciación",
       "description": "Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica. Trabajo de equilibrio, maniobras, lectura del viento y autonomía en la tabla.",
       "details": [
-        "1 sesión suelta (2,5h): 45 €",
-        "Bono 4 sesiones (10h): 150 € (37,5 €/salida)",
-        "Campus continuo (5 sesiones fijas 3h, 15h): 250 €",
+        "Windsurf: Iniciación y perfeccionamiento",
+        "2,5h de duración",
         "Tabla, vela, neopreno y chaleco incluidos"
       ]
     },
     "mantenimiento-embarcaciones": {
-      "name": "Mantenimiento de embarcaciones",
+      "name": "Mantenimiento",
       "description": "Curso teórico-práctico de mantenimiento en general, enfocado principalmente a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.",
       "details": [
-        "8 horas totales (2 días · 4h/día) · 100 €",
+        "Mantenimiento de embarcaciones",
         "Casco, fibra, antifouling y gelcoat",
         "Acastillaje, jarcia y cabuyería",
         "Motor y electricidad básica"
       ]
     },
     "costura-reparacion-velas": {
-      "name": "Costura y reparación de velas",
+      "name": "Velas",
       "description": "Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.",
       "details": [
+        "Costura y reparación de velas",
         "Puntadas marineras y uso de máquina",
         "Reparación de desgarros y refuerzos",
-        "Cuidado y mantenimiento de tejidos náuticos",
-        "Material y herramientas del velero"
+        "Cuidado y mantenimiento de tejidos náuticos"
       ]
     }
   },
   "rentals_data": {
-    "bono-vela-ligera": "Bono Vela Ligera",
+    "bono-vela-ligera": "Bono Vela Ligera, crucero y/o windsurf",
+    "bono-windsurf": "Bono de Windsurf",
     "alquiler-420": "420 (Doble)",
     "alquiler-420-pro": "420",
     "alquiler-raquero-omega": "Raquero / Omega (Colectivo)",
@@ -2071,10 +2029,11 @@
     "atraque-transeunte-12m": "Atraque Transeúnte (> 8m)",
     "atraque-velero": "Atraque Velero",
     "alquiler-omega-sin-patron": "Omega/Raquero sin patrón",
-    "alquiler-omega-patron": "Omega con patrón",
-    "alquiler-tarpon-patron": "Tarpon con patrón",
+    "alquiler-omega-patron": "Omega/Raquero con patrón",
+    "alquiler-tarpon-patron": "Tarpoon con patrón",
     "atraque-windsurf": "Atraque Windsurf",
-    "atraque-piragua": "Atraque Piragua",
+    "atraque-piragua": "Atraque Piragua Individual",
+    "atraque-piragua-doble": "Atraque Piragua Doble",
     "alquiler-windsurf": "Windsurf",
     "alquiler-windsurf-pro": "Windsurf",
     "alquiler-j80": "Veleros J80",
@@ -2083,7 +2042,7 @@
     "alquiler-paddlesurf": "Paddle Surf",
     "alquiler-kayak-1": "Kayak (1 Persona)",
     "alquiler-kayak-2": "Kayak (2 Personas)",
-    "alquiler-piragua-1": "Piragua (1 Persona)",
+    "alquiler-piragua-1": "Piragua",
     "alquiler-piragua-2": "Piragua (2 Personas)",
     "alquiler-bigsub-group": "Bigsub (Grupo)",
     "socia-premium": "Socia Premium"
@@ -2437,10 +2396,11 @@
       "rotation_badge": "🔄 Rotación cada 50-60 min",
       "activity_sailing": "⛵ Bautismo Vela",
       "activity_bigsup": "🏄 Big SUP Colectivo",
-      "activity_awareness": "🐧 Taller Conciencia",
-      "timeline_0900_event": "Recepción en Puerto",
-      "timeline_1030_event": "Primeras Rotaciones",
-      "timeline_1200_event": "Fin de Jornada",
+      "activity_awareness": "🐧 Documental Antartida",
+      "timeline_act1_event": "Primera Actividad",
+      "timeline_act2_event": "Segunda Actividad",
+      "timeline_act3_event": "Tercera Actividad",
+      "timeline_custom_note": "Ejemplo de horario: los horarios y las actividades son 100% personalizables según las necesidades del centro escolar.",
       "card_groups_icon": "👥 3 Grupos Estables",
       "card_groups_heading": "Equipos Reducidos",
       "card_groups_text": "Fomentamos equipos pequeños para dar una atención 100% segura y directa a cada participante.",
@@ -2466,7 +2426,21 @@
       "act_03_title": "Taller Antártida",
       "act_03_subtitle": "Ciencia y conciencia",
       "act_03_desc": "A través del documental de la travesía a la Antártida, el alumnado descubre el ecosistema polar, la fauna marina y los efectos del cambio climático.",
-      "act_03_tags": ["Medio ambiente", "Ciencia", "Cambio climático"]
+      "act_03_tags": ["Medio ambiente", "Ciencia", "Cambio climático"],
+      "act_04_title": "Taller de Nudos",
+      "act_04_subtitle": "Cabuyería marinera",
+      "act_04_desc": "Aprendizaje práctico de los nudos esenciales de navegación (as de guía, ballestrinque, ocho...), comprendiendo su utilidad, resistencia y tradición marinera.",
+      "act_04_tags": ["Destreza", "Tradición", "Habilidades prácticas"],
+      "act_05_title": "Visita a Bordo de un Velero",
+      "act_05_subtitle": "Exploración náutica",
+      "act_05_desc": "Visita guiada por el interior y cubierta de un barco de vela de crucero para conocer su habitabilidad, instrumentación, maniobra y cómo es la vida a bordo.",
+      "act_05_tags": ["Curiosidad", "Cultura marítima", "Espacio y vida a bordo"],
+      "flex_badge": "DISEÑO A MEDIDA DE TU CENTRO",
+      "flex_title": "Estructura flexible según edades, preferencias o meteorología",
+      "flex_desc": "Podéis elegir libremente las actividades que mejor encajen con vuestro proyecto pedagógico. Además, adaptamos la jornada a los diferentes ciclos escolares y contamos siempre con alternativas en tierra si las condiciones del mar así lo aconsejan.",
+      "flex_item_choice": "Libre elección de actividades",
+      "flex_item_age": "Adaptado a cada ciclo y edad",
+      "flex_item_weather": "Alternativas seguras ante meteorología"
     },
     "precios": {
       "eyebrow": "TRANSPARENCIA TOTAL",

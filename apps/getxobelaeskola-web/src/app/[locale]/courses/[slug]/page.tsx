@@ -209,257 +209,182 @@ export default async function CourseDetailPage({
     const fallbacks: Record<string, CourseFallback> = {
         'crucero-iniciacion': {
             id: 'c-crucero-iniciacion',
-            nombre_es: 'Iniciación J80',
-            nombre_eu: 'J80 Hastapena',
-            descripcion_es: 'Primer contacto con la navegación en crucero adaptado a cada persona, curso realmente completo: maniobras básicas, funcionamiento de las velas y el barco, meteorología, seguridad…',
-            descripcion_eu: 'Gurutzaontzian nabigatzeko lehen kontaktua pertsona bakoitzari egokitua, ikastaro osoa: oinarrizko maniobrak, belen eta ontziaren funtzionamendua, meteorologia, segurtasuna…',
+            nombre_es: 'Crucero Ini',
+            nombre_eu: 'Crucero Ini',
+            descripcion_es: 'Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel.',
+            descripcion_eu: 'Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel.',
             precio: 180,
             duracion_h: 12,
             nivel: 'iniciacion',
             imagen_url: '/images/courses/IniciacionJ80_v6.webp',
             detalles: {
-                es: ['Maniobras básicas', 'Funcionamiento de las velas y barco', 'Meteorología y lectura de la mar', 'Seguridad a bordo · Flota J80'],
-                eu: ['Oinarrizko maniobrak', 'Belen eta ontziaren funtzionamendua', 'Meteorologia eta itsasoaren irakurketa', 'Segurtasuna ontzian · J80 flota']
+                es: ['Iniciación · 3 días · + de 15 años', 'Maniobras básicas', 'Funcionamiento de las velas y barco', 'Meteorología y lectura de la mar', 'Seguridad a bordo · Flota J80'],
+                eu: ['Iniciación · 3 días · + de 15 años', 'Oinarrizko maniobrak', 'Belen eta ontziaren funtzionamendua', 'Meteorologia eta itsasoaren irakurketa', 'Segurtasuna ontzian · J80 flota']
             }
         },
         'crucero-perfeccionamiento': {
             id: 'c-crucero-perfeccionamiento',
             nombre_es: 'Crucero perfeccionamiento',
-            nombre_eu: 'Gurutzaontzi hobekuntza',
+            nombre_eu: 'Crucero perfeccionamiento',
             descripcion_es: 'Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.',
-            descripcion_eu: 'Dagoeneko nabigatzen dutenentzat eta aurrera egin nahi dutenentzat: trimatzea, maniobra zehatzak, ontziaren kontrola eta itsasoaren irakurketa.',
-            precio: 180,
-            duracion_h: 12,
-            nivel: 'intermedio',
+            descripcion_eu: 'Para quienes ya navegan y quieren avanzar: trimado, maniobras finas, control del barco y lectura de la mar.',
+            precio: 140,
+            duracion_h: 8,
+            nivel: 'avanzado',
             imagen_url: '/images/courses/PerfeccionamientoVela.webp',
             detalles: {
-                es: ['Trimado fino de velas', 'Control y gobierno del barco', 'Maniobras avanzadas', 'Lectura de viento y mar'],
-                eu: ['Belen trimatze fina', 'Ontziaren kontrola eta gobernua', 'Maniobra aurreratuak', 'Haizearen eta itsasoaren irakurketa']
+                es: ['Avanzado · 2 días · + de 16 años', 'Trimado fino de velas', 'Control y gobierno del barco', 'Maniobras avanzadas', 'Lectura de viento y mar'],
+                eu: ['Avanzado · 2 días · + de 16 años', 'Belen trimatze fina', 'Ontziaren kontrola eta gobernua', 'Maniobra aurreratuak', 'Haizearen eta itsasoaren irakurketa']
             }
         },
         'crucero-gennaker': {
             id: 'c-crucero-gennaker',
-            nombre_es: 'Crucero con gennaker',
-            nombre_eu: 'Gurutzaontzia gennakerrarekin',
+            nombre_es: 'Gennaker',
+            nombre_eu: 'Gennaker',
             descripcion_es: 'Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.',
-            descripcion_eu: 'Ikastaro tekniko eta dinamikoa haize aldeko belak segurtasunez eta konfiantzaz erabiltzen ikasteko.',
-            precio: 180,
-            duracion_h: 12,
+            descripcion_eu: 'Curso técnico y dinámico para aprender a manejar velas portantes con seguridad y confianza.',
+            precio: 140,
+            duracion_h: 8,
             nivel: 'avanzado',
             imagen_url: '/images/J80.webp',
             detalles: {
-                es: ['Izada, trasluchada y arriada de gennaker', 'Rumbos portantes y ángulos de viento', 'Seguridad y coordinación en equipo', 'Dinámica en velero J80'],
-                eu: ['Gennakerra igotzea, biratzea eta jaistea', 'Haize aldeko norabideak eta angeluak', 'Segurtasuna eta talde-koordinazioa', 'Dinamika J80 belaontzian']
+                es: ['Avanzado · 2 días · + de 16 años', 'Izada, trasluchada y arriada de gennaker', 'Rumbos portantes y ángulos de viento', 'Seguridad y coordinación en equipo', 'Dinámica en velero J80'],
+                eu: ['Avanzado · 2 días · + de 16 años', 'Gennakerra igotzea, biratzea eta jaistea', 'Haize aldeko norabideak eta angeluak', 'Segurtasuna eta talde-koordinazioa', 'Dinamika J80 belaontzian']
             }
         },
         'entrenamientos-adultas': {
             id: 'c-entrenamientos-adultas',
-            nombre_es: 'Entrenamientos para adultas',
-            nombre_eu: 'Helduentzako entrenamenduak',
+            nombre_es: 'Eq. Entren. Adulto',
+            nombre_eu: 'Eq. Entren. Adulto',
             descripcion_es: 'Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.',
-            descripcion_eu: 'Ohiko saioak teknika hobetzeko, autonomia irabazteko eta hainbat baldintzatan taldean nabigatzeko.',
+            descripcion_eu: 'Sesiones regulares para mejorar técnica, ganar autonomía y navegar en equipo en distintos tipos de condiciones.',
             precio: 100,
             duracion_h: 12,
             nivel: 'intermedio',
             imagen_url: '/images/courses/entrenamientos-adultas.jpg',
             detalles: {
-                es: ['Programa continuo anual o mensual', 'Autonomía y trabajo en equipo', 'Navegación en diversas condiciones', 'Puesta a punto y maniobra'],
-                eu: ['Urteko edo hileko programa jarraitua', 'Autonomia eta talde-lana', 'Nabigazioa askotariko baldintzetan', 'Puntuan jartzea eta maniobrak']
+                es: ['Equipo de Entrenamiento · + de 16 años', 'Programa continuo mensual', 'Autonomía y trabajo en equipo', 'Navegación en diversas condiciones', 'Puesta a punto y maniobra'],
+                eu: ['Equipo de Entrenamiento · + de 16 años', 'Urteko edo hileko programa jarraitua', 'Autonomia eta talde-lana', 'Nabigazioa askotariko baldintzetan', 'Puntuan jartzea eta maniobrak']
             }
         },
         'vela-ligera-iniciacion': {
             id: 'c-vela-ligera-iniciacion',
-            nombre_es: 'Vela ligera iniciación',
-            nombre_eu: 'Bela arina hastapena',
-            descripcion_es: 'Un primer paso ideal para descubrir la navegación en veleros pequeños donde el contacto con las sensaciones del barco y con el viento son muchos mayores.',
-            descripcion_eu: 'Lehen pauso ezin hobea belaontzi txikietan nabigazioa ezagutzeko, non ontziaren eta haizearen sentsazioekiko kontaktua askoz handiagoa den.',
-            precio: 150,
+            nombre_es: 'Iniciación',
+            nombre_eu: 'Iniciación',
+            descripcion_es: 'Descubre la emoción de la vela ligera, siente el viento y aprende a dominar tu embarcación.',
+            descripcion_eu: 'Descubre la emoción de la vela ligera, siente el viento y aprende a dominar tu embarcación.',
+            precio: 180,
             duracion_h: 12,
             nivel: 'iniciacion',
             imagen_url: '/images/courses/CursodeVelaLigera.webp',
             detalles: {
-                es: ['Sensibilidad directa al timón y escotas', 'Equilibrio y dinámica con el viento', 'Aparejo y maniobras básicas', 'Monitores especializados'],
-                eu: ['Sentikortasun zuzena lema eta eskotetan', 'Oreka eta dinamika haizearekin', 'Aparejua eta oinarrizko maniobrak', 'Monitore espezializatuak']
+                es: ['Iniciación · + de 15 años', 'Sensibilidad directa al timón y escotas', 'Equilibrio y dinámica con el viento', 'Aparejo y maniobras básicas', 'Monitores especializados'],
+                eu: ['Iniciación · + de 15 años', 'Sentikortasun zuzena lema eta eskotetan', 'Oreka eta dinamika haizearekin', 'Aparejua eta oinarrizko maniobrak', 'Monitore espezializatuak']
+            }
+        },
+        'entrenamientos-infantiles-continuos': {
+            id: 'c-entrenamientos-infantiles-continuos',
+            nombre_es: 'Eq. Entren. Infantiles',
+            nombre_eu: 'Eq. Entren. Infantiles',
+            descripcion_es: 'Equipo de entrenamiento para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
+            descripcion_eu: 'Equipo de entrenamiento para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
+            precio: 120,
+            duracion_h: 12,
+            nivel: 'intermedio',
+            imagen_url: '/images/courses/CursodeVelaLigera.webp',
+            detalles: {
+                es: ['Equipo de Entrenamiento · 5 a 12/15 años', 'Entrenamientos regulares escolares', 'Seguimiento pedagógico y técnico', 'Progresión en Optimist y flota ligera', 'Comunidad y deporte formativo'],
+                eu: ['Equipo de Entrenamiento · 5 a 12/15 años', 'Eskola-urteko ohiko entrenamenduak', 'Jarraipen pedagogiko eta teknikoa', 'Garapena Optimist eta ontzi arinetan', 'Komunitatea eta heziketa-kirola']
+            }
+        },
+        'entrenamientos-continuos-jovenes': {
+            id: 'c-entrenamientos-continuos-jovenes',
+            nombre_es: 'Eq. Entren. Jóvenes',
+            nombre_eu: 'Eq. Entren. Jóvenes',
+            descripcion_es: 'Equipo de entrenamiento para jóvenes que buscan seguir creciendo en técnica, autonomía y navegación deportiva.',
+            descripcion_eu: 'Equipo de entrenamiento para jóvenes que buscan seguir creciendo en técnica, autonomía y navegación deportiva.',
+            precio: 100,
+            duracion_h: 12,
+            nivel: 'intermedio',
+            imagen_url: '/images/course-detail-header-sailing.webp',
+            detalles: {
+                es: ['Equipo de Entrenamiento · +12/15 años', 'Perfeccionamiento técnico en flota', 'Autonomía y toma de decisiones', 'Navegación deportiva y regatas formativas'],
+                eu: ['Equipo de Entrenamiento · +12/15 años', 'Hobekuntza teknikoa flotan', 'Autonomia eta erabaki-hartzea', 'Kirol-nabigazioa eta heziketa-estropadak']
             }
         },
         'vela-ligera-avanzado': {
             id: 'c-vela-ligera-avanzado',
-            nombre_es: 'Vela ligera avanzado',
-            nombre_eu: 'Bela arina aurreratua',
+            nombre_es: 'Avanzado',
+            nombre_eu: 'Avanzado',
             descripcion_es: 'Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.',
-            descripcion_eu: 'Sakontzea bilatzen dutenentzat: maniobra zehatzagoak, autonomia osoa eta itsasoarekin harreman finagoa.',
+            descripcion_eu: 'Para quienes buscan profundizar: maniobras más precisas, autonomía total y una relación más fina con la mar.',
             precio: 180,
             duracion_h: 12,
             nivel: 'avanzado',
             imagen_url: '/images/alquiler-laser.webp',
             detalles: {
-                es: ['Maniobras de precisión y velocidad', 'Autonomía total a bordo', 'Táctica de rumbos y trimado fino', 'Lectura de rachas y corrientes'],
-                eu: ['Doitasunezko eta abiadurazko maniobrak', 'Autonomia osoa ontzian', 'Norabide taktika eta trimatze fina', 'Hodeiertzaren eta korronteen irakurketa']
-            }
-        },
-        'txikigune-sabados': {
-            id: 'c-txikigune-sabados',
-            nombre_es: 'Txikigune (Sábados de navegación)',
-            nombre_eu: 'Txikigune (Larunbateko nabigazioa)',
-            descripcion_es: 'Espacio semanal para niñas y niños que quieren disfrutar de la mar días sueltos sin compromisos. Navegación, juego, aprendizaje y convivencia.',
-            descripcion_eu: 'Konpromisorik gabe egun solteetan itsasoaz gozatu nahi duten neska-mutilentzako asteroko espazioa. Nabigazioa, jolasa, ikaskuntza eta elkarbizitza.',
-            precio: 35,
-            duracion_h: 3,
-            nivel: 'iniciacion',
-            imagen_url: '/images/courses/Txikigune.webp',
-            detalles: {
-                es: ['Días sueltos los sábados sin compromiso', 'Juegos marineros y aprendizaje activo', 'Convivencia y trabajo en equipo', 'Edades de 5 a 21 años'],
-                eu: ['Egun solteak larunbatetan konpromisorik gabe', 'Itsas jolasak eta ikaskuntza aktiboa', 'Elkarbizitza eta talde-lana', '5 eta 21 urte bitartekoentzat']
+                es: ['Avanzado · 3 días · + de 16 años', 'Maniobras de precisión y velocidad', 'Autonomía total a bordo', 'Táctica de rumbos y trimado fino', 'Lectura de rachas y corrientes'],
+                eu: ['Avanzado · 3 días · + de 16 años', 'Doitasunezko eta abiadurazko maniobrak', 'Autonomia osoa ontzian', 'Norabide taktika eta trimatze fina', 'Hodeiertzaren eta korronteen irakurketa']
             }
         },
         'udalekuak-campamentos': {
             id: 'c-udalekuak-campamentos',
-            nombre_es: 'Udalekuak (Campamentos)',
-            nombre_eu: 'Udalekuak (Campamentos)',
-            descripcion_es: 'Campamentos de verano donde la navegación se combina con actividades acuáticas, trabajo en equipo y experiencias que se recuerdan toda la vida.',
-            descripcion_eu: 'Udako kanpamentuak, non nabigazioa ur-jarduerekin, talde-lanarekin eta bizitza osorako oroitzen diren esperientziekin uztartzen den.',
+            nombre_es: 'Udaleku',
+            nombre_eu: 'Udaleku',
+            descripcion_es: 'Campamentos de verano donde la navegación en vela ligera se combina con actividades acuáticas y trabajo en equipo.',
+            descripcion_eu: 'Campamentos de verano donde la navegación en vela ligera se combina con actividades acuáticas y trabajo en equipo.',
             precio: 130,
             duracion_h: 20,
             nivel: 'iniciacion',
             imagen_url: '/images/course-raquero-students.webp',
             detalles: {
-                es: ['Campamentos estivales semanales', 'Vela, paddle surf, kayak y juegos', 'Monitores titulados y ratio reducida', 'Experiencias de vida en el mar'],
-                eu: ['Udako asteroko kanpamentuak', 'Bela, paddle surf, kayak eta jolasak', 'Monitore tituludunak eta talde txikiak', 'Itsasoko bizipen ahaztezinak']
-            }
-        },
-        'entrenamientos-infantiles-continuos': {
-            id: 'c-entrenamientos-infantiles-continuos',
-            nombre_es: 'Entrenamientos infantiles continuos',
-            nombre_eu: 'Haurrentzako entrenamendu jarraituak',
-            descripcion_es: 'Grupos estables para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
-            descripcion_eu: 'Gehiago ikasi, teknikan aurrera egin eta urte osoan itsasoaz gozatu nahi duten neska-mutilentzako talde egonkorrak.',
-            precio: 85,
-            duracion_h: 12,
-            nivel: 'intermedio',
-            imagen_url: '/images/courses/CursodeVelaLigera.webp',
-            detalles: {
-                es: ['Entrenamientos regulares escolares', 'Seguimiento pedagógico y técnico', 'Progresión en Optimist y flota ligera', 'Comunidad y deporte formativo'],
-                eu: ['Eskola-urteko ohiko entrenamenduak', 'Jarraipen pedagogiko eta teknikoa', 'Garapena Optimist eta ontzi arinetan', 'Komunitatea eta heziketa-kirola']
-            }
-        },
-        'entrenamientos-continuos-jovenes': {
-            id: 'c-entrenamientos-continuos-jovenes',
-            nombre_es: 'Entrenamientos continuos para jóvenes',
-            nombre_eu: 'Gazteentzako entrenamendu jarraituak',
-            descripcion_es: 'Grupos estables para jóvenes que buscan aprender y/o seguir creciendo en técnica, autonomía y trabajo en equipo.',
-            descripcion_eu: 'Teknikan, autonomian eta talde-lanean ikasi edo hazten jarraitu nahi duten gazteentzako talde egonkorrak.',
-            precio: 95,
-            duracion_h: 12,
-            nivel: 'avanzado',
-            imagen_url: '/images/course-detail-header-sailing.webp',
-            detalles: {
-                es: ['Jóvenes de hasta 21 años', 'Perfeccionamiento técnico en flota', 'Autonomía y toma de decisiones', 'Navegación deportiva y regatas formativas'],
-                eu: ['21 urtera arteko gazteak', 'Hobekuntza teknikoa flotan', 'Autonomia eta erabaki-hartzea', 'Kirol-nabigazioa eta heziketa-estropadak']
-            }
-        },
-        'bautismos': {
-            id: 'c-bautismos',
-            nombre_es: 'Bautismos',
-            nombre_eu: 'Bataioak',
-            descripcion_es: 'Una primera experiencia en la mar, pensada para disfrutar sin presión y descubrir la navegación de manera sencilla y acompañada.',
-            descripcion_eu: 'Itsasoko lehen esperientzia bat, presiorik gabe gozatzeko eta nabigazioa modu erraz eta gidatuan ezagutzeko pentsatua.',
-            precio: 45,
-            duracion_h: 2,
-            nivel: 'iniciacion',
-            imagen_url: '/images/ai/section2-calm-bay.webp',
-            detalles: {
-                es: ['Primer contacto suave y accesible', 'Sin necesidad de experiencia previa', 'Acompañamiento cercano por monitor', 'Vistas y sensaciones del Abra'],
-                eu: ['Lehen kontaktu leun eta eskuragarria', 'Aurretiazko esperientziarik gabe', 'Monitorearen laguntza hurbila', 'Abrako bistak eta sentsazioak']
-            }
-        },
-        'familia': {
-            id: 'c-familia',
-            nombre_es: 'Familia',
-            nombre_eu: 'Familia',
-            descripcion_es: 'Sesiones pensadas para compartir en familia, con ritmos tranquilos, dinámicas divertidas y navegación segura.',
-            descripcion_eu: 'Familian partekatzeko pentsatutako saioak, erritmo lasaiekin, dinamika dibertigarriekin eta nabigazio seguruarekin.',
-            precio: 160,
-            duracion_h: 3,
-            nivel: 'iniciacion',
-            imagen_url: '/images/course-raquero-students.webp',
-            detalles: {
-                es: ['Actividad para todas las edades', 'Dinámicas adaptadas a niños y adultos', 'Barco en exclusiva con patrón', 'Recuerdos inolvidables juntos'],
-                eu: ['Adin guztietarako jarduera', 'Haurrei eta helduei egokitutako dinamikak', 'Ontzi esklusiboa patroiarekin', 'Oroitzapen paregabeak elkarrekin']
-            }
-        },
-        'cursos-personalizados': {
-            id: 'c-cursos-personalizados',
-            nombre_es: 'Cursos personalizados',
-            nombre_eu: 'Neurrira egindako ikastaroak',
-            descripcion_es: 'Formaciones a medida según objetivos, nivel y disponibilidad: desde técnica concreta hasta navegación por proyectos.',
-            descripcion_eu: 'Helburuen, mailaren eta eskuragarritasunaren araberako prestakuntza pertsonalizatua: teknika zehatzetatik hasi eta proiektu bidezko nabigaziora arte.',
-            precio: 0,
-            duracion_h: 4,
-            nivel: 'intermedio',
-            imagen_url: '/images/ai/section2-action-sea.webp',
-            detalles: {
-                es: ['Formación 100% personalizada', 'Horarios y fechas a convenir', 'Objetivos técnicos o de travesía específicos', 'Atención individual o grupos cerrados'],
-                eu: ['%100 prestakuntza pertsonalizatua', 'Ordutegiak eta datak adosteko', 'Helburu tekniko edo zeharkaldi zehatzak', 'Banakako arreta edo talde itxiak']
-            }
-        },
-        'regata-corporativa': {
-            id: 'c-regata-corporativa',
-            nombre_es: 'Regata corporativa',
-            nombre_eu: 'Enpresa estropada',
-            descripcion_es: 'Experiencia para empresas y grupos: navegación, trabajo en equipo y convivencia en un entorno diferente y estimulante.',
-            descripcion_eu: 'Enpresa eta taldeentzako esperientzia: nabigazioa, talde-lana eta elkarbizitza ingurune ezberdin eta susgarrirako batean.',
-            precio: 0,
-            duracion_h: 4,
-            nivel: 'iniciacion',
-            imagen_url: '/images/ai/section4-community.webp',
-            detalles: {
-                es: ['Team building y cohesión de equipos', 'Regata dinámica y participativa', 'Flota homogénea de veleros', 'Coordinación y briefing marinero'],
-                eu: ['Team building eta talde kohesioa', 'Estropada dinamiko eta parte-hartzailea', 'Belaontzi flota homogeneoa', 'Koordinazioa eta itsas briefing-a']
+                es: ['+3 años · Semanal', 'Campamentos estivales semanales', 'Vela, paddle surf, kayak y juegos', 'Monitores titulados y ratio reducida', 'Experiencias de vida en el mar'],
+                eu: ['+3 años · Semanal', 'Udako asteroko kanpamentuak', 'Bela, paddle surf, kayak eta jolasak', 'Monitore tituludunak eta talde txikiak', 'Itsasoko bizipen ahaztezinak']
             }
         },
         'windsurf-iniciacion-perfeccionamiento': {
             id: 'c-windsurf-iniciacion-perfeccionamiento',
-            nombre_es: 'Windsurf: Iniciación y perfeccionamiento',
-            nombre_eu: 'Windsurfa: Hastapena eta hobekuntza',
-            descripcion_es: 'Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica. Trabajo de equilibrio, maniobras, lectura del viento y autonomía en la tabla.',
-            descripcion_eu: 'Ikaskuntza progresiboa hutsetik hasten denarentzat edo teknikan aurrera egin nahi duenarentzat. Oreka, maniobrak, haizearen irakurketa eta ohol gaineko autonomia.',
+            nombre_es: 'Iniciación',
+            nombre_eu: 'Iniciación',
+            descripcion_es: 'Windsurf: Iniciación y perfeccionamiento. Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica.',
+            descripcion_eu: 'Windsurf: Iniciación y perfeccionamiento. Aprendizaje progresivo para quien empieza desde cero o quiere avanzar en técnica.',
             precio: 45,
-            duracion_h: 10,
+            duracion_h: 2.5,
             nivel: 'iniciacion',
             imagen_url: '/images/experiences/windsurf-mooring.jpg',
             detalles: {
-                es: ['1 sesión suelta (2,5h): 45 €', 'Bono 4 sesiones (10h): 150 € (37,5 €/salida)', 'Campus continuo (5 sesiones fijas 3h, 15h): 250 €', 'Tabla, vela, neopreno y chaleco incluidos'],
-                eu: ['Saio 1 solte (2,5h): 45 €', '4 saioko bonua (10h): 150 € (37,5 €/saio)', 'Campus jarraitua (5 saio finko 3h, 15h): 250 €', 'Ohola, bela, neoprenoa eta salbagailua barne']
+                es: ['Windsurf: Iniciación y perfeccionamiento', 'Duración: 2,5h', 'Tabla, vela, neopreno y chaleco incluidos'],
+                eu: ['Windsurf: Iniciación y perfeccionamiento', 'Iraupena: 2,5h', 'Ohola, bela, neoprenoa eta salbagailua barne']
             }
         },
         'mantenimiento-embarcaciones': {
             id: 'c-mantenimiento-embarcaciones',
-            nombre_es: 'Mantenimiento de embarcaciones',
-            nombre_eu: 'Ontzien mantentzea',
-            descripcion_es: 'Curso teórico-práctico de mantenimiento en general, enfocado principalmente a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.',
-            descripcion_eu: 'Mantentze-lanei buruzko ikastaro teoriko-praktikoa oro har, batez ere bela arineko eta gurutzaontzietako ontziak zaintzen, berrikusten eta mantentzen ikastera bideratua.',
-            precio: 100,
+            nombre_es: 'Mantenimiento',
+            nombre_eu: 'Mantenimiento',
+            descripcion_es: 'Mantenimiento de embarcaciones. Curso práctico de mantenimiento enfocado a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.',
+            descripcion_eu: 'Mantenimiento de embarcaciones. Curso práctico de mantenimiento enfocado a aprender a cuidar, revisar y mantener barcos de vela ligera y crucero.',
+            precio: 0,
             duracion_h: 8,
             nivel: 'iniciacion',
             imagen_url: '/images/facilities-hero-desktop.webp',
             detalles: {
-                es: ['8 horas totales (2 días · 4h/día) · 100 €', 'Casco, fibra, antifouling y gelcoat', 'Acastillaje, jarcia y cabuyería', 'Motor y electricidad básica'],
-                eu: ['8 ordu guztira (2 egun · 4h/egun) · 100 €', 'Kaskoa, zuntza, antifouling-a eta gelcoata', 'Herdoil-kontrakoak, aparejua eta sokak', 'Oinarrizko motorra eta elektrizitatea']
+                es: ['Mantenimiento de embarcaciones', 'Casco, fibra, antifouling y gelcoat', 'Acastillaje, jarcia y cabuyería', 'Motor y electricidad básica'],
+                eu: ['Mantenimiento de embarcaciones', 'Kaskoa, zuntza, antifouling-a eta gelcoata', 'Herdoil-kontrakoak, aparejua eta sokak', 'Oinarrizko motorra eta elektrizitatea']
             }
         },
         'costura-reparacion-velas': {
             id: 'c-costura-reparacion-velas',
-            nombre_es: 'Costura y reparación de velas',
-            nombre_eu: 'Belen jostura eta konponketa',
-            descripcion_es: 'Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.',
-            descripcion_eu: 'Belen eta itsas material ehungileen bizitza erabilgarria josten, konpontzen eta luzatzen ikasteko lantegi espezializatua.',
-            precio: 90,
+            nombre_es: 'Velas',
+            nombre_eu: 'Velas',
+            descripcion_es: 'Costura y reparación de velas. Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.',
+            descripcion_eu: 'Costura y reparación de velas. Taller especializado donde se aprende a coser, reparar y alargar la vida útil de velas y materiales textiles náuticos.',
+            precio: 0,
             duracion_h: 6,
             nivel: 'iniciacion',
             imagen_url: '/images/about-own-pontoon.webp',
             detalles: {
-                es: ['Puntadas marineras y uso de máquina', 'Reparación de desgarros y refuerzos', 'Cuidado y mantenimiento de tejidos náuticos', 'Material y herramientas del velero'],
-                eu: ['Itsas puntadak eta josteko makina', 'Urraturak konpontzea eta errefortzuak', 'Ehungintza nautikoaren zaintza', 'Belagilearen tresnak eta materialak']
+                es: ['Costura y reparación de velas', 'Puntadas marineras y uso de máquina', 'Reparación de desgarros y refuerzos', 'Cuidado y mantenimiento de tejidos náuticos'],
+                eu: ['Costura y reparación de velas', 'Itsas puntadak eta josteko makina', 'Urraturak konpontzea eta errefortzuak', 'Ehungintza nautikoaren zaintza']
             }
         }
     };
@@ -563,7 +488,9 @@ export default async function CourseDetailPage({
                                 </div>
                                 <div>
                                     <p className="text-accent mb-1">{t('investment_label')}</p>
-                                    <p className="text-brass-gold text-lg">{displayCourse.precio}€</p>
+                                    <p className="text-brass-gold text-lg">
+                                        {displayCourse.precio > 0 ? `${displayCourse.precio}€` : (locale === 'eu' ? 'Kontsultatu' : 'A consultar')}
+                                    </p>
                                 </div>
                             </div>
 

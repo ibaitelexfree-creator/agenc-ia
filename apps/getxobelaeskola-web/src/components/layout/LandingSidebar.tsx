@@ -152,7 +152,6 @@ export function LandingSidebar() {
         icon: <GraduationCap className="w-4 h-4" />,
         dropdown: [
             { href: 'servicios/cursos', label: 'cursos', icon: <GraduationCap className="w-4 h-4" /> },
-            { href: 'servicios/socias', label: 'club_de_socias', icon: <Sparkles className="w-4 h-4" /> },
             { href: 'servicios/equipos', label: 'equipos_de_entrenamiento', icon: <Users className="w-4 h-4" /> },
             { href: 'servicios/udalekuak', label: 'udalekuak', icon: <School className="w-4 h-4" /> },
             { href: 'servicios/centros-escolares', label: 'centros_escolares_y_asociaciones', icon: <Anchor className="w-4 h-4" /> },

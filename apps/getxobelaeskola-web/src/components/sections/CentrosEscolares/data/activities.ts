@@ -40,5 +40,25 @@ export const activities: Activity[] = [
     description: "A través del documental de la travesía a la Antártida, el alumnado descubre el ecosistema polar, la fauna marina y los efectos del cambio climático.",
     tags: ["Medio ambiente", "Ciencia", "Cambio climático"],
     color_accent: "#1A1A1A" // dark grey/black
+  },
+  {
+    id: "04",
+    icon: "🪢",
+    emoji_bg: "⚓",
+    title: "Taller de Nudos",
+    subtitle: "Cabuyería marinera",
+    description: "Aprendizaje práctico de los nudos esenciales de navegación (as de guía, ballestrinque, ocho...), comprendiendo su utilidad, resistencia y tradición marinera.",
+    tags: ["Destreza", "Tradición", "Habilidades prácticas"],
+    color_accent: "#006699"
+  },
+  {
+    id: "05",
+    icon: "🧭",
+    emoji_bg: "🚢",
+    title: "Visita a Bordo de un Velero",
+    subtitle: "Exploración náutica",
+    description: "Visita guiada por el interior y cubierta de un barco de vela de crucero para conocer su habitabilidad, instrumentación, maniobra y cómo es la vida a bordo.",
+    tags: ["Curiosidad", "Cultura marítima", "Espacio y vida a bordo"],
+    color_accent: "#008080"
   }
 ];

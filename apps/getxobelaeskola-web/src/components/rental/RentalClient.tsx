@@ -3,7 +3,8 @@
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Sparkles, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
 import LegalConsentModal from '../shared/LegalConsentModal';
 import { createClient } from '@/lib/supabase/client';
 import RentalCard from './RentalCard';
@@ -22,13 +23,22 @@ interface RentalService {
     imagen_url: string;
 }
 
+interface RentalClientProps {
+    services: RentalService[];
+    locale: string;
+    headerData?: {
+        eyebrow: string;
+        titlePrefix: string;
+        titleHighlight: string;
+        description: string;
+    };
+}
+
 export default function RentalClient({
     services,
-    locale
-}: {
-    services: RentalService[],
-    locale: string
-}) {
+    locale,
+    headerData
+}: RentalClientProps) {
     const t = useTranslations('rental_page');
     const router = useRouter();
     const [selectedCategory, setSelectedCategory] = useState<string>('all');
@@ -119,28 +129,27 @@ export default function RentalClient({
         checkUser();
     }, [supabaseClient]);
 
+    const isSocio = useMemo(() => profile?.status_socio === 'activo', [profile]);
+    const isUserLoggedIn = useMemo(() => !!user, [user]);
+
     const dayRef = useRef<HTMLInputElement>(null);
     const datePickerRef = useRef<HTMLInputElement>(null);
 
     const categories = useMemo(() => [
         { id: 'all', name: t('categories.all') },
-        { id: 'alquileres', name: t('categories.alquileres') },
         { id: 'veleros', name: t('categories.veleros') },
+        { id: 'alquileres', name: t('categories.alquileres') },
+        { id: 'bonos', name: t('categories.bonos') },
+        { id: 'atraques', name: t('categories.atraques') },
+        { id: 'membresias', name: t('categories.membresias') },
+        { id: 'eventos', name: t('categories.eventos') },
         { id: 'windsurf', name: t('categories.windsurf') },
         { id: 'paddlesurf', name: t('categories.paddlesurf') },
         { id: 'kayak', name: t('categories.kayak') },
-        { id: 'piragua', name: t('categories.piragua') },
-        { id: 'atraques', name: t('categories.atraques') },
-        { id: 'membresias', name: t('categories.membresias') },
-        { id: 'bonos', name: t('categories.bonos') },
-        { id: 'eventos', name: t('categories.eventos') }
+        { id: 'piragua', name: t('categories.piragua') }
     ], [t]);
 
-    const displayCategories = useMemo(() => [
-        ...categories.map((c, i) => ({ ...c, uniqueId: `set1-${c.id}-${i}` })),
-        ...categories.map((c, i) => ({ ...c, uniqueId: `set2-${c.id}-${i}` })),
-        ...categories.map((c, i) => ({ ...c, uniqueId: `set3-${c.id}-${i}` }))
-    ], [categories]);
+    const displayCategories = categories;
 
     const filteredServices = selectedCategory === 'all'
         ? services
@@ -304,85 +313,25 @@ export default function RentalClient({
     const [filterStartX, setFilterStartX] = useState(0);
     const [filterScrollLeft, setFilterScrollLeft] = useState(0);
 
-    const [isFilterInteracting, setIsFilterInteracting] = useState(false);
-    const interactionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-    const pauseFilterAutoScroll = (duration = 4000) => {
-        setIsFilterInteracting(true);
-        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
-        interactionTimeoutRef.current = setTimeout(() => {
-            setIsFilterInteracting(false);
-        }, duration);
-    };
-
-    const handleScrollBoundary = () => {
-        const container = filterScrollRef.current;
-        if (!container) return;
-        const singleSetWidth = container.scrollWidth / 3;
-        if (singleSetWidth <= 0) return;
-
-        if (container.scrollLeft >= singleSetWidth * 2) {
-            container.scrollLeft -= singleSetWidth;
-        } else if (container.scrollLeft <= 2) {
-            container.scrollLeft += singleSetWidth;
-        }
-    };
-
-    // Continuous single-direction smooth auto-scrolling (left-to-right infinite loop)
-    useEffect(() => {
-        if (isFilterInteracting) return;
-
-        const interval = setInterval(() => {
-            const container = filterScrollRef.current;
-            if (!container) return;
-
-            const singleSetWidth = container.scrollWidth / 3;
-            if (singleSetWidth <= 0) return;
-
-            if (container.scrollLeft >= singleSetWidth * 2) {
-                container.scrollLeft -= singleSetWidth;
-            } else {
-                container.scrollLeft += 1;
-            }
-        }, 30);
-
-        return () => clearInterval(interval);
-    }, [isFilterInteracting]);
-
-    // Initial position set to middle set for seamless backward/forward scrolling
-    useEffect(() => {
-        const container = filterScrollRef.current;
-        if (container) {
-            const singleSetWidth = container.scrollWidth / 3;
-            if (singleSetWidth > 0 && container.scrollLeft === 0) {
-                container.scrollLeft = singleSetWidth;
-            }
-        }
-    }, []);
-
     // Auto-scroll selected category into center view smoothly
     useEffect(() => {
         if (!filterScrollRef.current) return;
         const container = filterScrollRef.current;
-        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="set2-${selectedCategory}"]`)
-            || container.querySelector<HTMLButtonElement>(`[data-category-id*="-${selectedCategory}"]`);
+        const activeBtn = container.querySelector<HTMLButtonElement>(`[data-category-id="${selectedCategory}"]`);
+
         if (activeBtn) {
             const containerWidth = container.clientWidth;
-            const btnLeft = activeBtn.offsetLeft;
-            const btnWidth = activeBtn.offsetWidth;
-            const targetScrollLeft = btnLeft - (containerWidth / 2) + (btnWidth / 2);
+            const targetScrollLeft = activeBtn.offsetLeft - (containerWidth / 2) + (activeBtn.offsetWidth / 2);
             container.scrollTo({
                 left: Math.max(0, targetScrollLeft),
                 behavior: 'smooth'
             });
-            pauseFilterAutoScroll(5000);
         }
     }, [selectedCategory]);
 
     const scrollFilters = (direction: 'left' | 'right') => {
-        pauseFilterAutoScroll(5000);
         if (filterScrollRef.current) {
-            const amount = filterScrollRef.current.clientWidth * 0.6;
+            const amount = Math.max(200, filterScrollRef.current.clientWidth * 0.5);
             filterScrollRef.current.scrollBy({
                 left: direction === 'left' ? -amount : amount,
                 behavior: 'smooth'
@@ -391,16 +340,13 @@ export default function RentalClient({
     };
 
     const handleFilterWheel = (e: React.WheelEvent<HTMLDivElement>) => {
-        pauseFilterAutoScroll(4000);
         if (filterScrollRef.current && e.deltaY !== 0) {
             filterScrollRef.current.scrollLeft += e.deltaY;
-            handleScrollBoundary();
         }
     };
 
     const handleFilterMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!filterScrollRef.current) return;
-        pauseFilterAutoScroll(6000);
         setIsDraggingFilter(false);
         setFilterStartX(e.pageX - filterScrollRef.current.offsetLeft);
         setFilterScrollLeft(filterScrollRef.current.scrollLeft);
@@ -413,7 +359,6 @@ export default function RentalClient({
         if (Math.abs(walk) > 5) {
             setIsDraggingFilter(true);
             filterScrollRef.current.scrollLeft = filterScrollLeft - walk;
-            handleScrollBoundary();
         }
     };
 
@@ -426,6 +371,49 @@ export default function RentalClient({
 
     return (
         <div className="space-y-4 sm:space-y-8 md:space-y-12 landscape:space-y-6 pb-6 sm:pb-12 md:pb-20 landscape:pb-10 w-full max-w-full overflow-hidden">
+            {/* Header Section with Dynamic 'Hazte Socia' Button */}
+            {headerData && (
+                <header className="w-full mb-6 sm:mb-10">
+                    <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-1.5 sm:mb-4 landscape:mb-2 block animate-fade-in-up">
+                        {headerData.eyebrow}
+                    </span>
+                    <h1 className="text-[clamp(1.5rem,5vw,5rem)] font-display leading-[1.05] text-sea-foam mb-3 sm:mb-6 md:mb-8 landscape:mb-4 animate-reveal relative z-20 whitespace-normal">
+                        <span>{headerData.titlePrefix}</span>{' '}
+                        <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{headerData.titleHighlight}</span>
+                    </h1>
+
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 mt-2 sm:mt-6">
+                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-xs sm:text-base md:text-lg leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8">
+                            {headerData.description}
+                        </p>
+
+                        {/* Botón 'Hazte socia y disfruta de descuentos' - Solo visible si no están logueados */}
+                        {!isUserLoggedIn && (
+                            <div className="shrink-0 lg:self-center">
+                                <Link
+                                    href={`/${locale}/club/socias`}
+                                    className="group relative inline-flex items-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-sm bg-gradient-to-r from-accent to-brass-gold text-nautical-black font-black uppercase text-[11px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] shadow-[0_0_30px_rgba(255,77,0,0.3)] hover:shadow-[0_0_40px_rgba(255,77,0,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+                                >
+                                    <Sparkles className="w-4 h-4 shrink-0 animate-pulse text-nautical-black" />
+                                    <span>Hazte socia y disfruta de descuentos</span>
+                                    <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" />
+                                </Link>
+                            </div>
+                        )}
+
+                        {/* Mensaje de bienvenida para socios identificados */}
+                        {isUserLoggedIn && isSocio && (
+                            <div className="shrink-0 lg:self-center">
+                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-accent/40 bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
+                                    <Sparkles className="w-4 h-4 text-accent" />
+                                    <span>Bienvenida socia · Tarifas reducidas activas</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </header>
+            )}
+
             {/* Filter Section */}
             <div className="relative animate-fade-in group w-full max-w-full overflow-hidden">
                 {/* Left Scroll Button */}
@@ -455,21 +443,16 @@ export default function RentalClient({
                 {/* Scrollable Container */}
                 <div
                     ref={filterScrollRef}
-                    onScroll={handleScrollBoundary}
                     onWheel={handleFilterWheel}
                     onMouseDown={handleFilterMouseDown}
                     onMouseMove={handleFilterMouseMove}
                     onMouseUp={() => setTimeout(() => setIsDraggingFilter(false), 50)}
-                    onMouseEnter={() => setIsFilterInteracting(true)}
-                    onMouseLeave={() => setIsFilterInteracting(false)}
-                    onTouchStart={() => pauseFilterAutoScroll(6000)}
-                    onTouchEnd={() => pauseFilterAutoScroll(4000)}
                     className="flex overflow-x-auto pb-3 sm:pb-4 px-10 sm:px-14 gap-2.5 sm:gap-4 no-scrollbar scroll-smooth border-b border-sea-foam/10 touch-pan-x cursor-grab active:cursor-grabbing select-none max-w-full"
                 >
                     {displayCategories.map(cat => (
                         <button
-                            key={cat.uniqueId}
-                            data-category-id={cat.uniqueId}
+                            key={cat.id}
+                            data-category-id={cat.id}
                             type="button"
                             onClick={() => {
                                 if (!isDraggingFilter) setSelectedCategory(cat.id);
@@ -508,6 +491,7 @@ export default function RentalClient({
                             <RentalCard
                                 service={service}
                                 locale={locale}
+                                isSocio={isSocio}
                                 onBook={(id) => setBookingService(id)}
                             />
                         </motion.div>

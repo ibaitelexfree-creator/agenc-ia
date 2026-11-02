@@ -79,20 +79,84 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
             console.error('Error fetching rental services:', error);
         } else {
             const priorityOrder = [
-                'alquiler-kayak-1',
-                'alquiler-kayak-2',
-                'alquiler-paddlesurf',
-                'alquiler-piragua-1',
-                'alquiler-piragua-2',
-                'alquiler-windsurf',
-                'alquiler-optimist',
+                // 1. Vela ligera y Veleros / Barcos a vela (prioridad máxima para escuela de vela)
+                // 'alquiler-j80' retirado en favor de las tarjetas específicas sin patrón y con patrón
+                'alquiler-j80-sin-patron',
+                'alquiler-j80-patron',
+                // 'alquiler-raquero' y 'alquiler-raquero-omega' retirados en favor de sin patrón y con patrón
+                'alquiler-omega-sin-patron',
+                'alquiler-omega-patron',
                 'alquiler-laser',
-                'alquiler-j80',
-                'alquiler-raquero'
+                // 'alquiler-laser-pro' duplicado retirado para dejar solo una tarjeta Laser
+                // 'alquiler-420' (Doble) retirado para dejar solo '420'
+                'alquiler-420-pro',
+                // 'alquiler-optimist' retirado
+                'bono-vela-ligera',
+                'bono-windsurf',
+                'alquiler-tarpon-patron',
+                // 2. Atraques (solo los 4 indicados)
+                'atraque-windsurf',
+                'atraque-velero',
+                'atraque-piragua',
+                'atraque-piragua-doble',
+                // 3. Windsurf (vela sobre tabla)
+                'alquiler-windsurf',
+                'alquiler-windsurf-pro',
+                // 4. Otros / Eventos / Paddle Surf
+                'alquiler-paddlesurf',
+                'alquiler-bigsub-group',
+                'cumple-bigsub',
+                'alquiler-espacio-eventos',
+                'socia-premium',
+                // 5. Piraguas (kayaks y piragua doble de alquiler retirados)
+                'alquiler-piragua-1'
             ];
 
             // Type assertion here because Supabase response might not perfectly match our strict interface
-            services = ((data as unknown as Service[]) || []).sort((a, b) => {
+            let fetchedList = (((data as unknown as Service[]) || [])
+                .filter(s => !['alquiler-j80', 'alquiler-raquero', 'alquiler-raquero-omega', 'alquiler-laser-pro', 'alquiler-420', 'alquiler-optimist', 'alquiler-kayak-1', 'alquiler-kayak-2', 'alquiler-piragua-2', 'atraque-transeunte-8m', 'atraque-transeunte-12m'].includes(s.slug)));
+
+            // Si bono-windsurf no está todavía en la base de datos de servicios_alquiler, lo aseguramos
+            if (!fetchedList.some(s => s.slug === 'bono-windsurf')) {
+                fetchedList.push({
+                    id: 'bono-windsurf',
+                    slug: 'bono-windsurf',
+                    nombre: 'Bono de Windsurf',
+                    nombre_es: 'Bono de Windsurf',
+                    nombre_eu: 'Windsurf Bonua',
+                    descripcion: 'Bono de Windsurf: 4 salidas de 2,5 horas',
+                    imagen_url: '/images/alquiler-windsurf-pro.jpg',
+                    precio_base: 110,
+                    activo: true,
+                    categoria: 'bonos'
+                } as Service);
+            }
+
+            // Asegurar que atraque-piragua-doble esté en la lista
+            if (!fetchedList.some(s => s.slug === 'atraque-piragua-doble')) {
+                fetchedList.push({
+                    id: 'atraque-piragua-doble',
+                    slug: 'atraque-piragua-doble',
+                    nombre: 'Atraque Piragua Doble',
+                    nombre_es: 'Atraque Piragua Doble',
+                    nombre_eu: 'Piragua Bikoitzeko Atrakatzea',
+                    descripcion: 'Atraque y guarda de piragua doble: 30 €/mes (anual) o 40 € meses sueltos. Matrícula 560 €',
+                    imagen_url: '/images/canoe-mooring.jpg',
+                    precio_base: 30,
+                    activo: true,
+                    categoria: 'atraques'
+                } as Service);
+            }
+
+            // Actualizar precio_base del atraque windsurf a 30
+            fetchedList = fetchedList.map(s => {
+                if (s.slug === 'atraque-windsurf') {
+                    return { ...s, precio_base: 30 };
+                }
+                return s;
+            });
+
+            services = fetchedList.sort((a, b) => {
                 const indexA = priorityOrder.indexOf(a.slug);
                 const indexB = priorityOrder.indexOf(b.slug);
 
@@ -105,17 +169,20 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
 
         if (!services || services.length === 0) {
             services = [
-                { id: '1', slug: 'alquiler-kayak-1', nombre: 'Kayak (1 Persona)', nombre_es: 'Kayak (1 Persona)', nombre_eu: 'Kayaka (Pertsona 1)', descripcion: 'Kayak individual', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'kayak' },
-                { id: '2', slug: 'alquiler-kayak-2', nombre: 'Kayak (2 Personas)', nombre_es: 'Kayak (2 Personas)', nombre_eu: 'Kayaka (2 Pertsona)', descripcion: 'Kayak doble', imagen_url: '/images/kayak-1-person.webp', precio_base: 25, activo: true, categoria: 'kayak' },
-                { id: '3', slug: 'alquiler-paddlesurf', nombre: 'Paddle Surf', nombre_es: 'Paddle Surf', nombre_eu: 'Paddle Surf', descripcion: 'Tabla de Stand Up Paddle', imagen_url: '/images/paddle-surf.webp', precio_base: 15, activo: true, categoria: 'paddlesurf' },
-                { id: '4', slug: 'alquiler-piragua-1', nombre: 'Piragua (1 Persona)', nombre_es: 'Piragua (1 Persona)', nombre_eu: 'Piragua (Pertsona 1)', descripcion: 'Piragua individual', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'piragua' },
-                { id: '5', slug: 'alquiler-piragua-2', nombre: 'Piragua (2 Personas)', nombre_es: 'Piragua (2 Personas)', nombre_eu: 'Piragua (2 Pertsona)', descripcion: 'Piragua doble', imagen_url: '/images/kayak-1-person.webp', precio_base: 25, activo: true, categoria: 'piragua' },
+                { id: '9-sin', slug: 'alquiler-j80-sin-patron', nombre: 'J-80 sin patrón', nombre_es: 'J-80 sin patrón', nombre_eu: 'J-80 patroi gabe', descripcion: 'Alquiler velero J80 sin patrón', imagen_url: '/images/alquiler-j80-sin-patron.jpg', precio_base: 180, activo: true, categoria: 'veleros' },
+                { id: '9-con', slug: 'alquiler-j80-patron', nombre: 'J-80 con patrón', nombre_es: 'J-80 con patrón', nombre_eu: 'J-80 patroiarekin', descripcion: 'Alquiler velero J80 con patrón', imagen_url: '/images/J80.jpg', precio_base: 250, activo: true, categoria: 'veleros' },
+                { id: '10-sin', slug: 'alquiler-omega-sin-patron', nombre: 'Omega/Raquero sin patrón', nombre_es: 'Omega/Raquero sin patrón', nombre_eu: 'Omega/Raquero patron gabe', descripcion: 'Alquiler Omega/Raquero sin patrón', imagen_url: '/images/alquiler-raquero.jpg', precio_base: 140, activo: true, categoria: 'veleros' },
+                { id: '10-con', slug: 'alquiler-omega-patron', nombre: 'Omega/Raquero con patrón', nombre_es: 'Omega/Raquero con patrón', nombre_eu: 'Omega/Raquero patroiarekin', descripcion: 'Alquiler Omega/Raquero con patrón', imagen_url: '/images/alquiler-raquero.jpg', precio_base: 200, activo: true, categoria: 'veleros' },
+                { id: '11', slug: 'alquiler-420-pro', nombre: '420', nombre_es: '420', nombre_eu: '420', descripcion: 'Embarcación de vela ligera tipo 420', imagen_url: '/images/420.jpg', precio_base: 45, activo: true, categoria: 'veleros' },
+                { id: 'bono-vl', slug: 'bono-vela-ligera', nombre: 'Bono Vela Ligera, crucero y/o windsurf', nombre_es: 'Bono Vela Ligera, crucero y/o windsurf', nombre_eu: 'Bela Arina, gurutzontzia eta/edo windsurf bonua', descripcion: 'Bono de 4 salidas', imagen_url: '/images/dinghy-sailing-voucher.jpg', precio_base: 150, activo: true, categoria: 'bonos' },
+                { id: 'bono-ws', slug: 'bono-windsurf', nombre: 'Bono de Windsurf', nombre_es: 'Bono de Windsurf', nombre_eu: 'Windsurf Bonua', descripcion: 'Bono de 4 salidas de 2,5 horas', imagen_url: '/images/alquiler-windsurf-pro.jpg', precio_base: 110, activo: true, categoria: 'bonos' },
+                { id: '18', slug: 'atraque-velero', nombre: 'Atraque Velero', nombre_es: 'Atraque Velero', nombre_eu: 'Belontzi Atrakatzea', descripcion: 'Atraque mensual para velero: 50 €/mes. Matrícula 50 €', imagen_url: '/images/atraque-velero.webp', precio_base: 50, activo: true, categoria: 'atraques' },
+                { id: 'at-ws', slug: 'atraque-windsurf', nombre: 'Atraque Windsurf', nombre_es: 'Atraque Windsurf', nombre_eu: 'Windsurf Atrakatzea', descripcion: 'Atraque para windsurf: 30 €/mes. Matrícula 50 €', imagen_url: '/images/experiences/windsurf-board-mooring.jpg', precio_base: 30, activo: true, categoria: 'atraques' },
+                { id: 'at-pi', slug: 'atraque-piragua', nombre: 'Atraque Piragua Individual', nombre_es: 'Atraque Piragua Individual', nombre_eu: 'Piragua Bakarkako Atrakatzea', descripcion: 'Atraque piragua individual: Anual 25 €/mes · Mensual 35 €. Matrícula 50 €', imagen_url: '/images/canoe-mooring.jpg', precio_base: 25, activo: true, categoria: 'atraques' },
+                { id: 'at-pd', slug: 'atraque-piragua-doble', nombre: 'Atraque Piragua Doble', nombre_es: 'Atraque Piragua Doble', nombre_eu: 'Piragua Bikoitzeko Atrakatzea', descripcion: 'Atraque piragua doble: Anual 30 €/mes · Mensual 40 €. Matrícula 50 €', imagen_url: '/images/canoe-mooring.jpg', precio_base: 30, activo: true, categoria: 'atraques' },
                 { id: '6', slug: 'alquiler-windsurf', nombre: 'Windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf', descripcion: 'Equipo de Windsurf', imagen_url: '/images/courses/PerfeccionamientoVela.webp', precio_base: 30, activo: true, categoria: 'windsurf' },
-                { id: '7', slug: 'alquiler-optimist', nombre: 'Optimist', nombre_es: 'Optimist', nombre_eu: 'Optimist', descripcion: 'Vela ligera infantil', imagen_url: '/images/rental-optimist.webp', precio_base: 20, activo: true, categoria: 'veleros' },
-                { id: '11', slug: 'alquiler-420', nombre: '420 (Double)', nombre_es: '420 (Double)', nombre_eu: '420 (Bikoitza)', descripcion: 'Embarcación de vela ligera tipo 420', imagen_url: '/images/420.jpg', precio_base: 45, activo: true, categoria: 'veleros' },
-                { id: '18', slug: 'atraque-velero', nombre: 'Atraque Velero', nombre_es: 'Atraque Velero', nombre_eu: 'Belontzi Atrakatzea', descripcion: 'Servicio de atraque mensual para velero', imagen_url: '/images/atraque-velero.webp', precio_base: 50, activo: true, categoria: 'atraques' },
-                { id: '9', slug: 'alquiler-j80', nombre: 'Veleros J80', nombre_es: 'Veleros J80', nombre_eu: 'J80 Belaontziak', descripcion: 'Crucero J80', imagen_url: '/images/J80.jpg', precio_base: 60, activo: true, categoria: 'veleros' },
-                { id: '10', slug: 'alquiler-raquero', nombre: 'Raquero / Omega', nombre_es: 'Raquero / Omega', nombre_eu: 'Raquero / Omega', descripcion: 'Vela ligera colectiva', imagen_url: '/images/alquiler-raquero.jpg', precio_base: 50, activo: true, categoria: 'veleros' }
+                { id: '3', slug: 'alquiler-paddlesurf', nombre: 'Paddle Surf', nombre_es: 'Paddle Surf', nombre_eu: 'Paddle Surf', descripcion: 'Tabla de Stand Up Paddle', imagen_url: '/images/paddle-surf.webp', precio_base: 15, activo: true, categoria: 'paddlesurf' },
+                { id: '4', slug: 'alquiler-piragua-1', nombre: 'Piragua', nombre_es: 'Piragua', nombre_eu: 'Piragua', descripcion: 'Alquiler de piragua', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'piragua' }
             ];
         }
     } catch (err) {
@@ -168,34 +235,25 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 <div className="absolute top-[20%] left-0 w-[400px] h-[400px] bg-brass-gold/5 blur-[100px] rounded-full -translate-x-1/2 pointer-events-none" />
 
                 <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <header className="w-full max-w-4xl">
-                        <span className="text-accent uppercase tracking-[0.2em] sm:tracking-[0.4em] md:tracking-[0.6em] text-[10px] sm:text-xs md:text-sm font-bold mb-1.5 sm:mb-4 landscape:mb-2 block animate-fade-in-up">
-                            {t('header_eyebrow')}
-                        </span>
-                        <h1 className="text-[clamp(1.5rem,5vw,5rem)] font-display leading-[1.05] text-sea-foam mb-2 sm:mb-6 md:mb-8 landscape:mb-4 animate-reveal relative z-20 whitespace-normal">
-                            <span>{t('title_prefix')}</span>{' '}
-                            <span className="italic font-light text-brass-gold/90 drop-shadow-sm">{t('title_highlight')}</span>
-                        </h1>
-                        <p className="w-full max-w-3xl text-sea-foam/70 font-light text-xs sm:text-base md:text-lg leading-relaxed border-l-2 border-sea-foam/10 pl-3 sm:pl-6 md:pl-8 mt-2 sm:mt-6 landscape:mt-3 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                            {t('description')}
-                        </p>
-                    </header>
-                </div>
-            </section>
+                    <RentalClient
+                        services={(services as any[]) || []}
+                        locale={locale}
+                        headerData={{
+                            eyebrow: t('header_eyebrow'),
+                            titlePrefix: t('title_prefix'),
+                            titleHighlight: t('title_highlight'),
+                            description: t('description')
+                        }}
+                    />
 
-            {/* Main Interactive Fleet Section */}
-            <section className="pb-8 sm:pb-16 md:pb-24 landscape:pb-12 relative">
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-                    <RentalClient services={(services as any[]) || []} locale={locale} />
-                </div>
-
-                {/* Bottom Note / Disclosure */}
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-8 sm:mt-16 md:mt-20 landscape:mt-8">
-                    <div className="relative group p-4 sm:p-8 md:p-12 landscape:p-6 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
-                        <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700" />
-                        <p className="text-sea-foam/60 font-light italic text-xs sm:text-base md:text-lg leading-relaxed max-w-4xl">
-                            {t('footer_note')}
-                        </p>
+                    {/* Bottom Note / Disclosure */}
+                    <div className="w-full max-w-7xl mx-auto mt-8 sm:mt-16 md:mt-20 landscape:mt-8 pb-12 sm:pb-20">
+                        <div className="relative group p-4 sm:p-8 md:p-12 landscape:p-6 border border-sea-foam/10 bg-sea-foam/[0.02] backdrop-blur-sm overflow-hidden rounded-2xl sm:rounded-3xl">
+                            <div className="absolute top-0 left-0 w-1 h-0 bg-accent group-hover:h-full transition-all duration-700" />
+                            <p className="text-sea-foam/60 font-light italic text-xs sm:text-base md:text-lg leading-relaxed max-w-4xl">
+                                {t('footer_note')}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
