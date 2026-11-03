@@ -126,10 +126,10 @@ export default function ComoFunciona() {
                 <span>{t('activity_sailing')}</span>
               </motion.div>
               <motion.div variants={scaleIn} initial="hidden" animate={isInView ? "visible" : "hidden"} className={styles['activity-node']}>
-                <span>{t('activity_bigsup')}</span>
+                <span>{t('activity_awareness')}</span>
               </motion.div>
               <motion.div variants={scaleIn} initial="hidden" animate={isInView ? "visible" : "hidden"} className={styles['activity-node']}>
-                <span>{t('activity_awareness')}</span>
+                <span>{t('activity_bigsup')}</span>
               </motion.div>
             </div>
           </div>
@@ -145,18 +145,21 @@ export default function ComoFunciona() {
           </div>
           <div className={styles['timeline-labels']}>
             <div className={styles['timeline-label-item']}>
-              <span className={styles['time']}>09:00</span>
-              <span className={styles['event']}>{t('timeline_0900_event')}</span>
+              <span className={styles['time']}>10:00 - 11:00</span>
+              <span className={styles['event']}>{t('timeline_act1_event')}</span>
             </div>
             <div className={styles['timeline-label-item']}>
-              <span className={styles['time']}>10:30</span>
-              <span className={styles['event']}>{t('timeline_1030_event')}</span>
+              <span className={styles['time']}>11:00 - 12:00</span>
+              <span className={styles['event']}>{t('timeline_act2_event')}</span>
             </div>
             <div className={styles['timeline-label-item']}>
-              <span className={styles['time']}>12:00</span>
-              <span className={styles['event']}>{t('timeline_1200_event')}</span>
+              <span className={styles['time']}>12:00 - 13:00</span>
+              <span className={styles['event']}>{t('timeline_act3_event')}</span>
             </div>
           </div>
+          <p className={styles['timeline-custom-note']}>
+            {t('timeline_custom_note')}
+          </p>
         </div>
 
         {/* 2.3 Cards de datos */}

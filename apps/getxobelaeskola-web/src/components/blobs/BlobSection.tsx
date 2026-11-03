@@ -41,7 +41,7 @@ export function BlobSection() {
       videoSrc: '/videos/club_optimized.webm',
       imageSrc: '/images/club.jpg',
       paths: BLOB_PATHS.clubSocias,
-      href: `/${locale}/servicios/socias`,
+      href: `/${locale}/club/socias`,
     },
     {
       title: t('card_equipos_title'),

@@ -37,6 +37,26 @@ export default function ActividadesCards() {
       description: t('act_03_desc'),
       tags: t.raw('act_03_tags') as string[],
       color_accent: "#1A1A1A"
+    },
+    {
+      id: "04",
+      icon: "🪢",
+      emoji_bg: "⚓",
+      title: t('act_04_title'),
+      subtitle: t('act_04_subtitle'),
+      description: t('act_04_desc'),
+      tags: t.raw('act_04_tags') as string[],
+      color_accent: "#006699"
+    },
+    {
+      id: "05",
+      icon: "🧭",
+      emoji_bg: "🚢",
+      title: t('act_05_title'),
+      subtitle: t('act_05_subtitle'),
+      description: t('act_05_desc'),
+      tags: t.raw('act_05_tags') as string[],
+      color_accent: "#008080"
     }
   ];
 
@@ -78,6 +98,33 @@ export default function ActividadesCards() {
             ))}
           </div>
         </div>
+
+        {/* Flexibility & Choice Notice Box with Framer Motion */}
+        <motion.div
+          className={styles['activities-flex-box']}
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className={styles['flex-badge']}>{t('flex_badge')}</span>
+          <h3 className={styles['flex-title']}>{t('flex_title')}</h3>
+          <p className={styles['flex-desc']}>{t('flex_desc')}</p>
+          <div className={styles['flex-pills']}>
+            <div className={styles['flex-pill']}>
+              <span className={styles['flex-pill-icon']}>✨</span>
+              <span>{t('flex_item_choice')}</span>
+            </div>
+            <div className={styles['flex-pill']}>
+              <span className={styles['flex-pill-icon']}>🎯</span>
+              <span>{t('flex_item_age')}</span>
+            </div>
+            <div className={styles['flex-pill']}>
+              <span className={styles['flex-pill-icon']}>🌤️</span>
+              <span>{t('flex_item_weather')}</span>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

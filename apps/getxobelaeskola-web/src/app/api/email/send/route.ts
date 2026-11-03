@@ -64,7 +64,12 @@ export async function POST(request: Request) {
             });
         }
 
-        const fromString = fromName ? `${fromName} <${DEFAULT_FROM_EMAIL}>` : DEFAULT_FROM_EMAIL;
+        let fromString = DEFAULT_FROM_EMAIL;
+        if (fromName && fromName.trim()) {
+            const emailMatch = DEFAULT_FROM_EMAIL.match(/<([^>]+)>/);
+            const rawEmail = (emailMatch ? emailMatch[1] : DEFAULT_FROM_EMAIL).trim();
+            fromString = `${fromName.trim()} <${rawEmail}>`;
+        }
 
         const { data, error } = await resend.emails.send({
             from: fromString,

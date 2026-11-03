@@ -1,6 +1,7 @@
 import { requireAuth } from '@/lib/auth-guard';
 import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { getRentalPricingInfo } from '@/lib/rentalPricing';
 
 function getPublicOrigin(request: Request) {
     const forwardedHost = request.headers.get('x-forwarded-host');
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
         const { user, supabase, error: authError } = await requireAuth();
         if (authError || !user) return authError || NextResponse.json({ error: 'No autorizado' }, { status: 401 });
 
-        const { data: profile } = await supabase.from('profiles').select('nombre, apellidos').eq('id', user.id).single();
+        const { data: profile } = await supabase.from('profiles').select('nombre, apellidos, status_socio').eq('id', user.id).single();
 
         // 2. Get Service Details
         const { data: service, error } = await supabase
@@ -122,10 +123,12 @@ export async function POST(request: Request) {
         // ------------------------------------------
 
         // 3. Calculate Price
-        let finalPrice = service.precio_base;
+        const isSocio = profile?.status_socio === 'activo';
+        const pricingInfo = getRentalPricingInfo(service, isSocio);
+        let finalPrice = pricingInfo.precio_numerico;
         let optionLabel = '';
 
-        if (optionIndex !== undefined && service.opciones[optionIndex]) {
+        if (optionIndex !== undefined && service.opciones && service.opciones[optionIndex]) {
             finalPrice += service.opciones[optionIndex].extra;
             optionLabel = service.opciones[optionIndex].label;
         }

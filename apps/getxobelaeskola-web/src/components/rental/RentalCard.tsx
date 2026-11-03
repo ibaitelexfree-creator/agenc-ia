@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import NauticalImage from '@/components/ui/NauticalImage';
 import { useTranslations } from 'next-intl';
-import { Anchor, Users, Clock, ArrowRight } from 'lucide-react';
+import { Anchor, Users, Clock, ArrowRight, ShieldCheck, Sparkles, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { getRentalPricingInfo } from '@/lib/rentalPricing';
 
 interface RentalCardProps {
     service: {
@@ -19,10 +20,11 @@ interface RentalCardProps {
     };
     locale: string;
     index?: number;
+    isSocio?: boolean;
     onBook: (serviceId: string, optionIndex?: number) => void;
 }
 
-export default function RentalCard({ service, locale, index, onBook }: RentalCardProps) {
+export default function RentalCard({ service, locale, index, isSocio = false, onBook }: RentalCardProps) {
     const t = useTranslations('rental_page');
     const tData = useTranslations('rentals_data');
     const hasTranslation = tData.has(service.slug);
@@ -121,12 +123,16 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
     const isBigsub = service.slug.includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsup');
 
+    const pricingInfo = getRentalPricingInfo(service, isSocio);
+
     return (
         <motion.div 
             whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-            className="group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer"
+            className={`group relative glass-card overflow-hidden h-full flex flex-col cursor-pointer ${
+                pricingInfo.hasSocioDiscount ? 'border-accent/40 shadow-[0_0_20px_rgba(255,77,0,0.1)]' : ''
+            }`}
         >
             {/* Image Header with Responsive Aspect Ratio */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
@@ -171,13 +177,13 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-500/5 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
 
-                {/* Float Category Label */}
-                <div className="absolute bottom-1.5 left-2 min-[480px]:bottom-2 min-[480px]:left-2.5 sm:bottom-6 sm:left-8 z-20 flex items-center gap-1 min-[480px]:gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                    <span className="text-[7px] min-[480px]:text-[8px] sm:text-[9px] uppercase tracking-[0.1em] min-[480px]:tracking-[0.2em] sm:tracking-[0.4em] font-black text-sea-foam/60 group-hover:text-sea-foam transition-colors">
-                        {t.has(`categories.${service.categoria}`) ? t(`categories.${service.categoria}`) : service.categoria}
-                    </span>
-                </div>
+                {/* Member Badge Overlay */}
+                {pricingInfo.hasSocioDiscount && (
+                    <div className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-2.5 py-1 bg-accent text-nautical-black font-black text-[9px] uppercase tracking-wider rounded-sm shadow-lg">
+                        <Sparkles className="w-3 h-3" />
+                        <span>Tarifa Socia</span>
+                    </div>
+                )}
             </div>
 
             {/* Content Area */}
@@ -189,23 +195,90 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
                         </h3>
                     </div>
 
-                    {/* Specs Row */}
-                    <div className="flex gap-2 min-[480px]:gap-3 sm:gap-6 py-1 min-[480px]:py-1.5 sm:py-4 border-y border-sea-foam/10 mb-1.5 min-[480px]:mb-2 sm:mb-6">
+                    {/* Specs & Pricing Row */}
+                    <div className="grid grid-cols-3 gap-2 py-2 sm:py-3 border-y border-sea-foam/10 mb-2 sm:mb-4">
+                        {/* 1. Tripulación Mínima */}
                         <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t('crew_label')}</span>
+                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40 whitespace-pre-line leading-tight">
+                                {t('crew_label')}
+                            </span>
                             <div className="flex items-center gap-1 text-sea-foam/70">
                                 <Users className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                <span className="text-[10px] min-[480px]:text-xs font-bold font-mono">{getCapacity()}</span>
+                                <span className="text-[10px] min-[480px]:text-xs font-bold font-mono">
+                                    {pricingInfo.tripulacion_minima}
+                                </span>
                             </div>
+                            {pricingInfo.tripulacion_subtexto && (
+                                <span className="text-[8px] min-[480px]:text-[9px] text-accent/90 font-medium leading-tight mt-0.5">
+                                    {pricingInfo.tripulacion_subtexto}
+                                </span>
+                            )}
                         </div>
-                        <div className="w-px h-5 min-[480px]:h-6 sm:h-8 bg-sea-foam/10" />
-                        <div className="flex flex-col gap-0.5 sm:gap-1">
-                            <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">{t.has('price_per_hour') ? t('price_per_hour') : 'Price/h'}</span>
-                            <div className="flex items-center gap-1 text-sea-foam/70 text-xs min-[480px]:text-sm sm:text-lg">
-                                <span className="font-display italic text-sea-foam">{service.precio_base}€</span>
+
+                        {/* 2. Columna Central: Matrícula o Fianza */}
+                        <div className="flex flex-col gap-0.5 sm:gap-1 border-x border-sea-foam/10 px-2 justify-center">
+                            {pricingInfo.hasMatricula ? (
+                                <>
+                                    <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">
+                                        Matrícula
+                                    </span>
+                                    <div className="flex items-center gap-1 text-sea-foam/70">
+                                        <FileText className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
+                                        <span className="text-[10px] min-[480px]:text-xs font-mono font-medium">
+                                            {pricingInfo.matricula} €
+                                        </span>
+                                    </div>
+                                </>
+                            ) : pricingInfo.hasFianza ? (
+                                <>
+                                    <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">
+                                        Fianza
+                                    </span>
+                                    <div className="flex items-center gap-1 text-sea-foam/70">
+                                        <ShieldCheck className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
+                                        <span className="text-[10px] min-[480px]:text-xs font-mono font-medium">
+                                            {pricingInfo.fianza} €
+                                        </span>
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="h-full flex items-center justify-center">
+                                    <span className="text-[11px] text-sea-foam/20 font-mono">—</span>
+                                </div>
+                            )}
+                        </div>
+
+                        {/* 3. Columna Derecha: Precios (donde antes ponía fianza) */}
+                        <div className="flex flex-col gap-0.5 sm:gap-1 pl-1 justify-center">
+                            {pricingInfo.hasSocioDiscount && (
+                                <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-accent font-bold">
+                                    Socia
+                                </span>
+                            )}
+                            <div className="flex flex-col gap-0.5 text-sea-foam/90 leading-tight">
+                                {pricingInfo.precios_lineas.map((line, idx) => (
+                                    <span
+                                        key={idx}
+                                        className="font-display italic font-bold tracking-tight whitespace-nowrap text-[11px] min-[480px]:text-xs sm:text-sm text-sea-foam"
+                                    >
+                                        {line}
+                                    </span>
+                                ))}
                             </div>
                         </div>
                     </div>
+
+                    {/* Detalle o notas adicionales */}
+                    {(pricingInfo.hasSocioDiscount || pricingInfo.detalle_adicional) && (
+                        <div className="text-[9px] min-[480px]:text-[10px] leading-relaxed mb-2">
+                            {pricingInfo.hasSocioDiscount && pricingInfo.socio_nota && (
+                                <p className="text-accent/90 font-medium">⭐ {pricingInfo.socio_nota}</p>
+                            )}
+                            {pricingInfo.detalle_adicional && !pricingInfo.hasSocioDiscount && (
+                                <p className="text-sea-foam/50 italic">{pricingInfo.detalle_adicional}</p>
+                            )}
+                        </div>
+                    )}
                 </div>
 
                 {/* Footer Actions */}

@@ -243,7 +243,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       videoSrc: '/videos/club_optimized.webm',
       imageSrc: '/images/club_thumb.webp',
       paths: BLOB_PATHS.clubSocias,
-      href: `/${locale}/servicios/socias`,
+      href: `/${locale}/club/socias`,
     },
     {
       title: t('blob_equipos'),
@@ -294,7 +294,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       videoSrc: '/videos/club_optimized.webm',
       imageSrc: '/images/club_thumb.webp',
       paths: BLOB_PATHS.clubSocias,
-      href: `/${locale}/servicios/socias`,
+      href: `/${locale}/club/socias`,
     },
     {
       title: t('card_equipos_title'),

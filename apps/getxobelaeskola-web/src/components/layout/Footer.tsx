@@ -214,6 +214,7 @@ export default async function Footer({ locale }: { locale: string }) {
                     <Link href={`/${locale}/cookies`} className="hover:text-accent transition-premium break-words">{t('cookies')}</Link>
                     <CookieFooterTrigger className="hover:text-accent transition-premium break-words" />
                     <Link href={`/${locale}/declaracion-de-accesibilidad`} className="hover:text-accent transition-premium break-words">{t('accessibility')}</Link>
+                    <Link href={`/${locale}/beneficiario`} className="hover:text-accent transition-premium break-words">{t('beneficiary')}</Link>
                 </div>
 
                 <div className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-sea-foam/40 font-medium text-center max-w-xl leading-loose">
