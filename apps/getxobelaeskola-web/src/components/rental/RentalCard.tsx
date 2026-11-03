@@ -38,6 +38,11 @@ export default function RentalCard({ service, locale, index, onBook }: RentalCar
         const slug = (service.slug || '').toLowerCase();
         const dbImg = service.imagen_url;
 
+        // Kayak 2 People: show black background image (no double kayak available)
+        if (slug.includes('kayak-2') || slug.includes('piragua-2') || n.includes('kayak (2') || n.includes('kayak (2 people') || n.includes('kayak (2 personas')) {
+            return '/images/black-kayak.png';
+        }
+
         // ✅ Priority 1: Use DB image if it's valid and specific (not a placeholder)
         const hasValidDbImage = dbImg
             && dbImg.startsWith('/images/')
