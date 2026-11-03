@@ -2,6 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Set Black Background Image for Kayak 2 People Rental
+  1. **Black Placeholder Image:** Created high-res 800x600 public/images/black-kayak.png.
+  2. **RentalCard Mapping:** In src/components/rental/RentalCard.tsx, forced alquiler-kayak-2 to render /images/black-kayak.png.
+  3. **Git Status:** Committed and pushed to feature/clawde-rental-filter-scroll-fix.
+- **Status:** COMPLETED & PUSHED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Update Raquero (35€) Image and Preserve 80€ Raquero/Omega Image
   1. **New Vibrant Image for Raquero (35€):**
      - Replaced `public/images/alquiler-raquero.jpg` with color-enhanced and sharpened high-resolution version of `IMG_5164.JPG`.
