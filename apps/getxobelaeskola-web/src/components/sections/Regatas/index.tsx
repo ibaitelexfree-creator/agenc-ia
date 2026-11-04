@@ -1,5 +1,8 @@
+'use client';
+
 import WindCanvas from "./components/WindCanvas";
 import HeroRegatas from "./components/HeroRegatas";
+
 import RegatasFilosofia from "./components/RegatasFilosofia";
 import styles from "./Regatas.module.css";
 import Link from 'next/link';
