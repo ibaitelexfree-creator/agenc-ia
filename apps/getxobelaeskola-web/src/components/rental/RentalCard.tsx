@@ -157,7 +157,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
                                                     ? 'object-[50%_center]'
-                                                    : 'object-[35%_center] scale-[1.20] origin-[35%_center]'
+                                                    : 'object-[35%_center] scale-[1.44] origin-[35%_center]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
                                                     : isWindsurfRental
