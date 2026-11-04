@@ -39,14 +39,5 @@ export const REQUIREMENTS: Requirement[] = [
     icon: "📋",
     highlight: "~64€/año",
   },
-  {
-    id: "socia",
-    number: "04",
-    title: "Ser Socia del Club",
-    body:
-      "Pack Completo: 1.200€/año · 3 días/mes de tecnificación " +
-      "guiada (sept–junio) + salidas ilimitadas todo el año.",
-    icon: "🏅",
-    highlight: "1.200€/año",
-  },
 ];
+

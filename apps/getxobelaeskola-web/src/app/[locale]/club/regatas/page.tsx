@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import EquiposEntrenamiento from '@/components/sections/EquiposEntrenamiento';
+import RegatasSection from '@/components/sections/Regatas';
 import { getSeoAlternates } from '@/lib/seo';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
@@ -42,10 +42,11 @@ export function generateStaticParams() {
 
 export default function ClubRegatasPage() {
     return (
-        <main className="min-h-screen bg-[#060E18]">
-            <EquiposEntrenamiento />
+        <main className="min-h-screen bg-white">
+            <RegatasSection />
         </main>
     );
 }
+
 
 

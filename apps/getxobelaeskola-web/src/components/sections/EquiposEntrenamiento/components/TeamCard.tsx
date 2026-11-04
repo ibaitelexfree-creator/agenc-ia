@@ -12,6 +12,7 @@ interface TeamCardProps {
   team: Team;
   isActive: boolean;
   onToggle: () => void;
+  onOpenModal?: () => void;
   entryDelay?: number;
   index?: number;
   total?: number;
@@ -31,7 +32,7 @@ const FONTS = {
   sans: 'Inter, Manrope, "DM Sans", sans-serif',
 }
 
-export default function TeamCard({ team, isActive, onToggle, entryDelay = 0, index = 0, total = 3 }: TeamCardProps) {
+export default function TeamCard({ team, isActive, onToggle, onOpenModal, entryDelay = 0, index = 0, total = 3 }: TeamCardProps) {
   const { id: teamKey, emoji, accentColor, embarcaciones } = team;
   const t = useTranslations('equipos_entrenamiento.teams');
   
@@ -211,11 +212,37 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0, ind
             )}
           </div>
 
-          {/* Footer */}
-          <div style={{ zIndex: 2, display: 'flex', justifyContent: 'center' }}>
+          {/* Footer con botón de Ver Más Detalles (Modal) y Cerrar */}
+          <div style={{ zIndex: 2, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.35rem', marginTop: '0.2rem' }}>
             <button
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenModal) onOpenModal();
+              }}
               style={{
-                fontSize: 'clamp(0.55rem, 1.1vw, 0.65rem)',
+                fontSize: 'clamp(0.55rem, 1.0vw, 0.68rem)',
+                color: '#FFFFFF',
+                backgroundColor: '#0f4080',
+                padding: 'clamp(0.25rem, 0.8vh, 0.35rem) clamp(0.6rem, 1.2vw, 0.9rem)',
+                borderRadius: '8px',
+                fontFamily: FONTS.sans,
+                fontWeight: 600,
+                letterSpacing: '0.04em',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(15, 64, 128, 0.25)',
+                transition: 'all 0.2s ease',
+              }}
+            >
+              + Ver detalles completos
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggle();
+              }}
+              style={{
+                fontSize: 'clamp(0.5rem, 1.0vw, 0.6rem)',
                 color: 'rgba(27, 47, 69, 0.5)',
                 fontFamily: FONTS.sans,
                 textTransform: 'uppercase',
@@ -229,6 +256,7 @@ export default function TeamCard({ team, isActive, onToggle, entryDelay = 0, ind
             </button>
           </div>
         </div>
+
 
         {/* ROTATING COVER WRAPPER */}
         <motion.div
