@@ -117,7 +117,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
     };
 
     const imgSrc = getImgSrc();
-    const isWindsurfRental = (service.slug.includes('windsurf') || service.categoria === 'windsurf') && !isWindsurfMooring;
+    const isWindsurfVoucher = service.slug === 'bono-windsurf' || (service.nombre_es || '').toLowerCase().includes('bono de windsurf') || (service.nombre_es || '').toLowerCase().includes('windsurf voucher');
+    const isWindsurfRental = (service.slug.includes('windsurf') || service.categoria === 'windsurf') && !isWindsurfMooring && !isWindsurfVoucher;
     const isCanoeMooring = service.slug.includes('atraque-piragua') || service.slug.includes('canoe-mooring') || (service.nombre_es || '').toLowerCase().includes('canoe mooring') || (service.nombre_es || '').toLowerCase().includes('atraque piragua');
     const isTransientGt8m = service.slug.includes('gt8m') || service.slug.includes('8m-plus') || service.slug.includes('transeunte-gt8m') || (service.nombre_es || '').toLowerCase().includes('> 8m') || (service.nombre_es || '').toLowerCase().includes('>8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (> 8m)');
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
@@ -160,8 +161,10 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                     : 'object-[35%_center] scale-[1.44] origin-[35%_center]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
-                                                    : isWindsurfRental
-                                                        ? 'object-[center_65%]'
+                                                    : isWindsurfVoucher
+                                                        ? 'object-[center_55%]'
+                                                        : isWindsurfRental
+                                                            ? 'object-[center_65%]'
                                                         : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
                                                             ? 'object-center'
                                                             : (service.nombre_es.toLowerCase().includes('optimist') || service.slug.includes('optimist'))
