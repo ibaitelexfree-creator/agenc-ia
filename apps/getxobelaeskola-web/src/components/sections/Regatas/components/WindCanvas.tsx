@@ -1,5 +1,8 @@
+'use client';
+
 // WindCanvas.tsx — Sistema de partículas de viento
 import { useEffect, useRef } from "react";
+
 import styles from "../Regatas.module.css";
 
 const PARTICLE_COUNT = 80;
