@@ -122,6 +122,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
     const isTransientGt8m = service.slug.includes('gt8m') || service.slug.includes('8m-plus') || service.slug.includes('transeunte-gt8m') || (service.nombre_es || '').toLowerCase().includes('> 8m') || (service.nombre_es || '').toLowerCase().includes('>8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (> 8m)');
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
     const isBigsub = service.slug.includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsup');
+    const isJ80SinPatron = (service.slug.includes('j80') || (service.nombre_es || '').toLowerCase().includes('j80')) && (service.slug.includes('sin-patron') || (service.nombre_es || '').toLowerCase().includes('sin patr'));
 
     const pricingInfo = getRentalPricingInfo(service, isSocio);
 
@@ -156,7 +157,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
                                                     ? 'object-[50%_center]'
-                                                    : 'object-[35%_center]'
+                                                    : 'object-[35%_center] scale-[1.20] origin-[35%_center]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
                                                     : isWindsurfRental

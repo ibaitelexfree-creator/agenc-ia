@@ -2,6 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Zoom J-80 sin patron card image by 20%
+  1. **Image Scaling:** Added scale-[1.20] origin-[35%_center] to the J-80 sin patron card image in RentalCard.tsx.
+  2. **Card Visual:** Centers and zooms in on the boat and crew standing onboard by 20%.
+  3. **Branch:** feature/clawde-zoom-j80-sin-patron.
+- **Status:** COMPLETED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Set Black Background Image for Kayak 2 People Rental
   1. **Black Placeholder Image:** Created high-res 800x600 public/images/black-kayak.png.
   2. **RentalCard Mapping:** In src/components/rental/RentalCard.tsx, forced alquiler-kayak-2 to render /images/black-kayak.png.
