@@ -162,7 +162,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
                                                     : isWindsurfVoucher
-                                                        ? 'object-[center_55%]'
+                                                        ? 'object-[center_47.5%]'
                                                         : isWindsurfRental
                                                             ? 'object-[center_65%]'
                                                         : (service.nombre_es.toLowerCase().includes('420') || service.slug.includes('420'))
