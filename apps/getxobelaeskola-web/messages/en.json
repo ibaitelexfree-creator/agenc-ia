@@ -122,6 +122,27 @@
       "no_times_selected_date": "No times available for the selected date",
       "booking_error": "Error processing the reservation. Please, try again.",
       "booking_details": "Booking details"
+    },
+    "member_cta": "Become a member and enjoy discounts",
+    "member_welcome": "Welcome member · Reduced rates active",
+    "card": {
+      "deposit": "Deposit",
+      "registration": "Registration",
+      "member_rate": "Member",
+      "member_badge": "Member Rate",
+      "hours_short": "{hours}h",
+      "hours_fraction": "{hours}h",
+      "month": "month",
+      "annual": "Annual",
+      "monthly": "Monthly",
+      "person": "pax",
+      "total": "total",
+      "included_trips": "Includes {trips} outings ({hours})",
+      "single_day_with_members": "1 single day with members: {price} €",
+      "without_skipper": "Without skipper: {price1} | With skipper: {price2}",
+      "full_boat_no_deposit": "{price} € full boat (no deposit)",
+      "full_boat_with_members": "{price} € full boat (no deposit) · Single day with members: {singlePrice} €",
+      "min_people": "Minimum {count} people"
     }
   },
   "experiences_page": {
@@ -1484,8 +1505,8 @@
       "combo_title": "Combined Activity",
       "combo_desc": "Large group? Divide and rotate",
       "combo_badge": "FOR LARGE GROUPS",
-      "catering_title": "Catering",
-      "catering_desc": "You bring the people, we provide the food"
+      "catering_title": "Snacks & Picnic",
+      "catering_desc": "You bring the snacks, we provide the space"
     },
     "timeline": {
       "title": "This is your day",

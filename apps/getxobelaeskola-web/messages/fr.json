@@ -110,7 +110,7 @@
       "from": "depuis",
       "date_label": "Date de réservation",
       "time_label": "Heure",
-      "extra_option": "Option supplémentaire :",
+      "extra_option": "Option supplémentaire :",
       "cancel": "Annuler",
       "confirm": "Confirmer la réservation",
       "book_now": "Réservez maintenant",
@@ -120,6 +120,27 @@
       "no_times_selected_date": "Il n'y a pas d'horaires disponibles pour la date sélectionnée",
       "booking_error": "Erreur lors du traitement de la réservation. Veuillez réessayer.",
       "booking_details": "Détails de la réservation"
+    },
+    "member_cta": "Devenez membre et profitez de réductions",
+    "member_welcome": "Bienvenue membre · Tarifs réduits actifs",
+    "card": {
+      "deposit": "Caution",
+      "registration": "Inscription",
+      "member_rate": "Membre",
+      "member_badge": "Tarif Membre",
+      "hours_short": "{hours}h",
+      "hours_fraction": "{hours}h",
+      "month": "mois",
+      "annual": "Annuel",
+      "monthly": "Mensuel",
+      "person": "pers",
+      "total": "total",
+      "included_trips": "Comprend {trips} sorties ({hours})",
+      "single_day_with_members": "1 journée avec des membres : {price} €",
+      "without_skipper": "Sans skipper : {price1} | Avec skipper : {price2}",
+      "full_boat_no_deposit": "{price} € bateau complet (sans caution)",
+      "full_boat_with_members": "{price} € bateau complet (sans caution) · Journée avec membres : {singlePrice} €",
+      "min_people": "Minimum {count} personnes"
     }
   },
   "experiences_page": {
@@ -1099,8 +1120,8 @@
       "combo_title": "Activité Combinée",
       "combo_desc": "Grand groupe ? Divisez et alternez",
       "combo_badge": "POUR LES GRANDS GROUPES",
-      "catering_title": "Restauration",
-      "catering_desc": "Vous amenez le monde, nous offrons le repas"
+      "catering_title": "Goûter & Apéro",
+      "catering_desc": "Vous amenez le goûter, nous fournissons l'espace"
     },
     "timeline": {
       "title": "Votre journée type",

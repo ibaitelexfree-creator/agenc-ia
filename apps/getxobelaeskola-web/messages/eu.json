@@ -122,6 +122,27 @@
       "no_times_selected_date": "Ez dago ordutegirik erabilgarri hautatutako datarako",
       "booking_error": "Errorea erreserba prozesatzean. Mesedez, saiatu berriro.",
       "booking_details": "Erreserbaren xehetasunak"
+    },
+    "member_cta": "Egin zaitez bazkide eta gozatu deskontuez",
+    "member_welcome": "Ongi etorri bazkide · Tarifa murriztuak aktibo",
+    "card": {
+      "deposit": "Fidantza",
+      "registration": "Matrikula",
+      "member_rate": "Bazkidea",
+      "member_badge": "Bazkide Tarifa",
+      "hours_short": "{hours} ord.",
+      "hours_fraction": "{hours} ord.",
+      "month": "hilabete",
+      "annual": "Urtekoa",
+      "monthly": "Hilabetekoa",
+      "person": "pertsona",
+      "total": "guztira",
+      "included_trips": "{trips} irteera barne ({hours})",
+      "single_day_with_members": "Egun solte 1 bazkideekin: {price} €",
+      "without_skipper": "Patroi gabe: {price1} | Patroiarekin: {price2}",
+      "full_boat_no_deposit": "{price} € ontzi osoa (fidantzarik gabe)",
+      "full_boat_with_members": "{price} € ontzi osoa (fidantzarik gabe) · Egun soltea bazkideekin: {singlePrice} €",
+      "min_people": "Gutxienez {count} lagun"
     }
   },
   "experiences_page": {
@@ -1538,8 +1559,8 @@
       "combo_title": "Jarduera Konbinatua",
       "combo_desc": "Talde handia? Banatu eta txandakatu",
       "combo_badge": "TALDE HANDIENTZAT",
-      "catering_title": "Cateringa",
-      "catering_desc": "Zuk jendea ekarri, guk janaria jarriko dugu"
+      "catering_title": "Pikoteoa",
+      "catering_desc": "Zuk askaria ekarri, guk espazioa jarriko dugu"
     },
     "timeline": {
       "title": "Honela da zuen eguna",

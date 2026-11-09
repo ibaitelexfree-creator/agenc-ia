@@ -185,7 +185,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                 {pricingInfo.hasSocioDiscount && (
                     <div className="absolute top-2 right-2 z-20 flex items-center gap-1.5 px-2.5 py-1 bg-accent text-nautical-black font-black text-[9px] uppercase tracking-wider rounded-sm shadow-lg">
                         <Sparkles className="w-3 h-3" />
-                        <span>Tarifa Socia</span>
+                        <span>{t('card.member_badge')}</span>
                     </div>
                 )}
             </div>
@@ -214,7 +214,11 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             </div>
                             {pricingInfo.tripulacion_subtexto && (
                                 <span className="text-[8px] min-[480px]:text-[9px] text-accent/90 font-medium leading-tight mt-0.5">
-                                    {pricingInfo.tripulacion_subtexto}
+                                    {pricingInfo.tripulacion_subtexto.includes('2,5h') || pricingInfo.tripulacion_subtexto.includes('2.5h')
+                                        ? t('card.included_trips', { trips: 4, hours: t('card.hours_fraction', { hours: '2,5' }) })
+                                        : pricingInfo.tripulacion_subtexto.includes('4h')
+                                            ? t('card.included_trips', { trips: 4, hours: t('card.hours_short', { hours: 4 }) })
+                                            : pricingInfo.tripulacion_subtexto}
                                 </span>
                             )}
                         </div>
@@ -224,7 +228,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             {pricingInfo.hasMatricula ? (
                                 <>
                                     <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">
-                                        Matrícula
+                                        {t('card.registration')}
                                     </span>
                                     <div className="flex items-center gap-1 text-sea-foam/70">
                                         <FileText className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
@@ -236,7 +240,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             ) : pricingInfo.hasFianza ? (
                                 <>
                                     <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-sea-foam/40">
-                                        Fianza
+                                        {t('card.deposit')}
                                     </span>
                                     <div className="flex items-center gap-1 text-sea-foam/70">
                                         <ShieldCheck className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
@@ -252,22 +256,33 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             )}
                         </div>
 
-                        {/* 3. Columna Derecha: Precios (donde antes ponía fianza) */}
+                        {/* 3. Columna Derecha: Precios */}
                         <div className="flex flex-col gap-0.5 sm:gap-1 pl-1 justify-center">
                             {pricingInfo.hasSocioDiscount && (
                                 <span className="text-[7px] min-[480px]:text-[8px] uppercase tracking-wider min-[480px]:tracking-widest text-accent font-bold">
-                                    Socia
+                                    {t('card.member_rate')}
                                 </span>
                             )}
                             <div className="flex flex-col gap-0.5 text-sea-foam/90 leading-tight">
-                                {pricingInfo.precios_lineas.map((line, idx) => (
-                                    <span
-                                        key={idx}
-                                        className="font-display italic font-bold tracking-tight whitespace-nowrap text-[11px] min-[480px]:text-xs sm:text-sm text-sea-foam"
-                                    >
-                                        {line}
-                                    </span>
-                                ))}
+                                {pricingInfo.precios_lineas.map((line, idx) => {
+                                    // Localizar formato de horas y términos de cada línea de precio
+                                    let formattedLine = line
+                                        .replace(/(\d+)\s*h\b/g, (_, h) => t('card.hours_short', { hours: h }))
+                                        .replace(/\/ mes\b/g, `/ ${t('card.month')}`)
+                                        .replace(/\bpax\b/g, t('card.person'))
+                                        .replace(/\btotal\b/g, t('card.total'))
+                                        .replace(/\bAnual\b/g, t('card.annual'))
+                                        .replace(/\bMensual\b/g, t('card.monthly'));
+
+                                    return (
+                                        <span
+                                            key={idx}
+                                            className="font-display italic font-bold tracking-tight whitespace-nowrap text-[11px] min-[480px]:text-xs sm:text-sm text-sea-foam"
+                                        >
+                                            {formattedLine}
+                                        </span>
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>
@@ -276,10 +291,36 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                     {(pricingInfo.hasSocioDiscount || pricingInfo.detalle_adicional) && (
                         <div className="text-[9px] min-[480px]:text-[10px] leading-relaxed mb-2">
                             {pricingInfo.hasSocioDiscount && pricingInfo.socio_nota && (
-                                <p className="text-accent/90 font-medium">⭐ {pricingInfo.socio_nota}</p>
+                                <p className="text-accent/90 font-medium">
+                                    ⭐ {pricingInfo.socio_nota.includes('45 €')
+                                        ? t('card.full_boat_with_members', { price: 100, singlePrice: 45 })
+                                        : pricingInfo.socio_nota.includes('40 €')
+                                            ? t('card.full_boat_with_members', { price: 80, singlePrice: 40 })
+                                            : pricingInfo.socio_precio
+                                                ? t('card.full_boat_no_deposit', { price: pricingInfo.socio_precio })
+                                                : pricingInfo.socio_nota}
+                                </p>
                             )}
                             {pricingInfo.detalle_adicional && !pricingInfo.hasSocioDiscount && (
-                                <p className="text-sea-foam/50 italic">{pricingInfo.detalle_adicional}</p>
+                                <p className="text-sea-foam/50 italic">
+                                    {pricingInfo.detalle_adicional.includes('45 €')
+                                        ? t('card.single_day_with_members', { price: 45 })
+                                        : pricingInfo.detalle_adicional.includes('40 €')
+                                            ? t('card.single_day_with_members', { price: 40 })
+                                            : pricingInfo.detalle_adicional.includes('Mínimo 4 personas')
+                                                ? t('card.min_people', { count: 4 })
+                                                : pricingInfo.detalle_adicional.includes('Sin patrón: 180 € / 4h')
+                                                    ? t('card.without_skipper', {
+                                                        price1: `180 € / ${t('card.hours_short', { hours: 4 })}`,
+                                                        price2: `250 € / ${t('card.hours_short', { hours: 4 })}`
+                                                    })
+                                                    : pricingInfo.detalle_adicional.includes('Sin patrón: 140 € / 4h')
+                                                        ? t('card.without_skipper', {
+                                                            price1: `140 € / ${t('card.hours_short', { hours: 4 })}`,
+                                                            price2: `200 € / ${t('card.hours_short', { hours: 4 })}`
+                                                        })
+                                                        : pricingInfo.detalle_adicional}
+                                </p>
                             )}
                         </div>
                     )}

@@ -122,6 +122,27 @@
       "no_times_selected_date": "No hay horarios disponibles para la fecha seleccionada",
       "booking_error": "Error al procesar la reserva. Por favor, inténtalo de nuevo.",
       "booking_details": "Detalles de la reserva"
+    },
+    "member_cta": "Hazte socia y disfruta de descuentos",
+    "member_welcome": "Bienvenida socia · Tarifas reducidas activas",
+    "card": {
+      "deposit": "Fianza",
+      "registration": "Matrícula",
+      "member_rate": "Socia",
+      "member_badge": "Tarifa Socia",
+      "hours_short": "{hours}h",
+      "hours_fraction": "{hours}h",
+      "month": "mes",
+      "annual": "Anual",
+      "monthly": "Mensual",
+      "person": "pax",
+      "total": "total",
+      "included_trips": "Incluye {trips} salidas ({hours})",
+      "single_day_with_members": "1 día suelto con socias: {price} €",
+      "without_skipper": "Sin patrón: {price1} | Con patrón: {price2}",
+      "full_boat_no_deposit": "{price} € barco completo (sin fianza)",
+      "full_boat_with_members": "{price} € barco completo (sin fianza) · Día suelto con socias: {singlePrice} €",
+      "min_people": "Mínimo {count} personas"
     }
   },
   "experiences_page": {
@@ -1535,8 +1556,8 @@
       "combo_title": "Actividad Combinada",
       "combo_desc": "¿Grupo grande? Dividís y rotáis",
       "combo_badge": "PARA GRUPOS GRANDES",
-      "catering_title": "Catering",
-      "catering_desc": "Tú traes la gente, nosotros ponemos la comida"
+      "catering_title": "Picoteo",
+      "catering_desc": "Tú traes la merienda, nosotros ponemos el espacio"
     },
     "timeline": {
       "title": "Así es vuestro día",
