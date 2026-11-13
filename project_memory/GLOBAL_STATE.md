@@ -2,10 +2,10 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Tarpoon with Skipper Card Image and Logo Decal
-  1. **Image Replacement:** Replaced black placeholder on Tarpoon with skipper (`alquiler-tarpon-patron`) with custom image `Person_fishing_on_boat_49b6497c.jpg` (`/images/tarpoon-patron.jpg`).
-  2. **Boat Logo Decal:** Added subtle, well-proportioned school logo decal (`Logo_Bela_horizontal_white_text.png`) on the boat corner with subtle shadow.
-  3. **Strict Isolation:** Only affects Tarpoon with skipper, keeping all other cards intact.
+- **Task:** Tarpoon with Skipper Card Custom Image (No Logo)
+  1. **Custom Image:** Set custom image `Person_fishing_on_boat_49b6497c.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
+  2. **Logo Removed:** Cleaned out logo decal per user request, showing clean photo.
+  3. **Strict Isolation:** Only affects Tarpoon with skipper, all other rental cards render normally.
 - **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
 
 - **Agent:** Antigravity / @[frontend-specialist]
