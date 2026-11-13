@@ -41,6 +41,11 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
         const dbImg = service.imagen_url;
 
 
+        // Tarpoon with skipper: always use the local high-res tarpoon image
+        if (slug === 'alquiler-tarpon-patron' || slug.includes('tarpon') || slug.includes('tarpoon') || n.includes('tarpon') || n.includes('tarpoon')) {
+            return '/images/tarpoon-patron.jpg';
+        }
+
         // ✅ Priority 1: Use DB image if it's valid and specific (not a placeholder)
         const hasValidDbImage = dbImg
             && dbImg.startsWith('/images/')
