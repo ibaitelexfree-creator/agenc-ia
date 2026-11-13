@@ -175,16 +175,6 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                                     : 'object-center'
                     }`}
                 />
-                {/* Tarpoon boat branded logo decal */}
-                {isTarpoon && (
-                    <div className="absolute bottom-2.5 right-2.5 z-20 pointer-events-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] opacity-95 group-hover:scale-105 transition-transform duration-500">
-                        <img
-                            src="/images/Logo_Bela_horizontal_white_text.png"
-                            alt="Getxo Bela Eskola"
-                            className="h-5 sm:h-6 md:h-7 w-auto object-contain"
-                        />
-                    </div>
-                )}
 
                 {/* Global warm-natural overlay for all images */}
                                 {/* Sky blue enhancement overlay (+20% vibrant blue sky) */}
