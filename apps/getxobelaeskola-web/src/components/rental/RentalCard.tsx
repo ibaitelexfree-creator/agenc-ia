@@ -137,6 +137,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
         >
             {/* Image Header with Responsive Aspect Ratio */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
+                <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
                     alt={name}
