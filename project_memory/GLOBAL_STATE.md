@@ -3,7 +3,7 @@
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Tarpoon with Skipper Card Custom Image (No Logo)
-  1. **Custom Image:** Set custom image `Person_fishing_on_boat_49b6497c.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
+  1. **Custom Image:** Updated to `Moving_boat_closer_in_image_ead16130.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
   2. **Logo Removed:** Cleaned out logo decal per user request, showing clean photo.
   3. **Strict Isolation:** Only affects Tarpoon with skipper, all other rental cards render normally.
 - **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
