@@ -87,6 +87,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
             src = '/images/alquiler-laser.webp';
         } else if (slug.includes('kayak') || slug.includes('piragua') || n.includes('kayak (1') || n.includes('kayak (1 person)')) {
             src = '/images/kayak-1-person.webp';
+        } else if (slug.includes('tarpon') || slug.includes('tarpoon') || n.includes('tarpon') || n.includes('tarpoon')) {
+            src = '/images/tarpoon-patron.jpg';
         } else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) {
             src = '/images/paddle-surf.webp';
         } else if (slug.includes('windsurf') || (service.categoria === 'windsurf' && !isWindsurfMooring)) {
@@ -135,11 +137,6 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
         >
             {/* Image Header with Responsive Aspect Ratio */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
-                {isTarpoon ? (
-                    <div className="w-full h-full bg-black" />
-                ) : (
-                    <>
-                <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
                     alt={name}
@@ -160,6 +157,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
                                                     ? 'object-[50%_center]'
                                                     : 'object-[35%_center] scale-[1.44] origin-[35%_center]'
+                                                : isTarpoon
+                                                    ? 'object-[center_55%]'
                                                 : isWindsurfMooring
                                                     ? 'object-[center_85%]'
                                                     : isWindsurfVoucher
@@ -175,14 +174,22 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                                     : 'object-center'
                     }`}
                 />
+                {/* Tarpoon boat branded logo decal */}
+                {isTarpoon && (
+                    <div className="absolute bottom-2.5 right-2.5 z-20 pointer-events-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] opacity-95 group-hover:scale-105 transition-transform duration-500">
+                        <img
+                            src="/images/Logo_Bela_horizontal_white_text.png"
+                            alt="Getxo Bela Eskola"
+                            className="h-5 sm:h-6 md:h-7 w-auto object-contain"
+                        />
+                    </div>
+                )}
 
                 {/* Global warm-natural overlay for all images */}
                                 {/* Sky blue enhancement overlay (+20% vibrant blue sky) */}
                 <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-sky-300/10 to-transparent mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-500/5 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
-                    </>
-                )}
 
                 {/* Member Badge Overlay */}
                 {pricingInfo.hasSocioDiscount && (
