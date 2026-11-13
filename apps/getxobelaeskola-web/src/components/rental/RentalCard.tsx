@@ -40,10 +40,6 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
         const slug = (service.slug || '').toLowerCase();
         const dbImg = service.imagen_url;
 
-        // Kayak 2 People: show black background image (no double kayak available)
-        if (slug.includes('kayak-2') || slug.includes('piragua-2') || n.includes('kayak (2') || n.includes('kayak (2 people') || n.includes('kayak (2 personas')) {
-            return '/images/black-kayak.png';
-        }
 
         // ✅ Priority 1: Use DB image if it's valid and specific (not a placeholder)
         const hasValidDbImage = dbImg
@@ -89,7 +85,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
             src = '/images/rental-optimist.webp';
         } else if (n.includes('laser') || slug.includes('laser')) {
             src = '/images/alquiler-laser.webp';
-        } else if (slug.includes('kayak-1') || slug.includes('piragua-1') || n.includes('kayak (1') || n.includes('kayak (1 person)')) {
+        } else if (slug.includes('kayak') || slug.includes('piragua') || n.includes('kayak (1') || n.includes('kayak (1 person)')) {
             src = '/images/kayak-1-person.webp';
         } else if (slug.includes('paddlesurf') || service.categoria === 'paddlesurf' || n.includes('paddle')) {
             src = '/images/paddle-surf.webp';
@@ -124,7 +120,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
     const isBigsub = service.slug.includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsup');
     const isJ80SinPatron = (service.slug.includes('j80') || (service.nombre_es || '').toLowerCase().includes('j80')) && (service.slug.includes('sin-patron') || (service.nombre_es || '').toLowerCase().includes('sin patr'));
-    const isTarpoon = service.slug.includes('tarpon') || service.slug.includes('tarpoon') || (service.nombre_es || '').toLowerCase().includes('tarpon') || (service.nombre_es || '').toLowerCase().includes('tarpoon');
+    const isTarpoon = service.slug === 'alquiler-tarpon-patron' || service.slug === 'tarpon' || service.slug === 'tarpoon';
 
     const pricingInfo = getRentalPricingInfo(service, isSocio);
 
@@ -138,7 +134,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
             }`}
         >
             {/* Image Header with Responsive Aspect Ratio */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-black">
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
                 {isTarpoon ? (
                     <div className="w-full h-full bg-black" />
                 ) : (
