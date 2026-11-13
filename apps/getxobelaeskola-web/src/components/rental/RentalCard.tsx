@@ -124,6 +124,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
     const isTransientLt8m = service.slug.includes('transeunte-8m') || service.slug.includes('transient-mooring-8m') || (service.nombre_es || '').toLowerCase().includes('< 8m') || (service.nombre_es || '').toLowerCase().includes('<8m') || (service.nombre_es || '').toLowerCase().includes('transient mooring (< 8m)');
     const isBigsub = service.slug.includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsub') || (service.nombre_es || '').toLowerCase().includes('bigsup');
     const isJ80SinPatron = (service.slug.includes('j80') || (service.nombre_es || '').toLowerCase().includes('j80')) && (service.slug.includes('sin-patron') || (service.nombre_es || '').toLowerCase().includes('sin patr'));
+    const isTarpoon = service.slug.includes('tarpon') || service.slug.includes('tarpoon') || (service.nombre_es || '').toLowerCase().includes('tarpon') || (service.nombre_es || '').toLowerCase().includes('tarpoon');
 
     const pricingInfo = getRentalPricingInfo(service, isSocio);
 
@@ -137,7 +138,11 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
             }`}
         >
             {/* Image Header with Responsive Aspect Ratio */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden">
+            <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-black">
+                {isTarpoon ? (
+                    <div className="w-full h-full bg-black" />
+                ) : (
+                    <>
                 <NauticalImage
                     src={imgSrc}
                     category={service.categoria as any}
@@ -180,6 +185,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                 <div className="absolute inset-0 bg-gradient-to-b from-sky-400/20 via-sky-300/10 to-transparent mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-b from-amber-300/5 via-transparent to-amber-500/5 mix-blend-overlay pointer-events-none z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-nautical-deep via-transparent to-transparent z-10" />
+                    </>
+                )}
 
                 {/* Member Badge Overlay */}
                 {pricingInfo.hasSocioDiscount && (

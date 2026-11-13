@@ -2,6 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Tarpoon with Skipper Card Black Background
+  1. **Black Background on Tarpoon Card:** Replaced the boat image on the Tarpoon card (`alquiler-tarpon-patron`) with a solid black background (`bg-black`) exclusively for this service.
+  2. **Card Scope Isolation:** Only affects Tarpoon with skipper (`isTarpoon`), keeping all other boat cards with their standard images and overlays intact.
+  3. **Branch:** feature/clawde-tarpon-black-bg.
+- **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Zoom J-80 sin patron card image by 20%
   1. **Image Scaling:** Added scale-[1.20] origin-[35%_center] to the J-80 sin patron card image in RentalCard.tsx.
   2. **Card Visual:** Centers and zooms in on the boat and crew standing onboard by 20%.
