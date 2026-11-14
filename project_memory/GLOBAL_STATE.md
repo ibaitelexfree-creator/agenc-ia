@@ -2,6 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Tarpoon with Skipper Card Custom Image (No Logo)
+  1. **Custom Image:** Updated to `Moving_boat_closer_in_image_ead16130.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
+  2. **Logo Removed:** Cleaned out logo decal per user request, showing clean photo.
+  3. **Strict Isolation:** Only affects Tarpoon with skipper, all other rental cards render normally.
+- **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Zoom J-80 sin patron card image by 20%
   1. **Image Scaling:** Added scale-[1.20] origin-[35%_center] to the J-80 sin patron card image in RentalCard.tsx.
   2. **Card Visual:** Centers and zooms in on the boat and crew standing onboard by 20%.
