@@ -166,7 +166,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                                 : isTarpoon
                                                     ? 'object-[center_55%]'
                                                 : isWindsurfMooring
-                                                    ? 'object-[center_85%]'
+                                                    ? 'object-[45%_85%] scale-[1.05] origin-[45%_85%]'
                                                     : isWindsurfVoucher
                                                         ? 'object-[center_47.5%]'
                                                         : isWindsurfRental
