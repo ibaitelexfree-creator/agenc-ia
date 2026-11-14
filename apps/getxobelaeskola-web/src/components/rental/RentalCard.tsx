@@ -40,6 +40,10 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
         const slug = (service.slug || '').toLowerCase();
         const dbImg = service.imagen_url;
 
+        if (slug.includes('tarpon') || slug.includes('tarpoon') || n.includes('tarpon') || n.includes('tarpoon')) {
+            return '/images/tarpoon-con-patron.jpg';
+        }
+
         // Kayak 2 People: show black background image (no double kayak available)
         if (slug.includes('kayak-2') || slug.includes('piragua-2') || n.includes('kayak (2') || n.includes('kayak (2 people') || n.includes('kayak (2 personas')) {
             return '/images/black-kayak.png';
@@ -145,7 +149,9 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover transition-transform duration-[2s] ease-out group-hover:scale-105 saturate-[1.35] brightness-[1.14] contrast-[1.12] ${
-                        isBigsub
+                        service.slug.includes('tarpon')
+                            ? 'object-[center_42%]'
+                            : isBigsub
                             ? 'object-[center_60%]'
                             : isTransientLt8m
                                 ? 'object-center'
