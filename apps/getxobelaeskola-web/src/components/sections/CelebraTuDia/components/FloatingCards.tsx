@@ -33,10 +33,10 @@ export default function FloatingCards() {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
 
   const cardItems = [
-    { id: 0, title: t('chill_title'), desc: t('chill_desc'), emoji: '🛋️', detail: t('chill_detail'), color: '#6BBF59' },
     { id: 1, title: t('velero_title'), desc: t('velero_desc'), emoji: '⛵', badge: t('velero_badge'), color: '#1B8FCF' },
-    { id: 2, title: t('sup_title'), desc: t('sup_desc'), emoji: '🏄', color: '#FFD166' },
     { id: 3, title: t('combo_title'), desc: t('combo_desc'), emoji: '🔄', badge: t('combo_badge'), color: '#EF6351' },
+    { id: 2, title: t('sup_title'), desc: t('sup_desc'), emoji: '🏄', color: '#FFD166' },
+    { id: 0, title: t('chill_title'), desc: t('chill_desc'), emoji: '🛋️', detail: t('chill_detail'), color: '#6BBF59' },
     { id: 4, title: t('catering_title'), desc: t('catering_desc'), emoji: '🍱', color: '#F5E6C8' }
   ];
 

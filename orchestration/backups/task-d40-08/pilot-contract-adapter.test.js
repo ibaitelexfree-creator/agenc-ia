@@ -1,0 +1,697 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import http from 'http';
+import axios from 'axios';
+import { createGatewayApp } from '../../gateway/gateway-server.js';
+import { validatePilotResponse } from '../../gateway/pilot-validator.js';
+
+const TEST_PSK = '0123456789abcdef0123456789abcdef0123456789abcdef';
+process.env.INTERNAL_SERVICE_PSK = TEST_PSK;
+
+function startServer(app) {
+    return new Promise((resolve) => {
+        const server = http.createServer(app);
+        server.listen(0, '127.0.0.1', () => {
+            const port = server.address().port;
+            resolve({ server, port, baseUrl: 'http://127.0.0.1:' + port });
+        });
+    });
+}
+
+function stopServer(server) {
+    return new Promise((resolve) => {
+        server.close(resolve);
+    });
+}
+
+function getValidPilotPayload() {
+    return {
+        task_id: 'TASK-D40-02',
+        agent_id: 'test-agent',
+        request_id: 'req-synth-valid-001',
+        model: 'qwen2.5-7b-instruct',
+        temperature: 0.0,
+        output_schema_version: '1.0.0',
+        messages: [
+            {
+                role: 'user',
+                content: 'Return valid JSON only with status ok: {\"status\":\"ok\"}'
+            }
+        ],
+        max_tokens: 50,
+        timeout_ms: 10000
+    };
+}
+
+test('PILOT-001 Gateway Adapter Adversarial & Contract Test Suite', async (t) => {
+    const app = createGatewayApp({
+        lmStudioUrl: 'http://127.0.0.1:1234',
+        defaultTimeoutMs: 60000,
+        maxConcurrency: 4,
+        requireAuth: true
+    });
+
+    const { server, baseUrl } = await startServer(app);
+
+    t.after(async () => {
+        await stopServer(server);
+    });
+
+    // 1. Valid authenticated request
+    await t.test('1. Valid authenticated request succeeds with contract compliance', async () => {
+        const payload = getValidPilotPayload();
+        const res = await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+            headers: { 'x-internal-service-token': TEST_PSK }
+        });
+
+        assert.equal(res.status, 200);
+        assert.equal(res.data.status, 'SUCCESS');
+        assert.equal(res.data.task_id, payload.task_id);
+        assert.equal(res.data.agent_id, payload.agent_id);
+        assert.equal(res.data.request_id, payload.request_id);
+        assert.ok(res.data.result, 'result must be non-null');
+        assert.equal(res.data.error, null, 'error must be null on success');
+        const schemaValidation = validatePilotResponse(res.data);
+        assert.equal(schemaValidation.isValid, true, 'Response must strictly pass pilot-response-schema.json');
+    });
+
+    // 2. Missing PSK
+    await t.test('2. Missing PSK returns 401 Unauthorized', async () => {
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', getValidPilotPayload());
+            assert.fail('Should fail with 401');
+        } catch (err) {
+            assert.equal(err.response?.status, 401);
+            assert.equal(err.response?.data?.error, 'Unauthorized: Missing internal service token');
+        }
+    });
+
+    // 3. Incorrect PSK
+    await t.test('3. Incorrect PSK returns 401 Unauthorized', async () => {
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', getValidPilotPayload(), {
+                headers: { 'x-internal-service-token': 'wrong-token-wrong-token-wrong-token-123' }
+            });
+            assert.fail('Should fail with 401');
+        } catch (err) {
+            assert.equal(err.response?.status, 401);
+            assert.equal(err.response?.data?.error, 'Unauthorized: Invalid internal service token');
+        }
+    });
+
+    // 4. Missing required request field
+    await t.test('4. Missing required request field returns 400 INVALID_REQUEST', async () => {
+        const payload = getValidPilotPayload();
+        delete payload.output_schema_version;
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+            assert.equal(err.response?.data?.result, null);
+            assert.ok(err.response?.data?.error?.message.includes('output_schema_version'));
+        }
+    });
+
+    // 5. Unknown request field
+    await t.test('5. Unknown request field is rejected (additionalProperties: false)', async () => {
+        const payload = { ...getValidPilotPayload(), unauthorized_injected_field: 'attack' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+            assert.equal(err.response?.data?.result, null);
+        }
+    });
+
+    // 6. Invalid task_id
+    await t.test('6. Invalid task_id returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), task_id: 'bad task with spaces!' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 7. Invalid agent_id
+    await t.test('7. Invalid agent_id returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), agent_id: 'bad/agent@id!' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 8. Invalid request_id
+    await t.test('8. Invalid request_id returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), request_id: 'short' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 9. Invalid model identifier
+    await t.test('9. Invalid model identifier returns 503/400 MODEL_UNAVAILABLE', async () => {
+        const payload = { ...getValidPilotPayload(), model: 'non-existent-llm-123' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 503 or 400');
+        } catch (err) {
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+            assert.equal(err.response?.data?.result, null);
+        }
+    });
+
+    // 9b. Model alias local-model is rejected
+    await t.test('9b. Generic local-model alias is rejected (must resolve to loaded model)', async () => {
+        const payload = { ...getValidPilotPayload(), model: 'local-model' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with MODEL_UNAVAILABLE');
+        } catch (err) {
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+            assert.ok(err.response?.data?.error?.message.includes('local-model'));
+        }
+    });
+
+    // 10. Temperature outside allowed range
+    await t.test('10. Temperature outside allowed range (e.g. 2.5) returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), temperature: 2.5 };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 11. Empty messages array
+    await t.test('11. Empty messages array returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), messages: [] };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 12. Invalid message role
+    await t.test('12. Invalid message role returns 400 INVALID_REQUEST', async () => {
+        const payload = {
+            ...getValidPilotPayload(),
+            messages: [{ role: 'hacker_role', content: 'hello' }]
+        };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 13. Empty message content
+    await t.test('13. Empty message content returns 400 INVALID_REQUEST', async () => {
+        const payload = {
+            ...getValidPilotPayload(),
+            messages: [{ role: 'user', content: '' }]
+        };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 14. Single message exceeding content limit (>8192)
+    await t.test('14. Single message exceeding content limit returns 400 INVALID_REQUEST', async () => {
+        const payload = {
+            ...getValidPilotPayload(),
+            messages: [{ role: 'user', content: 'A'.repeat(8193) }]
+        };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 15. Aggregate messages exceeding 8,192 characters
+    await t.test('15. Aggregate messages exceeding 8192 characters returns 400 INVALID_REQUEST', async () => {
+        const payload = {
+            ...getValidPilotPayload(),
+            messages: [
+                { role: 'user', content: 'A'.repeat(5000) },
+                { role: 'assistant', content: 'B'.repeat(4000) }
+            ]
+        };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+            assert.ok(err.response?.data?.error?.message.includes('Aggregate content length'));
+        }
+    });
+
+    // 16. Excessive message count (>50)
+    await t.test('16. Excessive message count returns 400 INVALID_REQUEST', async () => {
+        const msgs = [];
+        for (let i = 0; i < 55; i++) {
+            msgs.push({ role: 'user', content: 'Message ' + i });
+        }
+        const payload = { ...getValidPilotPayload(), messages: msgs };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 17. Invalid output_schema_version
+    await t.test('17. Invalid output_schema_version returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), output_schema_version: 'v1-beta' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 18. Excessive max_tokens (>4096)
+    await t.test('18. Excessive max_tokens returns 400 INVALID_REQUEST', async () => {
+        const payload = { ...getValidPilotPayload(), max_tokens: 5000 };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 400');
+        } catch (err) {
+            assert.equal(err.response?.status, 400);
+            assert.equal(err.response?.data?.status, 'INVALID_REQUEST');
+        }
+    });
+
+    // 19. Timeout handling
+    await t.test('19. Timeout handling returns 504 TIMEOUT when inference exceeds timeout', async () => {
+        const slowApp = createGatewayApp({
+            lmStudioUrl: 'http://127.0.0.1:1234',
+            defaultTimeoutMs: 60000,
+            requireAuth: true
+        });
+        const slowInstance = await startServer(slowApp);
+
+        try {
+            const payload = {
+                ...getValidPilotPayload(),
+                timeout_ms: 100, // minimum valid in schema (100ms)
+                max_tokens: 500,
+                messages: [{ role: 'user', content: 'Generate a long and very detailed 1000-word essay about the Roman Empire.' }]
+            };
+            await axios.post(slowInstance.baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 504');
+        } catch (err) {
+            assert.equal(err.response?.status, 504);
+            assert.equal(err.response?.data?.status, 'TIMEOUT');
+            assert.equal(err.response?.data?.result, null);
+            assert.ok(err.response?.data?.error?.message.includes('timed out'));
+        } finally {
+            await stopServer(slowInstance.server);
+        }
+    });
+
+    // 20. LM Studio unavailable
+    await t.test('20. LM Studio unavailable returns 503 MODEL_UNAVAILABLE', async () => {
+        const offlineApp = createGatewayApp({
+            lmStudioUrl: 'http://127.0.0.1:19998',
+            requireAuth: true
+        });
+        const offlineInstance = await startServer(offlineApp);
+
+        try {
+            await axios.post(offlineInstance.baseUrl + '/v1/pilot/inference', getValidPilotPayload(), {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 503');
+        } catch (err) {
+            assert.equal(err.response?.status, 503);
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+            assert.equal(err.response?.data?.result, null);
+        } finally {
+            await stopServer(offlineInstance.server);
+        }
+    });
+
+    // 21. Gateway concurrency limit
+    await t.test('21. Gateway concurrency limit triggers 429 RATE_LIMITED', async () => {
+        const limitedApp = createGatewayApp({
+            lmStudioUrl: 'http://127.0.0.1:1234',
+            maxConcurrency: 1,
+            requireAuth: true
+        });
+        const limitedInstance = await startServer(limitedApp);
+
+        try {
+            const p1Promise = axios.post(limitedInstance.baseUrl + '/v1/pilot/inference', {
+                ...getValidPilotPayload(),
+                request_id: 'req-conc-1',
+                messages: [{ role: 'user', content: 'Count from 1 to 20 slowly.' }],
+                max_tokens: 50
+            }, { headers: { 'x-internal-service-token': TEST_PSK } });
+
+            // Ensure p1 is dispatched and admitted before p2 arrives
+            await new Promise(r => setTimeout(r, 25));
+
+            let secondFailedRateLimited = false;
+            try {
+                await axios.post(limitedInstance.baseUrl + '/v1/pilot/inference', {
+                    ...getValidPilotPayload(),
+                    request_id: 'req-conc-2'
+                }, { headers: { 'x-internal-service-token': TEST_PSK } });
+            } catch (err) {
+                if (err.response?.status === 429) {
+                    secondFailedRateLimited = true;
+                    assert.equal(err.response.data?.status, 'RATE_LIMITED');
+                    assert.equal(err.response.data?.result, null);
+                }
+            }
+
+            await p1Promise.catch(() => {});
+            assert.ok(secondFailedRateLimited, 'Second request must receive 429 RATE_LIMITED');
+        } finally {
+            await stopServer(limitedInstance.server);
+        }
+    });
+
+    // 22. Malformed model output detection
+    await t.test('22. Malformed model output detection works when structured output is expected', async () => {
+        const malformedResponse = {
+            task_id: 'TASK-D40-02',
+            agent_id: 'test-agent',
+            request_id: 'req-synth-001',
+            model: 'qwen2.5-7b-instruct',
+            status: 'INVALID_MODEL_OUTPUT',
+            result: null,
+            error: {
+                code: 'INVALID_MODEL_OUTPUT',
+                message: 'Malformed JSON output'
+            },
+            execution_timestamp: new Date().toISOString()
+        };
+        const validation = validatePilotResponse(malformedResponse);
+        assert.equal(validation.isValid, true);
+    });
+
+    // 23. Successful structured JSON response
+    await t.test('23. Successful structured JSON response parses result.parsed_json correctly', async () => {
+        const payload = {
+            ...getValidPilotPayload(),
+            messages: [
+                { role: 'system', content: 'Respond with valid JSON only.' },
+                { role: 'user', content: 'Return valid JSON object: {"status":"ok","source":"test"}' }
+            ]
+        };
+        const res = await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+            headers: { 'x-internal-service-token': TEST_PSK }
+        });
+        assert.equal(res.status, 200);
+        assert.equal(res.data.status, 'SUCCESS');
+        assert.ok(res.data.result.parsed_json);
+        assert.equal(res.data.result.parsed_json.status, 'ok');
+    });
+
+    // 24. Incorrect response envelope (schema verification)
+    await t.test('24. Incorrect response envelope is rejected by schema validator', async () => {
+        const brokenEnvelope = {
+            task_id: 'TASK-01',
+            status: 'SUCCESS'
+        };
+        const validation = validatePilotResponse(brokenEnvelope);
+        assert.equal(validation.isValid, false);
+    });
+
+    // 25. Failure response with non-null result (schema verification)
+    await t.test('25. Failure response with non-null result violates mutual exclusivity', async () => {
+        const invalidFailure = {
+            task_id: 'TASK-D40-02',
+            agent_id: 'test-agent',
+            request_id: 'req-001',
+            model: 'qwen2.5-7b-instruct',
+            status: 'INVALID_REQUEST',
+            result: { text: 'should not be here' },
+            error: { code: 'INVALID_REQUEST', message: 'failed' },
+            execution_timestamp: new Date().toISOString()
+        };
+        const validation = validatePilotResponse(invalidFailure);
+        assert.equal(validation.isValid, false);
+    });
+
+    // 26. SUCCESS response with non-null error (schema verification)
+    await t.test('26. SUCCESS response with non-null error violates mutual exclusivity', async () => {
+        const invalidSuccess = {
+            task_id: 'TASK-D40-02',
+            agent_id: 'test-agent',
+            request_id: 'req-001',
+            model: 'qwen2.5-7b-instruct',
+            status: 'SUCCESS',
+            result: {
+                text: 'ok',
+                finish_reason: 'stop',
+                parsed_json: null,
+                timing: { inference_ms: 10, total_ms: 20 }
+            },
+            error: { code: 'ERR', message: 'error on success!' },
+            execution_timestamp: new Date().toISOString()
+        };
+        const validation = validatePilotResponse(invalidSuccess);
+        assert.equal(validation.isValid, false);
+    });
+
+    // 27. Backward compatibility: Existing /v1/inference route still behaves as before
+    await t.test('27. Existing /v1/inference route still behaves as before', async () => {
+        const res = await axios.post(baseUrl + '/v1/inference', {
+            prompt: 'Ping test',
+            model: 'qwen2.5-7b-instruct',
+            max_tokens: 10
+        }, {
+            headers: { 'x-internal-service-token': TEST_PSK }
+        });
+        assert.equal(res.status, 200);
+        assert.equal(res.data.status, 'SUCCESS');
+        assert.ok(res.data.requestId);
+        assert.ok(typeof res.data.text === 'string');
+    });
+
+    // ========================================================
+    // TASK-D40-04 NEW ADVERSARIAL TESTS
+    // ========================================================
+
+    // 28. Adversarial: Empty model list rejected before inference dispatch
+    await t.test('28. Empty model list returns 503 MODEL_UNAVAILABLE before inference', async () => {
+        const emptyModelApp = createGatewayApp({
+            lmStudioUrl: 'http://127.0.0.1:19999', // offline / unreachable returning []
+            requireAuth: true
+        });
+        const emptyModelInstance = await startServer(emptyModelApp);
+
+        try {
+            await axios.post(emptyModelInstance.baseUrl + '/v1/pilot/inference', getValidPilotPayload(), {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 503');
+        } catch (err) {
+            assert.equal(err.response?.status, 503);
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+            assert.equal(err.response?.data?.result, null);
+            assert.ok(err.response?.data?.error?.message.includes('model discovery failed') || err.response?.data?.error?.message.includes('LM Studio'));
+        } finally {
+            await stopServer(emptyModelInstance.server);
+        }
+    });
+
+    // 29. Adversarial: Requested model absent from non-empty model list
+    await t.test('29. Requested model absent from active list returns 503 MODEL_UNAVAILABLE', async () => {
+        const payload = { ...getValidPilotPayload(), model: 'non-existent-model-xyz' };
+        try {
+            await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 503');
+        } catch (err) {
+            assert.equal(err.response?.status, 503);
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+            assert.equal(err.response?.data?.result, null);
+            assert.ok(err.response?.data?.error?.message.includes('not currently loaded'));
+        }
+    });
+
+    // 30. Adversarial: Model discovery timeout rejected before inference
+    await t.test('30. Model discovery timeout triggers MODEL_UNAVAILABLE', async () => {
+        const hangingServer = http.createServer((req, res) => {
+            if (req.url === '/v1/models') {
+                return; // hang
+            }
+        });
+        await new Promise(r => hangingServer.listen(0, '127.0.0.1', r));
+        const hangingPort = hangingServer.address().port;
+
+        const hangingApp = createGatewayApp({
+            lmStudioUrl: 'http://127.0.0.1:' + hangingPort,
+            requireAuth: true
+        });
+        const hangingInstance = await startServer(hangingApp);
+
+        try {
+            await axios.post(hangingInstance.baseUrl + '/v1/pilot/inference', getValidPilotPayload(), {
+                headers: { 'x-internal-service-token': TEST_PSK }
+            });
+            assert.fail('Should fail with 503');
+        } catch (err) {
+            assert.equal(err.response?.status, 503);
+            assert.equal(err.response?.data?.status, 'MODEL_UNAVAILABLE');
+        } finally {
+            await stopServer(hangingInstance.server);
+            await stopServer(hangingServer);
+        }
+    });
+
+    // 31. Authentication Order: Malformed JSON without authentication returns 401, NOT 400
+    await t.test('31. Malformed JSON without authentication returns 401 Unauthorized before body parsing', async () => {
+        const res = await new Promise((resolve) => {
+            const req = http.request({
+                host: '127.0.0.1',
+                port: server.address().port,
+                path: '/v1/pilot/inference',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            }, (response) => {
+                let data = '';
+                response.on('data', chunk => data += chunk);
+                response.on('end', () => resolve({ statusCode: response.statusCode, body: data }));
+            });
+            req.write('{ malformed json invalid syntax !!!');
+            req.end();
+        });
+
+        assert.equal(res.statusCode, 401, 'Unauthenticated malformed request must be rejected with 401 BEFORE parsing body');
+        assert.ok(res.body.includes('Missing internal service token'));
+    });
+
+    // 32. Authentication Order: Oversized unauthenticated payload returns 401, NOT 413
+    await t.test('32. Oversized unauthenticated payload returns 401 Unauthorized before body parsing', async () => {
+        const oversized = Buffer.alloc(1024 * 1024 * 2, 'A'); // 2MB (> 1MB limit)
+        const res = await new Promise((resolve) => {
+            const req = http.request({
+                host: '127.0.0.1',
+                port: server.address().port,
+                path: '/v1/pilot/inference',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': oversized.length
+                }
+            }, (response) => {
+                let data = '';
+                response.on('data', chunk => data += chunk);
+                response.on('end', () => resolve({ statusCode: response.statusCode, body: data }));
+            });
+            req.write(oversized);
+            req.end();
+        });
+
+        assert.equal(res.statusCode, 401, 'Unauthenticated oversized request must be rejected with 401 BEFORE body parsing / 413');
+    });
+
+    // 33. Authentication Order: Malformed JSON WITH valid authentication returns 400 body parser error
+    await t.test('33. Malformed JSON WITH valid authentication returns 400 from body parser', async () => {
+        const res = await new Promise((resolve) => {
+            const req = http.request({
+                host: '127.0.0.1',
+                port: server.address().port,
+                path: '/v1/pilot/inference',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-internal-service-token': TEST_PSK
+                }
+            }, (response) => {
+                let data = '';
+                response.on('data', chunk => data += chunk);
+                response.on('end', () => resolve({ statusCode: response.statusCode, body: data }));
+            });
+            req.write('{ malformed json invalid syntax !!!');
+            req.end();
+        });
+
+        assert.equal(res.statusCode, 400, 'Authenticated malformed request reaches body parser and returns 400');
+    });
+
+    // 34. Authentication Order: Bearer token authentication format is accepted
+    await t.test('34. Bearer token in Authorization header succeeds', async () => {
+        const payload = getValidPilotPayload();
+        const res = await axios.post(baseUrl + '/v1/pilot/inference', payload, {
+            headers: { 'Authorization': `Bearer ${TEST_PSK}` }
+        });
+        assert.equal(res.status, 200);
+        assert.equal(res.data.status, 'SUCCESS');
+    });
+});
+
+

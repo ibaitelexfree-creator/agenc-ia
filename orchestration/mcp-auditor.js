@@ -4,6 +4,8 @@ import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
 import winston from 'winston';
+import { createInternalAuthMiddleware } from './middleware/internal-auth.js';
+const requireInternalAuth = createInternalAuthMiddleware();
 
 const logger = winston.createLogger({
     level: 'info',
@@ -132,7 +134,7 @@ function auditIntention(plan, actualFilesOnDisk, manifest) {
 }
 
 
-app.post('/audit', async (req, res) => {
+app.post('/audit', requireInternalAuth, async (req, res) => {
     const { plan: planWrapper, artifacts_path } = req.body;
     const correlationId = crypto.randomUUID();
     const startTime = Date.now();
@@ -212,6 +214,6 @@ app.post('/audit', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    logger.info(`[Quality Auditor V2 - Strict] Running on port ${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+    logger.info(`[Quality Auditor V2 - Strict] Running on 127.0.0.1:${PORT}`);
 });

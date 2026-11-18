@@ -1,0 +1,440 @@
+[
+  {
+    "model_name": "tiny",
+    "compute_type": "float16",
+    "load_time_sec": 1.682,
+    "vram_model_footprint_mb": 255.0,
+    "peak_vram_used_mb": 4464.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 48.8,
+    "overall_speedup": 13.47,
+    "overall_rtf": 0.0742,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.542,
+        "speedup_factor": 5.09,
+        "rtf": 0.1964,
+        "language": "es",
+        "language_probability": 0.7573,
+        "segment_count": 1,
+        "transcript_preview": "perfecto pues nada de momento paciencia"
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.415,
+        "speedup_factor": 24.48,
+        "rtf": 0.0408,
+        "language": "es",
+        "language_probability": 0.8564,
+        "segment_count": 2,
+        "transcript_preview": "una clara de serie que bien que ya se juntar\u00e1 con aitite ah\u00ed que se juntar\u00e1 con aitite y otra cosa es aitite que la ense"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 5.336,
+        "speedup_factor": 5.69,
+        "rtf": 0.1756,
+        "language": "es",
+        "language_probability": 0.8828,
+        "segment_count": 4,
+        "transcript_preview": "Qu\u00e9 bueno, se\u00f1or m\u00edo, qu\u00e9 bueno, pues aprovecha todas las fibriles y los de las pudientes Qu\u00e9 bueno, es muy bueno, es de"
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 9.514,
+        "speedup_factor": 7.89,
+        "rtf": 0.1268,
+        "language": "es",
+        "language_probability": 0.7798,
+        "segment_count": 27,
+        "transcript_preview": "Habla a la Gremia, que le comentaba que el su d\u00eda te pegas a tracones, no as\u00ed que hace m\u00e1s, as\u00ed, de gambas, como hay en "
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 32.992,
+        "speedup_factor": 16.33,
+        "rtf": 0.0612,
+        "language": "es",
+        "language_probability": 0.8032,
+        "segment_count": 398,
+        "transcript_preview": "que hizo que hizo, y m\u00eda\u00f3, ah\u00ed est\u00e1, llama, resulta que quer\u00eda contar es una cosa de estr\u00e9s, una idea que me motivas que"
+      }
+    ]
+  },
+  {
+    "model_name": "tiny",
+    "compute_type": "int8_float16",
+    "load_time_sec": 0.733,
+    "vram_model_footprint_mb": 32.0,
+    "peak_vram_used_mb": 4343.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 53.64,
+    "overall_speedup": 12.25,
+    "overall_rtf": 0.0816,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.216,
+        "speedup_factor": 12.79,
+        "rtf": 0.0782,
+        "language": "es",
+        "language_probability": 0.7129,
+        "segment_count": 1,
+        "transcript_preview": "Perfecto, pues nada, de momento paciencia."
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.539,
+        "speedup_factor": 18.86,
+        "rtf": 0.053,
+        "language": "es",
+        "language_probability": 0.8501,
+        "segment_count": 2,
+        "transcript_preview": "una clara de serie que bien que ya se juntar\u00e1 con aitite ah\u00ed, es que se juntar\u00e1 con aitite y otra clara de aitite, que l"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 1.922,
+        "speedup_factor": 15.81,
+        "rtf": 0.0633,
+        "language": "es",
+        "language_probability": 0.8604,
+        "segment_count": 4,
+        "transcript_preview": "\u00bfQu\u00e9 bueno, se\u00f1or Mio? \u00bfQu\u00e9 bueno, pues aprovechate a todas las fibril\u00e9s y de las pudientes? \u00bfQu\u00e9 bueno? \u00bfQu\u00e9 bueno, eso"
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 8.991,
+        "speedup_factor": 8.35,
+        "rtf": 0.1198,
+        "language": "es",
+        "language_probability": 0.7886,
+        "segment_count": 4,
+        "transcript_preview": "Habla a la Gremia, que le comentaba que el su d\u00eda te pegas a tracones, no s\u00ed, que hace m\u00e1s, as\u00ed, de gambas, como hay en "
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 41.973,
+        "speedup_factor": 12.84,
+        "rtf": 0.0779,
+        "language": "es",
+        "language_probability": 0.8403,
+        "segment_count": 234,
+        "transcript_preview": "que hizo que hizo, y m\u00eda un aita llamar, resulta que quer\u00eda contar es una cosa de estr\u00e9s, una idea que me motiva que se "
+      }
+    ]
+  },
+  {
+    "model_name": "base",
+    "compute_type": "float16",
+    "load_time_sec": 0.846,
+    "vram_model_footprint_mb": 238.0,
+    "peak_vram_used_mb": 4581.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 31.33,
+    "overall_speedup": 20.98,
+    "overall_rtf": 0.0477,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.355,
+        "speedup_factor": 7.77,
+        "rtf": 0.1286,
+        "language": "es",
+        "language_probability": 0.9009,
+        "segment_count": 1,
+        "transcript_preview": "Perfecto, por eso nada, de momento paciencia."
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.466,
+        "speedup_factor": 21.78,
+        "rtf": 0.0459,
+        "language": "es",
+        "language_probability": 0.957,
+        "segment_count": 2,
+        "transcript_preview": "una cara a decir que bien que ya se juntar\u00e1 con aitite ah\u00ed, se juntar\u00e1 con aitite y otra cosa aitite le se\u00f1ala c\u00f3mo func"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 1.777,
+        "speedup_factor": 17.1,
+        "rtf": 0.0585,
+        "language": "es",
+        "language_probability": 0.895,
+        "segment_count": 4,
+        "transcript_preview": "Qu\u00e9 bueno se\u00f1or, qu\u00e9 bueno, aprovecha todos los privilegios de los estudiantes, qu\u00e9 bueno, que muy bueno eso de que pued"
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 3.644,
+        "speedup_factor": 20.59,
+        "rtf": 0.0486,
+        "language": "es",
+        "language_probability": 0.6626,
+        "segment_count": 16,
+        "transcript_preview": "Hola, a la gremia, que le comentan, gare la de que el su d\u00eda te peg\u00e1s a tracones no s\u00e9 cada semana, as\u00ed, de gambas, como"
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 25.091,
+        "speedup_factor": 21.48,
+        "rtf": 0.0466,
+        "language": "es",
+        "language_probability": 0.8413,
+        "segment_count": 40,
+        "transcript_preview": "que hizo que haisado y me hau ahita llama resuelta que quer\u00eda contaros una cosa de estr\u00e9s, una idea que me motivas que s"
+      }
+    ]
+  },
+  {
+    "model_name": "base",
+    "compute_type": "int8_float16",
+    "load_time_sec": 0.927,
+    "vram_model_footprint_mb": 97.0,
+    "peak_vram_used_mb": 4469.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 37.89,
+    "overall_speedup": 17.35,
+    "overall_rtf": 0.0576,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.264,
+        "speedup_factor": 10.47,
+        "rtf": 0.0955,
+        "language": "es",
+        "language_probability": 0.9019,
+        "segment_count": 1,
+        "transcript_preview": "Perfecto, por eso nada, de momento paciencia."
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.536,
+        "speedup_factor": 18.96,
+        "rtf": 0.0528,
+        "language": "es",
+        "language_probability": 0.9609,
+        "segment_count": 2,
+        "transcript_preview": "una cara a decir que bien que ya se juntar\u00e1 con aitite ah\u00ed, se juntar\u00e1 con aitite y otra cosa aitite le se\u00f1ala c\u00f3mo func"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 2.536,
+        "speedup_factor": 11.98,
+        "rtf": 0.0835,
+        "language": "es",
+        "language_probability": 0.873,
+        "segment_count": 4,
+        "transcript_preview": "\u00a1Qu\u00e9 bueno se\u00f1or, qu\u00e9 bueno, aprovecha todos los privilegios de los estudiantes, qu\u00e9 guay, que muy bueno eso de que pued"
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 3.792,
+        "speedup_factor": 19.79,
+        "rtf": 0.0505,
+        "language": "es",
+        "language_probability": 0.6562,
+        "segment_count": 14,
+        "transcript_preview": "Hola, a la gremia, que le comentaba en general la de que el su d\u00eda te peg\u00e1s a tracones en la semana as\u00ed, de gambas, como"
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 30.758,
+        "speedup_factor": 17.52,
+        "rtf": 0.0571,
+        "language": "es",
+        "language_probability": 0.8472,
+        "segment_count": 56,
+        "transcript_preview": "que hizo que hizo y me habo ah\u00ed est\u00e1, ya me resuelta, que quer\u00eda contaros una cosa de estr\u00e9s, una idea que me motivas qu"
+      }
+    ]
+  },
+  {
+    "model_name": "small",
+    "compute_type": "float16",
+    "load_time_sec": 1.454,
+    "vram_model_footprint_mb": 568.0,
+    "peak_vram_used_mb": 4971.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 42.78,
+    "overall_speedup": 15.36,
+    "overall_rtf": 0.0651,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.37,
+        "speedup_factor": 7.47,
+        "rtf": 0.1339,
+        "language": "es",
+        "language_probability": 0.9443,
+        "segment_count": 1,
+        "transcript_preview": "Perfecto, pues nada, de momento paciencia."
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.823,
+        "speedup_factor": 12.35,
+        "rtf": 0.081,
+        "language": "es",
+        "language_probability": 0.7832,
+        "segment_count": 3,
+        "transcript_preview": "Una cosa a decir, y que bien que ya se juntar\u00e1 con Haitite ah\u00ed, que se junta con Haitite, y otra cosa es Haitite, le ens"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 1.243,
+        "speedup_factor": 24.44,
+        "rtf": 0.0409,
+        "language": "es",
+        "language_probability": 0.8721,
+        "segment_count": 4,
+        "transcript_preview": "qu\u00e9 bueno se\u00f1or m\u00edo qu\u00e9 bueno pues aprovecha a todos los privilegios de los pudientes qu\u00e9 guay que muy bueno eso de que "
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 5.022,
+        "speedup_factor": 14.94,
+        "rtf": 0.0669,
+        "language": "es",
+        "language_probability": 0.5552,
+        "segment_count": 10,
+        "transcript_preview": "Hola a la Jerem\u00eda, que le comentaba a \u00c1ngela que el su d\u00eda te pegabas a tracones, no s\u00e9, cada semana, as\u00ed, de gambas, co"
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 35.324,
+        "speedup_factor": 15.26,
+        "rtf": 0.0655,
+        "language": "es",
+        "language_probability": 0.8345,
+        "segment_count": 89,
+        "transcript_preview": "Kaisho, Kaisho, y mi amor, Aita, llama. Resuelta que quer\u00eda contaros una cosa a los tres, una idea que me motiva que se "
+      }
+    ]
+  },
+  {
+    "model_name": "small",
+    "compute_type": "int8_float16",
+    "load_time_sec": 2.056,
+    "vram_model_footprint_mb": 360.0,
+    "peak_vram_used_mb": 4701.0,
+    "total_test_audio_sec": 657.27,
+    "total_proc_time_sec": 50.41,
+    "overall_speedup": 13.04,
+    "overall_rtf": 0.0767,
+    "runs": [
+      {
+        "file_id": 17370,
+        "audio_filename": "PTT-20231023-WA0016.opus",
+        "duration_sec": 2.762167,
+        "proc_time_sec": 0.454,
+        "speedup_factor": 6.09,
+        "rtf": 0.1642,
+        "language": "es",
+        "language_probability": 0.9395,
+        "segment_count": 1,
+        "transcript_preview": "Perfecto, pues nada, de momento paciencia."
+      },
+      {
+        "file_id": 17166,
+        "audio_filename": "PTT-20210604-WA0013.opus",
+        "duration_sec": 10.162167,
+        "proc_time_sec": 0.988,
+        "speedup_factor": 10.28,
+        "rtf": 0.0972,
+        "language": "es",
+        "language_probability": 0.6934,
+        "segment_count": 3,
+        "transcript_preview": "Una cosa a decir, y que bien que ya se juntar\u00e1 con Aitite ah\u00ed, que se junta con Aitite, y otra cosa es Aitite, le ense\u00f1a"
+      },
+      {
+        "file_id": 17417,
+        "audio_filename": "PTT-20240417-WA0042.opus",
+        "duration_sec": 30.382167,
+        "proc_time_sec": 1.46,
+        "speedup_factor": 20.81,
+        "rtf": 0.0481,
+        "language": "es",
+        "language_probability": 0.8262,
+        "segment_count": 4,
+        "transcript_preview": "qu\u00e9 bueno se\u00f1or m\u00edo qu\u00e9 bueno pues aprovecha a todos los privilegios de los pudientes qu\u00e9 guay que muy bueno eso de que "
+      },
+      {
+        "file_id": 17243,
+        "audio_filename": "PTT-20211231-WA0000.opus",
+        "duration_sec": 75.042167,
+        "proc_time_sec": 5.717,
+        "speedup_factor": 13.13,
+        "rtf": 0.0762,
+        "language": "es",
+        "language_probability": 0.5,
+        "segment_count": 8,
+        "transcript_preview": "Hola a la Jeremia, que le comentaba \u00c1ngela que en su d\u00eda te pegabas a tracones, no s\u00e9, cada semana, as\u00ed, de gambas, como"
+      },
+      {
+        "file_id": 17429,
+        "audio_filename": "PTT-20251016-WA0000.opus",
+        "duration_sec": 538.922167,
+        "proc_time_sec": 41.792,
+        "speedup_factor": 12.9,
+        "rtf": 0.0775,
+        "language": "es",
+        "language_probability": 0.8491,
+        "segment_count": 108,
+        "transcript_preview": "Kaisho, Kaisho y mi amor Aita llama Resuelta que quer\u00eda contar es una cosa de los tres, una idea que me motiva que se me"
+      }
+    ]
+  }
+]

@@ -16,6 +16,13 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
+import { createInternalAuthMiddleware } from './middleware/internal-auth.js';
+const requireInternalAuth = createInternalAuthMiddleware();
+
+function getInternalAuthHeaders() {
+    return process.env.INTERNAL_SERVICE_PSK ? { 'x-internal-service-token': process.env.INTERNAL_SERVICE_PSK } : {};
+}
+
 process.on('uncaughtException', (err) => {
     logger.error('UNCAUGHT EXCEPTION', { error: err.message, stack: err.stack });
     process.exit(1);
@@ -195,7 +202,10 @@ app.post('/request', async (req, res) => {
         logger.info('Fase 1: Architect', { jobId });
         let archResp;
         try {
-            archResp = await axios.post(ARCHITECT_URL, { prompt }, { timeout: 21000 });
+            archResp = await axios.post(ARCHITECT_URL, { prompt }, {
+                headers: getInternalAuthHeaders(),
+                timeout: 21000
+            });
         } catch (apiError) {
             const errorMsg = apiError.response?.data?.error || apiError.message;
             missions.updateArchitectResult(jobId, 'ARCHITECT_FAILED', { errorMessage: errorMsg });
@@ -255,7 +265,10 @@ app.post('/request', async (req, res) => {
                 plan: planData,
                 schema_version: planData.plan.schema_version,
                 plan_hash: planHash
-            }, { timeout: 121000 });
+            }, {
+                headers: getInternalAuthHeaders(),
+                timeout: 121000
+            });
 
             const buildResult = builderResp.data;
             builderArtifactsPath = buildResult.artifacts_path;
@@ -282,7 +295,10 @@ app.post('/request', async (req, res) => {
             const auditorResp = await axios.post(AUDITOR_URL, {
                 plan: planData,
                 artifacts_path: builderArtifactsPath
-            }, { timeout: 30000 });
+            }, {
+                headers: getInternalAuthHeaders(),
+                timeout: 30000
+            });
 
             const auditResult = auditorResp.data;
             const { status: auditStatus, score, feedback, tamper_detected } = auditResult;
@@ -350,167 +366,67 @@ app.post('/request', async (req, res) => {
     }
 });
 
-// 🔒 POLICY ENGINE & EXECUTION TRIGGER (Fase 5)
-app.post('/execute/:jobId', async (req, res) => {
+// 🔒 POLICY ENGINE & EXECUTION AUTHORIZATION (V3 Controlled Implementation)
+app.post('/execute/:jobId', requireInternalAuth, async (req, res) => {
     const { jobId } = req.params;
-    const mission = missions.get(jobId);
-
-    if (!mission) {
-        return res.status(404).json({ error: 'Job no encontrado' });
-    }
-
-    if (mission.status !== 'READY_FOR_EXECUTION') {
-        return res.status(400).json({
-            error: 'Transición inválida. El job debe estar en READY_FOR_EXECUTION',
-            current_status: mission.status
-        });
-    }
-
-    if (consecutiveGatewayFailures >= GATEWAY_FAILURE_THRESHOLD) {
-        logger.error('Circuit Breaker: GATEWAY_DEGRADED. Ejecución bloqueada.', { jobId });
-        missions.updateStatus(jobId, 'GATEWAY_DEGRADED');
-        return res.status(503).json({ error: 'Gateway degraded due to consecutive failures. Manual intervention required.', status: 'GATEWAY_DEGRADED' });
-    }
-
-    missions.updateStatus(jobId, 'AWAITING_POLICY_APPROVAL');
-
-    // Kill-switch global
-    if (process.env.GLOBAL_EXECUTION_ENABLED !== 'true') {
-        logger.warn('Policy Engine: Kill-switch activado. Ejecución bloqueada.', { jobId });
-        missions.updateStatus(jobId, 'POLICY_REJECTED'); // Mantenemos estado seguro o volvemos a READY
-        return res.status(403).json({
-            error: 'GLOBAL_EXECUTION_ENABLED está en false. Ejecución en Gateway bloqueada.'
-        });
-    }
-
-    // Canary Limit Check
-    const canaryLimit = parseInt(process.env.CANARY_EXECUTION_LIMIT || '0', 10);
-    if (canaryLimit > 0 && canaryExecutionCount >= canaryLimit) {
-        logger.warn('Policy Engine: Canary Limit alcanzado. Ejecución bloqueada.', { jobId, count: canaryExecutionCount });
-        missions.updateStatus(jobId, 'CANARY_LIMIT_REACHED');
-        return res.status(429).json({
-            error: `Canary Mode Limit (${canaryLimit}) reached. Por favor revisa la consistencia de n8n antes de aumentar el límite.`
-        });
-    }
-
-    // 1️⃣ Validadores deterministas
-    if (mission.audit_score < 90) {
-        logger.warn('Policy Engine: Score insuficiente para ejecución', { jobId, score: mission.audit_score });
-        missions.updateStatus(jobId, 'POLICY_REJECTED');
-        return res.status(406).json({
-            error: 'Policy Rejection: El score debe ser >= 90 para ejecución en producción.',
-            score: mission.audit_score
-        });
-    }
-
-    if (mission.tamper_detected) {
-        logger.warn('Policy Engine: Detectada manipulación previa', { jobId });
-        missions.updateStatus(jobId, 'POLICY_REJECTED');
-        return res.status(406).json({ error: 'Policy Rejection: Tamper_detected flag is TRUE.' });
-    }
-
-    // (Mocks para las validaciones complejas del Engine)
-    const architect_fast_fail_rate = 0.05; // Supongamos que lo lee de Prometheus o métricas en SQLite
-    if (architect_fast_fail_rate > 0.1) {
-        logger.warn('Policy Engine: architect_fast_fail_rate excedido', { jobId });
-        missions.updateStatus(jobId, 'POLICY_REJECTED');
-        return res.status(429).json({ error: 'Policy Rejection: Alta tasa de fallos en Architect.' });
-    }
-
-    const rate_guard_ok = true;
-    if (!rate_guard_ok) {
-        missions.updateStatus(jobId, 'POLICY_REJECTED');
-        return res.status(429).json({ error: 'Policy Rejection: Rate Guard activado.' });
-    }
-
-    // 2️⃣ Payload limpio para n8n
-    let manifestData = {};
-    if (mission.build_artifacts_path) {
-        try {
-            manifestData = JSON.parse(fs.readFileSync(path.join(mission.build_artifacts_path, 'manifest.json'), 'utf8'));
-        } catch (e) {
-            logger.error('No se pudo leer el manifest para n8n', { jobId, error: e.message });
-        }
-    }
-
-    const manifestHash = crypto.createHash('sha256').update(JSON.stringify(manifestData)).digest('hex');
-    const auditorHash = crypto.createHash('sha256').update('v2-strict-auditor').digest('hex');
-    const orchestratorVersion = '1.0.0';
-
-    // 3️⃣ Firma Lógica Extendida
-    const policyVersion = 'v1.0.0';
-    const timestamp = new Date().toISOString();
-
-    // Hash ciego de los elementos críticos completos
-    const stringToSign = `${mission.plan_hash}|${mission.audit_score}|${policyVersion}|${timestamp}|${manifestHash}|${auditorHash}|${orchestratorVersion}`;
-    const signatureHash = crypto.createHash('sha256').update(stringToSign).digest('hex');
-
-    missions.authorizeExecution(jobId, 'EXECUTION_TRIGGERED', {
-        authorizedAt: timestamp,
-        policyVersion,
-        signatureHash
-    });
-
-    const updatedMission = missions.get(jobId);
-
-    const gatewayPayload = {
-        plan_json: updatedMission.plan_json ? JSON.parse(updatedMission.plan_json) : null,
-        manifest: manifestData,
-        audit_score: updatedMission.audit_score,
-        correlation_id: updatedMission.id,
-        execution_signature_hash: updatedMission.execution_signature_hash
-    };
-
-    // 4️⃣ Disparo a Gateway (con reintentos mockeados via circuit breaker y timeout)
-    const secret = process.env.N8N_GATEWAY_SECRET || 'test-secret';
-    const payloadString = JSON.stringify(gatewayPayload);
-    const hmac = crypto.createHmac('sha256', secret).update(payloadString).digest('hex');
 
     try {
-        const gatewayUrl = process.env.N8N_GATEWAY_URL || `http://localhost:${PORT}/gateway/simulated`;
-        const response = await axios.post(gatewayUrl, payloadString, {
-            headers: {
-                'x-mission-signature': hmac,
-                'Content-Type': 'application/json'
-            },
-            timeout: 15000 // 15s timeout
+        // Atomic authorization and outbox staging
+        const authResult = missions.authorizeMissionExecution(jobId, {
+            policyVersion: 'v3.0.0'
         });
 
-        consecutiveGatewayFailures = 0; // Reset
-        canaryExecutionCount++; // Increment Canary count
-
-        logger.info('Policy Engine superado. Misión encolada en Gateway.', {
+        logger.info('V3 Authorization granted. Outbox staged as DISPATCH_PENDING.', {
             jobId,
-            signatureHash,
-            canaryExecutionCount,
-            response: response.data
+            attemptId: authResult.execution_attempt_id,
+            payloadHash: authResult.payload_hash
         });
 
         return res.json({
-            message: 'Aprobado por Policy Engine. Ejecución triggerada.',
+            message: 'Misión autorizada exitosamente. Estado: DISPATCH_PENDING.',
             jobId,
-            status: updatedMission.status,
-            signature: updatedMission.execution_signature_hash,
-            gateway_response: response.data
+            status: authResult.status,
+            execution_attempt_id: authResult.execution_attempt_id,
+            payload_hash: authResult.payload_hash,
+            authorized_at: authResult.authorized_at
         });
 
-    } catch (e) {
-        consecutiveGatewayFailures++;
-        logger.error('Error enviando a Gateway', { jobId, error: e.message, consecutiveGatewayFailures });
-
-        if (consecutiveGatewayFailures >= GATEWAY_FAILURE_THRESHOLD) {
-            missions.updateStatus(jobId, 'GATEWAY_DEGRADED');
-        } else {
-            // Retroceder estado para permitir reintento
-            missions.updateStatus(jobId, 'READY_FOR_EXECUTION');
+    } catch (err) {
+        if (err.code === 'NOT_FOUND') {
+            return res.status(404).json({ error: 'Job no encontrado', jobId });
         }
 
-        return res.status(502).json({ error: 'Gateway unavailable or timeout', details: e.message });
+        if (err.code === 'CONFLICT') {
+            return res.status(409).json({
+                error: 'Conflict: Misión no está en READY_FOR_EXECUTION o ya fue autorizada concurrentemente',
+                current_status: err.currentStatus || 'UNKNOWN',
+                jobId
+            });
+        }
+
+        if (err.code === 'POLICY_REJECTED') {
+            logger.warn('Policy Engine rejected mission', { jobId, error: err.message });
+            // Phase 2: Conditionally record rejection without overwriting concurrent authorization
+            try {
+                missions.recordPolicyRejection(jobId, err.message);
+            } catch (recErr) {
+                logger.error('Failed to record policy rejection state', { jobId, error: recErr.message });
+            }
+
+            return res.status(406).json({
+                error: err.message,
+                jobId,
+                status: 'POLICY_REJECTED'
+            });
+        }
+
+        logger.error('Unexpected error during authorization', { jobId, error: err.message });
+        return res.status(500).json({ error: 'Authorization error', details: err.message, jobId });
     }
 });
 
 // 🔄 REPLAY ENGINE
-app.post('/api/replay/:jobId', async (req, res) => {
+app.post('/api/replay/:jobId', requireInternalAuth, async (req, res) => {
     const { jobId } = req.params;
     const mission = missions.get(jobId);
 
@@ -705,6 +621,6 @@ app.get('/status/:jobId', (req, res) => {
     });
 });
 
-app.listen(PORT, () => {
-    logger.info(`[Orquestador Principal v4] Corriendo en puerto ${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+    logger.info(`[Orquestador Principal v4] Corriendo en 127.0.0.1:${PORT}`);
 });

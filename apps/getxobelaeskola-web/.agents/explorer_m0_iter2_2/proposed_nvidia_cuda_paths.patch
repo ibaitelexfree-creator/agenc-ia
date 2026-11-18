@@ -1,0 +1,21 @@
+--- a/forensics_multiagent_run/.venv/Lib/site-packages/nvidia_cuda_paths.pth
++++ b/forensics_multiagent_run/.venv/Lib/site-packages/nvidia_cuda_paths.pth
+@@ -1,17 +1 @@
+-import os, sys, site, ctypes
+-for p in site.getsitepackages():
+-    nr = os.path.join(p, 'nvidia')
+-    if os.path.isdir(nr):
+-        for s in os.listdir(nr):
+-            b = os.path.join(nr, s, 'bin')
+-            if os.path.isdir(b):
+-                try: os.add_dll_directory(b)
+-                except Exception: pass
+-                if b not in os.environ.get('PATH', ''):
+-                    os.environ['PATH'] = b + os.pathsep + os.environ.get('PATH', '')
+-                for d in ['cublasLt64_12.dll', 'cublas64_12.dll', 'cudnn64_9.dll']:
+-                    dp = os.path.join(b, d)
+-                    if os.path.isfile(dp):
+-                        try: ctypes.CDLL(dp)
+-                        except Exception: pass
+-
++import os, sys, site, ctypes; exec("if sys.platform == 'win32':\n    for p in site.getsitepackages():\n        nr = os.path.join(p, 'nvidia')\n        if os.path.isdir(nr):\n            for s in sorted(os.listdir(nr)):\n                b = os.path.join(nr, s, 'bin')\n                if os.path.isdir(b):\n                    try: os.add_dll_directory(b)\n                    except Exception: pass\n                    if b not in os.environ.get('PATH', ''): os.environ['PATH'] = b + os.pathsep + os.environ.get('PATH', '')\n                    for d in ['cublasLt64_12.dll', 'cublas64_12.dll', 'cudnn64_9.dll']:\n                        dp = os.path.join(b, d)\n                        if os.path.isfile(dp):\n                            try: ctypes.CDLL(dp)\n                            except Exception: pass\n")

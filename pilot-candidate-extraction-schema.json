@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SyntheticCandidateExtractionContract",
+  "description": "Strict contract for model-generated candidate extractions. Model can ONLY return claims, extracted values, verbatim quotes, and optional offsets. Model is strictly FORBIDDEN from generating review, approval, or reviewer identity fields.",
+  "type": "object",
+  "required": [
+    "extraction_id",
+    "source_message_id",
+    "conversation_id",
+    "verifiable_claims"
+  ],
+  "properties": {
+    "extraction_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-\\.:]{3,64}$",
+      "description": "Opaque extraction identifier generated for tracking."
+    },
+    "source_message_id": {
+      "description": "Opaque typed or string/integer source identifier without invented prefixes.",
+      "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 128 },
+        { "type": "integer" },
+        {
+          "type": "object",
+          "required": ["type", "value"],
+          "properties": {
+            "type": { "type": "string", "enum": ["integer", "text"] },
+            "value": { "type": "string", "minLength": 1, "maxLength": 128 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "conversation_id": {
+      "description": "Opaque typed or string/integer conversation identifier without invented prefixes.",
+      "oneOf": [
+        { "type": "string", "minLength": 1, "maxLength": 128 },
+        { "type": "integer" },
+        {
+          "type": "object",
+          "required": ["type", "value"],
+          "properties": {
+            "type": { "type": "string", "enum": ["integer", "text"] },
+            "value": { "type": "string", "minLength": 1, "maxLength": 128 }
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
+    "verifiable_claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "field_name",
+          "extracted_value",
+          "exact_quote"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_\\-\\.:]{1,64}$"
+          },
+          "field_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          },
+          "extracted_value": {},
+          "exact_quote": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "Verbatim quotation from the source text. No alterations or paraphrasing permitted."
+          },
+          "source_char_offset": {
+            "type": "object",
+            "required": ["start", "end"],
+            "properties": {
+              "start": { "type": "integer", "minimum": 0 },
+              "end": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

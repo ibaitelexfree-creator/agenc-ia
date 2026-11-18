@@ -1,0 +1,8 @@
+--- a/scripts/requirements.txt
++++ b/scripts/requirements.txt
+@@ -7,4 +7,5 @@
+ # --- GPU Audio Transcription Engine ---
+ ctranslate2==4.8.4
+ faster-whisper==1.2.1
++av==14.2.0  # Pinned: PyAV >=19 removed metadata_errors, breaking faster-whisper 1.2.1 decode_audio
+ 
