@@ -72,6 +72,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
             src = '/images/transient-mooring-gt8m.jpg';
         } else if (slug.includes('transeunte-8m') || slug.includes('transient-mooring-8m') || n.includes('transient mooring (< 8m)') || n.includes('transeúnte (< 8m)') || n.includes('transeunte (< 8m)')) {
             src = '/images/transient-mooring-8m.jpg';
+        } else if (slug.includes('atraque-piragua-doble') || slug.includes('double-canoe') || n.includes('double canoe') || n.includes('piragua doble')) {
+            src = '/images/double-canoe-mooring.jpg';
         } else if (slug.includes('atraque-piragua') || slug.includes('canoe-mooring') || n.includes('canoe mooring') || n.includes('atraque piragua') || n.includes('atraque de piragua')) {
             src = '/images/canoe-mooring.jpg';
         } else if (slug === 'atraque-velero' || slug.includes('atraque-velero') || n.includes('atraque velero')) {

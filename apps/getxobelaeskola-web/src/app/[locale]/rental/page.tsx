@@ -140,7 +140,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                     nombre_es: 'Atraque Piragua Doble',
                     nombre_eu: 'Piragua Bikoitzeko Atrakatzea',
                     descripcion: 'Atraque y guarda de piragua doble: 30 €/mes (anual) o 40 € meses sueltos. Matrícula 560 €',
-                    imagen_url: '/images/canoe-mooring.jpg',
+                    imagen_url: '/images/double-canoe-mooring.jpg',
                     precio_base: 30,
                     activo: true,
                     categoria: 'atraques'
@@ -178,7 +178,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 { id: '18', slug: 'atraque-velero', nombre: 'Atraque Velero', nombre_es: 'Atraque Velero', nombre_eu: 'Belontzi Atrakatzea', descripcion: 'Atraque mensual para velero: 50 €/mes. Matrícula 50 €', imagen_url: '/images/atraque-velero.webp', precio_base: 50, activo: true, categoria: 'atraques' },
                 { id: 'at-ws', slug: 'atraque-windsurf', nombre: 'Atraque Windsurf', nombre_es: 'Atraque Windsurf', nombre_eu: 'Windsurf Atrakatzea', descripcion: 'Atraque para windsurf: 30 €/mes. Matrícula 50 €', imagen_url: '/images/experiences/windsurf-board-mooring.jpg', precio_base: 30, activo: true, categoria: 'atraques' },
                 { id: 'at-pi', slug: 'atraque-piragua', nombre: 'Atraque Piragua Individual', nombre_es: 'Atraque Piragua Individual', nombre_eu: 'Piragua Bakarkako Atrakatzea', descripcion: 'Atraque piragua individual: Anual 25 €/mes · Mensual 35 €. Matrícula 50 €', imagen_url: '/images/canoe-mooring.jpg', precio_base: 25, activo: true, categoria: 'atraques' },
-                { id: 'at-pd', slug: 'atraque-piragua-doble', nombre: 'Atraque Piragua Doble', nombre_es: 'Atraque Piragua Doble', nombre_eu: 'Piragua Bikoitzeko Atrakatzea', descripcion: 'Atraque piragua doble: Anual 30 €/mes · Mensual 40 €. Matrícula 50 €', imagen_url: '/images/canoe-mooring.jpg', precio_base: 30, activo: true, categoria: 'atraques' },
+                { id: 'at-pd', slug: 'atraque-piragua-doble', nombre: 'Atraque Piragua Doble', nombre_es: 'Atraque Piragua Doble', nombre_eu: 'Piragua Bikoitzeko Atrakatzea', descripcion: 'Atraque piragua doble: Anual 30 €/mes · Mensual 40 €. Matrícula 50 €', imagen_url: '/images/double-canoe-mooring.jpg', precio_base: 30, activo: true, categoria: 'atraques' },
                 { id: '6', slug: 'alquiler-windsurf', nombre: 'Windsurf', nombre_es: 'Windsurf', nombre_eu: 'Windsurf', descripcion: 'Equipo de Windsurf', imagen_url: '/images/courses/PerfeccionamientoVela.webp', precio_base: 30, activo: true, categoria: 'windsurf' },
                 { id: '3', slug: 'alquiler-paddlesurf', nombre: 'Paddle Surf', nombre_es: 'Paddle Surf', nombre_eu: 'Paddle Surf', descripcion: 'Tabla de Stand Up Paddle', imagen_url: '/images/paddle-surf.webp', precio_base: 15, activo: true, categoria: 'paddlesurf' },
                 { id: '4', slug: 'alquiler-piragua-1', nombre: 'Piragua', nombre_es: 'Piragua', nombre_eu: 'Piragua', descripcion: 'Alquiler de piragua', imagen_url: '/images/kayak-1-person.webp', precio_base: 15, activo: true, categoria: 'piragua' }
