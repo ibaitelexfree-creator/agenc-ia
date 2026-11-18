@@ -288,7 +288,7 @@ export default async function CourseDetailPage({
             nombre_eu: 'Eq. Entren. Infantiles',
             descripcion_es: 'Equipo de entrenamiento para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
             descripcion_eu: 'Equipo de entrenamiento para niñas y niños que quieren aprender más, avanzar en técnica y disfrutar de la mar todo el año.',
-            precio: 120,
+            precio: 100,
             duracion_h: 12,
             nivel: 'intermedio',
             imagen_url: '/images/courses/CursodeVelaLigera.webp',

@@ -1,0 +1,87 @@
+import fs from 'fs';
+import path from 'path';
+import Ajv2020 from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const ajv = new Ajv2020({ allErrors: true, strict: false });
+addFormats(ajv);
+
+const reqSchema = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../pilot-request-schema.json'), 'utf8'));
+const resSchema = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../../pilot-response-schema.json'), 'utf8'));
+
+export const validateRequestSchema = ajv.compile(reqSchema);
+export const validateResponseSchema = ajv.compile(resSchema);
+
+export function validatePilotRequest(body, availableModels = []) {
+    // 1. JSON Schema validation
+    const valid = validateRequestSchema(body);
+    if (!valid) {
+        const errorDetails = validateRequestSchema.errors.map(e => `${e.instancePath || 'root'}: ${e.message}`).join(', ');
+        return {
+            isValid: false,
+            errorCode: 'INVALID_REQUEST',
+            message: `JSON Schema validation failed: ${errorDetails}`,
+            details: validateRequestSchema.errors
+        };
+    }
+
+    // 2. Aggregate content length check across ALL messages (<= 8192 chars)
+    let totalLength = 0;
+    for (const msg of body.messages) {
+        totalLength += (msg.content || '').length;
+    }
+    if (totalLength > 8192) {
+        return {
+            isValid: false,
+            errorCode: 'INVALID_REQUEST',
+            message: `Aggregate content length across all messages is ${totalLength} chars, exceeding maximum of 8192`
+        };
+    }
+
+    // 3. Prohibit unrestricted 'local-model' alias when loaded models are resolved, and validate actual model
+    if (body.model === 'local-model') {
+        return {
+            isValid: false,
+            errorCode: 'MODEL_UNAVAILABLE',
+            message: "Unrestricted model alias 'local-model' is not permitted. Model must resolve to an actual available model."
+        };
+    }
+
+    // 4. Model availability validation:
+    // Reject if LM Studio model discovery failed, returned empty, or model is absent
+    if (!Array.isArray(availableModels) || availableModels.length === 0) {
+        return {
+            isValid: false,
+            errorCode: 'MODEL_UNAVAILABLE',
+            message: 'LM Studio model discovery failed or no models are currently available.'
+        };
+    }
+
+    if (!availableModels.includes(body.model)) {
+        return {
+            isValid: false,
+            errorCode: 'MODEL_UNAVAILABLE',
+            message: `Requested model '${body.model}' is not currently loaded in LM Studio. Available models: [${availableModels.join(', ')}]`
+        };
+    }
+
+    return { isValid: true };
+}
+
+export function validatePilotResponse(payload) {
+    const valid = validateResponseSchema(payload);
+    if (!valid) {
+        const errorDetails = validateResponseSchema.errors.map(e => `${e.instancePath || 'root'}: ${e.message}`).join(', ');
+        return {
+            isValid: false,
+            errorCode: 'INVALID_RESPONSE',
+            message: `Response failed JSON Schema validation: ${errorDetails}`,
+            details: validateResponseSchema.errors
+        };
+    }
+    return { isValid: true };
+}

@@ -1,0 +1,195 @@
+/**
+ * PILOT-001 Supervised Runner
+ *
+ * Requirements:
+ * - One execution per invocation.
+ * - Explicit operator-controlled execution flag: --execute.
+ * - Refuse execution without the required flag.
+ * - Use only hardcoded synthetic fixtures or an explicitly defined synthetic fixture file.
+ * - No automatic scanning of folders or databases.
+ * - No access to WhatsApp archives or whatsapp_forensics.db.
+ * - No attachment extraction, OCR, or Whisper.
+ * - No automatic retries.
+ * - Display request before dispatch.
+ * - Display complete response after execution.
+ * - Validate response against pilot-response-schema.json.
+ * - Return non-zero process exit code on failure.
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { validatePilotResponse } from './orchestration/gateway/pilot-validator.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 1. Strict operator gate
+const args = process.argv.slice(2);
+const hasExecuteFlag = args.includes('--execute');
+
+if (!hasExecuteFlag) {
+    console.error('========================================================================');
+    console.error('PILOT-001 RUNNER BLOCKED: OPERATOR CONFIRMATION REQUIRED');
+    console.error('Execution requires explicit operator control flag: --execute');
+    console.error('Usage: node pilot-001-runner.js --execute [--fixture <path>]');
+    console.error('========================================================================');
+    process.exit(1);
+}
+
+// 2. Gateway configuration & PSK
+const GATEWAY_URL = process.env.GATEWAY_URL || 'http://127.0.0.1:4000';
+const PSK = process.env.INTERNAL_SERVICE_PSK || '0123456789abcdef0123456789abcdef0123456789abcdef';
+
+// 3. Load synthetic fixture (hardcoded default or explicit synthetic fixture file)
+let syntheticPayload = {
+    task_id: 'TASK-D40-02',
+    agent_id: 'supervised-runner-pilot',
+    request_id: 'req-pilot-001-synthetic-' + Date.now(),
+    model: 'qwen2.5-7b-instruct',
+    temperature: 0.0,
+    output_schema_version: '1.0.0',
+    messages: [
+        {
+            role: 'system',
+            content: 'You are a test harness validator. You must respond with valid JSON only, without markdown fences or additional commentary.'
+        },
+        {
+            role: 'user',
+            content: 'Return exactly: {"status":"ok","source":"pilot_001_synthetic_integration"}'
+        }
+    ],
+    max_tokens: 60,
+    timeout_ms: 30000
+};
+
+const fixtureIndex = args.indexOf('--fixture');
+if (fixtureIndex !== -1 && args[fixtureIndex + 1]) {
+    const rawFixtureArg = args[fixtureIndex + 1];
+    const approvedDir = path.resolve(__dirname, 'fixtures', 'pilot');
+
+    // 1. Resolve canonical path without following unapproved symlinks/traversals
+    const candidatePath = path.resolve(approvedDir, path.basename(rawFixtureArg));
+
+    if (!fs.existsSync(candidatePath)) {
+        console.error(`FATAL: Fixture file not found in approved directory: ${candidatePath}`);
+        process.exit(2);
+    }
+
+    // 2. Resolve realpath to ensure symlinks/junctions do not escape approvedDir
+    let realCandidatePath;
+    let realApprovedDir;
+    try {
+        realCandidatePath = fs.realpathSync(candidatePath);
+        realApprovedDir = fs.realpathSync(approvedDir);
+    } catch (e) {
+        console.error('FATAL: Failed to resolve canonical fixture path:', e.message);
+        process.exit(2);
+    }
+
+    // 3. Ensure candidate is inside approved directory
+    const rel = path.relative(realApprovedDir, realCandidatePath);
+    if (rel.startsWith('..') || path.isAbsolute(rel)) {
+        console.error('FATAL: Path traversal detected. Fixtures must reside strictly inside approved fixtures/pilot directory.');
+        process.exit(2);
+    }
+
+    // 4. Strict ban on sensitive substrings regardless of casing
+    const lower = realCandidatePath.toLowerCase();
+    if (lower.includes('whatsapp') || lower.includes('.db') || lower.includes('forensics') || lower.includes('.sqlite')) {
+        console.error('FATAL: Access to WhatsApp data, forensic databases, or archives is strictly prohibited.');
+        process.exit(2);
+    }
+
+    // 5. Must be a .json file
+    if (!realCandidatePath.endsWith('.json')) {
+        console.error('FATAL: Fixture file must be a .json file.');
+        process.exit(2);
+    }
+
+    console.log(`[Runner] Loading approved synthetic fixture: ${realCandidatePath}`);
+    syntheticPayload = JSON.parse(fs.readFileSync(realCandidatePath, 'utf8'));
+}
+
+async function runSupervisedPilot() {
+    console.log('========================================================================');
+    console.log('PILOT-001 SUPERVISED SYNTHETIC RUNNER (SINGLE-SHOT)');
+    console.log('Execution Mode: ONE-SHOT SYNTHETIC');
+    console.log(`Target Gateway: ${GATEWAY_URL}/v1/pilot/inference`);
+    console.log('========================================================================');
+
+    console.log('\n[PILOT-001] Pre-Dispatch Request Envelope:');
+    console.log(JSON.stringify(syntheticPayload, null, 2));
+
+    const startTime = Date.now();
+    let response;
+    let responseBody;
+    try {
+        const res = await fetch(`${GATEWAY_URL}/v1/pilot/inference`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-internal-service-token': PSK,
+                'x-request-id': syntheticPayload.request_id
+            },
+            body: JSON.stringify(syntheticPayload),
+            signal: AbortSignal.timeout(syntheticPayload.timeout_ms || 35000)
+        });
+        responseBody = await res.json();
+        response = {
+            status: res.status,
+            ok: res.ok,
+            data: responseBody
+        };
+    } catch (err) {
+        const duration = Date.now() - startTime;
+        console.error(`\n[PILOT-001] Gateway Request FAILED after ${duration}ms:`, err.message);
+        process.exit(3);
+    }
+
+    const totalClientMs = Date.now() - startTime;
+    console.log('\n========================================================================');
+    console.log(`[PILOT-001] Execution Response Received (HTTP ${response.status}) in ${totalClientMs}ms:`);
+    console.log(JSON.stringify(response.data, null, 2));
+    console.log('========================================================================');
+
+    // 4. Validate Response against Schema
+    const validation = validatePilotResponse(response.data);
+    if (!validation.isValid) {
+        console.error('\n[PILOT-001] SCHEMA VALIDATION FAILED:');
+        console.error(validation.message);
+        process.exit(4);
+    }
+    console.log('\n[PILOT-001] Response Schema Validation: PASSED (Ajv 2020-12 strict)');
+
+    // 5. Verify Correlation Identifiers
+    if (response.data.request_id !== syntheticPayload.request_id) {
+        console.error(`\n[PILOT-001] CORRELATION MISMATCH: request_id sent '${syntheticPayload.request_id}' vs received '${response.data.request_id}'`);
+        process.exit(5);
+    }
+    if (response.data.task_id !== syntheticPayload.task_id) {
+        console.error(`\n[PILOT-001] CORRELATION MISMATCH: task_id sent '${syntheticPayload.task_id}' vs received '${response.data.task_id}'`);
+        process.exit(6);
+    }
+    if (response.data.agent_id !== syntheticPayload.agent_id) {
+        console.error(`\n[PILOT-001] CORRELATION MISMATCH: agent_id sent '${syntheticPayload.agent_id}' vs received '${response.data.agent_id}'`);
+        process.exit(7);
+    }
+
+    // 6. Check structured JSON output
+    if (response.data.status !== 'SUCCESS' || !response.data.result) {
+        console.error('\n[PILOT-001] Execution Status is not SUCCESS:', response.data.status);
+        process.exit(8);
+    }
+
+    console.log('[PILOT-001] Correlation IDs: VERIFIED');
+    console.log(`[PILOT-001] Inference Latency: ${response.data.result.timing?.inference_ms}ms`);
+    console.log(`[PILOT-001] Gateway Total Latency: ${response.data.result.timing?.total_ms}ms`);
+    console.log('[PILOT-001] Structured Output Parsed JSON:', JSON.stringify(response.data.result.parsed_json));
+    console.log('\n>>> PILOT-001 SUPERVISED RUN COMPLETED SUCCESSFULLY <<<');
+}
+
+runSupervisedPilot().catch((err) => {
+    console.error('Fatal Runner Error:', err);
+    process.exit(9);
+});

@@ -1,0 +1,132 @@
+{
+  "summary": {
+    "total_images_in_inventory": 14561,
+    "status_pending": 14559,
+    "status_skipped": 2,
+    "verify_errors_count": 0,
+    "deep_decode_tested": 1826,
+    "deep_decode_errors_count": 0
+  },
+  "formats_detected": {
+    "JPEG": 14513,
+    "PNG": 12,
+    "MPO": 10,
+    "WEBP": 26
+  },
+  "modes_detected": {
+    "RGB": 14524,
+    "RGBA": 37
+  },
+  "category_counts": {
+    "WhatsApp Images/Received": 9776,
+    "WhatsApp Images/Private": 1811,
+    "WhatsApp Images/Sent": 2534,
+    "Manual Extraction/Chat Attachments": 438,
+    "Manual Extraction/Foreign (Wireframe Skull)": 2
+  },
+  "orientation_counts": {
+    "Portrait (h > w)": 8810,
+    "Landscape (w > h)": 5554,
+    "Square (w == h)": 197
+  },
+  "resolution_brackets": {
+    "Standard WhatsApp Res (1.0 - 2.5 MP)": 9824,
+    "High Resolution (2.5 - 5.0 MP)": 2217,
+    "Medium Resolution (0.5 - 1.0 MP)": 1126,
+    "Low Resolution (0.1 - 0.5 MP)": 390,
+    "Very High Resolution (> 12 MP)": 214,
+    "Thumbnail / Icon (< 0.1 MP)": 70,
+    "Full Camera Resolution (5.0 - 12.0 MP)": 720
+  },
+  "top_15_exact_resolutions": [
+    {
+      "resolution": "1200x1600",
+      "count": 1131,
+      "percentage": 7.77
+    },
+    {
+      "resolution": "1600x1200",
+      "count": 823,
+      "percentage": 5.65
+    },
+    {
+      "resolution": "1600x1066",
+      "count": 738,
+      "percentage": 5.07
+    },
+    {
+      "resolution": "899x1599",
+      "count": 642,
+      "percentage": 4.41
+    },
+    {
+      "resolution": "3840x2160",
+      "count": 597,
+      "percentage": 4.1
+    },
+    {
+      "resolution": "720x1600",
+      "count": 595,
+      "percentage": 4.09
+    },
+    {
+      "resolution": "1536x2048",
+      "count": 520,
+      "percentage": 3.57
+    },
+    {
+      "resolution": "1080x1920",
+      "count": 438,
+      "percentage": 3.01
+    },
+    {
+      "resolution": "1152x2048",
+      "count": 315,
+      "percentage": 2.16
+    },
+    {
+      "resolution": "900x1600",
+      "count": 300,
+      "percentage": 2.06
+    },
+    {
+      "resolution": "2048x1536",
+      "count": 296,
+      "percentage": 2.03
+    },
+    {
+      "resolution": "1500x2000",
+      "count": 262,
+      "percentage": 1.8
+    },
+    {
+      "resolution": "920x2048",
+      "count": 255,
+      "percentage": 1.75
+    },
+    {
+      "resolution": "945x2048",
+      "count": 250,
+      "percentage": 1.72
+    },
+    {
+      "resolution": "1530x2040",
+      "count": 249,
+      "percentage": 1.71
+    }
+  ],
+  "dimension_stats": {
+    "width_min": 202,
+    "width_max": 5120,
+    "width_median": 1200,
+    "height_min": 103,
+    "height_max": 5120,
+    "height_median": 1600,
+    "megapixels_min": 0.031,
+    "megapixels_max": 19.66,
+    "megapixels_mean": 2.3,
+    "megapixels_median": 1.89
+  },
+  "verify_errors": [],
+  "deep_decode_errors": []
+}

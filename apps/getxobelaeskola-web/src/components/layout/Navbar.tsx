@@ -260,7 +260,7 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
         <>
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1920px] z-[9999] flex flex-col">
                 {/* Top Utility Bar */}
-                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative select-none">
+                <div className="w-full bg-neutral-950 text-neutral-400 text-[10px] font-semibold h-8 px-[clamp(1rem,4vw,3rem)] flex justify-between items-center border-b border-white/5 relative z-20 select-none">
                     {/* Left side: Social Links (in brand colors) */}
                     <div className="flex items-center gap-5">
                         <a href="https://wa.me/34634405624" target="_blank" rel="noopener noreferrer" className="inline-flex md:hidden text-[#25D366] hover:scale-110 active:scale-95 transition-all duration-200 drop-shadow-[0_0_8px_rgba(37,211,102,0.3)]" title="WhatsApp">
@@ -389,7 +389,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                     </div>
                 </div>
  
-                <nav className="w-full px-[clamp(1rem,4vw,3rem)] py-2 md:py-3 flex justify-between items-center bg-transparent transition-all duration-500 min-h-[60px]">
+                <nav className={`w-full px-[clamp(1rem,4vw,3rem)] flex justify-between items-center transition-[background-color,border-color,box-shadow,min-height,padding] duration-300 relative z-10 ${
+                    isAtHero 
+                        ? 'bg-transparent border-b border-transparent shadow-none min-h-[60px] py-2 md:py-3' 
+                        : 'bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(0,0,0,0.08)] border-b border-black/5 min-h-[48px] py-1 md:py-1.5'
+                }`}>
                 {/* Logo Section */}
                 <Link
                     href={`/${locale}`}
@@ -401,11 +405,11 @@ export default function Navbar({ locale: propLocale, initialUser = null }: { loc
                 >
                     <motion.div
                         animate={{
-                            y: isAtHero ? 2 : 0,
+                            y: isAtHero ? 2 : '-10%',
                             x: 0,
-                            scale: 0.99,
+                            scale: isAtHero ? 1 : 0.90,
                         }}
-                        transition={{ type: 'spring', stiffness: 50, damping: 15 }}
+                        transition={{ type: 'spring', stiffness: 60, damping: 15 }}
                         className="relative w-28 h-10 md:w-36 md:h-12 flex-shrink-0 transition-premium group-hover:scale-105"
                     >
                         <div className="absolute inset-0 w-full h-full">

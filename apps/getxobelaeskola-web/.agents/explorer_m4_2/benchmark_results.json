@@ -1,0 +1,501 @@
+{
+  "timestamp": "2026-10-29T04:07:02Z",
+  "tesseract_version": "5.5.0.20241111",
+  "tesseract_languages": [
+    "eng",
+    "eus",
+    "osd",
+    "spa"
+  ],
+  "rapidocr_init_ms": 465.48,
+  "rapidocr_cold_ms": 3539.77,
+  "rapidocr_mem_mb": 0.83,
+  "peak_mem_mb": 71.44,
+  "sim_confidence_cases": [
+    {
+      "case": "Case A: Short high-conf header + Long low-conf body",
+      "unweighted_mean": 0.75,
+      "char_weighted_mean": 0.5446,
+      "unweighted_triggers_fallback": false,
+      "char_weighted_triggers_fallback": true
+    },
+    {
+      "case": "Case B: Long high-conf header + Short low-conf noise",
+      "unweighted_mean": 0.675,
+      "char_weighted_mean": 0.9216,
+      "unweighted_triggers_fallback": false,
+      "char_weighted_triggers_fallback": false
+    }
+  ],
+  "sim_db_retention_rows": [
+    {
+      "file_id": 1606,
+      "engine": "RAPIDOCR",
+      "extracted_text": "12:37UEM\n4G60%\nraspberrypi.stackexchange.com/q\n?\nQ\nLog in\nSign up\nTL;DR\n55\n.This is a 3.3V device.\n·...",
+      "mean_confidence": 0.9713,
+      "bbox_count": 31,
+      "fallback_triggered": 0,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": 1607,
+      "engine": "RAPIDOCR",
+      "extracted_text": "2SEMESTRE\nENERO\n8\nTrofeoErecachoRCMARSC(solo\n15\n22\nTrofeo Erecacho RCMA RSC (solo\n29\nFEBRERO\n5\nTrofe...",
+      "mean_confidence": 0.9777,
+      "bbox_count": 25,
+      "fallback_triggered": 0,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": 1610,
+      "engine": "RAPIDOCR",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": 1610,
+      "engine": "TESSERACT",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Fallback engine dual output"
+    },
+    {
+      "file_id": 17554,
+      "engine": "RAPIDOCR",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": 17554,
+      "engine": "TESSERACT",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Fallback engine dual output"
+    },
+    {
+      "file_id": -1,
+      "engine": "RAPIDOCR",
+      "extracted_text": "GETXOBELAESKOLA-CLUBDEVELA\nActadeJuntaDirectiva-28deOctubre2026\nCuotaanuals0cios:150.00EUR/IBAN:ES04...",
+      "mean_confidence": 0.9798,
+      "bbox_count": 5,
+      "fallback_triggered": 0,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": -2,
+      "engine": "RAPIDOCR",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 0,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": -3,
+      "engine": "RAPIDOCR",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 0,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": -4,
+      "engine": "RAPIDOCR",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Primary engine output"
+    },
+    {
+      "file_id": -4,
+      "engine": "TESSERACT",
+      "extracted_text": "",
+      "mean_confidence": 0.0,
+      "bbox_count": 0,
+      "fallback_triggered": 1,
+      "description": "Fallback engine dual output"
+    }
+  ],
+  "benchmarks": [
+    {
+      "sample": {
+        "type": "high_quality_screenshot",
+        "file_id": 1606,
+        "path": "C:\\Users\\User\\Desktop\\whatsapp_chats_zip\\com.whatsapp\\WhatsApp\\Media\\WhatsApp Images\\IMG-20230129-WA0001.jpg",
+        "description": "Mobile screen capture with dense UI and code/URL text (StackExchange)"
+      },
+      "visual_metrics": {
+        "width": 738,
+        "height": 1600,
+        "std_dev": 95.71,
+        "range": 255,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 0,
+      "trigger_reason": "NONE",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 5823.32,
+        "det_ms": 1058.19,
+        "cls_ms": 93.59,
+        "rec_ms": 4620.87,
+        "line_count": 31,
+        "total_chars": 536,
+        "unweighted_mean_confidence": 0.9564,
+        "char_weighted_mean_confidence": 0.9713,
+        "extracted_text": "12:37UEM\n4G60%\nraspberrypi.stackexchange.com/q\n?\nQ\nLog in\nSign up\nTL;DR\n55\n.This is a 3.3V device.\n· Using 5V peripherals requires a\nlogic level converter.\n口\n·Output\n·Maximum total of all pins 50 mA.\n· Default 8 mA max per pin. (Returns\nto this configuration after reset.)\n· Software configurable from 2 mA\nto 16 mA. Do not source or sink\nmore than what you've configured.\n· Don't drive capacitive loads.\n·Input\n· Threshold of 1.8V\n· Maximum 0.5 mA\n·Use a 6Kohm resistor to ensure\nthatcurrentfrom a3.3V source\ncannotexceed0.5mA\n·(3.3v/6000g= .00055A)\nReferences\n口\n:D",
+        "bbox_count": 31,
+        "bbox_json": "[[[[105.0, 38.0], [369.0, 35.0], [369.0, 65.0], [106.0, 68.0]], \"12:37UEM\", 0.9479], [[[468.0, 35.0], [691.0, 38.0], [691.0, 68.0], [467.0, 65.0]], \"4G60%\", 0.9643], [[[81.0, 137.0], [542.0, 138.0], [542.0, 171.0], [81.0, 170.0]], \"raspberrypi.stackexchange.com/q\", 0.9933], [[[282.0, 239.0], [309.0, 239.0], [309.0, 265.0], [282.0, 265.0]], \"?\", 0.775], [[[421.0, 237.0], [450.0, 237.0], [450.0, 263.0], [421.0, 263.0]], \"Q\", 0.9953], [[[495.0, 238.0], [568.0, 238.0], [568.0, 267.0], [495.0, 267.0]], \"Log in\", 0.9109], [[[611.0, 237.0], [699.0, 237.0], [699.0, 268.0], [611.0, 268.0]], \"Sign up\", 0.954], [[[125.0, 326.0], [247.0, 326.0], [247.0, 372.0], [125.0, 372.0]], \"TL;DR\", 0.9964], [[[41.0, 402.0], [88.0, 402.0], [88.0, 439.0], [41.0, 439.0]], \"55\", 0.9996], [[[163.0, 406.0], [452.0, 409.0], [452.0, 438.0], [162.0, 435.0]], \".This is a 3.3V device.\", 0.9757], [[[216.0, 462.0], [632.0, 465.0], [632.0, 498.0], [216.0, 495.0]], \"· Using 5V peripherals requires a\", 0.9714], [[[238.0, 504.0], [498.0, 504.0], [498.0, 537.0], [238.0, 537.0]], \"logic level converter.\", 0.9826], [[[49.0, 532.0], [79.0, 532.0], [79.0, 565.0], [49.0, 565.0]], \"口\", 0.9808], [[[159.0, 564.0], [274.0, 564.0], [274.0, 595.0], [159.0, 595.0]], \"·Output\", 0.9531], [[[216.0, 619.0], [654.0, 621.0], [654.0, 651.0], [216.0, 649.0]], \"·Maximum total of all pins 50 mA.\", 0.9778], [[[217.0, 673.0], [680.0, 678.0], [680.0, 712.0], [216.0, 707.0]], \"· Default 8 mA max per pin. (Returns\", 0.9852], [[[237.0, 718.0], [643.0, 720.0], [643.0, 750.0], [237.0, 748.0]], \"to this configuration after reset.)\", 0.98], [[[218.0, 774.0], [657.0, 775.0], [657.0, 808.0], [218.0, 807.0]], \"· Software configurable from 2 mA\", 0.9733], [[[237.0, 818.0], [637.0, 819.0], [637.0, 849.0], [237.0, 848.0]], \"to 16 mA. Do not source or sink\", 0.9729], [[[239.0, 861.0], [668.0, 861.0], [668.0, 891.0], [239.0, 891.0]], \"more than what you've configured.\", 0.9879], [[[217.0, 914.0], [589.0, 917.0], [588.0, 950.0], [216.0, 947.0]], \"· Don't drive capacitive loads.\", 0.9783], [[[161.0, 974.0], [253.0, 974.0], [253.0, 1006.0], [161.0, 1006.0]], \"·Input\", 0.9073], [[[217.0, 1027.0], [466.0, 1031.0], [466.0, 1065.0], [216.0, 1061.0]], \"· Threshold of 1.8V\", 0.9601], [[[216.0, 1085.0], [465.0, 1088.0], [465.0, 1121.0], [215.0, 1118.0]], \"· Maximum 0.5 mA\", 0.9512], [[[218.0, 1144.0], [635.0, 1148.0], [635.0, 1178.0], [217.0, 1174.0]], \"·Use a 6Kohm resistor to ensure\", 0.9553], [[[238.0, 1189.0], [633.0, 1189.0], [633.0, 1218.0], [238.0, 1218.0]], \"thatcurrentfrom a3.3V source\", 0.9748], [[[240.0, 1231.0], [521.0, 1229.0], [521.0, 1259.0], [240.0, 1261.0]], \"cannotexceed0.5mA\", 0.9975], [[[273.0, 1285.0], [611.0, 1287.0], [611.0, 1320.0], [273.0, 1318.0]], \"·(3.3v/6000g= .00055A)\", 0.9199], [[[128.0, 1397.0], [348.0, 1403.0], [347.0, 1440.0], [127.0, 1434.0]], \"References\", 0.9987], [[[199.0, 1506.0], [232.0, 1506.0], [232.0, 1545.0], [199.0, 1545.0]], \"口\", 0.9261], [[[513.0, 1516.0], [533.0, 1516.0], [533.0, 1533.0], [513.0, 1533.0]], \":D\", 0.8028]]",
+        "avg_ms": 2699.38
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 1879.62,
+        "word_count": 111,
+        "line_count": 22,
+        "total_chars": 468,
+        "unweighted_mean_confidence": 0.8641,
+        "char_weighted_mean_confidence": 0.895,
+        "extracted_text": "12:37 ME A OM + KE OO 464 60%\n©) raspberrypi.stackexchange.com/q E\nTL;DR\n55 + This is a 3.3V device.\n+ Using 5V peripherals requires a\nlogic level converter.\nY, e Output\n+ Maximum total of all pins 50 mA.\n+ Default 8 mA max per pin. (Returns\nto this configuration after reset.)\n+ Software configurable from 2 mA\nto 16 mA. Do not source or sink\nmore than what you've configured.\n+ Don't drive capacitive loads.\ne Input\n¢ Threshold of 1.8V\n+ Maximum 0.5 mA\n+ Use a 6Kohm resistor to ensure\nthat current from a 3.3V source\ncannot exceed 0.5 mA\n* (3.3y/ 60007 = .00055, )\nReferences",
+        "bbox_count": 111,
+        "bbox_json": "[[[[109, 44], [169, 44], [169, 63], [109, 63]], \"12:37\", 0.92], [[[192, 44], [216, 44], [216, 59], [192, 59]], \"ME\", 0.66], [[[233, 40], [258, 40], [258, 64], [233, 64]], \"A\", 0.41], [[[275, 40], [342, 40], [342, 64], [275, 64]], \"OM\", 0.0], [[[366, 47], [374, 47], [374, 55], [366, 55]], \"+\", 0.78], [[[469, 41], [490, 41], [490, 62], [469, 62]], \"KE\", 0.58], [[[506, 42], [532, 42], [532, 61], [506, 61]], \"OO\", 0.53], [[[547, 41], [598, 41], [598, 63], [547, 63]], \"464\", 0.72], [[[612, 39], [688, 39], [688, 63], [612, 63]], \"60%\", 0.43], [[[39, 135], [67, 135], [67, 169], [39, 169]], \"©)\", 0.73], [[[85, 141], [537, 141], [537, 170], [85, 170]], \"raspberrypi.stackexchange.com/q\", 0.77], [[[571, 136], [602, 136], [602, 166], [571, 166]], \"E\", 0.58], [[[128, 332], [243, 332], [243, 371], [128, 371]], \"TL;DR\", 0.91], [[[47, 407], [83, 407], [83, 433], [47, 433]], \"55\", 0.96], [[[163, 420], [171, 420], [171, 428], [163, 428]], \"+\", 0.71], [[[185, 411], [236, 411], [236, 432], [185, 432]], \"This\", 0.96], [[[247, 412], [265, 412], [265, 432], [247, 432]], \"is\", 0.96], [[[275, 417], [287, 417], [287, 432], [275, 432]], \"a\", 0.88], [[[297, 412], [354, 412], [354, 432], [297, 432]], \"3.3V\", 0.87], [[[363, 412], [449, 412], [449, 432], [363, 432]], \"device.\", 0.96], [[[219, 477], [228, 477], [228, 485], [219, 485]], \"+\", 0.74], [[[242, 469], [310, 469], [310, 494], [242, 494]], \"Using\", 0.93], [[[321, 469], [352, 469], [352, 489], [321, 489]], \"5V\", 0.92], [[[361, 468], [497, 468], [497, 494], [361, 494]], \"peripherals\", 0.96], [[[508, 469], [605, 469], [605, 494], [508, 494]], \"requires\", 0.96], [[[616, 474], [627, 474], [627, 489], [616, 489]], \"a\", 0.96], [[[241, 510], [299, 510], [299, 536], [241, 536]], \"logic\", 0.95], [[[310, 510], [362, 510], [362, 530], [310, 530]], \"level\", 0.95], [[[373, 512], [494, 512], [494, 531], [373, 531]], \"converter.\", 0.96], [[[42, 564], [87, 564], [87, 629], [42, 629]], \"Y,\", 0.64], [[[163, 576], [171, 576], [171, 584], [163, 584]], \"e\", 0.41], [[[186, 568], [268, 568], [268, 593], [186, 593]], \"Output\", 0.96], [[[219, 633], [227, 633], [227, 641], [219, 641]], \"+\", 0.87], [[[243, 626], [364, 626], [364, 645], [243, 645]], \"Maximum\", 0.96], [[[373, 624], [428, 624], [428, 645], [373, 645]], \"total\", 0.96], [[[438, 624], [462, 624], [462, 645], [438, 645]], \"of\", 0.96], [[[471, 624], [497, 624], [497, 645], [471, 645]], \"all\", 0.96], [[[508, 626], [557, 626], [557, 651], [508, 651]], \"pins\", 0.96], [[[568, 626], [595, 626], [595, 645], [568, 645]], \"50\", 0.96], [[[606, 626], [652, 626], [652, 646], [606, 646]], \"mA.\", 0.94], [[[219, 690], [227, 690], [227, 698], [219, 698]], \"+\", 0.79], [[[243, 681], [330, 681], [330, 702], [243, 702]], \"Default\", 0.96], [[[347, 682], [352, 682], [352, 702], [347, 702]], \"8\", 0.96], [[[363, 682], [403, 682], [403, 702], [363, 702]], \"mA\", 0.96], [[[413, 687], [464, 687], [464, 702], [413, 702]], \"max\", 0.96], [[[474, 687], [512, 687], [512, 708], [474, 708]], \"per\", 0.96], [[[521, 683], [562, 683], [562, 708], [521, 708]], \"pin.\", 0.96], [[[573, 680], [677, 680], [677, 708], [573, 708]], \"(Returns\", 0.96], [[[241, 725], [264, 725], [264, 744], [241, 744]], \"to\", 0.96], [[[273, 723], [317, 723], [317, 744], [273, 744]], \"this\", 0.96], [[[327, 723], [489, 723], [489, 749], [327, 749]], \"configuration\", 0.96], [[[500, 723], [556, 723], [556, 744], [500, 744]], \"after\", 0.96], [[[566, 722], [642, 722], [642, 750], [566, 750]], \"reset.)\", 0.96], [[[219, 789], [228, 789], [228, 797], [219, 797]], \"+\", 0.7], [[[242, 780], [352, 780], [352, 801], [242, 801]], \"Software\", 0.96], [[[361, 780], [514, 780], [514, 807], [361, 807]], \"configurable\", 0.96], [[[523, 780], [580, 780], [580, 801], [523, 801]], \"from\", 0.95], [[[591, 782], [604, 782], [604, 801], [591, 801]], \"2\", 0.96], [[[614, 782], [655, 782], [655, 801], [614, 801]], \"mA\", 0.96], [[[241, 824], [264, 824], [264, 843], [241, 843]], \"to\", 0.95], [[[275, 823], [303, 823], [303, 843], [275, 843]], \"16\", 0.95], [[[313, 823], [359, 823], [359, 843], [313, 843]], \"mA.\", 0.92], [[[371, 823], [402, 823], [402, 843], [371, 843]], \"Do\", 0.96], [[[412, 824], [450, 824], [450, 843], [412, 843]], \"not\", 0.95], [[[460, 828], [542, 828], [542, 843], [460, 843]], \"source\", 0.96], [[[552, 828], [576, 828], [576, 843], [552, 843]], \"or\", 0.93], [[[584, 822], [634, 822], [634, 843], [584, 843]], \"sink\", 0.92], [[[242, 870], [304, 870], [304, 885], [242, 885]], \"more\", 0.96], [[[313, 864], [366, 864], [366, 885], [313, 885]], \"than\", 0.96], [[[376, 864], [435, 864], [435, 885], [376, 885]], \"what\", 0.96], [[[444, 864], [520, 864], [520, 890], [444, 890]], \"you've\", 0.95], [[[530, 864], [667, 864], [667, 890], [530, 890]], \"configured.\", 0.96], [[[219, 930], [227, 930], [227, 938], [219, 938]], \"+\", 0.6], [[[243, 921], [302, 921], [302, 942], [243, 942]], \"Don't\", 0.92], [[[312, 921], [370, 921], [370, 942], [312, 942]], \"drive\", 0.93], [[[379, 922], [504, 922], [504, 948], [379, 948]], \"capacitive\", 0.96], [[[515, 921], [586, 921], [586, 942], [515, 942]], \"loads.\", 0.96], [[[163, 987], [171, 987], [171, 995], [163, 995]], \"e\", 0.49], [[[187, 979], [247, 979], [247, 1004], [187, 1004]], \"Input\", 0.94], [[[219, 1044], [227, 1044], [227, 1052], [219, 1052]], \"¢\", 0.67], [[[241, 1035], [364, 1035], [364, 1056], [241, 1056]], \"Threshold\", 0.96], [[[374, 1035], [399, 1035], [399, 1056], [374, 1056]], \"of\", 0.92], [[[408, 1037], [462, 1037], [462, 1056], [408, 1056]], \"1.8V\", 0.92], [[[219, 1102], [228, 1102], [228, 1110], [219, 1110]], \"+\", 0.87], [[[243, 1094], [364, 1094], [364, 1114], [243, 1114]], \"Maximum\", 0.94], [[[375, 1094], [411, 1094], [411, 1114], [375, 1114]], \"0.5\", 0.94], [[[421, 1094], [462, 1094], [462, 1114], [421, 1114]], \"mA\", 0.96], [[[219, 1159], [227, 1159], [227, 1167], [219, 1167]], \"+\", 0.77], [[[243, 1151], [287, 1151], [287, 1171], [243, 1171]], \"Use\", 0.96], [[[297, 1156], [309, 1156], [309, 1171], [297, 1171]], \"a\", 0.93], [[[319, 1150], [405, 1150], [405, 1171], [319, 1171]], \"6Kohm\", 0.92], [[[416, 1152], [508, 1152], [508, 1171], [416, 1171]], \"resistor\", 0.96], [[[516, 1153], [540, 1153], [540, 1171], [516, 1171]], \"to\", 0.97], [[[549, 1156], [632, 1156], [632, 1171], [549, 1171]], \"ensure\", 0.96], [[[240, 1192], [289, 1192], [289, 1213], [240, 1213]], \"that\", 0.96], [[[298, 1194], [385, 1194], [385, 1213], [298, 1213]], \"current\", 0.96], [[[394, 1192], [450, 1192], [450, 1213], [394, 1213]], \"from\", 0.95], [[[461, 1198], [473, 1198], [473, 1213], [461, 1213]], \"a\", 0.93], [[[483, 1193], [538, 1193], [538, 1213], [483, 1213]], \"3.3V\", 0.85], [[[547, 1198], [630, 1198], [630, 1213], [547, 1213]], \"source\", 0.96], [[[242, 1236], [326, 1236], [326, 1255], [242, 1255]], \"cannot\", 0.91], [[[335, 1234], [421, 1234], [421, 1255], [335, 1255]], \"exceed\", 0.91], [[[432, 1235], [468, 1235], [468, 1255], [432, 1255]], \"0.5\", 0.94], [[[478, 1235], [519, 1235], [519, 1255], [478, 1255]], \"mA\", 0.94], [[[276, 1299], [284, 1299], [284, 1307], [276, 1307]], \"*\", 0.66], [[[299, 1290], [384, 1290], [384, 1318], [299, 1318]], \"(3.3y/\", 0.44], [[[392, 1292], [465, 1292], [465, 1318], [392, 1318]], \"60007\", 0.44], [[[475, 1298], [487, 1298], [487, 1306], [475, 1306]], \"=\", 0.92], [[[496, 1292], [592, 1292], [592, 1318], [496, 1318]], \".00055,\", 0.59], [[[601, 1290], [608, 1290], [608, 1317], [601, 1317]], \")\", 0.79], [[[131, 1400], [345, 1400], [345, 1433], [131, 1433]], \"References\", 0.96]]",
+        "avg_ms": 1926.0
+      }
+    },
+    {
+      "sample": {
+        "type": "schedule_document_photo",
+        "file_id": 1607,
+        "path": "C:\\Users\\User\\Desktop\\whatsapp_chats_zip\\com.whatsapp\\WhatsApp\\Media\\WhatsApp Images\\IMG-20230129-WA0002.jpg",
+        "description": "Document/calendar schedule photo with tabular layout"
+      },
+      "visual_metrics": {
+        "width": 1080,
+        "height": 1508,
+        "std_dev": 68.26,
+        "range": 255,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 0,
+      "trigger_reason": "NONE",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 4901.99,
+        "det_ms": 1388.22,
+        "cls_ms": 51.78,
+        "rec_ms": 3406.27,
+        "line_count": 25,
+        "total_chars": 282,
+        "unweighted_mean_confidence": 0.9881,
+        "char_weighted_mean_confidence": 0.9777,
+        "extracted_text": "2SEMESTRE\nENERO\n8\nTrofeoErecachoRCMARSC(solo\n15\n22\nTrofeo Erecacho RCMA RSC (solo\n29\nFEBRERO\n5\nTrofeo Erecacho RCMA RSC (solo\n12\nLIGAAMISTOSAGETXOBELAESK\n19\nTrofeoErecachoRCMARSC(solo\n26\nMARZO\n5\nTrofeoGuadalimarRCMARSC\n12\nLIGAAMISTOSAGETXOBELAESK\n19\nTrofeo GuadalimarRCMARSC\n25 y 26\nCAMPEONATODEBIZKAIADEVE",
+        "bbox_count": 25,
+        "bbox_json": "[[[[157.0, 34.0], [428.0, 34.0], [428.0, 71.0], [157.0, 71.0]], \"2SEMESTRE\", 0.9872], [[[155.0, 135.0], [296.0, 138.0], [295.0, 179.0], [155.0, 176.0]], \"ENERO\", 0.9964], [[[255.0, 250.0], [286.0, 250.0], [286.0, 292.0], [255.0, 292.0]], \"8\", 1.0], [[[403.0, 249.0], [1064.0, 251.0], [1064.0, 291.0], [403.0, 289.0]], \"TrofeoErecachoRCMARSC(solo\", 0.9653], [[[240.0, 312.0], [300.0, 312.0], [300.0, 360.0], [240.0, 360.0]], \"15\", 0.9996], [[[241.0, 379.0], [299.0, 379.0], [299.0, 424.0], [241.0, 424.0]], \"22\", 0.9999], [[[404.0, 380.0], [1064.0, 382.0], [1064.0, 422.0], [404.0, 420.0]], \"Trofeo Erecacho RCMA RSC (solo\", 0.9606], [[[241.0, 444.0], [298.0, 444.0], [298.0, 489.0], [241.0, 489.0]], \"29\", 0.9999], [[[155.0, 621.0], [342.0, 623.0], [341.0, 661.0], [155.0, 659.0]], \"FEBRERO\", 0.9957], [[[257.0, 736.0], [284.0, 736.0], [284.0, 772.0], [257.0, 772.0]], \"5\", 0.9996], [[[404.0, 732.0], [1064.0, 734.0], [1064.0, 774.0], [404.0, 772.0]], \"Trofeo Erecacho RCMA RSC (solo\", 0.9598], [[[241.0, 797.0], [300.0, 797.0], [300.0, 842.0], [241.0, 842.0]], \"12\", 0.9997], [[[407.0, 801.0], [1078.0, 801.0], [1078.0, 837.0], [407.0, 837.0]], \"LIGAAMISTOSAGETXOBELAESK\", 0.9921], [[[241.0, 862.0], [298.0, 862.0], [298.0, 907.0], [241.0, 907.0]], \"19\", 0.9999], [[[404.0, 863.0], [1065.0, 865.0], [1065.0, 905.0], [404.0, 903.0]], \"TrofeoErecachoRCMARSC(solo\", 0.9658], [[[242.0, 927.0], [300.0, 927.0], [300.0, 972.0], [242.0, 972.0]], \"26\", 0.9996], [[[155.0, 1102.0], [311.0, 1105.0], [310.0, 1146.0], [155.0, 1143.0]], \"MARZO\", 0.9899], [[[254.0, 1215.0], [286.0, 1215.0], [286.0, 1259.0], [254.0, 1259.0]], \"5\", 0.9996], [[[405.0, 1216.0], [1010.0, 1217.0], [1009.0, 1257.0], [405.0, 1256.0]], \"TrofeoGuadalimarRCMARSC\", 0.9887], [[[242.0, 1280.0], [299.0, 1280.0], [299.0, 1326.0], [242.0, 1326.0]], \"12\", 0.9998], [[[407.0, 1284.0], [1078.0, 1284.0], [1078.0, 1321.0], [407.0, 1321.0]], \"LIGAAMISTOSAGETXOBELAESK\", 0.9917], [[[240.0, 1346.0], [298.0, 1346.0], [298.0, 1391.0], [240.0, 1391.0]], \"19\", 0.9997], [[[405.0, 1348.0], [1010.0, 1348.0], [1010.0, 1387.0], [405.0, 1387.0]], \"Trofeo GuadalimarRCMARSC\", 0.9715], [[[194.0, 1409.0], [348.0, 1409.0], [348.0, 1458.0], [194.0, 1458.0]], \"25 y 26\", 0.9487], [[[408.0, 1415.0], [1078.0, 1415.0], [1078.0, 1451.0], [408.0, 1451.0]], \"CAMPEONATODEBIZKAIADEVE\", 0.9914]]",
+        "avg_ms": 2391.23
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 1205.1,
+        "word_count": 50,
+        "line_count": 13,
+        "total_chars": 249,
+        "unweighted_mean_confidence": 0.8992,
+        "char_weighted_mean_confidence": 0.916,
+        "extracted_text": "2 SEMESTRE\nENERO\nTrofeo Erecacho RCMA RSC (solo\nTrofeo Erecacho RCMA RSC (solo\nFEBRERO\nTrofeo Erecacho RCMA RSC (solo\nLIGA AMISTOSA GETXO BELA ESk\nTrofeo Erecacho RCMA RSC (solo\nMARZO\nE Trofeo Guadalimar RCMA RSC\n= LIGA AMISTOSA GETXO BELA ESI\nTrofeo Guadalimar RCMA RSC\nCAMPEONATO DE BIZKAIA DE VE",
+        "bbox_count": 50,
+        "bbox_json": "[[[[158, 35], [181, 35], [181, 70], [158, 70]], \"2\", 0.92], [[[197, 35], [429, 35], [429, 71], [197, 71]], \"SEMESTRE\", 0.92], [[[159, 141], [294, 141], [294, 174], [159, 174]], \"ENERO\", 0.96], [[[404, 251], [536, 251], [536, 286], [404, 286]], \"Trofeo\", 0.93], [[[553, 251], [732, 251], [732, 286], [553, 286]], \"Erecacho\", 0.92], [[[749, 253], [870, 253], [870, 286], [749, 286]], \"RCMA\", 0.91], [[[885, 253], [956, 253], [956, 286], [885, 286]], \"RSC\", 0.95], [[[971, 250], [1065, 250], [1065, 294], [971, 294]], \"(solo\", 0.96], [[[404, 382], [536, 382], [536, 417], [404, 417]], \"Trofeo\", 0.93], [[[553, 382], [732, 382], [732, 417], [553, 417]], \"Erecacho\", 0.92], [[[749, 384], [870, 384], [870, 417], [749, 417]], \"RCMA\", 0.92], [[[885, 384], [956, 384], [956, 417], [885, 417]], \"RSC\", 0.96], [[[971, 382], [1065, 382], [1065, 425], [971, 425]], \"(solo\", 0.93], [[[159, 624], [339, 624], [339, 657], [159, 657]], \"FEBRERO\", 0.96], [[[404, 734], [536, 734], [536, 769], [404, 769]], \"Trofeo\", 0.93], [[[553, 734], [732, 734], [732, 769], [553, 769]], \"Erecacho\", 0.92], [[[749, 736], [870, 736], [870, 769], [749, 769]], \"RCMA\", 0.92], [[[885, 736], [956, 736], [956, 769], [885, 769]], \"RSC\", 0.96], [[[971, 734], [1065, 734], [1065, 777], [971, 777]], \"(solo\", 0.93], [[[407, 802], [499, 802], [499, 835], [407, 835]], \"LIGA\", 0.92], [[[511, 802], [733, 802], [733, 835], [511, 835]], \"AMISTOSA\", 0.88], [[[747, 802], [885, 802], [885, 835], [747, 835]], \"GETXO\", 0.88], [[[900, 803], [1000, 803], [1000, 834], [900, 834]], \"BELA\", 0.93], [[[1015, 802], [1080, 802], [1080, 835], [1015, 835]], \"ESk\", 0.72], [[[404, 865], [536, 865], [536, 900], [404, 900]], \"Trofeo\", 0.93], [[[553, 865], [732, 865], [732, 900], [553, 900]], \"Erecacho\", 0.91], [[[748, 867], [870, 867], [870, 900], [748, 900]], \"RCMA\", 0.92], [[[884, 867], [956, 867], [956, 900], [884, 900]], \"RSC\", 0.95], [[[971, 864], [1065, 864], [1065, 908], [971, 908]], \"(solo\", 0.95], [[[159, 1108], [308, 1108], [308, 1141], [159, 1141]], \"MARZO\", 0.96], [[[166, 1204], [378, 1204], [378, 1265], [166, 1265]], \"E\", 0.45], [[[404, 1218], [536, 1218], [536, 1253], [404, 1253]], \"Trofeo\", 0.93], [[[551, 1218], [784, 1218], [784, 1253], [551, 1253]], \"Guadalimar\", 0.9], [[[799, 1220], [920, 1220], [920, 1253], [799, 1253]], \"RCMA\", 0.9], [[[935, 1220], [1006, 1220], [1006, 1253], [935, 1253]], \"RSC\", 0.96], [[[166, 1270], [378, 1270], [378, 1358], [166, 1358]], \"=\", 0.38], [[[407, 1285], [499, 1285], [499, 1318], [407, 1318]], \"LIGA\", 0.93], [[[512, 1285], [733, 1285], [733, 1318], [512, 1318]], \"AMISTOSA\", 0.92], [[[747, 1285], [885, 1285], [885, 1318], [747, 1318]], \"GETXO\", 0.91], [[[900, 1286], [1000, 1286], [1000, 1317], [900, 1317]], \"BELA\", 0.96], [[[1015, 1285], [1080, 1285], [1080, 1318], [1015, 1318]], \"ESI\", 0.63], [[[404, 1348], [536, 1348], [536, 1383], [404, 1383]], \"Trofeo\", 0.93], [[[551, 1348], [784, 1348], [784, 1383], [551, 1383]], \"Guadalimar\", 0.9], [[[799, 1350], [920, 1350], [920, 1383], [799, 1383]], \"RCMA\", 0.91], [[[935, 1350], [1006, 1350], [1006, 1383], [935, 1383]], \"RSC\", 0.96], [[[405, 1415], [708, 1415], [708, 1448], [405, 1448]], \"CAMPEONATO\", 0.96], [[[724, 1416], [774, 1416], [774, 1447], [724, 1447]], \"DE\", 0.93], [[[790, 1416], [952, 1416], [952, 1447], [790, 1447]], \"BIZKAIA\", 0.88], [[[967, 1416], [1018, 1416], [1018, 1447], [967, 1447]], \"DE\", 0.96], [[[1031, 1416], [1080, 1416], [1080, 1447], [1031, 1447]], \"VE\", 0.96]]",
+        "avg_ms": 1215.71
+      }
+    },
+    {
+      "sample": {
+        "type": "camera_photo_non_text",
+        "file_id": 1610,
+        "path": "C:\\Users\\User\\Desktop\\whatsapp_chats_zip\\com.whatsapp\\WhatsApp\\Media\\WhatsApp Images\\IMG-20230131-WA0001.jpg",
+        "description": "Personal/scenic WhatsApp photograph without structured text"
+      },
+      "visual_metrics": {
+        "width": 2048,
+        "height": 1536,
+        "std_dev": 69.9,
+        "range": 255,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 1,
+      "trigger_reason": "ZERO_TEXT_ON_NON_BLANK",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 2889.54,
+        "det_ms": 0.0,
+        "cls_ms": 0.0,
+        "rec_ms": 0.0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 1586.62
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 769.87,
+        "word_count": 0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 753.36
+      }
+    },
+    {
+      "sample": {
+        "type": "webp_sticker",
+        "file_id": 17554,
+        "path": "C:\\Users\\User\\Desktop\\whatsapp_chats_zip\\Whatsapp web Extraccion manual de ultimas conversaciones comprimidas\\Descomprimidos\\WhatsApp Chat with Urko Banc. org\\STK-20220428-WA0003.webp",
+        "description": "WhatsApp WebP sticker asset"
+      },
+      "visual_metrics": {
+        "width": 512,
+        "height": 512,
+        "std_dev": 64.26,
+        "range": 252,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 1,
+      "trigger_reason": "ZERO_TEXT_ON_NON_BLANK",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 528.44,
+        "det_ms": 0.0,
+        "cls_ms": 0.0,
+        "rec_ms": 0.0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 284.37
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 520.95,
+        "word_count": 0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 529.41
+      }
+    },
+    {
+      "sample": {
+        "type": "synthetic_clear",
+        "file_id": -1,
+        "path": "C:\\Users\\User\\Desktop\\agenc-ia\\apps\\getxobelaeskola-web\\.agents\\explorer_m4_2\\test_fixtures\\fixture_clear.png",
+        "description": "Synthetic multi-line forensic club text (Spanish/Basque)"
+      },
+      "visual_metrics": {
+        "width": 800,
+        "height": 300,
+        "std_dev": 52.75,
+        "range": 255,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 0,
+      "trigger_reason": "NONE",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 748.04,
+        "det_ms": 359.95,
+        "cls_ms": 29.39,
+        "rec_ms": 335.35,
+        "line_count": 5,
+        "total_chars": 198,
+        "unweighted_mean_confidence": 0.9819,
+        "char_weighted_mean_confidence": 0.9798,
+        "extracted_text": "GETXOBELAESKOLA-CLUBDEVELA\nActadeJuntaDirectiva-28deOctubre2026\nCuotaanuals0cios:150.00EUR/IBAN:ES04210015502102\nEuskara:BelaEskolakobazkideenzerrendaofiziala\nCIF:G48923412-RegistrodeEntidadesDeportivas",
+        "bbox_count": 5,
+        "bbox_json": "[[[[32.0, 38.0], [443.0, 38.0], [443.0, 55.0], [32.0, 55.0]], \"GETXOBELAESKOLA-CLUBDEVELA\", 0.9945], [[[32.0, 87.0], [515.0, 87.0], [515.0, 106.0], [32.0, 106.0]], \"ActadeJuntaDirectiva-28deOctubre2026\", 0.9874], [[[31.0, 137.0], [693.0, 137.0], [693.0, 156.0], [31.0, 155.0]], \"Cuotaanuals0cios:150.00EUR/IBAN:ES04210015502102\", 0.9464], [[[31.0, 187.0], [583.0, 187.0], [583.0, 205.0], [31.0, 205.0]], \"Euskara:BelaEskolakobazkideenzerrendaofiziala\", 0.9934], [[[30.0, 236.0], [584.0, 236.0], [584.0, 258.0], [30.0, 258.0]], \"CIF:G48923412-RegistrodeEntidadesDeportivas\", 0.9876]]",
+        "avg_ms": 785.67
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 861.92,
+        "word_count": 40,
+        "line_count": 5,
+        "total_chars": 198,
+        "unweighted_mean_confidence": 0.9228,
+        "char_weighted_mean_confidence": 0.9265,
+        "extracted_text": "GETXO BELA ESKOLA - CLUB DE VELA\nActa de Junta Directiva - 28 de Octubre 2026\nCuota anual socios: 150.00 EUR / IBAN: ES04 2100 1550 2102\nEuskara: Bela Eskolako bazkideen zerrenda ofiziala\nCIF: G48923412 - Registro de Entidades Deportivas",
+        "bbox_count": 40,
+        "bbox_json": "[[[[31, 38], [108, 38], [108, 54], [31, 54]], \"GETXO\", 0.92], [[[116, 38], [172, 38], [172, 54], [116, 54]], \"BELA\", 0.92], [[[179, 38], [266, 38], [266, 54], [179, 54]], \"ESKOLA\", 0.84], [[[272, 46], [277, 46], [277, 48], [272, 48]], \"-\", 0.84], [[[284, 38], [344, 38], [344, 54], [284, 54]], \"CLUB\", 0.96], [[[352, 38], [380, 38], [380, 54], [352, 54]], \"DE\", 0.95], [[[387, 38], [444, 38], [444, 54], [387, 54]], \"VELA\", 0.95], [[[31, 88], [77, 88], [77, 104], [31, 104]], \"Acta\", 0.96], [[[85, 87], [112, 87], [112, 104], [85, 104]], \"de\", 0.96], [[[118, 88], [179, 88], [179, 104], [118, 104]], \"Junta\", 0.93], [[[188, 87], [279, 87], [279, 104], [188, 104]], \"Directiva\", 0.91], [[[287, 96], [292, 96], [292, 98], [287, 98]], \"-\", 0.92], [[[299, 88], [325, 88], [325, 104], [299, 104]], \"28\", 0.96], [[[332, 87], [359, 87], [359, 104], [332, 104]], \"de\", 0.96], [[[365, 87], [455, 87], [455, 104], [365, 104]], \"Octubre\", 0.96], [[[461, 88], [515, 88], [515, 104], [461, 104]], \"2026\", 0.96], [[[31, 138], [96, 138], [96, 154], [31, 154]], \"Cuota\", 0.96], [[[104, 137], [165, 137], [165, 154], [104, 154]], \"anual\", 0.89], [[[171, 137], [244, 137], [244, 154], [171, 154]], \"socios:\", 0.96], [[[253, 138], [324, 138], [324, 154], [253, 154]], \"150.00\", 0.96], [[[332, 138], [374, 138], [374, 154], [332, 154]], \"EUR\", 0.93], [[[380, 137], [387, 137], [387, 155], [380, 155]], \"/\", 0.77], [[[394, 138], [449, 138], [449, 154], [394, 154]], \"IBAN:\", 0.77], [[[457, 138], [510, 138], [510, 154], [457, 154]], \"ES04\", 0.78], [[[517, 138], [571, 138], [571, 154], [517, 154]], \"2100\", 0.96], [[[580, 138], [632, 138], [632, 154], [580, 154]], \"1550\", 0.96], [[[639, 138], [692, 138], [692, 154], [639, 154]], \"2102\", 0.96], [[[32, 187], [122, 187], [122, 204], [32, 204]], \"Euskara:\", 0.96], [[[130, 187], [173, 187], [173, 204], [130, 204]], \"Bela\", 0.93], [[[182, 187], [279, 187], [279, 204], [182, 204]], \"Eskolako\", 0.93], [[[287, 187], [397, 187], [397, 204], [287, 204]], \"bazkideen\", 0.92], [[[405, 187], [501, 187], [501, 204], [405, 204]], \"zerrenda\", 0.92], [[[509, 186], [583, 186], [583, 204], [509, 204]], \"ofiziala\", 0.92], [[[31, 238], [71, 238], [71, 254], [31, 254]], \"CIF:\", 0.88], [[[78, 238], [204, 238], [204, 254], [78, 254]], \"G48923412\", 0.88], [[[212, 246], [217, 246], [217, 248], [212, 248]], \"-\", 0.93], [[[225, 237], [313, 237], [313, 259], [225, 259]], \"Registro\", 0.96], [[[320, 237], [347, 237], [347, 254], [320, 254]], \"de\", 0.96], [[[354, 237], [460, 237], [460, 254], [354, 254]], \"Entidades\", 0.96], [[[468, 237], [583, 237], [583, 259], [468, 259]], \"Deportivas\", 0.96]]",
+        "avg_ms": 847.69
+      }
+    },
+    {
+      "sample": {
+        "type": "synthetic_low_contrast",
+        "file_id": -2,
+        "path": "C:\\Users\\User\\Desktop\\agenc-ia\\apps\\getxobelaeskola-web\\.agents\\explorer_m4_2\\test_fixtures\\fixture_low_contrast.png",
+        "description": "Synthetic degraded low-contrast text for fallback triggering"
+      },
+      "visual_metrics": {
+        "width": 800,
+        "height": 300,
+        "std_dev": 2.63,
+        "range": 20,
+        "is_non_blank": false
+      },
+      "fallback_triggered": 0,
+      "trigger_reason": "NONE",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 374.98,
+        "det_ms": 0.0,
+        "cls_ms": 0.0,
+        "rec_ms": 0.0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 382.56
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 634.06,
+        "word_count": 25,
+        "line_count": 4,
+        "total_chars": 134,
+        "unweighted_mean_confidence": 0.9292,
+        "char_weighted_mean_confidence": 0.9251,
+        "extracted_text": "GETXO BELA ESKOLA - RECIBO DE PAGO\nConcepto: Licencia Federativa Vela Ligera 2026\nImporte: 45,50 EUR - Pagado con tarjeta\nEstado: CONFIRMADO / Ref: TX-9921820",
+        "bbox_count": 25,
+        "bbox_json": "[[[[30, 37], [109, 37], [109, 55], [30, 55]], \"GETXO\", 0.9], [[[115, 37], [172, 37], [172, 55], [115, 55]], \"BELA\", 0.9], [[[178, 37], [266, 37], [266, 55], [178, 55]], \"ESKOLA\", 0.9], [[[272, 45], [277, 45], [277, 49], [272, 49]], \"-\", 0.93], [[[284, 37], [368, 37], [368, 55], [284, 55]], \"RECIBO\", 0.92], [[[374, 37], [403, 37], [403, 55], [374, 55]], \"DE\", 0.96], [[[410, 37], [473, 37], [473, 55], [410, 55]], \"PAGO\", 0.96], [[[30, 87], [146, 87], [146, 110], [30, 110]], \"Concepto:\", 0.91], [[[152, 87], [241, 87], [241, 105], [152, 105]], \"Licencia\", 0.92], [[[248, 86], [361, 86], [361, 105], [248, 105]], \"Federativa\", 0.92], [[[367, 86], [413, 86], [413, 105], [367, 105]], \"Vela\", 0.93], [[[420, 87], [487, 87], [487, 110], [420, 110]], \"Ligera\", 0.92], [[[494, 87], [549, 87], [549, 105], [494, 105]], \"2026\", 0.96], [[[31, 138], [122, 138], [122, 159], [31, 159]], \"Importe:\", 0.93], [[[128, 137], [188, 137], [188, 157], [128, 157]], \"45,50\", 0.96], [[[194, 137], [238, 137], [238, 155], [194, 155]], \"EUR\", 0.93], [[[244, 145], [249, 145], [249, 149], [244, 149]], \"-\", 0.93], [[[256, 137], [340, 137], [340, 160], [256, 160]], \"Pagado\", 0.96], [[[345, 140], [387, 140], [387, 155], [345, 155]], \"con\", 0.96], [[[394, 137], [461, 137], [461, 159], [394, 159]], \"tarjeta\", 0.96], [[[31, 186], [111, 186], [111, 205], [31, 205]], \"Estado:\", 0.93], [[[116, 187], [286, 187], [286, 205], [116, 205]], \"CONFIRMADO\", 0.89], [[[270, 181], [280, 181], [280, 215], [270, 215]], \"/\", 0.92], [[[291, 185], [331, 185], [331, 205], [291, 205]], \"Ref:\", 0.92], [[[337, 187], [471, 187], [471, 205], [337, 205]], \"TX-9921820\", 0.91]]",
+        "avg_ms": 650.33
+      }
+    },
+    {
+      "sample": {
+        "type": "synthetic_blank",
+        "file_id": -3,
+        "path": "C:\\Users\\User\\Desktop\\agenc-ia\\apps\\getxobelaeskola-web\\.agents\\explorer_m4_2\\test_fixtures\\fixture_blank.png",
+        "description": "Synthetic pure white 0-variance image"
+      },
+      "visual_metrics": {
+        "width": 600,
+        "height": 400,
+        "std_dev": 0.0,
+        "range": 0,
+        "is_non_blank": false
+      },
+      "fallback_triggered": 0,
+      "trigger_reason": "NONE",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 793.85,
+        "det_ms": 0.0,
+        "cls_ms": 0.0,
+        "rec_ms": 0.0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 410.48
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 489.65,
+        "word_count": 0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 485.1
+      }
+    },
+    {
+      "sample": {
+        "type": "synthetic_noise",
+        "file_id": -4,
+        "path": "C:\\Users\\User\\Desktop\\agenc-ia\\apps\\getxobelaeskola-web\\.agents\\explorer_m4_2\\test_fixtures\\fixture_noise.png",
+        "description": "Synthetic high-entropy noise with 0 text"
+      },
+      "visual_metrics": {
+        "width": 600,
+        "height": 400,
+        "std_dev": 28.96,
+        "range": 146,
+        "is_non_blank": true
+      },
+      "fallback_triggered": 1,
+      "trigger_reason": "ZERO_TEXT_ON_NON_BLANK",
+      "rapidocr": {
+        "engine": "RAPIDOCR",
+        "total_ms": 211.27,
+        "det_ms": 0.0,
+        "cls_ms": 0.0,
+        "rec_ms": 0.0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 212.63
+      },
+      "tesseract": {
+        "engine": "TESSERACT",
+        "lang": "eng+spa+eus",
+        "total_ms": 667.58,
+        "word_count": 0,
+        "line_count": 0,
+        "total_chars": 0,
+        "unweighted_mean_confidence": 0.0,
+        "char_weighted_mean_confidence": 0.0,
+        "extracted_text": "",
+        "bbox_count": 0,
+        "bbox_json": "[]",
+        "avg_ms": 663.66
+      }
+    }
+  ]
+}

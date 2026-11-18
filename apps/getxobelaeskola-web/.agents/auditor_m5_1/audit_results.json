@@ -1,0 +1,159 @@
+{
+  "check1_sha256": {
+    "expected": "030bc23bf4e96994ea7f24adb92ff0e26d03a7ede15ecb2599df167976881ca3",
+    "actual": "030bc23bf4e96994ea7f24adb92ff0e26d03a7ede15ecb2599df167976881ca3",
+    "match": true
+  },
+  "check1_write_rejection": true,
+  "check2_env": {
+    "torch_found": false,
+    "ct2_version": "4.8.4",
+    "cuda_count": 1,
+    "cuda_supported": true,
+    "fw_version": "1.2.1"
+  },
+  "check3_inventory": {
+    "total_checked": 397,
+    "missing_files": 0,
+    "zero_byte_files": 0,
+    "duration_mismatches": 0,
+    "sample_mismatches": [],
+    "corrupted_streams": 0,
+    "empty_transcripts": 2,
+    "empty_transcript_details": [
+      [
+        17228,
+        "PTT-20211102-WA0009.opus",
+        83.838
+      ],
+      [
+        17230,
+        "PTT-20211103-WA0002.opus",
+        56.998
+      ]
+    ],
+    "lexical_sample_count": 68,
+    "lexical_samples": [
+      {
+        "file_id": 17153,
+        "file": "PTT-20210304-WA0001.opus",
+        "duration": 38.818,
+        "lang": "es",
+        "prob": 0.8823,
+        "text": "Hola, mío, ¿cómo es eso de que os dejan tirados? Y nada de lo del curso. Sí más, le he dicho que me avise cuando vuelvo a ver un curso porque lo hice... empecé diez minutos tarde, "
+      },
+      {
+        "file_id": 17159,
+        "file": "PTT-20210513-WA0001.opus",
+        "duration": 43.038,
+        "lang": "es",
+        "prob": 0.9326,
+        "text": "Sí, te entiendo lo que dices, pero bueno, yo confío que aunque no cumpla en la de este mes, en la de esta próxima semana de los 400-500, porque sí que todavía están apuraos, que lu"
+      },
+      {
+        "file_id": 17173,
+        "file": "PTT-20210608-WA0003.opus",
+        "duration": 37.498,
+        "lang": "es",
+        "prob": 0.8691,
+        "text": "Hola, señor Miao. Perfecto. Pues ya lo tengo casi preparado, el ordenador, con lo que más dicho. Así que me gustaría hacer el Teamviver ese contigo para que me ayudes a hacer el pa"
+      },
+      {
+        "file_id": 17180,
+        "file": "PTT-20210613-WA0021.opus",
+        "duration": 11.318,
+        "lang": "es",
+        "prob": 0.8081,
+        "text": "En la ocho digo que vale, que todo supuestamente sólo tiene una consonante, pues justo ese tiene la H de Ucha, que son dos consonantes, pero bueno, la H no cuenta, porque no es una"
+      },
+      {
+        "file_id": 17193,
+        "file": "PTT-20210613-WA0035.opus",
+        "duration": 2.218,
+        "lang": "es",
+        "prob": 0.8516,
+        "text": "Y encuentra sus similitudes."
+      },
+      {
+        "file_id": 17196,
+        "file": "PTT-20210616-WA0001.opus",
+        "duration": 113.458,
+        "lang": "es",
+        "prob": 0.6172,
+        "text": "Hola mi abu, pues para qué vale aprendérsela lista podría valerte para luego usarla. Por ejemplo, te haces un palacio mental y divides en tu casa. Por ejemplo, esa es la primera ha"
+      },
+      {
+        "file_id": 17213,
+        "file": "PTT-20210824-WA0002.opus",
+        "duration": 9.118,
+        "lang": "es",
+        "prob": 1.0,
+        "text": "Alemiao, pues le acabo de mirar y no lo encuentro, así que no lo tengo, tendrás que mirar en redes sociales o algo, no sé."
+      },
+      {
+        "file_id": 17224,
+        "file": "PTT-20211012-WA0000.opus",
+        "duration": 20.198,
+        "lang": "es",
+        "prob": 1.0,
+        "text": "Hola señor mío, es que ricasco por lo de para la serie esta, le echaré un ojillo y que te cuentas cómo van los avances con lo de Nekoichi. Haciste las reuniones de todos, ya está a"
+      },
+      {
+        "file_id": 17233,
+        "file": "PTT-20211127-WA0002.opus",
+        "duration": 18.998,
+        "lang": "es",
+        "prob": 0.6348,
+        "text": "Alemiao, ya me apete de tragar mierda, ni que sea duro, y parece ser que las condiciones son malas del sitio. Dejaras tú allí, y en su día ahí le pagan tres euros la hora, que sí, "
+      },
+      {
+        "file_id": 17247,
+        "file": "PTT-20220106-WA0002.opus",
+        "duration": 26.938,
+        "lang": "es",
+        "prob": 0.7075,
+        "text": "Me estoy volviendo un poco loco, porque no me deje hacerlo directamente, me dice que falta algún número que no está completo y si yo intento cargar la cuenta de Revolute, no puedo,"
+      },
+      {
+        "file_id": 17253,
+        "file": "PTT-20220117-WA0001.opus",
+        "duration": 9.738,
+        "lang": "es",
+        "prob": 0.7402,
+        "text": "Hola, mío. Te dejaste aquí en mi coche. Te dejaste una bolsa con cositas de persiana. No sé, porque si igual las necesitas."
+      },
+      {
+        "file_id": 17254,
+        "file": "PTT-20220118-WA0002.opus",
+        "duration": 40.158,
+        "lang": "es",
+        "prob": 1.0,
+        "text": "Vale, ya me acuerdo. Era que me pusisteis que te debía 400 euros, porque te había pagado 400 euros menos de todo el dinero que te había hecho yo en el vizum, en el ingreso. Y te di"
+      },
+      {
+        "file_id": 17258,
+        "file": "PTT-20220124-WA0014.opus",
+        "duration": 14.878,
+        "lang": "es",
+        "prob": 0.8804,
+        "text": "Perdona y míao, sienta mal arte, que igual mejor hacerlo el miércoles. No había contado con que el jueves, hemos cambiado los delunes a los jueves, el curso de Bela. Así que, si te"
+      },
+      {
+        "file_id": 17273,
+        "file": "PTT-20220214-WA0002.opus",
+        "duration": 15.898,
+        "lang": "es",
+        "prob": 0.6152,
+        "text": "Por sitio, mío, se ha cumplido uno de mis sueños. Al fin tengo un burro al que saludar todas las bañeras. Y ese por salto de casa digo hola yo. Me hace mucha gracia, me acuerdo de "
+      },
+      {
+        "file_id": 17282,
+        "file": "PTT-20220301-WA0012.opus",
+        "duration": 36.398,
+        "lang": "es",
+        "prob": 0.8276,
+        "text": "Oleñau, una cosita. Que le estaba metiendo ama presión para que atacara yugular a amigas. Y a una vecino le va a atacar. Y otra alternativa tiene que hacer muchos match. Otra alter"
+      }
+    ]
+  }
+}

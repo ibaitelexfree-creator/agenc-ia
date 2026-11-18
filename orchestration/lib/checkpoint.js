@@ -1,6 +1,10 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import crypto from 'crypto';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { canonicalizeJson, computePayloadHash } from './canonical.js';
+import * as migration001 from './migrations/001_v3_execution_outbox.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,9 +12,12 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.join(__dirname, '..', 'v3_orchestration.sqlite');
 const db = new Database(dbPath);
 
+// Enforce WAL, Synchronous, and Foreign Keys on every connection
 db.pragma('journal_mode = WAL');
 db.pragma('synchronous = NORMAL');
+db.pragma('foreign_keys = ON');
 
+// Initialize base schema if not present
 db.exec(`
   CREATE TABLE IF NOT EXISTS missions (
     id TEXT PRIMARY KEY,
@@ -52,24 +59,20 @@ db.exec(`
   CREATE TABLE IF NOT EXISTS semantic_logs (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     job_id TEXT,
-    event_type TEXT, -- SEMANTIC_FAIL, BLOCK, HUMAN_REVIEW, AMBIGUITY_DETECTED
+    event_type TEXT,
     details TEXT,
     created_at DATETIME DEFAULT (STRFTIME('%Y-%m-%dT%H:%M:%f', 'NOW'))
   );
   CREATE INDEX IF NOT EXISTS idx_semantic_type ON semantic_logs (event_type);
 `);
 
-try {
-  db.exec('ALTER TABLE missions ADD COLUMN tamper_detected BOOLEAN DEFAULT 0;');
-} catch (e) { }
+// Run versioned migrations safely
+export function runMigrations(dbInstance = db) {
+  dbInstance.pragma('foreign_keys = ON');
+  migration001.up(dbInstance);
+}
 
-try {
-  db.exec(`
-    ALTER TABLE missions ADD COLUMN replay_count INTEGER DEFAULT 0;
-    ALTER TABLE missions ADD COLUMN last_replay_at DATETIME;
-  `);
-} catch (e) { }
-
+runMigrations(db);
 
 export const missions = {
   create: db.transaction((id, prompt) => {
@@ -107,14 +110,132 @@ export const missions = {
     return stmt.run(status, score, feedback ? JSON.stringify(feedback) : null, executionTime, tamperDetected ? 1 : 0, id);
   }),
 
-  authorizeExecution: db.transaction((id, status, data = {}) => {
-    const { authorizedAt, policyVersion, signatureHash } = data;
+  /**
+   * Authorize mission execution atomically.
+   * Immediate transaction performs:
+   * 1. Read authoritative mission state.
+   * 2. Assert existence and READY_FOR_EXECUTION status.
+   * 3. Authoritative policy check (audit_score >= 90, tamper_detected == 0).
+   * 4. Build canonical JSON payload and compute payload_hash.
+   * 5. Conditional SQL update to DISPATCH_PENDING (assert changes === 1).
+   * 6. Insert into execution_outbox (status PENDING).
+   * 
+   * If any step fails, the entire transaction rolls back.
+   */
+  authorizeMissionExecution: db.transaction((id, options = {}) => {
+    const { policyVersion = 'v3.0.0', requestedAttemptId = null } = options;
+    const mission = db.prepare('SELECT * FROM missions WHERE id = ?').get(id);
+
+    if (!mission) {
+      const err = new Error(`Mission ${id} not found`);
+      err.code = 'NOT_FOUND';
+      throw err;
+    }
+
+    if (mission.status !== 'READY_FOR_EXECUTION') {
+      const err = new Error(`Cannot authorize mission in status ${mission.status}. Must be READY_FOR_EXECUTION.`);
+      err.code = 'CONFLICT';
+      err.currentStatus = mission.status;
+      throw err;
+    }
+
+    // Authoritative policy verification
+    if (mission.audit_score === null || mission.audit_score === undefined || mission.audit_score < 90) {
+      const err = new Error(`Policy Rejection: audit_score must be >= 90 (current: ${mission.audit_score})`);
+      err.code = 'POLICY_REJECTED';
+      err.audit_score = mission.audit_score;
+      throw err;
+    }
+
+    if (mission.tamper_detected) {
+      const err = new Error('Policy Rejection: tamper_detected flag is true');
+      err.code = 'POLICY_REJECTED';
+      throw err;
+    }
+
+    // Build immutable canonical execution payload
+    const executionAttemptId = requestedAttemptId || crypto.randomUUID();
+    const authorizedAt = new Date().toISOString();
+
+    let manifestData = {};
+    if (mission.build_artifacts_path) {
+      try {
+        const manifestPath = path.join(mission.build_artifacts_path, 'manifest.json');
+        if (fs.existsSync(manifestPath)) {
+          manifestData = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+        }
+      } catch (e) {
+        // Fallback manifest if unreadable
+        manifestData = { error: 'Manifest unreadable', path: mission.build_artifacts_path };
+      }
+    }
+
+    const payloadObj = {
+      audit_score: mission.audit_score,
+      authorized_at: authorizedAt,
+      correlation_id: mission.id,
+      execution_attempt_id: executionAttemptId,
+      manifest: manifestData,
+      plan_hash: mission.plan_hash || null,
+      plan_json: mission.plan_json ? JSON.parse(mission.plan_json) : null,
+      policy_version: policyVersion
+    };
+
+    const payloadJson = canonicalizeJson(payloadObj);
+    const payloadHash = computePayloadHash(payloadJson);
+
+    // Conditional atomic update
+    const updateStmt = db.prepare(`
+      UPDATE missions 
+      SET status = 'DISPATCH_PENDING',
+          execution_authorized_at = ?,
+          execution_policy_version = ?,
+          execution_signature_hash = ?,
+          updated_at = (STRFTIME('%Y-%m-%dT%H:%M:%f', 'NOW'))
+      WHERE id = ? AND status = 'READY_FOR_EXECUTION'
+    `);
+
+    const updateInfo = updateStmt.run(authorizedAt, policyVersion, payloadHash, id);
+
+    if (updateInfo.changes !== 1) {
+      const err = new Error(`Concurrent modification conflict for mission ${id}`);
+      err.code = 'CONFLICT';
+      throw err;
+    }
+
+    // Insert outbox record in same transaction
+    const outboxStmt = db.prepare(`
+      INSERT INTO execution_outbox (
+        execution_attempt_id, mission_id, status, payload_json, payload_hash, policy_version, attempt_number
+      ) VALUES (?, ?, 'PENDING', ?, ?, ?, 1)
+    `);
+
+    outboxStmt.run(executionAttemptId, id, payloadJson, payloadHash, policyVersion);
+
+    return {
+      mission_id: id,
+      status: 'DISPATCH_PENDING',
+      execution_attempt_id: executionAttemptId,
+      payload_hash: payloadHash,
+      authorized_at: authorizedAt,
+      policy_version: policyVersion
+    };
+  }),
+
+  /**
+   * Phase 2 of policy rejection: record rejection conditionally outside authorization transaction.
+   * Only mutates status if mission is currently in READY_FOR_EXECUTION.
+   */
+  recordPolicyRejection: db.transaction((id, reason = 'Policy rejected') => {
     const stmt = db.prepare(`
       UPDATE missions 
-      SET status = ?, execution_authorized_at = ?, execution_policy_version = ?, execution_signature_hash = ?, updated_at = (STRFTIME('%Y-%m-%dT%H:%M:%f', 'NOW'))
-      WHERE id = ?
+      SET status = 'POLICY_REJECTED',
+          error_message = ?,
+          updated_at = (STRFTIME('%Y-%m-%dT%H:%M:%f', 'NOW'))
+      WHERE id = ? AND status = 'READY_FOR_EXECUTION'
     `);
-    return stmt.run(status, authorizedAt, policyVersion, signatureHash, id);
+    const info = stmt.run(reason, id);
+    return { recorded: info.changes === 1 };
   }),
 
   updateStatus: db.transaction((id, status) => {
@@ -133,7 +254,6 @@ export const missions = {
     return stmt.run(id);
   }),
 
-
   get: (id) => db.prepare('SELECT * FROM missions WHERE id = ?').get(id),
 
   getByHash: (hash) => db.prepare("SELECT * FROM missions WHERE plan_hash = ? AND status = 'READY_FOR_EXECUTION'").get(hash),
@@ -146,7 +266,6 @@ export const missions = {
   }),
 
   getTelemetryMetrics: () => {
-    // 1️⃣ Scores in last 24h
     const scoreStats = db.prepare(`
         SELECT 
             AVG(audit_score) as avg24h,
@@ -156,7 +275,6 @@ export const missions = {
         AND created_at >= datetime('now', '-24 hours')
     `).get();
 
-    // 2️⃣ Moving Average 20
     const ma20Rows = db.prepare(`
         SELECT audit_score 
         FROM missions 
@@ -166,7 +284,6 @@ export const missions = {
     `).all();
     const ma20 = ma20Rows.length ? ma20Rows.reduce((acc, row) => acc + row.audit_score, 0) / ma20Rows.length : 0;
 
-    // 3️⃣ Tamper events 24h
     const tamperStats = db.prepare(`
         SELECT COUNT(*) as tamper_count
         FROM missions
@@ -174,7 +291,6 @@ export const missions = {
         AND created_at >= datetime('now', '-24 hours')
     `).get();
 
-    // 4️⃣ Job counts 24h
     const jobStatsRows = db.prepare(`
         SELECT status, COUNT(*) as count
         FROM missions
@@ -187,7 +303,8 @@ export const missions = {
       audit_failed: 0,
       gateway_degraded: 0,
       execution_triggered: 0,
-      ready_for_execution: 0
+      ready_for_execution: 0,
+      dispatch_pending: 0
     };
 
     jobStatsRows.forEach(row => {
@@ -196,12 +313,13 @@ export const missions = {
       if (row.status === 'GATEWAY_DEGRADED') jobCounts.gateway_degraded = row.count;
       if (row.status === 'EXECUTION_TRIGGERED') jobCounts.execution_triggered = row.count;
       if (row.status === 'READY_FOR_EXECUTION') jobCounts.ready_for_execution = row.count;
+      if (row.status === 'DISPATCH_PENDING') jobCounts.dispatch_pending = row.count;
     });
 
     return {
       avg24h: scoreStats.avg24h || 0,
       ma20,
-      ma20Scores: ma20Rows.map(r => r.audit_score), // For StdDev calculation
+      ma20Scores: ma20Rows.map(r => r.audit_score),
       tamper24h: tamperStats.tamper_count || 0,
       jobCounts,
       replays24h: db.prepare("SELECT SUM(replay_count) as total FROM missions WHERE created_at >= datetime('now', '-24 hours')").get().total || 0,
@@ -214,3 +332,16 @@ export const missions = {
     };
   }
 };
+
+export const outbox = {
+  get: (executionAttemptId) => db.prepare('SELECT * FROM execution_outbox WHERE execution_attempt_id = ?').get(executionAttemptId),
+  getByMission: (missionId) => db.prepare('SELECT * FROM execution_outbox WHERE mission_id = ? ORDER BY created_at DESC').all(missionId),
+  list: (status = null) => {
+    if (status) {
+      return db.prepare('SELECT * FROM execution_outbox WHERE status = ? ORDER BY created_at ASC').all(status);
+    }
+    return db.prepare('SELECT * FROM execution_outbox ORDER BY created_at DESC').all();
+  }
+};
+
+export default db;

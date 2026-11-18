@@ -2,6 +2,13 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Tarpoon with Skipper Card Custom Image (No Logo)
+  1. **Custom Image:** Updated to `Moving_boat_closer_in_image_ead16130.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
+  2. **Logo Removed:** Cleaned out logo decal per user request, showing clean photo.
+  3. **Strict Isolation:** Only affects Tarpoon with skipper, all other rental cards render normally.
+- **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
+
+- **Agent:** Antigravity / @[frontend-specialist]
 - **Task:** Zoom J-80 sin patron card image by 20%
   1. **Image Scaling:** Added scale-[1.20] origin-[35%_center] to the J-80 sin patron card image in RentalCard.tsx.
   2. **Card Visual:** Centers and zooms in on the boat and crew standing onboard by 20%.
@@ -69,7 +76,34 @@
      - Verified HTTP 200 on `http://localhost:3000/es/`.
 - **Status:** COMPLETED & VERIFIED.
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Section 4 Seam Elimination and Square Cards Overhaul
+- **Task:** Actualización y reestructuración del catálogo de cursos (`/courses` y `messages/es.json`)
+  1. **Crucero:**
+     - `Crucero Ini`: Iniciación · 180 € · 3 días · + de 15 años
+     - `Eq. Entren. Adulto`: Equipo de Entrenamiento · 100 €/mes · + de 16 años
+     - `Crucero perfeccionamiento`: Avanzado · 140 € · 2 días · + de 16 años
+     - `Gennaker`: Avanzado · 140 € / 2 días · + de 16 años
+     - Descripción de categoría: "Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel."
+  2. **Vela Ligera:**
+     - `Iniciación`: Iniciación · 180 € · + de 15 años
+     - `Eq. Entren. Infantiles`: Equipo de Entrenamiento · 120 €/mes · 5 a 12/15 años
+     - `Eq. Entren. Jóvenes`: Equipo de Entrenamiento · 100 €/mes · +12/15 años
+     - `Avanzado`: 180 € / 3 días · + de 16 años
+     - `Udaleku`: 130 € / sem · +3 años
+     - Descripción de categoría: "Descubre la emoción de la vela ligera, siente el viento y aprende a dominar tu embarcación. Iníciate, perfecciona tu técnica y disfruta navegando."
+  3. **Windsurf:**
+     - `Iniciación`: Windsurf: Iniciación y perfeccionamiento · Desde 45 € · 2,5h
+     - Descripción de categoría: "Descubre la emoción del windsurf y descubre nuevas formas de deslizarte sobre el agua. Perfecciona tu técnica, gana autonomía y sigue progresando con cada salida."
+  4. **Mantenimiento:**
+     - `Mantenimiento`: Mantenimiento de embarcaciones (precio retirado / consultar)
+     - `Velas`: Costura y reparación de velas (precio retirado / consultar)
+     - Descripción de categoría: "Aprende a trabajar con tus propias manos y descubre los secretos del mantenimiento náutico. Adquiere recursos muy útiles para el mar y tu vida."
+  5. **Componentes y UI (Jerarquía corregida en tarjetas):**
+      - En CourseCard.tsx: Se implementó la jerarquía exacta solicitada por el usuario:
+        - **Línea Superior**: Categoría / Tipo / Nivel en **MAYÚSCULAS** (uppercase tracking-wider font-semibold text-accent) con el precio alineado a la derecha.
+        - **Línea Inferior**: Nombre del curso en **minúsculas con primera letra mayúscula** (Crucero Ini, Eq. Entren. Adulto, Gennaker, Iniciación, etc.).
+        - **Badges**: Etiquetas inferiores para duración (⏱️) y edad (👤).
+      - Compilación verificada con npx tsc --noEmit (0 errores).
+- **Status:** COMPLETED & VERIFIED.
   1. **Seam Elimination above Section 4 (`HomePrototypeLayout.tsx`):**
      - Resolved sub-pixel rendering seam gap visible between Section 3 (`Section3Curved.tsx`) and Section 4 (`Section4Why.tsx`) at small/portrait viewports by adding `-mt-[2px]` negative overlap on Section 4.
      - Preserved all SVG wave clip paths, beige extensions, and background sunset imagery intact.

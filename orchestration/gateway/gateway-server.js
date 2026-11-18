@@ -1,0 +1,551 @@
+import express from 'express';
+import axios from 'axios';
+import crypto from 'crypto';
+import http from 'http';
+import { createInternalAuthMiddleware, validatePskAtStartup } from '../middleware/internal-auth.js';
+import { validatePilotRequest, validatePilotResponse } from './pilot-validator.js';
+
+export function createGatewayApp(options = {}) {
+    const {
+        lmStudioUrl = process.env.LM_STUDIO_URL || 'http://127.0.0.1:1234',
+        defaultTimeoutMs = parseInt(process.env.GATEWAY_INFERENCE_TIMEOUT_MS || '60000', 10),
+        maxPromptLength = parseInt(process.env.GATEWAY_MAX_PROMPT_LENGTH || '8192', 10),
+        maxOutputTokens = parseInt(process.env.GATEWAY_MAX_TOKENS || '4096', 10),
+        maxConcurrency = parseInt(process.env.GATEWAY_MAX_CONCURRENCY || '2', 10),
+        requireAuth = true
+    } = options;
+
+    const app = express();
+    app.disable('x-powered-by');
+
+    const authMiddleware = requireAuth ? createInternalAuthMiddleware() : (req, res, next) => next();
+    const jsonParser = express.json({ limit: '1mb' });
+
+    let activeInferences = 0;
+    const requestLog = [];
+
+    function logPhase(reqId, phase, details = {}) {
+        const entry = {
+            timestamp: new Date().toISOString(),
+            requestId: reqId,
+            phase,
+            ...details
+        };
+        requestLog.push(entry);
+        if (requestLog.length > 500) requestLog.shift();
+        return entry;
+    }
+
+    async function fetchAvailableModels() {
+        try {
+            const resp = await axios.get(lmStudioUrl + '/v1/models', { timeout: 3000 });
+            if (resp.data && Array.isArray(resp.data.data)) {
+                return resp.data.data.map(m => m.id);
+            }
+        } catch (err) {
+            // LM Studio not reachable or returned error
+        }
+        return [];
+    }
+
+    app.get('/health', async (req, res) => {
+        const start = Date.now();
+        let lmReachable = false;
+        let lmStatus = null;
+        let availableModels = [];
+        let error = null;
+
+        try {
+            const resp = await axios.get(lmStudioUrl + '/v1/models', { timeout: 3000 });
+            lmReachable = true;
+            lmStatus = resp.status;
+            if (resp.data && Array.isArray(resp.data.data)) {
+                availableModels = resp.data.data.map(m => m.id);
+            }
+        } catch (err) {
+            lmReachable = false;
+            error = err.message;
+        }
+
+        const durationMs = Date.now() - start;
+        const statusCode = lmReachable ? 200 : 503;
+
+        return res.status(statusCode).json({
+            status: lmReachable ? 'HEALTHY' : 'DEGRADED',
+            service: 'local-inference-gateway',
+            version: '8.32.46',
+            active_concurrency: activeInferences,
+            max_concurrency: maxConcurrency,
+            lm_studio: {
+                reachable: lmReachable,
+                status: lmStatus,
+                models: availableModels,
+                latency_ms: durationMs,
+                error
+            }
+        });
+    });
+
+    // ==========================================
+    // ROUTE 1: EXISTING /v1/inference (Unchanged contract, auth before json parsing)
+    // ==========================================
+    app.post('/v1/inference', authMiddleware, jsonParser, async (req, res) => {
+        const clientReqId = req.headers['x-request-id'] || req.body?.request_id;
+        const requestId = (clientReqId && typeof clientReqId === 'string' && clientReqId.trim())
+            ? clientReqId.trim()
+            : ('req-' + crypto.randomUUID());
+
+        const reqStartTime = Date.now();
+
+        logPhase(requestId, 'PHASE_1_RECEIVED', {
+            model: req.body?.model || 'default',
+            prompt_bytes: req.body?.prompt ? Buffer.byteLength(String(req.body.prompt), 'utf8') : 0
+        });
+
+        const {
+            prompt,
+            system_prompt,
+            model = 'local-model',
+            temperature = 0,
+            max_tokens = 150,
+            timeout_ms = defaultTimeoutMs
+        } = req.body || {};
+
+        if (!prompt || typeof prompt !== 'string' || !prompt.trim()) {
+            logPhase(requestId, 'PHASE_ERROR_VALIDATION', { error: 'Prompt must be a non-empty string' });
+            return res.status(400).json({
+                error: 'ValidationError: prompt must be a non-empty string',
+                requestId
+            });
+        }
+
+        if (prompt.length > maxPromptLength) {
+            logPhase(requestId, 'PHASE_ERROR_VALIDATION', { error: 'Prompt length exceeds maximum ' + maxPromptLength });
+            return res.status(400).json({
+                error: 'ValidationError: prompt length ' + prompt.length + ' exceeds max ' + maxPromptLength,
+                requestId
+            });
+        }
+
+        const numMaxTokens = parseInt(max_tokens, 10);
+        if (isNaN(numMaxTokens) || numMaxTokens <= 0 || numMaxTokens > maxOutputTokens) {
+            logPhase(requestId, 'PHASE_ERROR_VALIDATION', { error: 'Invalid max_tokens ' + max_tokens });
+            return res.status(400).json({
+                error: 'ValidationError: max_tokens must be an integer between 1 and ' + maxOutputTokens,
+                requestId
+            });
+        }
+
+        const numTemp = parseFloat(temperature);
+        if (isNaN(numTemp) || numTemp < 0 || numTemp > 2.0) {
+            logPhase(requestId, 'PHASE_ERROR_VALIDATION', { error: 'Invalid temperature ' + temperature });
+            return res.status(400).json({
+                error: 'ValidationError: temperature must be between 0.0 and 2.0',
+                requestId
+            });
+        }
+
+        if (activeInferences >= maxConcurrency) {
+            logPhase(requestId, 'PHASE_ERROR_CONCURRENCY', { active: activeInferences, max: maxConcurrency });
+            return res.status(429).json({
+                error: 'ConcurrencyLimitExceeded: Maximum concurrent inference slots occupied',
+                active_concurrency: activeInferences,
+                max_concurrency: maxConcurrency,
+                requestId
+            });
+        }
+
+        activeInferences++;
+        logPhase(requestId, 'PHASE_2_ADMITTED', { active: activeInferences });
+
+        const messages = [];
+        if (system_prompt && typeof system_prompt === 'string' && system_prompt.trim()) {
+            messages.push({ role: 'system', content: system_prompt.trim() });
+        }
+        messages.push({ role: 'user', content: prompt.trim() });
+
+        // Model verification: verify model is explicitly loaded or supported
+        if (model && model.trim() !== 'local-model' && model.trim() !== 'qwen2.5-7b-instruct') {
+            activeInferences = Math.max(0, activeInferences - 1);
+            logPhase(requestId, 'PHASE_ERROR_VALIDATION', { error: 'Requested model not loaded: ' + model });
+            return res.status(400).json({
+                error: 'ModelNotFoundError: Requested model ' + model + ' is not currently loaded in LM Studio',
+                requestId
+            });
+        }
+
+        const lmPayload = {
+            model: model.trim(),
+            messages,
+            temperature: numTemp,
+            max_tokens: numMaxTokens,
+            stream: false
+        };
+
+        const inferenceStartMs = Date.now();
+        logPhase(requestId, 'PHASE_3_DISPATCHED_TO_LM_STUDIO', {
+            model: lmPayload.model,
+            temperature: lmPayload.temperature,
+            max_tokens: lmPayload.max_tokens
+        });
+
+        try {
+            const effectiveTimeout = Math.min(parseInt(timeout_ms, 10) || defaultTimeoutMs, 120000);
+
+            const lmResponse = await axios.post(lmStudioUrl + '/v1/chat/completions', lmPayload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'V8-LocalInferenceGateway/1.0'
+                },
+                timeout: effectiveTimeout
+            });
+
+            const inferenceDurationMs = Date.now() - inferenceStartMs;
+            const choices = lmResponse.data?.choices || [];
+            const responseText = choices[0]?.message?.content || '';
+            const finishReason = choices[0]?.finish_reason || 'unknown';
+            const usage = lmResponse.data?.usage || {};
+            const resolvedModel = lmResponse.data?.model || model;
+
+            logPhase(requestId, 'PHASE_4_RESPONSE_RECEIVED', {
+                inference_duration_ms: inferenceDurationMs,
+                finish_reason: finishReason,
+                tokens: usage.completion_tokens || 0
+            });
+
+            const totalDurationMs = Date.now() - reqStartTime;
+
+            logPhase(requestId, 'PHASE_5_COMPLETED', {
+                total_duration_ms: totalDurationMs
+            });
+
+            return res.status(200).json({
+                status: 'SUCCESS',
+                requestId,
+                model: resolvedModel,
+                text: responseText,
+                finish_reason: finishReason,
+                usage,
+                timing: {
+                    inference_ms: inferenceDurationMs,
+                    total_ms: totalDurationMs
+                }
+            });
+
+        } catch (err) {
+            const inferenceDurationMs = Date.now() - inferenceStartMs;
+            const totalDurationMs = Date.now() - reqStartTime;
+
+            let statusCode = 502;
+            let errorType = 'LM_STUDIO_ERROR';
+            let errorMessage = err.message;
+
+            if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+                statusCode = 503;
+                errorType = 'LM_STUDIO_UNREACHABLE';
+                errorMessage = 'Connection to LM Studio failed at ' + lmStudioUrl;
+            } else if (err.code === 'ECONNABORTED' || err.message.includes('timeout')) {
+                statusCode = 504;
+                errorType = 'GATEWAY_TIMEOUT';
+                errorMessage = 'Inference timed out after ' + timeout_ms + 'ms';
+            } else if (err.response) {
+                statusCode = err.response.status >= 500 ? 502 : err.response.status;
+                errorMessage = err.response.data?.error?.message || JSON.stringify(err.response.data);
+            }
+
+            logPhase(requestId, 'PHASE_ERROR_EXECUTION', {
+                error_type: errorType,
+                message: errorMessage,
+                http_status: statusCode,
+                total_duration_ms: totalDurationMs
+            });
+
+            return res.status(statusCode).json({
+                status: 'ERROR',
+                requestId,
+                error_type: errorType,
+                error: errorMessage,
+                timing: {
+                    inference_ms: inferenceDurationMs,
+                    total_ms: totalDurationMs
+                }
+            });
+
+        } finally {
+            activeInferences = Math.max(0, activeInferences - 1);
+        }
+    });
+
+    // ==========================================
+    // ROUTE 2: PILOT CONTRACT /v1/pilot/inference
+    // ==========================================
+    app.post('/v1/pilot/inference', authMiddleware, jsonParser, async (req, res) => {
+        const body = req.body || {};
+        const taskId = typeof body.task_id === 'string' ? body.task_id : 'UNKNOWN_TASK';
+        const agentId = typeof body.agent_id === 'string' ? body.agent_id : 'UNKNOWN_AGENT';
+        const clientReqId = req.headers['x-request-id'] || body.request_id;
+        const requestId = (clientReqId && typeof clientReqId === 'string' && clientReqId.trim())
+            ? clientReqId.trim()
+            : ('req-' + crypto.randomUUID());
+        const model = typeof body.model === 'string' ? body.model : 'unknown';
+
+        const reqStartTime = Date.now();
+
+        logPhase(requestId, 'PILOT_PHASE_1_RECEIVED', {
+            task_id: taskId,
+            agent_id: agentId,
+            model,
+            message_count: Array.isArray(body.messages) ? body.messages.length : 0
+        });
+
+        // 1. Fetch available models from LM Studio for validation
+        const availableModels = await fetchAvailableModels();
+
+        // 2. Validate request schema and constraints
+        const validationResult = validatePilotRequest(body, availableModels);
+        if (!validationResult.isValid) {
+            logPhase(requestId, 'PILOT_PHASE_ERROR_VALIDATION', {
+                code: validationResult.errorCode,
+                message: validationResult.message
+            });
+
+            const httpStatus = validationResult.errorCode === 'MODEL_UNAVAILABLE' ? 503 : 400;
+            const errorPayload = {
+                task_id: taskId,
+                agent_id: agentId,
+                request_id: requestId,
+                model,
+                status: validationResult.errorCode,
+                result: null,
+                error: {
+                    code: validationResult.errorCode,
+                    message: validationResult.message,
+                    details: validationResult.details || null
+                },
+                execution_timestamp: new Date().toISOString()
+            };
+
+            return res.status(httpStatus).json(errorPayload);
+        }
+
+        // 3. Concurrency check
+        if (activeInferences >= maxConcurrency) {
+            logPhase(requestId, 'PILOT_PHASE_ERROR_CONCURRENCY', { active: activeInferences, max: maxConcurrency });
+            const errorPayload = {
+                task_id: taskId,
+                agent_id: agentId,
+                request_id: requestId,
+                model,
+                status: 'RATE_LIMITED',
+                result: null,
+                error: {
+                    code: 'RATE_LIMITED',
+                    message: 'Maximum gateway concurrency slots occupied',
+                    details: { active: activeInferences, max: maxConcurrency }
+                },
+                execution_timestamp: new Date().toISOString()
+            };
+            return res.status(429).json(errorPayload);
+        }
+
+        activeInferences++;
+        logPhase(requestId, 'PILOT_PHASE_2_ADMITTED', { active: activeInferences });
+
+        const effectiveMaxTokens = parseInt(body.max_tokens, 10) || 150;
+        const effectiveTimeout = Math.min(parseInt(body.timeout_ms, 10) || defaultTimeoutMs, 120000);
+
+        const lmPayload = {
+            model: body.model,
+            messages: body.messages,
+            temperature: body.temperature,
+            max_tokens: effectiveMaxTokens,
+            stream: false
+        };
+
+        const inferenceStartMs = Date.now();
+        logPhase(requestId, 'PILOT_PHASE_3_DISPATCHED_TO_LM_STUDIO', {
+            model: lmPayload.model,
+            temperature: lmPayload.temperature,
+            max_tokens: lmPayload.max_tokens
+        });
+
+        try {
+            const lmResponse = await axios.post(lmStudioUrl + '/v1/chat/completions', lmPayload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'V8-LocalInferenceGateway-Pilot/1.0'
+                },
+                timeout: effectiveTimeout
+            });
+
+            const inferenceDurationMs = Date.now() - inferenceStartMs;
+            const choices = lmResponse.data?.choices || [];
+            const responseText = choices[0]?.message?.content || '';
+            const finishReason = choices[0]?.finish_reason || 'stop';
+            const usage = lmResponse.data?.usage || {};
+            const resolvedModel = lmResponse.data?.model || body.model;
+
+            // Attempt structured JSON parse: direct or markdown codeblock extraction
+            let parsedJson = null;
+            let invalidModelOutput = false;
+
+            const trimmed = responseText.trim();
+            // Check if fenced codeblock exists
+            const codeBlockMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+            const candidateJson = codeBlockMatch ? codeBlockMatch[1].trim() : trimmed;
+
+            try {
+                parsedJson = JSON.parse(candidateJson);
+            } catch (jsonErr) {
+                // If caller requested structured JSON or output begins with { or [, mark invalid
+                if (trimmed.startsWith('{') || trimmed.startsWith('[') || codeBlockMatch) {
+                    invalidModelOutput = true;
+                }
+            }
+
+            if (invalidModelOutput) {
+                const totalDurationMs = Date.now() - reqStartTime;
+                logPhase(requestId, 'PILOT_PHASE_ERROR_INVALID_OUTPUT', { text: responseText });
+                const errorPayload = {
+                    task_id: taskId,
+                    agent_id: agentId,
+                    request_id: requestId,
+                    model: resolvedModel,
+                    status: 'INVALID_MODEL_OUTPUT',
+                    result: null,
+                    error: {
+                        code: 'INVALID_MODEL_OUTPUT',
+                        message: 'Model generated malformed JSON when structured JSON was expected',
+                        details: { raw_text: responseText }
+                    },
+                    execution_timestamp: new Date().toISOString()
+                };
+                return res.status(502).json(errorPayload);
+            }
+
+            const totalDurationMs = Date.now() - reqStartTime;
+
+            logPhase(requestId, 'PILOT_PHASE_4_RESPONSE_RECEIVED', {
+                inference_duration_ms: inferenceDurationMs,
+                finish_reason: finishReason,
+                tokens: usage.completion_tokens || 0
+            });
+
+            const successPayload = {
+                task_id: taskId,
+                agent_id: agentId,
+                request_id: requestId,
+                model: resolvedModel,
+                status: 'SUCCESS',
+                result: {
+                    text: responseText,
+                    finish_reason: finishReason,
+                    parsed_json: parsedJson,
+                    usage: {
+                        prompt_tokens: usage.prompt_tokens || 0,
+                        completion_tokens: usage.completion_tokens || 0,
+                        total_tokens: usage.total_tokens || 0
+                    },
+                    timing: {
+                        inference_ms: inferenceDurationMs,
+                        total_ms: totalDurationMs
+                    }
+                },
+                error: null,
+                execution_timestamp: new Date().toISOString()
+            };
+
+            // Validate against response schema before sending
+            const resValidation = validatePilotResponse(successPayload);
+            if (!resValidation.isValid) {
+                logPhase(requestId, 'PILOT_PHASE_ERROR_GATEWAY_CONTRACT', { error: resValidation.message });
+                return res.status(502).json({
+                    task_id: taskId,
+                    agent_id: agentId,
+                    request_id: requestId,
+                    model: resolvedModel,
+                    status: 'INVALID_MODEL_OUTPUT',
+                    result: null,
+                    error: {
+                        code: 'GATEWAY_RESPONSE_CONTRACT_VIOLATION',
+                        message: resValidation.message
+                    },
+                    execution_timestamp: new Date().toISOString()
+                });
+            }
+
+            logPhase(requestId, 'PILOT_PHASE_5_COMPLETED', { total_duration_ms: totalDurationMs });
+            return res.status(200).json(successPayload);
+
+        } catch (err) {
+            const inferenceDurationMs = Date.now() - inferenceStartMs;
+            const totalDurationMs = Date.now() - reqStartTime;
+
+            let statusCode = 502;
+            let statusEnum = 'MODEL_UNAVAILABLE';
+            let errorMessage = err.message;
+
+            if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+                statusCode = 503;
+                statusEnum = 'MODEL_UNAVAILABLE';
+                errorMessage = 'Connection to LM Studio failed at ' + lmStudioUrl;
+            } else if (err.code === 'ECONNABORTED' || err.message.includes('timeout')) {
+                statusCode = 504;
+                statusEnum = 'TIMEOUT';
+                errorMessage = 'Inference timed out after ' + effectiveTimeout + 'ms';
+            } else if (err.response) {
+                statusCode = err.response.status >= 500 ? 502 : err.response.status;
+                errorMessage = err.response.data?.error?.message || JSON.stringify(err.response.data);
+            }
+
+            logPhase(requestId, 'PILOT_PHASE_ERROR_EXECUTION', {
+                status_enum: statusEnum,
+                message: errorMessage,
+                http_status: statusCode,
+                total_duration_ms: totalDurationMs
+            });
+
+            const failurePayload = {
+                task_id: taskId,
+                agent_id: agentId,
+                request_id: requestId,
+                model,
+                status: statusEnum,
+                result: null,
+                error: {
+                    code: statusEnum,
+                    message: errorMessage,
+                    details: null
+                },
+                execution_timestamp: new Date().toISOString()
+            };
+
+            return res.status(statusCode).json(failurePayload);
+
+        } finally {
+            activeInferences = Math.max(0, activeInferences - 1);
+        }
+    });
+
+    app.get('/v1/audit/logs', authMiddleware, (req, res) => {
+        const reqId = req.query.requestId;
+        if (reqId) {
+            return res.json({ logs: requestLog.filter(l => l.requestId === reqId) });
+        }
+        return res.json({ logs: requestLog.slice(-50) });
+    });
+
+    return app;
+}
+
+export function startGatewayStandalone() {
+    validatePskAtStartup();
+    const port = parseInt(process.env.GATEWAY_PORT || '4000', 10);
+    const host = '127.0.0.1';
+    const app = createGatewayApp();
+    const server = http.createServer(app);
+    server.listen(port, host, () => {
+        console.log('[V8 Local Inference Gateway] Listening on http://' + host + ':' + port);
+    });
+    return server;
+}
