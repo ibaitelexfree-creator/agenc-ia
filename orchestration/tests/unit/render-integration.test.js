@@ -714,6 +714,133 @@ describe('Error Analysis Edge Cases', () => {
   });
 });
 
+// =============================================================================
+// Lifecycle and Timer Management (Regression V8.32.44)
+// =============================================================================
+
+describe('Lifecycle and Timer Management', () => {
+  beforeEach(async () => {
+    setupTempDir();
+    await loadModules();
+  });
+
+  afterEach(() => {
+    renderClient.disconnect();
+    cleanupTempDir();
+  });
+
+  it('should clear timer upon startAutoFix completion or error', async () => {
+    const origSetTimeout = global.setTimeout;
+    const origClearTimeout = global.clearTimeout;
+    const scheduledTimers = new Set();
+    const clearedTimers = new Set();
+
+    global.setTimeout = function(...args) {
+      const t = origSetTimeout.apply(this, args);
+      scheduledTimers.add(t);
+      return t;
+    };
+    global.clearTimeout = function(t) {
+      clearedTimers.add(t);
+      return origClearTimeout.apply(this, arguments);
+    };
+
+    try {
+      const event = { serviceId: 'srv-timer-test', deployId: 'dep-timer-1', branch: 'jules/fix-timer' };
+      await renderAutofix.startAutoFix(event, async () => ({ name: 'sess-1' }), async () => ({}));
+
+      // Verify that all timers scheduled by startAutoFix were explicitly cleared
+      assert.ok(scheduledTimers.size > 0, 'Should have scheduled a timeout');
+      for (const t of scheduledTimers) {
+        assert.ok(clearedTimers.has(t), 'Scheduled timer must be cleared upon completion');
+      }
+      assert.strictEqual(renderAutofix.getAutoFixStatus().activeCount, 0, 'No active autofixes should remain');
+    } finally {
+      global.setTimeout = origSetTimeout;
+      global.clearTimeout = origClearTimeout;
+    }
+  });
+
+  it('should clear timer and record upon explicit cancelAutoFix', async () => {
+    // Manually register an operation to test cancelAutoFix
+    const origSetTimeout = global.setTimeout;
+    const origClearTimeout = global.clearTimeout;
+    let scheduledTimer = null;
+    let timerCleared = false;
+
+    global.setTimeout = function(...args) {
+      const t = origSetTimeout.apply(this, args);
+      scheduledTimer = t;
+      return t;
+    };
+    global.clearTimeout = function(t) {
+      if (t === scheduledTimer) {
+        timerCleared = true;
+      }
+      return origClearTimeout.apply(this, arguments);
+    };
+
+    try {
+      // Simulate an ongoing long-running autofix
+      const event = { serviceId: 'srv-cancel', deployId: 'dep-cancel', branch: 'jules/fix-cancel' };
+      // Invoke startAutoFix with a stalled mock to inspect active state
+      let finishPromise;
+      const hungPromise = new Promise(resolve => { finishPromise = resolve; });
+      const fixPromise = renderAutofix.startAutoFix(
+        event,
+        async () => hungPromise,
+        async () => ({})
+      );
+
+      // Check active state
+      const status = renderAutofix.getAutoFixStatus();
+      assert.strictEqual(status.activeCount, 1, 'Should have 1 active operation');
+
+      // Now explicitly cancel
+      const cancelResult = renderAutofix.cancelAutoFix('srv-cancel', 'dep-cancel');
+      assert.ok(cancelResult.success, 'Cancel should succeed');
+      assert.ok(timerCleared, 'Timer should have been cleared by cancelAutoFix');
+      assert.strictEqual(renderAutofix.getAutoFixStatus().activeCount, 0, 'Active count should be 0');
+
+      // Unblock the stalled promise
+      finishPromise({ name: 'sess-done' });
+      await fixPromise;
+    } finally {
+      global.setTimeout = origSetTimeout;
+      global.clearTimeout = origClearTimeout;
+    }
+  });
+
+  it('should verify child process exits naturally without hanging timers', async () => {
+    const { spawn } = await import('child_process');
+    const script = `
+      import { startAutoFix } from './lib/render-autofix.js';
+      const event = { serviceId: 'srv-exit-test', deployId: 'dep-exit-1', branch: 'jules/fix-test' };
+      await startAutoFix(event, async () => ({ name: 'sess-1' }), async () => ({}));
+      // Process should exit cleanly on its own
+    `;
+
+    const child = spawn(process.execPath, ['--input-type=module', '-e', script], {
+      cwd: originalCwd,
+      stdio: 'pipe'
+    });
+
+    const exitCode = await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        child.kill();
+        reject(new Error('Process did not exit naturally within 4000ms: timer leak detected'));
+      }, 4000);
+
+      child.on('exit', (code) => {
+        clearTimeout(timer);
+        resolve(code);
+      });
+    });
+
+    assert.strictEqual(exitCode, 0, 'Child process should exit with code 0');
+  });
+});
+
 console.log('Running render-integration tests...');
 
 // Global cleanup to stop any running intervals

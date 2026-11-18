@@ -1,9 +1,10 @@
 // C:\Users\User\Desktop\agenc-ia\apps\getxobelaeskola-web\src\components\sections\CelebraTuDia\components\ClosingBalloons.tsx
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import confetti from 'canvas-confetti';
 import styles from '../CelebraTuDia.module.css';
 
 interface BalloonState {
@@ -12,9 +13,9 @@ interface BalloonState {
   size: number;
   speed: number;
   left: number;
+  delay: number;
   isPopped: boolean;
   popText: string;
-  y: number;
 }
 
 export default function ClosingBalloons() {
@@ -25,35 +26,70 @@ export default function ClosingBalloons() {
   const [peopleCount, setPeopleCount] = useState(10);
   const [balloons, setBalloons] = useState<BalloonState[]>([]);
 
-  const balloonColors = ['#1B8FCF', '#FFD166', '#EF6351', '#6BBF59', '#FAFAFA'];
-  const popPhrases = ['¡Ups!', '¡Weee!', '¡Otra ronda!', '¡PUM!', '🎈!'];
+  const balloonColors = ['#1B8FCF', '#FFD166', '#EF6351', '#6BBF59', '#38bdf8', '#fb923c'];
+  const popPhrases = ['¡Ups!', '¡Weee!', '¡Otra ronda!', '¡PUM!', '🎉', '✨', '🎈'];
 
-  // Initialize 8 floating balloons
+  // Helper to generate side positions (left: 2-25% or 75-96%)
+  const getSideLeft = (index: number) => {
+    const isLeftSide = index % 2 === 0;
+    if (isLeftSide) {
+      return 2 + Math.random() * 23; // 2% to 25% (lateral izquierdo)
+    }
+    return 75 + Math.random() * 21; // 75% to 96% (lateral derecho)
+  };
+
+  // Initialize 16 floating balloons primarily on lateral sides
   useEffect(() => {
-    const list: BalloonState[] = Array(8).fill(null).map((_, i) => ({
+    const list: BalloonState[] = Array(16).fill(null).map((_, i) => ({
       id: i,
       color: balloonColors[i % balloonColors.length],
-      size: 0.8 + Math.random() * 0.4,
-      speed: 6 + Math.random() * 5,
-      left: 5 + i * 11 + Math.random() * 4,
+      size: 0.85 + Math.random() * 0.45,
+      speed: 6.5 + Math.random() * 5.5,
+      left: getSideLeft(i),
+      delay: (i * 0.7) % 7,
       isPopped: false,
-      popText: popPhrases[i % popPhrases.length],
-      y: 100 + Math.random() * 50
+      popText: popPhrases[i % popPhrases.length]
     }));
     setBalloons(list);
   }, []);
 
-  // Pop action for balloons
-  const popBalloon = (id: number) => {
+  // Pop action for balloons with celebration confetti
+  const popBalloon = (id: number, event?: React.MouseEvent) => {
     if (prefersReducedMotion) return;
+
+    // Trigger confetti from the click origin or balloon position
+    if (event) {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const originX = (rect.left + rect.width / 2) / window.innerWidth;
+      const originY = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: 35,
+        spread: 60,
+        startVelocity: 25,
+        origin: { x: originX, y: originY },
+        colors: ['#1B8FCF', '#FFD166', '#EF6351', '#6BBF59', '#ffffff'],
+        disableForReducedMotion: true
+      });
+    } else {
+      confetti({
+        particleCount: 30,
+        spread: 50,
+        startVelocity: 20,
+        origin: { y: 0.6 },
+        colors: ['#1B8FCF', '#FFD166', '#EF6351', '#6BBF59', '#ffffff'],
+        disableForReducedMotion: true
+      });
+    }
+
     setBalloons(prev => prev.map(b => b.id === id ? { ...b, isPopped: true } : b));
     
-    // Respawn balloon after 2.5s
+    // Respawn balloon after 2.5s in the sides
     setTimeout(() => {
       setBalloons(prev => prev.map(b => b.id === id ? {
         ...b,
         isPopped: false,
-        left: 5 + Math.random() * 80,
+        left: getSideLeft(id),
         color: balloonColors[Math.floor(Math.random() * balloonColors.length)]
       } : b));
     }, 2500);
@@ -83,16 +119,16 @@ export default function ClosingBalloons() {
                     left: `${b.left}%`,
                     scale: b.size
                   }}
+                  initial={{ y: '110vh' }}
                   animate={{
                     y: ['110vh', '-20vh'],
                     x: [0, 15, -15, 0]
                   }}
                   transition={{
-                    y: { duration: b.speed, repeat: Infinity, ease: 'linear' },
+                    y: { duration: b.speed, repeat: Infinity, ease: 'linear', delay: b.delay },
                     x: { duration: 4, repeat: Infinity, ease: 'easeInOut' }
                   }}
-                  onMouseEnter={() => popBalloon(b.id)}
-                  onClick={() => popBalloon(b.id)}
+                  onClick={(e) => popBalloon(b.id, e)}
                 >
                   {/* Balloon Body */}
                   <div
@@ -105,19 +141,7 @@ export default function ClosingBalloons() {
                   {/* Balloon String */}
                   <div className={styles.balloonString} />
                 </motion.div>
-              ) : (
-                <motion.div
-                  key={`poppedText-${b.id}`}
-                  className={styles.balloonText}
-                  style={{ left: `${b.left}%`, bottom: '40%' }}
-                  initial={{ scale: 0.8, opacity: 1 }}
-                  animate={{ scale: 1.5, opacity: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8 }}
-                >
-                  {b.popText}
-                </motion.div>
-              )
+              ) : null
             ))}
           </AnimatePresence>
         </div>

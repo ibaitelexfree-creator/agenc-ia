@@ -1,0 +1,32 @@
+# ==============================================================================
+# WhatsApp Forensic Multi-Agent Operation - Lean Isolated Environment
+# Target Python: 3.12.x on Windows x86_64
+# MANDATE: ZERO PyTorch (Strict Rule 1 Compliance)
+# ==============================================================================
+
+# --- GPU Audio Transcription Engine ---
+ctranslate2==4.8.4
+faster-whisper==1.2.1
+
+# --- Standalone NVIDIA CUDA 12 & cuDNN 9 Dynamic Libraries ---
+nvidia-cublas-cu12==12.9.2.10
+nvidia-cudnn-cu12==9.27.0.42
+nvidia-cuda-nvrtc-cu12==12.9.86
+
+# --- Primary OCR & ONNX Inference Engine ---
+rapidocr-onnxruntime==1.4.4
+onnxruntime==1.20.1
+
+# --- Fallback OCR Engine ---
+pytesseract==0.3.13
+
+# --- Document Extraction Engines ---
+pymupdf==1.25.3
+python-docx==1.1.2
+odfpy==1.4.1
+openpyxl==3.1.5
+
+# --- Forensic Data Manipulation & Ledger Analytics ---
+pandas==2.2.3
+numpy>=1.26.0,<3.0.0
+pillow>=10.0.0

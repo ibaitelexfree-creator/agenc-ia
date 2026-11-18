@@ -101,7 +101,6 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
                 'atraque-piragua-doble',
                 // 3. Windsurf (vela sobre tabla)
                 'alquiler-windsurf',
-                'alquiler-windsurf-pro',
                 // 4. Otros / Eventos / Paddle Surf
                 'alquiler-paddlesurf',
                 'alquiler-bigsub-group',
@@ -114,7 +113,7 @@ export default async function RentalPage({ params: { locale } }: { params: { loc
 
             // Type assertion here because Supabase response might not perfectly match our strict interface
             let fetchedList = (((data as unknown as Service[]) || [])
-                .filter(s => !['alquiler-j80', 'alquiler-raquero', 'alquiler-raquero-omega', 'alquiler-laser-pro', 'alquiler-420', 'alquiler-optimist', 'alquiler-kayak-1', 'alquiler-kayak-2', 'alquiler-piragua-2', 'atraque-transeunte-8m', 'atraque-transeunte-12m'].includes(s.slug)));
+                .filter(s => !['alquiler-windsurf-pro', 'alquiler-j80', 'alquiler-raquero', 'alquiler-raquero-omega', 'alquiler-laser-pro', 'alquiler-420', 'alquiler-optimist', 'alquiler-kayak-1', 'alquiler-kayak-2', 'alquiler-piragua-2', 'atraque-transeunte-8m', 'atraque-transeunte-12m'].includes(s.slug)));
 
             // Si bono-windsurf no está todavía en la base de datos de servicios_alquiler, lo aseguramos
             if (!fetchedList.some(s => s.slug === 'bono-windsurf')) {

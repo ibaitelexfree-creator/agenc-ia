@@ -2,7 +2,108 @@
 
 ## Recent Activity
 - **Agent:** Antigravity / @[frontend-specialist]
-- **Task:** Section 4 Seam Elimination and Square Cards Overhaul
+- **Task:** Tarpoon with Skipper Card Custom Image (No Logo)
+  1. **Custom Image:** Updated to `Moving_boat_closer_in_image_ead16130.jpg` (`/images/tarpoon-patron.jpg`) for Tarpoon with skipper (`alquiler-tarpon-patron`).
+  2. **Logo Removed:** Cleaned out logo decal per user request, showing clean photo.
+  3. **Strict Isolation:** Only affects Tarpoon with skipper, all other rental cards render normally.
+- **Status:** COMPLETED & VERIFIED (Next.js build succeeded 0 errors).
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Zoom J-80 sin patron card image by 20%
+  1. **Image Scaling:** Added scale-[1.20] origin-[35%_center] to the J-80 sin patron card image in RentalCard.tsx.
+  2. **Card Visual:** Centers and zooms in on the boat and crew standing onboard by 20%.
+  3. **Branch:** feature/clawde-zoom-j80-sin-patron.
+- **Status:** COMPLETED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Set Black Background Image for Kayak 2 People Rental
+  1. **Black Placeholder Image:** Created high-res 800x600 public/images/black-kayak.png.
+  2. **RentalCard Mapping:** In src/components/rental/RentalCard.tsx, forced alquiler-kayak-2 to render /images/black-kayak.png.
+  3. **Git Status:** Committed and pushed to feature/clawde-rental-filter-scroll-fix.
+- **Status:** COMPLETED & PUSHED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Update Raquero (35€) Image and Preserve 80€ Raquero/Omega Image
+  1. **New Vibrant Image for Raquero (35€):**
+     - Replaced `public/images/alquiler-raquero.jpg` with color-enhanced and sharpened high-resolution version of `IMG_5164.JPG`.
+     - Enhanced saturation (+22%), dynamic range/contrast, and sharpness for vibrant maritime look.
+  2. **Image Independence & Isolation:**
+     - Updated `RentalCard.tsx` to strictly distinguish between `alquiler-raquero` (35€) and `alquiler-raquero-omega` (80€).
+     - Restored original `alquiler-raquero-omega.jpg` for the 80€ item and `course-raquero-students.webp` for courses.
+     - Updated Supabase `servicios_alquiler` image URL references accordingly.
+  3. **Files Modified:** `public/images/alquiler-raquero.jpg`, `src/components/rental/RentalCard.tsx`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Rental Category Filter Infinite Auto-scroll Speed and Jitter Optimization
+  1. **Sub-pixel Smooth Auto-scroll with rAF:**
+     - Replaced discrete setInterval with requestAnimationFrame timestamp-delta interpolation.
+     - Synchronized scrollPosRef to preserve exact sub-pixel positioning across 60Hz/120Hz/144Hz displays.
+  2. **Removed scroll-smooth Conflict:**
+     - Removed CSS class scroll-smooth from filter container which previously conflicted with continuous incremental scrolling, causing stutter at boundary nodes.
+  3. **Speed Calibration:**
+     - Set speed to 34.3 px/sec (calibrated ~3% faster than previous 33.3 px/sec as requested).
+  4. **Files Modified:** src/components/rental/RentalClient.tsx.
+- **Status:** COMPLETED & VERIFIED.
+
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Section 3 Cream Container & Section 4 Pointy Wedge Gap Synchronization on Mobile
+  1. **Synchronized Cream Container with Red Dot Anchor:**
+     - Updated `Section3Curved.tsx` mobile cream container width from static `w-[84%]` to `w-[69%] md:w-[56%]` (and `beigeWidth = isMobile ? '69%' : desktopBeigeWidth`).
+     - Aligns Section 3's cream container left edge seamlessly with the Section 4 wave tip and red dot at `31%` (116px on 375px viewport).
+  2. **Restored Pointy Sea Video / Sky Gap:**
+     - By reducing the mobile cream block from 84% to 69%, the background sea video in Section 3 is now exposed from `0%` to `31%`.
+     - The pointy triangular wedge gap above Section 4's wave now clearly reveals the animated sea video and sky, with zero overlap across text or images.
+  3. **Verification:**
+     - Tested on mobile viewports (360px, 375px, 414px) using Puppeteer. Element hit testing confirms `video` element is directly visible through the pointy gap.
+     - `npx tsc --noEmit` passed with 0 errors.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Short Landscape Viewport Overflow Fix (e.g. 587x586px)
+  1. **Overflow Visibility on Short Landscape Screens:**
+     - Resolved CSS bug in `globals.css` where `@media (orientation: landscape) and (max-height: 600px)` applied `overflow: hidden !important;` to `.promise` (Section 4).
+     - Because the sunset wave and cream extension are positioned at `bottom: 100%` above Section 4, the `overflow: hidden` rule cut them off completely at viewports like 587x586px.
+     - Separated `.promise` to guarantee `overflow: visible !important;` across all short landscape viewports.
+  2. **Verification:**
+     - Verified live HTTP response 200 on `http://localhost:3000/es/`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** iPad and Tablet Responsive Alignment for Section 3 & Section 4
+  1. **iPad/Tablet Seamless Seam Alignment:**
+     - Updated `Section3Curved.tsx` breakpoint threshold from `1024px` to `768px` (`md:`), allowing iPad / tablet devices (768px - 1024px) to share the clean 2-column horizontal split and exact 56% beige zone width aligned at 44%.
+     - Synchronized `Section4Why.tsx` and `Section3To4CurvedExtension.tsx` so the orange sky wave (58% with left -14%) and the cream extension (56% from right 0) meet precisely at the red dot (44%, aligned with the "y") on iPad just as on mobile and desktop.
+     - Synchronized wave and extension vertical heights at tablet viewports (`md:`), preventing height discrepancy and overlap.
+  2. **Verification:**
+     - Verified HTTP 200 on `http://localhost:3000/es/`.
+- **Status:** COMPLETED & VERIFIED.
+- **Agent:** Antigravity / @[frontend-specialist]
+- **Task:** Actualización y reestructuración del catálogo de cursos (`/courses` y `messages/es.json`)
+  1. **Crucero:**
+     - `Crucero Ini`: Iniciación · 180 € · 3 días · + de 15 años
+     - `Eq. Entren. Adulto`: Equipo de Entrenamiento · 100 €/mes · + de 16 años
+     - `Crucero perfeccionamiento`: Avanzado · 140 € · 2 días · + de 16 años
+     - `Gennaker`: Avanzado · 140 € / 2 días · + de 16 años
+     - Descripción de categoría: "Aprende a navegar, gana confianza y mejora tus habilidades a bordo de nuestros J80 y lleva tus habilidades a otro nivel."
+  2. **Vela Ligera:**
+     - `Iniciación`: Iniciación · 180 € · + de 15 años
+     - `Eq. Entren. Infantiles`: Equipo de Entrenamiento · 120 €/mes · 5 a 12/15 años
+     - `Eq. Entren. Jóvenes`: Equipo de Entrenamiento · 100 €/mes · +12/15 años
+     - `Avanzado`: 180 € / 3 días · + de 16 años
+     - `Udaleku`: 130 € / sem · +3 años
+     - Descripción de categoría: "Descubre la emoción de la vela ligera, siente el viento y aprende a dominar tu embarcación. Iníciate, perfecciona tu técnica y disfruta navegando."
+  3. **Windsurf:**
+     - `Iniciación`: Windsurf: Iniciación y perfeccionamiento · Desde 45 € · 2,5h
+     - Descripción de categoría: "Descubre la emoción del windsurf y descubre nuevas formas de deslizarte sobre el agua. Perfecciona tu técnica, gana autonomía y sigue progresando con cada salida."
+  4. **Mantenimiento:**
+     - `Mantenimiento`: Mantenimiento de embarcaciones (precio retirado / consultar)
+     - `Velas`: Costura y reparación de velas (precio retirado / consultar)
+     - Descripción de categoría: "Aprende a trabajar con tus propias manos y descubre los secretos del mantenimiento náutico. Adquiere recursos muy útiles para el mar y tu vida."
+  5. **Componentes y UI (Jerarquía corregida en tarjetas):**
+      - En CourseCard.tsx: Se implementó la jerarquía exacta solicitada por el usuario:
+        - **Línea Superior**: Categoría / Tipo / Nivel en **MAYÚSCULAS** (uppercase tracking-wider font-semibold text-accent) con el precio alineado a la derecha.
+        - **Línea Inferior**: Nombre del curso en **minúsculas con primera letra mayúscula** (Crucero Ini, Eq. Entren. Adulto, Gennaker, Iniciación, etc.).
+        - **Badges**: Etiquetas inferiores para duración (⏱️) y edad (👤).
+      - Compilación verificada con npx tsc --noEmit (0 errores).
+- **Status:** COMPLETED & VERIFIED.
   1. **Seam Elimination above Section 4 (`HomePrototypeLayout.tsx`):**
      - Resolved sub-pixel rendering seam gap visible between Section 3 (`Section3Curved.tsx`) and Section 4 (`Section4Why.tsx`) at small/portrait viewports by adding `-mt-[2px]` negative overlap on Section 4.
      - Preserved all SVG wave clip paths, beige extensions, and background sunset imagery intact.

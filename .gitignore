@@ -87,6 +87,16 @@ public/Documentos/
 **/Google Flow - *
 **/*Google Flow*
 
+# python & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+v825-gpu-bridge/.venv/
+
 # scratch files
 scratch/
 

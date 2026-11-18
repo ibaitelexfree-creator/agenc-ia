@@ -7,6 +7,7 @@ import StaggeredEntrance from '@/components/shared/StaggeredEntrance';
 import HoverVideoOrImage from '@/components/shared/HoverVideoOrImage';
 import { getSeoAlternates } from '@/lib/seo';
 import AboutStorySection from '@/components/about/AboutStorySection';
+import AboutTeamSection from '@/components/about/AboutTeamSection';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
     const isEu = locale === 'eu';
@@ -93,7 +94,21 @@ export default async function AboutPage({ params: { locale } }: { params: { loca
                 }}
             />
 
-            {/* 3. Panoramic CTA Section */}
+            {/* 3. Team Section with Expandable Details */}
+            <AboutTeamSection
+                title={t('team_section_title')}
+                summary={t('team_section_summary')}
+                expandButtonText={t('team_expand_btn')}
+                collapseButtonText={t('team_collapse_btn')}
+                expandedContent={{
+                    title: t('team_expanded.title'),
+                    p1: t('team_expanded.p1'),
+                    p2: t('team_expanded.p2'),
+                    p3: t('team_expanded.p3')
+                }}
+            />
+
+            {/* 4. Panoramic CTA Section */}
             <section className="relative min-h-[60vh] md:min-h-[75vh] py-20 md:py-32 flex items-center justify-center overflow-hidden">
                 <div className="absolute inset-0">
                     <Image

@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url';
 import crypto from 'crypto';
 import winston from 'winston';
 import { spawn } from 'child_process';
+import { createInternalAuthMiddleware } from './middleware/internal-auth.js';
+const requireInternalAuth = createInternalAuthMiddleware();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -49,14 +51,45 @@ function getHash(data) {
 }
 
 /**
- * 2️⃣ Protección contra Path Traversal
+ * 2️⃣ Protección contra Path Traversal y Verificación de Límites
+ * Accounts for Windows drive case, rejects traversal outside designated workspace,
+ * and detects existing symlinks/junctions where observable.
+ *
+ * Remaining limitation: In userland Node.js on Windows without native C++ Win32 APIs,
+ * a residual TOCTOU race exists if an adversary concurrently replaces a directory component
+ * with an NTFS junction or reparse point. Confining operations to ARTIFACTS_ROOT mitigates this.
  */
 function safeJoin(root, ...parts) {
-    const result = path.resolve(root, ...parts);
-    if (!result.startsWith(root)) {
-        throw new Error(`Security Violation: Path traversal attempt: ${result}`);
+    const canonicalRoot = path.normalize(path.resolve(root));
+    const target = path.normalize(path.resolve(canonicalRoot, ...parts));
+
+    // Case-insensitive check on Windows drive / prefix
+    const lowerRoot = canonicalRoot.toLowerCase();
+    const lowerTarget = target.toLowerCase();
+
+    if (lowerTarget !== lowerRoot && !lowerTarget.startsWith(lowerRoot + path.sep)) {
+        throw new Error(`Security Violation: Path traversal attempt outside workspace: ${target}`);
     }
-    return result;
+
+    // Inspect existing path segments for symlinks/junctions
+    let current = canonicalRoot;
+    const relParts = path.relative(canonicalRoot, target).split(path.sep);
+    for (const part of relParts) {
+        if (!part || part === '.') continue;
+        current = path.join(current, part);
+        if (fs.existsSync(current)) {
+            try {
+                const stat = fs.lstatSync(current);
+                if (stat.isSymbolicLink()) {
+                    throw new Error(`Security Violation: Symbolic link or junction detected: ${current}`);
+                }
+            } catch (err) {
+                if (err.message.includes('Security Violation')) throw err;
+            }
+        }
+    }
+
+    return target;
 }
 
 /**
@@ -94,7 +127,7 @@ async function runStep(step, targetDir, timeoutMs = 5000) {
     }
 }
 
-app.post('/build', async (req, res) => {
+app.post('/build', requireInternalAuth, async (req, res) => {
     const { plan: planWrapper, plan_hash } = req.body;
     const correlationId = crypto.randomUUID();
 
@@ -159,6 +192,6 @@ app.post('/build', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    logger.info(`[Builder Hardened V2] Running on port ${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+    logger.info(`[Builder Hardened V2] Running on 127.0.0.1:${PORT}`);
 });

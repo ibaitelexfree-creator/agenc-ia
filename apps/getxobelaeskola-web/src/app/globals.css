@@ -1171,7 +1171,7 @@ a:hover {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding-top: clamp(1.5rem, 4vh, 3rem) !important;
+    padding-top: clamp(4.2rem, 9.5vh, 5.2rem) !important;
     padding-bottom: clamp(1.5rem, 4vh, 3rem) !important;
     padding-left: clamp(1rem, 3vw, 2rem) !important;
     padding-right: clamp(1rem, 3vw, 2rem) !important;
@@ -1181,13 +1181,16 @@ a:hover {
   }
 }
 
-/* 📱 Very Small Screens (e.g. < 586px Portrait) */
-@media (max-width: 585px) and (orientation: portrait) {
+/* 📱 Very Small Screens (e.g. < 577px Portrait) */
+@media (max-width: 576px) and (orientation: portrait) {
   .promise {
     height: auto !important;
     min-height: auto !important;
     max-height: none !important;
-    padding: clamp(1.5rem, 3.5vh, 2.5rem) 16px !important;
+    padding-top: clamp(4.2rem, 9.5vh, 5.2rem) !important;
+    padding-bottom: clamp(1.5rem, 3.5vh, 2.5rem) !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
     box-sizing: border-box !important;
     overflow: visible !important;
   }
@@ -1249,8 +1252,8 @@ a:hover {
   }
 }
 
-/* 📱 Tablet Portrait & Medium Screens (586px - 767px): 3 Square Cards side-by-side */
-@media (min-width: 586px) and (max-width: 767px) {
+/* 📱 Tablet Portrait & Medium Screens (577px - 767px): 3 Square Cards side-by-side */
+@media (min-width: 577px) and (max-width: 767px) {
   .promise {
     height: auto !important;
     min-height: auto !important;
@@ -1858,7 +1861,6 @@ section {
 @media (orientation: landscape) and (max-height: 600px) {
   .global-section,
   .section-1-hero,
-  .promise,
   .section-cta,
   .section-2-identity,
   .section-3-adapts,
@@ -1872,6 +1874,16 @@ section {
     padding-bottom: clamp(1rem, 3vh, 2rem) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
+  }
+
+  .promise {
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    padding-top: clamp(3.8rem, 14vh, 5rem) !important;
+    padding-bottom: clamp(1rem, 3vh, 2rem) !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
   .s2-identity-container,

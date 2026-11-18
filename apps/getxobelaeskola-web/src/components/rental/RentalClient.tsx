@@ -395,7 +395,7 @@ export default function RentalClient({
                                     className="group relative inline-flex items-center gap-3 px-6 py-3.5 sm:px-8 sm:py-4 rounded-sm bg-gradient-to-r from-accent to-brass-gold text-nautical-black font-black uppercase text-[11px] sm:text-xs tracking-[0.15em] sm:tracking-[0.2em] shadow-[0_0_30px_rgba(255,77,0,0.3)] hover:shadow-[0_0_40px_rgba(255,77,0,0.5)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
                                 >
                                     <Sparkles className="w-4 h-4 shrink-0 animate-pulse text-nautical-black" />
-                                    <span>Hazte socia y disfruta de descuentos</span>
+                                    <span>{t('member_cta')}</span>
                                     <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
@@ -406,7 +406,7 @@ export default function RentalClient({
                             <div className="shrink-0 lg:self-center">
                                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-sm border border-accent/40 bg-accent/10 text-accent text-xs font-bold uppercase tracking-wider">
                                     <Sparkles className="w-4 h-4 text-accent" />
-                                    <span>Bienvenida socia · Tarifas reducidas activas</span>
+                                    <span>{t('member_welcome')}</span>
                                 </div>
                             </div>
                         )}

@@ -1,6 +1,6 @@
 import { DM_Serif_Display, Inter } from "next/font/google";
-import Vela3DStage from "@/components/vela/Vela3DStage";
-import VelaSelectorExperiencia from "@/components/vela/VelaSelectorExperiencia";
+import VelaHero from "@/components/vela/VelaHero";
+import VelaFilosofia from "@/components/vela/VelaFilosofia";
 import VelaCTA from "@/components/vela/VelaCTA";
 import { Metadata } from "next";
 
@@ -51,14 +51,14 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 export default function QueEsLaVelaPage() {
   return (
     <div className={`${dmSerif.variable} ${inter.variable} bg-white`} style={{ fontFamily: "var(--font-inter)" }}>
-      {/* ═══ EXPERIENCIA 3D SCROLL-DRIVEN ═══ */}
-      <Vela3DStage />
+      {/* ═══ HERO CENTRADO CON MODAL 'LEER MÁS' ═══ */}
+      <VelaHero />
 
-      {/* ═══ SECCIONES POST-3D ═══ */}
-      <div id="post-3d">
-        <VelaSelectorExperiencia />
-        <VelaCTA />
-      </div>
+      {/* ═══ SECCIÓN FILOSOFÍA (6 TARJETAS) ═══ */}
+      <VelaFilosofia />
+
+      {/* ═══ SECCIÓN FINAL CTA ═══ */}
+      <VelaCTA />
     </div>
   );
 }

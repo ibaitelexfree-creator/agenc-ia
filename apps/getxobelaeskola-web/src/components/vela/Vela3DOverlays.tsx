@@ -104,10 +104,12 @@ function FilosofiaOverlay() {
   const progress = useVelaScrollStore((s) => s.progress);
 
   const cards = [
-    { id: 'carta',       title: t('cards.carta_title'),       text: t('cards.carta_text'),       triggerAt: 0.37 },
-    { id: 'experiencia', title: t('cards.experiencia_title'), text: t('cards.experiencia_text'), triggerAt: 0.40 },
-    { id: 'escenario',   title: t('cards.escenario_title'),   text: t('cards.escenario_text'),   triggerAt: 0.43 },
-    { id: 'compania',    title: t('cards.compania_title'),     text: t('cards.compania_text'),     triggerAt: 0.46 },
+    { id: 'carta',       title: t('cards.carta_title'),       text: t('cards.carta_text'),       triggerAt: 0.36 },
+    { id: 'experiencia', title: t('cards.experiencia_title'), text: t('cards.experiencia_text'), triggerAt: 0.38 },
+    { id: 'escenario',   title: t('cards.escenario_title'),   text: t('cards.escenario_text'),   triggerAt: 0.40 },
+    { id: 'compania',    title: t('cards.compania_title'),    text: t('cards.compania_text'),    triggerAt: 0.42 },
+    { id: 'embarcacion', title: t('cards.embarcacion_title'), text: t('cards.embarcacion_text'), triggerAt: 0.44 },
+    { id: 'autonomia',   title: t('cards.autonomia_title'),   text: t('cards.autonomia_text'),   triggerAt: 0.46 },
   ];
 
   return (

@@ -231,18 +231,20 @@ export async function startAutoFix(event, createSession, sendMessage, listSessio
     startedAt: new Date().toISOString(),
     event,
     status: 'in_progress',
-    sessionId: null
+    sessionId: null,
+    timeoutId: null
   };
-  activeAutoFixes.set(fixKey, autoFixRecord);
 
   // Set timeout to clean up stale auto-fixes
-  setTimeout(() => {
+  const timeoutId = setTimeout(() => {
     const record = activeAutoFixes.get(fixKey);
     if (record && record.status === 'in_progress') {
       record.status = 'timeout';
       activeAutoFixes.delete(fixKey);
     }
   }, AUTOFIX_TIMEOUT);
+  autoFixRecord.timeoutId = timeoutId;
+  activeAutoFixes.set(fixKey, autoFixRecord);
 
   try {
     console.log(`[Auto-Fix] Starting for service ${event.serviceId}, deploy ${event.deployId}`);
@@ -255,6 +257,7 @@ export async function startAutoFix(event, createSession, sendMessage, listSessio
     const analysis = analyzeErrors(logs);
 
     if (!analysis.hasActionableErrors) {
+      clearTimeout(timeoutId);
       autoFixRecord.status = 'no_actionable_errors';
       activeAutoFixes.delete(fixKey);
       return {
@@ -313,6 +316,9 @@ ${analysis.promptContext}`;
       });
     }
 
+    clearTimeout(timeoutId);
+    activeAutoFixes.delete(fixKey);
+
     return {
       success: true,
       sessionId: autoFixRecord.sessionId,
@@ -322,6 +328,7 @@ ${analysis.promptContext}`;
       message: `Auto-fix ${reused ? 'continued' : 'started'} for build failure on branch ${event.branch}`
     };
   } catch (error) {
+    clearTimeout(timeoutId);
     autoFixRecord.status = 'failed';
     autoFixRecord.error = error.message;
     activeAutoFixes.delete(fixKey);
@@ -406,9 +413,10 @@ function extractSourceFromBranch(branch, serviceId) {
 export function getAutoFixStatus() {
   const fixes = [];
   for (const [key, record] of activeAutoFixes) {
+    const { timeoutId, ...publicRecord } = record;
     fixes.push({
       key,
-      ...record
+      ...publicRecord
     });
   }
 
@@ -419,6 +427,25 @@ export function getAutoFixStatus() {
     monitoredServices: Array.from(monitoredServices),
     activeFixes: fixes
   };
+}
+
+/**
+ * Cancel an active auto-fix operation and clear its timer
+ * @param {string} serviceId - Service ID
+ * @param {string} deployId - Deploy ID
+ */
+export function cancelAutoFix(serviceId, deployId) {
+  const fixKey = `${serviceId}:${deployId}`;
+  const record = activeAutoFixes.get(fixKey);
+  if (record) {
+    if (record.timeoutId) {
+      clearTimeout(record.timeoutId);
+    }
+    record.status = 'cancelled';
+    activeAutoFixes.delete(fixKey);
+    return { success: true, cancelled: true, fixKey };
+  }
+  return { success: false, cancelled: false, reason: 'Auto-fix not found' };
 }
 
 /**
@@ -596,6 +623,7 @@ export default {
   parseWebhookEvent,
   shouldAutoFix,
   startAutoFix,
+  cancelAutoFix,
   getAutoFixStatus,
   setAutoFixEnabled,
   addMonitoredService,

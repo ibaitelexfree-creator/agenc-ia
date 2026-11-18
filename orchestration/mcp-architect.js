@@ -14,6 +14,9 @@ const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
+import { createInternalAuthMiddleware } from './middleware/internal-auth.js';
+const requireInternalAuth = createInternalAuthMiddleware();
+
 // Logger Configuración Estructurada JSON
 const logger = winston.createLogger({
     level: 'info',
@@ -68,7 +71,7 @@ function calculatePlanHash(obj) {
     return crypto.createHash('sha256').update(normalized).digest('hex');
 }
 
-app.post('/analyze', async (req, res) => {
+app.post('/analyze', requireInternalAuth, async (req, res) => {
     const correlationId = crypto.randomUUID();
     const { prompt } = req.body;
 
@@ -191,6 +194,6 @@ async function simulateArchitectLLM(prompt, signal) {
     return JSON.stringify(mockPlan, null, 2);
 }
 
-app.listen(PORT, () => {
-    logger.info(`[Architect Endurecido] Iniciado en puerto ${PORT}`);
+app.listen(PORT, '127.0.0.1', () => {
+    logger.info(`[Architect Endurecido] Iniciado en 127.0.0.1:${PORT}`);
 });

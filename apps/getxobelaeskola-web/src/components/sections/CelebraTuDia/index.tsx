@@ -7,7 +7,6 @@ import styles from './CelebraTuDia.module.css';
 import HeroSection from './components/HeroSection';
 import FloatingCards from './components/FloatingCards';
 import SailingBackground from './components/SailingBackground';
-import InteractiveBigSUP from './components/InteractiveBigSUP';
 import CateringCards from './components/CateringCards';
 import ClosingBalloons from './components/ClosingBalloons';
 
@@ -34,9 +33,6 @@ export default function CelebraTuDia() {
 
       {/* Fase 4: Timeline */}
       <HorizontalTimeline />
-
-      {/* Fase 5: Big SUP interactivo */}
-      <InteractiveBigSUP onBookClick={scrollToContact} />
 
       {/* Fase 7: Zona Chill Out */}
       <ChillOutSection />
