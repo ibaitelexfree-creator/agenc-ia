@@ -166,8 +166,10 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                     ? 'object-[52%_85%]'
                                     : isCanoeMooring
                                         ? 'object-[45%_42%]'
-                                        : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero'))
-                                            ? 'object-[center_65%]'
+                                        : (service.slug.includes('raquero') || service.nombre_es.toLowerCase().includes('raquero') || service.slug.includes('omega') || (service.nombre_es || '').toLowerCase().includes('omega'))
+                                            ? (service.precio_base === 140 || (service.nombre_es || '').toLowerCase().includes('sin patr') || (service.slug || '').includes('without-skipper') || (service.slug || '').includes('sin-patron'))
+                                                ? 'object-[center_75%] scale-[1.10] origin-[center_75%]'
+                                                : 'object-[center_65%]'
                                             : (service.slug.includes('j80') || service.nombre_es.toLowerCase().includes('j80'))
                                                 ? (service.precio_base >= 250 || (service.nombre_es || '').toLowerCase().includes('con patr'))
                                                     ? 'object-[50%_center]'
