@@ -220,17 +220,17 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                     <div className="grid grid-cols-3 divide-x divide-sea-foam/10 border-y border-sea-foam/10 py-2 sm:py-3 mb-2 sm:mb-4">
                         {/* 1. MINIMUM CREW */}
                         <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
-                            <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 whitespace-pre-line leading-tight truncate w-full">
+                            <span className="text-[6.3px] min-[360px]:text-[6.8px] min-[480px]:text-[7.8px] uppercase tracking-wider text-sea-foam/40 whitespace-pre-line leading-tight truncate w-full">
                                 {isSpecialFirstTwo ? t('crew_label').replace(/\n/g, ' ') : t('crew_label')}
                             </span>
                             <div className="flex items-center justify-center gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                 <Users className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                <span className="text-[9.5px] min-[360px]:text-[10px] min-[480px]:text-xs font-bold font-mono whitespace-nowrap truncate">
+                                <span className="text-[9.3px] min-[360px]:text-[9.8px] min-[480px]:text-[11.5px] sm:text-xs font-bold font-mono whitespace-nowrap truncate">
                                     {pricingInfo.tripulacion_minima}
                                 </span>
                             </div>
                             {pricingInfo.tripulacion_subtexto && (
-                                <span className="text-[7px] min-[480px]:text-[8px] text-accent/90 font-medium leading-tight mt-0.5 break-words line-clamp-1">
+                                <span className="text-[6.8px] min-[480px]:text-[7.8px] text-accent/90 font-medium leading-tight mt-0.5 break-words line-clamp-1">
                                     {pricingInfo.tripulacion_subtexto.includes('2,5h') || pricingInfo.tripulacion_subtexto.includes('2.5h')
                                         ? t('card.included_trips', { trips: 4, hours: t('card.hours_fraction', { hours: '2,5' }) })
                                         : pricingInfo.tripulacion_subtexto.includes('4h')
@@ -244,24 +244,24 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                         <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
                             {pricingInfo.hasMatricula ? (
                                 <>
-                                    <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
+                                    <span className="text-[6.3px] min-[360px]:text-[6.8px] min-[480px]:text-[7.8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
                                         {t('card.registration')}
                                     </span>
                                     <div className="flex items-center justify-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                         <FileText className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className="text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap">
+                                        <span className="text-[7.3px] min-[360px]:text-[7.8px] min-[480px]:text-[8.8px] min-[768px]:text-[11.5px] font-mono font-medium whitespace-nowrap">
                                             {pricingInfo.matricula} €
                                         </span>
                                     </div>
                                 </>
                             ) : pricingInfo.hasFianza ? (
                                 <>
-                                    <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
+                                    <span className="text-[6.3px] min-[360px]:text-[6.8px] min-[480px]:text-[7.8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
                                         {t('card.deposit')}
                                     </span>
                                     <div className="flex items-center justify-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                         <ShieldCheck className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className="text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap">
+                                        <span className="text-[7.3px] min-[360px]:text-[7.8px] min-[480px]:text-[8.8px] min-[768px]:text-[11.5px] font-mono font-medium whitespace-nowrap">
                                             {pricingInfo.fianza} €
                                         </span>
                                     </div>
@@ -276,7 +276,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                         {/* 3. PRICE & DURATION */}
                         <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
                             {pricingInfo.hasSocioDiscount && (
-                                <span className="text-[6.5px] min-[480px]:text-[7px] min-[768px]:text-[8px] uppercase tracking-wider text-accent font-bold truncate w-full">
+                                <span className="text-[6.3px] min-[480px]:text-[6.8px] min-[768px]:text-[7.8px] uppercase tracking-wider text-accent font-bold truncate w-full">
                                     {t('card.member_rate')}
                                 </span>
                             )}
@@ -293,7 +293,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                     return (
                                         <span
                                             key={idx}
-                                            className="font-display italic font-extrabold tracking-normal text-[10px] min-[360px]:text-[11px] min-[480px]:text-xs min-[768px]:text-sm text-sea-foam whitespace-nowrap leading-tight [text-shadow:_0_0_0.2px_currentColor]"
+                                            className="font-display italic font-extrabold tracking-normal text-[9.8px] min-[360px]:text-[10.8px] min-[480px]:text-[11.8px] min-[768px]:text-[13.7px] text-sea-foam whitespace-nowrap leading-tight [text-shadow:_0_0_0.2px_currentColor]"
                                         >
                                             {formattedLine}
                                         </span>
