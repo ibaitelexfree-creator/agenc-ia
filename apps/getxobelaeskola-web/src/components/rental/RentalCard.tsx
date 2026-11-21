@@ -261,8 +261,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                     </span>
                                     <div className="flex items-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0">
                                         <FileText className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className={`text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9.5px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
-                                            isSpecialFirstTwo ? 'landscape:max-sm:text-xs' : ''
+                                        <span className={`text-[7px] min-[360px]:text-[7.5px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
+                                            isSpecialFirstTwo ? 'landscape:max-sm:text-[8px]' : ''
                                         }`}>
                                             {pricingInfo.matricula} €
                                         </span>
@@ -277,8 +277,8 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                     </span>
                                     <div className="flex items-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0">
                                         <ShieldCheck className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className={`text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9.5px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
-                                            isSpecialFirstTwo ? 'landscape:max-sm:text-xs' : ''
+                                        <span className={`text-[7px] min-[360px]:text-[7.5px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
+                                            isSpecialFirstTwo ? 'landscape:max-sm:text-[8px]' : ''
                                         }`}>
                                             {pricingInfo.fianza} €
                                         </span>

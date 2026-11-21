@@ -5,7 +5,7 @@
 - **Task:** Rental Card Pricing & Deposit Typography Calibration on Small Screens
   1. **Price & Duration Styling:** Increased text size for price and duration (e.g. `180 € / 4h`) on small displays (`text-[9.5px] min-[360px]:text-[10px] min-[480px]:text-[11px]`), strengthened font weight (`font-extrabold`) and added subtle optical weight `[text-shadow:_0_0_0.2px_currentColor]`.
   2. **Grid Proportions Adjusted:** Updated column ratio to `grid-cols-[0.9fr_1fr_1.55fr] min-[400px]:grid-cols-[0.95fr_1.05fr_1.6fr]` granting the pricing column additional dedicated space without clipping or overflowing.
-  3. **Deposit Sizing Scaled Down:** Scaled down Deposit and Registration amounts and labels (`text-[6.5px] min-[360px]:text-[7px]` label, `text-[7.5px] min-[360px]:text-[8px]` amount) so they fit comfortably within the center column boundaries without obscuring or crowding adjacent areas.
+  3. **Deposit Sizing Scaled Down:** Scaled down Deposit and Registration amounts and labels (`text-[6.5px] min-[360px]:text-[7px]` label, fine-tuned amount to `text-[7px] min-[360px]:text-[7.5px] min-[480px]:text-[9px]`) so it fits cleanly in landscape 586x320 and mobile views without obscuring or crowding adjacent areas.
   4. **Strict Isolation:** Confined to `RentalCard.tsx` spec grid row.
 - **Status:** COMPLETED & VERIFIED (TypeScript check passed 0 errors).
 
