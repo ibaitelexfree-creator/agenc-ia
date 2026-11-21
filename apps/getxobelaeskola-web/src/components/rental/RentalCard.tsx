@@ -216,29 +216,21 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                         </h3>
                     </div>
 
-                    {/* Specs & Pricing Row */}
-                    <div className={`grid grid-cols-[0.9fr_1fr_1.55fr] min-[400px]:grid-cols-[0.95fr_1.05fr_1.6fr] sm:grid-cols-3 gap-1 min-[360px]:gap-1.5 sm:gap-2 py-2 sm:py-3 border-y border-sea-foam/10 mb-2 sm:mb-4 ${
-                        isSpecialFirstTwo ? 'landscape:max-sm:py-2.5 landscape:max-sm:gap-3' : ''
-                    }`}>
-                        {/* 1. Tripulación Mínima */}
-                        <div className={`flex flex-col gap-0.5 sm:gap-1 min-w-0 ${
-                            isSpecialFirstTwo ? 'landscape:max-sm:min-w-0' : ''
-                        }`}>
-                            <span className={`text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 whitespace-pre-line leading-tight truncate ${
-                                isSpecialFirstTwo ? 'landscape:max-sm:whitespace-nowrap landscape:max-sm:text-[8px]' : ''
-                            }`}>
+                    {/* Specs & Pricing Row: 3 balanced columns with clear vertical dividers */}
+                    <div className="grid grid-cols-3 divide-x divide-sea-foam/10 border-y border-sea-foam/10 py-2 sm:py-3 mb-2 sm:mb-4">
+                        {/* 1. MINIMUM CREW */}
+                        <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
+                            <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 whitespace-pre-line leading-tight truncate w-full">
                                 {isSpecialFirstTwo ? t('crew_label').replace(/\n/g, ' ') : t('crew_label')}
                             </span>
-                            <div className="flex items-center gap-1 text-sea-foam/70 min-w-0">
+                            <div className="flex items-center justify-center gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                 <Users className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                <span className={`text-[10px] min-[480px]:text-xs font-bold font-mono whitespace-nowrap truncate ${
-                                    isSpecialFirstTwo ? 'landscape:max-sm:text-xs' : ''
-                                }`}>
+                                <span className="text-[9.5px] min-[360px]:text-[10px] min-[480px]:text-xs font-bold font-mono whitespace-nowrap truncate">
                                     {pricingInfo.tripulacion_minima}
                                 </span>
                             </div>
                             {pricingInfo.tripulacion_subtexto && (
-                                <span className="text-[7.5px] min-[480px]:text-[8px] min-[768px]:text-[9px] text-accent/90 font-medium leading-tight mt-0.5 break-words">
+                                <span className="text-[7px] min-[480px]:text-[8px] text-accent/90 font-medium leading-tight mt-0.5 break-words line-clamp-1">
                                     {pricingInfo.tripulacion_subtexto.includes('2,5h') || pricingInfo.tripulacion_subtexto.includes('2.5h')
                                         ? t('card.included_trips', { trips: 4, hours: t('card.hours_fraction', { hours: '2,5' }) })
                                         : pricingInfo.tripulacion_subtexto.includes('4h')
@@ -248,38 +240,28 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             )}
                         </div>
 
-                        {/* 2. Columna Central: Matrícula o Fianza */}
-                        <div className={`flex flex-col gap-0.5 sm:gap-1 border-x border-sea-foam/10 px-1 min-[360px]:px-1.5 sm:px-2 justify-center min-w-0 ${
-                            isSpecialFirstTwo ? 'landscape:max-sm:px-3 landscape:max-sm:min-w-0' : ''
-                        }`}>
+                        {/* 2. DEPOSIT / REGISTRATION */}
+                        <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
                             {pricingInfo.hasMatricula ? (
                                 <>
-                                    <span className={`text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate ${
-                                        isSpecialFirstTwo ? 'landscape:max-sm:whitespace-nowrap landscape:max-sm:text-[8px]' : ''
-                                    }`}>
+                                    <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
                                         {t('card.registration')}
                                     </span>
-                                    <div className="flex items-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0">
+                                    <div className="flex items-center justify-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                         <FileText className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className={`text-[7px] min-[360px]:text-[7.5px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
-                                            isSpecialFirstTwo ? 'landscape:max-sm:text-[8px]' : ''
-                                        }`}>
+                                        <span className="text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap">
                                             {pricingInfo.matricula} €
                                         </span>
                                     </div>
                                 </>
                             ) : pricingInfo.hasFianza ? (
                                 <>
-                                    <span className={`text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate ${
-                                        isSpecialFirstTwo ? 'landscape:max-sm:whitespace-nowrap landscape:max-sm:text-[8px]' : ''
-                                    }`}>
+                                    <span className="text-[6.5px] min-[360px]:text-[7px] min-[480px]:text-[8px] uppercase tracking-wider text-sea-foam/40 truncate w-full">
                                         {t('card.deposit')}
                                     </span>
-                                    <div className="flex items-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0">
+                                    <div className="flex items-center justify-center gap-0.5 sm:gap-1 text-sea-foam/70 min-w-0 mt-0.5">
                                         <ShieldCheck className="w-2.5 h-2.5 min-[480px]:w-3 min-[480px]:h-3 sm:w-3.5 sm:h-3.5 text-accent shrink-0" />
-                                        <span className={`text-[7px] min-[360px]:text-[7.5px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap ${
-                                            isSpecialFirstTwo ? 'landscape:max-sm:text-[8px]' : ''
-                                        }`}>
+                                        <span className="text-[7.5px] min-[360px]:text-[8px] min-[480px]:text-[9px] min-[768px]:text-xs font-mono font-medium whitespace-nowrap">
                                             {pricingInfo.fianza} €
                                         </span>
                                     </div>
@@ -291,20 +273,15 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                             )}
                         </div>
 
-                        {/* 3. Columna Derecha: Precios */}
-                        <div className={`flex flex-col gap-0.5 sm:gap-1 pl-1 min-[360px]:pl-1.5 justify-center min-w-0 ${
-                            isSpecialFirstTwo ? 'landscape:max-sm:pl-2 landscape:max-sm:min-w-0' : ''
-                        }`}>
+                        {/* 3. PRICE & DURATION */}
+                        <div className="flex flex-col items-center justify-center text-center px-1 min-[360px]:px-1.5 min-w-0">
                             {pricingInfo.hasSocioDiscount && (
-                                <span className={`text-[6.5px] min-[480px]:text-[7px] min-[768px]:text-[8px] uppercase tracking-wider text-accent font-bold truncate ${
-                                    isSpecialFirstTwo ? 'landscape:max-sm:whitespace-nowrap landscape:max-sm:text-[8px]' : ''
-                                }`}>
+                                <span className="text-[6.5px] min-[480px]:text-[7px] min-[768px]:text-[8px] uppercase tracking-wider text-accent font-bold truncate w-full">
                                     {t('card.member_rate')}
                                 </span>
                             )}
-                            <div className="flex flex-col gap-0.5 text-sea-foam/90 leading-tight min-w-0">
+                            <div className="flex flex-col items-center justify-center gap-0.5 text-sea-foam/90 leading-tight min-w-0 w-full mt-0.5">
                                 {pricingInfo.precios_lineas.map((line, idx) => {
-                                    // Localizar formato de horas y términos de cada línea de precio
                                     const formattedLine = line
                                         .replace(/(\d+)\s*h\b/g, (_, h) => t('card.hours_short', { hours: h }))
                                         .replace(/\/ mes\b/g, `/ ${t('card.month')}`)
@@ -316,9 +293,7 @@ export default function RentalCard({ service, locale, index, isSocio = false, on
                                     return (
                                         <span
                                             key={idx}
-                                            className={`font-display italic font-extrabold tracking-normal text-[9.5px] min-[360px]:text-[10px] min-[480px]:text-[11px] min-[768px]:text-xs lg:text-sm text-sea-foam whitespace-normal min-[768px]:whitespace-nowrap break-words leading-tight [text-shadow:_0_0_0.2px_currentColor] ${
-                                                isSpecialFirstTwo ? 'landscape:max-sm:text-xs' : ''
-                                            }`}
+                                            className="font-display italic font-extrabold tracking-normal text-[10px] min-[360px]:text-[11px] min-[480px]:text-xs min-[768px]:text-sm text-sea-foam whitespace-nowrap leading-tight [text-shadow:_0_0_0.2px_currentColor]"
                                         >
                                             {formattedLine}
                                         </span>
