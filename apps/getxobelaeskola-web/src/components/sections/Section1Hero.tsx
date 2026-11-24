@@ -726,11 +726,11 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       <Seagull
         style={{
           position: 'absolute',
-          top: '12%',
-          right: '43%',
+          top: isPhone ? '12%' : '12%',
+          right: isPhone ? '43%' : '-10%',
           zIndex: 2, // Detrás del barco (zIndex 3) y delante del cielo (zIndex 1)
-          transform: 'none',
-          width: 'clamp(32px, 4.5vw, 90px)',
+          transform: isPhone ? 'scale(0.8)' : 'none',
+          width: isPhone ? undefined : 'clamp(32px, 4.5vw, 90px)',
         }}
         enterDelay={1.5}
         direction="left"
