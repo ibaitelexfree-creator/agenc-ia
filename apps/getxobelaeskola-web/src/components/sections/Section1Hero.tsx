@@ -435,6 +435,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
         }}
       >
         <div
+          className="hero-tierra-layer"
           style={{
             width: '100%',
             height: '100%',
@@ -490,6 +491,7 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
         >
           {aspect.width > 0 && (
             <div
+              className="hero-boat-layer"
               style={{
                 position: 'absolute',
                 left: `${aspect.left}px`,
@@ -566,6 +568,14 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
         <style jsx global>{`
           .hero-text-container {
             margin-top: -10vh !important;
+          }
+          @media (min-width: 1024px) {
+            .hero-tierra-layer {
+              transform: translateY(20%);
+            }
+            .hero-boat-layer {
+              translate: 0 5%;
+            }
           }
           .hero-video-blobs-container {
             bottom: calc(clamp(4px, 1vh, 12px) + env(safe-area-inset-bottom, 0px)) !important;
@@ -716,10 +726,11 @@ export function Section1Hero({ blobsElevated = false, blobsVariant }: Section1He
       <Seagull
         style={{
           position: 'absolute',
-          top: isPhone ? '12%' : '15%',
-          right: isPhone ? '43%' : '-10%',
+          top: '12%',
+          right: '43%',
           zIndex: 2, // Detrás del barco (zIndex 3) y delante del cielo (zIndex 1)
-          transform: isPhone ? 'scale(0.8)' : 'none',
+          transform: 'none',
+          width: 'clamp(32px, 4.5vw, 90px)',
         }}
         enterDelay={1.5}
         direction="left"

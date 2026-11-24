@@ -14,7 +14,7 @@ export function Seagull({ style, enterDelay = 0, direction = 'left' }: SeagullPr
 
   return (
     <motion.div
-      style={style}
+      style={{ width: 80, ...style }}
       initial={{ opacity: 0, x: enterX, y: -20 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ delay: enterDelay, duration: 1.0, ease: [0.25, 0.1, 0.25, 1] as const }}
@@ -25,8 +25,8 @@ export function Seagull({ style, enterDelay = 0, direction = 'left' }: SeagullPr
         transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
       >
         <svg
-          width="80"
-          height="40"
+          width="100%"
+          style={{ display: 'block', height: 'auto' }}
           viewBox="0 0 80 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
