@@ -465,9 +465,9 @@ export function Section3Curved({ variant }: Section3CurvedProps) {
                   viewport={{ once: false, amount: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.3 }}
                   transition={{ duration: 0.6, delay: (variant === 'home-5' || variant === 'home-6') ? 0.05 : 0.1 }}
                 >
-                  <span className="s3-curved-tag inline-flex items-center gap-2 text-[#9E7F41] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6">
-                    <span className="w-2 h-2 rounded-full bg-[#9E7F41]" />
-                    {_t('title') ? _t('title').replace('<br/>', ' ') : 'Experiencia & Adaptación'}
+                  <span className="s3-curved-tag inline-flex items-center gap-1.5 sm:gap-2 text-[#9E7F41] uppercase tracking-[0.1em] xs:tracking-[0.2em] sm:tracking-[0.35em] text-[9px] xs:text-[10px] sm:text-xs font-mono font-semibold mb-2 sm:mb-6 max-w-full flex-wrap sm:flex-nowrap">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#9E7F41] shrink-0" />
+                    <span>{_t('title') ? _t('title').replace('<br/>', ' ') : 'Experiencia & Adaptación'}</span>
                   </span>
                 </motion.div>
 
