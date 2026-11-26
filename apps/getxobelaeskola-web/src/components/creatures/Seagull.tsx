@@ -7,14 +7,16 @@ type SeagullProps = {
   style?: React.CSSProperties
   enterDelay?: number
   direction?: 'left' | 'right'
+  className?: string
 }
 
-export function Seagull({ style, enterDelay = 0, direction = 'left' }: SeagullProps) {
+export function Seagull({ style, enterDelay = 0, direction = 'left', className }: SeagullProps) {
   const enterX = direction === 'left' ? 160 : -160
 
   return (
     <motion.div
-      style={{ width: 80, ...style }}
+      className={className}
+      style={{ width: 'clamp(36px, 8vw, 80px)', ...style }}
       initial={{ opacity: 0, x: enterX, y: -20 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{ delay: enterDelay, duration: 1.0, ease: [0.25, 0.1, 0.25, 1] as const }}
