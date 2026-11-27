@@ -78,7 +78,6 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
                     alreadyProcessedHashes.add(row.alert_hash);
                 }
             }
-            // If row.status === 'failed', we DO NOT add to alreadyProcessedHashes, allowing automatic retry!
         }
     }
 
@@ -115,6 +114,12 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
         <p>${a.description || ''}</p>
     `).join('<hr/>');
 
+    // Aggregate alert hash for batch idempotency key
+    const aggregateHash = crypto.createHash('md5')
+        .update(unnotifiedAlerts.map(a => computeAlertHash(a)).sort().join('_'))
+        .digest('hex');
+    const alertIdempotencyKey = `weather_alert_${new Date().toISOString().slice(0, 10)}_${aggregateHash}`;
+
     try {
         const emailResponse = await resend.emails.send({
             from: DEFAULT_FROM_EMAIL,
@@ -128,13 +133,17 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
                     <br/>
                     <p style="font-size: 10px; color: #999;">Aviso automático de seguridad de Getxo Bela Eskola.</p>
                 </div>
-            `
+            `,
+            headers: {
+                'X-Entity-Ref-ID': alertIdempotencyKey
+            }
+        }, {
+            idempotencyKey: alertIdempotencyKey
         });
 
         if (emailResponse.error) {
             console.error('[WEATHER_ALERTS] Resend provider returned error:', emailResponse.error);
 
-            // Record failure state in database so it is retried next time
             if (deduplicationEnabled) {
                 const failRecords = unnotifiedAlerts.map(a => ({
                     alert_hash: computeAlertHash(a),

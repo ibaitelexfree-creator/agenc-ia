@@ -1,5 +1,6 @@
 import { createAdminClient } from '@/lib/supabase/admin';
 import { resend, DEFAULT_FROM_EMAIL } from '@/lib/resend';
+import crypto from 'crypto';
 
 function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -16,65 +17,98 @@ export interface NewsletterProcessResult {
 }
 
 /**
- * Recovers newsletters stuck in 'processing' state for longer than timeoutMinutes (default 15m).
- * Reverts them to 'scheduled' so they can be picked up and resumed.
+ * Claims a scheduled newsletter atomically with a bounded worker lease.
+ * Returns true if this worker successfully acquired the campaign lease.
+ * A campaign can be claimed if:
+ * 1. status = 'scheduled'
+ * 2. OR status = 'processing' but lease_expires_at <= NOW() (stale/crashed worker)
  */
-export async function recoverStuckNewsletters(supabase: any, timeoutMinutes: number = 15): Promise<number> {
-    const thresholdIso = new Date(Date.now() - timeoutMinutes * 60 * 1000).toISOString();
-    const { data, error } = await supabase
-        .from('newsletters')
-        .update({
-            status: 'scheduled',
-            updated_at: new Date().toISOString()
-        })
-        .eq('status', 'processing')
-        .lte('updated_at', thresholdIso)
-        .select('id');
+export async function claimNewsletterWithLease(
+    supabase: any,
+    newsletterId: string,
+    workerId: string,
+    leaseDurationSeconds: number = 600
+): Promise<boolean> {
+    const now = new Date();
+    const leaseExpiresAt = new Date(now.getTime() + leaseDurationSeconds * 1000).toISOString();
+    const nowIso = now.toISOString();
 
-    if (error || !data) {
-        return 0;
-    }
-    return data.length;
-}
-
-/**
- * Claims a scheduled newsletter atomically to prevent race conditions across multiple workers.
- * Transitions status from 'scheduled' -> 'processing'.
- */
-export async function claimNewsletter(supabase: any, newsletterId: string): Promise<boolean> {
-    const { data, error } = await supabase
+    // First try: Claim scheduled campaign
+    const { data: claimScheduled, error: err1 } = await supabase
         .from('newsletters')
         .update({
             status: 'processing',
-            updated_at: new Date().toISOString()
+            locked_by: workerId,
+            lease_expires_at: leaseExpiresAt,
+            updated_at: nowIso
         })
         .eq('id', newsletterId)
         .eq('status', 'scheduled')
         .select('id');
 
-    if (error || !data || data.length === 0) {
-        return false;
+    if (!err1 && claimScheduled && claimScheduled.length > 0) {
+        return true;
     }
+
+    // Second try: Reclaim stale/crashed campaign whose lease expired
+    const { data: claimStale, error: err2 } = await supabase
+        .from('newsletters')
+        .update({
+            status: 'processing',
+            locked_by: workerId,
+            lease_expires_at: leaseExpiresAt,
+            updated_at: nowIso
+        })
+        .eq('id', newsletterId)
+        .eq('status', 'processing')
+        .lte('lease_expires_at', nowIso)
+        .select('id');
+
+    if (!err2 && claimStale && claimStale.length > 0) {
+        console.warn(`[NEWSLETTER] Worker ${workerId} reclaimed expired lease for campaign ${newsletterId}.`);
+        return true;
+    }
+
+    return false;
+}
+
+/**
+ * Verifies if the current worker still holds the active lease before updating or continuing.
+ */
+export async function verifyWorkerLease(
+    supabase: any,
+    newsletterId: string,
+    workerId: string
+): Promise<boolean> {
+    const { data, error } = await supabase
+        .from('newsletters')
+        .select('locked_by, lease_expires_at, status')
+        .eq('id', newsletterId)
+        .single();
+
+    if (error || !data) return false;
+
+    // Must be processing, assigned to this worker, and not expired
+    if (data.status !== 'processing') return false;
+    if (data.locked_by && data.locked_by !== workerId) return false;
+    if (data.lease_expires_at && new Date(data.lease_expires_at).getTime() < Date.now()) return false;
+
     return true;
 }
 
 /**
- * Robust, atomic processor for scheduled newsletters.
- * Handles rate limits, per-recipient tracking, provider validation and retry states.
+ * Robust, atomic processor for scheduled newsletters with worker lease protection.
  */
 export async function processScheduledNewsletters(): Promise<NewsletterProcessResult> {
     const supabase = createAdminClient();
-
-    // 0. Recover any orphaned/crashed jobs stuck in 'processing'
-    await recoverStuckNewsletters(supabase, 15);
-
+    const workerId = `worker_${process.pid}_${crypto.randomBytes(4).toString('hex')}`;
     const nowIso = new Date().toISOString();
 
-    // 1. Fetch candidates with status 'scheduled'
+    // 1. Fetch candidates with status 'scheduled' or expired processing leases
     const { data: pendingNewsletters, error: fetchError } = await (supabase as any)
         .from('newsletters')
         .select('*')
-        .eq('status', 'scheduled')
+        .or(`status.eq.scheduled,and(status.eq.processing,lease_expires_at.lte.${nowIso})`)
         .or(`scheduled_for.lte.${nowIso},scheduled_for.is.null`);
 
     if (fetchError || !pendingNewsletters || pendingNewsletters.length === 0) {
@@ -116,14 +150,14 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
     const processResults: any[] = [];
 
     for (const newsletter of pendingNewsletters) {
-        // Atomic claim: if another worker claimed it, skip immediately
-        const claimed = await claimNewsletter(supabase, newsletter.id);
+        // Atomic claim with lease (10 minutes lease duration)
+        const claimed = await claimNewsletterWithLease(supabase, newsletter.id, workerId, 600);
         if (!claimed) {
-            console.log(`[NEWSLETTER] Newsletter ${newsletter.id} ya fue reclamada por otro proceso. Omitiendo.`);
+            console.log(`[NEWSLETTER] Newsletter ${newsletter.id} ya fue reclamada por otro proceso activo. Omitiendo.`);
             continue;
         }
 
-        console.log(`[NEWSLETTER] Procesando newsletter reclamada: "${newsletter.title}" (ID: ${newsletter.id})`);
+        console.log(`[NEWSLETTER] Worker ${workerId} procesando newsletter reclamada: "${newsletter.title}" (ID: ${newsletter.id})`);
 
         // Check if existing delivery logs exist from a previous partial attempt
         const previousLogs: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }> = 
@@ -146,6 +180,13 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
         const totalToProcess = recipientsToProcess.length;
 
         for (let i = 0; i < totalToProcess; i += BATCH_SIZE) {
+            // Heartbeat lease check: Ensure our lease hasn't expired or been stolen
+            const leaseValid = await verifyWorkerLease(supabase, newsletter.id, workerId);
+            if (!leaseValid) {
+                console.error(`[NEWSLETTER] Worker ${workerId} perdió el lease de la newsletter ${newsletter.id}. Abortando procesamiento restante para evitar duplicados.`);
+                break;
+            }
+
             const chunk = recipientsToProcess.slice(i, i + BATCH_SIZE);
 
             await Promise.all(chunk.map(async (sub: { email: string; locale?: string }) => {
@@ -172,8 +213,8 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                     </div>
                 `;
 
-                // Resend Idempotency Key header: identifies this specific campaign & recipient delivery attempt
-                const idempotencyKey = `nl_${newsletter.id}_${Buffer.from(subscriberEmail).toString('base64').replace(/=/g, '')}`;
+                // Resend Official Idempotency Key: passed as second parameter options object
+                const officialIdempotencyKey = `nl_${newsletter.id}_${Buffer.from(subscriberEmail).toString('base64').replace(/=/g, '')}`;
 
                 try {
                     const response = await resend!.emails.send({
@@ -184,8 +225,10 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                         headers: {
                             'List-Unsubscribe': `<${unsubscribeUrl}>`,
                             'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-                            'X-Entity-Ref-ID': idempotencyKey
+                            'X-Entity-Ref-ID': officialIdempotencyKey
                         }
+                    }, {
+                        idempotencyKey: officialIdempotencyKey
                     });
 
                     if (response.error) {
@@ -209,11 +252,20 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
             }
         }
 
+        // Final lease validation before committing final campaign status
+        const leaseStillHeld = await verifyWorkerLease(supabase, newsletter.id, workerId);
+        if (!leaseStillHeld) {
+            console.warn(`[NEWSLETTER] Worker ${workerId} omitió actualización de estado final porque perdió el lease.`);
+            continue;
+        }
+
         const isComplete = (deliveredCount === subscribers.length);
         const finalStatus = isComplete ? 'sent' : 'scheduled';
 
         const updatePayload: any = {
             status: finalStatus,
+            locked_by: null,
+            lease_expires_at: null,
             recipients_count: subscribers.length,
             delivered_count: deliveredCount,
             failed_count: failedCount,
@@ -228,7 +280,8 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
         await (supabase as any)
             .from('newsletters')
             .update(updatePayload)
-            .eq('id', newsletter.id);
+            .eq('id', newsletter.id)
+            .eq('locked_by', workerId);
 
         totalSentCount += newlyDeliveredCount;
         totalFailedCount += failedCount;
