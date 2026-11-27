@@ -40,23 +40,43 @@ CREATE TABLE IF NOT EXISTS public.user_weekly_challenge_progress (
     CONSTRAINT uq_user_weekly_challenge UNIQUE(user_id, challenge_id)
 );
 
--- 4. RLS Configuration
+-- 4. RLS Configuration & Table Privileges
 ALTER TABLE public.weekly_challenge_templates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.weekly_challenges ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_weekly_challenge_progress ENABLE ROW LEVEL SECURITY;
 
+-- Explicit Table Privileges:
+-- Revoke all table privileges from PUBLIC and anon; grant only the minimum required.
+REVOKE ALL ON TABLE public.weekly_challenge_templates FROM PUBLIC, anon;
+REVOKE ALL ON TABLE public.weekly_challenges FROM PUBLIC, anon;
+REVOKE ALL ON TABLE public.user_weekly_challenge_progress FROM PUBLIC, anon;
+
+-- Templates & Challenges: authenticated users can SELECT; service_role has full access
+GRANT SELECT ON TABLE public.weekly_challenge_templates TO authenticated;
+GRANT ALL ON TABLE public.weekly_challenge_templates TO service_role;
+
+GRANT SELECT ON TABLE public.weekly_challenges TO authenticated;
+GRANT ALL ON TABLE public.weekly_challenges TO service_role;
+
+-- User Progress: authenticated users can SELECT, INSERT, UPDATE their own rows; service_role has full access
+GRANT SELECT, INSERT, UPDATE ON TABLE public.user_weekly_challenge_progress TO authenticated;
+GRANT ALL ON TABLE public.user_weekly_challenge_progress TO service_role;
+
 DO $$ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'weekly_challenge_templates' AND policyname = 'Public view templates') THEN
-        CREATE POLICY "Public view templates" ON public.weekly_challenge_templates FOR SELECT USING (true);
+        CREATE POLICY "Public view templates" ON public.weekly_challenge_templates FOR SELECT TO authenticated, service_role USING (true);
     END IF;
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'weekly_challenges' AND policyname = 'Public view challenges') THEN
-        CREATE POLICY "Public view challenges" ON public.weekly_challenges FOR SELECT USING (true);
+        CREATE POLICY "Public view challenges" ON public.weekly_challenges FOR SELECT TO authenticated, service_role USING (true);
     END IF;
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'user_weekly_challenge_progress' AND policyname = 'User view own progress') THEN
-        CREATE POLICY "User view own progress" ON public.user_weekly_challenge_progress FOR SELECT USING (auth.uid() = user_id);
+        CREATE POLICY "User view own progress" ON public.user_weekly_challenge_progress FOR SELECT TO authenticated USING (auth.uid() = user_id);
     END IF;
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'user_weekly_challenge_progress' AND policyname = 'User insert own progress') THEN
-        CREATE POLICY "User insert own progress" ON public.user_weekly_challenge_progress FOR INSERT WITH CHECK (auth.uid() = user_id);
+        CREATE POLICY "User insert own progress" ON public.user_weekly_challenge_progress FOR INSERT TO authenticated WITH CHECK (auth.uid() = user_id);
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'user_weekly_challenge_progress' AND policyname = 'User update own progress') THEN
+        CREATE POLICY "User update own progress" ON public.user_weekly_challenge_progress FOR UPDATE TO authenticated USING (auth.uid() = user_id) WITH CHECK (auth.uid() = user_id);
     END IF;
 END $$;
 
@@ -74,12 +94,12 @@ SELECT 'quiz_score', 90, 'Obtén más del 90% en un quiz', 'Lortu %90 baino gehi
 WHERE NOT EXISTS (SELECT 1 FROM public.weekly_challenge_templates WHERE type = 'quiz_score');
 
 -- 6. Concurrency-safe Function: get_or_create_weekly_challenge
--- Hardened with explicit immutable search_path to prevent search_path hijacking in SECURITY DEFINER
+-- Hardened with immutable search_path = pg_catalog, pg_temp to prevent any public schema resolution hijack
 CREATE OR REPLACE FUNCTION public.get_or_create_weekly_challenge()
 RETURNS JSONB
 LANGUAGE plpgsql
 SECURITY DEFINER
-SET search_path = pg_catalog, public
+SET search_path = pg_catalog, pg_temp
 AS $$
 DECLARE
     v_start_date DATE;
@@ -88,8 +108,8 @@ DECLARE
     v_template_id UUID;
     v_result JSONB;
 BEGIN
-    -- Calculate start of current week (Monday UTC)
-    v_start_date := date_trunc('week', current_date)::date;
+    -- Calculate start of current week (Monday UTC) using schema-qualified functions
+    v_start_date := pg_catalog.date_trunc('week', pg_catalog.current_date())::date;
     v_end_date := v_start_date + 6;
 
     -- Concurrency Protection: Attempt insertion or handle unique conflict gracefully
@@ -98,10 +118,10 @@ BEGIN
     WHERE start_date = v_start_date;
 
     IF v_challenge_id IS NULL THEN
-        -- Select random template
+        -- Select random template from public schema
         SELECT id INTO v_template_id
         FROM public.weekly_challenge_templates
-        ORDER BY random()
+        ORDER BY pg_catalog.random()
         LIMIT 1;
 
         IF v_template_id IS NOT NULL THEN
@@ -120,11 +140,11 @@ BEGIN
     END IF;
 
     -- Return the challenge with template details (no private user data exposed)
-    SELECT jsonb_build_object(
+    SELECT pg_catalog.jsonb_build_object(
         'id', c.id,
         'start_date', c.start_date,
         'end_date', c.end_date,
-        'template', jsonb_build_object(
+        'template', pg_catalog.jsonb_build_object(
             'type', t.type,
             'target_count', t.target_count,
             'target_score', t.target_score,
