@@ -45,11 +45,13 @@ ALTER TABLE public.weekly_challenge_templates ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.weekly_challenges ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_weekly_challenge_progress ENABLE ROW LEVEL SECURITY;
 
--- Explicit Table Privileges:
--- Revoke all table privileges from PUBLIC and anon; grant only the minimum required.
-REVOKE ALL ON TABLE public.weekly_challenge_templates FROM PUBLIC, anon;
-REVOKE ALL ON TABLE public.weekly_challenges FROM PUBLIC, anon;
-REVOKE ALL ON TABLE public.user_weekly_challenge_progress FROM PUBLIC, anon;
+-- Explicit Table Privileges Reset:
+-- Explicitly revoke all existing privileges from PUBLIC, anon, and authenticated to enforce clean least privilege.
+REVOKE ALL PRIVILEGES ON TABLE 
+    public.weekly_challenge_templates,
+    public.weekly_challenges,
+    public.user_weekly_challenge_progress
+FROM PUBLIC, anon, authenticated;
 
 -- Templates & Challenges: authenticated users can SELECT; service_role has full access
 GRANT SELECT ON TABLE public.weekly_challenge_templates TO authenticated;
@@ -108,8 +110,8 @@ DECLARE
     v_template_id UUID;
     v_result JSONB;
 BEGIN
-    -- Calculate start of current week (Monday UTC) using schema-qualified functions
-    v_start_date := pg_catalog.date_trunc('week', pg_catalog.current_date())::date;
+    -- Calculate start of current week (Monday UTC) using standard CURRENT_DATE special expression
+    v_start_date := pg_catalog.date_trunc('week', CURRENT_DATE)::date;
     v_end_date := v_start_date + 6;
 
     -- Concurrency Protection: Attempt insertion or handle unique conflict gracefully
