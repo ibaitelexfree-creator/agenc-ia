@@ -8,6 +8,7 @@ export interface WeatherAlertCheckResult {
     alerts_found: number;
     new_alerts: number;
     email_sent: boolean;
+    deduplication_active: boolean;
     reason?: string;
     error?: string;
 }
@@ -31,19 +32,32 @@ export function computeAlertHash(alert: any): string {
 export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckResult> {
     const alerts = await fetchEuskalmetAlerts();
     if (!alerts || alerts.length === 0) {
-        return { success: true, alerts_found: 0, new_alerts: 0, email_sent: false, reason: 'No alerts returned by provider' };
+        return {
+            success: true,
+            alerts_found: 0,
+            new_alerts: 0,
+            email_sent: false,
+            deduplication_active: true,
+            reason: 'No alerts returned by provider'
+        };
     }
 
     const activeAlerts = alerts.filter((a: any) => a.level !== 'verde' && a.level !== 'green');
     if (activeAlerts.length === 0) {
-        return { success: true, alerts_found: alerts.length, new_alerts: 0, email_sent: false, reason: 'No severe alerts' };
+        return {
+            success: true,
+            alerts_found: alerts.length,
+            new_alerts: 0,
+            email_sent: false,
+            deduplication_active: true,
+            reason: 'No severe alerts'
+        };
     }
 
     const supabase = createAdminClient();
 
     let deduplicationEnabled = true;
     const alreadyProcessedHashes: Set<string> = new Set();
-
     const candidateHashes = activeAlerts.map(a => computeAlertHash(a));
 
     const { data: existingRows, error: checkError } = await (supabase as any)
@@ -52,17 +66,19 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
         .in('alert_hash', candidateHashes);
 
     if (checkError) {
-        console.warn('[WEATHER_ALERTS] processed_weather_alerts table not found in database. Proceeding without persistent DB deduplication.');
+        console.warn('[WEATHER_ALERTS] processed_weather_alerts table not found in database. WARNING: Persistent deduplication disabled.');
         deduplicationEnabled = false;
     } else if (existingRows) {
         const now = new Date().getTime();
         for (const row of existingRows) {
+            // Deduplicate ONLY IF status === 'sent' AND not yet expired
             if (row.status === 'sent' && row.expires_at) {
                 const expiryTime = new Date(row.expires_at).getTime();
                 if (expiryTime > now) {
                     alreadyProcessedHashes.add(row.alert_hash);
                 }
             }
+            // If row.status === 'failed', we DO NOT add to alreadyProcessedHashes, allowing automatic retry!
         }
     }
 
@@ -74,6 +90,7 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
             alerts_found: activeAlerts.length,
             new_alerts: 0,
             email_sent: false,
+            deduplication_active: deduplicationEnabled,
             reason: 'All active alerts were already notified.'
         };
     }
@@ -85,6 +102,7 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
             alerts_found: activeAlerts.length,
             new_alerts: unnotifiedAlerts.length,
             email_sent: false,
+            deduplication_active: deduplicationEnabled,
             reason: 'Resend API key missing or invalid'
         };
     }
@@ -115,11 +133,28 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
 
         if (emailResponse.error) {
             console.error('[WEATHER_ALERTS] Resend provider returned error:', emailResponse.error);
+
+            // Record failure state in database so it is retried next time
+            if (deduplicationEnabled) {
+                const failRecords = unnotifiedAlerts.map(a => ({
+                    alert_hash: computeAlertHash(a),
+                    severity: a.level || 'warning',
+                    description: (a.description || a.phenomenon || '').substring(0, 500),
+                    status: 'failed',
+                    expires_at: a.end ? new Date(a.end).toISOString() : new Date(Date.now() + 24 * 3600 * 1000).toISOString(),
+                    sent_at: null
+                }));
+                await (supabase as any)
+                    .from('processed_weather_alerts')
+                    .upsert(failRecords, { onConflict: 'alert_hash' });
+            }
+
             return {
                 success: false,
                 alerts_found: activeAlerts.length,
                 new_alerts: unnotifiedAlerts.length,
                 email_sent: false,
+                deduplication_active: deduplicationEnabled,
                 error: emailResponse.error.message
             };
         }
@@ -146,7 +181,8 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
             success: true,
             alerts_found: activeAlerts.length,
             new_alerts: unnotifiedAlerts.length,
-            email_sent: true
+            email_sent: true,
+            deduplication_active: deduplicationEnabled
         };
     } catch (sendError: any) {
         console.error('[WEATHER_ALERTS] Unexpected exception sending alert email:', sendError);
@@ -155,6 +191,7 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
             alerts_found: activeAlerts.length,
             new_alerts: unnotifiedAlerts.length,
             email_sent: false,
+            deduplication_active: deduplicationEnabled,
             error: sendError.message || 'Network error'
         };
     }

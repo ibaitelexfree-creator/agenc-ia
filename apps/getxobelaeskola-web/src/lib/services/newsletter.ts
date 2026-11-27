@@ -16,10 +16,32 @@ export interface NewsletterProcessResult {
 }
 
 /**
+ * Recovers newsletters stuck in 'processing' state for longer than timeoutMinutes (default 15m).
+ * Reverts them to 'scheduled' so they can be picked up and resumed.
+ */
+export async function recoverStuckNewsletters(supabase: any, timeoutMinutes: number = 15): Promise<number> {
+    const thresholdIso = new Date(Date.now() - timeoutMinutes * 60 * 1000).toISOString();
+    const { data, error } = await supabase
+        .from('newsletters')
+        .update({
+            status: 'scheduled',
+            updated_at: new Date().toISOString()
+        })
+        .eq('status', 'processing')
+        .lte('updated_at', thresholdIso)
+        .select('id');
+
+    if (error || !data) {
+        return 0;
+    }
+    return data.length;
+}
+
+/**
  * Claims a scheduled newsletter atomically to prevent race conditions across multiple workers.
  * Transitions status from 'scheduled' -> 'processing'.
  */
-async function claimNewsletter(supabase: any, newsletterId: string): Promise<boolean> {
+export async function claimNewsletter(supabase: any, newsletterId: string): Promise<boolean> {
     const { data, error } = await supabase
         .from('newsletters')
         .update({
@@ -42,6 +64,10 @@ async function claimNewsletter(supabase: any, newsletterId: string): Promise<boo
  */
 export async function processScheduledNewsletters(): Promise<NewsletterProcessResult> {
     const supabase = createAdminClient();
+
+    // 0. Recover any orphaned/crashed jobs stuck in 'processing'
+    await recoverStuckNewsletters(supabase, 15);
+
     const nowIso = new Date().toISOString();
 
     // 1. Fetch candidates with status 'scheduled'
@@ -146,6 +172,9 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                     </div>
                 `;
 
+                // Resend Idempotency Key header: identifies this specific campaign & recipient delivery attempt
+                const idempotencyKey = `nl_${newsletter.id}_${Buffer.from(subscriberEmail).toString('base64').replace(/=/g, '')}`;
+
                 try {
                     const response = await resend!.emails.send({
                         from: DEFAULT_FROM_EMAIL,
@@ -154,7 +183,8 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                         html: htmlBody,
                         headers: {
                             'List-Unsubscribe': `<${unsubscribeUrl}>`,
-                            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
+                            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+                            'X-Entity-Ref-ID': idempotencyKey
                         }
                     });
 
