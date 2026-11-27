@@ -74,8 +74,13 @@ SELECT 'quiz_score', 90, 'Obtén más del 90% en un quiz', 'Lortu %90 baino gehi
 WHERE NOT EXISTS (SELECT 1 FROM public.weekly_challenge_templates WHERE type = 'quiz_score');
 
 -- 6. Concurrency-safe Function: get_or_create_weekly_challenge
+-- Hardened with explicit immutable search_path to prevent search_path hijacking in SECURITY DEFINER
 CREATE OR REPLACE FUNCTION public.get_or_create_weekly_challenge()
-RETURNS JSONB AS $$
+RETURNS JSONB
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = pg_catalog, public
+AS $$
 DECLARE
     v_start_date DATE;
     v_end_date DATE;
@@ -114,7 +119,7 @@ BEGIN
         END IF;
     END IF;
 
-    -- Return the challenge with template details
+    -- Return the challenge with template details (no private user data exposed)
     SELECT jsonb_build_object(
         'id', c.id,
         'start_date', c.start_date,
@@ -134,7 +139,8 @@ BEGIN
 
     RETURN v_result;
 END;
-$$ LANGUAGE plpgsql SECURITY DEFINER;
+$$;
 
--- 7. Grant execute to service_role and authenticated users
-GRANT EXECUTE ON FUNCTION public.get_or_create_weekly_challenge() TO anon, authenticated, service_role;
+-- 7. Grant execute ONLY to authenticated users and service_role (Revoke anon execution)
+REVOKE ALL ON FUNCTION public.get_or_create_weekly_challenge() FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.get_or_create_weekly_challenge() TO authenticated, service_role;
