@@ -33,7 +33,7 @@ export async function claimNewsletterWithLease(
     const leaseExpiresAt = new Date(now.getTime() + leaseDurationSeconds * 1000).toISOString();
     const nowIso = now.toISOString();
 
-    // First try: Claim scheduled campaign
+    // 1. Claim scheduled campaign
     const { data: claimScheduled, error: err1 } = await supabase
         .from('newsletters')
         .update({
@@ -50,7 +50,7 @@ export async function claimNewsletterWithLease(
         return true;
     }
 
-    // Second try: Reclaim stale/crashed campaign whose lease expired
+    // 2. Reclaim stale/crashed campaign whose lease expired
     const { data: claimStale, error: err2 } = await supabase
         .from('newsletters')
         .update({
@@ -73,7 +73,41 @@ export async function claimNewsletterWithLease(
 }
 
 /**
- * Verifies if the current worker still holds the active lease before updating or continuing.
+ * Renews the worker lease actively during batch processing.
+ * ATOMIC CONDITIONAL UPDATE:
+ * Only succeeds if locked_by STILL matches this worker AND status is 'processing' AND lease hasn't already expired!
+ * Prevents stale workers from extending an expired lease or stealing back a reclaimed campaign.
+ */
+export async function renewWorkerLease(
+    supabase: any,
+    newsletterId: string,
+    workerId: string,
+    extensionSeconds: number = 600
+): Promise<boolean> {
+    const now = new Date();
+    const nowIso = now.toISOString();
+    const newLeaseExpiresAt = new Date(now.getTime() + extensionSeconds * 1000).toISOString();
+
+    const { data, error } = await supabase
+        .from('newsletters')
+        .update({
+            lease_expires_at: newLeaseExpiresAt,
+            updated_at: nowIso
+        })
+        .eq('id', newsletterId)
+        .eq('locked_by', workerId)
+        .eq('status', 'processing')
+        .gt('lease_expires_at', nowIso)
+        .select('id');
+
+    if (error || !data || data.length === 0) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Verifies if the current worker still holds an active, unexpired lease.
  */
 export async function verifyWorkerLease(
     supabase: any,
@@ -88,7 +122,6 @@ export async function verifyWorkerLease(
 
     if (error || !data) return false;
 
-    // Must be processing, assigned to this worker, and not expired
     if (data.status !== 'processing') return false;
     if (data.locked_by && data.locked_by !== workerId) return false;
     if (data.lease_expires_at && new Date(data.lease_expires_at).getTime() < Date.now()) return false;
@@ -97,7 +130,7 @@ export async function verifyWorkerLease(
 }
 
 /**
- * Robust, atomic processor for scheduled newsletters with worker lease protection.
+ * Robust, atomic processor for scheduled newsletters with active lease renewals and provider idempotency.
  */
 export async function processScheduledNewsletters(): Promise<NewsletterProcessResult> {
     const supabase = createAdminClient();
@@ -150,7 +183,7 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
     const processResults: any[] = [];
 
     for (const newsletter of pendingNewsletters) {
-        // Atomic claim with lease (10 minutes lease duration)
+        // Atomic claim with initial 10-minute lease
         const claimed = await claimNewsletterWithLease(supabase, newsletter.id, workerId, 600);
         if (!claimed) {
             console.log(`[NEWSLETTER] Newsletter ${newsletter.id} ya fue reclamada por otro proceso activo. Omitiendo.`);
@@ -159,16 +192,13 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
 
         console.log(`[NEWSLETTER] Worker ${workerId} procesando newsletter reclamada: "${newsletter.title}" (ID: ${newsletter.id})`);
 
-        // Check if existing delivery logs exist from a previous partial attempt
         const previousLogs: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }> = 
             Array.isArray(newsletter.delivery_logs) ? newsletter.delivery_logs : [];
         
-        // Find emails already delivered
         const alreadyDelivered = new Set(
             previousLogs.filter(l => l.status === 'delivered').map(l => l.email.toLowerCase())
         );
 
-        // Filter only recipients that still need delivery
         const recipientsToProcess = subscribers.filter(s => !alreadyDelivered.has(s.email.toLowerCase()));
 
         let deliveredCount = alreadyDelivered.size;
@@ -180,10 +210,10 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
         const totalToProcess = recipientsToProcess.length;
 
         for (let i = 0; i < totalToProcess; i += BATCH_SIZE) {
-            // Heartbeat lease check: Ensure our lease hasn't expired or been stolen
-            const leaseValid = await verifyWorkerLease(supabase, newsletter.id, workerId);
-            if (!leaseValid) {
-                console.error(`[NEWSLETTER] Worker ${workerId} perdió el lease de la newsletter ${newsletter.id}. Abortando procesamiento restante para evitar duplicados.`);
+            // Heartbeat + Renewal: Actively renew the lease for 10 more minutes
+            const renewed = await renewWorkerLease(supabase, newsletter.id, workerId, 600);
+            if (!renewed) {
+                console.error(`[NEWSLETTER] Worker ${workerId} no pudo renovar el lease (expiró o fue reclamado). Abortando para evitar duplicados.`);
                 break;
             }
 
@@ -213,7 +243,7 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                     </div>
                 `;
 
-                // Resend Official Idempotency Key: passed as second parameter options object
+                // Resend Official Idempotency Key (under 256 characters)
                 const officialIdempotencyKey = `nl_${newsletter.id}_${Buffer.from(subscriberEmail).toString('base64').replace(/=/g, '')}`;
 
                 try {
@@ -232,18 +262,33 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                     });
 
                     if (response.error) {
-                        console.error(`[NEWSLETTER] Error enviando a ${subscriberEmail}:`, response.error);
-                        failedCount++;
-                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: response.error.message });
+                        // HTTP 409 or conflict error handling: if response contains already processed idempotent email
+                        if (response.error.name === 'invalid_idempotent_request' || (response.error as any).statusCode === 409) {
+                            console.warn(`[NEWSLETTER] Recipient ${subscriberEmail} already delivered via idempotent request.`);
+                            deliveredCount++;
+                            newlyDeliveredCount++;
+                            currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
+                        } else {
+                            console.error(`[NEWSLETTER] Error enviando a ${subscriberEmail}:`, response.error);
+                            failedCount++;
+                            currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: response.error.message });
+                        }
                     } else {
                         deliveredCount++;
                         newlyDeliveredCount++;
                         currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
                     }
                 } catch (err: any) {
-                    console.error(`[NEWSLETTER] Excepción enviando a ${subscriberEmail}:`, err);
-                    failedCount++;
-                    currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: err?.message || 'Error de red' });
+                    if (err?.statusCode === 409 || err?.message?.includes('idempotent')) {
+                        console.warn(`[NEWSLETTER] Caught 409 conflict: ${subscriberEmail} was already sent.`);
+                        deliveredCount++;
+                        newlyDeliveredCount++;
+                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
+                    } else {
+                        console.error(`[NEWSLETTER] Excepción enviando a ${subscriberEmail}:`, err);
+                        failedCount++;
+                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: err?.message || 'Error de red' });
+                    }
                 }
             }));
 
@@ -255,7 +300,7 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
         // Final lease validation before committing final campaign status
         const leaseStillHeld = await verifyWorkerLease(supabase, newsletter.id, workerId);
         if (!leaseStillHeld) {
-            console.warn(`[NEWSLETTER] Worker ${workerId} omitió actualización de estado final porque perdió el lease.`);
+            console.warn(`[NEWSLETTER] Worker ${workerId} omitió actualización final de ${newsletter.id} porque perdió la titularidad del lease.`);
             continue;
         }
 

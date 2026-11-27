@@ -1,0 +1,32 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${PROD_IMAGE:-getxobelaeskola-prod:304371a6}
+    container_name: getxo-bela-prod
+    restart: always
+    expose:
+      - "3000"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.getxo-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.getxo-official-http.rule=Host(`getxobelaeskola.com`) || Host(`www.getxobelaeskola.com`)"
+      - "traefik.http.routers.getxo-official-http.entrypoints=web"
+      - "traefik.http.routers.getxo-official-http.middlewares=getxo-redirect-https"
+      - "traefik.http.routers.getxo-official.rule=Host(`getxobelaeskola.com`) || Host(`www.getxobelaeskola.com`)"
+      - "traefik.http.routers.getxo-official.entrypoints=websecure"
+      - "traefik.http.routers.getxo-official.tls.certresolver=mytlschallenge"
+      - "traefik.http.services.getxo-official.loadbalancer.server.port=3000"
+    env_file:
+      - .env.production
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    networks:
+      - n8n_default
+
+networks:
+  n8n_default:
+    external: true
