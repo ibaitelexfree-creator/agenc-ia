@@ -164,34 +164,47 @@ export async function checkAndNotifyWeatherAlerts(): Promise<WeatherAlertCheckRe
                 new_alerts: unnotifiedAlerts.length,
                 email_sent: false,
                 deduplication_active: deduplicationEnabled,
-                error: emailResponse.error.message
+                error: `${emailResponse.error.name}: ${emailResponse.error.message}`
             };
         }
 
-        if (deduplicationEnabled) {
-            const recordsToInsert = unnotifiedAlerts.map(a => {
-                const expDate = a.end ? new Date(a.end) : new Date(Date.now() + 24 * 3600 * 1000);
-                return {
-                    alert_hash: computeAlertHash(a),
-                    severity: a.level || 'warning',
-                    description: (a.description || a.phenomenon || '').substring(0, 500),
-                    status: 'sent',
-                    expires_at: expDate.toISOString(),
-                    sent_at: new Date().toISOString()
-                };
-            });
+        if (emailResponse.data && emailResponse.data.id) {
+            if (deduplicationEnabled) {
+                const recordsToInsert = unnotifiedAlerts.map(a => {
+                    const expDate = a.end ? new Date(a.end) : new Date(Date.now() + 24 * 3600 * 1000);
+                    return {
+                        alert_hash: computeAlertHash(a),
+                        severity: a.level || 'warning',
+                        description: (a.description || a.phenomenon || '').substring(0, 500),
+                        status: 'sent',
+                        expires_at: expDate.toISOString(),
+                        sent_at: new Date().toISOString()
+                    };
+                });
 
-            await (supabase as any)
-                .from('processed_weather_alerts')
-                .upsert(recordsToInsert, { onConflict: 'alert_hash' });
+                await (supabase as any)
+                    .from('processed_weather_alerts')
+                    .upsert(recordsToInsert, { onConflict: 'alert_hash' });
+            }
+
+            return {
+                success: true,
+                alerts_found: activeAlerts.length,
+                new_alerts: unnotifiedAlerts.length,
+                email_sent: true,
+                deduplication_active: deduplicationEnabled
+            };
         }
 
+        // Response lacked ID -> Ambiguous provider acceptance
+        console.warn('[WEATHER_ALERTS] Provider response lacked confirmation id. Keeping status as failed for safe retry.');
         return {
-            success: true,
+            success: false,
             alerts_found: activeAlerts.length,
             new_alerts: unnotifiedAlerts.length,
-            email_sent: true,
-            deduplication_active: deduplicationEnabled
+            email_sent: false,
+            deduplication_active: deduplicationEnabled,
+            error: 'Provider response lacked confirmation id'
         };
     } catch (sendError: any) {
         console.error('[WEATHER_ALERTS] Unexpected exception sending alert email:', sendError);

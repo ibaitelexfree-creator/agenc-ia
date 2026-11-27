@@ -192,7 +192,7 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
 
         console.log(`[NEWSLETTER] Worker ${workerId} procesando newsletter reclamada: "${newsletter.title}" (ID: ${newsletter.id})`);
 
-        const previousLogs: Array<{ email: string; status: 'delivered' | 'failed'; timestamp: string; error?: string }> = 
+        const previousLogs: Array<{ email: string; status: 'delivered' | 'failed' | 'ambiguous'; timestamp: string; error?: string }> = 
             Array.isArray(newsletter.delivery_logs) ? newsletter.delivery_logs : [];
         
         const alreadyDelivered = new Set(
@@ -219,7 +219,14 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
 
             const chunk = recipientsToProcess.slice(i, i + BATCH_SIZE);
 
-            await Promise.all(chunk.map(async (sub: { email: string; locale?: string }) => {
+            for (const sub of chunk) {
+                // Per-recipient lease ownership verification: ensures no stale send occurs
+                const stillOwned = await verifyWorkerLease(supabase, newsletter.id, workerId);
+                if (!stillOwned) {
+                    console.error(`[NEWSLETTER] Worker ${workerId} perdió el lease antes de enviar a ${sub.email}. Abortando.`);
+                    break;
+                }
+
                 const subscriberEmail = sub.email;
                 const locale = sub.locale || 'es';
                 const unsubscribeUrl = `${BASE_URL}/${locale}/unsubscribe?email=${encodeURIComponent(subscriberEmail)}`;
@@ -262,35 +269,48 @@ export async function processScheduledNewsletters(): Promise<NewsletterProcessRe
                     });
 
                     if (response.error) {
-                        // HTTP 409 or conflict error handling: if response contains already processed idempotent email
-                        if (response.error.name === 'invalid_idempotent_request' || (response.error as any).statusCode === 409) {
-                            console.warn(`[NEWSLETTER] Recipient ${subscriberEmail} already delivered via idempotent request.`);
-                            deliveredCount++;
-                            newlyDeliveredCount++;
-                            currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
-                        } else {
-                            console.error(`[NEWSLETTER] Error enviando a ${subscriberEmail}:`, response.error);
-                            failedCount++;
-                            currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: response.error.message });
-                        }
-                    } else {
+                        // Strict semantics:
+                        // 'invalid_idempotent_request' = 409 when payload changes -> CONFLICT / NOT DELIVERED
+                        // 'concurrent_idempotent_requests' = 409 in-flight -> AMBIGUOUS / RETRY
+                        console.error(`[NEWSLETTER] Error proveedor para ${subscriberEmail}:`, response.error);
+                        failedCount++;
+                        currentDeliveryLogs.push({
+                            email: subscriberEmail,
+                            status: 'failed',
+                            timestamp: new Date().toISOString(),
+                            error: `${response.error.name}: ${response.error.message}`
+                        });
+                    } else if (response.data && response.data.id) {
+                        // Confirmed delivery with returned message id
                         deliveredCount++;
                         newlyDeliveredCount++;
-                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
+                        currentDeliveryLogs.push({
+                            email: subscriberEmail,
+                            status: 'delivered',
+                            timestamp: new Date().toISOString()
+                        });
+                    } else {
+                        // Missing ID in response -> ambiguous state
+                        console.warn(`[NEWSLETTER] Respuesta de proveedor ambigua para ${subscriberEmail}`);
+                        failedCount++;
+                        currentDeliveryLogs.push({
+                            email: subscriberEmail,
+                            status: 'ambiguous',
+                            timestamp: new Date().toISOString(),
+                            error: 'Provider response lacked confirmation id'
+                        });
                     }
                 } catch (err: any) {
-                    if (err?.statusCode === 409 || err?.message?.includes('idempotent')) {
-                        console.warn(`[NEWSLETTER] Caught 409 conflict: ${subscriberEmail} was already sent.`);
-                        deliveredCount++;
-                        newlyDeliveredCount++;
-                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'delivered', timestamp: new Date().toISOString() });
-                    } else {
-                        console.error(`[NEWSLETTER] Excepción enviando a ${subscriberEmail}:`, err);
-                        failedCount++;
-                        currentDeliveryLogs.push({ email: subscriberEmail, status: 'failed', timestamp: new Date().toISOString(), error: err?.message || 'Error de red' });
-                    }
+                    console.error(`[NEWSLETTER] Excepción de red para ${subscriberEmail}:`, err);
+                    failedCount++;
+                    currentDeliveryLogs.push({
+                        email: subscriberEmail,
+                        status: 'ambiguous',
+                        timestamp: new Date().toISOString(),
+                        error: err?.message || 'Network exception / Timeout'
+                    });
                 }
-            }));
+            }
 
             if (i + BATCH_SIZE < totalToProcess) {
                 await sleep(1000);
