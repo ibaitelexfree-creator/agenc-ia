@@ -14,6 +14,8 @@ function LoginPageContent({ locale }: { locale: string }) {
     const t = useTranslations('auth');
     const searchParams = useSearchParams();
     const returnTo = searchParams.get('returnTo');
+    const isRegistered = searchParams.get('registered') === 'true';
+    const tf = useTranslations('auth_form');
     const router = useRouter();
     const [checking, setChecking] = useState(true);
     // Auto-redirect if already authenticated
@@ -87,6 +89,12 @@ function LoginPageContent({ locale }: { locale: string }) {
                             {t('login_desc')}
                         </p>
                     </header>
+
+                    {isRegistered && (
+                        <div className="mb-6 p-4 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs sm:text-sm text-center leading-relaxed font-medium animate-fade-in shadow-lg shadow-emerald-950/20">
+                            {tf('registered_success')}
+                        </div>
+                    )}
 
                     {/* Login Form */}
                     <LoginForm locale={locale} />

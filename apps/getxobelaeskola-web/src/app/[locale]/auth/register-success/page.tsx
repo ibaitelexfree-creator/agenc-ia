@@ -1,7 +1,9 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { sanitizeReturnTo } from '@/lib/security/url-validator';
 
 export default function RegisterSuccessPage({
     params: { locale }
@@ -9,10 +11,15 @@ export default function RegisterSuccessPage({
     params: { locale: string }
 }) {
     const t = useTranslations('register_success');
+    const tAuth = useTranslations('auth_form');
     const searchParams = useSearchParams();
     const router = useRouter();
 
-    const returnTo = searchParams.get('returnTo');
+    const returnTo = useMemo(() => {
+        const raw = searchParams.get('returnTo');
+        const origin = typeof window !== 'undefined' ? window.location.origin : undefined;
+        return sanitizeReturnTo(raw, origin);
+    }, [searchParams]);
 
     return (
         <main className="min-h-[80vh] flex items-center justify-center p-4 bg-nautical-black text-white">
@@ -39,6 +46,13 @@ export default function RegisterSuccessPage({
                             {t('btn_continue')}
                         </button>
                     )}
+
+                    <Link
+                        href={`/${locale}/auth/login`}
+                        className="w-full btn btn-accent py-3 font-semibold tracking-wider text-xs uppercase transition-all shadow-lg hover:shadow-accent/20 block text-center text-neutral-950 font-bold"
+                    >
+                        {tAuth('login_btn')}
+                    </Link>
 
                     <button
                         onClick={() => router.push(`/${locale}/student/dashboard`)}

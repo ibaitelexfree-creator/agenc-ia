@@ -1,26 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-
-function getPublicOrigin(request: Request) {
-    const forwardedHost = request.headers.get('x-forwarded-host');
-    const host = request.headers.get('host');
-    const originHeader = request.headers.get('origin');
-    
-    if (originHeader && !originHeader.includes('localhost') && !originHeader.includes('127.0.0.1')) {
-        return originHeader;
-    }
-    
-    let resolvedHost = forwardedHost || host || 'localhost:3000';
-    const protocol = request.headers.get('x-forwarded-proto') || 
-                     (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1') ? 'http' : 'https');
-                     
-    if (process.env.NODE_ENV === 'production' && (resolvedHost.includes('localhost') || resolvedHost.includes('127.0.0.1'))) {
-        return 'https://getxobelaeskola.cloud';
-    }
-    
-    return `${protocol}://${resolvedHost}`;
-}
+import { sanitizeReturnTo } from '../../../../lib/security/url-validator';
+import { getPublicOrigin } from '../../../../lib/security/origin-resolver';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
@@ -35,16 +17,18 @@ export async function GET(request: Request) {
         console.error('Failed to read cookies in auth callback:', e);
     }
     
-    const next = nextCookie || searchParams.get('next') || '/';
     const origin = getPublicOrigin(request);
+    const rawNext = nextCookie || searchParams.get('next');
+    const sanitizedNext = sanitizeReturnTo(rawNext, origin);
+    const safeNext = sanitizedNext || '/';
 
     if (code) {
         const supabase = createClient();
         const { error } = await supabase.auth.exchangeCodeForSession(code);
         if (!error) {
             // Determine if we should redirect to a specific locale
-            // For now, redirect to the 'next' path which could include the locale
-            const response = NextResponse.redirect(`${origin}${next}`);
+            // For now, redirect to the safe sanitized 'next' path
+            const response = NextResponse.redirect(`${origin}${safeNext}`);
             response.cookies.set('sb-redirect-to', '', { path: '/', maxAge: 0 });
             return response;
         }
@@ -52,7 +36,7 @@ export async function GET(request: Request) {
 
     // return the user to an error page with instructions
     // or just back to login with an error, trying to preserve locale
-    const localeMatch = next.match(/^\/([a-z]{2})\//);
+    const localeMatch = safeNext.match(/^\/([a-z]{2})\//);
     const errorLocale = localeMatch ? localeMatch[1] : 'es';
     const response = NextResponse.redirect(`${origin}/${errorLocale}/auth/login?error=auth_callback_error`);
     response.cookies.set('sb-redirect-to', '', { path: '/', maxAge: 0 });

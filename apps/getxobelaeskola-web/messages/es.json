@@ -406,7 +406,8 @@
     "resend_success": "Email reenviado correctamente.",
     "google_btn": "Continuar con Google",
     "rate_limit": "Has excedido el límite de intentos. Por favor, espera unos minutos antes de intentar de nuevo.",
-    "or_divider": "O BIEN"
+    "or_divider": "O BIEN",
+    "registered_success": "Registro completado con éxito. Por favor, revisa tu correo electrónico para confirmar tu cuenta antes de iniciar sesión."
   },
   "booking": {
     "select_date": "Selecciona una fecha",
@@ -2135,7 +2136,7 @@
   },
   "register_success": {
     "title": "¡Registro Completado!",
-    "message": "Tu cuenta ha sido creada y confirmada correctamente. ¡Bienvenido/a a la tripulación!",
+    "message": "Tu registro se ha completado correctamente. Hemos enviado un correo electrónico para verificar tu dirección. Por favor, revisa tu bandeja de entrada y confirma tu cuenta antes de iniciar sesión.",
     "btn_home": "Ir a Inicio",
     "btn_dashboard": "Área de Usuario",
     "btn_continue": "Continuar con mi Reserva"

@@ -415,7 +415,8 @@
     "resend_success": "Emaila ondo bidali da berriro.",
     "google_btn": "Google-rekin jarraitu",
     "rate_limit": "Saiakera muga gainditu duzu. Mesedez, itxaron minutu batzuk berriro saiatu aurretik.",
-    "or_divider": "EDO"
+    "or_divider": "EDO",
+    "registered_success": "Erregistroa behar bezala osatu da. Mesedez, egiaztatu zure posta elektronikoa kontua berresteko saioa hasi aurretik."
   },
   "booking": {
     "select_date": "Hautatu data bat",
@@ -2198,7 +2199,7 @@
   },
   "register_success": {
     "title": "Erregistroa Burutua!",
-    "message": "Zure kontua ondo sortu eta berretsi da. Ongi etorri tripulaziora!",
+    "message": "Zure erregistroa behar bezala osatu da. Mezu elektroniko bat bidali dugu zure helbidea egiaztatzeko. Mesedez, begiratu zure sarrera-ontzia eta berretsi zure kontua saioa hasi aurretik.",
     "btn_home": "Joan Hasierara",
     "btn_dashboard": "Erabiltzaile Eremua",
     "btn_continue": "Erreserbarekin Jarraitu"

@@ -415,7 +415,8 @@
     "resend_success": "Email resent successfully.",
     "google_btn": "Continue with Google",
     "rate_limit": "You have exceeded the attempt limit. Please wait a few minutes before trying again.",
-    "or_divider": "OR"
+    "or_divider": "OR",
+    "registered_success": "Registration completed successfully. Please check your email to confirm your account before logging in."
   },
   "booking": {
     "select_date": "Select a date",
@@ -2144,7 +2145,7 @@
   },
   "register_success": {
     "title": "Registration Completed!",
-    "message": "Your account has been successfully created and confirmed. Welcome to the crew!",
+    "message": "Your registration was completed successfully. We have sent you an email to verify your address. Please check your inbox and confirm your account before logging in.",
     "btn_home": "Go to Home",
     "btn_dashboard": "User Area",
     "btn_continue": "Continue with my Booking"
